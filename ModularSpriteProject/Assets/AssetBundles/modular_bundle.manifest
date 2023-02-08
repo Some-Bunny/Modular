@@ -1,0 +1,114 @@
+ManifestFileVersion: 0
+CRC: 3113682214
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a948837ed8dda0a6e2898caab6f140db
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5309f71fd9d3b3b40b0a1404c3f2dc3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ecaffc43a5d2b1d47858e3fb687e7271, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b03b1445062e71c4ca60f92cbd330aff, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Sprites/UI/ui_button_3.png
+- Assets/Sprites/UI/Accept Button/ui_button_accept_highlight.png
+- Assets/Sprites/VFX/Animations/WarningVFXAnimation.prefab
+- Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_highlighted_alt.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed_alt.png
+- Assets/Sprites/VFX/Animations/BatteryAnimation.prefab
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_press_alt.png
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_defualtcannon_alt.png
+- Assets/Sprites/UI/CloseButton/ui_button_close_highlighted.png
+- Assets/Sprites/UI/Name Label/Names/name_label_WIP.png
+- Assets/Sprites/UI/ui_button_1.png
+- Assets/Sprites/Characters/Modular/Modular_Collection Data/modular material.mat
+- Assets/Sprites/Items/Modules/Items And Pickups/gear.png
+- Assets/Sprites/Items/Modules/T1/Tier_1_Module_Collection Data/t1_module material.mat
+- Assets/Sprites/Characters/ModularAlt/Modular_Alt_Animation.prefab
+- Assets/Sprites/UI/Page Turn Buttons/left_button_inactive.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_inactive_alt.png
+- Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/t2_module material.mat
+- Assets/Sprites/UI/Name Label/name_label_empty.png
+- Assets/Sprites/UI/Name Label/Alt/name_label_locked_alt.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_highlighted.png
+- Assets/Sprites/UI/LockedButton/ui_button_locked_pressed.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_active.png
+- Assets/Sprites/Items/Modules/T3/Module_T3_Collection Data/t3_module material.mat
+- Assets/Sprites/VFX/Animations/MomentumPlusAnimation.prefab
+- Assets/Sprites/Items/Modules/Items And Pickups/ModuleItemCollection Data/ModuleItemCollection.prefab
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_WIP_alt.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_pressed_alt.png
+- Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_alt.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_active_alt.png
+- Assets/Sprites/Characters/Modular/Modular_Collection Data/Modular_Collection.prefab
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_highlighted.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_alt.png
+- Assets/Sprites/Textures/nebula_reducednoise.png
+- Assets/Sprites/UI/Accept Button/ui_button_accept_active.png
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_alt.png
+- Assets/Sprites/VFX/Animations/MinelayerAnimation.prefab
+- Assets/Sprites/UI/CloseButton/ui_button_close_highlighted_alt.png
+- Assets/Sprites/UI/Accept Button/ui_button_accept_active_press.png
+- Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_pressed_alt.png
+- Assets/Sprites/UI/CloseButton/ui_button_close.png
+- Assets/Sprites/UI/Accept Button/ui_button_accept_active_1.png
+- Assets/Sprites/VFX/ModularVFXCollection Data/modular_vfx material.mat
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_inactive_alt.png
+- Assets/Sprites/Items/Modules/T3/Module_T3_Collection Data/Module_T3_Collection.prefab
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_highlighted_alt.png
+- Assets/Sprites/UI/Page Turn Buttons/left_button_pressed.png
+- Assets/Sprites/UI/CloseButton/ui_button_close_pressed_alt.png
+- Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/Tier_2_Module_Collection.prefab
+- Assets/Sprites/UI/Name Label/Names/name_label_defualtcannon.png
+- Assets/Sprites/UI/Name Label/name_label_locked.png
+- Assets/Sprites/Items/Modules/Items And Pickups/ModuleItemCollection Data/moduleitem
+  material.mat
+- Assets/Sprites/UI/CloseButton/ui_button_close_alt.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_pressed_alt.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_highlighted_alt.png
+- Assets/Sprites/UI/ui_button_2.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed.png
+- Assets/Sprites/UI/Name Label/Alt/name_label_empty_alt.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_highlighted_alt.png
+- Assets/Sprites/UI/ui_button_doublehalf_pressed.png
+- Assets/Sprites/UI/ui_button_doublehalf.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_inactive.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_active_alt.png
+- Assets/Sprites/UI/ui_button_doublehalf_highlighted.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_pressed.png
+- Assets/Sprites/Characters/ModularAlt/Modular_Alt_Collection Data/Modular_Alt_Collection.prefab
+- Assets/Sprites/VFX/ModularVFXCollection Data/ModularVFXCollection.prefab
+- Assets/Sprites/Items/Modules/T1/Tier_1_Module_Collection Data/Tier_1_Module_Collection.prefab
+- Assets/Sprites/Characters/ModularAlt/Modular_Alt_Collection Data/modular_alt material.mat
+- Assets/Sprites/UI/LockedButton/ui_button_locked_highlighted.png
+- Assets/Sprites/UI/LockedButton/ui_button_locked.png
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_highlight_alt.png
+- Assets/Sprites/VFX/Animations/SwindlerVFXAnimation.prefab
+- Assets/Sprites/UI/Page Turn Buttons/left_button_active.png
+- Assets/Sprites/UI/ui_template_bg_alt.png
+- Assets/Sprites/Characters/Modular/ModularSpriteAnimation.prefab
+- Assets/Sprites/UI/ui_template_bg.png
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_1_alt.png
+- Assets/Sprites/Characters/modular_bosscard_001.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun.png
+- Assets/Sprites/UI/CloseButton/ui_button_close_pressed.png
+- Assets/Sprites/UI/Page Turn Buttons/left_button_highlighted.png
+Dependencies: []

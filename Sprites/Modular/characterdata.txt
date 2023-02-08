@@ -1,0 +1,18 @@
+base: Robot
+name: The Modular
+name short: Modular
+nickname: gunsmachine
+
+<loadout>
+		mdl:scrapper
+		mdl:armcannon_0
+		mdl:modular_printer_core
+</loadout>
+
+<altGuns>
+    		mdl:armcannon_0_alt
+</altGuns>
+
+<stats>
+	
+</stats>

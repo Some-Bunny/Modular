@@ -1,0 +1,95 @@
+﻿using Alexandria.ItemAPI;
+using Dungeonator;
+using JuneLib.Items;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
+
+
+namespace ModularMod
+{
+    public class HellfireLauncher : DefaultModule
+    {
+        public static ItemTemplate template = new ItemTemplate(typeof(HellfireLauncher))
+        {
+            Name = "Hellfire Launcher",
+            Description = "Love The Smell",
+            LongDescription = "Reloading creates a line of burning fire in the direction you are aiming. (+Range and Radius per stack) Scales with amount of shots left in the clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            ManualSpriteCollection = StaticCollections.Module_T2_Collection,
+            ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hellfire_t2_module"),
+            Quality = ItemQuality.SPECIAL,
+            PostInitAction = PostInit
+        };
+        public static void PostInit(PickupObject v)
+        {
+            var h = (v as DefaultModule);
+            h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hellfire_t2_module_alt");
+            h.Tier = ModuleTier.Tier_2;
+            h.LabelName = "Hellfire Launcher " + h.ReturnTierLabel();
+            h.LabelDescription = "Reloading creates a line of burning fire\nin the direction you are aiming.\n(" + StaticColorHexes.AddColorToLabelString("+Range and Radius", StaticColorHexes.Light_Orange_Hex) + ").\nScales with amount of shots\nleft in the clip.";
+            h.AddToGlobalStorage();
+            h.AdditionalWeightMultiplier = 0.6f;
+
+            h.SetTag("modular_module");
+            h.AddColorLight(Color.green);
+            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
+            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
+            ID = h.PickupObjectId;
+        }
+        public static int ID;
+
+        public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            modulePrinter.OnGunReloaded += OGR;
+        }
+        public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            modulePrinter.OnGunReloaded -= OGR;
+        }
+        public void OGR(ModulePrinterCore modulePrinterCore, PlayerController player, Gun g)
+        {
+            float a = 1 - (g.ClipShotsRemaining / g.ClipCapacity);
+            int stack = this.ReturnStack(modulePrinterCore);
+            Vector2 endLocation = player.sprite.WorldCenter + Toolbox.GetUnitOnCircle(g.CurrentAngle, (6f + (stack * 1.5f)* a));
+            DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(Alexandria.Misc.GoopUtility.FireDef).TimedAddGoopLine(player.sprite.WorldCenter, endLocation, 1f + (0.25f * stack), 0.35f);
+            player.StartCoroutine(BurningWitness(player.CurrentRoom, player.sprite.WorldCenter, endLocation, 1f + (0.25f * stack), 0.35f));
+        }
+        private IEnumerator BurningWitness(RoomHandler room, Vector2 p1, Vector2 p2, float radius, float duration)
+        {
+            float elapsed = 0f;
+            Vector2 lastEnd = p1;
+            while (elapsed < duration)
+            {
+                elapsed += BraveTime.DeltaTime;
+                Vector2 currentEnd = Vector2.Lerp(p1, p2, elapsed / duration);
+                float curDist = Vector2.Distance(currentEnd, lastEnd);
+                int steps = Mathf.CeilToInt(curDist / radius);
+                for (int i = 0; i < steps; i++)
+                {
+                    Vector2 center = lastEnd + (currentEnd - lastEnd) * (((float)i + 1f) / (float)steps);
+                    if (room != null)
+                    {
+                        room.ApplyActionToNearbyEnemies(center, radius, Burn);
+                    }
+                    GlobalSparksDoer.DoSingleParticle(center + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0, radius)), Vector2.zero, null, null, null, GlobalSparksDoer.SparksType.STRAIGHT_UP_FIRE);
+                }
+                lastEnd = currentEnd;
+                yield return null;
+            }
+            yield break;
+        }
+        public void Burn(AIActor enemy, float f)
+        {
+            if (enemy) 
+            {
+                enemy.healthHaver.ApplyDamage(0.33f, Vector2.zero ,"HeatVent");
+                enemy.ApplyEffect(DebuffStatics.hotLeadEffect);
+            }
+        }
+    }
+}
+
