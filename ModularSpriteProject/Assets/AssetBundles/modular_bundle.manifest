@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3113682214
+CRC: 4232598734
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a948837ed8dda0a6e2898caab6f140db
+    Hash: d4643161a416d4672bd975bf508062ae
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5309f71fd9d3b3b40b0a1404c3f2dc3e
+    Hash: c95b93b4fb943c8e5f970249ac5195dd
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -17,6 +17,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
 - Class: 114
@@ -24,6 +26,10 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: b03b1445062e71c4ca60f92cbd330aff, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -75,6 +81,7 @@ Assets:
 - Assets/Sprites/Items/Modules/T3/Module_T3_Collection Data/Module_T3_Collection.prefab
 - Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_highlighted_alt.png
 - Assets/Sprites/UI/Page Turn Buttons/left_button_pressed.png
+- Assets/Particles/Sparks/Spark Particle System.prefab
 - Assets/Sprites/UI/CloseButton/ui_button_close_pressed_alt.png
 - Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/Tier_2_Module_Collection.prefab
 - Assets/Sprites/UI/Name Label/Names/name_label_defualtcannon.png
@@ -102,6 +109,7 @@ Assets:
 - Assets/Sprites/UI/LockedButton/ui_button_locked.png
 - Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_highlight_alt.png
 - Assets/Sprites/VFX/Animations/SwindlerVFXAnimation.prefab
+- Assets/Sprites/VFX/Animations/ScrapperAnimation.prefab
 - Assets/Sprites/UI/Page Turn Buttons/left_button_active.png
 - Assets/Sprites/UI/ui_template_bg_alt.png
 - Assets/Sprites/Characters/Modular/ModularSpriteAnimation.prefab

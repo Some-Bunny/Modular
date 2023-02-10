@@ -4,6 +4,7 @@ using Dungeonator;
 using JuneLib.Items;
 using SaveAPI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace ModularMod
             Quality = ItemQuality.SPECIAL,
             
             Cooldown = 1,
-            CooldownType = ItemBuilder.CooldownType.PerRoom,
+            CooldownType = ItemBuilder.CooldownType.Timed,
             PostInitAction = PIA,
             
         };
@@ -33,13 +34,28 @@ namespace ModularMod
         {
             pickup.AddPassiveStatModifier(PlayerStats.StatType.AdditionalItemCapacity, 1);
             pickup.CanBeDropped = false;
-            Alexandria.Misc.CustomActions.OnPostProcessItemSpawn += OnPostProcessItemSpawn;
-        }
+            //Alexandria.Misc.CustomActions.OnPostProcessItemSpawn += OnPostProcessItemSpawn;
 
-        public static void OnPostProcessItemSpawn(DebrisObject debrisObject)
-        {
+            GameObject VFX = new GameObject("Scrapper_VFX");
+            FakePrefab.DontDestroyOnLoad(VFX);
+            FakePrefab.MarkAsFakePrefab(VFX);
+            var tk2d = VFX.AddComponent<tk2dSprite>();
+            tk2d.Collection = StaticCollections.VFX_Collection;
+            tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("scrapper_scrap_007"));
+            var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
+            tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("ScrapperAnimation").GetComponent<tk2dSpriteAnimation>();
+            Tk2dSpriteAnimatorUtility.AddEventTriggersToAnimation(tk2dAnim, "start", new Dictionary<int, string>()
+            {
+                {8, "DoSparks"},
+                {26, "SpitOutScrap"},
 
+            });
+            ScrapVFX = VFX;
+
+            Sparkticle = Module.ModularAssetBundle.LoadAsset<GameObject>("Spark Particle System");
         }
+        public static GameObject ScrapVFX;
+        public static GameObject Sparkticle;
 
         public static List<Tuple<string, int>> tuples = new List<Tuple<string, int>>()
         {
@@ -161,6 +177,69 @@ namespace ModularMod
             }
         }
 
+        private void DoSpawnVFX(tk2dBaseSprite sprite, int ScrapCount)
+        {
+
+            Vector3 position = sprite.WorldBottomLeft;
+
+            GameObject gameObject = new GameObject("suck image");
+            gameObject.layer = sprite.gameObject.layer;
+
+            tk2dSprite tk2dSprite = gameObject.AddComponent<tk2dSprite>();
+            gameObject.transform.parent = SpawnManager.Instance.VFX;
+            gameObject.transform.position = position;
+
+            tk2dSprite.SetSprite(sprite.sprite.Collection, sprite.sprite.spriteId);
+            Destroy(sprite.gameObject);
+
+
+            var Tk2dAnimator = UnityEngine.Object.Instantiate(ScrapVFX, position, Quaternion.identity).GetComponent<tk2dSpriteAnimator>();
+            AkSoundEngine.PostEvent("Play_CHR_muncher_eat_01", Tk2dAnimator.gameObject);
+
+            Tk2dAnimator.PlayAndDestroyObject("start");
+            this.StartCoroutine(MoveScrap(gameObject, 0.5f, Tk2dAnimator.sprite.WorldTopLeft + new Vector2(0, 0.5f)));
+
+            Tk2dAnimator.AnimationEventTriggered = (animator, clip, idX) =>
+            {
+                if (clip.GetFrame(idX).eventInfo.Contains("DoSparks"))
+                {
+                    AkSoundEngine.PostEvent("Play_OBJ_paydaydrill_loop_01", Tk2dAnimator.gameObject);
+                    this.StartCoroutine(MoveScrap(gameObject, 1f, Tk2dAnimator.sprite.WorldCenter - new Vector2(0, 0.25f), 1, 0, true));
+                    var particle = UnityEngine.Object.Instantiate(Sparkticle, Tk2dAnimator.sprite.WorldCenter, Quaternion.identity);
+                    particle.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
+                    Destroy(particle, 3);
+                }
+                if (clip.GetFrame(idX).eventInfo.Contains("SpitOutScrap"))
+                {
+                    AkSoundEngine.PostEvent("Stop_OBJ_paydaydrill_loop_01", Tk2dAnimator.gameObject);
+                    float f = BraveUtility.RandomAngle();
+                    for (int e = 0; e < ScrapCount; e++)
+                    {
+                        LootEngine.SpawnItem(PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject, Tk2dAnimator.sprite.WorldTopCenter - new Vector2(0.125f, 0.375f), Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, ScrapCount, e), 1), ScrapCount > 1 ? 2 : 0, true, true);
+                    }
+                }
+            };
+        }
+
+        public IEnumerator MoveScrap(GameObject spriteObject, float duration, Vector2 newPosition, float scaleOld = 1, float scaleNew = 1, bool Destroyed = false)
+        {
+            Vector2 oldPosition = spriteObject.transform.PositionVector2();
+            float e = 0;
+            while (e < duration)
+            {
+                e += BraveTime.DeltaTime;
+                spriteObject.transform.position = Vector2.Lerp(oldPosition, newPosition, Toolbox.SinLerpTValue(e / duration));
+                spriteObject.transform.localScale = Vector3.one * Mathf.Lerp(scaleOld, scaleNew, Toolbox.SinLerpTValue(e / duration));
+                yield return null;
+            }
+            if (Destroyed == true)
+            {
+                Destroy(spriteObject);
+            }
+            yield break;
+        }
+
+
         public override void DoEffect(PlayerController user)
         {
             IPlayerInteractable lastInteractable = user.GetLastInteractable();
@@ -205,12 +284,7 @@ namespace ModularMod
                                         if (component.GetType().ToString() == entry.First)
                                         {
                                             int amount = entry.Second;
-                                            float f = BraveUtility.RandomAngle();
-                                            for (int e = 0; e < entry.Second; e++)
-                                            {
-                                                LootEngine.SpawnItem(PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject, debrisObject2.sprite.WorldCenter, Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, entry.Second, e), 1), entry.Second > 1 ? 2 : 1);
-                                            }
-                                            Destroy(debrisObject2.gameObject);
+                                            DoSpawnVFX(debrisObject2.sprite, amount);
                                             return;
                                         }
                                     }
@@ -222,12 +296,7 @@ namespace ModularMod
                                         if (component.GetType().GetBaseType().ToString() == entry.First)
                                         {
                                             int amount = ReturnAmountBasedOnTier((debrisObject2.GetComponent(entry.First) as PickupObject).quality);
-                                            float f = BraveUtility.RandomAngle();
-                                            for (int e = 0; e < amount; e++)
-                                            {
-                                                LootEngine.SpawnItem(PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject, debrisObject2.sprite.WorldCenter, Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, amount, e), 1), amount > 1 ? 2 : 1);
-                                            }
-                                            Destroy(debrisObject2.gameObject);
+                                            DoSpawnVFX(debrisObject2.sprite, amount);
                                         }
                                     }
                                 }
@@ -237,11 +306,7 @@ namespace ModularMod
                                     {
                                         float f = BraveUtility.RandomAngle();
                                         int amount = ReturnAmountBasedOnTier(a.quality);
-                                        for (int e = 0; e < amount; e++)
-                                        {
-                                            LootEngine.SpawnItem(PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject, debrisObject2.sprite.WorldCenter, Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, amount, e), 1), 2);
-                                        }
-                                        Destroy(debrisObject2.gameObject);
+                                        DoSpawnVFX(a.sprite, amount);
                                     }
                                 }
                             }
