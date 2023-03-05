@@ -33,7 +33,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(57) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 2.5f;
+            gun.reloadTime = 2.25f;
             gun.DefaultModule.cooldownTime = .25f;
             gun.DefaultModule.numberOfShotsInClip = 12;
             gun.SetBaseMaxAmmo(250);
@@ -42,7 +42,6 @@ namespace ModularMod
 
             gun.InfiniteAmmo = true;
             gun.quality = PickupObject.ItemQuality.EXCLUDED;
-
 
             Projectile projectile = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);
             projectile.gameObject.SetActive(false);
@@ -67,11 +66,11 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 5f;
+            projectile.baseData.damage = 6f;
             projectile.shouldRotate = false;
             gun.gunClass = GunClass.NONE;
 
-            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 10, 10);
+            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 3, 3);
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 

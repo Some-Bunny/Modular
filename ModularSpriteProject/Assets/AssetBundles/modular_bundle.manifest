@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4232598734
+CRC: 484045686
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d4643161a416d4672bd975bf508062ae
+    Hash: ab1700ba5d1a5a2ea26a5a52dfd29828
   TypeTreeHash:
     serializedVersion: 2
     Hash: c95b93b4fb943c8e5f970249ac5195dd
@@ -77,7 +77,9 @@ Assets:
 - Assets/Sprites/UI/CloseButton/ui_button_close.png
 - Assets/Sprites/UI/Accept Button/ui_button_accept_active_1.png
 - Assets/Sprites/VFX/ModularVFXCollection Data/modular_vfx material.mat
+- Assets/Sprites/UI/ComputerCore/ButtonUp.png
 - Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_inactive_alt.png
+- Assets/Sprites/UI/ComputerCore/ButtonRight.png
 - Assets/Sprites/Items/Modules/T3/Module_T3_Collection Data/Module_T3_Collection.prefab
 - Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_highlighted_alt.png
 - Assets/Sprites/UI/Page Turn Buttons/left_button_pressed.png
@@ -88,6 +90,8 @@ Assets:
 - Assets/Sprites/UI/Name Label/name_label_locked.png
 - Assets/Sprites/Items/Modules/Items And Pickups/ModuleItemCollection Data/moduleitem
   material.mat
+- Assets/Sprites/UI/ComputerCore/Cancel.png
+- Assets/Sprites/UI/ComputerCore/ButtonDown.png
 - Assets/Sprites/UI/CloseButton/ui_button_close_alt.png
 - Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_pressed_alt.png
 - Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_highlighted_alt.png
@@ -95,15 +99,18 @@ Assets:
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed.png
 - Assets/Sprites/UI/Name Label/Alt/name_label_empty_alt.png
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_highlighted_alt.png
+- Assets/Sprites/Items/Modules/Items And Pickups/Animations/ScrapAnimation.prefab
 - Assets/Sprites/UI/ui_button_doublehalf_pressed.png
 - Assets/Sprites/UI/ui_button_doublehalf.png
 - Assets/Sprites/UI/Page Turn Buttons/right_button_inactive.png
 - Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_active_alt.png
 - Assets/Sprites/UI/ui_button_doublehalf_highlighted.png
+- Assets/Sprites/UI/ComputerCore/GooglyMoogly.png
 - Assets/Sprites/UI/Page Turn Buttons/right_button_pressed.png
 - Assets/Sprites/Characters/ModularAlt/Modular_Alt_Collection Data/Modular_Alt_Collection.prefab
 - Assets/Sprites/VFX/ModularVFXCollection Data/ModularVFXCollection.prefab
 - Assets/Sprites/Items/Modules/T1/Tier_1_Module_Collection Data/Tier_1_Module_Collection.prefab
+- Assets/Sprites/UI/ComputerCore/ButtonLeft.png
 - Assets/Sprites/Characters/ModularAlt/Modular_Alt_Collection Data/modular_alt material.mat
 - Assets/Sprites/UI/LockedButton/ui_button_locked_highlighted.png
 - Assets/Sprites/UI/LockedButton/ui_button_locked.png

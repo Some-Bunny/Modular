@@ -4,7 +4,7 @@ name short: Modular
 nickname: gunsmachine
 
 <loadout>
-		mdl:scrapper
+		mdl:module_computer_core
 		mdl:armcannon_0
 		mdl:modular_printer_core
 </loadout>

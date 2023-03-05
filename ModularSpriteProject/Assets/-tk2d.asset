@@ -57,6 +57,10 @@ MonoBehaviour:
     dataGUID: 
     managed: 0
     loadable: 0
+  - assetGUID: 592241fb933a3ea478237a27d03bd1fe
+    dataGUID: 
+    managed: 0
+    loadable: 0
   fontIndex:
   - assetGUID: 063b15d80dbb4604d890600a64c79cf8
     dataGUID: e7a6b09a73c6b2b4f8060096ddbd3b5e
@@ -3219,12 +3223,42 @@ MonoBehaviour:
     spriteNames:
     - gear_borderless
     - directive_scrap
+    - scrap_idle_001
+    - scrap_idle_002
+    - scrap_idle_003
+    - scrap_idle_004
+    - scrap_idle_005
+    - scrap_idle_006
+    - scrap_idle_007
+    - scrap_idle_008
+    - scrap_idle_009
+    - computer_core
     spriteTextureGUIDs:
     - df813c08dc4c8a241b2cabe9899b7ad7
     - a026eb8f6c8370947b0a46d3b470624e
+    - 4c8f10fc21c30b542a2b9208edd493b1
+    - bfcaca1e422c7ca4b954f12965705586
+    - ce6a9a584806f574b9d063aedfb2cb60
+    - 5d2cf1e07e78e644fbcf07149d94ce27
+    - 7f546991f636d824da69c23057b7db51
+    - b7d1cb5e24f2ce44fb4606169e1344a1
+    - 89714c9625c6c47449df046ea84e7769
+    - 648841da704007b4cb13f9b5a2b847a9
+    - f028bcd8c200a5248863235dd8e792f1
+    - d802a0f4e75d9bf41a6c72890c1b99e2
     spriteTextureTimeStamps:
-    - 1675782495.11241
+    - 1676123522.84831
     - 1675794515.27517
+    - 1676123048.07147
+    - 1676123048.0742
+    - 1676123048.0762
+    - 1676123048.0792
+    - 1676123048.0802
+    - 1676123048.08421
+    - 1676123048.08621
+    - 1676123048.08921
+    - 1676123048.09121
+    - 1676134658.22628
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

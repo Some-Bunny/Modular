@@ -451,6 +451,19 @@ namespace ModularMod
             yield break;
         }
 
+        public void Update()
+        {
+            if (label)
+            {
+                if (MouseHover != null)
+                {
+                    MouseHover(label, label.isMouseHovering);
+                }
+            }
+        }
+
+        public Action<dfLabel, bool> MouseHover;
+
         private IEnumerator Unexpand_CR_Custom(float duration, bool willDestroy = false)
         {
             float elapsed = 0f;

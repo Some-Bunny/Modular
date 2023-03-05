@@ -17,6 +17,12 @@ namespace ModularMod
             return GameUIRoot.Instance.ConversationBar.portraitSprite.Atlas.AddNewItemToAtlas(GetTextureFromResource(ammoTypeSpritePath), name).name;
         }
 
+        public static string AddUITextImage(Texture2D ammoType, string name)
+        {
+            Toolbox.LoadAssetFromAnywhere<GameObject>("Ammonomicon Atlas").GetComponent<dfAtlas>().AddNewItemToAtlas(ammoType, name);
+            return GameUIRoot.Instance.ConversationBar.portraitSprite.Atlas.AddNewItemToAtlas(ammoType, name).name;
+        }
+
         public static Texture2D GetTextureFromResource(string resourceName)
         {
             byte[] array = ExtractEmbeddedResource(resourceName);

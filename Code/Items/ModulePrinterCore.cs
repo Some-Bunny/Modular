@@ -73,7 +73,6 @@ namespace ModularMod
         public override void Pickup(PlayerController player)
         {
             base.Pickup(player);
-            player.OnReloadPressed += ReloadPressed;
             player.OnEnteredCombat += PlayerEnteredCombat;
             player.OnReceivedDamage += OnRecievedDamage;
             player.OnReloadedGun += OnReloadedGun;
@@ -224,118 +223,10 @@ namespace ModularMod
 
 
         //UI Shit
-        public void ReloadPressed(PlayerController p, Gun g)
-        {
-            if (g.ClipCapacity > g.ClipShotsRemaining) { return; }
-            p.StartCoroutine(this.DoTick(p));
-        }
-        private IEnumerator DoTick(PlayerController user)
-        {
-            elapsed = 0;
-            ReloadTapCount++;
 
-            if (ReloadTapCount > 1 && extantLabel != null)
-            {
-                Running = false;
-                ReloadTapCount = 0;
-                DisplayModulesOfCertainTier(user, extantLabel.CurrentDisplayTier);
-                yield break;
-            }
-            if (ReloadTapCount > 2)
-            {
-                Running = false;
-                ReloadTapCount = 0;
-                this.DisplayAllModules(user);
-                AkSoundEngine.PostEvent("Play_BOSS_cyborg_eagle_01", user.gameObject);
-                yield break;
-            }
-            if (Running == true) { yield break; }
-            Running = true;
 
-            while (elapsed < 0.5f)
-            {
-                if (Running == false)
-                {yield break;}
-                elapsed += BraveTime.DeltaTime;
-                yield return null;
-            }
-            if (extantLabel != null) { extantLabel.Inv(); }
-            ReloadTapCount = 0;
-            Running = false;
-            AkSoundEngine.PostEvent("Play_WPN_Life_Orb_Fade_01", user.gameObject);
-            yield break;
-        }
-        private bool Running = false;
-        public void DisplayAllModules(PlayerController p)
-        {
-            Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
 
-            var ExtantLabelController = UnityEngine.Object.Instantiate(DefaultModule.LabelController).gameObject.GetComponent<ModifiedDefaultLabelManager>();
-            ExtantLabelController.displayType = ModifiedDefaultLabelManager.DisplayType.All_Modules;
 
-            string Text = "Modules Installed:";
-            foreach (var entry in this.ModuleContainers) { Text += "\n" + entry.LabelName + " : " + entry.Count.ToString(); }
-            Text += ModuleContainers.Count == 0 ? "\nNone." : "\nCycle through tiers by\npressing " + StaticColorHexes.AddColorToLabelString("Reload twice", StaticColorHexes.Light_Blue_Color_Hex) + ".";
-
-            ExtantLabelController.label.Text = Text;
-            ExtantLabelController.Trigger_CustomTime(p.transform, new Vector3(1.5f, 2), 0.5f);
-            ExtantLabelController.label.backgroundColor = cl;
-
-            GameUIRoot.Instance.m_manager.AddControl(ExtantLabelController.panel);
-            dfLabel componentInChildren = ExtantLabelController.gameObject.GetComponentInChildren<dfLabel>();
-            componentInChildren.ColorizeSymbols = false;
-            componentInChildren.ProcessMarkup = true;
-
-            extantLabel = ExtantLabelController;
-        }
-        public void DisplayModulesOfCertainTier(PlayerController p, int CycleTier)
-        {
-            if (extantLabel) { extantLabel.Inv(); }
-
-            Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
-
-            var ExtantLabelController = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 2), 0.5f, "", cl, false);
-            ExtantLabelController.CurrentDisplayTier = CycleTier;
-            var currentCycle = ExtantLabelController.CurrentDisplayTier;
-            ExtantLabelController.displayType = ModifiedDefaultLabelManager.DisplayType.Specific_Module_Tiers;
-
-            bool HasContainers = false;
-            int c = 0;
-            while (HasContainers == false)
-            {
-                c++;
-                currentCycle = ExtantLabelController.CycleTier();
-                if (c > 7)
-                {
-
-                    ExtantLabelController.label.Text = StaticColorHexes.AddColorToLabelString("No Modules available.", StaticColorHexes.Red_Color_Hex);
-                    ExtantLabelController.Trigger_CustomTime(p.transform, new Vector3(1.5f, 2), 0.5f);
-                    extantLabel = ExtantLabelController;
-                    return;
-                }
-
-                foreach (var entry in this.ModuleContainers)
-                {
-                    if (entry.tier == (DefaultModule.ModuleTier)currentCycle) 
-                    {
-                        HasContainers = true;
-                        break;
-                    }
-                }           
-            }
-                     
-            string Text = "Modules Installed: " + DefaultModule.ReturnTierLabel((DefaultModule.ModuleTier)currentCycle);
-            foreach (var entry in this.ModuleContainers) { if (entry.tier == (DefaultModule.ModuleTier)currentCycle) Text += "\n" + entry.LabelName + " : " + entry.Count.ToString(); }
-            Text += ModuleContainers.Count == 0 ? "\nNone." : "\nCycle through tiers by\npressing "+ StaticColorHexes.AddColorToLabelString("Reload twice", StaticColorHexes.Light_Blue_Color_Hex) + ".";
-            ExtantLabelController.label.Text = Text;
-            ExtantLabelController.Trigger_CustomTime(p.transform, new Vector3(0, 2), 0.5f);
-            extantLabel = ExtantLabelController;
-            
-
-        }
-        public ModifiedDefaultLabelManager extantLabel;
-        private int ReloadTapCount = 0;
-        private float elapsed = 0;
 
 
         //General public variables that are useful

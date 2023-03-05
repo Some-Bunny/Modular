@@ -48,6 +48,11 @@ namespace ModularMod
             {
                 item
             };
+
+            var tk2dAnim = v.gameObject.AddComponent<tk2dSpriteAnimator>();
+            tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("ScrapAnimation").GetComponent<tk2dSpriteAnimation>();
+            tk2dAnim.defaultClipId = tk2dAnim.GetClipIdByName("idle");
+            tk2dAnim.playAutomatically = true;
             Scrap_ID = v.PickupObjectId;
         }
 

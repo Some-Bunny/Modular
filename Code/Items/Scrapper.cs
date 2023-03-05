@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using static ModularMod.DefaultModule;
+using static ModularMod.ModulePrinterCore;
 
 
 namespace ModularMod
@@ -17,25 +19,21 @@ namespace ModularMod
     {
         public static ItemTemplate template = new ItemTemplate(typeof(Scrapper))
         {
-            Name = "Scrapper",
+            Name = "Module Computer Core",
             Description = "Game Breaking",
-            LongDescription = "Allows for the scrapping of Guns, Items and Pickups into Scrap. Scrap can be traded away for upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
+            LongDescription = "Allows for the scrapping of Items and Pickups into Scrap. Scrap can be traded away for upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("directive_scrap"),
-            Quality = ItemQuality.SPECIAL,
-            
+            Quality = ItemQuality.SPECIAL,         
             Cooldown = 1,
             CooldownType = ItemBuilder.CooldownType.Timed,
-            PostInitAction = PIA,
-            
+            PostInitAction = PIA,         
         };
 
         public static void PIA(PickupObject pickup)
         {
             pickup.AddPassiveStatModifier(PlayerStats.StatType.AdditionalItemCapacity, 1);
             pickup.CanBeDropped = false;
-            //Alexandria.Misc.CustomActions.OnPostProcessItemSpawn += OnPostProcessItemSpawn;
-
             GameObject VFX = new GameObject("Scrapper_VFX");
             FakePrefab.DontDestroyOnLoad(VFX);
             FakePrefab.MarkAsFakePrefab(VFX);
@@ -48,12 +46,55 @@ namespace ModularMod
             {
                 {8, "DoSparks"},
                 {26, "SpitOutScrap"},
-
             });
             ScrapVFX = VFX;
-
             Sparkticle = Module.ModularAssetBundle.LoadAsset<GameObject>("Spark Particle System");
+
+            Up_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonUp"), "Up_B_UI_INV");
+            Down_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonDown"), "Down_B_UI_INV");
+
+            Left_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonLeft"), "Left_B_UI_INV");
+            Right_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRight"), "Right_B_UI_INV");
+            
+            Close_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Cancel"), "Close_B_UI_INV");
+
+            Googly_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("GooglyMoogly"), "GooglyMoogly_B_UI_INV");
         }
+        public static string Up_Button_UI_String;
+        public static string Down_Button_UI_String;
+        public static string Left_Button_UI_String;
+        public static string Right_Button_UI_String;
+
+        public static string Close_Button_UI_String;
+        public static string Googly_UI_String;
+
+
+        public static string ReturnButtonString(ButtonUI moduleTier)
+        {
+            switch (moduleTier)
+            {
+                case ButtonUI.UP:
+                    return "[sprite \"" + Up_Button_UI_String + "\"]";
+                case ButtonUI.DOWN:
+                    return "[sprite \"" + Down_Button_UI_String + "\"]";
+                case ButtonUI.LEFT:
+                    return "[sprite \"" + Left_Button_UI_String + "\"]";
+                case ButtonUI.RIGHT:
+                    return "[sprite \"" + Right_Button_UI_String + "\"]";
+                case ButtonUI.CLOSE:
+                    return "[sprite \"" + Close_Button_UI_String + "\"]";
+                case ButtonUI.GOOGLY:
+                    return "[sprite \"" + Googly_UI_String + "\"]";
+                default: return "[sprite \"" + Close_Button_UI_String + "\"]"; ;
+            }
+        }
+
+        public enum ButtonUI
+        {
+            UP, DOWN, LEFT, RIGHT, CLOSE, GOOGLY
+        }
+
+
         public static GameObject ScrapVFX;
         public static GameObject Sparkticle;
 
@@ -72,6 +113,9 @@ namespace ModularMod
             new Tuple<string, int>("PassiveItem", 8),
         };
 
+        public override void Start()
+        {
+        }
 
         public int ReturnAmountBasedOnTier(PickupObject.ItemQuality itemQuality)
         {
@@ -88,18 +132,65 @@ namespace ModularMod
             }
         }
 
-
-
-        public override void Start()
-        {
-            
-        }
-
         public override void Pickup(PlayerController player)
         {
             base.Pickup(player);
         }
 
+        public void ReloadPressed(PlayerController p, Gun g)
+        {
+            if (g.ClipCapacity > g.ClipShotsRemaining) { return; }
+            SwitchMode();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (base.LastOwner != null && Inited == false)
+            {
+                Inited = !Inited;
+                SetMode(Mode.SCRAP);
+                base.LastOwner.OnReloadPressed += ReloadPressed;
+            }
+        }
+        private bool Inited = false;
+
+        public void SwitchMode()
+        {
+            AkSoundEngine.PostEvent("Play_OBJ_metacoin_collect_01", base.gameObject);
+            if (currentMode == Mode.SCRAP)
+            {
+                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("computer_core"));
+                currentMode = Mode.COMPUTER;
+            }
+            else
+            {
+                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("directive_scrap"));
+                currentMode = Mode.SCRAP;
+            }
+        }
+        public void SetMode(Mode mode)
+        {
+            currentMode = mode;
+            if (currentMode == Mode.SCRAP)
+            {
+                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("directive_scrap"));
+            }
+            else
+            {
+                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("computer_core"));
+            }
+        }
+
+
+
+        public Mode currentMode = Mode.SCRAP;
+
+        public enum Mode
+        {
+            SCRAP,
+            COMPUTER
+        }
 
 
 
@@ -111,75 +202,84 @@ namespace ModularMod
             }
             else
             {
-                RoomHandler room = user.GetAbsoluteParentRoom();
-                if (room != null)
+                if (currentMode == Mode.SCRAP)
                 {
-                    room.GetCenterCell();
+                    RoomHandler room = user.GetAbsoluteParentRoom();
+                    if (room != null)
                     {
-                        List<DebrisObject> allDebris = StaticReferenceManager.AllDebris;
-                        if (allDebris != null)
+                        room.GetCenterCell();
                         {
-                            for (int i = 0; i < allDebris.Count; i++)
+                            List<DebrisObject> allDebris = StaticReferenceManager.AllDebris;
+                            if (allDebris != null)
                             {
-                                DebrisObject debrisObject = allDebris[i];
-                                if (debrisObject && debrisObject.IsPickupObject)
+                                for (int i = 0; i < allDebris.Count; i++)
                                 {
-                                    float sqrMagnitude = (user.CenterPosition - debrisObject.transform.position.XY()).sqrMagnitude;
-                                    if (sqrMagnitude <= 25f)
+                                    DebrisObject debrisObject = allDebris[i];
+                                    if (debrisObject && debrisObject.IsPickupObject)
                                     {
-                                        if (Mathf.Sqrt(sqrMagnitude) < 2f)
+                                        float sqrMagnitude = (user.CenterPosition - debrisObject.transform.position.XY()).sqrMagnitude;
+                                        if (sqrMagnitude <= 25f)
                                         {
-                                            foreach (Component component in debrisObject.GetComponents<Component>())
+                                            if (Mathf.Sqrt(sqrMagnitude) < 2f)
                                             {
-                                                foreach (var entry in tuples)
+                                                foreach (Component component in debrisObject.GetComponents<Component>())
                                                 {
-                                                    if (component.GetType().ToString() == entry.First)
+                                                    foreach (var entry in tuples)
+                                                    {
+                                                        if (component.GetType().ToString() == entry.First)
+                                                        {
+                                                            return true;
+                                                        }
+                                                    }
+                                                }
+                                                foreach (Component component in debrisObject.GetComponents<Component>())
+                                                {
+                                                    foreach (var entry in tuplesTypes)
+                                                    {
+                                                        if (component.GetType().GetBaseType().ToString() == entry.First)
+                                                        {
+                                                            return true;
+                                                        }
+                                                    }
+                                                }
+                                                /*
+                                                foreach (Component component in debrisObject.GetComponentsInChildren<Component>())
+                                                {
+                                                    if (component is Gun)
                                                     {
                                                         return true;
                                                     }
                                                 }
-                                            }
-                                            foreach (Component component in debrisObject.GetComponents<Component>())
-                                            {
-                                                foreach (var entry in tuplesTypes)
-                                                {
-                                                    if (component.GetType().GetBaseType().ToString() == entry.First)
-                                                    {
-                                                        return true;
-                                                    }
-                                                }
-                                            }
-                                            foreach (Component component in debrisObject.GetComponentsInChildren<Component>())
-                                            {
-                                                if (component is Gun)
-                                                {
-                                                    return true;
-                                                }
+                                                */
                                             }
                                         }
                                     }
                                 }
                             }
-                        }
-                        IPlayerInteractable lastInteractable = user.GetLastInteractable();
-                        if (lastInteractable is HeartDispenser)
-                        {
-                            HeartDispenser exists = lastInteractable as HeartDispenser;
-                            if (exists && HeartDispenser.CurrentHalfHeartsStored > 0)
+                            IPlayerInteractable lastInteractable = user.GetLastInteractable();
+                            if (lastInteractable is HeartDispenser)
                             {
-                                return true;
+                                HeartDispenser exists = lastInteractable as HeartDispenser;
+                                if (exists && HeartDispenser.CurrentHalfHeartsStored > 0)
+                                {
+                                    return true;
+                                }
                             }
+
                         }
                     }
+
                 }
-                
+                else
+                {
+                    return user.IsInCombat == true ? false : true;
+                }
                 return false;
             }
         }
 
         private void DoSpawnVFX(tk2dBaseSprite sprite, int ScrapCount)
         {
-
             Vector3 position = sprite.WorldBottomLeft;
 
             GameObject gameObject = new GameObject("suck image");
@@ -242,79 +342,568 @@ namespace ModularMod
 
         public override void DoEffect(PlayerController user)
         {
-            IPlayerInteractable lastInteractable = user.GetLastInteractable();
-            if (lastInteractable != null)
+            if (currentMode == Mode.SCRAP)
             {
-                if (lastInteractable is HeartDispenser)
+                IPlayerInteractable lastInteractable = user.GetLastInteractable();
+                if (lastInteractable != null)
                 {
-                    HeartDispenser exists = lastInteractable as HeartDispenser;
-                    if (exists && HeartDispenser.CurrentHalfHeartsStored > 0)
+                    if (lastInteractable is HeartDispenser)
                     {
-                        if (HeartDispenser.CurrentHalfHeartsStored > 1)
+                        HeartDispenser exists = lastInteractable as HeartDispenser;
+                        if (exists && HeartDispenser.CurrentHalfHeartsStored > 0)
                         {
-                            HeartDispenser.CurrentHalfHeartsStored -= 2;
+                            if (HeartDispenser.CurrentHalfHeartsStored > 1)
+                            {
+                                HeartDispenser.CurrentHalfHeartsStored -= 2;
+                            }
+                            else
+                            {
+                                HeartDispenser.CurrentHalfHeartsStored--;
+                            }
+                            return;
                         }
-                        else
-                        {
-                            HeartDispenser.CurrentHalfHeartsStored--;
-                        }
-                        return;
                     }
                 }
-            }
 
-            if (StaticReferenceManager.AllDebris != null)
-            {
-                //float num = float.MaxValue;
-                for (int i = 0; i < StaticReferenceManager.AllDebris.Count; i++)
+                if (StaticReferenceManager.AllDebris != null)
                 {
-                    DebrisObject debrisObject2 = StaticReferenceManager.AllDebris[i];
-                    bool isPickupObject = debrisObject2.IsPickupObject;
-                    if (isPickupObject)
+                    //float num = float.MaxValue;
+                    for (int i = 0; i < StaticReferenceManager.AllDebris.Count; i++)
                     {
-                        float sqrMagnitude = (user.CenterPosition - debrisObject2.transform.position.XY()).sqrMagnitude;
-                        if (sqrMagnitude <= 25f)
+                        DebrisObject debrisObject2 = StaticReferenceManager.AllDebris[i];
+                        bool isPickupObject = debrisObject2.IsPickupObject;
+                        if (isPickupObject)
                         {
-                            if (Mathf.Sqrt(sqrMagnitude) < 2f)
+                            float sqrMagnitude = (user.CenterPosition - debrisObject2.transform.position.XY()).sqrMagnitude;
+                            if (sqrMagnitude <= 25f)
                             {
-                                foreach (Component component in debrisObject2.GetComponents<Component>())
+                                if (Mathf.Sqrt(sqrMagnitude) < 2f)
                                 {
-                                    foreach (var entry in tuples)
+                                    foreach (Component component in debrisObject2.GetComponents<Component>())
                                     {
-                                        if (component.GetType().ToString() == entry.First)
+                                        foreach (var entry in tuples)
                                         {
-                                            int amount = entry.Second;
-                                            DoSpawnVFX(debrisObject2.sprite, amount);
-                                            return;
+                                            if (component.GetType().ToString() == entry.First)
+                                            {
+                                                int amount = entry.Second;
+                                                DoSpawnVFX(debrisObject2.sprite, amount);
+                                                return;
+                                            }
                                         }
                                     }
-                                }
-                                foreach (Component component in debrisObject2.GetComponents<Component>())
-                                {
-                                    foreach (var entry in tuplesTypes)
+                                    foreach (Component component in debrisObject2.GetComponents<Component>())
                                     {
-                                        if (component.GetType().GetBaseType().ToString() == entry.First)
+                                        foreach (var entry in tuplesTypes)
                                         {
-                                            int amount = ReturnAmountBasedOnTier((debrisObject2.GetComponent(entry.First) as PickupObject).quality);
-                                            DoSpawnVFX(debrisObject2.sprite, amount);
+                                            if (component.GetType().GetBaseType().ToString() == entry.First)
+                                            {
+                                                int amount = ReturnAmountBasedOnTier((debrisObject2.GetComponent(entry.First) as PickupObject).quality);
+                                                DoSpawnVFX(debrisObject2.sprite, amount);
+                                            }
                                         }
                                     }
-                                }
-                                foreach (Component component in debrisObject2.GetComponentsInChildren<Component>())
-                                {
-                                    if (component is Gun a)
+                                    /*
+                                    foreach (Component component in debrisObject2.GetComponentsInChildren<Component>())
                                     {
-                                        float f = BraveUtility.RandomAngle();
-                                        int amount = ReturnAmountBasedOnTier(a.quality);
-                                        DoSpawnVFX(a.sprite, amount);
+                                        if (component is Gun a)
+                                        {
+                                            float f = BraveUtility.RandomAngle();
+                                            int amount = ReturnAmountBasedOnTier(a.quality);
+                                            DoSpawnVFX(a.sprite, amount);
+                                        }
                                     }
+                                    */
                                 }
                             }
                         }
                     }
                 }
             }
+            else
+            {
+                if (extant_Inventory_button != null) { Destroy(extant_Inventory_button.gameObject); }
+                if (extant_craft_button != null) { Destroy(extant_craft_button.gameObject); }
+                if (extant_Inventory_Controller != null) { extant_Inventory_Controller.ObliterateUI(); 
+                    extant_Inventory_Controller = null; }
+
+                Color32 cl = user.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+
+
+                //INVENTORY
+                extant_Inventory_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, 1.5f), 0.66f, "Inventory", cl);
+
+                extant_Inventory_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    if (extant_Inventory_button.gameObject) { Destroy(extant_Inventory_button.gameObject); }
+                    if (extant_craft_button.gameObject) { Destroy(extant_craft_button.gameObject); }
+
+                    extant_Inventory_Controller = ScriptableObject.CreateInstance<ModuleInventoryController>();
+                    extant_Inventory_Controller.DoQuickStart(user);
+                    //Inventory Code Here
+                };
+
+                extant_Inventory_button.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+
+                //CRAFT
+                extant_craft_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, 0.5f), 0.66f, "Craft", cl);
+                extant_craft_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    if (extant_Inventory_button.gameObject) { Destroy(extant_Inventory_button.gameObject); }
+                    if (extant_craft_button.gameObject) { Destroy(extant_craft_button.gameObject); }
+                    //Craft Code Here
+                };
+                extant_craft_button.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
         }
+
+
+
+
+        public ModifiedDefaultLabelManager extant_Inventory_button;
+        public ModifiedDefaultLabelManager extant_craft_button;
+
+        public ModuleInventoryController extant_Inventory_Controller;
+    }
+
+    public class ModuleInventoryController : ScriptableObject
+    {
+        public void DoQuickStart(PlayerController p)
+        {
+            Core = ReturnCore(p);
+            if (Core == null) { return; }
+            IsNone = Core.ModuleContainers.Count == 0;
+
+            p.StartCoroutine(DoDelays(p));
+        }
+
+
+        public IEnumerator DoDelays(PlayerController p)
+        {
+            yield return null;
+            for (int i = 0; i < Core.ModuleContainers.Count; i++)
+            {
+                var defMod = Core.ModuleContainers[i].defaultModule;
+                AddNewPages(defMod);
+                AddNewPagesTiered(defMod);
+            }
+            yield return null;
+            DoButtonRefresh(p);
+            yield return null;
+            DisplayModule(p);
+        }
+
+
+        public void DoButtonRefresh(PlayerController p)
+        {
+            Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+            if (UpLabel == null)
+            {
+                UpLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 0.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP), cl);
+                UpLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    if (IsNone == false && ListEntry > 0)
+                    {
+                        UpdatePageLabel();
+                        ListEntry--;
+                        UpLabel.label.Invalidate();
+                        DisplayModule(p, true);
+                    }
+                };
+                UpLabel.MouseHover = (label, boolean) =>
+                {
+                    if (ListEntry > 0 && IsNone == false) 
+                    {
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                    else
+                    {
+                        label.color = new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                };
+            }
+
+            if (DownLabel == null)
+            {
+                DownLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, -0.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN), cl);
+                DownLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    if (IsNone == false && ReturnPagesCount() > ListEntry)
+                    {
+                        UpdatePageLabel();
+                        ListEntry++;
+                        DownLabel.label.Invalidate();
+                        DisplayModule(p, true);
+                    }
+                };
+                DownLabel.MouseHover = (label, boolean) =>
+                {
+                    if (ReturnPagesCount() > ListEntry && IsNone == false)
+                    {
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                    else
+                    {
+                        label.color = new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                };
+            }
+            if (CloseLabel == null)
+            {
+                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 1.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
+                CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    ObliterateUI();
+                    Destroy(this);
+                };
+                CloseLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+
+            if (CloseLabel == null)
+            {
+                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 1.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
+                CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    ObliterateUI();
+                    Destroy(this);
+                };
+                CloseLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (T1bLabel == null)
+            {
+                T1bLabel = Toolbox.GenerateText(p.transform, new Vector2(1.75f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl);
+                T1bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    DisplayModuleTiered(p, ModuleTier.Tier_1 ,true);
+                };
+                T1bLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (T2bLabel == null)
+            {
+                T2bLabel = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 2.25f), 0.5f,  DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl);
+                T2bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    DisplayModuleTiered(p, ModuleTier.Tier_2, true);
+                };
+                T2bLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (T3bLabel == null)
+            {
+                T3bLabel = Toolbox.GenerateText(p.transform, new Vector2(3.25f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl);
+                T3bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    DisplayModuleTiered(p, ModuleTier.Tier_3, true);
+                };
+                T3bLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (T4bLabel == null && pages_T4.Count > 0)
+            {
+                T4bLabel = Toolbox.GenerateText(p.transform, new Vector2(4f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_Omega), cl);
+                T4bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
+                };
+                T4bLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (AnyLabel == null)
+            {
+                AnyLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 2.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.GOOGLY), cl);
+                AnyLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    DisplayModule(p, true);
+                };
+                AnyLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+        }
+
+        public int ReturnPagesCount()
+        {
+            return pages_default.Count > 0 ? pages_default.Last().Page : 0;
+        }
+
+
+        public ModulePrinterCore ReturnCore(PlayerController p)
+        {
+            for (int o = 0; o < p.passiveItems.Count; o++) 
+            {
+                if (p.passiveItems[o] is ModulePrinterCore core)
+                { return core; }
+            }
+            return null;
+        }
+        public void DisplayModule(PlayerController p, bool ClearOut = false)
+        {
+            if (ClearOut == true)
+            {
+                for (int i = 0; i < garbageLabels.Count; i++)
+                {
+                    if (garbageLabels[i] != null) { Destroy(garbageLabels[i].gameObject); }
+                }
+                garbageLabels.Clear();
+                if (extantLabel) { Destroy(extantLabel.gameObject); }
+                if (PageLabel) { Destroy(PageLabel.gameObject); }
+            }
+
+
+            var ModuleContainers = Core.ModuleContainers;
+
+            Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+
+            string Text = "Modules Installed:";
+            garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(2f, 1.5f), 0.66f, Text, cl));
+
+            int c = 0;
+            if (ModuleContainers.Count == 0) 
+            {
+                var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "None.", cl);
+                c++;
+                garbageLabels.Add(Button);
+            } 
+            else
+            {
+                foreach (var page in pages_default)
+                {
+                    if (ListEntry == page.Page)
+                    {
+                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString(), StaticColorHexes.Orange_Hex) + ")";
+                        var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, T, cl);
+                        Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                        {
+                            if (extantLabel != null) { Destroy(extantLabel.gameObject); }
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(0f, -1.5f - (0.5f * c)), 0.66f, page.module.LabelDescription, cl);
+                        };
+                        Button.MouseHover = (label, boolean) =>
+                        {
+                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                            label.Invalidate();
+                        };
+
+                        garbageLabels.Add(Button);
+                        c++;
+                    }
+                }
+            }
+            PageLabel = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (pages_default.Count > 0 ?  (pages_default.Last().Page + 1).ToString() : "1"), cl);
+        }
+
+        public void DisplayModuleTiered(PlayerController p, ModuleTier moduleTier ,bool ClearOut = false)
+        {
+            if (ClearOut == true)
+            {
+                for (int i = 0; i < garbageLabels.Count; i++)
+                {
+                    if (garbageLabels[i] != null) { Destroy(garbageLabels[i].gameObject); }
+                }
+                garbageLabels.Clear();
+                if (extantLabel) { Destroy(extantLabel.gameObject); }
+                if (PageLabel) { Destroy(PageLabel.gameObject); }
+            }
+
+
+            var ModuleContainers = ReturnPageListTier(moduleTier);
+
+            Color32 cl = (moduleTier == ModuleTier.Tier_Omega) ? new Color32(200, 10, 10, 100) : p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+
+            string Text = "Modules Installed " + DefaultModule.ReturnTierLabel(moduleTier) + " :";
+            garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(2f, 1.5f), 0.66f, Text, cl));
+
+
+            int c = 0;
+            if (ModuleContainers.Count == 0)
+            {
+                var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "None.", cl);
+                c++;
+                garbageLabels.Add(Button);
+            }
+            else
+            {
+                foreach (var page in ModuleContainers)
+                {
+                    if (ListEntry == page.Page)
+                    {
+                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString(), StaticColorHexes.Orange_Hex) + ")";
+                        var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, T, cl);
+                        Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                        {
+                            if (extantLabel != null) { Destroy(extantLabel.gameObject); }
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(0f, -1.5f - (0.5f * c)), 0.66f, page.module.LabelDescription, cl);
+                        };
+                        Button.MouseHover = (label, boolean) =>
+                        {
+                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                            label.Invalidate();
+                        };
+
+                        garbageLabels.Add(Button);
+                        c++;
+                    }
+                }
+            }
+            PageLabel = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (ModuleContainers.Count > 0 ? (ModuleContainers.Last().Page + 1).ToString() : "1"), cl);
+        }
+
+
+        public void UpdatePageLabel()
+        {
+            if (PageLabel)
+            {
+                PageLabel.label.text = "Page:" + (ListEntry + 1).ToString() + " / " + (pages_default.Count > 0 ? (pages_default.Last().Page + 1).ToString() : "1");
+                PageLabel.label.Invalidate();
+            }
+        }
+
+        public bool IsNone;
+
+
+        public int ListEntry = 0;
+
+
+        public void ObliterateUI()
+        {
+            if (extantLabel) { Destroy(extantLabel.gameObject); }
+            if (DownLabel) { Destroy(DownLabel.gameObject); }
+            if (UpLabel) { Destroy(UpLabel.gameObject); }
+            if (PageLabel) { Destroy(PageLabel.gameObject); }
+            if (CloseLabel) { Destroy(CloseLabel.gameObject); }
+
+            if (T1bLabel) { Destroy(T1bLabel.gameObject); }
+            if (T2bLabel) { Destroy(T2bLabel.gameObject); }
+            if (T3bLabel) { Destroy(T3bLabel.gameObject); }
+            if (T4bLabel) { Destroy(T4bLabel.gameObject); }
+
+
+            for (int i = 0; i < garbageLabels.Count; i++)
+            {
+                if (garbageLabels[i] != null) { Destroy(garbageLabels[i].gameObject); }
+            }
+            garbageLabels.Clear();
+        }
+
+
+        public int AddNewPages(DefaultModule module)
+        {
+            int currentPage = pages_default.Count > 0 ? pages_default.Last().Page : 0;
+            int LastEntry = pages_default.Count > 0 ? pages_default.Last().Entry : -1;
+            if (LastEntry > 3)
+            {
+                currentPage += 1;
+                LastEntry = -1;
+            }
+            QuickAndMessyPage quickAndMessy = new QuickAndMessyPage();
+            quickAndMessy.Page = currentPage;
+            quickAndMessy.Entry = LastEntry + 1;
+            quickAndMessy.module = module;
+            pages_default.Add(quickAndMessy);
+            return LastEntry + 1;
+        }
+
+        public int AddNewPagesTiered(DefaultModule module)
+        {
+            var specList = ReturnPageListTier(module.Tier);
+            int currentPage = specList.Count > 0 ? specList.Last().Page : 0;
+            int LastEntry = specList.Count > 0 ? specList.Last().Entry : -1;
+            if (LastEntry > 3)
+            {
+                currentPage += 1;
+                LastEntry = -1;
+            }
+            QuickAndMessyPage quickAndMessy = new QuickAndMessyPage();
+            quickAndMessy.Page = currentPage;
+            quickAndMessy.Entry = LastEntry + 1;
+            quickAndMessy.module = module;
+            specList.Add(quickAndMessy);
+            return LastEntry + 1;
+        }
+
+
+        public List<QuickAndMessyPage> ReturnPageListTier(ModuleTier moduleTier)
+        {
+            switch (moduleTier)
+            {
+                case ModuleTier.Tier_1:
+                    return pages_T1;
+                case ModuleTier.Tier_2:
+                    return pages_T2;
+                case ModuleTier.Tier_3:
+                    return pages_T3;
+                case ModuleTier.Tier_Omega:
+                    return pages_T4;
+                default:
+                    return pages_T1;
+            }
+        }
+
+
+        public List<QuickAndMessyPage> pages_default = new List<QuickAndMessyPage>();
+        public List<QuickAndMessyPage> pages_T1 = new List<QuickAndMessyPage>();
+        public List<QuickAndMessyPage> pages_T2 = new List<QuickAndMessyPage>();
+        public List<QuickAndMessyPage> pages_T3 = new List<QuickAndMessyPage>();
+        public List<QuickAndMessyPage> pages_T4 = new List<QuickAndMessyPage>();
+
+        public class QuickAndMessyPage
+        {
+            public DefaultModule module;
+            public int Page;
+            public int Entry;
+        }
+
+
+        private ModulePrinterCore Core;
+
+
+        public ModifiedDefaultLabelManager UpLabel;
+        public ModifiedDefaultLabelManager DownLabel;
+        public ModifiedDefaultLabelManager CloseLabel;
+
+        public ModifiedDefaultLabelManager PageLabel;
+        public List<ModifiedDefaultLabelManager> garbageLabels = new List<ModifiedDefaultLabelManager>();
+        public ModifiedDefaultLabelManager extantLabel;
+
+        public ModifiedDefaultLabelManager T1bLabel;
+        public ModifiedDefaultLabelManager T2bLabel;
+        public ModifiedDefaultLabelManager T3bLabel;
+        public ModifiedDefaultLabelManager T4bLabel;
+        public ModifiedDefaultLabelManager AnyLabel;
+
     }
 }
 

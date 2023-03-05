@@ -336,7 +336,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
     <EmbeddedResource Include="Sprites\Modular\newaltspritesetup\hand_alt_001.png" />
     <EmbeddedResource Include="Sprites\Modular\newspritesetup\item_get\robot_item_get_001.png" />
     <EmbeddedResource Include="Sprites\Modular\newspritesetup\item_get\robot_item_get_002.png" />
@@ -806,6 +805,8 @@
     <EmbeddedResource Include="Sprites\Modular\newaltspritesetup\breach_idles\tummy\robot_select_tummy_011.png" />
     <EmbeddedResource Include="Sprites\Modular\newaltspritesetup\breach_idles\tummy\robot_select_tummy_012.png" />
     <EmbeddedResource Include="Sprites\Modular\newaltspritesetup\breach_idles\tummy\robot_select_tummy_013.png" />
+    <EmbeddedResource Include="Sprites\Modular\loadoutsprites\c_scrap.png" />
+    <Content Include="icon.ico" />
     <Content Include="Sprites\Modular\newspritesetup\death_coop\cc_sprite_placeholder.png" />
     <EmbeddedResource Include="Sprites\Modular\newspritesetup\spinfall\robot_spinfall_001.png" />
     <EmbeddedResource Include="Sprites\Modular\newspritesetup\spinfall\robot_spinfall_002.png" />
