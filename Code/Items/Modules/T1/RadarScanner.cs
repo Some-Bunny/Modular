@@ -31,7 +31,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.9f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Radar Scanner " + h.ReturnTierLabel();
-            h.LabelDescription = "Secret Rooms are revealed on the map.\nAll secret rooms contain 2(" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nextra pickups.";
+            h.LabelDescription = "Secret Rooms are revealed on the map.\nAll secret rooms contain 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nextra pickups.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

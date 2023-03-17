@@ -89,6 +89,7 @@
     <Compile Include="Code\Items\Modules\T2\RefundedComponents.cs" />
     <Compile Include="Code\Items\Modules\T2\RedirectSystem.cs" />
     <Compile Include="Code\Items\Modules\T2\CounterProductivity.cs" />
+    <Compile Include="Code\Items\Modules\T3\SelfRicochet.cs" />
     <Compile Include="Code\Items\Modules\T3\OverclockedMagazines.cs" />
     <Compile Include="Code\Items\Modules\T3\MachineInstinct.cs" />
     <Compile Include="Code\Items\Modules\T3\GravityWell.cs" />

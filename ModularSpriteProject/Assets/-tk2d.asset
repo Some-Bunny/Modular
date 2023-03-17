@@ -3359,6 +3359,8 @@ MonoBehaviour:
     - machineinstinct_t3_module_alt
     - overclockedmagazine_t3_module
     - overclockedmagazine_t3_module_alt
+    - ultraricochet_t3_module
+    - ultraricochet_t3_module_alt
     spriteTextureGUIDs:
     - 62af1667c163bff44ba57da198f4ca3e
     - 30e16c74359c8b74cbf7d5287293528d
@@ -3376,6 +3378,8 @@ MonoBehaviour:
     - 5378e6a9e9d5fd140b5ca32de91f0be7
     - 165ae33baac025240a615790bfcae61c
     - 6624d0dc0df272648a8bd388236b780f
+    - a9019011dbe30aa4cabbc7f480b50ce7
+    - 6b4c876ad43c87e458757bd485290338
     spriteTextureTimeStamps:
     - 1675344874.21474
     - 1675344923.11011
@@ -3393,6 +3397,8 @@ MonoBehaviour:
     - 1678898435.9346
     - 1678986518.69902
     - 1678986535.33636
+    - 1679065924.9271
+    - 1679065938.62718
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
