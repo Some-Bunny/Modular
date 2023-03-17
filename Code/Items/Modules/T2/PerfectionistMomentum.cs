@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Perfectionist Momentum",
             Description = "Keeping It Up",
-            LongDescription = "Grants a 3.3% Fire rate and Damage upgrade for every room cleared without taking damage, capped at 10 (+10 per stack) rooms.\nBonuses reset when you take damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants a 2.5% Fire rate and Damage upgrade for every room cleared without taking damage, capped at 10 (+10 per stack) rooms.\nBonuses reset when you take damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("perfectmomentum_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("perfectmomentum_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Perfectionist Momentum " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants a 3.3% Fire Rate and Damage upgrade for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") rooms.\n"+ StaticColorHexes.AddColorToLabelString("Bonuses reset when you take damage.", StaticColorHexes.Dark_Red_Hex);
+            h.LabelDescription = "Grants a 2.5% Fire Rate and Damage upgrade for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") rooms.\n"+ StaticColorHexes.AddColorToLabelString("Bonuses reset when you take damage.", StaticColorHexes.Dark_Red_Hex);
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
@@ -66,25 +66,23 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile += PPP;
             modulePrinter.OnRoomCleared += ORC;
             modulePrinter.OnDamaged += OnDamaged;
-
-            mod = new ModuleGunStatModifier()
+            this.gunStatModifier = new ModuleGunStatModifier()
             {
                 Name = "Momentum",
                 FireRate_Process = PFR
             };
-            modularGunController.statMods.Add(mod);
+            modularGunController.statMods.Add(this.gunStatModifier);
         }
 
-        public ModuleGunStatModifier mod;
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnRoomCleared -= ORC;
             modulePrinter.OnDamaged -= OnDamaged;
-            if (modularGunController.statMods.Contains(mod)) 
+            if (modularGunController.statMods.Contains(this.gunStatModifier)) 
             {
-                modularGunController.statMods.Remove(mod);
+                modularGunController.statMods.Remove(this.gunStatModifier);
             }
         }
 
@@ -94,7 +92,7 @@ namespace ModularMod
         }
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            return f - (f - (f / (1 + 0.033f * RoomPerfectCount)));
+            return f - (f - (f / (1 + 0.025f * RoomPerfectCount)));
         }
 
         public void ORC(ModulePrinterCore modulePrinterCore, PlayerController player, RoomHandler room)
@@ -124,7 +122,7 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.damage *= 1 + (0.033f * RoomPerfectCount);
+            p.baseData.damage *= 1 + (0.025f * RoomPerfectCount);
         }
     }
 }

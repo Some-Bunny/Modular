@@ -29,13 +29,14 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Disabled Dampeners " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.8f;
-            h.LabelDescription = "Increases Rate Of Fire by\n25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
+            h.LabelDescription = "Increases Rate Of Fire by\n25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by\n10% (" + StaticColorHexes.AddColorToLabelString("+10% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
-            
+            h.OverrideScrapCost = 3;
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -43,7 +44,7 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile += PPP;
-            modularGunController.OnPreFired += OPF;
+            //modularGunController.OnPreFired += OPF;
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
@@ -71,7 +72,7 @@ namespace ModularMod
         public float ProcessReloadTime(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.05f * stack)));
+            return f - (f - (f / (1 + 0.1f * stack)));
         }
 
 
@@ -85,7 +86,8 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.HasFixedKnockbackDirection = false;
+            player.knockbackDoer.ApplyKnockback(Toolbox.GetUnitOnCircle(player.CurrentGun.CurrentAngle - 180, 1), (10 * 1 + (0.33f * stack)) * Mathf.Max(1, p.baseData.damage / 50));
+
             p.baseData.speed *= 1 + (0.2f * stack);
             p.baseData.force *= 1 + (0.2f * stack);
         }

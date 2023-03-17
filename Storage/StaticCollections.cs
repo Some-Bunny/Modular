@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace ModularMod
 
         public static tk2dSpriteCollectionData Item_Collection;
         public static tk2dSpriteCollectionData UI_Collection;
+
+        public static tk2dSpriteCollectionData Gun_Collection;
+        public static tk2dSpriteCollectionData Projectile_Collection;
+        public static tk2dSpriteCollectionData Beam_Collection;
+        public static tk2dSpriteAnimation Beam_Animation;
+
 
         public static tk2dSpriteCollectionData VFX_Collection;
 
@@ -34,8 +41,16 @@ namespace ModularMod
             Module_T3_Collection = DoFastSetup(Module.ModularAssetBundle, "Module_T3_Collection", "t3_module material.mat");
             if (Module_T3_Collection == null) { ETGModConsole.Log("Module_T3_Collection is NULL"); }
 
+            Module_T4_Collection = DoFastSetup(Module.ModularAssetBundle, "ModuleTier4Collection", "modulrt4 material.mat");
+            if (Module_T4_Collection == null) { ETGModConsole.Log("Module_T4_Collection is NULL"); }
+
             Item_Collection = DoFastSetup(Module.ModularAssetBundle, "ModuleItemCollection", "moduleitem material.mat");
             if (Item_Collection == null) { ETGModConsole.Log("Item_Collection is NULL"); }
+
+            Beam_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularBeamCollection", "beam material.mat");
+            if (Beam_Collection == null) { ETGModConsole.Log("Beam_Collection is NULL"); }
+
+            Beam_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularBeamAnimation").GetComponent<tk2dSpriteAnimation>();
 
             Modular_Character_Alt_Collection = DoFastSetup(Module.ModularAssetBundle, "Modular_Alt_Collection", "modular_alt material.mat");
             if (Modular_Character_Alt_Collection == null) { ETGModConsole.Log("Modular_Character_Alt_Collection is NULL"); }

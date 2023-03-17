@@ -35,6 +35,8 @@ namespace ModularMod
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.OverrideScrapCost = 15;
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
             ValidRoomRewardContents = new Alexandria.RoomRewardAPI.ValidRoomRewardContents()

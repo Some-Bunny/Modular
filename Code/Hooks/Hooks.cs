@@ -18,6 +18,8 @@ namespace ModularMod
     {
         public class  ChooseModuleController : MonoBehaviour
         {
+            public static Func<int, int> AdditionalOptionsModifier;
+
             public int Count = 3;
             public Gun g;
             public bool isAlt = false;
@@ -55,6 +57,8 @@ namespace ModularMod
                 AlterCount();
                 selectableModules = new List<ModuleUICarrier>();
                 GenericLootTable tableToUse = GlobalModuleStorage.SelectTable(g.quality);
+
+                if (AdditionalOptionsModifier != null) { Count = AdditionalOptionsModifier(Count); }
 
                 float Arc = 30 + (Count * 15);
 

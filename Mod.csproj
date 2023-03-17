@@ -68,6 +68,7 @@
     <Compile Include="Code\Items\Modules\T1\ConvexLens.cs" />
     <Compile Include="Code\Items\Modules\T1\LiquidMetal.cs" />
     <Compile Include="Code\Items\Modules\T1\FocusingLens.cs" />
+    <Compile Include="Code\Items\Modules\T1\OneShot.cs" />
     <Compile Include="Code\Items\Modules\T1\RadarScanner.cs" />
     <Compile Include="Code\Items\Modules\T1\MonetaryValue.cs" />
     <Compile Include="Code\Items\Modules\T1\RecyclingNanites.cs" />
@@ -81,6 +82,19 @@
     <Compile Include="Code\Items\Modules\T1\AggressiveReload.cs" />
     <Compile Include="Code\Items\Modules\T1\ConcussiveTips.cs" />
     <Compile Include="Code\Items\Modules\T1\BypassedRecoil.cs" />
+    <Compile Include="Code\Items\Modules\T1\PlatedRage.cs" />
+    <Compile Include="Code\Items\Modules\T2\AbsorbantPlating.cs" />
+    <Compile Include="Code\Items\Modules\T2\LaserLance.cs" />
+    <Compile Include="Code\Items\Modules\T2\TheMarksman.cs" />
+    <Compile Include="Code\Items\Modules\T2\RefundedComponents.cs" />
+    <Compile Include="Code\Items\Modules\T2\RedirectSystem.cs" />
+    <Compile Include="Code\Items\Modules\T2\CounterProductivity.cs" />
+    <Compile Include="Code\Items\Modules\T3\OverclockedMagazines.cs" />
+    <Compile Include="Code\Items\Modules\T3\MachineInstinct.cs" />
+    <Compile Include="Code\Items\Modules\T3\GravityWell.cs" />
+    <Compile Include="Code\Items\Modules\T3\HyperPropellant.cs" />
+    <Compile Include="Code\Items\Modules\T3\FiveShotSalute.cs" />
+    <Compile Include="Code\Items\Modules\T4\EternalWrap.cs" />
     <Compile Include="Code\Items\Scrapper.cs" />
     <Compile Include="Code\Items\Scrap.cs" />
     <Compile Include="Code\Items\Modules\T2\CloakPlating.cs" />
@@ -103,7 +117,11 @@
     <Compile Include="Code\Items\Modules\T1\TremorImpact.cs" />
     <Compile Include="Code\Items\Modules\T1\SharperRounds.cs" />
     <Compile Include="Code\Items\Modules\TemplateModule.cs" />
+    <Compile Include="Code\Toolboxes\Assetbundle Supported\BeamToolbox.cs" />
+    <Compile Include="Code\Toolboxes\Assetbundle Supported\GunJsonEmbedder.cs" />
+    <Compile Include="Code\Toolboxes\Assetbundle Supported\ProjectileToolbox.cs" />
     <Compile Include="Code\Toolboxes\Components.cs" />
+    <Compile Include="Code\Toolboxes\LightningController.cs" />
     <Compile Include="Code\UI\ScrapUIController.cs" />
     <Compile Include="Storage\ComponentsAndShit.cs" />
     <Compile Include="Storage\DebuffStatics.cs" />
@@ -131,7 +149,7 @@
     </Reference>
     <Reference Include="Alexandria, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ETG\profiles\Default\BepInEx\plugins\Alexandria-Alexandria\Alexandria.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ETG\profiles\Default\BepInEx\plugins\Alexandria-Alexandria\plugins\Alexandria.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EtG.GameLibs.2.1.9.1\lib\net35\Assembly-CSharp.dll</HintPath>

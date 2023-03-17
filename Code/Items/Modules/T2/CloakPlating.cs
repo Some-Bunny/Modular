@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Cloak Plating",
             Description = "+60%",
-            LongDescription = "Entering combat cloaks the player for 5 (+2.5 per stack) seconds. Uncloaking forcefully grants a 5x (+1 per stack) damage multiplier that degrades fast." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Entering combat cloaks the player for 5 (+2.5 per stack) seconds. Uncloaking forcefully grants a 4x (+1 per stack) damage multiplier that degrades fast." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Cloak Plating " + h.ReturnTierLabel();
             h.LabelDescription = "Entering combat cloaks the player for 5 ("+ StaticColorHexes.AddColorToLabelString("+2.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking grants a\n" +
-                "5x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that degrades fast.";
+                "4x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that degrades fast.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -59,7 +59,7 @@ namespace ModularMod
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
         {
             int stack = this.ReturnStack(modulePrinter);
-            DamageMax = 4 + (stack);
+            DamageMax = 3 + (stack);
             CloakTime = 2.5f + (stack * 2.5f);
         }
 

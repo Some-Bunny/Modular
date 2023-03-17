@@ -30,12 +30,13 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.9f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Monetary Value " + h.ReturnTierLabel();
-            h.LabelDescription = "Gain 0.33% damage (" + StaticColorHexes.AddColorToLabelString("+0.33%", StaticColorHexes.Light_Orange_Hex) + ") \nfor each casing you have.\nYour casing value is increased by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ") every floor.";
+            h.LabelDescription = "Gain 0.2% damage (" + StaticColorHexes.AddColorToLabelString("+0.2%", StaticColorHexes.Light_Orange_Hex) + ") \nfor each casing you have.\nYour casing value is increased by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ") every floor.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.OverrideScrapCost = 7;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -57,7 +58,7 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.damage *= 1 + ((player.carriedConsumables.Currency / 3000)*this.ReturnStack(modulePrinterCore));
+            p.baseData.damage *= 1 + ((player.carriedConsumables.Currency / 5000)*this.ReturnStack(modulePrinterCore));
         }
     } 
 }

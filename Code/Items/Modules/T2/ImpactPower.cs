@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Impact Power",
             Description = "Know Where To Go",
-            LongDescription = "Adds 1 Bounce, Reduce Damage by 20% (-20% per stack hyperbolically) But each bounce increases damage by 2x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 1 Bounce, Reduce Damage by 20% (-20% per stack hyperbolically) But each bounce increases damage by 1.5x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("impactpower_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Impact Power " + h.ReturnTierLabel();
             h.LabelDescription = "Adds 1 Bounce, Reduce Damage by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
-                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each bounce damage increases damage by 2x " +
+                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each bounce damage increases damage by 1.5x " +
                 StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ".";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
@@ -54,7 +54,7 @@ namespace ModularMod
             int stack = this.ReturnStack(modulePrinterCore);
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += stack;
-            bounceProjModifier.damageMultiplierOnBounce *= (1.5f + (0.5f * stack));
+            bounceProjModifier.damageMultiplierOnBounce *= (1 +(0.5f * stack));
             bounceProjModifier.OnBounceContext += OBC;
             p.baseData.damage *= 1 - (1 - (1 / (1 + 0.2f * stack))); //this formula fucking sucks lmao
         }

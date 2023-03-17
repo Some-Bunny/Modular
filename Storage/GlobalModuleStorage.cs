@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using ModularMod;
 using static ModularMod.ModulePrinterCore;
+using static ModularMod.DefaultModule;
 
 namespace ModularMod
 {
@@ -91,6 +92,10 @@ namespace ModularMod
         public static void AddToGlobalStorage(this DefaultModule module)
         {
             allModules.Add(module);
+            if (module.IsUncraftable == false)
+            {
+                AddNewPagesTiered(module);
+            }
             switch (module.Tier)
             {
                 case DefaultModule.ModuleTier.Tier_1:
@@ -127,6 +132,8 @@ namespace ModularMod
                     return BraveUtility.RandomElement<DefaultModule>(all_Tier_1_Modules);
             }
         }
+
+
 
         public static List<DefaultModule> allModules = new List<DefaultModule>();
 
@@ -202,6 +209,58 @@ namespace ModularMod
                     }      
                 }
             }
+        }
+
+
+      
+
+        private static int AddNewPagesTiered(DefaultModule module)
+        {
+            if (module.Tier == ModuleTier.Tier_Omega) { return -1; }
+            var specList = ReturnPageListTier(module.Tier);
+            
+            int currentPage = specList.Count > 0 ? specList.Last().Page : 0;
+            int LastEntry = specList.Count > 0 ? specList.Last().Entry : -1;
+            if (LastEntry > 3)
+            {
+                currentPage += 1;
+                LastEntry = -1;
+            }
+            QuickAndMessyPage quickAndMessy = new QuickAndMessyPage();
+            quickAndMessy.Page = currentPage;
+            quickAndMessy.Entry = LastEntry + 1;
+            quickAndMessy.module = module;
+            specList.Add(quickAndMessy);
+            return LastEntry + 1;
+        }
+
+
+        private static List<QuickAndMessyPage> ReturnPageListTier(ModuleTier moduleTier)
+        {
+            switch (moduleTier)
+            {
+                case ModuleTier.Tier_1:
+                    return pages_T1;
+                case ModuleTier.Tier_2:
+                    return pages_T2;
+                case ModuleTier.Tier_3:
+                    return pages_T3;
+                case ModuleTier.Tier_Omega:
+                    return null;
+                default:
+                    return pages_T1;
+            }
+        }
+
+        public static List<QuickAndMessyPage> pages_T1 = new List<QuickAndMessyPage>();
+        public static List<QuickAndMessyPage> pages_T2 = new List<QuickAndMessyPage>();
+        public static List<QuickAndMessyPage> pages_T3 = new List<QuickAndMessyPage>();
+
+        public class QuickAndMessyPage
+        {
+            public DefaultModule module;
+            public int Page;
+            public int Entry;
         }
     }
 }

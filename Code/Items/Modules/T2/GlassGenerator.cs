@@ -43,8 +43,16 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnAnyModuleObtained += OAMO;
-            LootEngine.GivePrefabToPlayer(PickupObjectDatabase.GetById(565).gameObject, player);
-            LootEngine.GivePrefabToPlayer(PickupObjectDatabase.GetById(565).gameObject, player);
+            for (int i = 0; i < 2; i++)
+            {
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(565).gameObject, Vector3.zero, Quaternion.identity);
+                PickupObject component3 = gameObject.GetComponent<PickupObject>();
+                if (component3 != null)
+                {
+                    component3.CanBeDropped = false;
+                    component3.Pickup(player);
+                }
+            }
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -55,7 +63,13 @@ namespace ModularMod
             int amountToGive = this.ReturnStack(modulePrinterCore) + 1;
             for (int i = 0; i < amountToGive; i++)
             {
-                LootEngine.GivePrefabToPlayer(PickupObjectDatabase.GetById(565).gameObject, player);
+                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(565).gameObject, Vector3.zero, Quaternion.identity);
+                PickupObject component3 = gameObject.GetComponent<PickupObject>();
+                if (component3 != null)
+                {
+                    component3.CanBeDropped = false;
+                    component3.Pickup(player);
+                }
             }
         }
     }

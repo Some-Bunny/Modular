@@ -12,6 +12,14 @@ namespace ModularMod
 {
     public static class Toolbox
     {
+
+        public static RaycastResult ReturnRaycast(Vector2 startPosition, Vector2 angle, int rayCastMask, float overrideDistance = 1000, SpeculativeRigidbody bodyToIgnore = null)
+        {
+            Func<SpeculativeRigidbody, bool> rigidbodyExcluder = (SpeculativeRigidbody otherRigidbody) => otherRigidbody.minorBreakable && !otherRigidbody.minorBreakable.stopsBullets;
+            RaycastResult raycastResult2;
+            PhysicsEngine.Instance.Raycast(startPosition, angle, overrideDistance, out raycastResult2, true, true, rayCastMask, null, false, rigidbodyExcluder, bodyToIgnore);
+            return raycastResult2;
+        }
         public static void ProcessAnimations(this CustomCharacterData self, Dictionary<string, int> dict)
         {
             var lib = self.animator.Library;
@@ -108,10 +116,12 @@ namespace ModularMod
             return _returnVector;
         }
 
-        public static ModifiedDefaultLabelManager GenerateText(Transform trans, Vector2 offset, float time, string Text, Color32 color, bool Autotrigger = true)
+        public static ModifiedDefaultLabelManager GenerateText(Transform trans, Vector2 offset, float time, string Text, Color32 color, bool Autotrigger = true, float size = 5)
         {
             var labelToSet = UnityEngine.Object.Instantiate(DefaultModule.LabelController).gameObject.GetComponent<ModifiedDefaultLabelManager>();
+            labelToSet.label.textScale = size;
             labelToSet.label.Text = Text;
+
             if (Autotrigger == true)
             {
                 labelToSet.Trigger_CustomTime(trans, offset, time);

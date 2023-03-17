@@ -27,7 +27,7 @@ namespace ModularMod
             comp.isAlt = true;
 
             gun.DefaultModule.ammoCost = 1;
-            gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
+            gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.Automatic;
             gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
 
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(57) as Gun).gunSwitchGroup;
@@ -37,7 +37,7 @@ namespace ModularMod
             gun.DefaultModule.cooldownTime = .25f;
             gun.DefaultModule.numberOfShotsInClip = 12;
             gun.SetBaseMaxAmmo(250);
-            gun.DefaultModule.angleVariance = 9f;
+            gun.DefaultModule.angleVariance = 7.5f;
 
 
             gun.InfiniteAmmo = true;
@@ -66,7 +66,7 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 6f;
+            projectile.baseData.damage = 7f;
             projectile.shouldRotate = false;
             gun.gunClass = GunClass.NONE;
 

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Mercy Rounds",
             Description = "Hits The Sick Harder",
-            LongDescription = "Deal an additional 50% (+50% per stack) more damage to enemies for each buff or debuff they have." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Deal an additional 33% (+33% per stack) more damage to enemies for each buff or debuff they have." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Mercy Rounds " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal an additional 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.";
+            h.LabelDescription = "Deal an additional 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.";
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
@@ -80,7 +80,7 @@ namespace ModularMod
             if (oR != null && oR.healthHaver != null && mR.projectile != null)
             {
                 float damage = mR.projectile.baseData.damage;
-                mR.projectile.baseData.damage *= 1 + ((0.5f* stack) * oR.aiActor.m_activeEffects.Count());
+                mR.projectile.baseData.damage *= 1 + ((0.33f* stack) * oR.aiActor.m_activeEffects.Count());
                 mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
             }
         }

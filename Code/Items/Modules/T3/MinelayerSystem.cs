@@ -20,7 +20,7 @@ namespace ModularMod
         {
             Name = "Minelayer System",
             Description = "Fortification Expert",
-            LongDescription = "Projectile damage reduced by 66%. On destrouction, projectiles now leave proximity mines that take 3 (-15% hyperbolically per stack) seconds to prime, and take 1 (-15% hyperbolically per stack) second to detonate." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Projectile damage reduced by 66%. On destruction, projectiles now leave proximity mines that take 3 (-15% hyperbolically per stack) seconds to prime, and take 1 (-15% hyperbolically per stack) second to detonate." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module"),
             Quality = ItemQuality.SPECIAL,

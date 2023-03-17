@@ -35,6 +35,7 @@ namespace ModularMod
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
+            
             ID = h.PickupObjectId;
         }
         public static int ID;
@@ -52,8 +53,8 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
-            chain.Damage = p.baseData.damage * (0.1f +(0.1f * stack));
-            chain.Range = 5f + (1.25f * stack);
+            chain.Damage = p.baseData.damage * (0.33f * stack);
+            chain.Range = 4f + (4 * stack);
             chain.player = player;
             chain.projectile = p;
         }

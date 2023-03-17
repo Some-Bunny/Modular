@@ -52,9 +52,10 @@ namespace ModularMod
         }
         public void OGR(ModulePrinterCore modulePrinterCore, PlayerController player, Gun g)
         {
-            float a = 1 - (g.ClipShotsRemaining / g.ClipCapacity);
+            float a = ((float)g.ClipShotsRemaining / (float)g.ClipCapacity);
+            a = 1 - a; 
             int stack = this.ReturnStack(modulePrinterCore);
-            Vector2 endLocation = player.sprite.WorldCenter + Toolbox.GetUnitOnCircle(g.CurrentAngle, (6f + (stack * 1.5f)* a));
+            Vector2 endLocation = player.sprite.WorldCenter + Toolbox.GetUnitOnCircle(g.CurrentAngle, (5f + (stack * 1.5f)) * a);
             DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(Alexandria.Misc.GoopUtility.FireDef).TimedAddGoopLine(player.sprite.WorldCenter, endLocation, 1f + (0.25f * stack), 0.35f);
             player.StartCoroutine(BurningWitness(player.CurrentRoom, player.sprite.WorldCenter, endLocation, 1f + (0.25f * stack), 0.35f));
         }

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Jet Propellant",
             Description = "Speed Is War",
-            LongDescription = "Projectiles start slow, but accelarate to high speeds after 1 second. Projectiles now deal 33% (+33% per stack) of their speed as damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Projectiles start slow, but accelarate to high speeds after 1 second. Projectiles now deal 20% (+20% per stack) of their speed as damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("jetpropellant_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("jetpropellant_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Jet Propellant " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles start slow,but accelerate to\nhigh speeds after 1 second.\nProjectiles now deal 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
+            h.LabelDescription = "Projectiles start slow,but accelerate to\nhigh speeds after 1 second.\nProjectiles now deal 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.9f;
             h.SetTag("modular_module");
@@ -86,7 +86,7 @@ namespace ModularMod
             if (oR != null && oR.healthHaver != null && mR.projectile != null)
             {
                 float damage = mR.projectile.baseData.damage;
-                float damageMult = (mR.projectile.baseData.speed / 10) * (3.33f * (stack));
+                float damageMult = (mR.projectile.baseData.speed / 10) * (2f * (stack));
                 mR.projectile.baseData.damage *= 1 + damageMult;
                 mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
             }

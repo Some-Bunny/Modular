@@ -124,7 +124,10 @@ namespace ModularMod
             Toolbox.NotifyCustom("Installed Module:", this.LabelName, this.sprite.spriteId, this.sprite.collection, UINotificationController.NotificationColor.GOLD);
             UnityEngine.Object.Destroy(base.gameObject);
         }
-    
+
+        public int? OverrideScrapCost;
+        public bool IsUncraftable = false;
+
         public virtual void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
 
@@ -145,6 +148,7 @@ namespace ModularMod
         {
 
         }
+
 
         public int Stack()
         {
@@ -459,10 +463,17 @@ namespace ModularMod
                 {
                     MouseHover(label, label.isMouseHovering);
                 }
+                if (OnUpdate != null)
+                {
+                    OnUpdate(label);
+                }
             }
         }
 
         public Action<dfLabel, bool> MouseHover;
+        public Action<dfLabel> OnUpdate;
+        public DefaultModule StoredModuleInfo;
+
 
         private IEnumerator Unexpand_CR_Custom(float duration, bool willDestroy = false)
         {

@@ -52,6 +52,7 @@ namespace ModularMod
 
 
             //==== Setup Static Stuff ====//
+            LightningController.Init();
             VFXStorage.AssignVFX();
             StaticTextures.InitTextures();
             StaticShaders.GetDisplacerMat();

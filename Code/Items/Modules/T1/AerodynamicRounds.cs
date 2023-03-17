@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Aerodynamic Carvings" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 15% (" + StaticColorHexes.AddColorToLabelString("+15%", StaticColorHexes.Light_Orange_Hex) + ")\nand player bullet speed by 30% (" + StaticColorHexes.AddColorToLabelString("+30%", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Increases Damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ")\nand player bullet speed by 30% (" + StaticColorHexes.AddColorToLabelString("+30%", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -50,7 +50,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.15f * stack);
+            p.baseData.damage *= 1 + (0.1f * stack);
             p.baseData.speed *= 1 + (0.3f * stack);
             p.UpdateSpeed();
         }

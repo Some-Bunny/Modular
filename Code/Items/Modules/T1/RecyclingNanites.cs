@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Recycling Nanites",
             Description = "Repurposed for something better",
-            LongDescription = "Raking damage permanently increases damage by\n+5% (+5% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Raking damage permanently increases damage by\n+2.5% (+2.5% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("recycler_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,12 +29,14 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.6f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Recycling Nanites " + h.ReturnTierLabel();
-            h.LabelDescription = "Taking damage permanently increases damage by \n+5% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Taking damage permanently increases damage by \n+2.5% (" + StaticColorHexes.AddColorToLabelString("+2.5%", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.OverrideScrapCost = 4;
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -57,7 +59,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + ((0.05f * stack) * DamageTaken);
+            p.baseData.damage *= 1 + ((0.025f * stack) * DamageTaken);
         }
     } 
 }

@@ -27,16 +27,18 @@ namespace ModularMod
             Quality = ItemQuality.SPECIAL,
             PostInitAction = PostInit
         };
+
         public static void PostInit(PickupObject v)
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "The Swarm " + h.ReturnTierLabel();
-            h.LabelDescription = "Massively reduces damage. \nProjectiles gain massively increased lifetime,\npiercing and homing. (" + StaticColorHexes.AddColorToLabelString("+Bounces, Pierces and stronger Homing", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Massively reduces damage.\nProjectiles gain massively increased lifetime,\npiercing and homing. (" + StaticColorHexes.AddColorToLabelString("+Bounces, Pierces and stronger Homing", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
+            h.AdditionalWeightMultiplier = 0.9f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             ID = h.PickupObjectId;

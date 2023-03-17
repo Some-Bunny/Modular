@@ -181,7 +181,22 @@ namespace ModularMod
         {
             if (base.Owner == null) { return; }
             if (OnPostProcessProjectile != null && p != null) { OnPostProcessProjectile(this, p, f, base.Owner); }
+            p.specRigidbody.OnPreRigidbodyCollision += OPC;
         }
+        public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
+        {
+            if (oR != null && oR.healthHaver != null && mR.projectile != null)
+            {
+                if (oR.healthHaver.aiActor)
+                {
+                    if (OnPreEnemyHit != null)
+                    {
+                        OnPreEnemyHit(this, this.Owner, oR.healthHaver.aiActor, mR.projectile);
+                    }
+                }
+            }
+        }
+
         public void OnDealtDamageContext(PlayerController p, float f, bool b, HealthHaver h)
         {
             if (OnDamagedEnemy != null && h.aiActor != null) { OnDamagedEnemy(this, p, h.aiActor, f); }
@@ -220,6 +235,7 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, RoomHandler> OnRoomCleared;
         public Action<ModulePrinterCore, PlayerController> OnNewFloorStarted;
         public Action<ModulePrinterCore, PlayerController, DefaultModule> OnAnyModuleObtained;
+        public Action<ModulePrinterCore, PlayerController, AIActor, Projectile> OnPreEnemyHit;
 
 
         //UI Shit
@@ -356,6 +372,7 @@ namespace ModularMod
             for (int i = 0; i < ModuleContainers.Count; i++)
             {
                 var cont = ModuleContainers[i];
+                RemoveModule(cont.defaultModule, 999999);
                 cont.defaultModule.OnCoreDestruction(this, this.ModularGunController);
             }
             base.OnDestroy();

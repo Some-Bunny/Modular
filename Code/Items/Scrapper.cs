@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
 using static ModularMod.DefaultModule;
@@ -21,7 +22,7 @@ namespace ModularMod
         {
             Name = "Module Computer Core",
             Description = "Game Breaking",
-            LongDescription = "Allows for the scrapping of Items and Pickups into Scrap. Scrap can be traded away for upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
+            LongDescription = "Allows for the scrapping of Items and Pickups into Scrap. Scrap can be repurposed into upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("directive_scrap"),
             Quality = ItemQuality.SPECIAL,         
@@ -100,10 +101,10 @@ namespace ModularMod
 
         public static List<Tuple<string, int>> tuples = new List<Tuple<string, int>>()
         {
-            new Tuple<string, int>("IounStoneOrbitalItem", 3),
+            new Tuple<string, int>("IounStoneOrbitalItem", 2),
             new Tuple<string, int>("HealthPickup", 1),
-            new Tuple<string, int>("AmmoPickup", 3),
-            new Tuple<string, int>("KeyBulletPickup", 3),
+            new Tuple<string, int>("AmmoPickup", 2),
+            new Tuple<string, int>("KeyBulletPickup", 2),
             new Tuple<string, int>("SilencerItem", 2),
         };
 
@@ -115,6 +116,7 @@ namespace ModularMod
 
         public override void Start()
         {
+
         }
 
         public int ReturnAmountBasedOnTier(PickupObject.ItemQuality itemQuality)
@@ -122,13 +124,13 @@ namespace ModularMod
             switch(itemQuality)
             {
                 case ItemQuality.D:
-                    return 2;
+                    return 1;
                 case ItemQuality.C:
-                    return 4;
+                    return 1;
                 case ItemQuality.B:
-                    return 6;
+                    return 2;
                 default:
-                    return 6;
+                    return 2;
             }
         }
 
@@ -140,6 +142,7 @@ namespace ModularMod
         public void ReloadPressed(PlayerController p, Gun g)
         {
             if (g.ClipCapacity > g.ClipShotsRemaining) { return; }
+            if (p.CurrentItem != this) { return; }
             SwitchMode();
         }
 
@@ -421,12 +424,24 @@ namespace ModularMod
             }
             else
             {
+                if (extant_craft_button != null) { Destroy(extant_craft_button.gameObject); }
                 if (extant_Inventory_button != null) { Destroy(extant_Inventory_button.gameObject); }
+                if (extant_close_button != null) { Destroy(extant_close_button.gameObject); }
+
                 if (extant_craft_button != null) { Destroy(extant_craft_button.gameObject); }
                 if (extant_Inventory_Controller != null) { extant_Inventory_Controller.ObliterateUI(); 
                     extant_Inventory_Controller = null; }
+                
+                if (extant_Crafting_Controller != null)
+                {
+                    extant_Crafting_Controller.ObliterateUI();
+                    extant_Crafting_Controller = null;
+                }
 
                 Color32 cl = user.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+
+
+              
 
 
                 //INVENTORY
@@ -436,6 +451,7 @@ namespace ModularMod
                 {
                     if (extant_Inventory_button.gameObject) { Destroy(extant_Inventory_button.gameObject); }
                     if (extant_craft_button.gameObject) { Destroy(extant_craft_button.gameObject); }
+                    if (extant_close_button != null) { Destroy(extant_close_button.gameObject); }
 
                     extant_Inventory_Controller = ScriptableObject.CreateInstance<ModuleInventoryController>();
                     extant_Inventory_Controller.DoQuickStart(user);
@@ -449,14 +465,32 @@ namespace ModularMod
                 };
 
                 //CRAFT
-                extant_craft_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, 0.5f), 0.66f, "Craft", cl);
+                extant_craft_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, 0.5f), 0.66f, "Crafting", cl);
                 extant_craft_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     if (extant_Inventory_button.gameObject) { Destroy(extant_Inventory_button.gameObject); }
                     if (extant_craft_button.gameObject) { Destroy(extant_craft_button.gameObject); }
+                    if (extant_close_button != null) { Destroy(extant_close_button.gameObject); }
+
+                    extant_Crafting_Controller = ScriptableObject.CreateInstance<ModuleCrafingController>();
+                    extant_Crafting_Controller.DoQuickStart(user);
                     //Craft Code Here
                 };
                 extant_craft_button.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+
+                //CLOSE
+                extant_close_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, -0.5f), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
+                extant_close_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    if (extant_Inventory_button) { extant_Inventory_button.Inv(); }
+                    if (extant_craft_button) { extant_craft_button.Inv(); }
+                    if (extant_close_button) { extant_close_button.Inv(); }
+                };
+                extant_close_button.MouseHover = (label, boolean) =>
                 {
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
                     label.Invalidate();
@@ -469,8 +503,12 @@ namespace ModularMod
 
         public ModifiedDefaultLabelManager extant_Inventory_button;
         public ModifiedDefaultLabelManager extant_craft_button;
+        public ModifiedDefaultLabelManager extant_close_button;
+
 
         public ModuleInventoryController extant_Inventory_Controller;
+        public ModuleCrafingController extant_Crafting_Controller;
+
     }
 
     public class ModuleInventoryController : ScriptableObject
@@ -799,21 +837,21 @@ namespace ModularMod
 
         public void ObliterateUI()
         {
-            if (extantLabel) { Destroy(extantLabel.gameObject); }
-            if (DownLabel) { Destroy(DownLabel.gameObject); }
-            if (UpLabel) { Destroy(UpLabel.gameObject); }
-            if (PageLabel) { Destroy(PageLabel.gameObject); }
-            if (CloseLabel) { Destroy(CloseLabel.gameObject); }
+            if (extantLabel) { extantLabel.Inv(); }
+            if (DownLabel) { DownLabel.Inv(); }
+            if (UpLabel) { UpLabel.Inv(); }
+            if (PageLabel) { PageLabel.Inv(); }
+            if (CloseLabel) { CloseLabel.Inv(); }
 
-            if (T1bLabel) { Destroy(T1bLabel.gameObject); }
-            if (T2bLabel) { Destroy(T2bLabel.gameObject); }
-            if (T3bLabel) { Destroy(T3bLabel.gameObject); }
-            if (T4bLabel) { Destroy(T4bLabel.gameObject); }
-
+            if (T1bLabel) { T1bLabel.Inv(); }
+            if (T2bLabel) { T2bLabel.Inv(); }
+            if (T3bLabel) { T3bLabel.Inv(); }
+            if (T4bLabel) { T4bLabel.Inv(); }
+            if (AnyLabel) { AnyLabel.Inv(); }
 
             for (int i = 0; i < garbageLabels.Count; i++)
             {
-                if (garbageLabels[i] != null) { Destroy(garbageLabels[i].gameObject); }
+                if (garbageLabels[i] != null) { garbageLabels[i].Inv(); }
             }
             garbageLabels.Clear();
         }
@@ -903,6 +941,401 @@ namespace ModularMod
         public ModifiedDefaultLabelManager T3bLabel;
         public ModifiedDefaultLabelManager T4bLabel;
         public ModifiedDefaultLabelManager AnyLabel;
+
+    }
+
+    public class ModuleCrafingController : ScriptableObject
+    {
+        public void DoQuickStart(PlayerController p)
+        {
+            player = p;
+            Core = ReturnCore(p);
+            if (Core == null) { return; }
+            p.StartCoroutine(DoDelays(p));
+        }
+        public IEnumerator DoDelays(PlayerController p)
+        {
+            yield return null;
+            yield return null;
+            DoButtonRefreshSelect(p);
+            //DoButtonRefresh(p);
+            yield return null;
+            //DisplayModule(p);
+        }
+
+        public void DoButtonRefreshSelect(PlayerController p)
+        {
+            Tier = SelectedTier.NONE;
+            Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+            if (T1_Select == null)
+            {
+                T1_Select = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 0.75f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl, true, 6);
+                T1_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    Tier = SelectedTier.T1;
+                    ObliterateSelectUI();
+                    DoButtonRefreshCraft(p);
+                };
+                T1_Select.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (T2_Select == null)
+            {
+                T2_Select = Toolbox.GenerateText(p.transform, new Vector2(3.5f, 0.75f), 0.75f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl, true, 6);
+                T2_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    Tier = SelectedTier.T2;
+                    ObliterateSelectUI();
+                    DoButtonRefreshCraft(p);
+                };
+                T2_Select.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (T3_Select == null)
+            {
+                T3_Select = Toolbox.GenerateText(p.transform, new Vector2(4.5f, 0.75f), 0.75f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl, true, 6);
+                T3_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    Tier = SelectedTier.T3;
+                    ObliterateSelectUI();
+                    DoButtonRefreshCraft(p);
+                };
+                T3_Select.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+            if (CloseLabel == null)
+            {
+                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 0.75f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, 6);
+                CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    ObliterateUI();
+                    Destroy(this);
+                };
+                CloseLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+        }
+
+        public int GetScrapCount(PlayerController p)
+        {
+            var con = p.GetComponent<ConsumableStorage>();
+            if (con == null) { return 0; }
+            return con.ReturnConsumableAmount("Scrap");
+        }
+
+        private string scrapLabel = "[sprite \"" + "gear_" + "\"]";
+
+        public void DoButtonRefreshCraft(PlayerController p)
+        {
+            ListEntry = 0;
+            Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+            List<GlobalModuleStorage.QuickAndMessyPage> quickAndMessyPages = ReturnLib();
+            if (pageUpLabel) { Destroy(pageUpLabel.gameObject); }
+            if (pageUpLabel == null)
+            {
+                pageUpLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5625f, -0.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP), cl);
+                pageUpLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+
+                    if (ListEntry > 0)
+                    {
+                        UpdatePageLabel(quickAndMessyPages);
+                        ListEntry--;
+                        pageUpLabel.label.Invalidate();
+                        UpdateOptions();
+                    }
+
+                };
+                pageUpLabel.MouseHover = (label, boolean) =>
+                {
+                    if (ListEntry > 0)
+                    {
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                    else
+                    {
+                        label.color = new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                };
+            }
+            if (pageReturnLabel) { Destroy(pageReturnLabel.gameObject); }
+            if (pageReturnLabel == null)
+            {
+                pageReturnLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5625f, -1.75f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.LEFT), cl);
+                pageReturnLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    ObliterateCraftUI();
+                    DoButtonRefreshSelect(p);
+                };
+                pageReturnLabel.MouseHover = (label, boolean) =>
+                {
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.Invalidate();
+                };
+            }
+
+            if (pageDownLabel) { Destroy(pageDownLabel.gameObject); }
+            if (pageDownLabel == null)
+            {
+                pageDownLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5625f, -1f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN), cl);
+                pageDownLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    if (ReturnPagesCount(quickAndMessyPages) > ListEntry)
+                    {
+                        UpdatePageLabel(quickAndMessyPages);
+                        ListEntry++;
+                        pageDownLabel.label.Invalidate();
+                        UpdateOptions();
+                    }
+                };
+                pageDownLabel.MouseHover = (label, boolean) =>
+                {
+                    if (ReturnPagesCount(quickAndMessyPages) > ListEntry)
+                    {
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                    else
+                    {
+                        label.color = new Color32(155, 155, 155, 155);
+                        label.Invalidate();
+                    }
+                };
+            }
+            UpdateOptions();
+        }
+        private PlayerController player;
+
+
+
+        public void UpdateOptions()
+        {
+            if (extantLabel) { extantLabel.Inv(); }
+            if (PageLabel) { Destroy(PageLabel.gameObject); }
+            Color32 cl = player.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
+
+            foreach (var entry in craftingLabels)
+            {
+                if (entry.Key != null) { Destroy(entry.Key.gameObject); }
+            }
+
+            List<GlobalModuleStorage.QuickAndMessyPage> quickAndMessyPages = ReturnLib();
+            int c = 0;
+            foreach (var page in quickAndMessyPages)
+            {
+                if (ListEntry == page.Page)
+                {
+                    string T = page.module.LabelName + " (" + scrapLabel + " " + ModuleCost(page.module).ToString() + ")";
+                    var Button = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 0.75f - (0.75f * c)), 0.66f, T, cl);
+                    Button.StoredModuleInfo = page.module;
+                    Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                    {
+                        if (extantLabel != null) { Destroy(extantLabel.gameObject); }
+                        extantLabel = Toolbox.GenerateText(player.transform, new Vector2(-2.5f, -1.5f - (0.5f * c)), 0.66f, page.module.LabelDescription, cl);
+                        if (craftLabel) { craftLabel.MouseHover = null; craftLabel.OnUpdate = null; craftLabel.Inv(); }
+                        if (GetScrapCount(player) >= ModuleCost(page.module))
+                        {
+                            craftLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 1.5f), 0.66f, StaticColorHexes.AddColorToLabelString("CRAFT", StaticColorHexes.Light_Green_Hex) + "( "+ scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-"+ ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) +" )", cl);
+                            craftLabel.MouseHover = (label, boolean) =>
+                            {
+                                label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                                label.Invalidate();
+                            };
+                            craftLabel.OnUpdate = (label) =>
+                            {
+                                if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
+                                {
+                                    label.text = StaticColorHexes.AddColorToLabelString("CRAFT", StaticColorHexes.Light_Green_Hex) + "( " + scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-" + ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) + " )";
+                                    label.Invalidate();
+                                }
+                                else
+                                {
+                                    label.text = StaticColorHexes.AddColorToLabelString("INSUFFICIENT SCRAP", StaticColorHexes.Red_Color_Hex);
+                                    label.Invalidate();
+                                }
+                            };
+                            craftLabel.label.Click += delegate (dfControl control1, dfMouseEventArgs mouseEvent2)
+                            {
+                                if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
+                                {
+                                    player.GetComponent<ConsumableStorage>().RemoveConsumableAmount("Scrap", ModuleCost(page.module));
+                                    LootEngine.SpawnItem(page.module.gameObject, player.SpriteBottomCenter, Vector2.zero, 0);
+                                }
+                            };
+                        }
+                        //craftLabel
+                    };
+                    Button.MouseHover = (label, boolean) =>
+                    {
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                        label.Invalidate();
+                    };
+                    Button.OnUpdate = (label) =>
+                    {
+                        if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
+                        {
+                            label.text = Button.StoredModuleInfo.LabelName + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Light_Green_Hex) + ")";
+                            label.Invalidate();
+                        }
+                        else
+                        {
+                            label.text = Button.StoredModuleInfo.LabelName + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Red_Color_Hex) + ")";
+                            label.Invalidate();
+                        }
+                    };
+
+                    craftingLabels.Add(Button, page.module);
+                    c++;
+                }
+            }
+            PageLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (quickAndMessyPages.Count > 0 ? (quickAndMessyPages.Last().Page + 1).ToString() : "1"), cl);
+            UpdatePageLabel(quickAndMessyPages);
+        }
+
+
+        public int ModuleCost(DefaultModule module)
+        {
+            if (module.OverrideScrapCost != null) { return module.OverrideScrapCost.Value; }
+            switch (module.Tier)
+            {
+                case ModuleTier.Tier_1:
+                    return 5;
+                case ModuleTier.Tier_2:
+                    return 10;
+                case ModuleTier.Tier_3:
+                    return 15;
+                default:
+                    return 10;
+            }
+        }
+
+
+        public void UpdatePageLabel(List<GlobalModuleStorage.QuickAndMessyPage> quickAndMessyPages)
+        {
+            if (PageLabel)
+            {
+                PageLabel.label.text = "Page:" + (ListEntry + 1).ToString() + " / " + (quickAndMessyPages.Count > 0 ? (quickAndMessyPages.Last().Page + 1).ToString() : "1");
+                PageLabel.label.Invalidate();
+            }
+        }
+        public int ReturnPagesCount(List<GlobalModuleStorage.QuickAndMessyPage> quickAndMessyPages)
+        {
+            return quickAndMessyPages.Count > 0 ? quickAndMessyPages.Last().Page : 0;
+        }
+
+        private List<GlobalModuleStorage.QuickAndMessyPage> ReturnLib()
+        {
+            switch (Tier)
+            {
+                case SelectedTier.T1:
+                    return GlobalModuleStorage.pages_T1;
+                case SelectedTier.T2:
+                    return GlobalModuleStorage.pages_T2;
+                case SelectedTier.T3:
+                    return GlobalModuleStorage.pages_T3;
+                default:
+                    return GlobalModuleStorage.pages_T1;
+            }
+        }
+
+        public ModulePrinterCore ReturnCore(PlayerController p)
+        {
+            for (int o = 0; o < p.passiveItems.Count; o++)
+            {
+                if (p.passiveItems[o] is ModulePrinterCore core)
+                { return core; }
+            }
+            return null;
+        }
+
+        private void ObliterateCraftUI()
+        {
+            if (pageReturnLabel) { pageReturnLabel.Inv(); }
+            if (PageLabel) { PageLabel.Inv(); }
+            if (extantLabel) { extantLabel.Inv(); }
+            if (pageUpLabel) { pageUpLabel.Inv(); }
+            if (pageDownLabel) { pageDownLabel.Inv(); }
+            if (PageLabel) { PageLabel.Inv(); }
+            if (craftLabel) { craftLabel.Inv(); }
+
+
+            foreach (var entry in craftingLabels)
+            {
+                if (entry.Key != null) { entry.Key.Inv(); }
+            }
+            craftingLabels.Clear();
+        }
+        private void ObliterateSelectUI()
+        {
+            if (T1_Select) { Destroy(T1_Select.gameObject); }
+            if (T2_Select) { Destroy(T2_Select.gameObject); }
+            if (T3_Select) { Destroy(T3_Select.gameObject); }
+        }
+
+        public void ObliterateUI()
+        {
+            if (T1_Select) { T1_Select.Inv(); }
+            if (T2_Select) { T2_Select.Inv(); }
+            if (T3_Select) { T3_Select.Inv(); }
+            if (CloseLabel) { CloseLabel.Inv(); }
+            if (extantLabel) { extantLabel.Inv(); }
+            if (pageDownLabel) { pageDownLabel.Inv(); }
+            if (pageUpLabel) { pageUpLabel.Inv(); }
+            if (PageLabel) { PageLabel.Inv(); }
+            if (pageReturnLabel) { pageReturnLabel.Inv(); }
+            if (craftLabel) { craftLabel.Inv(); }
+
+
+            foreach (var entry in craftingLabels)
+            {
+                if (entry.Key != null) { entry.Key.Inv(); }
+            }
+            craftingLabels.Clear();
+        }
+
+        private SelectedTier Tier = SelectedTier.NONE;
+        public ModulePrinterCore Core;
+        public int ListEntry = 0;
+
+        //Labels
+        public Dictionary<ModifiedDefaultLabelManager, DefaultModule> craftingLabels = new Dictionary<ModifiedDefaultLabelManager, DefaultModule>();
+
+
+        public ModifiedDefaultLabelManager T1_Select;
+        public ModifiedDefaultLabelManager T2_Select;
+        public ModifiedDefaultLabelManager T3_Select;
+
+        public ModifiedDefaultLabelManager CloseLabel;
+        public ModifiedDefaultLabelManager PageLabel;
+        public ModifiedDefaultLabelManager extantLabel;
+        public ModifiedDefaultLabelManager craftLabel;
+
+        public ModifiedDefaultLabelManager pageUpLabel;
+        public ModifiedDefaultLabelManager pageDownLabel;
+        public ModifiedDefaultLabelManager pageReturnLabel;
+
+
+        private enum SelectedTier
+        {
+            NONE, 
+            T1,
+            T2,
+            T3
+        }
 
     }
 }

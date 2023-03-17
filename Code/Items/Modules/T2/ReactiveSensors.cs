@@ -64,7 +64,7 @@ namespace ModularMod
         {
             modulePrinter.OnFrameUpdate += OFU;
             modulePrinter.OnRoomCleared += ORC;
-            EnterCharge(player);
+            player.StartCoroutine(EnterCharge(player));
         }
 
         public void ORC(ModulePrinterCore modulePrinter, PlayerController player, RoomHandler room) 
@@ -98,7 +98,7 @@ namespace ModularMod
             if (enemies == null || enemies.Count == 0) { return; }
             foreach (var enemy in enemies)
             {
-                if (enemy && Vector2.Distance(enemy.sprite.WorldCenter, player.sprite.WorldCenter) < 3.25f)
+                if (enemy && Vector2.Distance(enemy.sprite.WorldCenter, player.sprite.WorldCenter) < 4f)
                 {
                     currentState = State.Active;
                     player.StartCoroutine(KABOOM(modulePrinter, player));
@@ -118,16 +118,16 @@ namespace ModularMod
                 yield return null;
             }
             AkSoundEngine.PostEvent("Play_BOSS_RatMech_Stomp_01", player.gameObject);
-            Exploder.DoDistortionWave(player.sprite.WorldBottomCenter, 20, 0.125f, 7, 0.2f);
+            Exploder.DoDistortionWave(player.sprite.WorldBottomCenter, 20, 0.125f, 8, 0.2f);
             for (int I = 0; I < 240; I++)
             {
                 GlobalSparksDoer.DoSingleParticle(player.sprite.WorldCenter, Toolbox.GetUnitOnCircle((float)I * 1.5f, UnityEngine.Random.Range(1.1f, 6.0f) * 3), null, 0.9f, null, GlobalSparksDoer.SparksType.FLOATY_CHAFF);
             }         
-            Exploder.DoRadialPush(player.sprite.WorldCenter, 60 * stack, 7);
-            Exploder.DoRadialKnockback(player.sprite.WorldCenter, 60 * stack, 7);
-            Exploder.DoRadialMinorBreakableBreak(player.sprite.WorldCenter, 7);
-            ApplyActionToNearbyEnemies(modulePrinterCore , player.sprite.WorldCenter, 7, player.CurrentRoom);
-            EnterCharge(player);
+            Exploder.DoRadialPush(player.sprite.WorldCenter, 60 * stack, 8);
+            Exploder.DoRadialKnockback(player.sprite.WorldCenter, 60 * stack, 8);
+            Exploder.DoRadialMinorBreakableBreak(player.sprite.WorldCenter, 8);
+            ApplyActionToNearbyEnemies(modulePrinterCore , player.sprite.WorldCenter, 8f, player.CurrentRoom);
+            player.StartCoroutine(EnterCharge(player));
             yield break;
         }
 
@@ -155,20 +155,22 @@ namespace ModularMod
                             {
                                 if (aI.behaviorSpeculator.ImmuneToStun == false) { aI.behaviorSpeculator.Stun(1.5f); }
                             }
-                            aI.healthHaver.ApplyDamage(65 * stack, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
+                            aI.healthHaver.ApplyDamage(90 * stack, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
                         }
                     }
                 }
             }
         }
-
-        public void EnterCharge(PlayerController player) 
+        public IEnumerator EnterCharge(PlayerController player) 
         {
-            if (currentState == State.Inactive) { return; }
-            if (extantBattery != null) { return; }
-            extantBattery = player.PlayEffectOnActor(BatteryObject, new Vector3(2, 0f));
-            extantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("docharge");
+            //if (currentState == State.Inactive) { return; }
+            if (extantBattery != null) { Destroy(extantBattery); }
+            yield return null;
+            var eaextantBattery = player.PlayEffectOnActor(BatteryObject, new Vector3(2, 0f));
+            eaextantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("docharge");
+            extantBattery = eaextantBattery;
             currentState = State.Inactive;
+            yield break;
         }
 
         public GameObject extantBattery;
