@@ -79,6 +79,11 @@ namespace ModularMod
             //Starters
             DefaultArmCannon.Init();
             DefaultArmCannonAlt.Init();
+            ModularPeaShooter.Init();
+            ModularPeaShooterAlt.Init();
+
+            ScatterBlast.Init();
+            ScatterBlastAlt.Init();
 
             //Test Items
             Flowder.Init();
@@ -89,6 +94,7 @@ namespace ModularMod
             //==== UI Stuff ====//
             StarterGunSelectUIController.Init();
             ScrapUIController.Init();
+            AdditionalEnergyInitializer.Init();
             UIHooks.Init();
             //==================//
 

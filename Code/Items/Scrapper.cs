@@ -53,21 +53,48 @@ namespace ModularMod
 
             Up_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonUp"), "Up_B_UI_INV");
             Down_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonDown"), "Down_B_UI_INV");
-
             Left_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonLeft"), "Left_B_UI_INV");
-            Right_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRight"), "Right_B_UI_INV");
-            
+            Right_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRight"), "Right_B_UI_INV");     
             Close_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Cancel"), "Close_B_UI_INV");
 
             Googly_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("GooglyMoogly"), "GooglyMoogly_B_UI_INV");
+            Power_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Power"), "Power_B_UI_INV");
+
+
+            UpBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonUpBright"), "UpBright_B_UI_INV");
+            DownBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonDownBright"), "DownBright_B_UI_INV");
+            LeftBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonLeftBright"), "LeftBright_B_UI_INV");
+            RightBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRightBright"), "RightBright_B_UI_INV");
+            CloseBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("CanceBrightl"), "CloseBright_B_UI_INV");
+
+            Googly_Bright_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("GooglyMooglyBright"), "GooglyMooglyBright_B_UI_INV");
+
+            T1BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_1"), "T1B_B_UI_INV");
+            T2BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_2"), "T2B_B_UI_INV");
+            T3BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_3"), "T3B_B_UI_INV");
+            T4BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_4"), "T4B_B_UI_INV");
         }
         public static string Up_Button_UI_String;
         public static string Down_Button_UI_String;
         public static string Left_Button_UI_String;
         public static string Right_Button_UI_String;
-
         public static string Close_Button_UI_String;
+
         public static string Googly_UI_String;
+        public static string Power_UI_String;
+
+        public static string UpBright_Button_UI_String;
+        public static string DownBright_Button_UI_String;
+        public static string LeftBright_Button_UI_String;
+        public static string RightBright_Button_UI_String;
+        public static string CloseBright_Button_UI_String;
+
+        public static string Googly_Bright_UI_String;
+
+        public static string T1BS;
+        public static string T2BS;
+        public static string T3BS;
+        public static string T4BS;
 
 
         public static string ReturnButtonString(ButtonUI moduleTier)
@@ -86,15 +113,48 @@ namespace ModularMod
                     return "[sprite \"" + Close_Button_UI_String + "\"]";
                 case ButtonUI.GOOGLY:
                     return "[sprite \"" + Googly_UI_String + "\"]";
+                case ButtonUI.POWER:
+                    return "[sprite \"" + "Power_B_UI_INV" + "\"]";
+                default: return "[sprite \"" + Close_Button_UI_String + "\"]"; ;
+            }
+        }
+        public static string ReturnButtonStringBright(ButtonUIBright moduleTier)
+        {
+            switch (moduleTier)
+            {
+                case ButtonUIBright.UP_BRIGHT:
+                    return "[sprite \"" + UpBright_Button_UI_String + "\"]";
+                case ButtonUIBright.DOWN_BRIGHT:
+                    return "[sprite \"" + DownBright_Button_UI_String + "\"]";
+                case ButtonUIBright.LEFT_BRIGHT:
+                    return "[sprite \"" + LeftBright_Button_UI_String + "\"]";
+                case ButtonUIBright.RIGHT_BRIGHT:
+                    return "[sprite \"" + RightBright_Button_UI_String + "\"]";
+                case ButtonUIBright.CLOSE_BRIGHT:
+                    return "[sprite \"" + CloseBright_Button_UI_String + "\"]";
+                case ButtonUIBright.GOOGLY_BRIGHT:
+                    return "[sprite \"" + Googly_UI_String + "\"]";
+                case ButtonUIBright.T1B:
+                    return "[sprite \"" + T1BS + "\"]";
+                case ButtonUIBright.T2B:
+                    return "[sprite \"" + T2BS + "\"]";
+                case ButtonUIBright.T3B:
+                    return "[sprite \"" + T3BS + "\"]";
+                case ButtonUIBright.T4B:
+                    return "[sprite \"" + T4BS + "\"]";
                 default: return "[sprite \"" + Close_Button_UI_String + "\"]"; ;
             }
         }
 
         public enum ButtonUI
         {
-            UP, DOWN, LEFT, RIGHT, CLOSE, GOOGLY
+            UP, DOWN, LEFT, RIGHT, CLOSE, GOOGLY, POWER,
         }
-
+        public enum ButtonUIBright
+        {
+            UP_BRIGHT, DOWN_BRIGHT, LEFT_BRIGHT, RIGHT_BRIGHT, CLOSE_BRIGHT, GOOGLY_BRIGHT,
+            T1B, T2B, T3B, T4B
+        }
 
         public static GameObject ScrapVFX;
         public static GameObject Sparkticle;
@@ -424,6 +484,14 @@ namespace ModularMod
             }
             else
             {
+                if (extant_Inventory_Controller != null)
+                {
+                    extant_Inventory_Controller.ObliterateUI();
+                    extant_Inventory_Controller = null;
+                }
+                extant_Inventory_Controller = ScriptableObject.CreateInstance<ModuleInventoryController>();
+                extant_Inventory_Controller.DoQuickStart(user);
+                /*
                 if (extant_craft_button != null) { Destroy(extant_craft_button.gameObject); }
                 if (extant_Inventory_button != null) { Destroy(extant_Inventory_button.gameObject); }
                 if (extant_close_button != null) { Destroy(extant_close_button.gameObject); }
@@ -449,8 +517,8 @@ namespace ModularMod
 
                 extant_Inventory_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
-                    if (extant_Inventory_button.gameObject) { Destroy(extant_Inventory_button.gameObject); }
-                    if (extant_craft_button.gameObject) { Destroy(extant_craft_button.gameObject); }
+                    if (extant_Inventory_button) { Destroy(extant_Inventory_button.gameObject); }
+                    if (extant_craft_button) { Destroy(extant_craft_button.gameObject); }
                     if (extant_close_button != null) { Destroy(extant_close_button.gameObject); }
 
                     extant_Inventory_Controller = ScriptableObject.CreateInstance<ModuleInventoryController>();
@@ -465,6 +533,7 @@ namespace ModularMod
                 };
 
                 //CRAFT
+                /*
                 extant_craft_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, 0.5f), 0.66f, "Crafting", cl);
                 extant_craft_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
@@ -481,8 +550,9 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
                     label.Invalidate();
                 };
-
+                */
                 //CLOSE
+                /*
                 extant_close_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, -0.5f), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
                 extant_close_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
@@ -495,6 +565,7 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
                     label.Invalidate();
                 };
+                */
             }
         }
 
@@ -513,13 +584,109 @@ namespace ModularMod
 
     public class ModuleInventoryController : ScriptableObject
     {
+        private PlayerController player;
+        private int Scale = 9;
+
         public void DoQuickStart(PlayerController p)
         {
+            player = p;
             Core = ReturnCore(p);
             if (Core == null) { return; }
             IsNone = Core.ModuleContainers.Count == 0;
+            ToggleControl(true);
 
             p.StartCoroutine(DoDelays(p));
+        }
+        public IEnumerator DoFade(bool active)
+        {
+            GameManager.Instance.MainCameraController.SetManualControl(true, true);
+            CameraController mainCameraController = GameManager.Instance.MainCameraController;
+            mainCameraController.OverridePosition = active == true ? this.player.sprite.WorldCenter + new Vector2(7, -1.5f) : this.player.sprite.WorldCenter;
+
+            float f = 0;
+            while (f < 0.35f)
+            {
+                float q = f / 0.35f;
+                f += BraveTime.DeltaTime;
+                if (active == true)
+                {
+                    mainCameraController.SetZoomScaleImmediate(Mathf.Lerp(1, 1.8f, q));
+                    Pixelator.Instance.fade = Mathf.Lerp(1f, 0.3f, q);
+
+                }
+                else
+                {
+                    Pixelator.Instance.fade = Mathf.Lerp(0.3f, 1f, q);
+                    mainCameraController.SetZoomScaleImmediate(Mathf.Lerp(1.8f, 1, q));
+
+                }
+                yield return null;
+            }
+            if (active == false)
+            {
+                GameManager.Instance.MainCameraController.SetManualControl(false, true);
+            }
+            yield break;
+        }
+        private void ToggleControl(bool active)
+        {
+            GameManager.Instance.StartCoroutine(DoFade(active));
+            Minimap.Instance.TemporarilyPreventMinimap = active;
+            if (active == true)
+            {
+                if (!GameManager.Instance.MainCameraController.ManualControl)
+                {
+                    GameManager.Instance.MainCameraController.OverridePosition = GameManager.Instance.MainCameraController.transform.position;
+                    GameManager.Instance.MainCameraController.SetManualControl(true, true);
+                }
+                GameUIRoot.Instance.ForceClearReload(-1);
+                GameUIRoot.Instance.notificationController.ForceHide();
+                GameUIRoot.Instance.levelNameUI.BanishLevelNameText();
+                Pixelator.Instance.FadeColor = Color.black;
+                GameUIRoot.Instance.HideCoreUI("ModularInventory");
+
+                for (int i = 0; i < GameManager.Instance.AllPlayers.Length; i++)
+                {
+                    PlayerController playerController = GameManager.Instance.AllPlayers[i];
+                    if (playerController)
+                    {
+                        playerController.CurrentInputState = PlayerInputState.NoInput;
+                    }
+                }
+            }
+            if (active == false)
+            {
+                GameManager.Instance.MainCameraController.SetManualControl(false, true);
+
+                GameUIRoot.Instance.ShowCoreUI("ModularInventory");
+
+                BraveInput.ConsumeAllAcrossInstances(GungeonActions.GungeonActionType.Shoot);
+
+                for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
+                {
+                    if (GameManager.Instance.AllPlayers[j])
+                    {
+                        GameManager.Instance.AllPlayers[j].CurrentInputState = PlayerInputState.AllInput;
+                    }
+                }
+            }
+        }
+
+        private void Nuke()
+        {
+            Minimap.Instance.TemporarilyPreventMinimap = false;
+            GameManager.Instance.MainCameraController.SetManualControl(false, true);
+            GameManager.Instance.StartCoroutine(DoFade(false));
+            GameUIRoot.Instance.ShowCoreUI("ModularInventory");
+            
+            BraveInput.ConsumeAllAcrossInstances(GungeonActions.GungeonActionType.Shoot);
+            for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
+            {
+                if (GameManager.Instance.AllPlayers[j])
+                {
+                    GameManager.Instance.AllPlayers[j].CurrentInputState = PlayerInputState.AllInput;
+                }
+            }
         }
 
 
@@ -544,7 +711,7 @@ namespace ModularMod
             Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
             if (UpLabel == null)
             {
-                UpLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 0.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP), cl);
+                UpLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 0.75f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP), cl, true, Scale);
                 UpLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     if (IsNone == false && ListEntry > 0)
@@ -559,11 +726,13 @@ namespace ModularMod
                 {
                     if (ListEntry > 0 && IsNone == false) 
                     {
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.text = Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.UP_BRIGHT);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
                     else
                     {
+                        label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP);
                         label.color = new Color32(155, 155, 155, 155);
                         label.Invalidate();
                     }
@@ -572,7 +741,7 @@ namespace ModularMod
 
             if (DownLabel == null)
             {
-                DownLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, -0.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN), cl);
+                DownLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 0), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN), cl, true, Scale);
                 DownLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     if (IsNone == false && ReturnPagesCount() > ListEntry)
@@ -587,11 +756,13 @@ namespace ModularMod
                 {
                     if (ReturnPagesCount() > ListEntry && IsNone == false)
                     {
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.text = Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.DOWN_BRIGHT);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
                     else
                     {
+                        label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN);
                         label.color = new Color32(155, 155, 155, 155);
                         label.Invalidate();
                     }
@@ -599,96 +770,99 @@ namespace ModularMod
             }
             if (CloseLabel == null)
             {
-                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 1.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
+                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 1.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, Scale);
                 CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    Nuke();
                     ObliterateUI();
                     Destroy(this);
                 };
                 CloseLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.CLOSE_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
             }
 
-            if (CloseLabel == null)
-            {
-                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 1.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
-                CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
-                {
-                    ObliterateUI();
-                    Destroy(this);
-                };
-                CloseLabel.MouseHover = (label, boolean) =>
-                {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
-                    label.Invalidate();
-                };
-            }
             if (T1bLabel == null)
             {
-                T1bLabel = Toolbox.GenerateText(p.transform, new Vector2(1.75f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl);
+                T1bLabel = Toolbox.GenerateText(p.transform, new Vector2(1.75f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl, true, Scale);
                 T1bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     DisplayModuleTiered(p, ModuleTier.Tier_1 ,true);
                 };
                 T1bLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T1B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_1);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
             }
             if (T2bLabel == null)
             {
-                T2bLabel = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 2.25f), 0.5f,  DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl);
+                T2bLabel = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 2.25f), 0.5f,  DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl, true, Scale);
                 T2bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     DisplayModuleTiered(p, ModuleTier.Tier_2, true);
                 };
                 T2bLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T2B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_2);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
             }
             if (T3bLabel == null)
             {
-                T3bLabel = Toolbox.GenerateText(p.transform, new Vector2(3.25f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl);
+
+                T3bLabel = Toolbox.GenerateText(p.transform, new Vector2(3.25f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl, true, Scale);
                 T3bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     DisplayModuleTiered(p, ModuleTier.Tier_3, true);
                 };
                 T3bLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T3B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_3);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
             }
             if (T4bLabel == null && pages_T4.Count > 0)
             {
-                T4bLabel = Toolbox.GenerateText(p.transform, new Vector2(4f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_Omega), cl);
+                T4bLabel = Toolbox.GenerateText(p.transform, new Vector2(4f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_Omega), cl, true, Scale);
                 T4bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
                 };
                 T4bLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T4B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_Omega);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
             }
             if (AnyLabel == null)
             {
-                AnyLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 2.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.GOOGLY), cl);
+                AnyLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 2.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.GOOGLY), cl, true, Scale);
                 AnyLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     DisplayModule(p, true);
                 };
                 AnyLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.GOOGLY_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.GOOGLY);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
+                };
+            }
+            if (PowerLabel == null)
+            {
+                PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "P lol AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", cl, true, Scale);
+                PowerLabel.OnUpdate += (obj1) =>
+                {
+                    obj1.text = "[ "+Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + Core.ReturnTotalPower()+" ]";
+                    obj1.Invalidate();
                 };
             }
         }
@@ -708,8 +882,11 @@ namespace ModularMod
             }
             return null;
         }
+
+        private float MainOffset = 1.75f;
         public void DisplayModule(PlayerController p, bool ClearOut = false)
         {
+            ListEntry = 0;
             if (ClearOut == true)
             {
                 for (int i = 0; i < garbageLabels.Count; i++)
@@ -723,16 +900,14 @@ namespace ModularMod
 
 
             var ModuleContainers = Core.ModuleContainers;
-
             Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
-
             string Text = "Modules Installed:";
-            garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(2f, 1.5f), 0.66f, Text, cl));
+            garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 1.5f), 0.66f, Text, cl, true, Scale));
 
             int c = 0;
             if (ModuleContainers.Count == 0) 
             {
-                var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "None.", cl);
+                var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, "None.", cl, true, Scale);
                 c++;
                 garbageLabels.Add(Button);
             } 
@@ -742,29 +917,76 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
-                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString(), StaticColorHexes.Orange_Hex) + ")";
-                        var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, T, cl);
+                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
+                        var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(0f, -1.5f - (0.5f * c)), 0.66f, page.module.LabelDescription, cl);
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, page.module.LabelDescription, cl, true, Scale / 2);
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
-                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.Invalidate();
                         };
+                        Button.OnUpdate += (l) =>
+                        {              
+                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
+                            l.Invalidate();
+                        };
 
+                        var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
+                        ButtonLeft.MouseHover = (label, boolean) =>
+                        {
+                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
+                            label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
+                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) +( CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
+                            label.Invalidate();
+                        };
+                        ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                        {
+                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
+                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0)
+                            {
+                                Core.DepowerModule(page.module);
+                            }
+                        };
+
+                        garbageLabels.Add(ButtonLeft);
+                        var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "+", cl, true, Scale);
+                        ButtonRight.MouseHover = (label, boolean) =>
+                        {
+                            bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
+                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
+
+                            label.Invalidate();
+                        };
+                        ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                        {
+                            bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+
+                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)
+                            {
+                                Core.PowerModule(page.module);
+                            }
+                        };
+                        garbageLabels.Add(ButtonRight);
                         garbageLabels.Add(Button);
                         c++;
                     }
                 }
             }
-            PageLabel = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (pages_default.Count > 0 ?  (pages_default.Last().Page + 1).ToString() : "1"), cl);
+            PageLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (pages_default.Count > 0 ?  (pages_default.Last().Page + 1).ToString() : "1"), cl, true, Scale);
         }
 
         public void DisplayModuleTiered(PlayerController p, ModuleTier moduleTier ,bool ClearOut = false)
         {
+            ListEntry = 0;
             if (ClearOut == true)
             {
                 for (int i = 0; i < garbageLabels.Count; i++)
@@ -782,13 +1004,13 @@ namespace ModularMod
             Color32 cl = (moduleTier == ModuleTier.Tier_Omega) ? new Color32(200, 10, 10, 100) : p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
 
             string Text = "Modules Installed " + DefaultModule.ReturnTierLabel(moduleTier) + " :";
-            garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(2f, 1.5f), 0.66f, Text, cl));
+            garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 1.5f), 0.66f, Text, cl, true, Scale));
 
 
             int c = 0;
             if (ModuleContainers.Count == 0)
             {
-                var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "None.", cl);
+                var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, "None.", cl, true, Scale);
                 c++;
                 garbageLabels.Add(Button);
             }
@@ -798,25 +1020,71 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
-                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString(), StaticColorHexes.Orange_Hex) + ")";
-                        var Button = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, T, cl);
+                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
+                        var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(0f, -1.5f - (0.5f * c)), 0.66f, page.module.LabelDescription, cl);
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, page.module.LabelDescription, cl, true, Scale / 2);
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
-                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.Invalidate();
                         };
+                        Button.OnUpdate += (l) =>
+                        {
+                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
+                            l.Invalidate();
+                        };
 
+                        var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
+                        ButtonLeft.MouseHover = (label, boolean) =>
+                        {
+                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
+                            label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
+                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
+                            label.Invalidate();
+                        };
+                        ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                        {
+                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
+                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0)
+                            {
+                                Core.DepowerModule(page.module);
+                            }
+                        };
+
+                        garbageLabels.Add(ButtonLeft);
+                        var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "+", cl, true, Scale);
+                        ButtonRight.MouseHover = (label, boolean) =>
+                        {
+                            bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
+                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
+
+                            label.Invalidate();
+                        };
+                        ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                        {
+                            bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+
+                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)
+                            {
+                                Core.PowerModule(page.module);
+                            }
+                        };
+                        garbageLabels.Add(ButtonRight);
                         garbageLabels.Add(Button);
                         c++;
                     }
                 }
             }
-            PageLabel = Toolbox.GenerateText(p.transform, new Vector2(2f, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (ModuleContainers.Count > 0 ? (ModuleContainers.Last().Page + 1).ToString() : "1"), cl);
+            PageLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (ModuleContainers.Count > 0 ? (ModuleContainers.Last().Page + 1).ToString() : "1"), cl, true, Scale);
         }
 
 
@@ -849,6 +1117,7 @@ namespace ModularMod
             if (T4bLabel) { T4bLabel.Inv(); }
             if (AnyLabel) { AnyLabel.Inv(); }
 
+            if (PowerLabel) { PowerLabel.Inv(); }
             for (int i = 0; i < garbageLabels.Count; i++)
             {
                 if (garbageLabels[i] != null) { garbageLabels[i].Inv(); }
@@ -934,6 +1203,8 @@ namespace ModularMod
 
         public ModifiedDefaultLabelManager PageLabel;
         public List<ModifiedDefaultLabelManager> garbageLabels = new List<ModifiedDefaultLabelManager>();
+        public List<ModifiedDefaultLabelManager> secondaryGarbageLabels = new List<ModifiedDefaultLabelManager>();
+
         public ModifiedDefaultLabelManager extantLabel;
 
         public ModifiedDefaultLabelManager T1bLabel;
@@ -941,6 +1212,7 @@ namespace ModularMod
         public ModifiedDefaultLabelManager T3bLabel;
         public ModifiedDefaultLabelManager T4bLabel;
         public ModifiedDefaultLabelManager AnyLabel;
+        public ModifiedDefaultLabelManager PowerLabel;
 
     }
 

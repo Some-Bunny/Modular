@@ -29,14 +29,14 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Avarice Cart " + h.ReturnTierLabel();
             h.LabelDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup.\nEnemies have a small chance of\ndropping an additional casing when killed (" + StaticColorHexes.AddColorToLabelString("+7.5% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
-            h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.66f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.IsUncraftable = true;
-
+            h.EnergyConsumption = 1;
+            h.AddToGlobalStorage();
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -59,7 +59,7 @@ namespace ModularMod
             }
         }
 
-        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
+        public override void OnAnyEverObtainedNonActivation(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>((GameObject)ResourceCache.Acquire("Global VFX/VFX_Item_Pickup"));
             tk2dSprite component = gameObject.GetComponent<tk2dSprite>();
@@ -68,9 +68,9 @@ namespace ModularMod
             Destroy(gameObject, 2);
 
             AkSoundEngine.PostEvent("Play_OBJ_coin_large_01", player.gameObject);
-            player.carriedConsumables.KeyBullets += IsTruePickup == true ? 1 : 0;
-            player.carriedConsumables.Currency += IsTruePickup == true ? 50: 10;
-            player.Blanks += IsTruePickup == true ? 2 : 1;
+            player.carriedConsumables.KeyBullets += 1;//IsTruePickup == true ? 1 : 0;
+            player.carriedConsumables.Currency += 50;//IsTruePickup == true ? 50: 10;
+            player.Blanks += 2;
         }
     }
 }

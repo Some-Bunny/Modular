@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Repair Kit",
             Description = "Up Keep",
-            LongDescription = "Increases Damage by\n10% (+10% per stack), and restores 2 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n16% (+16% per stack), and restores 2 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("repairtool_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Repair Kit " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by\n10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + "), Restores 2 Armor.";
+            h.LabelDescription = "Increases Damage by\n16% (" + StaticColorHexes.AddColorToLabelString("+16%", StaticColorHexes.Light_Orange_Hex) + "), Restores 2 Armor.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -40,6 +40,14 @@ namespace ModularMod
             ID = h.PickupObjectId;
         }
         public static int ID;
+
+        public override void OnAnyEverObtainedNonActivation(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            player.PlayEffectOnActor(VFXStorage.HealingSparklesVFX, new Vector3(0, 0));
+            AkSoundEngine.PostEvent("Play_OBJ_heart_heal_01", player.gameObject);
+            player.healthHaver.Armor += 2;
+        }
+
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile += PPP;
@@ -50,15 +58,13 @@ namespace ModularMod
         }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
         {
-            player.PlayEffectOnActor(VFXStorage.HealingSparklesVFX, new Vector3(0,0));
-            AkSoundEngine.PostEvent("Play_OBJ_heart_heal_01", player.gameObject);
-            player.healthHaver.Armor+=2;
+
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage += (0.25f * stack);
-            p.baseData.damage *= 1 + (0.066f * stack);
+            p.baseData.damage += (0.5f * stack);
+            p.baseData.damage *= 1 + (0.1f * stack);
         }
     }
 }

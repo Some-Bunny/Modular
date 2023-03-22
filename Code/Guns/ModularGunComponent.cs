@@ -31,6 +31,7 @@ namespace ModularMod
         public float Base_Accuracy;
         public VFXPool Base_Muzzleflash;
 
+        public int AdditionalPowerSupply = 0;
 
         public string DefaultSwitchGroup;
         public Dictionary<ProjectileModule, Tuple<float, float>> Default_Module_And_Stats = new Dictionary<ProjectileModule, Tuple<float, float>>();
@@ -77,9 +78,13 @@ namespace ModularMod
             this.gun = base.GetComponent<Gun>();
             Gun gun = this.gun;
             Base_Reload_Time = gun.reloadTime;
+            
             Base_Clip_Size = gun.DefaultModule.GetModNumberOfShotsInClip(gun.CurrentOwner);
+            
             Base_Fire_Rate = gun.DefaultModule.cooldownTime;
+            
             Base_Accuracy = gun.DefaultModule.angleVariance;
+            
             Base_Muzzleflash = gun.muzzleFlashEffects;
             foreach (var mod in gun.Volley.projectiles)
             {
@@ -191,24 +196,24 @@ namespace ModularMod
             //ETGModConsole.Log("======");
             this.gun.DefaultModule.cooldownTime = f;
             this.gun.DefaultModule.angleVariance = q;
-
             this.gun.reloadTime = r;
             this.gun.DefaultModule.numberOfShotsInClip = c;
-            int i = 0;
 
             foreach (var cont in Default_Module_And_Stats)
             {
-                i++;
-                float BaseFireRate = cont.Value.First;
-                float BaseAngle = cont.Value.Second;
-
-                foreach (var entry in statMods)
+                if (cont.Key != this.gun.DefaultModule)
                 {
-                    if (entry.FireRate_Process != null)  { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player);}
-                    if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
+                    float BaseFireRate = cont.Value.First;
+                    float BaseAngle = cont.Value.Second;
+
+                    foreach (var entry in statMods)
+                    {
+                        if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
+                        if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
+                    }
+                    cont.Key.cooldownTime = BaseFireRate;
+                    cont.Key.angleVariance = BaseAngle;
                 }
-                cont.Key.angleVariance = BaseAngle;
-                cont.Key.cooldownTime = BaseFireRate;
             }
 
             foreach (var cont in Default_ChargeProj_And_Cooldown)

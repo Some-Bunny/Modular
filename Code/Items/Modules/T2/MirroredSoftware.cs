@@ -29,11 +29,13 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Mirrored Software " + h.ReturnTierLabel();
             h.LabelDescription = "Acts as 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") copies of\na random active module.\nSwitches at every combat encounter.";
-            h.AddToGlobalStorage();
+
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.EnergyConsumption = 1;
+            h.AddToGlobalStorage();
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }

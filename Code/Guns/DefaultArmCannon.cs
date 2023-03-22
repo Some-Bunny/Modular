@@ -17,10 +17,14 @@ namespace ModularMod
             gun.gameObject.AddComponent<DefaultArmCannon>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires simple energy balls. Compatible with Modular Upgrade Software.\n\nGiven the right circumstances, this piece of equipment would have been able to assist in many different ways with construction. An under-the-table deal weaponized it.");
-            GunExt.SetupSprite(gun, null, "defaultarmcannon_idle_001", 11);
-            GunExt.SetAnimationFPS(gun, gun.shootAnimation, 30);
-            GunExt.SetAnimationFPS(gun, gun.reloadAnimation, 7);
-            GunExt.SetAnimationFPS(gun, gun.idleAnimation, 1);
+            
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "defaultarmcannon_idle_001", 11);
+            gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
+            gun.sprite.SortingOrder = 1;
+            gun.idleAnimation = "defaultarmcannon_idle";
+            gun.shootAnimation = "defaultarmcannon_fire";
+            gun.reloadAnimation = "defaultarmcannon_reload";
+
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();
@@ -50,7 +54,7 @@ namespace ModularMod
             UnityEngine.Object.DontDestroyOnLoad(projectile);
             gun.DefaultModule.projectiles[0] = projectile;
 
-            projectile.SetProjectileSpriteRight("defaultarmcannon_projectile_001", 4, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
+            projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.LowerCenter);
 
             projectile.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
             projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
@@ -62,7 +66,7 @@ namespace ModularMod
 
             Material mat = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
             mat.mainTexture = projectile.sprite.renderer.material.mainTexture;
-            mat.SetColor("_EmissiveColor", new Color32(121, 234, 255, 255));
+            mat.SetColor("_EmissiveColor", new Color32(255, 255, 255, 255));
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
@@ -77,8 +81,8 @@ namespace ModularMod
 
             gun.carryPixelOffset = new IntVector2(4, 2);
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(223) as Gun).muzzleFlashEffects;
-            gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.3125f), "muzzle_point").transform;
-            gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.3125f), "barrel_point").transform;
+            gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "muzzle_point").transform;
+            gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "barrel_point").transform;
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             DefaultArmCannon.DefaultArmCannonID = gun.PickupObjectId;

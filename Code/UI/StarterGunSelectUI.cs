@@ -297,6 +297,40 @@ namespace ModularMod
             defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_doublehalf_highlighted"), "DB_H_Default_HightLighted");
             defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_doublehalf_pressed"), "DB_H_Default_Pressed");
 
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_peashooter_gun"), "Peashooter_Gun_Icon");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_peashooter_gun_highlighted"), "Peashooter_Gun_Icon_Hightlighted");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_peashooter_gun_pressed"), "Peashooter_Gun_Icon_Pressed");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_peashooter_gun_alt"), "Peashooter_Gun_Icon_Alt");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_peashooter_gun_highlighted_alt"), "Peashooter_Gun_Icon_Hightlighted_Alt");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_peashooter_gun_pressed_alt"), "Peashooter_Icon_Pressed_Alt");
+
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("name_label_peashooter"), "Modular_Name_Label_PeaShooter");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("name_label_peashooter_alt"), "Modular_Name_Label_PeaShooter_Alt");
+
+            StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
+                   "PeaShooter_Button"
+                   , "Peashooter_Gun_Icon" //asset name default
+                   , "Peashooter_Gun_Icon_Hightlighted" //asset name highlighted
+                   , "Peashooter_Gun_Icon_Pressed" //asset name pressed
+                   , CustomDungeonFlags.NOLLA //Unlock flag, Set itt to NOLLA for no unlock condition
+                   , ModularPeaShooter.GunID //Gun ID
+                   , "Weaker, but allows for extra power." //Default description
+                   , StaticColorHexes.AddColorToLabelString("Low", StaticColorHexes.Orange_Hex)  //Damage Secription
+                   , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Light_Green_Hex) //Reload Secription
+                   , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Yellow_Hex) //Clipsize Secription
+                   , null //Fire rate Secription
+                   , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Light_Green_Hex) //Shot Speed Secription
+                   , "Grants the user 2 additional." + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)  //Additional Notes, keep at one line
+                   , "Modular_Name_Label_PeaShooter" //Label Name Asset Name
+                   , ModularPeaShooterAlt.GunID //alt gun ID
+                   , "Peashooter_Gun_Icon_Alt" //asset name default alt
+                   , "Peashooter_Gun_Icon_Hightlighted_Alt" //asset name highlighted alt
+                   , "Peashooter_Icon_Pressed_Alt" //asset name pressed alt
+                   , "Modular_Name_Label_PeaShooter_Alt"  //Label Name Asset Name Alt
+                   ); //sprite name for the Big Name Label
+
+
+            /*
             for (int i = 0; i < 13; i++)
             {
                 GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
@@ -316,8 +350,8 @@ namespace ModularMod
                     , "Modular_Name_Label_WIP"); //sprite name for the Big Name Label
                 
             }
+            */
 
-            
 
             {
                 defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_accept_active"), "Mod_Accept");

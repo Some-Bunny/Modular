@@ -41,7 +41,6 @@ namespace ModularMod
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.OverrideScrapCost = 15;
-
             ID = h.PickupObjectId;
         }
         public static int ID;

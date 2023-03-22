@@ -117,7 +117,11 @@ namespace ModularMod
                     if (isFirst == true)
                     {
                         GameStatsManager.Instance.HandleEncounteredObject(this.encounterTrackable);
-                        OnFirstPickup(printerCore, printerCore.ModularGunController, player);
+                        OnFirstEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
+                    }
+                    else
+                    {
+                        OnAnyEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
                     }
                 }
             }
@@ -127,6 +131,15 @@ namespace ModularMod
 
         public int? OverrideScrapCost;
         public bool IsUncraftable = false;
+
+        public virtual void OnFirstEverObtainedNonActivation(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+
+        }
+        public virtual void OnAnyEverObtainedNonActivation(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+
+        }
 
         public virtual void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -154,6 +167,15 @@ namespace ModularMod
         {
             return this.ReturnStack(Stored_Core);
         }
+        public int TrueStack()
+        {
+            return Stored_Core.ReturnTrueStack(this.LabelName);
+        }
+        public int ActiveStack()
+        {
+            return Stored_Core.ReturnActiveStack(this.LabelName);
+        }
+
 
         public ModulePrinterCore Stored_Core;
 
@@ -395,6 +417,20 @@ namespace ModularMod
         public int? AltSpriteID = null;
         public float AdditionalWeightMultiplier = 1;
 
+        public float EnergyConsumption = -1;
+
+        public PowerConsumptionData powerConsumptionData = new PowerConsumptionData() 
+        {
+            OverridePowerManagement = ReturnBasePowerConsumption
+        };
+
+        public static float ReturnBasePowerConsumption(DefaultModule module)
+        {
+            int c = module.ActiveStack();
+            if (c == 0) { return 0; }
+            return c == 1 ? module.EnergyConsumption : module.EnergyConsumption + ((module.EnergyConsumption *(module.ActiveStack() - 1))/2);
+        }
+
         public ModuleGunStatModifier gunStatModifier;
 
 
@@ -407,6 +443,14 @@ namespace ModularMod
             if (ExtantNameLabelController != null)
             { UnityEngine.Object.Destroy(ExtantNameLabelController.gameObject); }
             base.OnDestroy();
+        }
+
+        public class PowerConsumptionData
+        {
+            public string OverridePowerDescriptionLabel = "FUCK";
+            public float FirstStack = -420;
+            public float AdditionalStacks = -69f;
+            public Func<DefaultModule, float> OverridePowerManagement; 
         }
     }
 
@@ -468,6 +512,12 @@ namespace ModularMod
                     OnUpdate(label);
                 }
             }
+        }
+
+        public bool IsMouseHovering()
+        {
+            if (label == null) { return false; }
+            return label.isMouseHovering;
         }
 
         public Action<dfLabel, bool> MouseHover;

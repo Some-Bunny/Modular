@@ -32,11 +32,13 @@ namespace ModularMod
             h.LabelName = "Cloak Plating " + h.ReturnTierLabel();
             h.LabelDescription = "Entering combat cloaks the player for 5 ("+ StaticColorHexes.AddColorToLabelString("+2.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking grants a\n" +
                 "4x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that degrades fast.";
-            h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.EnergyConsumption = 1;
+            h.AddToGlobalStorage();
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }

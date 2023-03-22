@@ -31,13 +31,13 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Reactive Sensors" + h.ReturnTierLabel();
             h.LabelDescription = "If an enemy gets too close, release a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage and push force", StaticColorHexes.Light_Orange_Hex) + ").\nRecharges after 15 seconds.";
-            h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
-
+            h.EnergyConsumption = 1;
+            h.AddToGlobalStorage();
             GameObject VFX = new GameObject("VFX");
             FakePrefab.DontDestroyOnLoad(VFX);
             FakePrefab.MarkAsFakePrefab(VFX);
@@ -67,15 +67,28 @@ namespace ModularMod
             player.StartCoroutine(EnterCharge(player));
         }
 
+        public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            modulePrinter.OnFrameUpdate -= OFU;
+            modulePrinter.OnRoomCleared -= ORC;
+            if (extantBattery != null)
+            {
+                AkSoundEngine.PostEvent("Play_BOSS_lasthuman_torch_01", player.gameObject);
+                extantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("finish");
+                extantBattery = null;
+            }
+        }
+
         public void ORC(ModulePrinterCore modulePrinter, PlayerController player, RoomHandler room) 
         {
             currentState = State.EnteredCharged;
             RechargeTime = 16;
-            AkSoundEngine.PostEvent("Play_BOSS_lasthuman_torch_01", player.gameObject);
 
-            if (extantBattery)
+            if (extantBattery != null)
             {
+                AkSoundEngine.PostEvent("Play_BOSS_lasthuman_torch_01", player.gameObject);
                 extantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("finish");
+                extantBattery = null;
             }
         }
 
@@ -90,8 +103,10 @@ namespace ModularMod
             if (currentState != State.EnteredCharged)
             {
                 currentState = State.EnteredCharged;
+                extantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("finish");
+                extantBattery = null;
                 AkSoundEngine.PostEvent("Play_BOSS_lasthuman_torch_01", player.gameObject);
-
+                extantBattery = null;
             }
             if (player.CurrentRoom == null) { return; }
             List<AIActor> enemies = player.CurrentRoom.GetActiveEnemies(RoomHandler.ActiveEnemyType.RoomClear);
@@ -165,7 +180,6 @@ namespace ModularMod
         {
             //if (currentState == State.Inactive) { return; }
             if (extantBattery != null) { Destroy(extantBattery); }
-            yield return null;
             var eaextantBattery = player.PlayEffectOnActor(BatteryObject, new Vector3(2, 0f));
             eaextantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("docharge");
             extantBattery = eaextantBattery;

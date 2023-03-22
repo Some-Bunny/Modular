@@ -13,8 +13,9 @@ namespace ModularMod
         {
             try
             {
+                proj.sprite.Collection = data;
                 proj.GetAnySprite().spriteId = data.GetSpriteIdByName(name);
-                tk2dSpriteDefinition def = SetupDefinitionForProjectileSprite(name, proj.GetAnySprite().spriteId, pixelWidth, pixelHeight, lightened, overrideColliderPixelWidth, overrideColliderPixelHeight, overrideColliderOffsetX,
+                tk2dSpriteDefinition def = SetupDefinitionForProjectileSprite(name, proj.GetAnySprite().spriteId, data, pixelWidth, pixelHeight, lightened, overrideColliderPixelWidth, overrideColliderPixelHeight, overrideColliderOffsetX,
                     overrideColliderOffsetY, overrideProjectileToCopyFrom);
 
                 def.ConstructOffsetsFromAnchor(anchor, def.position3, fixesScale, anchorChangesCollider);
@@ -31,7 +32,7 @@ namespace ModularMod
                 return null;
             }
         }
-        private static tk2dSpriteDefinition SetupDefinitionForProjectileSprite(string name, int id, int pixelWidth, int pixelHeight, bool lightened = true, int? overrideColliderPixelWidth = null, int? overrideColliderPixelHeight = null,int? overrideColliderOffsetX = null, int? overrideColliderOffsetY = null, Projectile overrideProjectileToCopyFrom = null)
+        private static tk2dSpriteDefinition SetupDefinitionForProjectileSprite(string name, int id, tk2dSpriteCollectionData data, int pixelWidth, int pixelHeight, bool lightened = true, int? overrideColliderPixelWidth = null, int? overrideColliderPixelHeight = null,int? overrideColliderOffsetX = null, int? overrideColliderOffsetY = null, Projectile overrideProjectileToCopyFrom = null)
         {
             if (overrideColliderPixelWidth == null)
             {
@@ -69,14 +70,14 @@ namespace ModularMod
             def.position2 = new Vector3(0f, 0f + trueHeight, 0f);
             def.position3 = new Vector3(0f + trueWidth, 0f + trueHeight, 0f);
 
-            def.materialInst.mainTexture = ETGMod.Databases.Items.ProjectileCollection.inst.spriteDefinitions[id].materialInst.mainTexture;
-            def.uvs = ETGMod.Databases.Items.ProjectileCollection.inst.spriteDefinitions[id].uvs.ToArray();
+            def.materialInst.mainTexture = data.spriteDefinitions[id].materialInst.mainTexture;
+            def.uvs = data.spriteDefinitions[id].uvs.ToArray();
 
             def.colliderVertices = new Vector3[2];
             def.colliderVertices[0] = new Vector3(colliderOffsetX, colliderOffsetY, 0f);
             def.colliderVertices[1] = new Vector3(colliderWidth / 2, colliderHeight / 2);
             def.name = name;
-            ETGMod.Databases.Items.ProjectileCollection.inst.spriteDefinitions[id] = def;
+            data.spriteDefinitions[id] = def;
             return def;
         }
         public static void AnimateProjectileBundle(this Projectile proj, string defaultClipName, tk2dSpriteCollectionData data, tk2dSpriteAnimation animation, string animationName, List<IntVector2> pixelSizes, List<bool> lighteneds, List<tk2dBaseSprite.Anchor> anchors, List<bool> anchorsChangeColliders,List<bool> fixesScales, List<Vector3?> manualOffsets, List<IntVector2?> overrideColliderPixelSizes, List<IntVector2?> overrideColliderOffsets, List<Projectile> overrideProjectilesToCopyFrom)

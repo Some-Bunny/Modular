@@ -86,7 +86,7 @@ namespace ModularMod
             if (oR != null && oR.healthHaver != null && mR.projectile != null)
             {
                 float damage = mR.projectile.baseData.damage;
-                float damageMult = (mR.projectile.baseData.speed / 10) * (2f * (stack));
+                float damageMult = (mR.projectile.baseData.speed / 1000) * (2f * stack);
                 mR.projectile.baseData.damage *= 1 + damageMult;
                 mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
             }

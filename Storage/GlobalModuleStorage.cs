@@ -88,9 +88,32 @@ namespace ModularMod
             }
         }
 
+        private static void AssignPower(DefaultModule module)
+        {
+            switch (module.Tier)
+            {
+                case ModuleTier.Tier_1:
+                    module.EnergyConsumption = 1;
+                    return;
+                case ModuleTier.Tier_2:
+                    module.EnergyConsumption = 2;
+                    return;
+                case ModuleTier.Tier_3:
+                    module.EnergyConsumption = 3;
+                    return;
+                case ModuleTier.Tier_Omega:
+                    module.EnergyConsumption = 0;
+                    return;
 
+            }
+        }
         public static void AddToGlobalStorage(this DefaultModule module)
         {
+            if (module.EnergyConsumption == -1)
+            {
+                AssignPower(module);
+            }
+            module.LabelDescription += "\n" + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? module.powerConsumptionData.OverridePowerDescriptionLabel : "Uses " + (module.powerConsumptionData.FirstStack != -420 ? module.powerConsumptionData.FirstStack : module.EnergyConsumption) + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? "" : " (" +StaticColorHexes.AddColorToLabelString((module.powerConsumptionData.AdditionalStacks != -69 ? module.powerConsumptionData.AdditionalStacks : module.EnergyConsumption / 2).ToString(), StaticColorHexes.Light_Orange_Hex) + ")" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)));
             allModules.Add(module);
             if (module.IsUncraftable == false)
             {
@@ -158,6 +181,20 @@ namespace ModularMod
             }
             return null;
         }
+
+        public static ModulePrinterCore PlayerHasCore(this PlayerController player)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    return printerCore;
+                }
+            }
+            return null;
+        }
+
         public static ModulePrinterCore.ModuleContainer PhantomAddModule(this PlayerController player, int ModuleID, bool truePickup = true)
         {
             bool b = false;

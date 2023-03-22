@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Alexandria.ItemAPI;
 using Brave.BulletScript;
 using Dungeonator;
@@ -172,6 +173,8 @@ namespace ModularMod
             if (ModularGunController) 
             { ModularGunController.ProcessStats(); }
         }
+
+
         public void PostProcessBeamTick(BeamController b, SpeculativeRigidbody hitRigidbody ,float f)
         {
             if (base.Owner == null) { return; }
@@ -237,12 +240,136 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, DefaultModule> OnAnyModuleObtained;
         public Action<ModulePrinterCore, PlayerController, AIActor, Projectile> OnPreEnemyHit;
 
+        public float StartingPower = 6;
+        public Func<ModulePrinterCore, float> AdditionalPowerMods;
+
+        public float ReturnTotalPower()
+        {
+            float c = StartingPower;
+            if (AdditionalPowerMods != null)
+            {
+                c += AdditionalPowerMods(this);
+            }
+            foreach (PassiveItem item in this.Owner.passiveItems)
+            {
+                if (item is BasicStatPickup mastery)
+                {
+                    if (mastery.IsMasteryToken == true)
+                    {
+                        c++;                    
+                    }
+                }
+                if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
+                {
+                    c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
+                }
+            }
+            if (ModularGunController != null) 
+            {
+                c += ModularGunController.AdditionalPowerSupply;
+            }
+            return c;
+        }
+
+        public float ReturnPowerConsumption()
+        {
+            float c = 0;
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                if (ModuleContainers[i] != null)
+                {
+                    c += ReturnPowerConsumption(ModuleContainers[i].defaultModule);
+                }
+            }
+            return c;
+        }
+
+        public float ReturnPowerConsumption(DefaultModule module)
+        {
+            float c = 0;
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                if (ModuleContainers[i] != null)
+                {
+                    if (ModuleContainers[i].defaultModule.LabelName == module.LabelName)
+                    {
+                        if (ModuleContainers[i].defaultModule.powerConsumptionData != null)
+                        {
+                            if (ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement != null)
+                            {
+                                c += ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement(ModuleContainers[i].defaultModule);
+                            }
+                            else
+                            {
+                                c += ModuleContainers[i].defaultModule.powerConsumptionData.FirstStack + (ModuleContainers[i].defaultModule.powerConsumptionData.AdditionalStacks * (ModuleContainers[i].defaultModule.ActiveStack() - 1));
+                            }
+
+                        }
+                        else
+                        {
+                            c += ModuleContainers[i].defaultModule.EnergyConsumption + ((ModuleContainers[i].defaultModule.EnergyConsumption * (ModuleContainers[i].defaultModule.ActiveStack() - 1)) / 2);
+                        }
+                    }           
+                }
+            }
+            return c;
+        }
+
 
         //UI Shit
 
+        public void DepowerModule(DefaultModule self, int Amount_To_Remove = 1)
+        {
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                if (ModuleContainers[i] != null)
+                {
+                    if (ModuleContainers[i].LabelName == self.LabelName)
+                    {
+                        for (int A = 0; A < Amount_To_Remove; A++)
+                        {
+                            if (ModuleContainers[i].ActiveCount == 0) {return; }
+                            ModuleContainers[i].ActiveCount--;
+                            ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+                            if (ModuleContainers[i].ActiveCount == 0) 
+                            {
+                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ModuleContainers.Remove(ModuleContainers[i]);
+                }
+            }
+        }
 
-
-
+        public void PowerModule(DefaultModule self, int Amount_To_Remove = 1)
+        {
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                if (ModuleContainers[i] != null)
+                {
+                    if (ModuleContainers[i].LabelName == self.LabelName)
+                    {
+                        for (int A = 0; A < Amount_To_Remove; A++)
+                        {
+                            if (ModuleContainers[i].ActiveCount == 0)
+                            {
+                                ModuleContainers[i].defaultModule.OnFirstPickup(this, this.ModularGunController, base.Owner);
+                            }
+                            ModuleContainers[i].ActiveCount++;
+                            ModuleContainers[i].defaultModule.OnAnyPickup(this, this.ModularGunController, base.Owner, false);                 
+                        }
+                    }
+                }
+                else
+                {
+                    ModuleContainers.Remove(ModuleContainers[i]);
+                }
+            }
+        }
 
 
         //General public variables that are useful
@@ -260,7 +387,7 @@ namespace ModularMod
                 if (ModuleContainers[i].LabelName == self.LabelName) 
                 {
                     ModuleContainers[i].Count++;
-                    ModuleContainers[i].defaultModule.OnAnyPickup(this, this.ModularGunController, player, true);
+                    //ModuleContainers[i].defaultModule.OnAnyPickup(this, this.ModularGunController, player, true);
                     return false;
                 }
             }
@@ -273,7 +400,7 @@ namespace ModularMod
                 defaultModule = self
             };
             modCont.defaultModule.Stored_Core = this;
-            modCont.defaultModule.OnAnyPickup(this, this.ModularGunController, player, true);
+            //modCont.defaultModule.OnAnyPickup(this, this.ModularGunController, player, true);
             ModuleContainers.Add(modCont);
             return true;
         }
@@ -284,7 +411,8 @@ namespace ModularMod
             {
                 if (ModuleContainers[i].LabelName == LabelName)
                 {
-                    return ModuleContainers[i].Count + ReturnFakeStack(LabelName);
+                    if (ModuleContainers[i].ActiveCount == 0) { return 0; }
+                    return ModuleContainers[i].ActiveCount + ReturnFakeStack(LabelName);
                 }
             }
             return 0;
@@ -300,6 +428,27 @@ namespace ModularMod
             }
             return 0;
         }
+        public int ReturnActiveStack(string LabelName)
+        {
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                if (ModuleContainers[i].LabelName == LabelName)
+                {
+                    return ModuleContainers[i].ActiveCount;
+                }
+            }
+            return 0;
+        }
+        public int ReturnActiveTotal()
+        {
+            int c = 0;
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                c += ModuleContainers[i].ActiveCount;
+            }
+            return 0;
+        }
+
         public int ReturnFakeStack(string LabelName)
         {
             for (int i = 0; i < ModuleContainers.Count; i++)
@@ -388,41 +537,12 @@ namespace ModularMod
             public DefaultModule.ModuleTier tier;
             public int Count;
             public List<Tuple<string, int>> FakeCount = new List<Tuple<string, int>>() { };
+            public int ActiveCount = 0;
+        }
+        public class AdditionalItemEnergyComponent : MonoBehaviour
+        {
+            public int AdditionalEnergy = 1;
         }
         public List<ModuleContainer> ModuleContainers = new List<ModuleContainer>();
-    }
-    public class TestModuleProper4 : DefaultModule
-    {
-        public static ItemTemplate template = new ItemTemplate(typeof(TestModuleProper4))
-        {
-            Name = "TrueTestModule4",
-            Description = "TrueTest",
-            LongDescription = "TestTest.",
-            SpriteResource = "ModularMod/Sprites/Icons/tier_label_4",
-            Quality = ItemQuality.EXCLUDED,
-            PostInitAction = PostInit
-        };
-        public static void PostInit(PickupObject v)
-        {
-            var h = (v as DefaultModule);
-            h.Tier = ModuleTier.Tier_Omega;
-            h.LabelName = "Damage Module" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by\n20% (+20% per stack)";
-            h.AddToGlobalStorage();
-            h.SetTag("modular_module");
-            h.AddColorLight(Color.red);
-            h.Label_Background_Color = new Color32(240, 10, 10, 100);
-            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
-        }
-        public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
-        {
-            modulePrinter.OnPostProcessProjectile += PPP;
-        }
-
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
-        {
-            int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.2f * stack);
-        }
     }
 }

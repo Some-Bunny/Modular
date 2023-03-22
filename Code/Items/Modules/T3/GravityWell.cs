@@ -2,6 +2,7 @@
 using Dungeonator;
 using JuneLib.Items;
 using System;
+using System.Reflection;
 using UnityEngine;
 
 
@@ -90,6 +91,7 @@ namespace ModularMod
         {
             if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
             player.stats.RecalculateStats(player);
+            modulePrinter.OnPostProcessProjectile -= PPP;
         }
     }
 

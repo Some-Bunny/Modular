@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 
@@ -18,7 +19,12 @@ namespace ModularMod
         public static tk2dSpriteCollectionData UI_Collection;
 
         public static tk2dSpriteCollectionData Gun_Collection;
+        public static tk2dSpriteAnimation Gun_Animation;
+
+
         public static tk2dSpriteCollectionData Projectile_Collection;
+        public static tk2dSpriteAnimation Projectile_Animation;
+
         public static tk2dSpriteCollectionData Beam_Collection;
         public static tk2dSpriteAnimation Beam_Animation;
 
@@ -49,8 +55,17 @@ namespace ModularMod
 
             Beam_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularBeamCollection", "beam material.mat");
             if (Beam_Collection == null) { ETGModConsole.Log("Beam_Collection is NULL"); }
-
             Beam_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularBeamAnimation").GetComponent<tk2dSpriteAnimation>();
+
+            Gun_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularGunCollection", "modulargun material.mat");
+            if (Gun_Collection == null) { ETGModConsole.Log("Gun_Collection is NULL"); }
+            Gun_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularGunAnimation").GetComponent<tk2dSpriteAnimation>();
+            GunJsonEmbedder.EmbedJsonDataFromAssembly(Assembly.GetExecutingAssembly(), Gun_Collection, "ModularMod");
+
+
+            Projectile_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularProjectileCollection", "modularprojectile material.mat");
+            if (Projectile_Collection == null) { ETGModConsole.Log("Projectile_Collection is NULL"); }
+
 
             Modular_Character_Alt_Collection = DoFastSetup(Module.ModularAssetBundle, "Modular_Alt_Collection", "modular_alt material.mat");
             if (Modular_Character_Alt_Collection == null) { ETGModConsole.Log("Modular_Character_Alt_Collection is NULL"); }
