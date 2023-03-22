@@ -130,6 +130,7 @@
     <Compile Include="Code\Toolboxes\Components.cs" />
     <Compile Include="Code\Toolboxes\LightningController.cs" />
     <Compile Include="Code\UI\ScrapUIController.cs" />
+    <Compile Include="Code\Unlocks\EnemyDeathUnlockController.cs" />
     <Compile Include="Storage\ComponentsAndShit.cs" />
     <Compile Include="Storage\DebuffStatics.cs" />
     <Compile Include="Storage\ExplosionDatas.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Storage\ConsumableStorage.cs" />
     <Compile Include="Storage\StaticColorHexes.cs" />
     <Compile Include="Storage\GlobalModuleStorage.cs" />
+    <Compile Include="Storage\StaticGUIDs.cs" />
     <Compile Include="Storage\VFXStorage.cs" />
     <Compile Include="Storage\StaticShaders.cs" />
     <Compile Include="Storage\StaticTextures.cs" />

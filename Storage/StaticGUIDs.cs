@@ -7,8 +7,6 @@ namespace ModularMod
 {
     public static class StaticGUIDs
     {
-        //Bullet Kin
-
         public static string AK47_Kin_GUID = "db35531e66ce41cbb81d507a34366dfe";
         public static string Rubber_Kin_GUID = "6b7ef9e5d05b4f96b04f05ef4a0d1b18";
         public static string Red_Shotgun_Kin_GUID = "128db2f0781141bcb505d8f00f9e4d47";
@@ -235,41 +233,37 @@ namespace ModularMod
         public static string Resourceful_Rat_Mech_Boss_GUID = "4d164ba3f62648809a4a82c90fc22cae";
         public static string Advanced_Dragun_GUID = "05b8afe0b6cc4fffa9dc6036fa24c8ec";
         public static string Advanced_Dragun_Knife_GUID = "2e6223e42e574775b56c6349921f42cb";
+        public static string Musket_Kin_GUID = "226fd90be3a64958a5b13cb0a4f43e97";
+        public static string Bullet_Kin_Gal_Titaness_GUID = "df4e9fedb8764b5a876517431ca67b86";
+        public static string Bullet_Kin_Titan_Boss_GUID = "1f290ea06a4c416cabc52d6b3cf47266";
+        public static string Bullet_Kin_Titan_GUID = "c4cf0620f71c4678bb8d77929fd4feff";
+        public static string Bullet_Kin_Pirate_GUID = "6f818f482a5c47fd8f38cce101f6566c";
+        public static string Green_Bullet_Kin_Fish_GUID = "143be8c9bbb84e3fb3ab98bcd4cf5e5b";
+        public static string Blue_Bullet_Kin_Fish_GUID = "06f5623a351c4f28bc8c6cda56004b80";
+        public static string Brocolli_Bullet_Kin_GUID = "ff4f54ce606e4604bf8d467c1279be3e";
+        public static string Knight_Bullet_Kin_GUID = "39e6f47a16ab4c86bec4b12984aece4c";
+        public static string Kaliber_Bullet_Kin_GUID = "f020570a42164e2699dcf57cac8a495c";
+        public static string Candle_Bullet_Kin_GUID = "37de0df92697431baa47894a075ba7e9";
+        public static string Cowboy_Bullet_Kin_GUID = "5861e5a077244905a8c25c2b7b4d6ebb";
+        public static string Office_Tie_Bullet_Kin_GUID = "906d71ccc1934c02a6f4ff2e9c07c9ec";
+        public static string Office_Suit_Bullet_Kin_GUID = "9eba44a0ea6c4ea386ff02286dd0e6bd";
+        public static string Bullet_Kin_Mech_GUID = "2b6854c0849b4b8fb98eb15519d7db1c";
+        public static string Suicide_Vest_Bullet_Kin_GUID = "05cb719e0178478685dc610f8b3e8bfc";
+        public static string Firecracker_Nitra_GUID = "5f15093e6f684f4fb09d3e7e697216b4";
+        public static string Robot_Cylinder_GUID = "d4f4405e0ff34ab483966fd177f2ece3";
+        public static string Red_Robot_Cylinder_GUID = "534f1159e7cf4f6aa00aeea92459065e";
+        public static string Chameleon_GUID = "80ab6cd15bfc46668a8844b2975c6c26";
+        public static string Bullat_Garygoyle_GUID = "981d358ffc69419bac918ca1bdf0c7f7";
+        public static string Snake_Enemy_GUID = "e861e59012954ab2b9b6977da85cb83c";
+        public static string Helicopter_Agunim_GUID = "41ee1c8538e8474a82a74c4aff99c712";
+        public static string Cactus_Kin_GUID = "3b0bd258b4c9432db3339665cc61c356";
+        public static string Parrot_GUID = "4b21a913e8c54056bc05cafecf9da880";
+        public static string Stone_Tablet_Bookllet_GUID = "78e0951b097b46d89356f004dda27c42";
+        public static string Necronomicon_Bookllet_GUID = "216fd3dfb9da439d9bd7ba53e1c76462";
+        public static string Cowboy_Shotgun_Kin_GUID = "ddf12a4881eb43cfba04f36dd6377abb";
+        public static string Pirate_Shotgun_Kin_GUID = "86dfc13486ee4f559189de53cfb84107";
+        public static string Fridge_Lead_Maiden_GUID = "9215d1a221904c7386b481a171e52859";
+        public static string Baby_Good_Shelleton_Companion_GUID = "3f40178e10dc4094a1565cd4fdc4af56";
 
-
-        /*
-# Farewell to Arms enemies
-226fd90be3a64958a5b13cb0a4f43e97 musket_kin
-df4e9fedb8764b5a876517431ca67b86 bullet_kin_gal_titan_boss
-1f290ea06a4c416cabc52d6b3cf47266 bullet_kin_titan_boss
-c4cf0620f71c4678bb8d77929fd4feff bullet_kin_titan
-6f818f482a5c47fd8f38cce101f6566c bullet_kin_pirate
-143be8c9bbb84e3fb3ab98bcd4cf5e5b bullet_kin_fish
-06f5623a351c4f28bc8c6cda56004b80 bullet_kin_fish_blue
-ff4f54ce606e4604bf8d467c1279be3e bullet_kin_broccoli
-39e6f47a16ab4c86bec4b12984aece4c bullet_kin_knight
-f020570a42164e2699dcf57cac8a495c bullet_kin_kaliber
-37de0df92697431baa47894a075ba7e9 bullet_kin_candle
-5861e5a077244905a8c25c2b7b4d6ebb bullet_kin_cowboy
-906d71ccc1934c02a6f4ff2e9c07c9ec bullet_kin_officetie
-9eba44a0ea6c4ea386ff02286dd0e6bd bullet_kin_officesuit
-2b6854c0849b4b8fb98eb15519d7db1c bullet_kin_mech
-05cb719e0178478685dc610f8b3e8bfc bullet_kin_vest
-5f15093e6f684f4fb09d3e7e697216b4 nitra_firecracker
-d4f4405e0ff34ab483966fd177f2ece3 cylinder
-534f1159e7cf4f6aa00aeea92459065e cylinder_red
-80ab6cd15bfc46668a8844b2975c6c26 chameleon
-981d358ffc69419bac918ca1bdf0c7f7 bullat_gargoyle
-e861e59012954ab2b9b6977da85cb83c snake
-41ee1c8538e8474a82a74c4aff99c712 agunim_helicopter
-3b0bd258b4c9432db3339665cc61c356 cactus_kin
-4b21a913e8c54056bc05cafecf9da880 parrot
-78e0951b097b46d89356f004dda27c42 tablet_bookllet
-216fd3dfb9da439d9bd7ba53e1c76462 necronomicon_bookllet
-ddf12a4881eb43cfba04f36dd6377abb cowboy_shotgun_kin
-86dfc13486ee4f559189de53cfb84107 pirate_shotgun_kin
-9215d1a221904c7386b481a171e52859 fridge_maiden
-3f40178e10dc4094a1565cd4fdc4af56 baby_good_shelleton
-        */
     }
 }

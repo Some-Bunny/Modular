@@ -14,6 +14,7 @@ using HarmonyLib;
 using SaveAPI;
 using HutongGames.PlayMaker.Actions;
 using SoundAPI;
+using ModularMod.Code.Unlocks;
 
 namespace ModularMod
 {
@@ -72,6 +73,7 @@ namespace ModularMod
 
             //Hooks
             Hooks.Init();
+            EnemyDeathUnlockController.Start();
 
             //Items
             ModulePrinterCore.Init();
@@ -101,6 +103,7 @@ namespace ModularMod
             //==== Set up loot tables ====//
             GlobalModuleStorage.InitialiseLootTables();
             //============================//
+
 
 
            
