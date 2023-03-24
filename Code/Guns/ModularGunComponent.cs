@@ -68,6 +68,7 @@ namespace ModularMod
             return p;
         }
 
+
         public Action<ModulePrinterCore, Projectile, PlayerController, Gun> OnPreFired;
         public Action<ModulePrinterCore, PlayerController, Gun> OnReload;
         public Action<ModulePrinterCore, PlayerController, Gun> GunUpdate;

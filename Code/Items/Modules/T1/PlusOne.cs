@@ -39,6 +39,11 @@ namespace ModularMod
             ID = h.PickupObjectId;
         }
         public static int ID;
+
+        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
+        {
+            modulePrinter.OnPostProcessProjectile += PPP;
+        }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;

@@ -53,7 +53,7 @@ namespace ModularMod
             {
                 breakSecretWalls = true,
                 comprehensiveDelay = 0,
-                damage = 40,
+                damage = 30,
                 damageRadius = 3f,
                 damageToPlayer = 0,
                 debrisForce = 100,
@@ -130,9 +130,9 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 2.5f + stack;
+            p.baseData.damage *= 1.5f + stack;
             p.baseData.speed *= 2.5f + (0.5f* stack);
-            p.baseData.force *= (15f * stack);
+            p.baseData.force *= (10f * stack);
             p.AdditionalScaleMultiplier *= 2;
             p.pierceMinorBreakables = true;
 
@@ -185,17 +185,33 @@ namespace ModularMod
 
         public void Update()
         {
-            int Dist = (int)Vector2.Distance(self.sprite.WorldCenter, lastStoredPosition);
-            for (int i = 0; i < Dist; i++)
+            float Dist = (int)Vector2.Distance(self.sprite.WorldCenter, lastStoredPosition);
+            if (Dist < 1)
             {
-                float t = (float)i / (float)Dist;
-                Vector3 vector3 = Vector3.Lerp(self.sprite.WorldCenter, lastStoredPosition, t);
-                HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
-                ignite.transform.position = self.sprite.WorldCenter;
-                ignite.Enable(100);
-                ignite.radius = Radius;
-                ignite.StartCoroutine(ignite.ReduceToZero());
+                if (UnityEngine.Random.value < Dist)
+                {
+                    Vector3 vector3 = self.sprite.WorldCenter;
+                    HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
+                    ignite.transform.position = self.sprite.WorldCenter;
+                    ignite.Enable(100);
+                    ignite.radius = Radius;
+                    ignite.StartCoroutine(ignite.ReduceToZero());
+                }
             }
+            else
+            {
+                for (int i = 0; i < (int)Dist; i++)
+                {
+                    float t = (float)i / (float)Dist;
+                    Vector3 vector3 = Vector3.Lerp(self.sprite.WorldCenter, lastStoredPosition, t);
+                    HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
+                    ignite.transform.position = self.sprite.WorldCenter;
+                    ignite.Enable(100);
+                    ignite.radius = Radius;
+                    ignite.StartCoroutine(ignite.ReduceToZero());
+                }
+            }
+           
             lastStoredPosition = self.sprite.WorldCenter;
         }
     }

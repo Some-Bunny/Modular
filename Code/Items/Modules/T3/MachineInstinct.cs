@@ -34,6 +34,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Machine Instinct " + h.ReturnTierLabel();
             h.LabelDescription = "Being in proximity of projectiles and enemies increases "+ StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases both Rate Of Fire and Damage.  (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 5 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.EnergyConsumption = 2;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);

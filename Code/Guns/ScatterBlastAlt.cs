@@ -109,7 +109,7 @@ namespace ModularMod
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 
-            gun.carryPixelOffset = new IntVector2(4, 2);
+            gun.carryPixelOffset = new IntVector2(6, 2);
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(207) as Gun).muzzleFlashEffects;
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.375f, 0.1875f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.375f, 0.1875f), "barrel_point").transform;

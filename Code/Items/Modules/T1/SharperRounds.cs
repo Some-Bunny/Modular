@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Sharper Rounds",
             Description = "Damage Up",
-            LongDescription = "Increases Damage by\n25% (+25% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n33% (+33% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("damage_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -49,7 +49,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.25f * stack);
+            p.baseData.damage *= 1 + (0.33f * stack);
         }
     }
 }

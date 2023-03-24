@@ -94,10 +94,9 @@ namespace ModularMod
             p.UpdateSpeed();
 
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
-            beamController3.spriteAnimator.Play("mancebeam_mid_idle");
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (p.baseData.damage * (Dmg * 3f) * 1 + (0.5f * stack)) / 15f;
+            component3.baseData.damage = (p.baseData.damage * (Dmg * 3f) * 1 + (0.5f * stack)) / 10f;
             component3.AdditionalScaleMultiplier *= 0.5f;
             component3.baseData.range *= stack;
 

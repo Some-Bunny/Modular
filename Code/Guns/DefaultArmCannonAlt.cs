@@ -21,9 +21,9 @@ namespace ModularMod
             GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "defaultarmcannonalt_idle_001", 11);
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
-            gun.idleAnimation = "defaultarmcannon_idle";
-            gun.shootAnimation = "defaultarmcannon_fire";
-            gun.reloadAnimation = "defaultarmcannon_reload";
+            gun.idleAnimation = "defaultarmcannonalt_idle";
+            gun.shootAnimation = "defaultarmcannonalt_fire";
+            gun.reloadAnimation = "defaultarmcannonalt_reload";
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 
@@ -65,7 +65,7 @@ namespace ModularMod
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 
-            gun.carryPixelOffset = new IntVector2(4, 2);
+            gun.carryPixelOffset = new IntVector2(6, 2);
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "barrel_point").transform;
 

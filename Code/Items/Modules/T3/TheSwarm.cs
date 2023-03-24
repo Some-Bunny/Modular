@@ -54,9 +54,9 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 0.225f;
+            p.baseData.damage *= 0.3f;
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-            aaaa.damageMultOnPierce += 0.025f;
+            aaaa.damageMultOnPierce += 1.025f;
             aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack*5);
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += stack;

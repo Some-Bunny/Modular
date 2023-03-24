@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Line Up",
             Description = "Knock 'Em Down",
-            LongDescription = "Adds 1 Pierce, Reduce Damage by 20% (-20% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.5x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 1 Pierce, Reduce Damage by 20% (-20% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.75x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("lineup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Line Up " + h.ReturnTierLabel();
             h.LabelDescription = "Adds 1 Pierce, Reduce Damage by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
-                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.5x " +
+                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.75x " +
                 StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ".";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
@@ -57,7 +57,7 @@ namespace ModularMod
             p.baseData.damage *= 1 - (1 - (1 / (1 + 0.2f * stack)));
 
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-            aaaa.damageMultOnPierce = 1 + (0.5f * stack);
+            aaaa.damageMultOnPierce = 1 + (0.75f * stack);
             aaaa.AmountOfPiercesBeforeFalloff = 2 + stack;
             aaaa.OnPierce += OP;
 

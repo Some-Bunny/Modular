@@ -297,7 +297,7 @@ namespace ModularMod
                         {
                             if (ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement != null)
                             {
-                                c += ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement(ModuleContainers[i].defaultModule);
+                                c += ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement(ModuleContainers[i].defaultModule, ReturnActiveStack(ModuleContainers[i].defaultModule.LabelName));
                             }
                             else
                             {
@@ -313,6 +313,37 @@ namespace ModularMod
                 }
             }
             return c;
+        }
+
+
+        public float ReturnPowerConsumptionOfNextStack(DefaultModule module, int stacksToIncrement = 1)
+        {
+            float c = 0;
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                if (ModuleContainers[i] != null)
+                {
+                    bool asfas = ModuleContainers[i].defaultModule.LabelName == module.LabelName;
+                    if (ModuleContainers[i].defaultModule.powerConsumptionData != null)
+                    {
+                        if (ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement != null)
+                        {
+                            c += ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement(ModuleContainers[i].defaultModule, ReturnActiveStack(ModuleContainers[i].defaultModule.LabelName) + (asfas == true ? stacksToIncrement : 0));
+                        }
+                        else
+                        {
+                            c += ModuleContainers[i].defaultModule.powerConsumptionData.FirstStack + (ModuleContainers[i].defaultModule.powerConsumptionData.AdditionalStacks * ((ModuleContainers[i].defaultModule.ActiveStack() - 1) + (asfas == true ? stacksToIncrement : 0)));
+                        }
+
+                    }
+                    else
+                    {
+                        c += ModuleContainers[i].defaultModule.EnergyConsumption + ((ModuleContainers[i].defaultModule.EnergyConsumption * ((ModuleContainers[i].defaultModule.ActiveStack() - 1) + (asfas == true ? stacksToIncrement : 0))));
+                    }
+                }
+            }
+            return c;
+
         }
 
 

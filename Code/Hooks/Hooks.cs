@@ -20,7 +20,7 @@ namespace ModularMod
         {
             public static Func<int, int> AdditionalOptionsModifier;
 
-            public int Count = 3;
+            public int Count = 4;
             public Gun g;
             public bool isAlt = false;
 
@@ -44,8 +44,8 @@ namespace ModularMod
 
             public void AlterCount()
             {
-                if (g.quality == PickupObject.ItemQuality.B | g.quality == PickupObject.ItemQuality.A) { Count = 4; }
-                if (g.quality == PickupObject.ItemQuality.S) { Count = 5; }
+                if (g.quality == PickupObject.ItemQuality.B | g.quality == PickupObject.ItemQuality.A) { Count = 5; }
+                if (g.quality == PickupObject.ItemQuality.S) { Count = 6; }
             }
 
 

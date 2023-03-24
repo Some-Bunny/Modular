@@ -119,10 +119,7 @@ namespace ModularMod
                         GameStatsManager.Instance.HandleEncounteredObject(this.encounterTrackable);
                         OnFirstEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
                     }
-                    else
-                    {
-                        OnAnyEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
-                    }
+                    OnAnyEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
                 }
             }
             Toolbox.NotifyCustom("Installed Module:", this.LabelName, this.sprite.spriteId, this.sprite.collection, UINotificationController.NotificationColor.GOLD);
@@ -424,11 +421,11 @@ namespace ModularMod
             OverridePowerManagement = ReturnBasePowerConsumption
         };
 
-        public static float ReturnBasePowerConsumption(DefaultModule module)
+        public static float ReturnBasePowerConsumption(DefaultModule module, int stack)
         {
             int c = module.ActiveStack();
             if (c == 0) { return 0; }
-            return c == 1 ? module.EnergyConsumption : module.EnergyConsumption + ((module.EnergyConsumption *(module.ActiveStack() - 1))/2);
+            return c == 1 ? module.EnergyConsumption : module.EnergyConsumption + ((module.EnergyConsumption *(stack-1))/2);
         }
 
         public ModuleGunStatModifier gunStatModifier;
@@ -450,7 +447,10 @@ namespace ModularMod
             public string OverridePowerDescriptionLabel = "FUCK";
             public float FirstStack = -420;
             public float AdditionalStacks = -69f;
-            public Func<DefaultModule, float> OverridePowerManagement; 
+            public Func<DefaultModule, int, float> OverridePowerManagement; 
+
+
+
         }
     }
 

@@ -24,6 +24,7 @@ namespace ModularMod
             gun.idleAnimation = "modulepeashooter_idle";
             gun.shootAnimation = "modulepeashooter_fire";
             gun.reloadAnimation = "modulepeashooter_reload";
+            gun.introAnimation = "modulepeashooter_intro";
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 

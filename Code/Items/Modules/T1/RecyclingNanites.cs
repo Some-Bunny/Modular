@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Recycling Nanites",
             Description = "Repurposed for something better",
-            LongDescription = "Raking damage permanently increases damage by\n+2.5% (+2.5% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "While enabled, taking damage permanently increases damage by\n+2.5% (+2.5% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("recycler_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.6f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Recycling Nanites " + h.ReturnTierLabel();
-            h.LabelDescription = "Taking damage permanently increases damage by \n+2.5% (" + StaticColorHexes.AddColorToLabelString("+2.5%", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "While enabled, taking damage permanently increases damage by \n+3.3% (" + StaticColorHexes.AddColorToLabelString("+3.3%", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -59,7 +59,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + ((0.025f * stack) * DamageTaken);
+            p.baseData.damage *= 1 + ((0.033f * stack) * DamageTaken);
         }
     } 
 }

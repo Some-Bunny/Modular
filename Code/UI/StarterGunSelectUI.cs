@@ -329,6 +329,37 @@ namespace ModularMod
                    , "Modular_Name_Label_PeaShooter_Alt"  //Label Name Asset Name Alt
                    ); //sprite name for the Big Name Label
 
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_scattercannon_gun"), "scattercannon_Gun_Icon");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_scattercannon_gun_highlighted"), "scattercannon_Gun_Icon_Hightlighted");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_scattercannon_gun_pressed"), "scattercannon_Gun_Icon_Pressed");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_scattercannon_gun_alt"), "scattercannon_Gun_Icon_Alt");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_scattercannon_gun_highlighted_alt"), "scattercannon_Gun_Icon_Hightlighted_Alt");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_scattercannon_gun_pressed_alt"), "scattercannon_Icon_Pressed_Alt");
+
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("name_label_scattercannon"), "Modular_Name_Label_scattercannon");
+            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("name_label_scattercannon_alt"), "Modular_Name_Label_scattercannon_Alt");
+
+            StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
+                   "ScatterCannon_Button"
+                   , "scattercannon_Gun_Icon" //asset name default
+                   , "scattercannon_Gun_Icon_Hightlighted" //asset name highlighted
+                   , "scattercannon_Gun_Icon_Pressed" //asset name pressed
+                   , CustomDungeonFlags.NOLLA //Unlock flag, Set itt to NOLLA for no unlock condition
+                   , ScatterBlast.ID //Gun ID
+                   , "A basic scatter cannon.\nFires 6 pellets with one shot." //Default description
+                   , StaticColorHexes.AddColorToLabelString("High", StaticColorHexes.Orange_Hex)  //Damage Secription
+                   , StaticColorHexes.AddColorToLabelString("Slower Than Average", StaticColorHexes.Yellow_Hex) //Reload Secription
+                   , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Yellow_Hex) //Clipsize Secription
+                   , StaticColorHexes.AddColorToLabelString("Low", StaticColorHexes.Orange_Hex) //Fire rate Secription
+                   , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Default_UI_Color_Hex) //Shot Speed Secription
+                   , "Has high spread, and lower range."  //Additional Notes, keep at one line
+                   , "Modular_Name_Label_scattercannon" //Label Name Asset Name
+                   , ScatterBlastAlt.ID //alt gun ID
+                   , "scattercannon_Gun_Icon_Alt" //asset name default alt
+                   , "scattercannon_Gun_Icon_Hightlighted_Alt" //asset name highlighted alt
+                   , "scattercannon_Icon_Pressed_Alt" //asset name pressed alt
+                   , "Modular_Name_Label_scattercannon_Alt"  //Label Name Asset Name Alt
+                   ); //sprite name for the Big Name Label
 
             /*
             for (int i = 0; i < 13; i++)

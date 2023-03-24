@@ -24,6 +24,7 @@ namespace ModularMod
             gun.idleAnimation = "modulepeashooteralt_idle";
             gun.shootAnimation = "modulepeashooteralt_fire";
             gun.reloadAnimation = "modulepeashooteralt_reload";
+            gun.introAnimation = "modulepeashooteralt_intro";
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 
@@ -79,7 +80,7 @@ namespace ModularMod
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 
-            gun.carryPixelOffset = new IntVector2(4, 2);
+            gun.carryPixelOffset = new IntVector2(6, 2);
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(207) as Gun).muzzleFlashEffects;
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.125f, 0.125f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.125f, 0.125f), "barrel_point").transform;

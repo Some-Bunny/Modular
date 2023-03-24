@@ -790,6 +790,7 @@ namespace ModularMod
                 T1bLabel = Toolbox.GenerateText(p.transform, new Vector2(1.75f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl, true, Scale);
                 T1bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    ListEntry = 0;
                     DisplayModuleTiered(p, ModuleTier.Tier_1 ,true);
                 };
                 T1bLabel.MouseHover = (label, boolean) =>
@@ -804,6 +805,7 @@ namespace ModularMod
                 T2bLabel = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 2.25f), 0.5f,  DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl, true, Scale);
                 T2bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    ListEntry = 0;
                     DisplayModuleTiered(p, ModuleTier.Tier_2, true);
                 };
                 T2bLabel.MouseHover = (label, boolean) =>
@@ -819,6 +821,7 @@ namespace ModularMod
                 T3bLabel = Toolbox.GenerateText(p.transform, new Vector2(3.25f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl, true, Scale);
                 T3bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    ListEntry = 0;
                     DisplayModuleTiered(p, ModuleTier.Tier_3, true);
                 };
                 T3bLabel.MouseHover = (label, boolean) =>
@@ -837,6 +840,7 @@ namespace ModularMod
                 };
                 T4bLabel.MouseHover = (label, boolean) =>
                 {
+                    ListEntry = 0;
                     label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T4B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_Omega);
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
@@ -847,6 +851,7 @@ namespace ModularMod
                 AnyLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 2.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.GOOGLY), cl, true, Scale);
                 AnyLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    ListEntry = 0;
                     DisplayModule(p, true);
                 };
                 AnyLabel.MouseHover = (label, boolean) =>
@@ -886,7 +891,6 @@ namespace ModularMod
         private float MainOffset = 1.75f;
         public void DisplayModule(PlayerController p, bool ClearOut = false)
         {
-            ListEntry = 0;
             if (ClearOut == true)
             {
                 for (int i = 0; i < garbageLabels.Count; i++)
@@ -957,7 +961,7 @@ namespace ModularMod
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
                             label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
@@ -967,7 +971,7 @@ namespace ModularMod
                         ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
 
                             if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)
@@ -986,7 +990,6 @@ namespace ModularMod
 
         public void DisplayModuleTiered(PlayerController p, ModuleTier moduleTier ,bool ClearOut = false)
         {
-            ListEntry = 0;
             if (ClearOut == true)
             {
                 for (int i = 0; i < garbageLabels.Count; i++)
@@ -1060,7 +1063,7 @@ namespace ModularMod
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
                             label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
@@ -1070,7 +1073,7 @@ namespace ModularMod
                         ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = (Core.ReturnPowerConsumption() + page.module.EnergyConsumption) <= Core.ReturnTotalPower();
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
 
                             if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)

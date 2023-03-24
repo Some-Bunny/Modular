@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Repair Kit " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by\n16% (" + StaticColorHexes.AddColorToLabelString("+16%", StaticColorHexes.Light_Orange_Hex) + "), Restores 2 Armor.";
+            h.LabelDescription = "Increases Damage by\n15% (" + StaticColorHexes.AddColorToLabelString("+15%", StaticColorHexes.Light_Orange_Hex) + "), Restores 2 Armor.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

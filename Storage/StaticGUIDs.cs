@@ -7,6 +7,87 @@ namespace ModularMod
 {
     public static class StaticGUIDs
     {
+        public static List<string> All_Bosses = new List<string>()
+        {
+            Bullet_King_GUID,
+            Gatling_Gull_GUID,
+            Smiley_GUID,
+            Shades_GUID,
+            
+            Ammoconda_GUID,
+            Beholster_GUID,
+            Gorgun_GUID,
+            Door_Lord_GUID,
+            
+            Mine_Flayer_GUID,
+            Cannonbalrog_GUID,
+            Treadnaught_GUID,
+            
+            Wallmonger_GUID,
+            High_Priest_GUID,
+            Kill_Pillars_GUID,
+            
+            Dragun_GUID,
+            Advanced_Dragun_GUID,
+            
+            Lich_Phase_1_GUID,
+            Lich_Phase_2_GUID,
+            Lich_Phase_3_GUID,
+
+            Blobulord_GUID,
+            
+            Old_King_GUID,
+
+            Resourceful_Rat_Boss_GUID,
+            Resourceful_Rat_Mech_Boss_GUID,
+
+            Helicopter_Agunim_GUID,
+            Blockner_GUID,
+        };
+
+        public static List<string> All_MiniBosses = new List<string>()
+        {
+            Fuselier_GUID,
+            Shadow_Magician_GUID,
+            Blockners_Ghost_GUID
+        };
+
+        public static List<string> Floor_1_Bosses = new List<string>()
+        {
+            Bullet_King_GUID,
+            Gatling_Gull_GUID,
+            Smiley_GUID,
+            Shades_GUID,
+        };
+
+        public static List<string> Floor_2_Bosses = new List<string>()
+        {
+            Ammoconda_GUID,
+            Beholster_GUID,
+            Gorgun_GUID,
+            Door_Lord_GUID,
+        };
+        public static List<string> Floor_3_Bosses = new List<string>()
+        {
+            Mine_Flayer_GUID,
+            Cannonbalrog_GUID,
+            Treadnaught_GUID,
+            Door_Lord_GUID,
+        };
+        public static List<string> Floor_4_Bosses = new List<string>()
+        {
+            Wallmonger_GUID,
+            High_Priest_GUID,
+            Kill_Pillars_GUID,
+            Door_Lord_GUID,
+        };
+        public static List<string> Floor_5_Bosses = new List<string>()
+        {
+            Dragun_GUID,
+            Advanced_Dragun_GUID,
+        };
+
+
         public static string AK47_Kin_GUID = "db35531e66ce41cbb81d507a34366dfe";
         public static string Rubber_Kin_GUID = "6b7ef9e5d05b4f96b04f05ef4a0d1b18";
         public static string Red_Shotgun_Kin_GUID = "128db2f0781141bcb505d8f00f9e4d47";

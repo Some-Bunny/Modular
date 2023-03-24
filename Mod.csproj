@@ -468,6 +468,23 @@
     <EmbeddedResource Include="GunJsons\scattercannon_reload_005.json" />
     <EmbeddedResource Include="GunJsons\scattercannon_reload_006.json" />
     <EmbeddedResource Include="GunJsons\scattercannon_reload_007.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_001.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_002.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_003.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_004.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_005.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_006.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_007.json" />
+    <EmbeddedResource Include="GunJsons\peashooteralt_intro_008.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_001.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_002.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_003.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_004.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_005.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_006.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_007.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_008.json" />
+    <EmbeddedResource Include="GunJsons\peashooter_intro_009.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
