@@ -19,6 +19,7 @@ namespace SaveAPI
         BEAT_DRAGUN_AS_MODULAR, //Beat Dragun, Duh
         BEAT_LICH_AS_MODULAR, // Beat Lich, Duh
         BEAT_OLD_KING_AS_MODULAR, // Beat Old King
+        BEAT_ADVANCED_DRAGUN_AS_MODULAR, // Beat Adv. Dragun
         BEAT_RAT_AS_MODULAR, //Rat
         LEAD_GOD_AS_MODULAR, //Lead God
         BOSS_RUSH_AS_MODULAR, //Boss Rush

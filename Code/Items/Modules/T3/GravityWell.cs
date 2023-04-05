@@ -14,7 +14,7 @@ namespace ModularMod
         {
             Name = "Gravity Well",
             Description = "The Void",
-            LongDescription = "Greattly reduces Rate Of Fire. Projectiles gain massive piercing, and greatly reduced speed. Enemies are magnetically pulled towards your projectiles, and are hurt in their proximity.(+Stronger Gravity per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Greatly reduces Rate Of Fire. Projectiles gain massive piercing, and greatly reduced speed. Enemies are magnetically pulled towards your projectiles, and are hurt in their proximity.(+Stronger Gravity per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("gravitywell_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -26,7 +26,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("gravitywell_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Gravity Well " + h.ReturnTierLabel();
-            h.LabelDescription = "Greattly reduces Rate Of Fire.\nProjectiles gain massive piercing, and greatly reduced speed.\nEnemies are magnetically pulled towards your projectiles, and are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Greatly reduces Rate Of Fire.\nProjectiles gain massive piercing, and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
@@ -220,7 +220,7 @@ namespace ModularMod
                     }
                     if (BraveMathCollege.DistToRectangle(self.specRigidbody.UnitCenter, other.UnitBottomLeft, other.UnitDimensions) < this.damageRadius)
                     {
-                        other.healthHaver.ApplyDamage((self.baseData.damage * 0.2f) * BraveTime.DeltaTime, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
+                        other.healthHaver.ApplyDamage((self.baseData.damage * 0.125f) * BraveTime.DeltaTime, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
                     }
                     if (other.healthHaver.IsBoss)
                     {

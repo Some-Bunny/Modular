@@ -51,12 +51,39 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
+            DoSort(printer, player);
             printer.OnAnyModuleObtained += OAMO;
+            printer.OnAnyModulePowered += OAMP;
+            printer.OnAnyModuleUnpowered += OAMP;
+
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnAnyModuleObtained -= OAMO;
+            modulePrinter.OnAnyModulePowered -= OAMP;
+            modulePrinter.OnAnyModuleUnpowered -= OAMP;
+            for (int i = 0; i < modulePrinter.ModuleContainers.Count; i++)
+            {
+                var moduleContainer = modulePrinter.ModuleContainers[i];
+                if (moduleContainer.LabelName != this.LabelName)
+                {
+                    for (int w = 0; w < modulePrinter.ModuleContainers[i].FakeCount.Count; w++)
+                    {
+                        var fake = modulePrinter.ModuleContainers[i].FakeCount[w];
+                        if (fake.First == "PerfectReplication")
+                        {
+                            modulePrinter.ModuleContainers[i].FakeCount.RemoveAt(w);
+                        }
+                    }
+                }
+            }
         }
+
+        public void OAMP(ModulePrinterCore modulePrinterCore,DefaultModule defaultModule, int a)
+        {
+            DoSort(modulePrinterCore, modulePrinterCore.Owner);
+        }
+
         public void OAMO(ModulePrinterCore modulePrinterCore, PlayerController player, DefaultModule defaultModule)
         {
             DoSort(modulePrinterCore, player);

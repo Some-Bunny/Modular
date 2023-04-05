@@ -18,17 +18,17 @@ namespace ModularMod
         {
             Name = "Counter Productivity",
             Description = "Exchange Rate",
-            LongDescription = "Divides Clip Size and Reload Time by 2 (+1 per stack). Slightly increases fire rate. (+Extra fire rate per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
-            ManualSpriteCollection = StaticCollections.Module_T2_Collection,
-            ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("counterproduction_t2_module"),
+            LongDescription = "Divides Clip Size and Reload Time by 2 (+1 per stack). Slightly increases fire rate. (+Extra fire rate per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            ManualSpriteCollection = StaticCollections.Module_T1_Collection,
+            ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("counerproduction_tier1_module"),
             Quality = ItemQuality.SPECIAL,
             PostInitAction = PostInit
         };
         public static void PostInit(PickupObject v)
         {
             var h = (v as DefaultModule);
-            h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("counterproduction_t2_module_alt");
-            h.Tier = ModuleTier.Tier_2;
+            h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("counerproduction_tier1_module_alt");
+            h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Counter Productivity " + h.ReturnTierLabel();
             h.LabelDescription = "Divides Clip Size and Reload Time by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\n Slightly increases fire rate  (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();

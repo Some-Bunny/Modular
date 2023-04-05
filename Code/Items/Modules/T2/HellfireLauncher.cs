@@ -30,7 +30,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Hellfire Launcher " + h.ReturnTierLabel();
             h.LabelDescription = "Reloading creates a line of burning fire\nin the direction you are aiming.\n(" + StaticColorHexes.AddColorToLabelString("+Range and Radius", StaticColorHexes.Light_Orange_Hex) + ").\nScales with amount of shots\nleft in the clip.";
-            h.AdditionalWeightMultiplier = 0.6f;
+            h.AdditionalWeightMultiplier = 0.9f;
 
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

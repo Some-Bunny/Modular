@@ -35,9 +35,14 @@ namespace ModularMod
         public static tk2dSpriteCollectionData Modular_Character_Collection;
         public static tk2dSpriteCollectionData Modular_Character_Alt_Collection;
 
+        public static dfAtlas Clip_Ammo_Atlas;
+
 
         public static void InitialiseCollections()
         {
+
+            Clip_Ammo_Atlas = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularGunClip_Atlas").GetComponent<dfAtlas>();
+
             Module_T1_Collection = DoFastSetup(Module.ModularAssetBundle, "Tier_1_Module_Collection", "t1_module material.mat");
             if (Module_T1_Collection == null) { ETGModConsole.Log("Module_T1_Collection is NULL"); }
 
@@ -65,7 +70,7 @@ namespace ModularMod
 
             Projectile_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularProjectileCollection", "modularprojectile material.mat");
             if (Projectile_Collection == null) { ETGModConsole.Log("Projectile_Collection is NULL"); }
-
+            Projectile_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularProjectileAnimation").GetComponent<tk2dSpriteAnimation>();
 
             Modular_Character_Alt_Collection = DoFastSetup(Module.ModularAssetBundle, "Modular_Alt_Collection", "modular_alt material.mat");
             if (Modular_Character_Alt_Collection == null) { ETGModConsole.Log("Modular_Character_Alt_Collection is NULL"); }

@@ -9,6 +9,15 @@ namespace ModularMod
 {
     public static class ProjectileToolbox
     {
+        public static List<T> ConstructListOfSameValues<T>(T value, int length)
+        {
+            List<T> list = new List<T>();
+            for (int i = 0; i < length; i++)
+            {
+                list.Add(value);
+            }
+            return list;
+        }
         public static tk2dSpriteDefinition SetProjectileCollisionRight(this Projectile proj, string name, tk2dSpriteCollectionData data, int pixelWidth, int pixelHeight, bool lightened = true, tk2dBaseSprite.Anchor anchor = tk2dBaseSprite.Anchor.LowerLeft, int? overrideColliderPixelWidth = null, int? overrideColliderPixelHeight = null, bool anchorChangesCollider = true,bool fixesScale = false, int? overrideColliderOffsetX = null, int? overrideColliderOffsetY = null, Projectile overrideProjectileToCopyFrom = null)
         {
             try

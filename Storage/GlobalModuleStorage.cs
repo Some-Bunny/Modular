@@ -17,29 +17,29 @@ namespace ModularMod
             foreach (var entry in all_Tier_1_Modules)
             {D_Tier_Table.AddItemToPool(entry, 0.9f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { D_Tier_Table.AddItemToPool(entry, 0.4f * entry.AdditionalWeightMultiplier); }
+            { D_Tier_Table.AddItemToPool(entry, 0.6f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { D_Tier_Table.AddItemToPool(entry, 0.05f * entry.AdditionalWeightMultiplier); }
+            { D_Tier_Table.AddItemToPool(entry, 0.075f * entry.AdditionalWeightMultiplier); }
 
             C_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
             { C_Tier_Table.AddItemToPool(entry, 1f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { C_Tier_Table.AddItemToPool(entry, 0.65f * entry.AdditionalWeightMultiplier); }
+            { C_Tier_Table.AddItemToPool(entry, 0.7f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { C_Tier_Table.AddItemToPool(entry, 0.05f * entry.AdditionalWeightMultiplier); }
+            { C_Tier_Table.AddItemToPool(entry, 0.075f * entry.AdditionalWeightMultiplier); }
 
             B_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { B_Tier_Table.AddItemToPool(entry, 0.55f * entry.AdditionalWeightMultiplier); }
+            { B_Tier_Table.AddItemToPool(entry, 0.6f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
             { B_Tier_Table.AddItemToPool(entry, 0.7f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { B_Tier_Table.AddItemToPool(entry, 0.08f * entry.AdditionalWeightMultiplier); }
+            { B_Tier_Table.AddItemToPool(entry, 0.1f * entry.AdditionalWeightMultiplier); }
 
             A_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { A_Tier_Table.AddItemToPool(entry, 0.4f * entry.AdditionalWeightMultiplier); }
+            { A_Tier_Table.AddItemToPool(entry, 0.3f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
             { A_Tier_Table.AddItemToPool(entry, 0.65f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
@@ -47,11 +47,11 @@ namespace ModularMod
 
             S_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.35f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.25f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.7f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.6f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.2f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.25f * entry.AdditionalWeightMultiplier); }
 
             Fallback_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
@@ -188,6 +188,19 @@ namespace ModularMod
             {
                 var entry = player.passiveItems[c];
                 if (entry is ModulePrinterCore printerCore)
+                {
+                    return printerCore;
+                }
+            }
+            return null;
+        }
+
+        public static Scrapper PlayerHasComputerCore(this PlayerController player)
+        {
+            for (int c = 0; c < player.activeItems.Count; c++)
+            {
+                var entry = player.activeItems[c];
+                if (entry is Scrapper printerCore)
                 {
                     return printerCore;
                 }

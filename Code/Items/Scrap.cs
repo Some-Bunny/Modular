@@ -33,6 +33,9 @@ namespace ModularMod
 
         public static void PostInit(PickupObject v)
         {
+            v.CustomCost = 20;
+            v.UsesCustomCost = true;
+
             SpeculativeRigidbody speculativeRigidbody = v.gameObject.AddComponent<SpeculativeRigidbody>();
             PixelCollider item = new PixelCollider
             {

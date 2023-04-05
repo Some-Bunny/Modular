@@ -56,55 +56,52 @@ namespace ModularMod
             chain.Damage = p.baseData.damage * (0.33f * stack);
             chain.Range = 4f + (4 * stack);
             chain.player = player;
-            chain.projectile = p;
+            chain.projectile = p.gameObject;
         }
+
+        public static List<GameObject> allactiveTetherProjectiles = new List<GameObject>();
     }
     internal class ElectricChainProjectile : MonoBehaviour
     {
         public void Start()
         {
-
+            LightningNets.allactiveTetherProjectiles.Add(this.gameObject);
         }
 
-        private Dictionary<Projectile, GameObject> ExtantTethers = new Dictionary<Projectile, GameObject>();
+        private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
         private HashSet<AIActor> m_damagedEnemies = new HashSet<AIActor>();
 
         public void Update()
         {
             if (this.projectile != null)
             {
-                PlayerController player = this.projectile.Owner as PlayerController;
-                if (player != null)
+                List<GameObject> activeProjectiles = LightningNets.allactiveTetherProjectiles;
+                if (activeProjectiles != null && activeProjectiles.Count > 0)
                 {
-                    List<Projectile> activeProjectiles = StaticReferenceManager.AllProjectiles.ToList<Projectile>();
-                    if (activeProjectiles != null && activeProjectiles.Count > 0)
+                    foreach (GameObject ai in activeProjectiles)
                     {
-                        foreach (Projectile ai in activeProjectiles)
+                        bool flag8 = ai && ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) < Range && ai.gameObject.GetComponent<ElectricChainProjectile>() != null && ai != this.projectile;
+                        if (flag8)
                         {
-                            bool flag8 = ai && ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.sprite.WorldCenter) < Range && ai.gameObject.GetComponent<ElectricChainProjectile>() != null && ai != this.projectile;
-                            if (flag8)
+                            if (!ExtantTethers.ContainsKey(ai))
                             {
-                                if (!ExtantTethers.ContainsKey(ai))
-                                {
-                                    GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
-                                    ExtantTethers.Add(ai, obj);
-                                }
+                                GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
+                                ExtantTethers.Add(ai, obj);
                             }
-                            bool fuckoff = ai && ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.sprite.WorldCenter) > Range;
-                            if (fuckoff)
+                        }
+                        bool fuckoff = ai && ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) > Range;
+                        if (fuckoff)
+                        {
+                            if (ExtantTethers.ContainsKey(ai))
                             {
-                                if (ExtantTethers.ContainsKey(ai))
-                                {
-                                    GameObject obj;
-                                    ExtantTethers.TryGetValue(ai, out obj);
-                                    SpawnManager.Despawn(obj);
-                                    ExtantTethers.Remove(ai);
-                                }
+                                GameObject obj;
+                                ExtantTethers.TryGetValue(ai, out obj);
+                                SpawnManager.Despawn(obj);
+                                ExtantTethers.Remove(ai);
                             }
                         }
                     }
                 }
-
             }
             foreach (var si in ExtantTethers)
             {
@@ -137,12 +134,16 @@ namespace ModularMod
                 }
             }
             ExtantTethers.Clear();
+            if (LightningNets.allactiveTetherProjectiles.Contains(this.gameObject))
+            {
+                LightningNets.allactiveTetherProjectiles.Remove(this.gameObject);
+            }
         }
 
-        private void UpdateLink(Projectile target, tk2dTiledSprite m_extantLink, Projectile actor)
+        private void UpdateLink(GameObject target, tk2dTiledSprite m_extantLink, GameObject actor)
         {
-            Vector2 unitCenter = actor.specRigidbody.HitboxPixelCollider.UnitCenter;
-            Vector2 unitCenter2 = target.specRigidbody.HitboxPixelCollider.UnitCenter;
+            Vector2 unitCenter = actor.GetComponentInChildren<tk2dSprite>().WorldCenter;
+            Vector2 unitCenter2 = target.GetComponentInChildren<tk2dSprite>().WorldCenter;
             m_extantLink.transform.position = unitCenter;
             Vector2 vector = unitCenter2 - unitCenter;
             float num = BraveMathCollege.Atan2Degrees(vector.normalized);
@@ -192,7 +193,7 @@ namespace ModularMod
         public float Range = 3.5f;
         public float Damage;
         public PlayerController player;
-        public Projectile projectile;
+        public GameObject projectile;
     }
 }
 

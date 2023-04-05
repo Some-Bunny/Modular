@@ -193,7 +193,7 @@ namespace ModularMod
                     Vector3 vector3 = self.sprite.WorldCenter;
                     HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
                     ignite.transform.position = self.sprite.WorldCenter;
-                    ignite.Enable(100);
+                   // ignite.Enable(100);
                     ignite.radius = Radius;
                     ignite.StartCoroutine(ignite.ReduceToZero());
                 }
@@ -206,7 +206,7 @@ namespace ModularMod
                     Vector3 vector3 = Vector3.Lerp(self.sprite.WorldCenter, lastStoredPosition, t);
                     HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
                     ignite.transform.position = self.sprite.WorldCenter;
-                    ignite.Enable(100);
+                    //ignite.Enable(100);
                     ignite.radius = Radius;
                     ignite.StartCoroutine(ignite.ReduceToZero());
                 }

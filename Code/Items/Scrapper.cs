@@ -22,9 +22,9 @@ namespace ModularMod
         {
             Name = "Module Computer Core",
             Description = "Game Breaking",
-            LongDescription = "Allows for the scrapping of Items and Pickups into Scrap. Scrap can be repurposed into upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
+            LongDescription = "Allows you to open an interface, letting you see, and interact with your modules.\n\nPressing reload on a full clip switches modes, othe which allows for the scrapping of Items and Pickups into Scrap, which can be repurposed into upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
-            ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("directive_scrap"),
+            ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("computer_core"),
             Quality = ItemQuality.SPECIAL,         
             Cooldown = 1,
             CooldownType = ItemBuilder.CooldownType.Timed,
@@ -212,7 +212,7 @@ namespace ModularMod
             if (base.LastOwner != null && Inited == false)
             {
                 Inited = !Inited;
-                SetMode(Mode.SCRAP);
+                SetMode(Mode.COMPUTER);
                 base.LastOwner.OnReloadPressed += ReloadPressed;
             }
         }
@@ -589,8 +589,10 @@ namespace ModularMod
 
         public void DoQuickStart(PlayerController p)
         {
+            AkSoundEngine.PostEvent("Play_UI_menu_pause_01", p.gameObject);
             player = p;
             Core = ReturnCore(p);
+            CurrentMode = Mode.DEF;
             if (Core == null) { return; }
             IsNone = Core.ModuleContainers.Count == 0;
             ToggleControl(true);
@@ -674,6 +676,9 @@ namespace ModularMod
 
         private void Nuke()
         {
+            AkSoundEngine.PostEvent("Play_UI_menu_cancel_01", player.gameObject);
+            AkSoundEngine.PostEvent("Play_UI_menu_unpause_01", player.gameObject);
+
             Minimap.Instance.TemporarilyPreventMinimap = false;
             GameManager.Instance.MainCameraController.SetManualControl(false, true);
             GameManager.Instance.StartCoroutine(DoFade(false));
@@ -693,6 +698,7 @@ namespace ModularMod
         public IEnumerator DoDelays(PlayerController p)
         {
             yield return null;
+            CurrentMode = Mode.DEF;
             for (int i = 0; i < Core.ModuleContainers.Count; i++)
             {
                 var defMod = Core.ModuleContainers[i].defaultModule;
@@ -719,9 +725,33 @@ namespace ModularMod
                         UpdatePageLabel();
                         ListEntry--;
                         UpLabel.label.Invalidate();
-                        DisplayModule(p, true);
+                        if (CurrentMode == Mode.DEF)
+                        {
+                            DisplayModule(p, true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_1)
+                        {
+                            DisplayModuleTiered(p,ModuleTier.Tier_1 , true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_2)
+                        {
+                            DisplayModuleTiered(p, ModuleTier.Tier_2, true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_3)
+                        {
+                            DisplayModuleTiered(p, ModuleTier.Tier_3, true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_4)
+                        {
+                            DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
+                        }
+                    }
+                    else
+                    {
+                        AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
                     }
                 };
+
                 UpLabel.MouseHover = (label, boolean) =>
                 {
                     if (ListEntry > 0 && IsNone == false) 
@@ -737,6 +767,10 @@ namespace ModularMod
                         label.Invalidate();
                     }
                 };
+                UpLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
             }
 
             if (DownLabel == null)
@@ -749,7 +783,30 @@ namespace ModularMod
                         UpdatePageLabel();
                         ListEntry++;
                         DownLabel.label.Invalidate();
-                        DisplayModule(p, true);
+                        if (CurrentMode == Mode.DEF)
+                        {
+                            DisplayModule(p, true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_1)
+                        {
+                            DisplayModuleTiered(p, ModuleTier.Tier_1, true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_2)
+                        {
+                            DisplayModuleTiered(p, ModuleTier.Tier_2, true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_3)
+                        {
+                            DisplayModuleTiered(p, ModuleTier.Tier_3, true);
+                        }
+                        else if (CurrentMode == Mode.TIERED_4)
+                        {
+                            DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
+                        }
+                    }
+                    else
+                    {
+                        AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
                     }
                 };
                 DownLabel.MouseHover = (label, boolean) =>
@@ -767,6 +824,11 @@ namespace ModularMod
                         label.Invalidate();
                     }
                 };
+                DownLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
+
             }
             if (CloseLabel == null)
             {
@@ -783,6 +845,11 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
+                CloseLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
+
             }
 
             if (T1bLabel == null)
@@ -791,6 +858,7 @@ namespace ModularMod
                 T1bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     ListEntry = 0;
+                    CurrentMode = Mode.TIERED_1;
                     DisplayModuleTiered(p, ModuleTier.Tier_1 ,true);
                 };
                 T1bLabel.MouseHover = (label, boolean) =>
@@ -799,12 +867,17 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
+                T1bLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
             }
             if (T2bLabel == null)
             {
                 T2bLabel = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 2.25f), 0.5f,  DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl, true, Scale);
                 T2bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    CurrentMode = Mode.TIERED_2;
                     ListEntry = 0;
                     DisplayModuleTiered(p, ModuleTier.Tier_2, true);
                 };
@@ -814,6 +887,10 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
+                T2bLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
             }
             if (T3bLabel == null)
             {
@@ -821,6 +898,7 @@ namespace ModularMod
                 T3bLabel = Toolbox.GenerateText(p.transform, new Vector2(3.25f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl, true, Scale);
                 T3bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    CurrentMode = Mode.TIERED_3;
                     ListEntry = 0;
                     DisplayModuleTiered(p, ModuleTier.Tier_3, true);
                 };
@@ -830,12 +908,18 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
+                T3bLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
             }
             if (T4bLabel == null && pages_T4.Count > 0)
             {
                 T4bLabel = Toolbox.GenerateText(p.transform, new Vector2(4f, 2.25f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_Omega), cl, true, Scale);
                 T4bLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    CurrentMode = Mode.TIERED_4;
+                    ListEntry = 0;
                     DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
                 };
                 T4bLabel.MouseHover = (label, boolean) =>
@@ -845,12 +929,17 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
+                T4bLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
             }
             if (AnyLabel == null)
             {
                 AnyLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 2.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.GOOGLY), cl, true, Scale);
                 AnyLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    CurrentMode = Mode.DEF;
                     ListEntry = 0;
                     DisplayModule(p, true);
                 };
@@ -860,22 +949,83 @@ namespace ModularMod
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
+                AnyLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
             }
             if (PowerLabel == null)
             {
-                PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "P lol AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", cl, true, Scale);
+                PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "P lol AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", cl, true, Scale-1);
                 PowerLabel.OnUpdate += (obj1) =>
                 {
-                    obj1.text = "[ "+Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + Core.ReturnTotalPower()+" ]";
+                    bool h = PowerLabel.IsMouseHovering();
+                    string t = "[ " + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + (h == true ? StaticColorHexes.AddColorToLabelString((Core.ReturnTotalPower() + 1).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnTotalPower().ToString()) + " ]";
+                    if (h == true)
+                    {
+                        t += " [Upgrade:"+ StaticColorHexes.AddColorToLabelString(ReturnUpgradeCost().ToString(), CanAffordUpgrade() == true ? StaticColorHexes.Green_Hex : StaticColorHexes.Red_Color_Hex) + scrapLabel + "]";
+                    }
+                    obj1.color = h == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    obj1.text = t;
                     obj1.Invalidate();
+                };
+                PowerLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+                {
+                    if (CanAffordUpgrade() == true)
+                    {
+                        player.GetComponent<ConsumableStorage>().RemoveConsumableAmount("Scrap", ReturnUpgradeCost());
+                        GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(PowerCell.PowerCellID).gameObject, Vector3.zero, Quaternion.identity);
+                        PickupObject component3 = gameObject.GetComponent<PickupObject>();
+                        if (component3 != null)
+                        {
+                            component3.CanBeDropped = false;
+                            component3.Pickup(player);
+                        }
+                    }
+                };
+                PowerLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
         }
 
+
+        public bool CanAffordUpgrade()
+        {
+            if (player.gameObject.GetComponent<ConsumableStorage>() == null) { return false; }
+            if (player.gameObject.GetComponent<ConsumableStorage>().ReturnConsumableAmount("Scrap") >= ReturnUpgradeCost()) 
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public int ReturnUpgradeCost()
+        {
+            return (Mathf.Max(2, Mathf.RoundToInt(Core.ReturnTotalPowerMasteryless()) + 3));
+        }
+
+
         public int ReturnPagesCount()
         {
-            return pages_default.Count > 0 ? pages_default.Last().Page : 0;
+            switch (CurrentMode)
+            {
+                case Mode.DEF:
+                    return pages_default.Count > 0 ? pages_default.Last().Page : 0;
+                case Mode.TIERED_1:
+                    return pages_T1.Count > 0 ? pages_T1.Last().Page : 0;
+                case Mode.TIERED_2:
+                    return pages_T2.Count > 0 ? pages_T2.Last().Page : 0;
+                case Mode.TIERED_3:
+                    return pages_T3.Count > 0 ? pages_T3.Last().Page : 0;
+                case Mode.TIERED_4:
+                    return pages_T4.Count > 0 ? pages_T4.Last().Page : 0;
+                default:
+                    return pages_default.Count > 0 ? pages_default.Last().Page : 0;
+            }
         }
+        private string scrapLabel = "[sprite \"" + "gear_" + "\"]";
 
 
         public ModulePrinterCore ReturnCore(PlayerController p)
@@ -905,7 +1055,7 @@ namespace ModularMod
 
             var ModuleContainers = Core.ModuleContainers;
             Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
-            string Text = "Modules Installed:";
+            string Text = "Modules Available:";
             garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 1.5f), 0.66f, Text, cl, true, Scale));
 
             int c = 0;
@@ -938,6 +1088,11 @@ namespace ModularMod
                             l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
                             l.Invalidate();
                         };
+                        Button.label.MouseEnter += (o1, o2) =>
+                        {
+                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                        };
+
 
                         var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
@@ -947,12 +1102,21 @@ namespace ModularMod
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) +( CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
                             label.Invalidate();
                         };
+                        ButtonLeft.label.MouseEnter += (o1, o2) =>
+                        {
+                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                        };
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
                             if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0)
                             {
+                                AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
                                 Core.DepowerModule(page.module);
+                            }
+                            else
+                            {
+                                AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
                             }
                         };
 
@@ -963,8 +1127,8 @@ namespace ModularMod
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
-                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
-                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
+                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
 
                             label.Invalidate();
                         };
@@ -976,9 +1140,19 @@ namespace ModularMod
 
                             if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)
                             {
+                                AkSoundEngine.PostEvent("Play_ModulePowerUp", player.gameObject);
                                 Core.PowerModule(page.module);
                             }
+                            else
+                            {
+                                AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
+                            }
                         };
+                        ButtonRight.label.MouseEnter += (o1, o2) =>
+                        {
+                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                        };
+
                         garbageLabels.Add(ButtonRight);
                         garbageLabels.Add(Button);
                         c++;
@@ -1006,7 +1180,7 @@ namespace ModularMod
 
             Color32 cl = (moduleTier == ModuleTier.Tier_Omega) ? new Color32(200, 10, 10, 100) : p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
 
-            string Text = "Modules Installed " + DefaultModule.ReturnTierLabel(moduleTier) + " :";
+            string Text = "Modules Available " + DefaultModule.ReturnTierLabel(moduleTier) + " :";
             garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 1.5f), 0.66f, Text, cl, true, Scale));
 
 
@@ -1040,7 +1214,10 @@ namespace ModularMod
                             l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
                             l.Invalidate();
                         };
-
+                        Button.label.MouseEnter += (o1, o2) =>
+                        {
+                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                        };
                         var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
                         {
@@ -1054,10 +1231,18 @@ namespace ModularMod
                             bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
                             if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0)
                             {
+                                AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
                                 Core.DepowerModule(page.module);
                             }
+                            else
+                            {
+                                AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
+                            }
                         };
-
+                        ButtonLeft.label.MouseEnter += (o1, o2) =>
+                        {
+                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                        };
                         garbageLabels.Add(ButtonLeft);
                         var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "+", cl, true, Scale);
                         ButtonRight.MouseHover = (label, boolean) =>
@@ -1065,9 +1250,8 @@ namespace ModularMod
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
-                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
-                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
-
+                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                            label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
                             label.Invalidate();
                         };
                         ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
@@ -1078,8 +1262,17 @@ namespace ModularMod
 
                             if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)
                             {
+                                AkSoundEngine.PostEvent("Play_ModulePowerUp", player.gameObject);
                                 Core.PowerModule(page.module);
                             }
+                            else
+                            {
+                                AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
+                            }
+                        };
+                        ButtonRight.label.MouseEnter += (o1, o2) =>
+                        {
+                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                         };
                         garbageLabels.Add(ButtonRight);
                         garbageLabels.Add(Button);
@@ -1182,6 +1375,18 @@ namespace ModularMod
             }
         }
 
+        public Mode CurrentMode;
+
+        public enum Mode
+        {
+            DEF,
+            TIERED_1,
+            TIERED_2,
+            TIERED_3,
+            TIERED_4,
+        }
+
+
 
         public List<QuickAndMessyPage> pages_default = new List<QuickAndMessyPage>();
         public List<QuickAndMessyPage> pages_T1 = new List<QuickAndMessyPage>();
@@ -1221,13 +1426,115 @@ namespace ModularMod
 
     public class ModuleCrafingController : ScriptableObject
     {
+        private int Scale = 9;
+        private Vector2 AdditionalOffset = new Vector2(1f, 1.75f);
+
         public void DoQuickStart(PlayerController p)
         {
+            AkSoundEngine.PostEvent("Play_UI_menu_pause_01", p.gameObject);
             player = p;
             Core = ReturnCore(p);
             if (Core == null) { return; }
             p.StartCoroutine(DoDelays(p));
+            ToggleControl(true);
         }
+
+        public IEnumerator DoFade(bool active)
+        {
+            GameManager.Instance.MainCameraController.SetManualControl(true, true);
+            CameraController mainCameraController = GameManager.Instance.MainCameraController;
+            mainCameraController.OverridePosition = active == true ? this.player.sprite.WorldCenter + new Vector2(7, -1.5f) : this.player.sprite.WorldCenter;
+
+            float f = 0;
+            while (f < 0.35f)
+            {
+                float q = f / 0.35f;
+                f += BraveTime.DeltaTime;
+                if (active == true)
+                {
+                    mainCameraController.SetZoomScaleImmediate(Mathf.Lerp(1, 1.8f, q));
+                    Pixelator.Instance.fade = Mathf.Lerp(1f, 0.3f, q);
+
+                }
+                else
+                {
+                    Pixelator.Instance.fade = Mathf.Lerp(0.3f, 1f, q);
+                    mainCameraController.SetZoomScaleImmediate(Mathf.Lerp(1.8f, 1, q));
+
+                }
+                yield return null;
+            }
+            if (active == false)
+            {
+                GameManager.Instance.MainCameraController.SetManualControl(false, true);
+            }
+            yield break;
+        }
+
+        private void ToggleControl(bool active)
+        {
+            GameManager.Instance.StartCoroutine(DoFade(active));
+            Minimap.Instance.TemporarilyPreventMinimap = active;
+            if (active == true)
+            {
+                if (!GameManager.Instance.MainCameraController.ManualControl)
+                {
+                    GameManager.Instance.MainCameraController.OverridePosition = GameManager.Instance.MainCameraController.transform.position;
+                    GameManager.Instance.MainCameraController.SetManualControl(true, true);
+                }
+                GameUIRoot.Instance.ForceClearReload(-1);
+                GameUIRoot.Instance.notificationController.ForceHide();
+                GameUIRoot.Instance.levelNameUI.BanishLevelNameText();
+                Pixelator.Instance.FadeColor = Color.black;
+                GameUIRoot.Instance.HideCoreUI("ModularCrafter");
+
+                for (int i = 0; i < GameManager.Instance.AllPlayers.Length; i++)
+                {
+                    PlayerController playerController = GameManager.Instance.AllPlayers[i];
+                    if (playerController)
+                    {
+                        playerController.CurrentInputState = PlayerInputState.NoInput;
+                    }
+                }
+            }
+            if (active == false)
+            {
+                GameManager.Instance.MainCameraController.SetManualControl(false, true);
+
+                GameUIRoot.Instance.ShowCoreUI("ModularCrafter");
+
+                BraveInput.ConsumeAllAcrossInstances(GungeonActions.GungeonActionType.Shoot);
+
+                for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
+                {
+                    if (GameManager.Instance.AllPlayers[j])
+                    {
+                        GameManager.Instance.AllPlayers[j].CurrentInputState = PlayerInputState.AllInput;
+                    }
+                }
+            }
+        }
+
+        public void Nuke()
+        {
+            AkSoundEngine.PostEvent("Play_UI_menu_cancel_01", player.gameObject);
+            AkSoundEngine.PostEvent("Play_UI_menu_unpause_01", player.gameObject);
+            Minimap.Instance.TemporarilyPreventMinimap = false;
+            GameManager.Instance.MainCameraController.SetManualControl(false, true);
+            GameManager.Instance.StartCoroutine(DoFade(false));
+            GameUIRoot.Instance.ShowCoreUI("ModularCrafter");
+
+            BraveInput.ConsumeAllAcrossInstances(GungeonActions.GungeonActionType.Shoot);
+            for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
+            {
+                if (GameManager.Instance.AllPlayers[j])
+                {
+                    GameManager.Instance.AllPlayers[j].CurrentInputState = PlayerInputState.AllInput;
+                }
+            }
+        }
+
+
         public IEnumerator DoDelays(PlayerController p)
         {
             yield return null;
@@ -1244,7 +1551,7 @@ namespace ModularMod
             Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
             if (T1_Select == null)
             {
-                T1_Select = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 0.75f), 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl, true, 6);
+                T1_Select = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 0.25f) + AdditionalOffset, 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl, true, Scale + 6);
                 T1_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     Tier = SelectedTier.T1;
@@ -1253,13 +1560,18 @@ namespace ModularMod
                 };
                 T1_Select.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T1B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_1);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
+                };
+                T1_Select.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
             if (T2_Select == null)
             {
-                T2_Select = Toolbox.GenerateText(p.transform, new Vector2(3.5f, 0.75f), 0.75f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl, true, 6);
+                T2_Select = Toolbox.GenerateText(p.transform, new Vector2(3.5f, 0.25f) + AdditionalOffset, 0.75f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl, true, Scale + 6);
                 T2_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     Tier = SelectedTier.T2;
@@ -1268,13 +1580,18 @@ namespace ModularMod
                 };
                 T2_Select.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T2B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_2);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
+                };
+                T2_Select.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
             if (T3_Select == null)
             {
-                T3_Select = Toolbox.GenerateText(p.transform, new Vector2(4.5f, 0.75f), 0.75f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl, true, 6);
+                T3_Select = Toolbox.GenerateText(p.transform, new Vector2(4.5f, 0.25f) + AdditionalOffset, 0.75f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_3), cl, true, Scale + 6);
                 T3_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     Tier = SelectedTier.T3;
@@ -1283,25 +1600,45 @@ namespace ModularMod
                 };
                 T3_Select.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T3B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_3);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
+                };
+                T3_Select.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
             if (CloseLabel == null)
             {
-                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 0.75f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, 6);
+                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 0.25f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, Scale + 6);
                 CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     ObliterateUI();
                     Destroy(this);
+                    ToggleControl(false);
+                    Nuke();
                 };
                 CloseLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.CLOSE_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
+                CloseLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                };
+            }
+            if (basicgarbageLabel == null)
+            {
+                basicgarbageLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 1.125f) + AdditionalOffset, 0.5f, "Select Crafting Tier:", cl, true, 6);
+
             }
         }
+
+
+        public Action OnCrafted;
 
         public int GetScrapCount(PlayerController p)
         {
@@ -1320,7 +1657,7 @@ namespace ModularMod
             if (pageUpLabel) { Destroy(pageUpLabel.gameObject); }
             if (pageUpLabel == null)
             {
-                pageUpLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5625f, -0.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP), cl);
+                pageUpLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -1f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP), cl, true, Scale + 6);
                 pageUpLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
 
@@ -1337,20 +1674,25 @@ namespace ModularMod
                 {
                     if (ListEntry > 0)
                     {
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.UP_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
                     else
                     {
-                        label.color = new Color32(155, 155, 155, 155);
+                        label.color = new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
+                };
+                pageUpLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
             if (pageReturnLabel) { Destroy(pageReturnLabel.gameObject); }
             if (pageReturnLabel == null)
             {
-                pageReturnLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5625f, -1.75f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.LEFT), cl);
+                pageReturnLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -3.5f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.LEFT), cl, true, Scale + 6);
                 pageReturnLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     ObliterateCraftUI();
@@ -1358,15 +1700,20 @@ namespace ModularMod
                 };
                 pageReturnLabel.MouseHover = (label, boolean) =>
                 {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.LEFT_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.LEFT);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
+                };
+                pageReturnLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
 
             if (pageDownLabel) { Destroy(pageDownLabel.gameObject); }
             if (pageDownLabel == null)
             {
-                pageDownLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5625f, -1f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN), cl);
+                pageDownLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -2.25f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN), cl, true, Scale + 6);
                 pageDownLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     if (ReturnPagesCount(quickAndMessyPages) > ListEntry)
@@ -1381,14 +1728,19 @@ namespace ModularMod
                 {
                     if (ReturnPagesCount(quickAndMessyPages) > ListEntry)
                     {
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                        label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.DOWN_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
                     else
                     {
-                        label.color = new Color32(155, 155, 155, 155);
+                        label.color = new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
+                };
+                pageDownLabel.label.MouseEnter += (o1, o2) =>
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
             UpdateOptions();
@@ -1401,6 +1753,8 @@ namespace ModularMod
         {
             if (extantLabel) { extantLabel.Inv(); }
             if (PageLabel) { Destroy(PageLabel.gameObject); }
+            if (craftLabel) {craftLabel.Inv(); }
+
             Color32 cl = player.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
 
             foreach (var entry in craftingLabels)
@@ -1415,69 +1769,82 @@ namespace ModularMod
                 if (ListEntry == page.Page)
                 {
                     string T = page.module.LabelName + " (" + scrapLabel + " " + ModuleCost(page.module).ToString() + ")";
-                    var Button = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 0.75f - (0.75f * c)), 0.66f, T, cl);
+                    var Button = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 0.25f - (0.75f * c)) + AdditionalOffset, 0.66f, T, cl, true, Scale);
                     Button.StoredModuleInfo = page.module;
                     Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                     {
                         if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                        extantLabel = Toolbox.GenerateText(player.transform, new Vector2(-2.5f, -1.5f - (0.5f * c)), 0.66f, page.module.LabelDescription, cl);
+                        extantLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, -1.75f - (0.5f * c)) + AdditionalOffset, 0.66f, page.module.LabelDescription, cl, true, 4);
                         if (craftLabel) { craftLabel.MouseHover = null; craftLabel.OnUpdate = null; craftLabel.Inv(); }
-                        if (GetScrapCount(player) >= ModuleCost(page.module))
+                        craftLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 1f) + AdditionalOffset, 0.66f, StaticColorHexes.AddColorToLabelString("CRAFT", StaticColorHexes.Light_Green_Hex) + "( " + scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-" + ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) + " )", cl, true, Scale);
+                        craftLabel.MouseHover = (label, boolean) =>
                         {
-                            craftLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 1.5f), 0.66f, StaticColorHexes.AddColorToLabelString("CRAFT", StaticColorHexes.Light_Green_Hex) + "( "+ scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-"+ ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) +" )", cl);
-                            craftLabel.MouseHover = (label, boolean) =>
+                            if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
                             {
-                                label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                                label.text = StaticColorHexes.AddColorToLabelString("CRAFT", boolean == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex) + "( " + scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-" + ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) + " )";
+                                label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                                 label.Invalidate();
-                            };
-                            craftLabel.OnUpdate = (label) =>
+                            }
+                        };
+                        craftLabel.OnUpdate = (label) =>
+                        {
+                            if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
                             {
-                                if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
-                                {
-                                    label.text = StaticColorHexes.AddColorToLabelString("CRAFT", StaticColorHexes.Light_Green_Hex) + "( " + scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-" + ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) + " )";
-                                    label.Invalidate();
-                                }
-                                else
-                                {
-                                    label.text = StaticColorHexes.AddColorToLabelString("INSUFFICIENT SCRAP", StaticColorHexes.Red_Color_Hex);
-                                    label.Invalidate();
-                                }
-                            };
-                            craftLabel.label.Click += delegate (dfControl control1, dfMouseEventArgs mouseEvent2)
+                                label.text = StaticColorHexes.AddColorToLabelString("CRAFT", StaticColorHexes.White_Hex) + "( " + scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-" + ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) + " )";
+                                label.Invalidate();
+                            }
+                            else
                             {
-                                if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
-                                {
-                                    player.GetComponent<ConsumableStorage>().RemoveConsumableAmount("Scrap", ModuleCost(page.module));
-                                    LootEngine.SpawnItem(page.module.gameObject, player.SpriteBottomCenter, Vector2.zero, 0);
-                                }
-                            };
-                        }
+                                label.text = StaticColorHexes.AddColorToLabelString("INSUFFICIENT SCRAP", StaticColorHexes.Red_Color_Hex);
+                                label.Invalidate();
+                            }
+                        };
+                        craftLabel.label.Click += delegate (dfControl control1, dfMouseEventArgs mouseEvent2)
+                        {
+                            if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
+                            {
+                                if (OnCrafted != null) { OnCrafted(); }
+                                player.GetComponent<ConsumableStorage>().RemoveConsumableAmount("Scrap", ModuleCost(page.module));
+                                LootEngine.SpawnItem(page.module.gameObject, player.SpriteBottomCenter, Vector2.zero, 0);
+                            }
+                        };
+                        craftLabel.label.MouseEnter += (o1, o2) =>
+                        {
+                            if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
+                            {
+                                AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
+                            }
+                        };
                         //craftLabel
                     };
                     Button.MouseHover = (label, boolean) =>
                     {
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 155);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     };
                     Button.OnUpdate = (label) =>
                     {
                         if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
-                        {
-                            label.text = Button.StoredModuleInfo.LabelName + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Light_Green_Hex) + ")";
+                        {//Button
+                            label.text = StaticColorHexes.AddColorToLabelString(Button.StoredModuleInfo.LabelName, Button.IsMouseHovering() == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex)+ " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Green_Hex) + ")";
                             label.Invalidate();
                         }
                         else
                         {
-                            label.text = Button.StoredModuleInfo.LabelName + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Red_Color_Hex) + ")";
+                            label.text = StaticColorHexes.AddColorToLabelString(Button.StoredModuleInfo.LabelName, Button.IsMouseHovering() == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex) + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Red_Color_Hex) + ")";
                             label.Invalidate();
                         }
+                    };
+                    Button.label.MouseEnter += (o1, o2) =>
+                    {
+                        AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                     };
 
                     craftingLabels.Add(Button, page.module);
                     c++;
                 }
             }
-            PageLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (quickAndMessyPages.Count > 0 ? (quickAndMessyPages.Last().Page + 1).ToString() : "1"), cl);
+            PageLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 0.25f - (0.75f * c)) + AdditionalOffset, 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (quickAndMessyPages.Count > 0 ? (quickAndMessyPages.Last().Page + 1).ToString() : "1"), cl, true, Scale);
             UpdatePageLabel(quickAndMessyPages);
         }
 
@@ -1522,6 +1889,7 @@ namespace ModularMod
                     return GlobalModuleStorage.pages_T2;
                 case SelectedTier.T3:
                     return GlobalModuleStorage.pages_T3;
+
                 default:
                     return GlobalModuleStorage.pages_T1;
             }
@@ -1559,6 +1927,8 @@ namespace ModularMod
             if (T1_Select) { Destroy(T1_Select.gameObject); }
             if (T2_Select) { Destroy(T2_Select.gameObject); }
             if (T3_Select) { Destroy(T3_Select.gameObject); }
+            if (basicgarbageLabel) { Destroy(basicgarbageLabel.gameObject); }
+
         }
 
         public void ObliterateUI()
@@ -1603,13 +1973,15 @@ namespace ModularMod
         public ModifiedDefaultLabelManager pageDownLabel;
         public ModifiedDefaultLabelManager pageReturnLabel;
 
+        public ModifiedDefaultLabelManager basicgarbageLabel;
 
         private enum SelectedTier
         {
             NONE, 
             T1,
             T2,
-            T3
+            T3,
+
         }
 
     }

@@ -50,6 +50,9 @@ namespace ModularMod
                     new Tuple<float, int>(0.5f, 70),
                     new Tuple<float, int>(0.3f, 67),
                     new Tuple<float, int>(0.05f, 137),
+                    new Tuple<float, int>(0.15f, Scrap.Scrap_ID),
+                    new Tuple<float, int>(0.02f, CraftingCore.CraftingCoreID),
+
                 }
             };
             h.StartCoroutine(FrameDelay());

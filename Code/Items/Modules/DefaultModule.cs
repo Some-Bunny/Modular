@@ -122,7 +122,8 @@ namespace ModularMod
                     OnAnyEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
                 }
             }
-            Toolbox.NotifyCustom("Installed Module:", this.LabelName, this.sprite.spriteId, this.sprite.collection, UINotificationController.NotificationColor.GOLD);
+            AkSoundEngine.PostEvent("Play_ClickIntoPlace", player.gameObject);
+            Toolbox.NotifyCustom("Added Module:", this.LabelName, this.sprite.spriteId, this.sprite.collection, UINotificationController.NotificationColor.PURPLE);
             UnityEngine.Object.Destroy(base.gameObject);
         }
 
@@ -190,13 +191,19 @@ namespace ModularMod
         {
             foreach (PlayerController p in GameManager.Instance.AllPlayers)
             {
-                if (p.HasPassiveItem(ModulePrinterCore.ModulePrinterCoreID) == true && p.IsUsingAlternateCostume == true) { return true; }
+                if (p.HasPassiveItem(ModulePrinterCore.ModulePrinterCoreID) && p.IsUsingAlternateCostume == true) 
+                {
+                    return true; 
+                }
             }
             return false;
         }
         protected void Start()
         {
-            if (AltSpriteID != null && ModularIsAltSkin() == true) {this.sprite.SetSprite(AltSpriteID.Value); }
+            if (AltSpriteID != -69 && ModularIsAltSkin() == true) 
+            {
+                this.sprite.SetSprite(AltSpriteID);
+            }
             this.sprite.usesOverrideMaterial = true;
             try
             {
@@ -411,7 +418,7 @@ namespace ModularMod
         public Color32? Label_Background_Color_Override = null;
 
 
-        public int? AltSpriteID = null;
+        public int AltSpriteID = -69;
         public float AdditionalWeightMultiplier = 1;
 
         public float EnergyConsumption = -1;
@@ -423,9 +430,8 @@ namespace ModularMod
 
         public static float ReturnBasePowerConsumption(DefaultModule module, int stack)
         {
-            int c = module.ActiveStack();
-            if (c == 0) { return 0; }
-            return c == 1 ? module.EnergyConsumption : module.EnergyConsumption + ((module.EnergyConsumption *(stack-1))/2);
+            if (stack == 0) { return 0; }
+            return stack == 1 ? module.EnergyConsumption : module.EnergyConsumption + ((module.EnergyConsumption *(stack-1))/2);
         }
 
         public ModuleGunStatModifier gunStatModifier;

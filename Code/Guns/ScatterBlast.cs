@@ -18,7 +18,7 @@ namespace ModularMod
             gun.gameObject.AddComponent<ScatterBlast>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires an energy spread. Compatible with Modular Upgrade Software.\n\nA very unusual modification of a paint gun. *Very* unusual.");
-            
+
             GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "scattercannon_idle_001", 11);
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
@@ -35,7 +35,7 @@ namespace ModularMod
             var comp = gun.gameObject.AddComponent<ModularGunController>();
             comp.isAlt = false;
 
-            gun.gunSwitchGroup = (PickupObjectDatabase.GetById(57) as Gun).gunSwitchGroup;
+            gun.gunSwitchGroup = (PickupObjectDatabase.GetById(123) as Gun).gunSwitchGroup;
 
 
             gun.reloadTime = 2.75f;
@@ -56,7 +56,7 @@ namespace ModularMod
                 projectileModule.angleVariance = 21;
                 projectileModule.numberOfShotsInClip = 8;
 
-                
+
                 Projectile projectile = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);
                 projectile.gameObject.SetActive(false);
                 FakePrefab.MarkAsFakePrefab(projectile.gameObject);
@@ -107,7 +107,8 @@ namespace ModularMod
             gun.AddGlowShaderToGun(new Color32(121, 234, 255, 255), 10, 10);
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
-
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = "ArmCannon";
             gun.carryPixelOffset = new IntVector2(4, 2);
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(223) as Gun).muzzleFlashEffects;
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.375f, 0.1875f), "muzzle_point").transform;

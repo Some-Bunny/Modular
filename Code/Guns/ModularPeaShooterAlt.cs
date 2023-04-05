@@ -46,7 +46,10 @@ namespace ModularMod
             gun.DefaultModule.angleVariance = 2f;
 
             gun.InfiniteAmmo = true;
-            gun.quality = PickupObject.ItemQuality.SPECIAL;
+            gun.quality = PickupObject.ItemQuality.EXCLUDED;
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("PeaShooterAlt_Modular", StaticCollections.Clip_Ammo_Atlas, "peashooteralt_1", "peashooteralt_2");
 
             Projectile projectile = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);
             projectile.gameObject.SetActive(false);

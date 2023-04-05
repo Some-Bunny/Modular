@@ -42,6 +42,14 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            /*
+            foreach (PlayerController p in GameManager.Instance.AllPlayers)
+            {
+                orig(p, UnityEngine.Object.Instantiate(item.gameObject, Vector2.zero, p.transform).GetComponent<PassiveItem>());
+            }
+            Destroy(item);
+            */
+
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 ClipSize_Process = ProcessClipSize

@@ -76,6 +76,10 @@ namespace ModularMod
             projectile.shouldRotate = false;
             gun.gunClass = GunClass.NONE;
 
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("PeaShooter_Modular", StaticCollections.Clip_Ammo_Atlas, "peashooter_1", "peashooter_2");
+
             gun.AddGlowShaderToGun(new Color32(121, 234, 255, 255), 10, 10);
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;

@@ -48,7 +48,17 @@ namespace ModularMod
         {
             modulePrinter.OnEnteredCombat += OEC;
             modulePrinter.OnPostProcessProjectile += PPP;
+            modulePrinter.OnFrameUpdate += OFU;
         }
+
+        public void OFU(ModulePrinterCore modulePrinter, PlayerController player)
+        {
+            if (Mult > 1)
+            {
+                Mult -= BraveTime.DeltaTime;
+            }
+        }
+
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnEnteredCombat -= OEC;
@@ -56,132 +66,33 @@ namespace ModularMod
         }
 
         public float DamageMax = 5;
-        public float CloakTime = 5;
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
         {
             int stack = this.ReturnStack(modulePrinter);
             DamageMax = 3 + (stack);
-            CloakTime = 2.5f + (stack * 2.5f);
         }
 
         public void OEC(ModulePrinterCore modulePrinterCore, RoomHandler room, PlayerController p)
         {
-            p.StartCoroutine(HandleStealth(p));
+            int stack = this.ReturnStack(modulePrinterCore);
+            modulePrinterCore.cloakDoer.ProcessCloak(new CloakDoer.CloakContext()
+            {
+                Length = 2.5f + (stack * 2.5f),
+                OnForceCloakBroken = PP
+            });
         }
 
-        private IEnumerator HandleStealth(PlayerController user)
+        public void PP(PlayerController ppe)
         {
-            AkSoundEngine.PostEvent("Play_cloak", user.gameObject);
-            Hooks.Stencility_Enabled = false;
-            float elapsed = 0f;
-            user.sprite.usesOverrideMaterial = true;
-            user.sprite.renderer.material.shader = StaticShaders.TransparencyShader;
-            user.sprite.renderer.material.SetFloat("_Fade", 1f);
-            for (int i = 0; i < user.healthHaver.bodySprites.Count; i++)
-            {
-                user.healthHaver.bodySprites[i].usesOverrideMaterial = true;
-                user.healthHaver.bodySprites[i].renderer.material.shader = StaticShaders.TransparencyShader;
-                user.healthHaver.bodySprites[i].renderer.material.SetFloat("_Fade", 1f);
-            }
-            if (user.primaryHand && user.primaryHand.sprite)
-            {
-                user.primaryHand.sprite.usesOverrideMaterial = true;
-                user.primaryHand.sprite.renderer.material.shader = StaticShaders.TransparencyShader;
-                user.primaryHand.sprite.renderer.material.SetFloat("_Fade", 1f);
-            }
-            if (user.secondaryHand && user.secondaryHand.sprite)
-            {
-                user.secondaryHand.sprite.usesOverrideMaterial = true;
-                user.secondaryHand.sprite.renderer.material.shader = StaticShaders.TransparencyShader;
-                user.secondaryHand.sprite.renderer.material.SetFloat("_Fade", 1f);
-            }
-            currentState = Cloak_State.Active;
-
-            user.SetIsStealthed(true, "smoke");
-            user.specRigidbody.AddCollisionLayerIgnoreOverride(CollisionMask.LayerToMask(CollisionLayer.EnemyHitBox, CollisionLayer.EnemyCollider));
-            user.OnDidUnstealthyAction += this.BreakStealth;
-            while (elapsed < CloakTime)
-            {
-                if (currentState != Cloak_State.Active) { yield break; }
-                AlterShader(user, Mathf.Max(0.2f, Mathf.Lerp(1, 0, elapsed * 1.25f)));
-                elapsed += BraveTime.DeltaTime;
-                if (!user.IsStealthed)
-                {
-                    break;
-                }
-                yield return null;
-            }
-            user.OnDidUnstealthyAction -= this.BreakStealth;
-            user.StartCoroutine(DoMultiplierFade(user, false));
-            user.specRigidbody.RemoveCollisionLayerIgnoreOverride(CollisionMask.LayerToMask(CollisionLayer.EnemyHitBox, CollisionLayer.EnemyCollider));
-            user.SetIsStealthed(false, "smoke");
-            yield break;
+            AkSoundEngine.PostEvent("Play_BOSS_cyborg_storm_01", ppe.gameObject);
+            ppe.PlayEffectOnActor(VFXStorage.MachoBraceDustupVFX, new Vector3(-1f, -1f));
+            Mult = DamageMax;
         }
 
-        public void AlterShader(PlayerController user, float f)
-        {
-            if (user.sprite.renderer.material.shader != StaticShaders.TransparencyShader) { return; }
-            user.sprite.renderer.material.SetFloat("_Fade", f);
-            for (int i = 0; i < user.healthHaver.bodySprites.Count; i++)
-            {
-                user.healthHaver.bodySprites[i].renderer.material.SetFloat("_Fade", f);
-            }
-            if (user.primaryHand && user.primaryHand.sprite)
-            {
-                user.primaryHand.sprite.renderer.material.SetFloat("_Fade", f);
-            }
-            if (user.secondaryHand && user.secondaryHand.sprite)
-            {
-                user.secondaryHand.sprite.renderer.material.SetFloat("_Fade", f);
-            }
-        }
-
-        private IEnumerator DoMultiplierFade(PlayerController user, bool affectsDamage = true)
-        {
-            if (affectsDamage == true)
-            {
-                AkSoundEngine.PostEvent("Play_BOSS_cyborg_storm_01", user.gameObject);
-                user.PlayEffectOnActor(VFXStorage.MachoBraceDustupVFX, new Vector3(-1f, -1f));
-            }
-            currentState = Cloak_State.Disabling;
-            float elapsed = 0f;
-            while (elapsed < 2.5f)
-            {
-                elapsed += BraveTime.DeltaTime;
-                if (currentState == Cloak_State.Active) { Mult = 1; yield break; }
-                AlterShader(user, Mathf.Lerp(0.2f, 1, elapsed * 2f));    
-                if (affectsDamage == true)
-                {
-                    Mult = Mathf.Lerp(DamageMax, 1, elapsed / 2.5f);
-                }
-                yield return null;
-            }
-            Mult = 1;
-            user.sprite.renderer.material = user.gameObject.GetComponent<CustomCharacter>().data.glowMaterial;
-            Hooks.Stencility_Enabled = true;
-            currentState = Cloak_State.Inactive;
-            yield break;
-        }
-
-        public Cloak_State currentState = Cloak_State.Inactive;
-        public enum Cloak_State
-        {
-            Inactive,
-            Active,
-            Disabling
-        }
-
-        private void BreakStealth(PlayerController obj)
-        {
-            obj.OnDidUnstealthyAction -= this.BreakStealth;
-            obj.StartCoroutine(DoMultiplierFade(obj));
-            obj.specRigidbody.RemoveCollisionLayerIgnoreOverride(CollisionMask.LayerToMask(CollisionLayer.EnemyHitBox, CollisionLayer.EnemyCollider));
-            obj.SetIsStealthed(false, "smoke");
-        }
         private float Mult = 1;
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
-        {    
+        {
             p.baseData.damage *= Mult;
             p.AdditionalScaleMultiplier *= Mathf.Min(Mult, 2.5f);
         }

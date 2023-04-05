@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Alexandria.CharacterAPI;
 using Alexandria.ItemAPI;
 using Brave.BulletScript;
 using Dungeonator;
@@ -87,6 +88,10 @@ namespace ModularMod
             player.OnRoomClearEvent += OnRoomClearEvent;
             player.GunChanged += Player_GunChanged;
             player.OnNewFloorLoaded += NewFloorLoaded;
+
+            cloakDoer = ScriptableObject.CreateInstance<CloakDoer>();
+            cloakDoer.DoStartUp(player);
+
         }
         private bool b = false;
         public void NewFloorLoaded(PlayerController player)
@@ -175,6 +180,10 @@ namespace ModularMod
         }
 
 
+
+
+
+
         public void PostProcessBeamTick(BeamController b, SpeculativeRigidbody hitRigidbody ,float f)
         {
             if (base.Owner == null) { return; }
@@ -185,6 +194,20 @@ namespace ModularMod
             if (base.Owner == null) { return; }
             if (OnPostProcessProjectile != null && p != null) { OnPostProcessProjectile(this, p, f, base.Owner); }
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
+            if (OnProjectileStickAction != null)
+            {
+                var modifier = p.gameObject.AddComponent<StickyProjectileModifier>();
+                modifier.OnStick = OnProjectileStickAction;
+                
+                if (OnStickyDestroyAction != null)
+                {
+                    modifier.OnStickyDestroyed = OnStickyDestroyAction;
+                }
+                if (OnPreProjectileStickAction != null)
+                {
+                    modifier.OnPreStick = OnPreProjectileStickAction;
+                }
+            }
         }
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
         {
@@ -240,7 +263,7 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, DefaultModule> OnAnyModuleObtained;
         public Action<ModulePrinterCore, PlayerController, AIActor, Projectile> OnPreEnemyHit;
 
-        public float StartingPower = 6;
+        public float StartingPower = 5;
         public Func<ModulePrinterCore, float> AdditionalPowerMods;
 
         public float ReturnTotalPower()
@@ -270,7 +293,26 @@ namespace ModularMod
             }
             return c;
         }
-
+        public float ReturnTotalPowerMasteryless()
+        {
+            float c = StartingPower;
+            if (AdditionalPowerMods != null)
+            {
+                c += AdditionalPowerMods(this);
+            }
+            foreach (PassiveItem item in this.Owner.passiveItems)
+            {
+                if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
+                {
+                    c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
+                }
+            }
+            if (ModularGunController != null)
+            {
+                c += ModularGunController.AdditionalPowerSupply;
+            }
+            return c;
+        }
         public float ReturnPowerConsumption()
         {
             float c = 0;
@@ -283,7 +325,6 @@ namespace ModularMod
             }
             return c;
         }
-
         public float ReturnPowerConsumption(DefaultModule module)
         {
             float c = 0;
@@ -314,8 +355,6 @@ namespace ModularMod
             }
             return c;
         }
-
-
         public float ReturnPowerConsumptionOfNextStack(DefaultModule module, int stacksToIncrement = 1)
         {
             float c = 0;
@@ -323,32 +362,36 @@ namespace ModularMod
             {
                 if (ModuleContainers[i] != null)
                 {
+                    var defModule = ModuleContainers[i].defaultModule;
                     bool asfas = ModuleContainers[i].defaultModule.LabelName == module.LabelName;
-                    if (ModuleContainers[i].defaultModule.powerConsumptionData != null)
+                    if (asfas == true)
                     {
-                        if (ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement != null)
+                        if (ModuleContainers[i].defaultModule.powerConsumptionData != null)
                         {
-                            c += ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement(ModuleContainers[i].defaultModule, ReturnActiveStack(ModuleContainers[i].defaultModule.LabelName) + (asfas == true ? stacksToIncrement : 0));
+                            if (defModule.powerConsumptionData.OverridePowerManagement != null)
+                            {
+                                c += defModule.powerConsumptionData.OverridePowerManagement(defModule, ReturnActiveStack(defModule.LabelName) == 0 ? 1 : ReturnActiveStack(defModule.LabelName) + stacksToIncrement);
+                            }
+                            else
+                            {
+                                c += ReturnActiveStack(defModule.LabelName) == 0 ? defModule.powerConsumptionData.FirstStack : defModule.powerConsumptionData.FirstStack + (defModule.powerConsumptionData.AdditionalStacks * ((defModule.ActiveStack() - 1) + stacksToIncrement));
+                            }
                         }
                         else
                         {
-                            c += ModuleContainers[i].defaultModule.powerConsumptionData.FirstStack + (ModuleContainers[i].defaultModule.powerConsumptionData.AdditionalStacks * ((ModuleContainers[i].defaultModule.ActiveStack() - 1) + (asfas == true ? stacksToIncrement : 0)));
+                            c += ReturnActiveStack(defModule.LabelName) == 0 ? defModule.EnergyConsumption : defModule.EnergyConsumption + ((defModule.EnergyConsumption * ((defModule.ActiveStack() - 1) + stacksToIncrement)));
                         }
-
                     }
                     else
                     {
-                        c += ModuleContainers[i].defaultModule.EnergyConsumption + ((ModuleContainers[i].defaultModule.EnergyConsumption * ((ModuleContainers[i].defaultModule.ActiveStack() - 1) + (asfas == true ? stacksToIncrement : 0))));
+                        c += ReturnPowerConsumption(ModuleContainers[i].defaultModule);
                     }
+
                 }
             }
             return c;
 
         }
-
-
-        //UI Shit
-
         public void DepowerModule(DefaultModule self, int Amount_To_Remove = 1)
         {
             for (int i = 0; i < ModuleContainers.Count; i++)
@@ -357,6 +400,7 @@ namespace ModularMod
                 {
                     if (ModuleContainers[i].LabelName == self.LabelName)
                     {
+                        if (OnAnyModuleUnpowered != null) { OnAnyModuleUnpowered(this, self, Amount_To_Remove); }
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
                             if (ModuleContainers[i].ActiveCount == 0) {return; }
@@ -375,15 +419,16 @@ namespace ModularMod
                 }
             }
         }
-
         public void PowerModule(DefaultModule self, int Amount_To_Remove = 1)
         {
+            
             for (int i = 0; i < ModuleContainers.Count; i++)
             {
                 if (ModuleContainers[i] != null)
                 {
                     if (ModuleContainers[i].LabelName == self.LabelName)
                     {
+                        if (OnAnyModulePowered != null) { OnAnyModulePowered(this, self, Amount_To_Remove); }
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
                             if (ModuleContainers[i].ActiveCount == 0)
@@ -401,6 +446,9 @@ namespace ModularMod
                 }
             }
         }
+
+        public Action<ModulePrinterCore, DefaultModule, int> OnAnyModulePowered;
+        public Action<ModulePrinterCore, DefaultModule, int> OnAnyModuleUnpowered;
 
 
         //General public variables that are useful
@@ -557,7 +605,9 @@ namespace ModularMod
             }
             base.OnDestroy();
         }
-
+        public Action<Projectile, PlayerController> OnPreProjectileStickAction;
+        public Action<GameObject, StickyProjectileModifier, tk2dBaseSprite, PlayerController> OnProjectileStickAction;
+        public Action<GameObject, StickyProjectileModifier, PlayerController> OnStickyDestroyAction;
 
 
         public class ModuleContainer
@@ -574,6 +624,189 @@ namespace ModularMod
         {
             public int AdditionalEnergy = 1;
         }
+
+        
+
+
+
+        public CloakDoer cloakDoer;
+
         public List<ModuleContainer> ModuleContainers = new List<ModuleContainer>();
+    }
+
+    public class CloakDoer : ScriptableObject
+    {
+        private PlayerController player;
+        public void DoStartUp(PlayerController p)
+        {
+            player = p;
+        }
+        public List<CloakContext> cloakContexts = new List<CloakContext>();
+
+        
+
+        public void ProcessCloak(CloakContext context)
+        {
+            cloakContexts.Add(context);
+            Cloak_Time += context.Length;
+            if (cloakContexts.Count == 1)
+            {
+                StartCloak();
+            }
+            foreach (var cloakCs in cloakContexts)
+            {
+                if (cloakCs.OnEnteredCloak != null)
+                {
+                    cloakCs.OnEnteredCloak(player);
+                    if (cloakCs.Retrigger_Enter == false) { cloakCs.OnEnteredCloak = null; }
+                }
+            }
+        }
+
+
+        public void StartCloak()
+        {
+            player.StartCoroutine(HandleStealth(player));
+        }
+
+
+        private float Cloak_Time = 0;
+
+        private IEnumerator HandleStealth(PlayerController user)
+        {
+            AkSoundEngine.PostEvent("Play_cloak", user.gameObject);
+            Hooks.Stencility_Enabled = false;
+            float elapsed = 0f;
+            user.sprite.usesOverrideMaterial = true;
+            user.sprite.renderer.material.shader = StaticShaders.TransparencyShader;
+            user.sprite.renderer.material.SetFloat("_Fade", 1f);
+            for (int i = 0; i < user.healthHaver.bodySprites.Count; i++)
+            {
+                user.healthHaver.bodySprites[i].usesOverrideMaterial = true;
+                user.healthHaver.bodySprites[i].renderer.material.shader = StaticShaders.TransparencyShader;
+                user.healthHaver.bodySprites[i].renderer.material.SetFloat("_Fade", 1f);
+            }
+            if (user.primaryHand && user.primaryHand.sprite)
+            {
+                user.primaryHand.sprite.usesOverrideMaterial = true;
+                user.primaryHand.sprite.renderer.material.shader = StaticShaders.TransparencyShader;
+                user.primaryHand.sprite.renderer.material.SetFloat("_Fade", 1f);
+            }
+            if (user.secondaryHand && user.secondaryHand.sprite)
+            {
+                user.secondaryHand.sprite.usesOverrideMaterial = true;
+                user.secondaryHand.sprite.renderer.material.shader = StaticShaders.TransparencyShader;
+                user.secondaryHand.sprite.renderer.material.SetFloat("_Fade", 1f);
+            }
+            currentState = Cloak_State.Active;
+
+            //EnteredCloak = null;
+            user.SetIsStealthed(true, "cloak");
+            user.specRigidbody.AddCollisionLayerIgnoreOverride(CollisionMask.LayerToMask(CollisionLayer.EnemyHitBox, CollisionLayer.EnemyCollider));
+            user.OnDidUnstealthyAction += this.BreakStealth;
+            while (elapsed < Cloak_Time)
+            {
+                if (currentState != Cloak_State.Active) { yield break; }
+                AlterShader(user, Mathf.Max(0.2f, Mathf.Lerp(1, 0, elapsed)));
+                elapsed += BraveTime.DeltaTime;
+                if (!user.IsStealthed)
+                {
+                    break;
+                }
+                yield return null;
+            }
+            user.OnDidUnstealthyAction -= this.BreakStealth;
+            user.specRigidbody.RemoveCollisionLayerIgnoreOverride(CollisionMask.LayerToMask(CollisionLayer.EnemyHitBox, CollisionLayer.EnemyCollider));
+            user.SetIsStealthed(false, "cloak");
+            user.StartCoroutine(BreakStealth(false));
+            yield break;
+        }
+
+        private void AlterShader(PlayerController user, float f)
+        {
+            if (user.sprite.renderer.material.shader != StaticShaders.TransparencyShader) { return; }
+            user.sprite.renderer.material.SetFloat("_Fade", f);
+            for (int i = 0; i < user.healthHaver.bodySprites.Count; i++)
+            {
+                user.healthHaver.bodySprites[i].renderer.material.SetFloat("_Fade", f);
+            }
+            if (user.primaryHand && user.primaryHand.sprite)
+            {
+                user.primaryHand.sprite.renderer.material.SetFloat("_Fade", f);
+            }
+            if (user.secondaryHand && user.secondaryHand.sprite)
+            {
+                user.secondaryHand.sprite.renderer.material.SetFloat("_Fade", f);
+            }
+        }
+
+
+        private IEnumerator BreakStealth(bool isForced)
+        {
+            currentState = Cloak_State.Disabling;
+
+            foreach (var cloakCs in cloakContexts)
+            {
+                if (cloakCs.OnCloakBroken != null)
+                {
+                    cloakCs.OnCloakBroken(player);
+                    if (cloakCs.Retrigger_Cloak_Break == false) { cloakCs.OnCloakBroken = null; }
+                }
+                if (isForced == true)
+                {
+                    if (cloakCs.OnForceCloakBroken != null)
+                    {
+                        cloakCs.OnForceCloakBroken(player);
+                        if (cloakCs.Retrigger_Force_Cloak_Break == false) { cloakCs.OnForceCloakBroken = null; }
+                    }
+                }
+            }
+
+            //ForceCloakBroken = null;
+            cloakContexts.Clear();
+            Cloak_Time = 0;
+            float elapsed = 0f;
+            while (elapsed < 1.5f)
+            {
+                elapsed += BraveTime.DeltaTime;
+                if (currentState == Cloak_State.Active) { yield break; }
+                AlterShader(player, Mathf.Lerp(0.2f, 1, elapsed / 1.5f));
+                yield return null;
+            }
+            player.sprite.renderer.material = player.IsUsingAlternateCostume == true ? player.gameObject.GetComponent<CustomCharacter>().data.altGlowMaterial : player.gameObject.GetComponent<CustomCharacter>().data.glowMaterial;
+            Hooks.Stencility_Enabled = true;
+            currentState = Cloak_State.Inactive;
+            yield break;
+        }
+
+        public Cloak_State currentState = Cloak_State.Inactive;
+        public enum Cloak_State
+        {
+            Inactive,
+            Active,
+            Disabling
+        }
+
+        private void BreakStealth(PlayerController p)
+        {
+            player.StartCoroutine(BreakStealth(true));
+            player.OnDidUnstealthyAction -= this.BreakStealth;
+            player.specRigidbody.RemoveCollisionLayerIgnoreOverride(CollisionMask.LayerToMask(CollisionLayer.EnemyHitBox, CollisionLayer.EnemyCollider));
+            player.SetIsStealthed(false, "cloak");
+        }
+
+        public class CloakContext
+        {
+            public string Reason = "idk";
+            public Action<PlayerController> OnEnteredCloak;
+            public bool Retrigger_Enter = false;
+            public Action<PlayerController> OnCloakBroken;
+            public bool Retrigger_Cloak_Break = false;
+
+            public Action<PlayerController> OnForceCloakBroken;
+            public bool Retrigger_Force_Cloak_Break = false;
+
+            public float Length = 1;
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Plated Rage",
             Description = "Armored Core",
-            LongDescription = "Increases Damage by\n8.33% (+8.33% per stack) for each piece of armor held." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n5% (+5% per stack) for each piece of armor held." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("platedrage_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,7 +27,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("platedrage_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Plated Rage " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by\n3.33% (" + StaticColorHexes.AddColorToLabelString("+8.33%", StaticColorHexes.Light_Orange_Hex) + ") for each\npiece or armor held.";
+            h.LabelDescription = "Increases Damage by\n5% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") for each\npiece or armor held.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -49,7 +49,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + ((0.0333f * stack) * player.healthHaver.Armor);
+            p.baseData.damage *= 1 + ((0.05f * stack) * player.healthHaver.Armor);
         }
     }
 }

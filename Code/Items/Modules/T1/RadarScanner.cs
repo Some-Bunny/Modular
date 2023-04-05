@@ -87,6 +87,10 @@ namespace ModularMod
                         {
                             var pickup = LootEngine.SpawnItem(GameManager.Instance.RewardManager.CurrentRewardData.SingleItemRewardTable.SelectByWeight(false), roomHandler.GetBestRewardLocation(new IntVector2(1, 1), RoomHandler.RewardLocationStyle.Original).ToCenterVector3(0), Vector2.zero, 0);
                             pickup.GetComponent<PickupObject>().IgnoredByRat = true;
+                            if (!StaticReferenceManager.AllDebris.Contains(pickup))
+                            {
+                                StaticReferenceManager.AllDebris.Add(pickup);
+                            }
                         }
                     }
                 }

@@ -16,7 +16,7 @@ namespace ModularMod
             self.isInteractive = true;
             self.tooltip = "";
             self.pivot = dfPivotPoint.TopLeft;
-            self.zindex = -1;
+            self.zindex = -2;
             self.color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.disabledColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.size = size;
@@ -24,7 +24,7 @@ namespace ModularMod
             self.maxSize = Vector2.zero;
             self.clipChildren = false;
             self.inverseClipChildren = false;
-            self.tabIndex = -1;
+            self.tabIndex = 2;
             self.canFocus = false;
             self.autoFocus = false;
             self.layout = new dfControl.AnchorLayout(dfAnchorStyle)
@@ -44,8 +44,10 @@ namespace ModularMod
             self.allowSignalEvents = true;
             self.PrecludeUpdateCycle = false;
             self.atlas = defaultAtlas;
+            
             self.backgroundColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.padding = new RectOffset(0, 0, 0, 0);
+            //self.cachedManager = StarterGunSelectUIController.mana;
         }
 
 
@@ -58,7 +60,7 @@ namespace ModularMod
             self.pivot = dfPivotPoint.MiddleCenter;
             self.tooltip = "";
             self.pivot = dfPivotPoint.TopLeft;
-            self.zindex = 0;
+            self.zindex = -2;
             self.color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.disabledColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.size = new Vector2(486f, 42f);
@@ -66,7 +68,7 @@ namespace ModularMod
             self.maxSize = Vector2.zero;
             self.clipChildren = false;
             self.inverseClipChildren = false;
-            self.tabIndex = -1;
+            self.tabIndex = 2;
             self.canFocus = false;
             self.autoFocus = false;
             
@@ -81,7 +83,7 @@ namespace ModularMod
                 },
                 owner = self
             };
-            self.renderOrder = 49;
+            self.renderOrder = 0;
             self.IsLocalized = false;
             self.hotZoneScale = Vector2.one;
             self.allowSignalEvents = true;
@@ -120,9 +122,11 @@ namespace ModularMod
         {
             self.isEnabled = true;
             self.pivot = dfPivotPoint.MiddleCenter;
-            self.renderOrder = 39;
-            self.isLocalized = true;
+            self.renderOrder = 30;
+            self.isLocalized = false;
             self.atlas = defaultAtlas;
+            self.Atlas = defaultAtlas;
+
             self.font = defaultFont;
             self.state = dfButton.ButtonState.Default;
             self.group = null;
@@ -150,6 +154,7 @@ namespace ModularMod
             self.clickWhenSpacePressed = true;
             self.forceUpperCase = false;
             self.manualStateControl = false;
+
         }
 
 
@@ -162,15 +167,15 @@ namespace ModularMod
             t.isInteractive = true;
             t.tooltip = "";
             t.pivot = dfPivotPoint.MiddleCenter;
-            t.zindex = 1;
+            t.zindex = -2;
             t.color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.disabledColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.size = size;
-            t.minSize = Vector2.zero;
-            t.maxSize = Vector2.zero;
+            //t.minSize = Vector2.zero;
+            //t.maxSize = Vector2.zero;
             t.clipChildren = false;
             t.inverseClipChildren = false;
-            t.tabIndex = -1;
+            t.tabIndex = 2;
             t.canFocus = false;
             t.autoFocus = false;
             t.layout = new dfControl.AnchorLayout(dfAnchor)
@@ -178,12 +183,14 @@ namespace ModularMod
                 margins = margins,
                 owner = t
             };
-            t.renderOrder = 50;
+            t.renderOrder = 20;
             t.isLocalized = false;
+            t.font = null;
             t.hotZoneScale = Vector2.one;
             t.allowSignalEvents = true;
             t.PrecludeUpdateCycle = false;
-            
+            //t.cachedManager = StarterGunSelectUIController.mana;
+
             return t;
         }
 
@@ -196,7 +203,7 @@ namespace ModularMod
             t.isInteractive = true;
             t.tooltip = "";
             t.pivot = dfPivotPoint.TopLeft;
-            t.zindex = 1;
+            t.zindex = -2;
             t.color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.disabledColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.size = size;
@@ -204,7 +211,7 @@ namespace ModularMod
             t.maxSize = Vector2.zero;
             t.clipChildren = false;
             t.inverseClipChildren = false;
-            t.tabIndex = -1;
+            t.tabIndex = 2;
             t.canFocus = true;
             t.autoFocus = false;
             t.layout = new dfControl.AnchorLayout(dfAnchor)
@@ -217,6 +224,10 @@ namespace ModularMod
             t.hotZoneScale = Vector2.one;
             t.allowSignalEvents = true;
             t.PrecludeUpdateCycle = false;
+            t.font = null;
+            //t.cachedManager = StarterGunSelectUIController.mana;
+
+
             return t;
         }
     }

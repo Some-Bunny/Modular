@@ -74,6 +74,8 @@ namespace ModularMod
             //Hooks
             Hooks.Init();
             EnemyDeathUnlockController.Start();
+            MultiActiveReloadManager.SetupHooks();
+            CustomClipAmmoTypeToolbox.Init();
 
             //Items
             ModulePrinterCore.Init();
@@ -83,9 +85,19 @@ namespace ModularMod
             DefaultArmCannonAlt.Init();
             ModularPeaShooter.Init();
             ModularPeaShooterAlt.Init();
-
             ScatterBlast.Init();
             ScatterBlastAlt.Init();
+            TriBurst.Init();
+            TriBurstAlt.Init();
+            ChargeBlaster.Init();
+            ChargeBlasterAlt.Init();
+            PresicionRifle.Init();
+            PresicionRifleAlt.Init();
+            Suppressor.Init();
+            SuppressorAlt.Init();
+
+            TheHammer.Init();
+            TheHammerAlt.Init();
 
             //Test Items
             Flowder.Init();
@@ -142,6 +154,8 @@ namespace ModularMod
             };
 
 
+            PastDungeon.Init();
+
             this.StartCoroutine(Delayedstarthandler());
             Log($"{NAME} v{VERSION} started successfully.", TEXT_COLOR);
         }
@@ -153,6 +167,9 @@ namespace ModularMod
             {
             });
             ETGModConsole.Commands.GetGroup("mdl").AddUnit("toggle_test_unlock", ForceEnableMixedFloor);
+
+            ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
+
 
             if (this.OnFrameDelay != null) 
             {
@@ -169,7 +186,26 @@ namespace ModularMod
         {
             SaveAPIManager.SetFlag(CustomDungeonFlags.TEST_UNLOCK, !SaveAPIManager.GetFlag(CustomDungeonFlags.TEST_UNLOCK));
             ETGModConsole.Log("Unlock is now set to : " + SaveAPIManager.GetFlag(CustomDungeonFlags.TEST_UNLOCK));
+        }
 
+
+
+        public static void ToggleLocks(string[] s)
+        {
+            SaveAPIManager.SetFlag(CustomDungeonFlags.TEST_UNLOCK, !SaveAPIManager.GetFlag(CustomDungeonFlags.TEST_UNLOCK));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_FLOOR_3, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_FLOOR_3));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_LICH_WITH_4_MODULES_OR_LESS, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_LICH_WITH_4_MODULES_OR_LESS));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_OLD_KING_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_OLD_KING_AS_MODULAR));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_RAT_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.BEAT_RAT_AS_MODULAR));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, !SaveAPIManager.GetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES));
+
+            ETGModConsole.Log("Unlocks are now set to : " + SaveAPIManager.GetFlag(CustomDungeonFlags.TEST_UNLOCK));
         }
 
         public Action OnFrameDelay;
@@ -178,6 +214,9 @@ namespace ModularMod
         {
             ETGModConsole.Log($"<color={color}>{text}</color>");
         }
+
+
+
         public static PlayableCharacters Modular;
     }
 

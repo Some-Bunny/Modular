@@ -69,6 +69,10 @@ namespace ModularMod
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "barrel_point").transform;
 
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("ArmCannonAlt", StaticCollections.Clip_Ammo_Atlas, "blasteralt_1", "blasteralt_2");
+
             //Main Alt Differentiations
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(207) as Gun).muzzleFlashEffects;
             projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.LowerCenter);
@@ -79,15 +83,15 @@ namespace ModularMod
             projectile.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(gunIDProj) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             Material mat = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
             mat.mainTexture = projectile.sprite.renderer.material.mainTexture;
-            mat.SetColor("_EmissiveColor", new Color32(0, 255, 54, 255));
+            mat.SetColor("_EmissiveColor", new Color32(255, 255, 255, 255));
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
-            DefaultArmCannonAlt.DefaultArmCannonAltID = gun.PickupObjectId;
+            ID = gun.PickupObjectId;
         }
-        public static int DefaultArmCannonAltID;
+        public static int ID;
     }
 }

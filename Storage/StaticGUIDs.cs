@@ -65,21 +65,18 @@ namespace ModularMod
             Ammoconda_GUID,
             Beholster_GUID,
             Gorgun_GUID,
-            Door_Lord_GUID,
         };
         public static List<string> Floor_3_Bosses = new List<string>()
         {
             Mine_Flayer_GUID,
             Cannonbalrog_GUID,
             Treadnaught_GUID,
-            Door_Lord_GUID,
         };
         public static List<string> Floor_4_Bosses = new List<string>()
         {
             Wallmonger_GUID,
             High_Priest_GUID,
             Kill_Pillars_GUID,
-            Door_Lord_GUID,
         };
         public static List<string> Floor_5_Bosses = new List<string>()
         {

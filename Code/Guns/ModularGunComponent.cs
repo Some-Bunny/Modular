@@ -92,7 +92,10 @@ namespace ModularMod
                 Default_Module_And_Stats.Add(mod,new Tuple<float, float>(mod.cooldownTime, mod.angleVariance));
                 foreach (var thing in mod.chargeProjectiles)
                 {
-                    Default_ChargeProj_And_Cooldown.Add(thing, thing.ChargeTime);
+                    if (!Default_ChargeProj_And_Cooldown.ContainsKey(thing))
+                    {
+                        Default_ChargeProj_And_Cooldown.Add(thing, thing.ChargeTime);
+                    }
                 }
             }
             storedCount = gun.alternateVolley != null ? gun.alternateVolley.projectiles != null ? gun.alternateVolley.projectiles.Count : 0 : 0;
@@ -275,7 +278,10 @@ namespace ModularMod
                                 Modified_Module_And_Stats.Add(entry, new Tuple<float, float>(entry.cooldownTime, entry.angleVariance));
                                 foreach (var chargeProj in entry.chargeProjectiles)
                                 {
-                                    Modified_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                    if (!Modified_ChargeProj_And_Cooldown.ContainsKey(chargeProj))
+                                    {
+                                        Modified_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                    }
                                 }
                             }
                         }
@@ -298,7 +304,10 @@ namespace ModularMod
 
                                 foreach (var chargeProj in entry.chargeProjectiles)
                                 {
-                                    Default_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                    if (!Default_ChargeProj_And_Cooldown.ContainsKey(chargeProj))
+                                    {
+                                        Default_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                    }
                                 }
                             }
                         }

@@ -11,6 +11,10 @@ using Planetside;
 using static SpawnEnemyOnDeath;
 using Alexandria.Misc;
 using UnityEngine.UI;
+using FullInspector;
+using Alexandria.NPCAPI;
+using Alexandria.ItemAPI;
+using static BossFinalRogueLaunchShips1;
 
 namespace ModularMod
 {
@@ -30,18 +34,19 @@ namespace ModularMod
                 switch (mod.Tier)
                 {
                     case DefaultModule.ModuleTier.Tier_1:
-                        if (UnityEngine.Random.value < 0.001) { return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                        if (UnityEngine.Random.value < 0.001) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                         return mod;
                     case DefaultModule.ModuleTier.Tier_2:
-                        if (UnityEngine.Random.value < 0.0025) { return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                        if (UnityEngine.Random.value < 0.0025) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                         return mod;
                     case DefaultModule.ModuleTier.Tier_3:
-                        if (UnityEngine.Random.value < 0.0075) { return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                        if (UnityEngine.Random.value < 0.0075) {
+                            AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega);
+                        }
                         return mod;
                     default: return mod;
                 }
             }
-
             public void AlterCount()
             {
                 if (g.quality == PickupObject.ItemQuality.B | g.quality == PickupObject.ItemQuality.A) { Count = 5; }
@@ -333,7 +338,32 @@ namespace ModularMod
             new Hook(typeof(Gun).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("PickupHook"));
             new Hook(typeof(PlayerController).GetMethod("SetStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("SetStencilValHook"));
             new Hook(typeof(PlayerController).GetMethod("UpdateStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("UpdateStencilValHook"));
+            //new Hook(typeof(BaseShopController).GetMethod("HandleEnter", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandleEnterHook"));
+            JuneLib.ItemsCore.AddChangeSpawnItem(ReturnObj);
+        }
 
+
+        public static GameObject ReturnObj(PickupObject pickup)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                if (player.PlayerHasCore() != null) 
+                {
+                    var HPComp = pickup.GetComponent<HealthPickup>();
+                    if (HPComp != null)
+                    {
+                        if (HPComp.healAmount == 0.5f)
+                        {
+                            pickup = UnityEngine.Random.value < 0.02f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
+                        }
+                        if (HPComp.healAmount == 1f)
+                        {
+                            pickup = UnityEngine.Random.value < 0.035f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
+                        }
+                    }
+                }
+            }
+            return pickup.gameObject;
         }
 
         public static void PickupHook(Action<Gun, PlayerController> orig, Gun self, PlayerController player)
@@ -362,6 +392,48 @@ namespace ModularMod
             if (player.sprite.renderer.material.shader == StaticShaders.TransparencyShader) { return; }
             if (Stencility_Enabled == false) { return; }
             orig(player);
+        }
+
+        public static void HandleEnterHook(Action<BaseShopController, PlayerController> orig, BaseShopController self, PlayerController p)
+        {
+            if (!self.m_hasBeenEntered && self.baseShopType == BaseShopController.AdditionalShopType.NONE)
+            {
+                foreach (PlayerController p1 in GameManager.Instance.AllPlayers)
+                {
+                    if (p1.PlayerHasCore() == true)
+                    {
+                        ReinitializeHPTOModules(self);
+                    }
+                }
+            }
+            orig(self, p);
+            
+        }
+
+        public static void ReinitializeHPTOModules(BaseShopController self)
+        {
+            if (self.baseShopType == BaseShopController.AdditionalShopType.NONE)
+            {
+                for (int i = 0; i < self.m_itemControllers.Count; i++)
+                {
+                    var HPComp = self.m_itemControllers[i].item.GetComponent<HealthPickup>();
+                    if (self.m_itemControllers[i] && self.m_itemControllers[i].item && HPComp != null)
+                    {
+                        if (HPComp.healAmount == 0.5f)
+                        {
+                            var g = UnityEngine.Random.value < 0.025f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                            self.m_shopItems[i] = g;
+                            self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                        }
+                        if (HPComp.healAmount == 1f)
+                        {
+                            var g = UnityEngine.Random.value < 0.0625f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                            self.m_shopItems[i] = g;
+                            self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                        }
+                    }
+                }
+            }
         }
     }
 }

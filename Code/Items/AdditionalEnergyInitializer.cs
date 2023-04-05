@@ -57,7 +57,6 @@ namespace ModularMod
             {
                 var fx = player.PlayEffectOnActor(PowerUpVFX, new Vector3(0, 1.25f));
                 fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("power_up");
-                //VFX Code here
             }
             if (self.gameObject.GetComponent<BasicStatPickup>() != null && player.HasPassiveItem(ModulePrinterCore.ModulePrinterCoreID))
             {
@@ -65,7 +64,6 @@ namespace ModularMod
                 {
                     var fx = player.PlayEffectOnActor(PowerUpVFX, new Vector3(0, 1.25f));
                     fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("power_up");
-                    //VFX Code here
                 }
             }
         }

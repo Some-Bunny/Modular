@@ -35,7 +35,7 @@ namespace ModularMod
             var comp = gun.gameObject.AddComponent<ModularGunController>();
             comp.isAlt = true;
 
-            gun.gunSwitchGroup = (PickupObjectDatabase.GetById(57) as Gun).gunSwitchGroup;
+            gun.gunSwitchGroup = (PickupObjectDatabase.GetById(123) as Gun).gunSwitchGroup;
 
 
             gun.reloadTime = 2.75f;
@@ -43,7 +43,7 @@ namespace ModularMod
 
 
             gun.InfiniteAmmo = true;
-            gun.quality = PickupObject.ItemQuality.SPECIAL;
+            gun.quality = PickupObject.ItemQuality.EXCLUDED;
 
             int q = 0;
             foreach (ProjectileModule projectileModule in gun.Volley.projectiles)
@@ -56,7 +56,7 @@ namespace ModularMod
                 projectileModule.angleVariance = 21;
                 projectileModule.numberOfShotsInClip = 8;
 
-                
+
                 Projectile projectile = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);
                 projectile.gameObject.SetActive(false);
                 FakePrefab.MarkAsFakePrefab(projectile.gameObject);
@@ -101,7 +101,8 @@ namespace ModularMod
             gun.Volley.UsesShotgunStyleVelocityRandomizer = true;
             //gun.Volley.DecreaseFinalSpeedPercentMin = 0.66f;
             //un.Volley.IncreaseFinalSpeedPercentMax = 1.5f;
-
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = "ArmCannonAlt";
 
             gun.gunClass = GunClass.SHOTGUN;
 

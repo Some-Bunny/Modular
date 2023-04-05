@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("overclockedmagazine_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Overclocked Magazines " + h.ReturnTierLabel();
-            h.LabelDescription = "Multiplies Rate Of Fire and Clip Size by  5 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nGreatly increases spread.";
+            h.LabelDescription = "Multiplies Rate Of Fire and Clip Size by 3 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nGreatly increases spread and reduces damage.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
@@ -63,11 +63,11 @@ namespace ModularMod
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f / (4 + (this.ReturnStack(modulePrinterCore)));
+            return f / (2 + (this.ReturnStack(modulePrinterCore)));
         }
         public int ProcessClipSize(int f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 4 + ((this.ReturnStack(modulePrinterCore)));
+            return f * 2 + ((this.ReturnStack(modulePrinterCore)));
         }
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
@@ -75,6 +75,7 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
+            p.baseData.damage *= 0.66f;
             p.baseData.speed *= 2;
             p.UpdateSpeed();
         }
