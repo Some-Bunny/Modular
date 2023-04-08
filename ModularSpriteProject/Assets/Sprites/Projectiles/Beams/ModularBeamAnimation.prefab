@@ -358,7 +358,7 @@ MonoBehaviour:
     wrapMode: 0
     minFidgetDuration: 1
     maxFidgetDuration: 2
-  - name: mancebeam_tip_start
+  - name: lancebeam_tip_start
     frames:
     - spriteCollection: {fileID: 114070612458333658, guid: 4b0b74029b28b3040bc413c6c5ef786d,
         type: 2}

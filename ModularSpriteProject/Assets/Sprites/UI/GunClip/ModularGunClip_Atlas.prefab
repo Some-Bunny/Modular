@@ -1,0 +1,670 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1144136440670612}
+  m_IsPrefabParent: 1
+--- !u!1 &1144136440670612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4633533772418324}
+  - component: {fileID: 114357719420671368}
+  m_Layer: 0
+  m_Name: ModularGunClip_Atlas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4633533772418324
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144136440670612}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114357719420671368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144136440670612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f514313262e3d141ad017b60809752a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: cbbe3794949ce564281406392573933d, type: 2}
+  items:
+  - name: actualapollo_1
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.1875
+      width: 0.03515625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 7}
+    textureGUID: 5c70ce0d811d15d41bbf565707d2c958
+    deleted: 0
+    texture: {fileID: 0}
+  - name: actualapollo_2
+    region:
+      serializedVersion: 2
+      x: 0.04296875
+      y: 0.1875
+      width: 0.03515625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 7}
+    textureGUID: 1967e4f5b438ab44dacc936ade0dbc27
+    deleted: 0
+    texture: {fileID: 0}
+  - name: actualartemis_1
+    region:
+      serializedVersion: 2
+      x: 0.0859375
+      y: 0.1875
+      width: 0.03515625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 7}
+    textureGUID: 957fa8b9acd836f468f267546310b0f7
+    deleted: 0
+    texture: {fileID: 0}
+  - name: actualartemis_2
+    region:
+      serializedVersion: 2
+      x: 0.234375
+      y: 0.203125
+      width: 0.03515625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 7}
+    textureGUID: 92c444067352a9c4c92bc98f9adc4709
+    deleted: 0
+    texture: {fileID: 0}
+  - name: apoll_1
+    region:
+      serializedVersion: 2
+      x: 0.26953125
+      y: 0.1171875
+      width: 0.02734375
+      height: 0.0703125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 9}
+    textureGUID: 66717016b01485d4e881b84c36a92c0b
+    deleted: 0
+    texture: {fileID: 0}
+  - name: apoll_2
+    region:
+      serializedVersion: 2
+      x: 0.12890625
+      y: 0.171875
+      width: 0.02734375
+      height: 0.0703125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 9}
+    textureGUID: e9dae36de35e81945ab98db5f58cf7d6
+    deleted: 0
+    texture: {fileID: 0}
+  - name: art_1
+    region:
+      serializedVersion: 2
+      x: 0.1640625
+      y: 0.171875
+      width: 0.02734375
+      height: 0.0703125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 9}
+    textureGUID: 370f9b752dbc4fb4ba3eb4f2d370dca7
+    deleted: 0
+    texture: {fileID: 0}
+  - name: art_2
+    region:
+      serializedVersion: 2
+      x: 0.19921875
+      y: 0.171875
+      width: 0.02734375
+      height: 0.0703125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 9}
+    textureGUID: cb102edd65149934a86d7486501093f9
+    deleted: 0
+    texture: {fileID: 0}
+  - name: blaster_1
+    region:
+      serializedVersion: 2
+      x: 0.27734375
+      y: 0.203125
+      width: 0.02734375
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 7}
+    textureGUID: f2574747c86bfc044ad57b1c784aaffe
+    deleted: 0
+    texture: {fileID: 0}
+  - name: blaster_2
+    region:
+      serializedVersion: 2
+      x: 0.3046875
+      y: 0.1171875
+      width: 0.02734375
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 7}
+    textureGUID: 9517c23be0ebdfe49b26e97b2c734b24
+    deleted: 0
+    texture: {fileID: 0}
+  - name: blasteralt_1
+    region:
+      serializedVersion: 2
+      x: 0.3125
+      y: 0.1875
+      width: 0.02734375
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 7}
+    textureGUID: 6e851fb495c2f86449954ebe3d127593
+    deleted: 0
+    texture: {fileID: 0}
+  - name: blasteralt_2
+    region:
+      serializedVersion: 2
+      x: 0.33984375
+      y: 0
+      width: 0.02734375
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 7}
+    textureGUID: 67082c9a4c1702a4f8999222fb046d36
+    deleted: 0
+    texture: {fileID: 0}
+  - name: burster_1
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.2578125
+      width: 0.04296875
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 11, y: 5}
+    textureGUID: 7c06c76beab4cfa4bb5f81a20579376c
+    deleted: 0
+    texture: {fileID: 0}
+  - name: burster_2
+    region:
+      serializedVersion: 2
+      x: 0.05078125
+      y: 0.2578125
+      width: 0.04296875
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 11, y: 5}
+    textureGUID: 66641575db6c3e64394fc6679814009b
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bursteralt_1
+    region:
+      serializedVersion: 2
+      x: 0.1015625
+      y: 0.2578125
+      width: 0.04296875
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 11, y: 5}
+    textureGUID: a4929e8699757e5409a5c3b90f399293
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bursteralt_2
+    region:
+      serializedVersion: 2
+      x: 0.15234375
+      y: 0.2578125
+      width: 0.04296875
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 11, y: 5}
+    textureGUID: 5c31709d831105c49ba06f7e48c2c4ac
+    deleted: 0
+    texture: {fileID: 0}
+  - name: hammer_1
+    region:
+      serializedVersion: 2
+      x: 0.296875
+      y: 0
+      width: 0.03515625
+      height: 0.1015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 13}
+    textureGUID: 8a024d8dd032d9542936549245c82c2e
+    deleted: 0
+    texture: {fileID: 0}
+  - name: hammer_2
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.0703125
+      width: 0.03515625
+      height: 0.1015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 13}
+    textureGUID: a1eb59e016d902c468c19b2a5ca703a0
+    deleted: 0
+    texture: {fileID: 0}
+  - name: hammeralt_1
+    region:
+      serializedVersion: 2
+      x: 0.04296875
+      y: 0.0703125
+      width: 0.03515625
+      height: 0.1015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 13}
+    textureGUID: b676075a1fba0fa4a9294ab6ef6c6a2b
+    deleted: 0
+    texture: {fileID: 0}
+  - name: hammeralt_2
+    region:
+      serializedVersion: 2
+      x: 0.0859375
+      y: 0.0703125
+      width: 0.03515625
+      height: 0.1015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 9, y: 13}
+    textureGUID: e9f8279305d84ac40ae9ed03415d0d4a
+    deleted: 0
+    texture: {fileID: 0}
+  - name: peashooter_1
+    region:
+      serializedVersion: 2
+      x: 0.203125
+      y: 0.2578125
+      width: 0.01953125
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 5, y: 5}
+    textureGUID: ccb091ddb42eb7b4cb8d1741d3c5b2ad
+    deleted: 0
+    texture: {fileID: 0}
+  - name: peashooter_2
+    region:
+      serializedVersion: 2
+      x: 0.33984375
+      y: 0.0703125
+      width: 0.01953125
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 5, y: 5}
+    textureGUID: 4f29ec0342cb8f64eb4b38c59a138266
+    deleted: 0
+    texture: {fileID: 0}
+  - name: peashooteralt_1
+    region:
+      serializedVersion: 2
+      x: 0.33984375
+      y: 0.125
+      width: 0.01953125
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 5, y: 5}
+    textureGUID: 9ba49232a4b7ee947ba154a8559a2ee0
+    deleted: 0
+    texture: {fileID: 0}
+  - name: peashooteralt_2
+    region:
+      serializedVersion: 2
+      x: 0.3125
+      y: 0.2578125
+      width: 0.01953125
+      height: 0.0390625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 5, y: 5}
+    textureGUID: fd92ca046e3c9914ea549a8fbc0501f5
+    deleted: 0
+    texture: {fileID: 0}
+  - name: rifle_1
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0.06640625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 17, y: 7}
+    textureGUID: f9ccf99d0c2eec341a331827008dd00d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: rifle_2
+    region:
+      serializedVersion: 2
+      x: 0.07421875
+      y: 0
+      width: 0.06640625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 17, y: 7}
+    textureGUID: 394fe5a9f7953174989e53def5b18994
+    deleted: 0
+    texture: {fileID: 0}
+  - name: riflealt_1
+    region:
+      serializedVersion: 2
+      x: 0.1484375
+      y: 0
+      width: 0.06640625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 17, y: 7}
+    textureGUID: 64d19caee07887a4fb63e9fc62906f60
+    deleted: 0
+    texture: {fileID: 0}
+  - name: riflealt_2
+    region:
+      serializedVersion: 2
+      x: 0.22265625
+      y: 0
+      width: 0.06640625
+      height: 0.0546875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 17, y: 7}
+    textureGUID: b9468d9e09bf4044db0c728d3cf8a3d3
+    deleted: 0
+    texture: {fileID: 0}
+  - name: shotgunpellet_1
+    region:
+      serializedVersion: 2
+      x: 0.12890625
+      y: 0.0703125
+      width: 0.02734375
+      height: 0.0859375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 11}
+    textureGUID: f1dd89c5e7ccf534bbc0e689a63123c2
+    deleted: 0
+    texture: {fileID: 0}
+  - name: shotgunpellet_2
+    region:
+      serializedVersion: 2
+      x: 0.1640625
+      y: 0.0703125
+      width: 0.02734375
+      height: 0.0859375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 11}
+    textureGUID: a239dc1b0067c924fa30b3ec745b3b4d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: shotgunpelletalt_1
+    region:
+      serializedVersion: 2
+      x: 0.19921875
+      y: 0.0703125
+      width: 0.02734375
+      height: 0.0859375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 11}
+    textureGUID: fc819dcbc2f852646945a687e2838f16
+    deleted: 0
+    texture: {fileID: 0}
+  - name: shotgunpelletalt_2
+    region:
+      serializedVersion: 2
+      x: 0.234375
+      y: 0.0703125
+      width: 0.02734375
+      height: 0.0859375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 11}
+    textureGUID: e1af87610a2013047891b1d5f4191fdc
+    deleted: 0
+    texture: {fileID: 0}
+  - name: supressor_1
+    region:
+      serializedVersion: 2
+      x: 0.23046875
+      y: 0.2734375
+      width: 0.02734375
+      height: 0.0234375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 3}
+    textureGUID: 4d70db6dd21f22b4cb799af93c208ed4
+    deleted: 0
+    texture: {fileID: 0}
+  - name: supressor_2
+    region:
+      serializedVersion: 2
+      x: 0.265625
+      y: 0.2734375
+      width: 0.02734375
+      height: 0.0234375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 3}
+    textureGUID: b5b20147eb1538b45bccaa742b8e2fcb
+    deleted: 0
+    texture: {fileID: 0}
+  - name: supressoralt_1
+    region:
+      serializedVersion: 2
+      x: 0.33984375
+      y: 0.2578125
+      width: 0.02734375
+      height: 0.0234375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 3}
+    textureGUID: 262a96017e6b29247a00b67ff4c6531b
+    deleted: 0
+    texture: {fileID: 0}
+  - name: supressoralt_2
+    region:
+      serializedVersion: 2
+      x: 0.34765625
+      y: 0.1796875
+      width: 0.02734375
+      height: 0.0234375
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 7, y: 3}
+    textureGUID: bfa25d3663a51b04096c8fd032cffe7e
+    deleted: 0
+    texture: {fileID: 0}
+  generator: 0
+  imageFileGUID: 
+  dataFileGUID: 

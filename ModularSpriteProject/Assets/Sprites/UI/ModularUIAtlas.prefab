@@ -1,0 +1,2030 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1356617786921004}
+  m_IsPrefabParent: 1
+--- !u!1 &1356617786921004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4286314140292092}
+  - component: {fileID: 114051579065403702}
+  m_Layer: 5
+  m_Name: ModularUIAtlas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4286314140292092
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356617786921004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114051579065403702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356617786921004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f514313262e3d141ad017b60809752a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: bf2cf7e6e68c5f14ea8f90f4a247fad2, type: 2}
+  items:
+  - name: left_button_active
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.6640625
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 4a44450f1a0cfa7439d9d758a4602550
+    deleted: 0
+    texture: {fileID: 0}
+  - name: left_button_active_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.6816406
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 5b002c8c79335b943aa3fdef5aba584f
+    deleted: 0
+    texture: {fileID: 0}
+  - name: left_button_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.64453125
+      y: 0.6640625
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 1c7ccbdf4ba27474ba65286329ab64eb
+    deleted: 0
+    texture: {fileID: 0}
+  - name: left_button_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.64453125
+      y: 0.6816406
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: b74e218962a47a740a6abf9420d883b3
+    deleted: 0
+    texture: {fileID: 0}
+  - name: left_button_inactive
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 76aa8073d7621ed49bbcdec4b533d245
+    deleted: 0
+    texture: {fileID: 0}
+  - name: left_button_inactive_alt
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.017578125
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: eea3e6190db956240b6dc18fbd30af35
+    deleted: 0
+    texture: {fileID: 0}
+  - name: left_button_pressed
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.03515625
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: daf3309943695894eaaf9fc3ce2ea08f
+    deleted: 0
+    texture: {fileID: 0}
+  - name: left_button_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.052734375
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: e44b2876850df334da9a6b44974d3614
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_apollo
+    region:
+      serializedVersion: 2
+      x: 0.45410156
+      y: 0.91015625
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: a172112a296c59943843d8576e45a478
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_artemis
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.70703125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 8bf482ca3cb68054ba7e9a1016f521dd
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_charger_alt
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.7578125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: cc655ba92da3a0849928bc90e27fb6d8
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_defualtcannon
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.80859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 8e05443a53cba244e9b2d2ab214120a6
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_defualtcannon_alt
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 065ac372fc5487d49902cfae28e557a2
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_empty
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.91015625
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 2fea88b347f94924d90702f19c680ba0
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_empty_alt
+    region:
+      serializedVersion: 2
+      x: 0.15136719
+      y: 0.70703125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: bc57347b8e1d9704994abc1488e01757
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_energycharger
+    region:
+      serializedVersion: 2
+      x: 0.30273438
+      y: 0.70703125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 8a5866ae4db1e424e9b196be0650be30
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_hammer
+    region:
+      serializedVersion: 2
+      x: 0.45410156
+      y: 0.70703125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: eb1cb5a106fb48b4b8e58423fcc5f334
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_hammer_alt
+    region:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.70703125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 156060db0fedf5c48aa1df4bb2b1845e
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_locked
+    region:
+      serializedVersion: 2
+      x: 0.15136719
+      y: 0.7578125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: be01ee4afe6f86e4abb8fa5ad97859c9
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_locked_alt
+    region:
+      serializedVersion: 2
+      x: 0.15136719
+      y: 0.80859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 9a667a34fe5afc844af200f7817ae877
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_minigun
+    region:
+      serializedVersion: 2
+      x: 0.15136719
+      y: 0.859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 43ac840b08c062a45abbf372b343f614
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_peashooter
+    region:
+      serializedVersion: 2
+      x: 0.15136719
+      y: 0.91015625
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 4edab5bceff83ff42be848010845558f
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_peashooter_alt
+    region:
+      serializedVersion: 2
+      x: 0.30273438
+      y: 0.7578125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: db3b9806b3f104d4eac7d8ef467e665e
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_PrecisionRifle
+    region:
+      serializedVersion: 2
+      x: 0.45410156
+      y: 0.7578125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 2854b86e77db2a8489368c66bdc8e035
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_PrecisionRifle_alt
+    region:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.7578125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: e301fc7eb5414a94a9213f3f35848bbc
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_QuadBurster
+    region:
+      serializedVersion: 2
+      x: 0.30273438
+      y: 0.80859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 91794861787ee7f4c829ce94e046326a
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_QuadBurster_alt
+    region:
+      serializedVersion: 2
+      x: 0.30273438
+      y: 0.859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 33c251ac821dba6459026a47b50dd8b5
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_scattercannon
+    region:
+      serializedVersion: 2
+      x: 0.30273438
+      y: 0.91015625
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 2557dc733d7ae2240bcecc9540d28f0d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_scattercannon_alt
+    region:
+      serializedVersion: 2
+      x: 0.45410156
+      y: 0.80859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: e7f4edfa067afb04e84192c3d7ba9435
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_suppressor_alt
+    region:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.80859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 5bda11f7eb2a8a14e976184382779544
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_WIP
+    region:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.80859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 9c27f9921d41ab047938d5b2d97b44dc
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_WIP_alt
+    region:
+      serializedVersion: 2
+      x: 0.45410156
+      y: 0.859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 96b919c7691d98242a3a132ea11dbf9a
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_active
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.0703125
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 685993e553c8ad94d905e4a800500058
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_active_alt
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.087890625
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 031b8586d98f14b43a300fb51ab642a1
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.10546875
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 47a82dd4ec69b76438161129f72bf038
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.123046875
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 626694eac88e295419ffa1e22931f615
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_inactive
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.140625
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: ab9d9e3c2ff7f1043b2f25849ce4ba9d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_inactive_alt
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.15820312
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 86e222732afde904fab7a4465ef9cf3a
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_pressed
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.17578125
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: 243f90bc9e5793c4b8428d0a433b8f48
+    deleted: 0
+    texture: {fileID: 0}
+  - name: right_button_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.7265625
+      y: 0.19335938
+      width: 0.015625
+      height: 0.015625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 16, y: 16}
+    textureGUID: e0eb17daf838a0f49afc3b8055c4e1f2
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_active
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.9609375
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: 2b0cdee6830fe08489ff4e99598cd20c
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_active_1
+    region:
+      serializedVersion: 2
+      x: 0.12695312
+      y: 0.9609375
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: e5be27b8cd472c74297767034047e2fc
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_active_1_alt
+    region:
+      serializedVersion: 2
+      x: 0.25390625
+      y: 0.9609375
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: 95e60d7febf5fd74ebcf53992a449f38
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_active_alt
+    region:
+      serializedVersion: 2
+      x: 0.38085938
+      y: 0.9609375
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: 96bc2b1796f2d6546b47fd45eabdb82e
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_active_press
+    region:
+      serializedVersion: 2
+      x: 0.5078125
+      y: 0.9609375
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: a7f1e8b757716c24a9674ba2bd8d8b96
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_active_press_alt
+    region:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.859375
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: aea66c52b411e454998b26546081fdef
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_highlight
+    region:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.8925781
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: 7eaf995006e02a2408938894ec84e18d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_accept_highlight_alt
+    region:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.92578125
+      width: 0.125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 128, y: 32}
+    textureGUID: 0af58b2e6d6ca42409398663ced64a24
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_apollo_gun
+    region:
+      serializedVersion: 2
+      x: 0.6347656
+      y: 0.9589844
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 946c9863b5e5d354d970e4373c40d9ee
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_apollo_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.66796875
+      y: 0.9589844
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 0743e0cd12c87b04f9293d693ce53616
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_apollo_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.7011719
+      y: 0.9589844
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 3a392eaea964de94ba8eebd1d5ae611f
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_artemis_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.7324219
+      y: 0.859375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: c5a76732746c62844b856f42182ed666
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_artemis_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.7324219
+      y: 0.8925781
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 3f07e1d5b025d3a4a98a79a238c18471
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_artemis_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.7324219
+      y: 0.92578125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 420dc6e8dd0a1c14a8844bd41d22eeb4
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_charger_gun
+    region:
+      serializedVersion: 2
+      x: 0.734375
+      y: 0.9589844
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 33e8e6b3626eead42a6b92bae88897c3
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_charger_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 178b2bb9fa7c98c4aa7520f0719aa701
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_charger_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 98f2588e4451ad04793f7fa5a957f487
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_charger_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 86ab021596e252f47a2a16d60f97fbb4
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_charger_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: d49e4b9699e30d44994d1ed5ca38fce1
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_charger_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.033203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 1a7adea5f42386a4299ea11c7ddfa6ab
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_close
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.033203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: b5a3de288eb189d489579eba5e10e919
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_close_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.033203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: bc265c9aa679da844b900d1366b7e834
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_close_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.033203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 6fb7387250e174c4db68ad740618a1f4
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_close_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.06640625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: f6484197de87ed8418ba34c2507c542d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_close_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.06640625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 16249cbf5d5b6f54b9ca0e2dac30efb8
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_close_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.06640625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 5272ec2a0b80e1944beb0432062ee13b
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_default_gun
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.06640625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 6c1021afeeb804540a36ee9adb7a8b10
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_default_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.099609375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 3dfcfeb63634f684981c3eabfe81d9fd
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_default_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.099609375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: d93fdc96cd50bde4781c1ac5a07da5f5
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_default_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.099609375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: f470919b27b59aa4f8d34fe3c1ccdfce
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_default_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.099609375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 7356b07b6e1223b45ab14d80d04e2f5a
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_default_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.1328125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 37160a413a96b7e409df58d1c0eca2d3
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_hammer_gun
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.1328125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: e62e83795db7814488a976671dd2c505
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_hammer_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.1328125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 5933e9f9ebdb52348bff54c6d4271463
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_hammer_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.1328125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: c46fbe1ae28e3ba4f84189f8667a7900
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_hammer_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.16601562
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 78f8d34b3dde6a44da9a8c37afc9ec3b
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_hammer_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.16601562
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 68f2233290b8bcf4a847214fb6393e19
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_hammer_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.16601562
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 5cfd15b9f98cc4e4e97c451b62980e36
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_locked
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.16601562
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: d66dfa1ef1d60ae48b47136cfbd80031
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_locked_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.19921875
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 080b5a76e12e48646b33d3070eb2da36
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_locked_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.19921875
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: b2716dfdd0f825949a5aee52ab6968e9
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_locked_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.19921875
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 76b339d0d189a7d438d258cbd001007d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_locked_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.19921875
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: a175ba45b04a3374392180df32573c10
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_locked_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.23242188
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 8af7b718a6bfd944bbe347f2ef8c3c5e
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_peashooter_gun
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.23242188
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: dfb39bfde32f912449bc04b577f7d317
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_peashooter_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.23242188
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 21d554d4dae66f14b8d52353b7b8479d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_peashooter_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.23242188
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: b921cc9261ac81849b19589f23c167bd
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_peashooter_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.265625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 45b87a6d4cf45a34ea54f547c38c34f6
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_peashooter_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.265625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 8c766f8d485d8a4418c0b461cd823a90
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_peashooter_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.265625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: d8eca6d5410ba3745b82f7cee0ca6c21
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_precisionrifle_gun
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.265625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 57e9faa4115c41f40b8c96953a220faa
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_precisionrifle_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.29882812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: d23b7c20996939c429bc8f4fe538cac1
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_precisionrifle_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.29882812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: a8fd3a89f49571546a20efee5eaedbf7
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_precisionrifle_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.29882812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 7e8a14cd417b00a4f9a3cdc055d9943f
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_precisionrifle_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.29882812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 01dd967dd3b09454ab475154bfa1b5c3
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_precisionrifle_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.33203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 770edc37c24cbd143a6b6dcb9a932f0d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_quadburster_gun
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.33203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 29e348d44893e57478934a294524a956
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_quadburster_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.33203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 60d0d37450086694da9ab237998c44ef
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_quadburster_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.33203125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: fd6b6501cb6f46d449c0f362a4a87d14
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_quadburster_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.36523438
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 7bfdea7c01685f7438901cafa729cead
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_quadburster_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.36523438
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 0907bde0fc0070946a6e865be856f088
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_quadburster_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.36523438
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: d8761d78f92792a4c8e08db4545f2834
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_scattercannon_gun
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.36523438
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: e3b5914757f04d54eb86c672c7b98c6c
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_scattercannon_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.3984375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 33931cc0fc4757042a5e1654ce9a920d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_scattercannon_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.3984375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 4693fc76e74e2c241942ee545c833d73
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_scattercannon_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.3984375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: b5c48906b3b54ce44af7ad64a9aafa55
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_scattercannon_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.3984375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 7b1bded4f8795634cbd98897faead099
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_scattercannon_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.43164062
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 7910e85413d6a024a806e8af0b95b64c
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_suppressor_gun
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.46484375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: e078fde1df5348341b986a415b1740de
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_suppressor_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.49804688
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: bed44f9cb6be5144fa274dac785b0b98
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_suppressor_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.53125
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 4936058415211334a91bd00599bff08f
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_suppressor_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.5644531
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 07a1db11a069260488027bab8e150010
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_suppressor_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.59765625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: f3a83710fa4ac5c49b714058194d8420
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_suppressor_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.6308594
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 55dbd4dc7348c704183051af8d866d67
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_template_bg
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0.625
+      height: 0.3515625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 640, y: 360}
+    textureGUID: 1cf23b5f601464a46b4616c2d2ae20a6
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_template_bg_alt
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.35351562
+      width: 0.625
+      height: 0.3515625
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 640, y: 360}
+    textureGUID: 2845973f617fd2941be3b96ee3a98c9d
+    deleted: 0
+    texture: {fileID: 0}
+  generator: 0
+  imageFileGUID: 
+  dataFileGUID: 
