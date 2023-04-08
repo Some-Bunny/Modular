@@ -88,6 +88,11 @@ namespace ModularMod
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.875f, 0.25f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.875f, 0.25f), "barrel_point").transform;
 
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("SUPRESS_AND_DESTROYALT", StaticCollections.Clip_Ammo_Atlas, "supressoralt_1", "supressoralt_2");
+
+
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;
         }

@@ -60,6 +60,7 @@ namespace ModularMod
             aaaa.damageMultOnPierce = 1 + (0.75f * stack);
             aaaa.AmountOfPiercesBeforeFalloff = 2 + stack;
             aaaa.OnPierce += OP;
+            p.baseData.range += 3;
 
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += stack;

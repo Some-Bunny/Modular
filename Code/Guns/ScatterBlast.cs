@@ -65,13 +65,13 @@ namespace ModularMod
                 if (q == 1 | q == 2)
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.LowerCenter);
-                    projectile.baseData.range = 10;
+                    projectile.baseData.range = 13;
                     projectile.baseData.damage = 6f;
                 }
                 else
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
-                    projectile.baseData.range = 6;
+                    projectile.baseData.range = 8;
                     projectile.baseData.damage = 3f;
                 }
                 projectile.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
@@ -108,7 +108,10 @@ namespace ModularMod
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
-            gun.DefaultModule.customAmmoType = "ArmCannon";
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("SHOTGUNSAASASA", StaticCollections.Clip_Ammo_Atlas, "shotgunpellet_1", "shotgunpellet_2");
+
+
+
             gun.carryPixelOffset = new IntVector2(4, 2);
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(223) as Gun).muzzleFlashEffects;
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.375f, 0.1875f), "muzzle_point").transform;

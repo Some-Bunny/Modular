@@ -95,9 +95,11 @@ namespace ModularMod
             PresicionRifleAlt.Init();
             Suppressor.Init();
             SuppressorAlt.Init();
-
             TheHammer.Init();
             TheHammerAlt.Init();
+
+            Apollo.Init();
+            Artemis.Init();
 
             //Test Items
             Flowder.Init();

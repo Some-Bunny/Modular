@@ -78,7 +78,7 @@ namespace ModularMod
             FakePrefab.MarkAsFakePrefab(LargeBullet.gameObject);
             UnityEngine.Object.DontDestroyOnLoad(LargeBullet);
 
-            LargeBullet.AnimateProjectileBundle("defaultarmcannon_projectile_blaster_001", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "modblaster_dile",
+            LargeBullet.AnimateProjectileBundle("modblaster_dile", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "modblaster_dile",
             new List<IntVector2>() { new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10) },
             ProjectileToolbox.ConstructListOfSameValues(true, 9), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.LowerLeft, 9), ProjectileToolbox.ConstructListOfSameValues(true, 9), ProjectileToolbox.ConstructListOfSameValues(false, 9),
             ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 9), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 9), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 9), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 9));
@@ -159,6 +159,9 @@ namespace ModularMod
                 item3,
             };
 
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("CHARGER_AA", StaticCollections.Clip_Ammo_Atlas, "apoll_1", "apoll_2");
 
             gun.gunClass = GunClass.NONE;
 

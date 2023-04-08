@@ -65,13 +65,13 @@ namespace ModularMod
                 if (q == 1 | q == 2)
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.LowerCenter);
-                    projectile.baseData.range = 10;
+                    projectile.baseData.range = 13;
                     projectile.baseData.damage = 6f;
                 }
                 else
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
-                    projectile.baseData.range = 6;
+                    projectile.baseData.range = 8;
                     projectile.baseData.damage = 3f;
                 }
                 projectile.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
@@ -105,6 +105,9 @@ namespace ModularMod
             gun.DefaultModule.customAmmoType = "ArmCannonAlt";
 
             gun.gunClass = GunClass.SHOTGUN;
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("SHOTGUNSAASASAalt", StaticCollections.Clip_Ammo_Atlas, "shotgunpelletalt_1", "shotgunpelletalt_2");
 
             gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 3, 3);
 

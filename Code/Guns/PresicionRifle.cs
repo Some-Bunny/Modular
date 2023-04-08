@@ -76,6 +76,9 @@ namespace ModularMod
             projectile.shouldRotate = true;
             projectile.baseData.speed = 75;
 
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("RIFLERIFLERIFLE", StaticCollections.Clip_Ammo_Atlas, "rifle_1", "rifle_2");
+
             ImprovedAfterImage yes = projectile.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.4f;

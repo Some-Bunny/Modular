@@ -29,13 +29,25 @@ namespace ModularMod.Code.Unlocks
 
             if (enemy != null)
             {
-                
 
-                if (GUID == StaticGUIDs.Lich_Phase_3_GUID)
+                foreach (PlayerController player in GameManager.Instance.AllPlayers)
                 {
-                    foreach (PlayerController player in GameManager.Instance.AllPlayers)
+                    if (player.PlayerHasCore() == true)
                     {
-                        if (player.PlayerHasCore() == true)
+                        //OLD KING
+                        if (StaticGUIDs.Old_King_GUID == GUID)
+                        {
+                            AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_OLD_KING_AS_MODULAR, true);
+                        }
+                        //RAT
+                        if (StaticGUIDs.Resourceful_Rat_Mech_Boss_GUID == GUID)
+                        {
+                            AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_RAT_AS_MODULAR, true);
+                        }
+
+
+                        //LICH
+                        if (GUID == StaticGUIDs.Lich_Phase_3_GUID)
                         {
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR, true);
                             if (player.PlayerHasCore().ReturnActiveTotal() < 5)
@@ -43,39 +55,23 @@ namespace ModularMod.Code.Unlocks
                                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_LICH_WITH_4_MODULES_OR_LESS, true);
                             }
                         }
-                    }
-                }
-
-                if (StaticGUIDs.Cannonbalrog_GUID == GUID | StaticGUIDs.Mine_Flayer_GUID == GUID | StaticGUIDs.Treadnaught_GUID == GUID)
-                {
-                    foreach (PlayerController player in GameManager.Instance.AllPlayers)
-                    {
-                        if (player.PlayerHasCore() == true)
+                        //THIRD FLOOR
+                        if (StaticGUIDs.Cannonbalrog_GUID == GUID | StaticGUIDs.Mine_Flayer_GUID == GUID | StaticGUIDs.Treadnaught_GUID == GUID)
                         {
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_FLOOR_3, true);
                         }
-                    }
-                }
-
-                if (StaticGUIDs.Bullet_King_GUID == GUID | StaticGUIDs.Smiley_GUID == GUID | StaticGUIDs.Shades_GUID == GUID | StaticGUIDs.Gatling_Gull_GUID == GUID)
-                {
-                    foreach (PlayerController player in GameManager.Instance.AllPlayers)
-                    {
-                        if (player.PlayerHasCore() == true)
+                        //1st floor no modules
+                        if (StaticGUIDs.Bullet_King_GUID == GUID | StaticGUIDs.Smiley_GUID == GUID | StaticGUIDs.Shades_GUID == GUID | StaticGUIDs.Gatling_Gull_GUID == GUID)
                         {
-                            if (player.PlayerHasCore().ReturnActiveTotal() == 0)
                             {
-                                AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, true);
+                                if (player.PlayerHasCore().ReturnActiveTotal() == 0)
+                                {
+                                    AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, true);
+                                }
                             }
                         }
-                    }
-                }
-
-                if (StaticGUIDs.Advanced_Dragun_GUID == GUID | StaticGUIDs.Dragun_GUID == GUID)
-                {
-                    foreach (PlayerController player in GameManager.Instance.AllPlayers)
-                    {
-                        if (player.PlayerHasCore() == true)
+                        //Draguns
+                        if (StaticGUIDs.Advanced_Dragun_GUID == GUID | StaticGUIDs.Dragun_GUID == GUID)
                         {
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR, true);
                             if (player.PlayerHasCore().ReturnActiveTotal() < 3)
@@ -83,13 +79,8 @@ namespace ModularMod.Code.Unlocks
                                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, true);
                             }
                         }
-                    }
-                }
-                if (StaticGUIDs.Advanced_Dragun_GUID == GUID)
-                {
-                    foreach (PlayerController player in GameManager.Instance.AllPlayers)
-                    {
-                        if (player.PlayerHasCore() == true)
+                        //Advanced Dragun
+                        if (StaticGUIDs.Advanced_Dragun_GUID == GUID)
                         {
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR, true);
                             if (player.PlayerHasCore().ReturnActiveTotal() < 3)
@@ -97,7 +88,7 @@ namespace ModularMod.Code.Unlocks
                                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, true);
                             }
                         }
-                    }
+                    }                  
                 }
             }
         }

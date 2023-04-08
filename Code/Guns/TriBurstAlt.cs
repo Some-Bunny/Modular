@@ -76,6 +76,10 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
             projectile.baseData.speed *= 1.33f;
 
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("burstingmakesmefeelgoodalt", StaticCollections.Clip_Ammo_Atlas, "bursteralt_1", "bursteralt_2");
+
             projectile.baseData.damage = 5.5f;
             gun.gunClass = GunClass.NONE;
 

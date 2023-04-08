@@ -74,6 +74,7 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
+            p.baseData.range += 5;
             p.StartCoroutine(SpeedChange(p));   
         }
 
@@ -104,6 +105,8 @@ namespace ModularMod
             {
                 modularGunController.statMods.Remove(mod);
             }
+            modulePrinter.OnPostProcessProjectile -= PPP;
+            modulePrinter.OnGunReloaded -= OGR;
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)

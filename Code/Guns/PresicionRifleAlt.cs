@@ -90,6 +90,9 @@ namespace ModularMod
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("RIFLERIFLERIFLEALT", StaticCollections.Clip_Ammo_Atlas, "riflealt_1", "riflealt_2");
+
             gun.carryPixelOffset = new IntVector2(4, 2);
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(328) as Gun).muzzleFlashEffects;
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.4375f, 0.25f), "muzzle_point").transform;

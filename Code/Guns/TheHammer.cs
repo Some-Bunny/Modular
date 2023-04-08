@@ -60,7 +60,7 @@ namespace ModularMod
             UnityEngine.Object.DontDestroyOnLoad(projectile);
             gun.DefaultModule.projectiles[0] = projectile;
 
-            projectile.AnimateProjectileBundle("defaultarmcannon_projectile_hammer_001", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "hammershot_idle",
+            projectile.AnimateProjectileBundle("hammershot_idle", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "hammershot_idle",
             new List<IntVector2>() { new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), new IntVector2(16, 10), },
             ProjectileToolbox.ConstructListOfSameValues(true, 5), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.MiddleCenter, 5), ProjectileToolbox.ConstructListOfSameValues(true, 5), ProjectileToolbox.ConstructListOfSameValues(false, 5),
             ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 5), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 5), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 5), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 5));
@@ -126,6 +126,9 @@ namespace ModularMod
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(390) as Gun).muzzleFlashEffects;
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "barrel_point").transform;
+
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("ThehammerOfTheFunny", StaticCollections.Clip_Ammo_Atlas, "hammer_1", "hammer_2");
 
             behavior.activeReloadEnabled = true;
             behavior.canAttemptActiveReload = true;

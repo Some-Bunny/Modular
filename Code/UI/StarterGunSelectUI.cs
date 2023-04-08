@@ -607,6 +607,28 @@ namespace ModularMod
                   , "name_label_hammer_alt"  //Label Name Asset Name Alt
                   , "As Modular, reach and beat\n Bullet Hell."); //Unlock Description
 
+            StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
+                 "ApolloAndArtemisButton"
+                 , "ui_button_apollo_gun" //asset name default
+                 , "ui_button_apollo_gun_highlighted" //asset name highlighted
+                 , "ui_button_apollo_gun_pressed" //asset name pressed
+                 , CustomDungeonFlags.BEAT_OLD_KING_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
+                 , Apollo.GunID //Gun ID
+                 , "Charge up to change accuracy." //Default description
+                 , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Light_Orange_Hex)  //Damage Secription
+                 , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Orange_Hex)//Reload Secription
+                 , StaticColorHexes.AddColorToLabelString("Low", StaticColorHexes.Light_Orange_Hex) //Clipsize Secription
+                 , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Lime_Green_Hex)//Fire rate Secription
+                 , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Light_Green_Hex) //Shot Speed Secription
+                 , "Charge up only as much as you need to."  //Additional Notes, keep at one line
+                 , "name_label_apollo" //Label Name Asset Name
+                 , Artemis.GunID //alt gun ID
+                 , "ui_button_artemis_gun_alt" //asset name default alt
+                 , "ui_button_artemis_gun_highlighted_alt" //asset name highlighted alt
+                 , "ui_button_artemis_gun_pressed_alt" //asset name pressed alt
+                 , "name_label_artemis"  //Label Name Asset Name Alt
+                 , "As Modular, beat the\nOld King."); //Unlock Description
+
             /*
             for (int i = 0; i < 13; i++)
             {

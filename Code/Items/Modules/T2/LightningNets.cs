@@ -57,6 +57,8 @@ namespace ModularMod
             chain.Range = 4f + (4 * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
+            p.baseData.range += 5;
+
         }
 
         public static List<GameObject> allactiveTetherProjectiles = new List<GameObject>();

@@ -107,8 +107,8 @@ namespace ModularMod
         private void Player_GunChanged(Gun oldGun, Gun newGun, bool isNewGun)
         {
             if (TemporaryDisableDrop == true) { return; }
-            if (newGun.GetComponent<ModularGunController>() != null) { return; }
-            if (newGun.GetComponent<ModularGunController>() == ModularGunController) { return; }
+            if (newGun.GetComponent<ModularGunController>() != null) { UpdateModularGunController(); return; }
+            if (newGun.GetComponent<ModularGunController>() == ModularGunController) { UpdateModularGunController();  return; }
             if (newGun.PickupObjectId == 251 || newGun.HasTag("modular_special_override"))
             {
                 if (isNewGun == true)

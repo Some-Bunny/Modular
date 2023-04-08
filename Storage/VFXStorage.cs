@@ -29,7 +29,13 @@ namespace ModularMod
             var machoBrace = PickupObjectDatabase.GetById(665) as MachoBraceItem;
             MachoBraceDustupVFX = machoBrace.DustUpVFX;
             MachoBraceBurstVFX = machoBrace.BurstVFX;
+            AssetBundle bundle = ResourceManager.LoadAssetBundle("brave_resources_001");
+            LaserReticle = bundle.LoadAsset("assets/resourcesbundle/global vfx/vfx_lasersight.prefab") as GameObject;
+            bundle = null;
+
+
         }
+        public static GameObject LaserReticle;
 
         public static GameObject RadialRing;
         public static GameObject TeleportDistortVFX;
