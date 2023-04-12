@@ -166,6 +166,17 @@ namespace ModularMod
         }
 
 
+        public static float PercentageOfClipLeft(this Gun g)
+        {
+            //:sadcat:
+            float q = g.ClipShotsRemaining;
+            float r = g.ClipCapacity;
+            float t = q / r;
+            return t;
+        }
+
+
+
         public static T LoadAssetFromAnywhere<T>(string path) where T : UnityEngine.Object
         {
             T t = default(T);

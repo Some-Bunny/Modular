@@ -17,7 +17,7 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(StickyBomb))
         {
             Name = "Sticky Bomb",
-            Description = "Exchange Rate",
+            Description = "KA-BLEWY",
             LongDescription = "Increases Accuracy by 20% (+20% hyperbolically per stack), projectiles now leave sticky bombs on enemies that\nexplode after 5 (-15% hyperbolically per stack) seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("stickybombs_t2_module"),
@@ -37,7 +37,11 @@ namespace ModularMod
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.EnergyConsumption = 2;
             h.AddToGlobalStorage();
-
+            h.stickyContext = new StickyProjectileModifier.StickyContext()
+            {
+                CanStickToTerrain = false,
+                CanStickEnemies = true
+            };
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -52,6 +56,8 @@ namespace ModularMod
                 Name = "Mines",
                 Accuracy_Process = PFR,
             };
+            modulePrinter.stickyContexts.Add(this.stickyContext);
+
             modularGunController.statMods.Add(this.gunStatModifier);
             modulePrinter.OnProjectileStickAction += H;
             modulePrinter.OnStickyDestroyAction += H2;
@@ -59,12 +65,15 @@ namespace ModularMod
 
         }
 
-        public void OPPS(Projectile p, PlayerController player)
+        public void OPPS(GameObject p, PlayerController player)
         {
             AkSoundEngine.PostEvent("Play_OBJ_mine_beep_01", p.gameObject);
-            p.hitEffects.HandleProjectileDeathVFX(p.transform.position, 0, null, Vector2.zero, Vector2.zero);
-            p.sprite.SetSprite(p.sprite.Collection.GetSpriteIdByName("mine_idle_001"));
-
+            //p.hitEffects.HandleProjectileDeathVFX(p.transform.position, 0, null, Vector2.zero, Vector2.zero);
+            var sprite = p.GetComponentInChildren<tk2dBaseSprite>();
+            if (sprite)
+            {
+                sprite.SetSprite(StaticCollections.Projectile_Collection.GetSpriteIdByName("mine_idle_001"));
+            }
         }
 
         public void H(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)
@@ -103,15 +112,15 @@ namespace ModularMod
             Exploder.Explode(stick.transform.position, StaticExplosionDatas.explosiveRoundsExplosion, Vector2.zero);
         }
 
-
-
-
-
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             if (modularGunController.statMods.Contains(this.gunStatModifier)) 
             {
                 modularGunController.statMods.Remove(this.gunStatModifier);
+            }
+            if (modulePrinter.stickyContexts.Contains(this.stickyContext))
+            {
+                modulePrinter.stickyContexts.Remove(this.stickyContext);
             }
             modulePrinter.OnProjectileStickAction -= H;
             modulePrinter.OnStickyDestroyAction -= H2;

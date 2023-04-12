@@ -76,6 +76,7 @@ namespace ModularMod
             EnemyDeathUnlockController.Start();
             MultiActiveReloadManager.SetupHooks();
             CustomClipAmmoTypeToolbox.Init();
+            
 
             //Items
             ModulePrinterCore.Init();
@@ -97,9 +98,10 @@ namespace ModularMod
             SuppressorAlt.Init();
             TheHammer.Init();
             TheHammerAlt.Init();
-
             Apollo.Init();
             Artemis.Init();
+
+            LightLance.Init();
 
             //Test Items
             Flowder.Init();

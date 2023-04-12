@@ -62,7 +62,7 @@ namespace ModularMod
             Destroy(blankObj, 2f);
             AkSoundEngine.PostEvent("Play_BOSS_RatMech_Bomb_01", silencerVFX.gameObject);
 
-            float a =  1 - (g.ClipShotsRemaining / g.ClipCapacity);
+            float a =  1 - g.PercentageOfClipLeft();
             int stack = this.ReturnStack(modulePrinterCore);
             a *= 1 + (stack * 0.25f);
             Exploder.DoRadialPush(player.sprite.WorldCenter, 80 * a, 4);

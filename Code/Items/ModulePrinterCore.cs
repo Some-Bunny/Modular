@@ -179,11 +179,6 @@ namespace ModularMod
             { ModularGunController.ProcessStats(); }
         }
 
-
-
-
-
-
         public void PostProcessBeamTick(BeamController b, SpeculativeRigidbody hitRigidbody ,float f)
         {
             if (base.Owner == null) { return; }
@@ -207,6 +202,7 @@ namespace ModularMod
                 {
                     modifier.OnPreStick = OnPreProjectileStickAction;
                 }
+                modifier.stickyContexts = this.stickyContexts;
             }
         }
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
@@ -222,7 +218,6 @@ namespace ModularMod
                 }
             }
         }
-
         public void OnDealtDamageContext(PlayerController p, float f, bool b, HealthHaver h)
         {
             if (OnDamagedEnemy != null && h.aiActor != null) { OnDamagedEnemy(this, p, h.aiActor, f); }
@@ -605,9 +600,10 @@ namespace ModularMod
             }
             base.OnDestroy();
         }
-        public Action<Projectile, PlayerController> OnPreProjectileStickAction;
+        public Action<GameObject, PlayerController> OnPreProjectileStickAction;
         public Action<GameObject, StickyProjectileModifier, tk2dBaseSprite, PlayerController> OnProjectileStickAction;
         public Action<GameObject, StickyProjectileModifier, PlayerController> OnStickyDestroyAction;
+        public List<StickyProjectileModifier.StickyContext> stickyContexts = new List<StickyProjectileModifier.StickyContext>();
 
 
         public class ModuleContainer

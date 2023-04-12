@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "The Swarm",
             Description = "Devourer",
-            LongDescription = "Acts as 1 (+1 per stack) of every module you will own." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Massively reduces damage. Projectiles gain massively increased lifetime, piercing and homing. (+Bounces, Pierces and stronger Homing per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module"),
             Quality = ItemQuality.SPECIAL,

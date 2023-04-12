@@ -47,7 +47,7 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
-        {
+        {                
             int stack = this.ReturnStack(modulePrinterCore);
             p.BossDamageMultiplier *=  1 + (0.25f * stack);
             p.baseData.force *= 1 + (0.5f * stack);

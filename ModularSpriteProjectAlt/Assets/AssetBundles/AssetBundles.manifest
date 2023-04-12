@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 2919170314
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: fucktilesets
+      Dependencies: {}
+    Info_1:
+      Name: modular_bundle
+      Dependencies: {}

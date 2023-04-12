@@ -2,6 +2,7 @@
 using Dungeonator;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ModularMod
@@ -423,6 +424,9 @@ namespace ModularMod
 
         public float EnergyConsumption = -1;
 
+        public StickyProjectileModifier.StickyContext stickyContext = new StickyProjectileModifier.StickyContext();
+
+
         public PowerConsumptionData powerConsumptionData = new PowerConsumptionData() 
         {
             OverridePowerManagement = ReturnBasePowerConsumption
@@ -454,9 +458,6 @@ namespace ModularMod
             public float FirstStack = -420;
             public float AdditionalStacks = -69f;
             public Func<DefaultModule, int, float> OverridePowerManagement; 
-
-
-
         }
     }
 
