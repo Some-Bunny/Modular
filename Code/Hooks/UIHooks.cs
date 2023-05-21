@@ -29,6 +29,8 @@ namespace ModularMod
             }
             var scrapLabel = ScrapUIController.FindScrapUI(GameUIRoot.Instance);
             scrapLabel.isVisible = ScrapUIController.ScrapCounterVisible().First;
+            scrapLabel.enabled = ScrapUIController.ScrapCounterVisible().First;
+
             orig(self);
         }     
     }

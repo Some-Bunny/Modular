@@ -1,4 +1,5 @@
 ﻿using Alexandria.ItemAPI;
+using Alexandria.PrefabAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -194,6 +195,101 @@ namespace ModularMod
             def.name = name;
             data.spriteDefinitions[id] = def;
             return def;
+        }
+
+        public static GameObject AddTrailToProjectileBundle(this Projectile target, tk2dSpriteCollectionData tk2DSpriteCollectionData, string spriteName, tk2dSpriteAnimation animationLibrary, string defaultAnimation, Vector2 colliderDimensions, Vector2 colliderOffsets, bool destroyOnEmpty = false, string startAnimationName = null, 
+            float timeTillAnimStart = 0.1f, float cascadeTimer = -1, float softMaxLength = -1)
+        {
+            try
+            {
+
+                GameObject newTrailObject = PrefabBuilder.BuildObject("trailObject");
+                newTrailObject.transform.parent = target.transform;
+                newTrailObject.name = "trailObject";
+
+                float convertedColliderX = colliderDimensions.x / 16f;
+                float convertedColliderY = colliderDimensions.y / 16f;
+                float convertedOffsetX = colliderOffsets.x / 16f;
+                float convertedOffsetY = colliderOffsets.y / 16f;
+
+                tk2dTiledSprite tiledSprite = newTrailObject.GetOrAddComponent<tk2dTiledSprite>();
+
+                tiledSprite.SetSprite(tk2DSpriteCollectionData, tk2DSpriteCollectionData.GetSpriteIdByName(spriteName));
+                tk2dSpriteDefinition def = tiledSprite.GetCurrentSpriteDef();
+                def.colliderVertices = new Vector3[]{
+                    new Vector3(convertedOffsetX, convertedOffsetY, 0f),
+                    new Vector3(convertedColliderX, convertedColliderY, 0f)
+                };
+                def.ConstructOffsetsFromAnchor(tk2dBaseSprite.Anchor.MiddleLeft);
+                tk2dSpriteAnimator animator = newTrailObject.GetOrAddComponent<tk2dSpriteAnimator>();
+                animator.playAutomatically = true;
+                animator.defaultClipId = animationLibrary.GetClipIdByName(defaultAnimation);
+                animator.Library = animationLibrary;
+
+                TrailController trail = newTrailObject.AddComponent<TrailController>();
+                //---------------- Sets up the animation for the main part of the trail
+                if (defaultAnimation != null)
+                {
+                    SetupBeamPart(animationLibrary, defaultAnimation, null, null, def.colliderVertices);
+                    trail.animation = defaultAnimation;
+                    trail.usesAnimation = true;
+                }
+                else
+                {
+                    trail.usesAnimation = false;
+                }
+
+                if (startAnimationName != null)
+                {
+                    SetupBeamPart(animationLibrary, startAnimationName, null, null, def.colliderVertices);
+                    trail.startAnimation = startAnimationName;
+                    trail.usesStartAnimation = true;
+                }
+                else
+                {
+                    trail.usesStartAnimation = false;
+                }
+
+                //Trail Variables
+                if (softMaxLength > 0) { trail.usesSoftMaxLength = true; trail.softMaxLength = softMaxLength; }
+                if (cascadeTimer > 0) { trail.usesCascadeTimer = true; trail.cascadeTimer = cascadeTimer; }
+                if (timeTillAnimStart > 0) { trail.usesGlobalTimer = true; trail.globalTimer = timeTillAnimStart; }
+                trail.destroyOnEmpty = destroyOnEmpty;
+                return newTrailObject;
+            }
+            catch (Exception e)
+            {
+                ETGModConsole.Log(e.ToString());
+                return null;
+            }
+        }
+        private static void SetupBeamPart(tk2dSpriteAnimation beamAnimation,string animationName, Vector2? colliderDimensions = null, Vector2? colliderOffsets = null, Vector3[] overrideVertices = null, tk2dSpriteAnimationClip.WrapMode wrapMode = tk2dSpriteAnimationClip.WrapMode.Once)
+        {
+            foreach (var path in beamAnimation.GetClipByName(animationName).frames)
+            {
+                tk2dSpriteDefinition frameDef = path.spriteCollection.spriteDefinitions[path.spriteId];
+                frameDef.ConstructOffsetsFromAnchor(tk2dBaseSprite.Anchor.MiddleCenter);
+                if (overrideVertices != null)
+                {
+                    frameDef.colliderVertices = overrideVertices;
+                }
+                else
+                {
+                    if (colliderDimensions == null || colliderOffsets == null)
+                    {
+                        ETGModConsole.Log("<size=100><color=#ff0000ff>BEAM ERROR: colliderDimensions or colliderOffsets was null with no override vertices!</color></size>", false);
+                    }
+                    else
+                    {
+                        Vector2 actualDimensions = (Vector2)colliderDimensions;
+                        Vector2 actualOffsets = (Vector2)colliderDimensions;
+                        frameDef.colliderVertices = new Vector3[]{
+                            new Vector3(actualOffsets.x / 16, actualOffsets.y / 16, 0f),
+                            new Vector3(actualDimensions.x / 16, actualDimensions.y / 16, 0f)
+                        };
+                    }
+                }
+            }
         }
     }
 }

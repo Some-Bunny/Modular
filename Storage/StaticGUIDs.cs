@@ -84,6 +84,39 @@ namespace ModularMod
             Advanced_Dragun_GUID,
         };
 
+        public static List<string> All_Bullet_Kin = new List<string>()
+        {
+            AK47_Kin_GUID,
+            Veteran_Bullet_Kin_GUID,
+            Bullet_Kin_GUID,
+            Bandana_Bullet_Kin_GUID,
+            Fake_Bullet_Kin_GUID,
+            Fake_Veteran_Bullet_Kin_GUID,
+            Tanker_GUID,
+            Friendly_Bullet_Kin_GUID,
+            Tutorial_Bullet_Kin_GUID,
+            Fallen_Bullet_Kin_GUID,
+            Shroomer_GUID,
+            Tombstoner_GUID,
+            Ashen_Bullet_Kin_GUID,
+            Cardinal_GUID,
+            Treadnaughts_Tanker_GUID,
+            Musket_Kin_GUID,
+            Bullet_Kin_Gal_Titaness_GUID,
+            Bullet_Kin_Titan_Boss_GUID,
+            Bullet_Kin_Titan_GUID,
+            Bullet_Kin_Pirate_GUID,
+            Green_Bullet_Kin_Fish_GUID,
+            Blue_Bullet_Kin_Fish_GUID,
+            Brocolli_Bullet_Kin_GUID,
+            Knight_Bullet_Kin_GUID,
+            Candle_Bullet_Kin_GUID,
+            Cowboy_Bullet_Kin_GUID,
+            Office_Tie_Bullet_Kin_GUID,
+            Office_Suit_Bullet_Kin_GUID,
+            Suicide_Vest_Bullet_Kin_GUID
+        };
+
 
         public static string AK47_Kin_GUID = "db35531e66ce41cbb81d507a34366dfe";
         public static string Rubber_Kin_GUID = "6b7ef9e5d05b4f96b04f05ef4a0d1b18";

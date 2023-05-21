@@ -21,8 +21,8 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(Scrapper))
         {
             Name = "Module Computer Core",
-            Description = "Game Breaking",
-            LongDescription = "Allows you to open an interface, letting you see, and interact with your modules.\n\nPressing reload on a full clip switches modes, othe which allows for the scrapping of Items and Pickups into Scrap, which can be repurposed into upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
+            Description = "Game Making",
+            LongDescription = "Allows you to open an interface, letting you see and power your modules.\n\nPressing reload on a full clip switches modes, the other which allows for the scrapping of Items and Pickups into Scrap. Scrap can be repurposed into upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("computer_core"),
             Quality = ItemQuality.SPECIAL,         
@@ -73,7 +73,10 @@ namespace ModularMod
             T2BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_2"), "T2B_B_UI_INV");
             T3BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_3"), "T3B_B_UI_INV");
             T4BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_4"), "T4B_B_UI_INV");
+            ID = pickup.PickupObjectId;
         }
+        public static int ID;
+
         public static string Up_Button_UI_String;
         public static string Down_Button_UI_String;
         public static string Left_Button_UI_String;
@@ -1109,7 +1112,7 @@ namespace ModularMod
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
-                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0)
+                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && page.module.CanBeDisabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
                                 Core.DepowerModule(page.module);
@@ -1138,7 +1141,7 @@ namespace ModularMod
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
 
-                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)
+                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && page.module.CanBeEnabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ModulePowerUp", player.gameObject);
                                 Core.PowerModule(page.module);
@@ -1229,7 +1232,7 @@ namespace ModularMod
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
-                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0)
+                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && page.module.CanBeDisabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
                                 Core.DepowerModule(page.module);
@@ -1260,7 +1263,7 @@ namespace ModularMod
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
 
-                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true)
+                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && page.module.CanBeEnabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ModulePowerUp", player.gameObject);
                                 Core.PowerModule(page.module);
@@ -1943,6 +1946,7 @@ namespace ModularMod
             if (PageLabel) { PageLabel.Inv(); }
             if (pageReturnLabel) { pageReturnLabel.Inv(); }
             if (craftLabel) { craftLabel.Inv(); }
+            if (basicgarbageLabel) { Destroy(basicgarbageLabel.gameObject); }
 
 
             foreach (var entry in craftingLabels)
@@ -1983,7 +1987,6 @@ namespace ModularMod
             T3,
 
         }
-
     }
 }
 

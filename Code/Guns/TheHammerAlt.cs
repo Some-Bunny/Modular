@@ -9,9 +9,6 @@ using System.Collections.Generic;
 
 namespace ModularMod
 {
-
-
-
     public class TheHammerAlt : MultiActiveReloadController
     {
         public static void Init()
@@ -33,7 +30,7 @@ namespace ModularMod
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();
-            comp.isAlt = false;
+            comp.isAlt = true;
 
             gun.DefaultModule.ammoCost = 1;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
@@ -129,6 +126,13 @@ namespace ModularMod
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("ThehammerOfTheFunnyAlt", StaticCollections.Clip_Ammo_Atlas, "hammeralt_1", "hammeralt_2");
 
+
+
+            ExplosiveModifier explosiveModifier = projectile.gameObject.AddComponent<ExplosiveModifier>();
+            explosiveModifier.explosionData = TheHammer.HammerData;
+            explosiveModifier.doExplosion = true;
+            explosiveModifier.IgnoreQueues = true;
+
             behavior.activeReloadEnabled = true;
             behavior.canAttemptActiveReload = true;
             behavior.reloads = new List<MultiActiveReloadData>
@@ -153,6 +157,13 @@ namespace ModularMod
             base.OnActiveReloadSuccess(reload);
             var fx = base.gun.CurrentOwner.PlayEffectOnActor(TheHammer.StrikeVFX, new Vector3(0, 1.25f));
             fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("hammerstrikealt");
+        }
+
+        public override void OnActiveReloadFailure(MultiActiveReload reload)
+        {
+            base.OnActiveReloadFailure(reload);
+            AkSoundEngine.PostEvent("Play_DragunGrenade", gun.gameObject);
+            Exploder.Explode(gun.sprite.WorldCenter, TheHammer.HammerData, gun.sprite.WorldCenter);
         }
 
         public static int ID;

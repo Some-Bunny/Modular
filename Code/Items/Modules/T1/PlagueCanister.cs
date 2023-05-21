@@ -97,8 +97,10 @@ namespace ModularMod
         public static GameObject generateGlassShards(string shardName = "glassshards_001")
         {
             GameObject VFX = new GameObject("Glass_Shard");
-            FakePrefab.DontDestroyOnLoad(VFX);
             FakePrefab.MarkAsFakePrefab(VFX);
+            FakePrefab.DontDestroyOnLoad(VFX);
+            VFX.SetActive(false);
+
             var tk2d = VFX.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.VFX_Collection;
             tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName(shardName));
@@ -162,7 +164,7 @@ namespace ModularMod
                 }
 
                 Vector2 vector3 = user.unadjustedAimPoint - user.LockedApproximateSpriteCenter;
-                DebrisObject debrisObject = LootEngine.DropItemWithoutInstantiating(gameObject2, gameObject2.transform.position, vector3, 5 + (this.ReturnStack(modulePrinterCore)*5), false, false, true, false);
+                DebrisObject debrisObject = LootEngine.DropItemWithoutInstantiating(gameObject2, gameObject2.transform.position, vector3, 7.5f + (this.ReturnStack(modulePrinterCore)*7.5f), false, false, true, false);
                 if (vector.y > 0f && debrisObject)
                 {
                     debrisObject.additionalHeightBoost = -1f;
@@ -171,7 +173,7 @@ namespace ModularMod
                         debrisObject.sprite.UpdateZDepth();
                     }
                 }
-                gameObject2.GetComponent<ThrownGoopItem>().goopRadius = 1 + this.ReturnStack(modulePrinterCore);
+                gameObject2.GetComponent<ThrownGoopItem>().goopRadius = 1.5f + this.ReturnStack(modulePrinterCore);
                 debrisObject.IsAccurateDebris = true;
                 debrisObject.Priority = EphemeralObject.EphemeralPriority.Critical;
                 debrisObject.bounceCount = 0;

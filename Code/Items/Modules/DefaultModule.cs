@@ -160,7 +160,14 @@ namespace ModularMod
         {
 
         }
-
+        public virtual bool CanBeEnabled(ModulePrinterCore modulePrinter, ModularGunController modularGunController)
+        {
+            return true;
+        }
+        public virtual bool CanBeDisabled(ModulePrinterCore modulePrinter, ModularGunController modularGunController)
+        {
+            return true;
+        }
 
         public int Stack()
         {

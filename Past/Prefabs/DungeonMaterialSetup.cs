@@ -394,8 +394,23 @@ namespace ModularMod
             ceilingBorderGrid.topRightNubIndices = new TileIndexList { indices = new List<int> { 58 }, indexWeights = new List<float> { 1f } };
             ceilingBorderGrid.bottomLeftNubIndices = new TileIndexList { indices = new List<int> { 55 }, indexWeights = new List<float> { 1f } };
             ceilingBorderGrid.bottomRightNubIndices = new TileIndexList { indices = new List<int> { 56 }, indexWeights = new List<float> { 1f } };
-            ceilingBorderGrid.centerIndices = new TileIndexList { indices = new List<int> { 0 }, indexWeights = new List<float> { 1f } };
             
+            ceilingBorderGrid.bottomRightIndices = new TileIndexList { indices = new List<int> { 61 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.bottomLeftIndices = new TileIndexList { indices = new List<int> { 62 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.topLeftIndices = new TileIndexList { indices = new List<int> { 63 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.topRightIndices = new TileIndexList { indices = new List<int> { 64 }, indexWeights = new List<float> { 1f } };
+
+            ceilingBorderGrid.topRightIndices = new TileIndexList { indices = new List<int> { 64 }, indexWeights = new List<float> { 1f } };
+
+            ceilingBorderGrid.rightCapIndices = new TileIndexList { indices = new List<int> { 65 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.leftCapIndices = new TileIndexList { indices = new List<int> { 66 }, indexWeights = new List<float> { 1f } };
+
+            ceilingBorderGrid.horizontalIndices = new TileIndexList { indices = new List<int> { 67 }, indexWeights = new List<float> { 1f } };
+
+            ceilingBorderGrid.borderTopNubRightIndices = new TileIndexList { indices = new List<int> { 68 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.borderTopNubLeftIndices = new TileIndexList { indices = new List<int> { 69 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.CenterIndicesAreStrata = false;
+            ceilingBorderGrid.centerIndices = new TileIndexList { indices = new List<int> { 1 }, indexWeights = new List<float> { 1f } };
 
             floorMaterial.roomCeilingBorderGrid = ceilingBorderGrid;
             var pitBorderGridCave = TilesetToolbox.CreateBlankIndexGrid();

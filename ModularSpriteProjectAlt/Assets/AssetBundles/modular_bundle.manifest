@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4264067084
+CRC: 2620863539
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 00da0cc93f1d40ff4c2cac3ad4b5181d
+    Hash: bbe151e516ee5089fef60cebd1d86668
   TypeTreeHash:
     serializedVersion: 2
     Hash: d0b405c094c925d34f7a922684ac7d5f
@@ -42,10 +42,12 @@ Assets:
 - Assets/Sprites/UI/ui_button_3.png
 - Assets/Sprites/UI/Accept Button/ui_button_accept_highlight.png
 - Assets/Sprites/VFX/Animations/WarningVFXAnimation.prefab
+- Assets/Sprites/VFX/Animations/CoolioAnimation.prefab
 - Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_alt.png
 - Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_highlighted_alt.png
 - Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_pressed.png
 - Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_highlighted.png
+- Assets/Sprites/VFX/Animations/DeathsplosionAnimation.prefab
 - Assets/Sprites/VFX/Animations/RefundAnimation.prefab
 - Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_highlighted_alt.png
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed_alt.png
@@ -53,9 +55,11 @@ Assets:
 - Assets/Sprites/Guns/ModularGunAnimation.prefab
 - Assets/Sprites/UI/Name Label/Names/name_label_QuadBurster.png
 - Assets/Sprites/VFX/Animations/BatteryAnimation.prefab
+- Assets/Sprites/Enemies/ModularEnemyCollection Data/mdlrenemy material.mat
 - Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun.png
 - Assets/Sprites/Projectiles/Beams/ModularBeamCollection Data/ModularBeamCollection.prefab
 - Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_press_alt.png
+- Assets/Sprites/Objects/Crate/CrateAnimation.prefab
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_defualtcannon_alt.png
 - Assets/Sprites/UI/CloseButton/ui_button_close_highlighted.png
 - Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun_highlighted.png
@@ -75,6 +79,7 @@ Assets:
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun.png
 - Assets/Sprites/UI/Name Label/name_label_empty.png
 - Assets/Sprites/UI/Name Label/Alt/name_label_locked_alt.png
+- Assets/Sprites/Objects/DecorativeObjects/LaserTurret/LaserTurretAnimation.prefab
 - Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_pressed_alt.png
 - Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_alt.png
 - Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_highlighted.png
@@ -93,12 +98,14 @@ Assets:
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_peashooter_alt.png
 - Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_highlighted_alt.png
 - Assets/Sprites/Items/Modules/Items And Pickups/ModuleItemCollection Data/ModuleItemCollection.prefab
+- Assets/Sprites/Objects/DecorativeObjects/PastDecorCollection Data/PastDecorCollection.prefab
 - Assets/Sprites/Items/Modules/T4/ModuleTier4Collection Data/modulrt4 material.mat
 - Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_pressed_alt.png
 - Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_alt.png
 - Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_highlighted.png
 - Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_active_alt.png
 - Assets/Sprites/Characters/Modular/Modular_Collection Data/Modular_Collection.prefab
+- Assets/Sprites/Objects/Crate/CrateCollection Data/CrateCollection.prefab
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_pressed.png
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_highlighted.png
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_alt.png
@@ -107,12 +114,15 @@ Assets:
 - Assets/Sprites/UI/ModularUIAtlas.mat
 - Assets/Sprites/UI/Accept Button/ui_button_accept_active.png
 - Assets/Sprites/VFX/Animations/PowerUpAnimation.prefab
+- Assets/Sprites/VFX/Animations/TetherAnimation.prefab
 - Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_alt.png
 - Assets/Sprites/Projectiles/Projectiles/ModularProjectileAnimation.prefab
 - Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_pressed_alt.png
 - Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun.png
+- Assets/Particles/Spooky Smoke/Spooky Smoke.prefab
 - Assets/Sprites/VFX/Animations/MinelayerAnimation.prefab
 - Assets/Sprites/UI/CloseButton/ui_button_close_highlighted_alt.png
+- Assets/Sprites/Enemies/Mecha/MechaAnimation.prefab
 - Assets/Sprites/UI/Accept Button/ui_button_accept_active_press.png
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_WIP_alt.png
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_suppressor_alt.png
@@ -123,18 +133,24 @@ Assets:
 - Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_pressed_alt.png
 - Assets/Sprites/UI/Accept Button/ui_button_accept_active_1.png
 - Assets/Sprites/VFX/ModularVFXCollection Data/modular_vfx material.mat
+- Assets/Sprites/Past Tileset 2/PastTileset2Collection Data/tileset2 material.mat
 - Assets/Sprites/UI/ComputerCore/ButtonUp.png
 - Assets/Sprites/UI/ComputerCore/tier_label_2.png
+- Assets/Sprites/Enemies/LaserDiode/LaserDiodeAnimation.prefab
 - Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_inactive_alt.png
+- Assets/Sprites/Objects/DecorativeObjects/PastDecorCollection Data/decor material.mat
+- Assets/Sprites/Enemies/ModularEnemyCollection Data/ModularEnemyCollection.prefab
 - Assets/Sprites/UI/ComputerCore/ButtonRight.png
 - Assets/Sprites/Items/Modules/T3/Module_T3_Collection Data/Module_T3_Collection.prefab
 - Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_highlighted_alt.png
 - Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_highlighted.png
+- Assets/Sprites/Enemies/EnergyShield/EnergyShieldAnimation.prefab
 - Assets/Sprites/UI/Page Turn Buttons/left_button_pressed.png
 - Assets/Sprites/Guns/ModularGunCollection Data/ModularGunCollection.prefab
 - Assets/Particles/Sparks/Spark Particle System.prefab
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_charger_alt.png
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_alt.png
+- Assets/Particles/Smoke/SmokeParticle.prefab
 - Assets/Sprites/UI/CloseButton/ui_button_close_pressed_alt.png
 - Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/Tier_2_Module_Collection.prefab
 - Assets/Sprites/UI/Name Label/Names/name_label_defualtcannon.png
@@ -147,16 +163,22 @@ Assets:
 - Assets/Sprites/Experimental Tileset/ExperimentalTilesetCollection Data/ExperimentalTilesetCollection.prefab
 - Assets/Sprites/UI/ComputerCore/Cancel.png
 - Assets/Sprites/UI/ComputerCore/ButtonDown.png
+- Assets/Sprites/VFX/Animations/SuperChargeAnimation.prefab
 - Assets/Sprites/UI/ComputerCore/ButtonRightBright.png
 - Assets/Sprites/UI/CloseButton/ui_button_close_alt.png
 - Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_pressed_alt.png
+- Assets/Sprites/Objects/Crate/CrateCollection Data/crate material.mat
 - Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_highlighted_alt.png
 - Assets/Sprites/UI/ComputerCore/ButtonLeftBright.png
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_scattercannon_alt.png
 - Assets/Sprites/UI/Name Label/Names/name_label_minigun.png
+- Assets/Sprites/Enemies/Node/NodeEnemyAnimation.prefab
 - Assets/Sprites/UI/ui_button_2.png
+- Assets/Sprites/Objects/DecorativeObjects/MovingTileAnimation.prefab
+- Assets/Sprites/Past Tileset 2/PastTileset2Collection Data/PastTileset2Collection.prefab
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed.png
 - Assets/Sprites/UI/Name Label/Alt/name_label_empty_alt.png
+- Assets/Sprites/Enemies/Burster/BursterBaddieAnimation.prefab
 - Assets/Sprites/VFX/Animations/PoisonVialAnimation.prefab
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_highlighted_alt.png
 - Assets/Sprites/Items/Modules/Items And Pickups/Animations/ScrapAnimation.prefab
@@ -191,6 +213,7 @@ Assets:
 - Assets/Sprites/UI/LockedButton/ui_button_locked_highlighted.png
 - Assets/Sprites/UI/LockedButton/ui_button_locked.png
 - Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_highlight_alt.png
+- Assets/Sprites/VFX/Animations/NodeChargeAnimation.prefab
 - Assets/Sprites/UI/ComputerCore/ButtonDownBright.png
 - Assets/Sprites/UI/ComputerCore/tier_label_1.png
 - Assets/Sprites/UI/Name Label/Names/name_label_PrecisionRifle.png
@@ -199,13 +222,16 @@ Assets:
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_highlighted.png
 - Assets/Sprites/UI/Name Label/Names/name_label_energycharger.png
 - Assets/Sprites/Items/Modules/Items And Pickups/Animations/CrafterAnimation.prefab
+- Assets/Sprites/Enemies/Sentry/SentryAnimation.prefab
 - Assets/Sprites/VFX/Animations/ScrapperAnimation.prefab
+- Assets/Sprites/Enemies/BigDrone/BigDroneAnimation.prefab
 - Assets/Sprites/UI/Page Turn Buttons/left_button_active.png
 - Assets/Sprites/UI/ui_template_bg_alt.png
 - Assets/Sprites/Characters/Modular/ModularSpriteAnimation.prefab
 - Assets/Sprites/UI/ui_template_bg.png
 - Assets/Sprites/UI/GunClip/ModularGunClip_Atlas.prefab
 - Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_1_alt.png
+- Assets/Sprites/Objects/DecorativeObjects/ElevatorAnimationAnimation.prefab
 - Assets/Sprites/Characters/modular_bosscard_001.png
 - Assets/Sprites/UI/ComputerCore/ButtonUpBright.png
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun.png

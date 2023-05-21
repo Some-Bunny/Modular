@@ -53,7 +53,7 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
-            chain.Damage = p.baseData.damage * (0.33f * stack);
+            chain.Damage = p.baseData.damage;
             chain.Range = 4f + (4 * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
@@ -61,45 +61,46 @@ namespace ModularMod
 
         }
 
-        public static List<GameObject> allactiveTetherProjectiles = new List<GameObject>();
+        public static List<ElectricChainProjectile> allactiveTetherProjectiles = new List<ElectricChainProjectile>();
     }
-    internal class ElectricChainProjectile : MonoBehaviour
+    public class ElectricChainProjectile : MonoBehaviour
     {
         public void Start()
         {
-            LightningNets.allactiveTetherProjectiles.Add(this.gameObject);
+            LightningNets.allactiveTetherProjectiles.Add(this);
         }
 
         private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
-        private HashSet<AIActor> m_damagedEnemies = new HashSet<AIActor>();
+        private float Tick = 0.25f;
+        private float Elapsed = 0;
+
 
         public void Update()
         {
+            Elapsed += BraveTime.DeltaTime;
             if (this.projectile != null)
             {
-                List<GameObject> activeProjectiles = LightningNets.allactiveTetherProjectiles;
+                List<ElectricChainProjectile> activeProjectiles = LightningNets.allactiveTetherProjectiles;
                 if (activeProjectiles != null && activeProjectiles.Count > 0)
                 {
-                    foreach (GameObject ai in activeProjectiles)
+                    foreach (ElectricChainProjectile ai in activeProjectiles)
                     {
-                        bool flag8 = ai && ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) < Range && ai.gameObject.GetComponent<ElectricChainProjectile>() != null && ai != this.projectile;
-                        if (flag8)
+                        if (ai != null && Vector2.Distance(ai.gameObject.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) < Range && ai.gameObject.GetComponent<ElectricChainProjectile>() != null && ai != this.projectile)
                         {
-                            if (!ExtantTethers.ContainsKey(ai))
+                            if (!ExtantTethers.ContainsKey(ai.gameObject) && !ai.gameObject.GetComponent<ElectricChainProjectile>().ExtantTethers.ContainsKey(ai.gameObject))
                             {
                                 GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
-                                ExtantTethers.Add(ai, obj);
+                                ExtantTethers.Add(ai.gameObject, obj);
                             }
                         }
-                        bool fuckoff = ai && ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) > Range;
-                        if (fuckoff)
+                        if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) > Range)
                         {
-                            if (ExtantTethers.ContainsKey(ai))
+                            if (ExtantTethers.ContainsKey(ai.gameObject))
                             {
                                 GameObject obj;
-                                ExtantTethers.TryGetValue(ai, out obj);
+                                ExtantTethers.TryGetValue(ai.gameObject, out obj);
                                 SpawnManager.Despawn(obj);
-                                ExtantTethers.Remove(ai);
+                                ExtantTethers.Remove(ai.gameObject);
                             }
                         }
                     }
@@ -109,7 +110,7 @@ namespace ModularMod
             {
                 if (this.projectile && si.Value != null && si.Key != null)
                 {
-                    UpdateLink(this.projectile, si.Value.GetComponent<tk2dTiledSprite>(), si.Key);
+                    UpdateLink(this.projectile, si.Value.GetComponent<tk2dTiledSprite>(), si.Key, Elapsed > Tick ? true : false);
                 }
                 if (si.Key != null && si.Value != null && this.projectile == null)
                 {
@@ -136,13 +137,13 @@ namespace ModularMod
                 }
             }
             ExtantTethers.Clear();
-            if (LightningNets.allactiveTetherProjectiles.Contains(this.gameObject))
+            if (LightningNets.allactiveTetherProjectiles.Contains(this))
             {
-                LightningNets.allactiveTetherProjectiles.Remove(this.gameObject);
+                LightningNets.allactiveTetherProjectiles.Remove(this);
             }
         }
 
-        private void UpdateLink(GameObject target, tk2dTiledSprite m_extantLink, GameObject actor)
+        private void UpdateLink(GameObject target, tk2dTiledSprite m_extantLink, GameObject actor, bool Damages)
         {
             Vector2 unitCenter = actor.GetComponentInChildren<tk2dSprite>().WorldCenter;
             Vector2 unitCenter2 = target.GetComponentInChildren<tk2dSprite>().WorldCenter;
@@ -153,8 +154,20 @@ namespace ModularMod
             m_extantLink.dimensions = new Vector2((float)num2, m_extantLink.dimensions.y);
             m_extantLink.transform.rotation = Quaternion.Euler(0f, 0f, num);
             m_extantLink.UpdateZDepth();
-            this.ApplyLinearDamage(unitCenter, unitCenter2);
-
+            if (Damages == true)
+            {
+                Elapsed = 0;
+                this.ApplyLinearDamage(unitCenter, unitCenter2);
+                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 1.5f, Hit);
+                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
+            }
+        }
+        public void Hit(AIActor aIActor, float f)
+        {
+            if (aIActor.State == AIActor.ActorState.Normal)
+            {
+                aIActor.healthHaver.ApplyDamage(Damage / 4, aIActor.transform.PositionVector2(), "Zap");
+            }
         }
         private void ApplyLinearDamage(Vector2 p1, Vector2 p2)
         {
@@ -162,28 +175,17 @@ namespace ModularMod
             for (int i = 0; i < StaticReferenceManager.AllEnemies.Count; i++)
             {
                 AIActor aiactor = StaticReferenceManager.AllEnemies[i];
-                if (!this.m_damagedEnemies.Contains(aiactor))
+                if (aiactor && aiactor.HasBeenEngaged && aiactor.IsNormalEnemy && aiactor.specRigidbody)
                 {
-                    if (aiactor && aiactor.HasBeenEngaged && aiactor.IsNormalEnemy && aiactor.specRigidbody)
+                    Vector2 zero = Vector2.zero;
+                    if (BraveUtility.LineIntersectsAABB(p1, p2, aiactor.specRigidbody.HitboxPixelCollider.UnitBottomLeft, aiactor.specRigidbody.HitboxPixelCollider.UnitDimensions, out zero))
                     {
-                        Vector2 zero = Vector2.zero;
-                        if (BraveUtility.LineIntersectsAABB(p1, p2, aiactor.specRigidbody.HitboxPixelCollider.UnitBottomLeft, aiactor.specRigidbody.HitboxPixelCollider.UnitDimensions, out zero))
-                        {
-                            aiactor.healthHaver.ApplyDamage(num, Vector2.zero, "Chain Lightning", CoreDamageTypes.Electric, DamageCategory.Normal, false, null, false);
-                            GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aiactor));
-                        }
+                        aiactor.healthHaver.ApplyDamage(num, Vector2.zero, "Chain Lightning", CoreDamageTypes.Electric, DamageCategory.Normal, false, null, false);
                     }
                 }
             }
         }
 
-        private IEnumerator HandleDamageCooldown(AIActor damagedTarget)
-        {
-            this.m_damagedEnemies.Add(damagedTarget);
-            yield return new WaitForSeconds(0.25f);
-            this.m_damagedEnemies.Remove(damagedTarget);
-            yield break;
-        }
 
         public float getCalculateddamage()
         {

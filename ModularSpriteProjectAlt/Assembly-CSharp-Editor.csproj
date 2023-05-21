@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{553A3485-D90E-5F9E-ABF6-5BB61A42D2EE}</ProjectGuid>
+    <ProjectGuid>{EDCCCA51-6A8F-9409-25A6-894935F18316}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -409,13 +409,13 @@
  <HintPath>D:/YooNiitee/2017.4.40f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="dfScriptLite">
- <HintPath>C:/Users/maxvo/source/repos/Modular/ModularSpriteProject/Assets/DFGUI/DataBinding/Plugins/dfScriptLite.dll</HintPath>
+ <HintPath>C:/Users/maxvo/source/repos/ModularAlt/ModularSpriteProjectAlt/Assets/DFGUI/DataBinding/Plugins/dfScriptLite.dll</HintPath>
  </Reference>
  <Reference Include="tk2dExternal">
- <HintPath>C:/Users/maxvo/source/repos/Modular/ModularSpriteProject/Assets/TK2DROOT/tk2d/Editor/tk2dExternal.dll</HintPath>
+ <HintPath>C:/Users/maxvo/source/repos/ModularAlt/ModularSpriteProjectAlt/Assets/TK2DROOT/tk2d/Editor/tk2dExternal.dll</HintPath>
  </Reference>
  <Reference Include="tk2dSkin">
- <HintPath>C:/Users/maxvo/source/repos/Modular/ModularSpriteProject/Assets/TK2DROOT/tk2d/Editor/tk2dSkin.dll</HintPath>
+ <HintPath>C:/Users/maxvo/source/repos/ModularAlt/ModularSpriteProjectAlt/Assets/TK2DROOT/tk2d/Editor/tk2dSkin.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Users/maxvo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -438,7 +438,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{E4065D8A-0AF9-9323-AD6C-973EED6E9BFD}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{13BF269D-BB0F-7CD9-E861-C4871DD15F31}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

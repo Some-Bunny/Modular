@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Regenerative Plating",
             Description = "Time Heals All",
-            LongDescription = "Entering a new floor restores 1 (+1 per stack), Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Entering a new floor restores 1 (+1 per stack) Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("selfcare_tier1_module"),
             Quality = ItemQuality.SPECIAL,

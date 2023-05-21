@@ -55,7 +55,7 @@ namespace ModularMod
                 projectileModule.shootStyle = ProjectileModule.ShootStyle.Charged;
                 projectileModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
                 projectileModule.cooldownTime = 0.5f;
-                projectileModule.angleFromAim = (30*q);
+                projectileModule.angleFromAim = (30 * q);
                 projectileModule.angleVariance = 2;
                 q++;
                 projectileModule.numberOfShotsInClip = 6;
@@ -100,6 +100,10 @@ namespace ModularMod
             }
 
 
+            gun.reflectDuringReload = true;
+            
+
+
             gun.gunSwitchGroup = "Railgun";
 
             gun.reloadTime = 4f;
@@ -125,18 +129,19 @@ namespace ModularMod
         }
 
 
+
+
         public void Start()
         {
             var thing = this.gun.GetComponent<ModularGunController>();
             if (thing)
-            {
+            {                      
                 thing.statMods.Add(new ModuleGunStatModifier()
                 {
                     AngleFromAim_Process = ProcessClipSize
                 });
             }
         }
-
 
         public float ProcessClipSize(float clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
@@ -224,6 +229,7 @@ namespace ModularMod
                                 component2.HeightOffGround = -2;
                             }
                         }
+                        
                         foreach (ProjectileModule projectileModule in this.gun.Volley.projectiles)
                         {
                             Projectile proj = projectileModule.GetCurrentProjectile();
@@ -231,8 +237,8 @@ namespace ModularMod
                             {
                                 proj.baseData.damage = ((elapsed * 8) + 2);
                             }
-
                         }
+                        
                     }
                     else
                     {

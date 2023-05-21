@@ -36,7 +36,7 @@ namespace ModularMod
 
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();
-            comp.isAlt = false;
+            comp.isAlt = true;
             comp.AdditionalPowerSupply = 0;
 
             gun.InfiniteAmmo = true;
@@ -55,7 +55,7 @@ namespace ModularMod
                 projectileModule.shootStyle = ProjectileModule.ShootStyle.Charged;
                 projectileModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
                 projectileModule.cooldownTime = 0.5f;
-                projectileModule.angleFromAim = (30*q);
+                projectileModule.angleFromAim = (30 * q);
                 projectileModule.angleVariance = 2;
                 q++;
                 projectileModule.numberOfShotsInClip = 6;
@@ -137,14 +137,11 @@ namespace ModularMod
             }
         }
 
-
         public float ProcessClipSize(float clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             float q = clip * (elapsed);
             return q;
         }
-
-
 
         public override void Update()
         {

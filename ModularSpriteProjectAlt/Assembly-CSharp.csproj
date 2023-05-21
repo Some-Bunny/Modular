@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E4065D8A-0AF9-9323-AD6C-973EED6E9BFD}</ProjectGuid>
+    <ProjectGuid>{13BF269D-BB0F-7CD9-E861-C4871DD15F31}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -511,7 +511,7 @@
  <HintPath>D:/YooNiitee/2017.4.40f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="dfScriptLite">
- <HintPath>C:/Users/maxvo/source/repos/Modular/ModularSpriteProject/Assets/DFGUI/DataBinding/Plugins/dfScriptLite.dll</HintPath>
+ <HintPath>C:/Users/maxvo/source/repos/ModularAlt/ModularSpriteProjectAlt/Assets/DFGUI/DataBinding/Plugins/dfScriptLite.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/maxvo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>

@@ -182,6 +182,25 @@ namespace ModularMod
             return null;
         }
 
+        public static bool PlayerHasActiveModule(this PlayerController player, int ModuleID)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    foreach (var container in printerCore.ModuleContainers)
+                    {
+                        if (container.defaultModule.PickupObjectId == ModuleID) 
+                        {
+                            return (container.ActiveCount > 0) ? true : false;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         public static ModulePrinterCore PlayerHasCore(this PlayerController player)
         {
             for (int c = 0; c < player.passiveItems.Count; c++)

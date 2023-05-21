@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bubbleblast_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Bubble Blast " + h.ReturnTierLabel();
-            h.LabelDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment. Reloading boosts all projectiles greatly\nand increases their damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment.\nReloading boosts all projectiles greatly\nand increases their damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

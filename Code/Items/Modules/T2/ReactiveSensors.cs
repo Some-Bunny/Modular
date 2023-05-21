@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Reactive Sensors",
             Description = "Get In, Get Out",
-            LongDescription = "If an enemy gets too close, release a massive shockwave that stuns, pushes and harms enemies in a large redius (+Damage and push force per stack). Recharges over 15 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "If an enemy gets too close, releases a massive shockwave that stuns, pushes and harms enemies in a large redius (+Damage and push force per stack). Recharges over 15 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Reactive Sensors" + h.ReturnTierLabel();
-            h.LabelDescription = "If an enemy gets too close, release a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage and push force", StaticColorHexes.Light_Orange_Hex) + ").\nRecharges after 15 seconds.";
+            h.LabelDescription = "If an enemy gets too close, releases a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage and push force", StaticColorHexes.Light_Orange_Hex) + ").\nRecharges after 15 seconds.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Barter Software",
             Description = "With Gold",
-            LongDescription = "Adds 1 Pierce, Reduce Damage by 20% (-20% per stack hyperbolically) But each enemy pierced increases projectile damage by 2x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "While active, reduces all prices by 50% . Taking damage breaks this module (+Extra hits before breaking). Once enabled, cannot be disabled." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("swindler_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,8 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("swindler_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Barter Software " + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces all prices by 33%.\nTaking damage breaks this module\n(" + StaticColorHexes.AddColorToLabelString("+Extra hits before breaking", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "While active, reduces all prices by 50%.\nTaking damage breaks this module\n(" + StaticColorHexes.AddColorToLabelString("+Extra hits before breaking", StaticColorHexes.Light_Orange_Hex) + ").\n" + StaticColorHexes.AddColorToLabelString("Once enabled, cannot be disabled.", StaticColorHexes.Red_Color_Hex);
+            h.EnergyConsumption = 1;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -41,7 +42,7 @@ namespace ModularMod
                 ItemIsValidForDiscount = IsValid,
                 CanDiscountCondition = CanDisc,
                 IdentificationKey = "Barter_Module",
-                PriceMultiplier = 0.66f
+                PriceMultiplier = 0.5f
             });
 
             GameObject VFX = new GameObject("VFX");
@@ -63,7 +64,7 @@ namespace ModularMod
         {
             foreach (PlayerController player in GameManager.Instance.AllPlayers)
             {
-                if (player.PlayerHasModule(BarterSoftware.ID) != null) { return true; }
+                if (player.PlayerHasActiveModule(BarterSoftware.ID) == true) { return true; }
             }
             return false;
         }
@@ -74,6 +75,10 @@ namespace ModularMod
 
         public static int ID;
 
+        public override bool CanBeDisabled(ModulePrinterCore modulePrinter, ModularGunController modularGunController)
+        {
+            return false;
+        }
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnDamaged += OD;

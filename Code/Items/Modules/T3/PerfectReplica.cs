@@ -40,7 +40,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 30;
+            h.OverrideScrapCost = 20;
 
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;

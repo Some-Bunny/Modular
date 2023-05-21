@@ -62,6 +62,7 @@ namespace ModularMod
 
         public void OnKilledEnemy(ModulePrinterCore core, PlayerController player, AIActor enemy)
         {
+            
             int stack = this.ReturnStack(core);
             if (enemy)
             {

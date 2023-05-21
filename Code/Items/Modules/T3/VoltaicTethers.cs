@@ -75,7 +75,7 @@ namespace ModularMod
         }
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 5;
+            return f * 3;
         }
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
@@ -84,7 +84,7 @@ namespace ModularMod
             p.UpdateSpeed();
             int stack = this.ReturnStack(modulePrinterCore);
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 10 * stack;
+            tethers.DPS = 12 * stack;
             tethers.PylonRange = 3 * stack;
             tethers.PlayerRange = 15 * stack;
         }

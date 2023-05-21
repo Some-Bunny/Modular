@@ -107,8 +107,12 @@ namespace ModularMod
             orig(self);
             var scrapLabel = FindScrapUI(self);
             scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3(0.04f + (0.0125f * self.p_playerCoinLabel.Text.Length), -0.005f));
-            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().text = ScrapCounterVisible().Second.ToString();
+            var thing = ScrapCounterVisible();
+            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().text = thing.Second.ToString();
             scrapLabel.gameObject.GetComponentInChildren<dfLabel>().Invalidate();
+            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().isVisible = thing.First;
+            scrapLabel.gameObject.GetComponent<dfPanel>().isVisible = thing.First;
+
         }
 
         public static dfPanel FindScrapUI(GameUIRoot self)

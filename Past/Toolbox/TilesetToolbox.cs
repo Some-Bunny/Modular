@@ -505,9 +505,12 @@ namespace ModularMod
             FieldInfo[] finfos = type.GetFields();
             foreach (var finfo in finfos)
             {
+
+
                 //Debug.Log($"\t{finfo.Name}: {finfo.GetValue(obj)}");
 
 
+                
                 var value = finfo.GetValue(obj);
                 if (value != null)
                 {
@@ -525,7 +528,7 @@ namespace ModularMod
                     Debug.Log($"\t{finfo.Name}: {valueString}"+"]");
                 }
                 
-               
+
             }
         }
 

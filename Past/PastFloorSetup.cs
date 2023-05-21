@@ -7,6 +7,7 @@ using UnityEngine;
 using Alexandria.DungeonAPI;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
+using ModularMod.Past.Prefabs.Objects;
 
 namespace ModularMod
 {
@@ -14,7 +15,7 @@ namespace ModularMod
     {
         public static void Init()
         {
-
+            InitObjects.Init();
             TilesetSetup.InitCustomTileset(); //Init Tileset
             DungeonMaterialSetup.InitCustomDungeonMaterial(); //Init Dungeon Material
             DungeonMaterialSetupSecond.InitCustomDungeonMaterial();
@@ -75,7 +76,25 @@ namespace ModularMod
 
         public static Dungeon GetOrLoadByNameHook(Func<string, Dungeon> orig, string name)
         {
-            if (name.ToLower() == "based_modular_past")//THIS STRING MUST BE THE NAME OF YOUR FLOORS DUNGEON PREFAB PATH
+            bool flag = name.ToLower() == "based_modular_past";
+            Dungeon result;
+            if (flag)
+            {
+                DebugTime.RecordStartTime();
+                DebugTime.Log("AssetBundle.LoadAsset<Dungeon>({0})", new object[]
+                {
+                    name
+                });
+                result = PastDungeon.AbyssGeon(GetOrLoadByName_Orig("Base_ResourcefulRat"));
+            }
+            else
+            {
+                result = orig(name);
+            }
+
+            return result;
+            /*
+            if (name.ToLower() == "tt_modular_past")//THIS STRING MUST BE THE NAME OF YOUR FLOORS DUNGEON PREFAB PATH
             { 
                 return PastDungeon.AbyssGeon(GetOrLoadByName_Orig("Base_ResourcefulRat"));
             }
@@ -83,6 +102,7 @@ namespace ModularMod
             {
                 return orig(name);
             }
+            */
         }
 
         public static Hook getOrLoadByName_Hook;
@@ -105,12 +125,13 @@ namespace ModularMod
             {
                 RAPID_DEBUG_DUNGEON_ITERATION_SEEKER = false,
                 RAPID_DEBUG_DUNGEON_ITERATION = false,
-                RAPID_DEBUG_DUNGEON_COUNT = 50,
+                RAPID_DEBUG_DUNGEON_COUNT = 5,
+                
                 GENERATION_VIEWER_MODE = false,
-                FULL_MINIMAP_VISIBILITY = false,
+                FULL_MINIMAP_VISIBILITY = true,
                 COOP_TEST = false,
                 DISABLE_ENEMIES = false,
-                DISABLE_LOOPS = false,
+                DISABLE_LOOPS = true,
                 DISABLE_SECRET_ROOM_COVERS = false,
                 DISABLE_OUTLINES = false,
                 WALLS_ARE_PITS = false
@@ -127,8 +148,9 @@ namespace ModularMod
             intCollection.elements = new WeightedInt[] { weightedInt };
             dungeon.decoSettings.standardRoomVisualSubtypes = intCollection;
             var deco = dungeon.decoSettings;
-            deco.ambientLightColor = new Color(1, 1, 1);
-            deco.ambientLightColorTwo = new Color(1, 1, 1);
+            
+            deco.ambientLightColor = new Color(0.05f, 0.05f, 0.05f);
+            deco.ambientLightColorTwo = new Color(0.05f, 0.05f, 0.05f);
 
             deco.generateLights = false;
 
@@ -197,7 +219,8 @@ namespace ModularMod
                 },
                 mandatoryExtraRooms = new List<ExtraIncludedRoomData>(0),
                 optionalExtraRooms = new List<ExtraIncludedRoomData>(0),
-                MAX_GENERATION_ATTEMPTS = 500,
+                MAX_GENERATION_ATTEMPTS = 5,
+                
                 DEBUG_RENDER_CANVASES_SEPARATELY = false
             };
 
@@ -221,6 +244,8 @@ namespace ModularMod
                 UseMineCarts = false,
                 CanIncludePits = false
             };
+            dungeon.StripPlayerOnArrival = true;
+
             /*
             //more variable we can copy from other floors, or make our own
             dungeon.PlaceDoors = false;
@@ -250,7 +275,6 @@ namespace ModularMod
             dungeon.UsesOverrideTertiaryBossSets = false;
             dungeon.OverrideTertiaryRewardSets = new List<TertiaryBossRewardSet>(0);
             dungeon.defaultPlayerPrefab = MinesDungeonPrefab.defaultPlayerPrefab;
-            dungeon.StripPlayerOnArrival = false;
             dungeon.SuppressEmergencyCrates = false;
             dungeon.SetTutorialFlag = false;
             dungeon.PlayerIsLight = true;
@@ -268,7 +292,30 @@ namespace ModularMod
             RatDungeonPrefab = null;
             MinesDungeonPrefab = null;
             //MarinePastPrefab = null;
+
+            dungeon.gameObject.AddComponent<PastFloorOneController>();
+
             return dungeon;
+        }
+
+        private class PastFloorOneController : MonoBehaviour
+        {
+
+            public void Start()
+            {
+                foreach (var player in GameManager.Instance.AllPlayers)
+                {
+                    if (player.characterIdentity == ModularMod.Module.Modular)
+                    {
+                        player.AcquirePassiveItem(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID) as PassiveItem);
+                        player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(DefaultArmCannon.ID) as Gun, true);
+                    }
+                }
+            }
+            public void Update()
+            {
+
+            }
         }
         public static Dungeon GetOrLoadByName_Orig(string name)
         {

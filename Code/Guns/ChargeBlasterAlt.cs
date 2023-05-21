@@ -16,7 +16,7 @@ namespace ModularMod
             Gun gun = ETGMod.Databases.Items.NewGun("Charge Blaster", "energychargeralt");
             Game.Items.Rename("outdated_gun_mods:charge_blaster", "mdl:armcannon_4_alt");
             gun.gameObject.AddComponent<ChargeBlasterAlt>();
-            gun.SetShortDescription("Mk.1");
+            gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires weak energy pellets, can be charged up for a strong attack. Compatible with Modular Upgrade Software.\n\nDraws a lot of power to fire.");
 
             GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "energychargeralt_idle_001", 11);

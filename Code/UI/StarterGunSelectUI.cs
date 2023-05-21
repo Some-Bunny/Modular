@@ -67,7 +67,7 @@ namespace ModularMod
             {
                 if (c == null) { return GunID; }
                 if (c.ModularGunController == null) { return GunID; }
-                return c.ModularGunController.isAlt == false ? GunID : AltGunID != -1 ? AltGunID : GunID;
+                return c.ModularGunController.isAlt == true ? AltGunID != -1 ? AltGunID : GunID : GunID;
             }
 
             public string ReturnNameLabel()
@@ -125,7 +125,7 @@ namespace ModularMod
             };
 
             public int GunID = DefaultArmCannon.ID;
-            public int AltGunID = DefaultArmCannonAlt.ID;
+            public int AltGunID = -1;//DefaultArmCannonAlt.ID;
 
             public dfButton df_Button;
 
@@ -204,7 +204,7 @@ namespace ModularMod
 
 
 
-            defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_template_bg"), "template_UI_background");
+            //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_template_bg"), "template_UI_background");
             //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_template_bg_alt"), "template_UI_background_alt");
 
             StarterGunSelectUIController.UI_Frame = PrefabBuilder.BuildObject("Frame_Modular_UI");
@@ -213,9 +213,12 @@ namespace ModularMod
             var storage = UI_Frame.AddComponent<AltSkinStringStorage>();
             storage.df_label_string = "ui_template_bg_alt";
 
+
+
+
             dfPanel dfPanel = StarterGunSelectUIController.UI_Frame.AddComponent<dfPanel>();
             dfPanel.anchorStyle = dfAnchorStyle.All;
-            dfPanel.isEnabled = true;
+            dfPanel.isEnabled = false;
             dfPanel.isVisible = true;
             dfPanel.isInteractive = true;
             dfPanel.tooltip = "";
@@ -243,18 +246,20 @@ namespace ModularMod
                 owner = dfPanel
             };
             dfPanel.renderOrder = 30;
-            dfPanel.isLocalized = false;
+            dfPanel.isLocalized = true;
             dfPanel.hotZoneScale = Vector2.one;
             dfPanel.allowSignalEvents = true;
             dfPanel.PrecludeUpdateCycle = false;
             dfPanel.Atlas = defaultAtlas;
             dfPanel.atlas = defaultAtlas;
             
-            dfPanel.backgroundSprite = "template_UI_background";
+            dfPanel.backgroundSprite = "ui_template_bg";
             dfPanel.backgroundColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             //dfPanel.padding = new RectOffset(0, 0, 0, 0);
-            
+            dfPanel.gameObject.SetActive(true);
 
+
+            float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
 
             StarterGunSelectUIController gunSelectUIController = StarterGunSelectUIController.UI_Frame.AddComponent<StarterGunSelectUIController>();
 
@@ -270,10 +275,10 @@ namespace ModularMod
             GameObject closeButton_object = PrefabBuilder.BuildObject("CloseButton");
             closeButton_object.layer = 24;
             closeButton_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
-            dfButton closeButton = closeButton_object.CreateBlankDfButton(new Vector2(160f, 160f), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
+            dfButton closeButton = closeButton_object.CreateBlankDfButton(new Vector2(160f / mult, 160f/ mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left , new dfAnchorMargins
             {
-                bottom = 1275,
-                left = 530,
+                bottom = 1275 / mult,
+                left = 530 / mult,
                 right = 0f,
                 top = 0f
             });
@@ -291,10 +296,11 @@ namespace ModularMod
             storage_closeButton.df_button_highlighted_string = "ui_button_close_highlighted_alt";
 
             gunSelectUIController.Close_Button = closeButton;
+            closeButton.gameObject.SetActive(false);
 
 
 
-            
+
             {
                 //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_default_gun"), "Default_Gun_Icon");
                 //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_default_gun_highlighted"), "Default_Gun_Icon_Hightlighted");
@@ -307,10 +313,10 @@ namespace ModularMod
                 GameObject Default_Gun_Button_object = PrefabBuilder.BuildObject("Default_Gun_Button");
                 //Default_Gun_Button_object.layer = 24;
                 Default_Gun_Button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
-                dfButton Default_Gun_Button = Default_Gun_Button_object.CreateBlankDfButton(new Vector2(160, 160), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
+                dfButton Default_Gun_Button = Default_Gun_Button_object.CreateBlankDfButton(new Vector2(160 / mult, 160 / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
                 {
-                    bottom = 1250,
-                    left = 940f,
+                    bottom = 1250 / mult,
+                    left = 936 / mult,
                     right = 0,
                     top = 0
                 });
@@ -320,8 +326,9 @@ namespace ModularMod
                 Default_Gun_Button.disabledSprite = "ui_button_default_gun";
                 Default_Gun_Button.focusSprite = "ui_button_default_gun_highlighted";
                 Default_Gun_Button.pressedSprite = "ui_button_default_gun_pressed";
-                Default_Gun_Button.RelativePosition = new Vector3(0, 4);
+                //Default_Gun_Button.RelativePosition = new Vector3(4, 0);
                 Default_Gun_Button.atlas = defaultAtlas;
+                Default_Gun_Button.gameObject.SetActive(false);
 
                 var upgrade_button_default_gun = Default_Gun_Button_object.AddComponent<UpgradeUISelectButtonController>();
                 upgrade_button_default_gun.df_Button = Default_Gun_Button;
@@ -527,7 +534,7 @@ namespace ModularMod
                    , StaticColorHexes.AddColorToLabelString("Very Fast", StaticColorHexes.Green_Hex) //Shot Speed Secription
                    , "Line up shots to kill groups."  //Additional Notes, keep at one line
                    , "name_label_PrecisionRifle" //Label Name Asset Name
-                   , PresicionRifle.ID //alt gun ID
+                   , PresicionRifleAlt.ID //alt gun ID
                    , "ui_button_precisionrifle_gun_alt" //asset name default alt
                    , "ui_button_precisionrifle_gun_highlighted_alt" //asset name highlighted alt
                    , "ui_button_precisionrifle_gun_pressed_alt" //asset name pressed alt
@@ -629,6 +636,28 @@ namespace ModularMod
                  , "name_label_artemis"  //Label Name Asset Name Alt
                  , "As Modular, beat the\nOld King."); //Unlock Description
 
+            StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
+                "LightLanceButton"
+                , "ui_button_lance_gun" //asset name default
+                , "ui_button_lance_gun_highlighted" //asset name highlighted
+                , "ui_button_lance_gun_pressed" //asset name pressed
+                , CustomDungeonFlags.BEAT_RAT_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
+                , LightLance.ID //Gun ID
+                , "Melee weapon.\nCharge up to parry projectiles." //Default description
+                , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex)  //Damage Secription
+                , StaticColorHexes.AddColorToLabelString("Slower Than Average", StaticColorHexes.Light_Orange_Hex)//Reload Secription
+                , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex) //Clipsize Secription
+                , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Green_Hex)//Fire rate Secription
+                , StaticColorHexes.AddColorToLabelString("N/A | Very Slow", StaticColorHexes.Red_Color_Hex) //Shot Speed Secription
+                , "Parrying Faster Bullets deals more damage."  //Additional Notes, keep at one line
+                , "name_label_lightlance" //Label Name Asset Name
+                , LightLanceAlt.ID //alt gun ID
+                , "ui_button_lance_gun_alt" //asset name default alt
+                , "ui_button_lance_gun_highlighted_alt" //asset name highlighted alt
+                , "ui_button_lance_gun_pressed_alt" //asset name pressed alt
+                , "name_label_lightlance_alt"  //Label Name Asset Name Alt
+                , "As Modular, beat the\nResourceful Rat."); //Unlock Description
+
             /*
             for (int i = 0; i < 13; i++)
             {
@@ -667,10 +696,10 @@ namespace ModularMod
                 GameObject accept_Button_object = PrefabBuilder.BuildObject("AcceptButton");
                 //accept_Button_object.layer = 24;
                 accept_Button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
-                dfButton acceptButton_df = accept_Button_object.CreateBlankDfButton(new Vector2(640f, 160f), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
+                dfButton acceptButton_df = accept_Button_object.CreateBlankDfButton(new Vector2(640f / mult, 160f / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
                 {
-                    bottom = 550,
-                    left = 1680,
+                    bottom = 550 / mult,
+                    left = 1680 / mult,
                     right = 0f,
                     top = 0f
                 });
@@ -689,6 +718,8 @@ namespace ModularMod
                 storage_acceptButton.df_button_pressed_string = "ui_button_accept_active_press_alt";
 
                 gunSelectUIController.Accept_Button = acceptButton_df;
+                acceptButton_df.gameObject.SetActive(false);
+
             }
 
             {
@@ -707,10 +738,10 @@ namespace ModularMod
                 GameObject left_button_object = PrefabBuilder.BuildObject("Left_Page_Button");
                 //left_button_object.layer = 24;
                 left_button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
-                dfButton left_button = left_button_object.CreateBlankDfButton(new Vector2(80, 80f), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
+                dfButton left_button = left_button_object.CreateBlankDfButton(new Vector2(80 / mult, 80f / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
                 {
-                    bottom = 500,
-                    left = 748,
+                    bottom = 500 / mult,
+                    left = 748 / mult,
                     right = 0f,
                     top = 0f
                 });
@@ -722,6 +753,7 @@ namespace ModularMod
                 left_button.pressedSprite = "left_button_pressed";
                 left_button.atlas = defaultAtlas;
                 left_button.Atlas = defaultAtlas;
+                left_button.gameObject.SetActive(false);
 
                 var storage_left_button = left_button.gameObject.AddComponent<AltSkinStringStorage>();
                 storage_left_button.df_button_default_string = "left_button_active_alt";
@@ -747,10 +779,10 @@ namespace ModularMod
                 GameObject right_button_object = PrefabBuilder.BuildObject("Right_Page_Button");
                 //right_button_object.layer = 24;
                 right_button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
-                dfButton right_button = right_button_object.CreateBlankDfButton(new Vector2(80, 80f), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
+                dfButton right_button = right_button_object.CreateBlankDfButton(new Vector2(80 / mult, 80f / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
                 {
-                    bottom = 500,
-                    left = 1180,
+                    bottom = 500 / mult,
+                    left = 1180 / mult,
                     right = 0f,
                     top = 0f
                 });
@@ -761,6 +793,7 @@ namespace ModularMod
                 right_button.focusSprite = "right_button_highlighted";
                 right_button.pressedSprite = "right_button_pressed";
                 right_button.atlas = defaultAtlas;
+                right_button.gameObject.SetActive(false);
 
                 var storage_right_button = right_button.gameObject.AddComponent<AltSkinStringStorage>();
                 storage_right_button.df_button_default_string = "right_button_active_alt";
@@ -779,14 +812,15 @@ namespace ModularMod
             StatDescriptionLabel.shadow = true;
             StatDescriptionLabel.shadowOffset = new Vector2(1, -0.5f);
             StatDescriptionLabel.ShadowColor = new Color32(1, 1, 1, 255);
-            StatDescriptionLabel.textScale *= 0.95f;
+            StatDescriptionLabel.textScale *= (0.95f / mult);
+            StatDescriptionLabel.gameObject.SetActive(false);
 
             StatDescriptionLabel.layout = new dfControl.AnchorLayout(dfAnchorStyle.Bottom | dfAnchorStyle.Left)
             {
                 margins = new dfAnchorMargins
                 {
-                    bottom = 20f,
-                    left = 2670f,
+                    bottom = ((1020f / mult) - 1000 ) - (mult == 2 ? 20 : 0),
+                    left = (1670f / mult) + 1000,
                     right = 0,
                     top = 0
                 },
@@ -809,17 +843,18 @@ namespace ModularMod
             NameDescriptionLabel.AssignDefaultPresets(GameUIDefautlAtlas, defaultFont);
             NameDescriptionLabel.anchorStyle = (dfAnchorStyle.Bottom | dfAnchorStyle.Left);
             NameDescriptionLabel.color = new Color32(155, 235, 199, 255);
-            NameDescriptionLabel.textScale *= 1.15f;
+            NameDescriptionLabel.textScale *= (1.15f / mult);
             NameDescriptionLabel.shadow = true;
             NameDescriptionLabel.shadowOffset = new Vector2(1, -0.5f);
             NameDescriptionLabel.ShadowColor = new Color32(1, 1, 1, 255);
+            NameDescriptionLabel.gameObject.SetActive(false);
 
             NameDescriptionLabel.layout = new dfControl.AnchorLayout(dfAnchorStyle.Bottom | dfAnchorStyle.Left)
             {
                 margins = new dfAnchorMargins
                 {
-                    bottom = 140f,
-                    left = 2670f,
+                    bottom = ((1140f / mult)-1000)-(mult == 2 ? 20 : 0),
+                    left = (1670f / mult)+1000,
                     right = 0,
                     top = 0
                 },
@@ -852,15 +887,15 @@ namespace ModularMod
             */
 
             dfPanel name_display_Object_panel = name_display_Object.AddComponent<dfPanel>();
-            name_display_Object_panel.AssignDefaultPresets(defaultAtlas, new Vector2(680.5f, 222.5f), dfAnchorStyle.Bottom | dfAnchorStyle.Left);
+            name_display_Object_panel.AssignDefaultPresets(defaultAtlas, new Vector2(680.5f / mult, 222.5f / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left);
             //name_display_Object_panel.gameObject.transform.localScale /= 2;
 
             name_display_Object_panel.layout = new dfControl.AnchorLayout(dfAnchorStyle.Bottom | dfAnchorStyle.Left)
             {
                 margins = new dfAnchorMargins
                 {
-                    bottom = 1195,
-                    left = 1655,
+                    bottom = 1195 / mult,
+                    left = 1655 / mult,
                     right = 0f,
                     top = 0f
                 },
@@ -869,6 +904,7 @@ namespace ModularMod
             name_display_Object_panel.backgroundSprite = "name_label_empty";
             name_display_Object_panel.atlas = defaultAtlas;
             name_display_Object_panel.Atlas = defaultAtlas;
+            name_display_Object_panel.gameObject.SetActive(false);
 
             name_display_Object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
             gunSelectUIController.Name_Panel = name_display_Object_panel;
@@ -890,9 +926,11 @@ namespace ModularMod
              string Label_Name_Asset_Name_Alt = "name_label_WIP_alt", string UnlockDescription = "Blah Blah Blah"
             )
         {
+            float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+
             GameObject Default_Gun_Button_object = PrefabBuilder.BuildObject(Button_Name+"_Object");
             //Default_Gun_Button_object.layer = 24;
-            Default_Gun_Button_object.transform.parent = StarterGunSelectUIController.UI_Frame.GetComponent<dfPanel>().transform;
+            Default_Gun_Button_object.gameObject.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
 
             var upgrade_button_default_gun = Default_Gun_Button_object.AddComponent<UpgradeUISelectButtonController>();
 
@@ -928,17 +966,15 @@ namespace ModularMod
 
             int integer = AddNewEntry(self, upgrade_button_default_gun);
 
-            dfButton Default_Gun_Button = Default_Gun_Button_object.CreateBlankDfButton(new Vector2(160, 160), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
+            dfButton Default_Gun_Button = Default_Gun_Button_object.CreateBlankDfButton(new Vector2(160 / mult, 160 / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
             {
-                bottom = preDeterminedOffsets[integer].y,
-                left = preDeterminedOffsets[integer].x,
+                bottom = preDeterminedOffsets[integer].y / mult,
+                left = preDeterminedOffsets[integer].x / mult,
                 right = 0,
                 top = 0
             });
             upgrade_button_default_gun.df_Button = Default_Gun_Button;
             Default_Gun_Button.AssignDefaultPresets(dfAtlas, defaultFont);
-
-
 
             Default_Gun_Button.backgroundSprite = asset_name_default;
             Default_Gun_Button.disabledSprite = asset_name_default;
@@ -947,9 +983,10 @@ namespace ModularMod
             Default_Gun_Button.pressedSprite = asset_name_pressed;
 
 
-            Default_Gun_Button.RelativePosition = new Vector3(4, 0);
+            //Default_Gun_Button.RelativePosition = new Vector3(4, 0);
         }
 
+        //RelativePosition
 
         [HarmonyPatch(typeof(GameUIRoot), "Start")]
         [HarmonyPostfix]
@@ -963,7 +1000,7 @@ namespace ModularMod
             
             if (GameUIRoot.Instance.Manager.transform.Find("Frame_Modular_UI(Clone)") == null)
             {
-                StarterGunSelectUIController.Inst = GameUIRoot.Instance.Manager.AddPrefab(StarterGunSelectUIController.UI_Frame).gameObject.GetComponent<StarterGunSelectUIController>();   
+                StarterGunSelectUIController.Inst = GameUIRoot.Instance.Manager.AddPrefab(StarterGunSelectUIController.UI_Frame).gameObject.GetComponent<StarterGunSelectUIController>();
                 return StarterGunSelectUIController.Inst;
 
             }
@@ -980,7 +1017,7 @@ namespace ModularMod
             bool altSkin = interactor.IsUsingAlternateCostume;
 
             var panel_df = Inst.GetComponent<dfPanel>();
-            panel_df.backgroundSprite = altSkin == false ? "template_UI_background" : "ui_template_bg_alt";
+            panel_df.backgroundSprite = altSkin == false ? "ui_template_bg" : "ui_template_bg_alt";
             panel_df.Invalidate();
 
 
@@ -1027,6 +1064,8 @@ namespace ModularMod
         }
 
 
+        public Action OnUsed;
+        public Action OnClosed;
 
         public void OnUse(PlayerController player, int GunID)
         {
@@ -1052,6 +1091,10 @@ namespace ModularMod
                 var.TemporaryDisableDrop = false;
             }
             player.inventory.DestroyGun(carriedGun);
+            if (OnUsed != null)
+            {
+                OnUsed();
+            }
         }
 
 
@@ -1103,6 +1146,10 @@ namespace ModularMod
             this.Close_Button.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
             {
                 Inst.ToggleUI(false);
+                if (OnClosed != null)
+                {
+                    OnClosed();
+                }
             };
 
             default_gun_button.df_Button.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
@@ -1143,6 +1190,7 @@ namespace ModularMod
             };
         }
 
+     
 
 
 
@@ -1220,6 +1268,25 @@ namespace ModularMod
         }
 
 
+        private static void UIScaleFormla(dfPanel panel)
+        {
+            panel.transform.localScale = GameUIUtility.GetCurrentTK2D_DFScale(panel.cachedManager) * Vector3.one;
+
+        }
+
+        private static void UIScaleFormla(dfButton panel)
+        {
+            panel.transform.localScale = Vector3.one * (GameUIUtility.GetCurrentTK2D_DFScale(panel.cachedManager) * 2);
+
+            /*
+            int FUckYouGame = panel.GetManager().UIScale < 0.5f ? 1 : 2;
+            Vector2 sizeInPixels = panel.Atlas[panel.backgroundSprite].sizeInPixels;
+            panel.Size = (sizeInPixels * Pixelator.Instance.CurrentTileScale) / FUckYouGame;
+            panel.Invalidate();
+            */
+        }
+
+
         public void DoActivation()
         {
             DoAltSkinChecks();
@@ -1230,17 +1297,51 @@ namespace ModularMod
             bg.IsEnabled = this.Is_Active;
 
             this.name_and_Description_Label.isEnabled = Is_Active;
+            name_and_Description_Label.gameObject.SetActive(Is_Active);
+
             this.statDescrptionLabel.isEnabled = Is_Active;
+            statDescrptionLabel.gameObject.SetActive(Is_Active);
+
+            this.Accept_Button.isEnabled = Is_Active;
+            Accept_Button.gameObject.SetActive(Is_Active);
+
             this.Name_Panel.isEnabled = Is_Active;
+            Name_Panel.gameObject.SetActive(Is_Active);
 
             this.Left_Button.isEnabled = Is_Active;
+            Left_Button.gameObject.SetActive(Is_Active);
+
+
             this.Right_Button.isEnabled = Is_Active;
+            Right_Button.gameObject.SetActive(Is_Active);
 
 
             default_gun_button.df_Button.isEnabled = Is_Active;
             default_gun_button.df_Button.ForceState(Is_Active == false ? dfButton.ButtonState.Disabled : dfButton.ButtonState.Default);
+            default_gun_button.gameObject.SetActive(Is_Active);
+
+
+            this.Close_Button.isEnabled = Is_Active;
+            Close_Button.gameObject.SetActive(Is_Active);
+
 
             ProcessButtonPages();
+            UpdateNameDescLabel();
+
+            if (Is_Active == true)
+            {
+                Name_Panel.PerformLayout();
+                Left_Button.PerformLayout();
+                Right_Button.PerformLayout();
+                statDescrptionLabel.PerformLayout();
+                name_and_Description_Label.PerformLayout();
+
+                default_gun_button.df_Button.PerformLayout();
+                Close_Button.PerformLayout();
+                Accept_Button.PerformLayout();
+                Name_Panel.PerformLayout();
+
+            }
 
         }
         public void ProcessButtonPage(UpgradeUISelectButtonController self)
@@ -1249,6 +1350,7 @@ namespace ModularMod
             bool b = self.Page == Current_Page ? true : false;
             self.df_Button.isEnabled = b == true ? true : false;
             self.df_Button.gameObject.SetActive(b == true ? Is_Active : false);
+
         }
 
         public void ProcessButtonPages()
@@ -1260,6 +1362,7 @@ namespace ModularMod
                 bool b = List.Page == Current_Page ? true : false;
                 List.df_Button.isEnabled = b == true ? Is_Active : false;
                 List.df_Button.gameObject.SetActive(b == true ? Is_Active : false);
+                List.df_Button.PerformLayout();
             }
             UpdatePageButtons();
         }
@@ -1302,7 +1405,7 @@ namespace ModularMod
         public void UpdateNameDescLabel()
         {
             if (currentlySelectedButton == null) 
-            { name_and_Description_Label.ModifyLocalizedText(""); return; }
+            { name_and_Description_Label.ModifyLocalizedText(StaticColorHexes.AddColorToLabelString("Tip Of The Day:\n\n", StaticColorHexes.Yellow_Hex) + TipsOfTheDay[UnityEngine.Random.Range(0, TipsOfTheDay.Count)]); return; }
 
             bool isLocked = currentlySelectedButton.IsUnlocked();
             string newtext = isLocked == true ? currentlySelectedButton.Upgrade_Description : currentlySelectedButton.Unlock_Description;
@@ -1477,5 +1580,30 @@ namespace ModularMod
 
         private bool Camera_Lock;
         private bool Is_Active = false;
+
+        public static List<string> TipsOfTheDay = new List<string>
+        {
+            "Higher tier weapons have a\ngreater chance to give higher\ntier modules.",
+            "Upgrade your power by\nhovering over the " + StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex) +" label\nin your inventory.\nRemember, it's not free.",
+            "Scrap is more useful than\nit may seem!\nRemember to scrap useless\nitems to gain potential benefit\nlater.",
+            "Some Modules are more niche\nthan others.\nRemember to think about\nwhich ones you're getting.",
+            StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex) +" is a very valuable resource,\nand getting requires lots of Scrap\nto upgrade your reserves.",
+            "Nearly all health upgrade items\ngrant extra "+StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+", but makes it\nharder to upgrade your Power\nin the future.",
+            "Master Rounds are very valuable!\nThey grant extra "+StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+" and do NOT\nincrease the cost of\nupgrading your " + StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+"!",
+            "Remember that you can switch your\nactive items Mode by pressing\nReload on a full clip.",
+            "Certain alternate weapons may do better\nwith Modules that may look\nnot very useful at first glance.",
+            "Modules need to be powered\nbefore they give any benefit.\nRemember to power them in your\nInventory.",
+            "Look out after your " + StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+"!\nHigher tier modules use more" +StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+"\nmake sure to manage it well!",
+            "Certain Modules may give some\nbenefit without even powering them,\nbut only to a limited extent.",
+            "Time still flows when you\nare in your inventory,\ncheck if the coast is clear\nbeforehand.",
+            StaticColorHexes.AddColorToLabelString("FATAL ERROR GETTING TIP\n\nFAIL AT: 17", StaticColorHexes.Red_Color_Hex),
+            "Powering duplicate Modules\nuses less power than usual.\nKeep that in mind when choosing\na new module.",
+            "Modules of specific tiers use\nspecific amounts of power.\nHowever, some nicher modules\nuse less power\nthan usual.",
+            "Variety is the spice of life,\ntry to diversify your builds!",
+            "Modular cannot do handstands,\nas they only have one hand and\ncant balance well on it.",
+            "You can depower Modules if\nyou want to change up your build.",
+            "You can see what a Module does\nby clicking on it in your\ninventory.\nAternatively you can check the\nAmmonomicon."
+        };
+
     }
 }

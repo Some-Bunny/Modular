@@ -34,13 +34,13 @@ namespace ModularMod
                 switch (mod.Tier)
                 {
                     case DefaultModule.ModuleTier.Tier_1:
-                        if (UnityEngine.Random.value < 0.001) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                        if (UnityEngine.Random.value < 0.0001) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                         return mod;
                     case DefaultModule.ModuleTier.Tier_2:
-                        if (UnityEngine.Random.value < 0.0025) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                        if (UnityEngine.Random.value < 0.0002) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                         return mod;
                     case DefaultModule.ModuleTier.Tier_3:
-                        if (UnityEngine.Random.value < 0.0075) {
+                        if (UnityEngine.Random.value < 0.00035) {
                             AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega);
                         }
                         return mod;
@@ -338,10 +338,128 @@ namespace ModularMod
             new Hook(typeof(Gun).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("PickupHook"));
             new Hook(typeof(PlayerController).GetMethod("SetStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("SetStencilValHook"));
             new Hook(typeof(PlayerController).GetMethod("UpdateStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("UpdateStencilValHook"));
+            new Hook(typeof(PlayerStats).GetMethod("RebuildGunVolleys", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("RebuildGunVolleysHook"));
+            new Hook(typeof(DungeonData).GetMethod("FloodFillDungeonInterior", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("FloodFillDungeonInteriorHook"));
+            new Hook(typeof(RoomHandler).GetMethod("CheckCellArea", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("CheckCellAreaHook"));
+
+
             //new Hook(typeof(BaseShopController).GetMethod("HandleEnter", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandleEnterHook"));
             JuneLib.ItemsCore.AddChangeSpawnItem(ReturnObj);
         }
 
+
+
+        public static bool CheckCellAreaHook(Func<RoomHandler, IntVector2, IntVector2, bool> orig, RoomHandler self, IntVector2 basePosition, IntVector2 objDimensions)
+        {
+            DungeonData data = GameManager.Instance.Dungeon.data;
+            bool result = true;
+            for (int i = basePosition.x; i < basePosition.x + objDimensions.x; i++)
+            {
+                for (int j = basePosition.y; j < basePosition.y + objDimensions.y; j++)
+                {
+                    CellData cellData = data.cellData[i][j];
+                    if (cellData != null) 
+                    {
+                        if (!cellData.IsPassable)
+                        {
+                            return false;
+                        }
+                    }
+                    
+                }
+            }
+            return result;
+        }
+
+
+        public static void FloodFillDungeonInteriorHook(Action<DungeonData> orig, DungeonData self)
+        {
+            /*
+            Stack<CellData> stack = new Stack<CellData>();
+            for (int i = 0; i < self.rooms.Count; i++)
+            {
+                //ETGModConsole.Log(self.rooms[i].GetRoomName() ?? "NULL");
+                //ETGModConsole.Log(stack != null ? "stack" : "NULL");
+                //ETGModConsole.Log(self.rooms[i] != null ? "self.rooms[i]" : "NULL");
+                if (self.rooms[i] == self.Entrance || self.rooms[i].IsStartOfWarpWing)
+                {
+                    stack.Push(self[self.rooms[i].GetRandomAvailableCellDumb()]);
+                }
+            }
+            while (stack.Count > 0)
+            {
+                CellData cellData = stack.Pop();
+                if (cellData.type != CellType.WALL)
+                {
+                    List<CellData> cellNeighbors = self.GetCellNeighbors(cellData, false);
+                    cellData.isGridConnected = true;
+                    for (int j = 0; j < cellNeighbors.Count; j++)
+                    {
+                        if (cellNeighbors[j] != null && cellNeighbors[j].type != CellType.WALL && !cellNeighbors[j].isGridConnected)
+                        {
+                            stack.Push(cellNeighbors[j]);
+                        }
+                    }
+                }
+            }
+            */
+            Stack<CellData> stack = new Stack<CellData>();
+            for (int i = 0; i < self.rooms.Count; i++)
+            {
+                if (self.rooms[i] == self.Entrance || self.rooms[i].IsStartOfWarpWing)
+                {
+                    Debug.Log(self.rooms[i].GetRoomName());
+                    try
+                    {
+                        stack.Push(self[self.rooms[i].GetRandomAvailableCellDumb()]);
+                    }
+                    catch (Exception ex)
+                    {
+                        //ETGModConsole.Log("[ExpandTheGungeon] Warning: Exception caught at DungeonData.FloodFillDungeonInterior!");
+                        Debug.LogException(ex);
+                    }
+                }
+            }
+            try
+            {
+                while (stack.Count > 0)
+                {
+                    CellData cellData = stack.Pop();
+                    if (cellData.type != CellType.WALL)
+                    {
+                        List<CellData> cellNeighbors = self.GetCellNeighbors(cellData, false);
+                        cellData.isGridConnected = true;
+                        for (int j = 0; j < cellNeighbors.Count; j++)
+                        {
+                            if (cellNeighbors[j] != null && cellNeighbors[j].type != CellType.WALL && !cellNeighbors[j].isGridConnected)
+                            {
+                                stack.Push(cellNeighbors[j]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ETGModConsole.Log("[Modular] Warning: Exception caught at DungeonData.FloodFillDungeonInterior!");
+                Debug.LogException(ex);
+            }
+            
+        }
+
+
+        public static void RebuildGunVolleysHook(Action<PlayerStats, PlayerController> orig, PlayerStats self, PlayerController p)
+        {
+            orig(self, p);
+            GameManager.Instance.StartCoroutine(FrameDelay());
+        }
+        public static IEnumerator FrameDelay()
+        {
+            yield return null;
+            if (OnRecalculateStats != null) { OnRecalculateStats(); }
+            yield break;
+        }
+        public static Action OnRecalculateStats;
 
         public static GameObject ReturnObj(PickupObject pickup)
         {
@@ -355,6 +473,8 @@ namespace ModularMod
                         if (HPComp.healAmount == 0.5f)
                         {
                             pickup = UnityEngine.Random.value < 0.02f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
+                            pickup.gameObject.SetActive(true);
+
                         }
                         if (HPComp.healAmount == 1f)
                         {

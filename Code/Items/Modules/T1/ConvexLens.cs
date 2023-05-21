@@ -175,7 +175,6 @@ namespace ModularMod
             p.hitEffects.enemy = Ef;
             p.hitEffects.deathEnemy = deathEf;
         }
-
     } 
 }
 

@@ -31,6 +31,13 @@ namespace ModularMod
 
         public static tk2dSpriteCollectionData VFX_Collection;
 
+        public static tk2dSpriteCollectionData Crate_Collection;
+        public static tk2dSpriteAnimation Crate_Animation;
+
+        public static tk2dSpriteCollectionData Past_Decorative_Object_Collection;
+
+        public static tk2dSpriteCollectionData Enemy_Collection;
+
 
         public static tk2dSpriteCollectionData Modular_Character_Collection;
         public static tk2dSpriteCollectionData Modular_Character_Alt_Collection;
@@ -72,12 +79,27 @@ namespace ModularMod
             if (Projectile_Collection == null) { ETGModConsole.Log("Projectile_Collection is NULL"); }
             Projectile_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularProjectileAnimation").GetComponent<tk2dSpriteAnimation>();
 
+            //Crate and Decoratives
+            Crate_Collection = DoFastSetup(Module.ModularAssetBundle, "CrateCollection", "crate material.mat");
+            if (Crate_Collection == null) { ETGModConsole.Log("Crate_Collection is NULL"); }
+            Crate_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("CrateAnimation").GetComponent<tk2dSpriteAnimation>();
+
+            Past_Decorative_Object_Collection = DoFastSetup(Module.ModularAssetBundle, "PastDecorCollection", "decor material.mat");
+            if (Past_Decorative_Object_Collection == null) { ETGModConsole.Log("Past_Decorative_Object_Collection is NULL"); }
+            //
+
+            Enemy_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularEnemyCollection", "mdlrenemy material.mat");
+            if (Enemy_Collection == null) { ETGModConsole.Log("Enemy_Collection is NULL"); }
+
+            //Character
             Modular_Character_Alt_Collection = DoFastSetup(Module.ModularAssetBundle, "Modular_Alt_Collection", "modular_alt material.mat");
             if (Modular_Character_Alt_Collection == null) { ETGModConsole.Log("Modular_Character_Alt_Collection is NULL"); }
 
             Modular_Character_Collection = DoFastSetup(Module.ModularAssetBundle, "Modular_Collection", "modular material.mat");
             if (Modular_Character_Collection == null) { ETGModConsole.Log("Modular_Character_Collection is NULL"); }
+            //
 
+            //VFX
             VFX_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularVFXCollection", "modular_vfx material.mat");
             if (VFX_Collection == null) { ETGModConsole.Log("VFX_Collection is NULL"); }
         }

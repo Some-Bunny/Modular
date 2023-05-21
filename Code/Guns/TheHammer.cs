@@ -81,7 +81,7 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 25f;
+            projectile.baseData.damage = 20f;
             projectile.baseData.speed = 50f;
 
             projectile.shouldRotate = true;
@@ -171,7 +171,58 @@ namespace ModularMod
             });
             StrikeVFX = VFX;
 
+
+            HammerData = new ExplosionData()
+            {
+                breakSecretWalls = true,
+                comprehensiveDelay = 0,
+                damage = 10,
+                damageRadius = 3f,
+                damageToPlayer = 0,
+                debrisForce = 100,
+                doDamage = true,
+                doDestroyProjectiles = true,
+                doExplosionRing = true,
+                doForce = true,
+                doScreenShake = true,
+                doStickyFriction = false,
+                effect = (PickupObjectDatabase.GetById(328) as Gun).DefaultModule.chargeProjectiles[0].Projectile.hitEffects.overrideMidairDeathVFX,
+                explosionDelay = 0,
+                force = 50,
+                forcePreventSecretWallDamage = false,
+                forceUseThisRadius = true,
+                freezeEffect = null,
+                freezeRadius = 0,
+                IsChandelierExplosion = false,
+                isFreezeExplosion = false,
+                playDefaultSFX = false,
+                preventPlayerForce = true,
+                pushRadius = 1,
+                secretWallsRadius = 1,
+                ss = new ScreenShakeSettings()
+                {
+                    magnitude = 10,
+                    simpleVibrationTime = Vibration.Time.Quick,
+                    time = 0.1f,
+                    vibrationType = ScreenShakeSettings.VibrationType.Auto,
+                    simpleVibrationStrength = Vibration.Strength.UltraLight,
+                    direction = Vector2.left,
+                    falloff = 0.5f,
+                    speed = 1,
+                },
+                ignoreList = new List<SpeculativeRigidbody>(),
+                rotateEffectToNormal = false,
+                useDefaultExplosion = false,
+                usesComprehensiveDelay = false,
+                overrideRangeIndicatorEffect = null
+            };
+
+            ExplosiveModifier explosiveModifier = projectile.gameObject.AddComponent<ExplosiveModifier>();
+            explosiveModifier.explosionData = HammerData;
+            explosiveModifier.doExplosion = true;
+            explosiveModifier.IgnoreQueues = true;
         }
+        public static ExplosionData HammerData;
 
         public static GameObject StrikeVFX;
 
@@ -187,6 +238,14 @@ namespace ModularMod
             fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("hammerstrike");
 
         }
+
+        public override void OnActiveReloadFailure(MultiActiveReload reload)
+        {
+            base.OnActiveReloadFailure(reload);
+            AkSoundEngine.PostEvent("Play_DragunGrenade", gun.gameObject);
+            Exploder.Explode(gun.sprite.WorldCenter, HammerData, gun.sprite.WorldCenter);
+        }
+
 
         public static int ID;
     }

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Burning Hell",
             Description = "Exchange Rate",
-            LongDescription = "Halves Clip size and Rate Of Fire. Projectiles will stick to terrain and enemies and create aan area that hurts and burns enemies. (+Burning Radius And Damage per stack.)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Halves Clip size and Rate Of Fire. Projectiles will stick to terrain and enemies and create an area that hurts and burns enemies. (+Burning Radius And Damage per stack.)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("burninghell_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("burninghell_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Burning Hell " + h.ReturnTierLabel();
-            h.LabelDescription = "Halves Clip size and Rate Of Fire.\nProjectiles will stick to terrain and enemies and\ncreate aan area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage.", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Halves Clip size and Rate Of Fire.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage.", StaticColorHexes.Light_Orange_Hex) + ")";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -93,16 +93,17 @@ namespace ModularMod
                 }
                 if (room != null)
                 {
-                    if (asdf > 0.25f)
+                    if (asdf > 0.2f)
                     {
                         asdf = 0;
-                        GlobalSparksDoer.DoSingleParticle(sticky.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1F, radius)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
+                        GlobalSparksDoer.DoSingleParticle(sticky.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1f, radius)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
                     }
                     float t = e / 1;
                     float throne1 = Mathf.Sin(t * (Mathf.PI / 2));
                     room.ApplyActionToNearbyEnemies(sticky.transform.position, Mathf.Lerp(0, radius, throne1), Enemies);
                 }
                 e += BraveTime.DeltaTime;
+                asdf += BraveTime.DeltaTime;
                 yield return null;
             }
             e = 0;
@@ -118,10 +119,11 @@ namespace ModularMod
                     if (asdf > 0.25f)
                     {
                         asdf = 0;
-                        GlobalSparksDoer.DoSingleParticle(this.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1F, radius)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
+                        GlobalSparksDoer.DoSingleParticle(sticky.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1f, radius)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
                     }
                     room.ApplyActionToNearbyEnemies(sticky.transform.position, radius, Enemies);
                 }
+                asdf += BraveTime.DeltaTime;
                 e += BraveTime.DeltaTime;
                 yield return null;
             }

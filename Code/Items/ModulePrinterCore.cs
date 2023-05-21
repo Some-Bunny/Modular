@@ -26,7 +26,7 @@ namespace ModularMod
             ModulePrinterCore item = gameObject.AddComponent<ModulePrinterCore>();
             ItemBuilder.AddSpriteToObject(name, "ModularMod/Sprites/Items/Item/modularprintercore.png", gameObject);
             string shortDesc = "Self Sustainment";
-            string longDesc = "Allows for the scrapping of weapons into powerful, modular upgrades.\nDisplay enabled Modules by pressing Reload 3 times fast, Disable UI with one press.\n\nTechnology originally purposed for printing nails and other small equipment at construction sites, now used in machines of war.";
+            string longDesc = "The Heart of the Modular. Controls all hardware and software upgrades.\n\nTechnology originally purposed for keeping track of various non-lethal equipment, now used in machines of war.";
 
             ItemBuilder.SetupItem(item, shortDesc, longDesc, "mdl");
 

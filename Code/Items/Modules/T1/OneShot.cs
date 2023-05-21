@@ -52,7 +52,7 @@ namespace ModularMod
 
             this.gunStatModifier = new ModuleGunStatModifier()
             {
-                ClipSize_Process = ProcessClipSize
+                Post_Calculation_ClipSize_Process = ProcessClipSize
             };
             modularGunController.statMods.Add(this.gunStatModifier);
         }

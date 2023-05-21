@@ -22,18 +22,19 @@ namespace ModularMod
                 if (item is SkyRocket laser)
                 {
                     DragunBoulderLandVFX = laser.ExplosionData.effect;
+                    WarningImpactVFX = laser.LandingTargetSprite;
+
                 }
             }
             HealingSparklesVFX = (GameObject)ResourceCache.Acquire("Global VFX/VFX_Healing_Sparkles_001");
             FriendlyElectricLinkVFX = (PickupObjectDatabase.GetById(298) as ComplexProjectileModifier).ChainLightningVFX;
+
             var machoBrace = PickupObjectDatabase.GetById(665) as MachoBraceItem;
             MachoBraceDustupVFX = machoBrace.DustUpVFX;
             MachoBraceBurstVFX = machoBrace.BurstVFX;
             AssetBundle bundle = ResourceManager.LoadAssetBundle("brave_resources_001");
             LaserReticle = bundle.LoadAsset("assets/resourcesbundle/global vfx/vfx_lasersight.prefab") as GameObject;
             bundle = null;
-
-
         }
         public static GameObject LaserReticle;
 
@@ -46,5 +47,7 @@ namespace ModularMod
         public static GameObject FriendlyElectricLinkVFX;
         public static GameObject MachoBraceDustupVFX;
         public static GameObject MachoBraceBurstVFX;
+        public static GameObject WarningImpactVFX;
+
     }
 }

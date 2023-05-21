@@ -20,8 +20,8 @@ namespace ModularMod
             self.color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.disabledColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.size = size;
-            self.minSize = Vector2.zero;
-            self.maxSize = Vector2.zero;
+            self.minSize = size;
+            self.maxSize = size;
             self.clipChildren = false;
             self.inverseClipChildren = false;
             self.tabIndex = 2;
@@ -44,7 +44,8 @@ namespace ModularMod
             self.allowSignalEvents = true;
             self.PrecludeUpdateCycle = false;
             self.atlas = defaultAtlas;
-            
+            self.isControlClipped = false;
+
             self.backgroundColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             self.padding = new RectOffset(0, 0, 0, 0);
             //self.cachedManager = StarterGunSelectUIController.mana;
@@ -71,7 +72,8 @@ namespace ModularMod
             self.tabIndex = 2;
             self.canFocus = false;
             self.autoFocus = false;
-            
+            self.isControlClipped = false;
+
             self.layout = new dfControl.AnchorLayout(dfAnchorStyle.Top | dfAnchorStyle.CenterHorizontal)
             {
                 margins = new dfAnchorMargins
@@ -116,6 +118,8 @@ namespace ModularMod
             self.MaintainJapaneseFont = false;
             self.MaintainKoreanFont = false;
             self.MaintainRussianFont = false;
+            self.isControlClipped = false;
+
         }
 
         public static void AssignDefaultPresets(this dfButton self, dfAtlas defaultAtlas, dfFontBase defaultFont)
@@ -154,6 +158,7 @@ namespace ModularMod
             self.clickWhenSpacePressed = true;
             self.forceUpperCase = false;
             self.manualStateControl = false;
+            self.isControlClipped = false;
 
         }
 
@@ -171,8 +176,8 @@ namespace ModularMod
             t.color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.disabledColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.size = size;
-            //t.minSize = Vector2.zero;
-            //t.maxSize = Vector2.zero;
+            t.minSize = size;
+            t.maxSize = size;
             t.clipChildren = false;
             t.inverseClipChildren = false;
             t.tabIndex = 2;
@@ -190,6 +195,7 @@ namespace ModularMod
             t.allowSignalEvents = true;
             t.PrecludeUpdateCycle = false;
             //t.cachedManager = StarterGunSelectUIController.mana;
+            t.isControlClipped = false;
 
             return t;
         }
@@ -207,8 +213,8 @@ namespace ModularMod
             t.color = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.disabledColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             t.size = size;
-            t.minSize = Vector2.zero;
-            t.maxSize = Vector2.zero;
+            t.minSize = size;
+            t.maxSize = size;
             t.clipChildren = false;
             t.inverseClipChildren = false;
             t.tabIndex = 2;
@@ -227,6 +233,7 @@ namespace ModularMod
             t.font = null;
             //t.cachedManager = StarterGunSelectUIController.mana;
 
+            t.isControlClipped = false;
 
             return t;
         }

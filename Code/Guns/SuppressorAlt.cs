@@ -39,7 +39,7 @@ namespace ModularMod
 
 
             gun.reloadTime = 3f;
-            gun.DefaultModule.cooldownTime = 0.8f;
+            gun.DefaultModule.cooldownTime = 0.833f;
             gun.DefaultModule.numberOfShotsInClip = 100;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 4.5f;
@@ -54,7 +54,7 @@ namespace ModularMod
             gun.DefaultModule.projectiles[0] = projectile;
 
             gun.GainsRateOfFireAsContinueAttack = true;
-            gun.RateOfFireMultiplierAdditionPerSecond = 1.05f;
+            gun.RateOfFireMultiplierAdditionPerSecond = 1.033f;
 
             projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_burst_001", StaticCollections.Projectile_Collection, 11, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
 
@@ -74,7 +74,7 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
 
             projectile.baseData.speed *= 1.5f;
-            projectile.baseData.damage = 2.5f;
+            projectile.baseData.damage = 2.75f;
             projectile.baseData.force *= 0.5f;
             projectile.shouldRotate = true;
             gun.gunClass = GunClass.NONE;

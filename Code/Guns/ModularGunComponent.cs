@@ -17,6 +17,9 @@ namespace ModularMod
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> Accuracy_Process;
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> ChargeSpeed_Process;
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> AngleFromAim_Process;
+
+        public Func<int, ModulePrinterCore, ModularGunController, PlayerController, int> Post_Calculation_ClipSize_Process;
+
     }
 
     public class ModularGunController : MonoBehaviour 
@@ -27,6 +30,7 @@ namespace ModularMod
             public float Angle_From_Aim;
             public float Accuracy;
             public float Rate_Of_Fire;
+            public int Clip_Size;
         }
 
 
@@ -54,6 +58,7 @@ namespace ModularMod
         public Dictionary<ProjectileModule.ChargeProjectile, float> Default_ChargeProj_And_Cooldown = new Dictionary<ProjectileModule.ChargeProjectile, float>();
         private Dictionary<ProjectileModule.ChargeProjectile, float> Modified_ChargeProj_And_Cooldown = new Dictionary<ProjectileModule.ChargeProjectile, float>();
 
+        private ProjectileVolleyData storedVolley;
 
         public List<ModuleGunStatModifier> statMods = new List<ModuleGunStatModifier>();
 
@@ -97,15 +102,19 @@ namespace ModularMod
             Base_Accuracy = gun.DefaultModule.angleVariance;
             Base_AngleFromAim = gun.DefaultModule.angleFromAim;
             Base_Muzzleflash = gun.muzzleFlashEffects;
+            storedVolley = gun.Volley;
             foreach (var mod in gun.Volley.projectiles)
             {
-                Default_Module_And_Stats.Add(mod, new ModuleStatStorage() 
-                { 
-                    Accuracy = mod.angleVariance,
-                    Angle_From_Aim = mod.angleFromAim,
-                    Rate_Of_Fire = mod.cooldownTime
-                });
-
+                if (!Default_Module_And_Stats.ContainsKey(mod))
+                {
+                    Default_Module_And_Stats.Add(mod, new ModuleStatStorage()
+                    {
+                        Accuracy = mod.angleVariance,
+                        Angle_From_Aim = mod.angleFromAim,
+                        Rate_Of_Fire = mod.cooldownTime,
+                        Clip_Size = mod.numberOfShotsInClip
+                    });
+                }
                 foreach (var thing in mod.chargeProjectiles)
                 {
                     if (!Default_ChargeProj_And_Cooldown.ContainsKey(thing))
@@ -132,6 +141,8 @@ namespace ModularMod
                 DefaultSwitchGroup = gun.gunSwitchGroup;
             }
         }
+
+
 
         public void ResetSwitchGroup()
         {
@@ -248,14 +259,19 @@ namespace ModularMod
                 if (entry.ClipSize_Process != null) {c = entry.ClipSize_Process(c, PrinterSelf, this, Player);}
                 if (entry.Reload_Process != null)  {r = entry.Reload_Process(r, PrinterSelf, this, Player); }
                 if (entry.Accuracy_Process != null) { q = entry.Accuracy_Process(q, PrinterSelf, this, Player); }
+
                 if (entry.AngleFromAim_Process != null) { gg = entry.AngleFromAim_Process(gg, PrinterSelf, this, Player); }
 
                 //ETGModConsole.Log("Postmod RoF: " + f);
                 //ETGModConsole.Log("Postmod Rel: " + r);
                 //ETGModConsole.Log("Postmod Clip: " + c);
                 //ETGModConsole.Log("\n\n");
-
             }
+            foreach (var entry in statMods)
+            {
+                if (entry.Post_Calculation_ClipSize_Process != null) { c = entry.Post_Calculation_ClipSize_Process(c, PrinterSelf, this, Player); }
+            }
+
             //ETGModConsole.Log("Processed RoF: " + f);
             //ETGModConsole.Log("Processed Rel: " + r);
             //ETGModConsole.Log("Processed Clip: " + c);
@@ -264,6 +280,7 @@ namespace ModularMod
             this.gun.DefaultModule.angleVariance = q;
             this.gun.reloadTime = r;
             this.gun.DefaultModule.numberOfShotsInClip = c;
+
             this.gun.DefaultModule.angleFromAim = gg;
 
 
@@ -274,16 +291,25 @@ namespace ModularMod
                     float BaseFireRate = cont.Value.Rate_Of_Fire;
                     float BaseAngle = cont.Value.Accuracy;
                     float AngleFromAim = cont.Value.Angle_From_Aim;
+                    int ClipSize = cont.Value.Clip_Size;
 
                     foreach (var entry in statMods)
                     {
                         if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
                         if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
                         if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
+                        //if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
                     }
+                    /*
+                    foreach (var entry in statMods)
+                    {
+                        if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    }
+                    */
                     cont.Key.cooldownTime = BaseFireRate;
                     cont.Key.angleVariance = BaseAngle;
                     cont.Key.angleFromAim = AngleFromAim;
+                    //cont.Key.numberOfShotsInClip = ClipSize;
                 }
             }
 
@@ -302,16 +328,25 @@ namespace ModularMod
                 float BaseFireRate = cont.Value.Rate_Of_Fire;
                 float BaseAngle = cont.Value.Accuracy;
                 float AngleFromAim = cont.Value.Angle_From_Aim;
+                int ClipSize = cont.Value.Clip_Size;
 
                 foreach (var entry in statMods)
                 {
                     if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
                     if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
                     if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
+                    //if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
                 }
+                /*
+                foreach (var entry in statMods)
+                {
+                    if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                }
+                */
                 cont.Key.cooldownTime = BaseFireRate;
                 cont.Key.angleVariance = BaseAngle;
                 cont.Key.angleFromAim = AngleFromAim;
+                //cont.Key.numberOfShotsInClip = ClipSize;
             }
 
             foreach (var cont in Modified_ChargeProj_And_Cooldown)
@@ -324,6 +359,8 @@ namespace ModularMod
                 cont.Key.ChargeTime = BaseRate;
             }
         }
+
+
 
 
         private void Update()
@@ -345,19 +382,24 @@ namespace ModularMod
 
                             foreach (var entry in this.gun.alternateVolley.projectiles)
                             {
-                                Modified_Module_And_Stats.Add(entry, new ModuleStatStorage() 
+                                if (!Modified_Module_And_Stats.ContainsKey(entry))
                                 {
-                                    Accuracy = entry.angleVariance,
-                                    Angle_From_Aim = entry.angleFromAim,
-                                    Rate_Of_Fire = entry.cooldownTime
-                                });
-                                foreach (var chargeProj in entry.chargeProjectiles)
-                                {
-                                    if (!Modified_ChargeProj_And_Cooldown.ContainsKey(chargeProj))
+                                    Modified_Module_And_Stats.Add(entry, new ModuleStatStorage()
                                     {
-                                        Modified_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                        Accuracy = entry.angleVariance,
+                                        Angle_From_Aim = entry.angleFromAim,
+                                        Rate_Of_Fire = entry.cooldownTime,
+                                        Clip_Size = entry.numberOfShotsInClip
+                                    });
+                                    foreach (var chargeProj in entry.chargeProjectiles)
+                                    {
+                                        if (!Modified_ChargeProj_And_Cooldown.ContainsKey(chargeProj))
+                                        {
+                                            Modified_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                        }
                                     }
                                 }
+                                
                             }
                         }
                     }
@@ -375,24 +417,52 @@ namespace ModularMod
                             Default_Module_And_Stats = new Dictionary<ProjectileModule, ModuleStatStorage>();
                             foreach (var entry in this.gun.Volley.projectiles)
                             {
-                                Default_Module_And_Stats.Add(entry, new ModuleStatStorage()
+                                if (!Default_Module_And_Stats.ContainsKey(entry))
                                 {
-                                    Accuracy = entry.angleVariance,
-                                    Angle_From_Aim = entry.angleFromAim,
-                                    Rate_Of_Fire = entry.cooldownTime
-                                });
-                                foreach (var chargeProj in entry.chargeProjectiles)
-                                {
-                                    if (!Default_ChargeProj_And_Cooldown.ContainsKey(chargeProj))
+                                    Default_Module_And_Stats.Add(entry, new ModuleStatStorage()
                                     {
-                                        Default_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                        Accuracy = entry.angleVariance,
+                                        Angle_From_Aim = entry.angleFromAim,
+                                        Rate_Of_Fire = entry.cooldownTime
+                                    });
+                                    foreach (var chargeProj in entry.chargeProjectiles)
+                                    {
+                                        if (!Default_ChargeProj_And_Cooldown.ContainsKey(chargeProj))
+                                        {
+                                            Default_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                                        }
                                     }
-                                }
+                                }                      
                             }
                         }
                     }
                 }
             }
+            if (storedVolley != gun.Volley)
+            {
+                storedVolley = gun.Volley;
+                Default_Module_And_Stats = new Dictionary<ProjectileModule, ModuleStatStorage>();
+                foreach (var entry in this.gun.Volley.projectiles)
+                {
+                    if (!Default_Module_And_Stats.ContainsKey(entry))
+                    {
+                        Default_Module_And_Stats.Add(entry, new ModuleStatStorage()
+                        {
+                            Accuracy = entry.angleVariance,
+                            Angle_From_Aim = entry.angleFromAim,
+                            Rate_Of_Fire = entry.cooldownTime
+                        });
+                        foreach (var chargeProj in entry.chargeProjectiles)
+                        {
+                            if (!Default_ChargeProj_And_Cooldown.ContainsKey(chargeProj))
+                            {
+                                Default_ChargeProj_And_Cooldown.Add(chargeProj, chargeProj.ChargeTime);
+                            }
+                        }
+                    }
+                }
+            }
+
             ProcessStats();
         }
         private int storedCount = 0;

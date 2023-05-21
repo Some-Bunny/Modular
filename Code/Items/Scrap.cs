@@ -35,7 +35,7 @@ namespace ModularMod
         {
             v.CustomCost = 20;
             v.UsesCustomCost = true;
-
+            v.gameObject.SetActive(false);
             SpeculativeRigidbody speculativeRigidbody = v.gameObject.AddComponent<SpeculativeRigidbody>();
             PixelCollider item = new PixelCollider
             {

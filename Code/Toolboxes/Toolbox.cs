@@ -5,6 +5,8 @@ using System.Text;
 using Alexandria;
 using Alexandria.CharacterAPI;
 using Alexandria.ItemAPI;
+using Alexandria.PrefabAPI;
+using Dungeonator;
 using Planetside;
 using UnityEngine;
 
@@ -12,6 +14,56 @@ namespace ModularMod
 {
     public static class Toolbox
     {
+        public static AIBulletBank.Entry CopyBulletBankEntry(AIBulletBank.Entry entryToCopy, string Name, string AudioEvent = null, VFXPool muzzleflashVFX = null, bool ChangeMuzzleFlashToEmpty = true)
+        {
+            AIBulletBank.Entry entry = CopyFields<AIBulletBank.Entry>(entryToCopy);
+            entry.Name = Name;
+            Projectile projectile = UnityEngine.Object.Instantiate<GameObject>(entry.BulletObject).GetComponent<Projectile>();
+            projectile.gameObject.SetLayerRecursively(18);
+            projectile.transform.position = projectile.transform.position.WithZ(210.5125f);
+            projectile.gameObject.SetActive(false);
+            FakePrefab.MarkAsFakePrefab(projectile.gameObject);
+            UnityEngine.Object.DontDestroyOnLoad(projectile);
+            entry.BulletObject = projectile.gameObject;
+            if (AudioEvent != "DNC") { entry.AudioEvent = AudioEvent; }
+            if (ChangeMuzzleFlashToEmpty == true) { entry.MuzzleFlashEffects = muzzleflashVFX == null ? new VFXPool { type = VFXPoolType.None, effects = new VFXComplex[0] } : muzzleflashVFX; }
+            return entry;
+        }
+        public static AIBulletBank.Entry CopyFields<T>(AIBulletBank.Entry sample2) where T : AIBulletBank.Entry
+        {
+            AIBulletBank.Entry sample = new AIBulletBank.Entry();
+            sample.AudioEvent = sample2.AudioEvent;
+            sample.AudioLimitOncePerAttack = sample2.AudioLimitOncePerAttack;
+            sample.AudioLimitOncePerFrame = sample2.AudioLimitOncePerFrame;
+            sample.AudioSwitch = sample2.AudioSwitch;
+            sample.PlayAudio = sample2.PlayAudio;
+            sample.BulletObject = sample2.BulletObject;
+            sample.conditionalMinDegFromNorth = sample2.conditionalMinDegFromNorth;
+
+            sample.DontRotateShell = sample2.DontRotateShell;
+            sample.forceCanHitEnemies = sample2.forceCanHitEnemies;
+            sample.MuzzleFlashEffects = sample2.MuzzleFlashEffects;
+            sample.MuzzleInheritsTransformDirection = sample2.MuzzleInheritsTransformDirection;
+            sample.MuzzleLimitOncePerFrame = sample2.MuzzleLimitOncePerFrame;
+            sample.Name = sample2.Name;
+            sample.OverrideProjectile = sample2.OverrideProjectile;
+            sample.preloadCount = sample2.preloadCount;
+            sample.ProjectileData = sample2.ProjectileData;
+            sample.rampBullets = sample2.rampBullets;
+
+            sample.rampStartHeight = sample2.rampStartHeight;
+            sample.rampTime = sample2.rampTime;
+            sample.ShellForce = sample2.ShellForce;
+            sample.ShellForceVariance = sample2.ShellForceVariance;
+            sample.ShellGroundOffset = sample2.ShellGroundOffset;
+            sample.ShellPrefab = sample2.ShellPrefab;
+            sample.ShellsLimitOncePerFrame = sample2.ShellsLimitOncePerFrame;
+            sample.ShellTransform = sample2.ShellTransform;
+            sample.SpawnShells = sample2.SpawnShells;
+            sample.suppressHitEffectsIfOffscreen = sample2.suppressHitEffectsIfOffscreen;
+
+            return sample;
+        }
 
         public static RaycastResult ReturnRaycast(Vector2 startPosition, Vector2 angle, int rayCastMask, float overrideDistance = 1000, SpeculativeRigidbody bodyToIgnore = null)
         {
@@ -119,9 +171,8 @@ namespace ModularMod
         public static ModifiedDefaultLabelManager GenerateText(Transform trans, Vector2 offset, float time, string Text, Color32 color, bool Autotrigger = true, float size = 5)
         {
             var labelToSet = UnityEngine.Object.Instantiate(DefaultModule.LabelController).gameObject.GetComponent<ModifiedDefaultLabelManager>();
-            labelToSet.label.textScale = size;
+            labelToSet.label.textScale = size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20);
             labelToSet.label.Text = Text;
-
             if (Autotrigger == true)
             {
                 labelToSet.Trigger_CustomTime(trans, offset, time);
@@ -175,6 +226,26 @@ namespace ModularMod
             return t;
         }
 
+        public static DungeonPlaceable GenerateDungeonPlaceable(Dictionary<GameObject, float> gameObjects, int placeableWidth = 1, int placeableLength = 1, DungeonPrerequisite[] dungeonPrerequisites = null)
+        {
+            if (dungeonPrerequisites == null) { dungeonPrerequisites = new DungeonPrerequisite[0]; }
+            DungeonPlaceable placeableContents = ScriptableObject.CreateInstance<DungeonPlaceable>();
+            {
+                placeableContents.width = placeableWidth;
+                placeableContents.height = placeableLength;
+                placeableContents.respectsEncounterableDifferentiator = true;
+                placeableContents.variantTiers = new List<DungeonPlaceableVariant>();
+            }
+            foreach (var Entry in gameObjects)
+            {
+                DungeonPlaceableVariant variant = new DungeonPlaceableVariant();
+                variant.percentChance = Entry.Value;
+                variant.prerequisites = dungeonPrerequisites;
+                variant.nonDatabasePlaceable = Entry.Key;
+                placeableContents.variantTiers.Add(variant);
+            }
+            return placeableContents;
+        }
 
 
         public static T LoadAssetFromAnywhere<T>(string path) where T : UnityEngine.Object
@@ -226,6 +297,120 @@ namespace ModularMod
                 "dungeons/finalscenario_guide",
                 "dungeons/finalscenario_pilot",
                 "dungeons/finalscenario_robot",
-                "dungeons/finalscenario_soldier"};
+                "dungeons/finalscenario_soldier"
+        };
+
+        public static void CreateFastBody(this GameObject gameObject, IntVector2 colliderX_Y, IntVector2 OffsetX_Y)
+        {
+            SpeculativeRigidbody specBody = gameObject.GetOrAddComponent<SpeculativeRigidbody>();
+            specBody.CollideWithTileMap = false;
+            if (specBody.PixelColliders == null) { specBody.PixelColliders = new List<PixelCollider>(); }
+            specBody.PixelColliders.Add(new PixelCollider
+            {
+                ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual,
+                CollisionLayer = CollisionLayer.HighObstacle,
+                IsTrigger = false,
+                BagleUseFirstFrameOnly = false,
+                SpecifyBagelFrame = string.Empty,
+                BagelColliderNumber = 0,
+                ManualOffsetX = OffsetX_Y.x,
+                ManualOffsetY = OffsetX_Y.y,
+                ManualWidth = colliderX_Y.x,
+                ManualHeight = colliderX_Y.y,
+                ManualDiameter = 0,
+                ManualLeftX = 0,
+                ManualLeftY = 0,
+                ManualRightX = 0,
+                ManualRightY = 0,
+            });
+            specBody.PixelColliders.Add(new PixelCollider
+            {
+                ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual,
+                CollisionLayer = CollisionLayer.BeamBlocker,
+                IsTrigger = false,
+                BagleUseFirstFrameOnly = false,
+                SpecifyBagelFrame = string.Empty,
+                BagelColliderNumber = 0,
+                ManualOffsetX = OffsetX_Y.x,
+                ManualOffsetY = OffsetX_Y.y,
+                ManualWidth = colliderX_Y.x,
+                ManualHeight = colliderX_Y.y,
+                ManualDiameter = 0,
+                ManualLeftX = 0,
+                ManualLeftY = 0,
+                ManualRightX = 0,
+                ManualRightY = 0,
+            });
+            specBody.PixelColliders.Add(new PixelCollider
+            {
+                ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual,
+                CollisionLayer = CollisionLayer.BulletBlocker,
+                IsTrigger = false,
+                BagleUseFirstFrameOnly = false,
+                SpecifyBagelFrame = string.Empty,
+                BagelColliderNumber = 0,
+                ManualOffsetX = OffsetX_Y.x,
+                ManualOffsetY = OffsetX_Y.y,
+                ManualWidth = colliderX_Y.x,
+                ManualHeight = colliderX_Y.y,
+                ManualDiameter = 0,
+                ManualLeftX = 0,
+                ManualLeftY = 0,
+                ManualRightX = 0,
+                ManualRightY = 0,
+            });
+        }
+
+        public static void CreateFastBody(this GameObject gameObject, CollisionLayer layer, IntVector2 colliderX_Y, IntVector2 OffsetX_Y)
+        {
+            SpeculativeRigidbody specBody = gameObject.GetOrAddComponent<SpeculativeRigidbody>();
+            specBody.CollideWithTileMap = false;
+            if (specBody.PixelColliders == null) { specBody.PixelColliders = new List<PixelCollider>(); }
+            specBody.PixelColliders.Add(new PixelCollider
+            {
+                ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual,
+                CollisionLayer = layer,
+                IsTrigger = false,
+                BagleUseFirstFrameOnly = false,
+                SpecifyBagelFrame = string.Empty,
+                BagelColliderNumber = 0,
+                ManualOffsetX = OffsetX_Y.x,
+                ManualOffsetY = OffsetX_Y.y,
+                ManualWidth = colliderX_Y.x,
+                ManualHeight = colliderX_Y.y,
+                ManualDiameter = 0,
+                ManualLeftX = 0,
+                ManualLeftY = 0,
+                ManualRightX = 0,
+                ManualRightY = 0,
+            });
+            
+        }
+
+        public static void AddShadowToObject(this GameObject obj, tk2dSpriteCollectionData Data, string spriteName, Vector2 OffsetX_Y)
+        {
+            GameObject shadow = PrefabBuilder.BuildObject(obj.name + "_Shadow");
+            var tk2d = shadow.AddComponent<tk2dSprite>();
+            tk2d.Collection = Data;
+            tk2d.SetSprite(Data.GetSpriteIdByName(spriteName));
+            shadow.transform.parent = obj.transform;
+            shadow.transform.localPosition = OffsetX_Y;
+            var zPos = shadow.transform.localPosition;
+            zPos.z -= 1;
+            tk2d.HeightOffGround = obj.transform.GetComponent<tk2dSprite>() != null ? obj.transform.GetComponent<tk2dSprite>().HeightOffGround - 0.1f : 1;
+
+        }
+
+        public static AIBeamShooter2 AddAIBeamShooter2(AIActor enemy, Transform transform, string name, Projectile beamProjectile, ProjectileModule beamModule = null, float angle = 0)
+        {
+            AIBeamShooter2 bholsterbeam1 = enemy.gameObject.AddComponent<AIBeamShooter2>();
+            bholsterbeam1.beamTransform = transform;
+            bholsterbeam1.beamModule = beamModule;
+            bholsterbeam1.beamProjectile = beamProjectile;
+            bholsterbeam1.firingEllipseCenter = transform.position;
+            bholsterbeam1.name = name;
+            bholsterbeam1.northAngleTolerance = angle;
+            return bholsterbeam1;
+        }
     }
 }

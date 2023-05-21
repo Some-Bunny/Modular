@@ -6,6 +6,7 @@ using Dungeonator;
 using UnityEngine;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
+using MonoMod.Cil;
 
 namespace ModularMod
 {
@@ -144,13 +145,62 @@ namespace ModularMod
                 var MinesDungeonPrefab = PastDungeon.GetOrLoadByName_Orig("Base_Mines");
 
                 DungeonFlow m_CachedFlow = ScriptableObject.CreateInstance<DungeonFlow>();
+
                 DungeonFlowNode entranceNode = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.ENTRANCE, FloorRoomInitialisation.StartRoom);
                 m_CachedFlow.AddNodeToFlow(entranceNode, null);
                 m_CachedFlow.FirstNode = entranceNode;
+                m_CachedFlow.FirstNode = entranceNode;
+                entranceNode.isWarpWingEntrance = true;
+                entranceNode.handlesOwnWarping = true;
+                entranceNode.maxCopiesOfSubchain = 1;
+                entranceNode.guidAsString = "ASS";
+                entranceNode.capSubchain = true;
+                entranceNode.priority = DungeonFlowNode.NodePriority.MANDATORY;
+                entranceNode.childNodeGuids = new List<string>()
+                {
+                    "BOOBS",
+                };
+
+
 
                 DungeonFlowNode firstroom = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisation.FirstRoom);
+                firstroom.chainRules = new List<ChainRule>() { };
+                firstroom.guidAsString = "BOOBS";
+                firstroom.isWarpWingEntrance = true;
+                firstroom.handlesOwnWarping = true;
+                firstroom.maxCopiesOfSubchain = 1;
+                firstroom.priority = DungeonFlowNode.NodePriority.MANDATORY;
+                firstroom.subchainIdentifiers = new List<string>() {  };
+                firstroom.parentNodeGuid = "ASS";
+                firstroom.capSubchain = false;
+                firstroom.childNodeGuids = new List<string>()
+                {
+                    //"BALLS"
+                };
+
+
                 m_CachedFlow.AddNodeToFlow(firstroom, entranceNode);
-                
+
+                /*
+                DungeonFlowNode bossRoom = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisation.BossRoom);
+
+                bossRoom.guidAsString = "BALLS";
+                bossRoom.chainRules = new List<ChainRule>() { };
+                bossRoom.isWarpWingEntrance = true;
+                bossRoom.handlesOwnWarping = true;
+                bossRoom.maxCopiesOfSubchain = 1;
+                bossRoom.priority = DungeonFlowNode.NodePriority.MANDATORY;
+                bossRoom.parentNodeGuid = "BOOBS";
+                bossRoom.childNodeGuids = new List<string>() { };
+                m_CachedFlow.AddNodeToFlow(bossRoom, firstroom);
+                */
+
+                //DungeonFlowNode bossNode = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisation.BossRoom);
+                //bossNode.priority = DungeonFlowNode.NodePriority.MANDATORY;
+
+                //m_CachedFlow.AddNodeToFlow(bossNode, firstroom);
+
+
 
                 m_CachedFlow.name = "sadadsad";
                 m_CachedFlow.fallbackRoomTable = MinesDungeonPrefab.PatternSettings.flows[0].fallbackRoomTable; //ModPrefabs.FloorNameRoomTable;
@@ -159,8 +209,32 @@ namespace ModularMod
                 m_CachedFlow.flowInjectionData = new List<ProceduralFlowModifierData>(0);
                 m_CachedFlow.sharedInjectionData = new List<SharedInjectionData>() { };
 
+
+
+
+
                 Default_Flow = m_CachedFlow;
                 MinesDungeonPrefab = null;
+
+                /*
+                var data = PastDungeon.GetOrLoadByName_Orig("finalscenario_bullet");
+                foreach(var thing in data.PatternSettings.flows[0].m_nodes)
+                {
+                    //thing.LogPropertiesAndFields();
+                    Debug.Log("child node guids");
+                    foreach (var childGUID in thing.childNodeGuids)
+                    {
+                        Debug.Log(childGUID);
+                    }
+                    Debug.Log("");
+                    Debug.Log("subchainIdentifiers");
+                    foreach (var childGUID in thing.subchainIdentifiers)
+                    {
+                        Debug.Log(childGUID);
+                    }
+                }
+                data = null;
+                */
                 /*
 				DungeonFlowNode entranceNode = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.ENTRANCE, ModRoomPrefabs.Mod_Entrance_Room);
 				DungeonFlowNode exitNode = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.EXIT, ModRoomPrefabs.Mod_Exit_Room);
@@ -236,7 +310,7 @@ namespace ModularMod
 				m_CachedFlow.FirstNode = entranceNode;
                 */
             }
-			catch (Exception e)
+            catch (Exception e)
 			{
 				ETGModConsole.Log(e.ToString());
 			}

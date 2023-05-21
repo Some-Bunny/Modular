@@ -15,6 +15,10 @@ using SaveAPI;
 using HutongGames.PlayMaker.Actions;
 using SoundAPI;
 using ModularMod.Code.Unlocks;
+using MonoMod.RuntimeDetour;
+using System.Reflection;
+using Alexandria.EnemyAPI;
+using ModularMod.Code.Hooks;
 
 namespace ModularMod
 {
@@ -24,13 +28,18 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "0.0.0";
+        public const string VERSION = "0.7.0";
         public const string TEXT_COLOR = "#79eaff";
 
         public static string FilePathFolder;
 
         public static AssetBundle ModularAssetBundle;
         public static CustomCharacterData Modular_Character_Data;
+
+        public static AdvancedStringDB Strings;
+
+        private static bool SoundTest = false;
+        private static bool Test_Copy = false;
 
         public void Start(){ ETGModMainBehaviour.WaitForGameManagerStart(GMStart); }
 
@@ -39,9 +48,18 @@ namespace ModularMod
             //Start up SaveAPI
             SaveAPIManager.Setup("mdl");
         }
-
+        private void GameManager_Awake(Action<GameManager> orig, GameManager self)
+        {
+            orig(self);
+            PastDungeon.InitCustomDungeon();
+        }
         public void GMStart(GameManager g)
         {
+            Hook hook = new Hook(typeof(GameManager).GetMethod("Awake", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Module).GetMethod("GameManager_Awake", BindingFlags.Instance | BindingFlags.NonPublic), typeof(GameManager));
+
+            Strings = new AdvancedStringDB();
+
+
             //==== Setup important file path stuff ====//
             FilePathFolder = this.FolderPath();
             //====//
@@ -58,7 +76,11 @@ namespace ModularMod
             StaticTextures.InitTextures();
             StaticShaders.GetDisplacerMat();
             DefaultModule.DoQuickSetup();
-            
+
+            EnemyBuilder.Init();
+            BossBuilder.Init();
+            ExpandDungeonMusicAPI.InitHooks();
+
             //============================//
 
             //==== Initialise SoundAPI and Soundbanks ====//
@@ -73,6 +95,7 @@ namespace ModularMod
 
             //Hooks
             Hooks.Init();
+            Actions.Init();
             EnemyDeathUnlockController.Start();
             MultiActiveReloadManager.SetupHooks();
             CustomClipAmmoTypeToolbox.Init();
@@ -100,8 +123,8 @@ namespace ModularMod
             TheHammerAlt.Init();
             Apollo.Init();
             Artemis.Init();
-
             LightLance.Init();
+            LightLanceAlt.Init();
 
             //Test Items
             Flowder.Init();
@@ -121,12 +144,28 @@ namespace ModularMod
             //============================//
 
 
+            CrateSpawnController.Init();
 
-           
+
+            //Enemies
+            LaserDiode.BuildPrefab();
+            RobotMiniMecha.BuildPrefab();
+            Sentry.BuildPrefab();
+            Node.BuildPrefab();
+            Burster.BuildPrefab(true);
+            Burster.BuildPrefab(false);
+            BigDrone.BuildPrefab();
+
+            EnergyShield.BuildPrefab(LaserDiode.guid);
+            EnergyShield.BuildPrefab(Sentry.guid);
+            EnergyShield.BuildPrefab(RobotMiniMecha.guid);
+
+            EnergyShield.BuildPrefab(Burster.guid + "_Vertical");
+            EnergyShield.BuildPrefab(Burster.guid + "_Horizontal");
 
 
             //==== Build Custom Character ====//
-            ToolsCharApi.EnableDebugLogging = true;
+            ToolsCharApi.EnableDebugLogging = false;
             var data = Loader.BuildCharacterBundle(
                          "ModularMod/Sprites/Modular",
                          StaticCollections.Modular_Character_Collection,
@@ -146,10 +185,11 @@ namespace ModularMod
                          new GlowMatDoer(new Color32(0, 255, 54, 255), 5, 3), //Alt Skin Glow Mat
                          0, //Hegemony Cost
                          true, //HasPast
-                         "",
+                         "tt_modular_past",
                          Module.ModularAssetBundle.LoadAsset<Texture2D>("modular_bosscard_001")); //Past ID String
             //Certain aspects of character gets modified here
             Modular_Character_Data = data;
+            
             var doer = data.idleDoer;
             doer.phases = new CharacterSelectIdlePhase[]
             {
@@ -159,11 +199,26 @@ namespace ModularMod
 
 
             PastDungeon.Init();
+            PDashTwo.Init();
 
             this.StartCoroutine(Delayedstarthandler());
             Log($"{NAME} v{VERSION} started successfully.", TEXT_COLOR);
-        }
 
+            if (SoundTest == true)
+            {
+                new Hook(typeof(AkSoundEngine).GetMethods().Single((MethodInfo m) => m.Name == "PostEvent" && m.GetParameters().Length == 2 && m.GetParameters()[0].ParameterType == typeof(string)), typeof(Module).GetMethod("PostEventHook", BindingFlags.Static | BindingFlags.Public));
+            }
+        }
+        public static uint PostEventHook(Func<string, GameObject, uint> orig, string name, GameObject obj)
+        {
+            if (name != null)
+            {
+                ETGModConsole.Log(name, true);
+                Debug.Log(name);
+
+            }
+            return orig(name, obj);
+        }
         public IEnumerator Delayedstarthandler()
         {
             //==== Quick And Easy Commands Setup ====//
@@ -174,6 +229,12 @@ namespace ModularMod
 
             ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
 
+            ETGModConsole.Commands.GetGroup("mdl").AddUnit("cratetoggle", Crate);
+
+
+            ETGModConsole.Commands.GetGroup("mdl").AddUnit("lock_all", Lock);
+            ETGModConsole.Commands.GetGroup("mdl").AddUnit("unlock_all", Unlock);
+
 
             if (this.OnFrameDelay != null) 
             {
@@ -182,10 +243,18 @@ namespace ModularMod
 
             yield return null;
             Module.Modular = ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, "Modular");
-            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, true);
-            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, true);
+            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.NONE, true);
+            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, !Test_Copy);
+            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, !Test_Copy);
             yield break;
         }
+
+        public static void Crate(string[] s)
+        {
+            SaveAPIManager.SetFlag(CustomDungeonFlags.CRATE_DROP, !SaveAPIManager.GetFlag(CustomDungeonFlags.CRATE_DROP));
+            ETGModConsole.Log("Crate is now set to : " + SaveAPIManager.GetFlag(CustomDungeonFlags.CRATE_DROP));
+        }
+
         public static void ForceEnableMixedFloor(string[] s)
         {
             SaveAPIManager.SetFlag(CustomDungeonFlags.TEST_UNLOCK, !SaveAPIManager.GetFlag(CustomDungeonFlags.TEST_UNLOCK));
@@ -210,6 +279,45 @@ namespace ModularMod
             SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, !SaveAPIManager.GetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES));
 
             ETGModConsole.Log("Unlocks are now set to : " + SaveAPIManager.GetFlag(CustomDungeonFlags.TEST_UNLOCK));
+        }
+
+
+        public static void Unlock(string[] s)
+        {
+            bool b = true;
+            SaveAPIManager.SetFlag(CustomDungeonFlags.TEST_UNLOCK, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_FLOOR_3, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_LICH_WITH_4_MODULES_OR_LESS, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_OLD_KING_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_RAT_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, b);
+
+            ETGModConsole.Log("Unlocks are now set to : " +b);
+        }
+
+        public static void Lock(string[] s)
+        {
+            bool b = false;
+            SaveAPIManager.SetFlag(CustomDungeonFlags.TEST_UNLOCK, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_FLOOR_3, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_LICH_WITH_4_MODULES_OR_LESS, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_OLD_KING_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BEAT_RAT_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, b);
+
+            ETGModConsole.Log("Unlocks are now set to : " + b);
         }
 
         public Action OnFrameDelay;

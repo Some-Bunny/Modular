@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Repair Kit",
             Description = "Up Keep",
-            LongDescription = "Increases Damage by\n16% (+16% per stack), and restores 2 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n15% (+15% per stack), and restores 2 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("repairtool_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Repair Kit " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by\n15% (" + StaticColorHexes.AddColorToLabelString("+15%", StaticColorHexes.Light_Orange_Hex) + "), Restores 2 Armor.";
+            h.LabelDescription = "Increases Damage by 15% (" + StaticColorHexes.AddColorToLabelString("+15%", StaticColorHexes.Light_Orange_Hex) + ").\nRestores 2 Armor on Pickup.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

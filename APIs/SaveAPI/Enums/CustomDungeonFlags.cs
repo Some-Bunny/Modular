@@ -28,6 +28,8 @@ namespace SaveAPI
         BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, //Self Explanatory
         BEAT_LICH_WITH_4_MODULES_OR_LESS, //Self Explanatory
 
+        CRATE_DROP
+
         //STYLISHLY_KILL_AN_ENEMY
     }
 }

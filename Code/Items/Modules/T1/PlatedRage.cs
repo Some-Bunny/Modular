@@ -27,7 +27,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("platedrage_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Plated Rage " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by\n5% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") for each\npiece or armor held.";
+            h.LabelDescription = "Increases Damage by 5% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ")\nfor each piece of armor held.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

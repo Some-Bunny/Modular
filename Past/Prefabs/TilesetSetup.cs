@@ -148,7 +148,45 @@ namespace ModularMod
                 ExperimentalTilesetCollection.spriteDefinitions[1].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true); //CENTER INDICES on wall borders NEEDS TO HAVE COLLISION
 
                 ExperimentalTilesetCollection.spriteDefinitions[48].metadata.SetupTileMetaData(TilesetIndexMetadata.TilesetFlagType.FACEWALL_LOWER, 1f, 2, 0, -1, false, true);
-                ExperimentalTilesetCollection.spriteDefinitions[50].metadata.SetupTileMetaData(TilesetIndexMetadata.TilesetFlagType.FACEWALL_UPPER, 1f, 2, 0, -1, false, true);//DONE
+                ExperimentalTilesetCollection.spriteDefinitions[48].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.LowObstacle);
+
+                ExperimentalTilesetCollection.spriteDefinitions[50].metadata.SetupTileMetaData(TilesetIndexMetadata.TilesetFlagType.FACEWALL_UPPER, 1f, 2, 0, -1, false, true);
+                ExperimentalTilesetCollection.spriteDefinitions[50].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box);
+
+                ExperimentalTilesetCollection.spriteDefinitions[53].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[54].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+
+
+                ExperimentalTilesetCollection.spriteDefinitions[54].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[54].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+
+
+                ExperimentalTilesetCollection.spriteDefinitions[61].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[62].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[63].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[64].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[65].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[66].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[67].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[68].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+                ExperimentalTilesetCollection.spriteDefinitions[69].SetupTilesetSpriteDefForceCollision(new Vector3[] { new Vector3(0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0.1f) }, tk2dSpriteDefinition.ColliderType.Box, CollisionLayer.HighObstacle, true);
+
+
+                //ExperimentalTilesetCollection.spriteDefinitions[49].metadata.SetupTileMetaData(TilesetIndexMetadata.TilesetFlagType.FACEWALL_LOWER, 1f, 2, 0, -1, false, true);//DONE
+
+                ExperimentalTilesetCollection.SetMaterial(51, 0);
+                ExperimentalTilesetCollection.SetMaterial(52, 0);
+                ExperimentalTilesetCollection.SetMaterial(53, 0);
+                ExperimentalTilesetCollection.SetMaterial(54, 0);
+                ExperimentalTilesetCollection.SetMaterial(55, 0);
+                ExperimentalTilesetCollection.SetMaterial(56, 0);
+                ExperimentalTilesetCollection.SetMaterial(57, 0);
+                ExperimentalTilesetCollection.SetMaterial(58, 0);
+
+
+
+
+
 
 
                 //==============================================================

@@ -91,6 +91,17 @@ namespace ModularMod
                 surviveTileCollisions = true
             };
             SpeculativeRigidbody specRigidbody = this.projectile.specRigidbody;
+            specRigidbody.OnTileCollision += (obj1) =>
+            {
+                if (projectile && Warps < Cap)
+                {
+                    projectile.IgnoreTileCollisionsFor(3f / projectile.baseData.speed);
+                    projectile.UpdateCollisionMask();
+                    WoopShoop(this.projectile, obj1.Normal);
+                }
+
+            };
+            /*
             specRigidbody.OnPreTileCollision = (SpeculativeRigidbody.OnPreTileCollisionDelegate)Delegate.Combine(specRigidbody.OnPreTileCollision, new SpeculativeRigidbody.OnPreTileCollisionDelegate(delegate (SpeculativeRigidbody myRigidbody, PixelCollider myPixelCollider, PhysicsEngine.Tile tile, PixelCollider tilePixelCollider)
             {
 
@@ -102,6 +113,8 @@ namespace ModularMod
                     CellData cell = dungeonData.cellData[tile.X][tile.Y];
                     if (cell.type == CellType.WALL)
                     {
+                        c
+
                         if (dungeonData.isLeftSideWall(tile.X, tile.Y))
                         {
                             WoopShoop(this.projectile, Vector2.right);
@@ -122,9 +135,12 @@ namespace ModularMod
                             WoopShoop(this.projectile, Vector2.up);
                             return;
                         }
+
                     }
+
                 }
             }));
+            */
         }
 
 
