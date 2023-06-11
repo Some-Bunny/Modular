@@ -15,6 +15,8 @@ namespace ModularMod
         private RoomHandler parentRoom;
         public string Interact_String = "Hi :)";
         public Transform talkPoint;
+        public bool DebugReach = false;
+        public bool UsesTransformDist = false;
 
         public void Start()
         {
@@ -38,12 +40,16 @@ namespace ModularMod
 
         public float GetDistanceToPoint(Vector2 point)
         {
+            if (UsesTransformDist)
+            {
+                return Vector2.Distance(point, talkPoint.PositionVector2()) / 1.5f * (DebugReach == true ? 15 : 1);
+            }
             if (base.sprite == null)
             {
                 return 100f;
             }
             Vector3 v = BraveMathCollege.ClosestPointOnRectangle(point, base.specRigidbody.UnitBottomLeft, base.specRigidbody.UnitDimensions);
-            return Vector2.Distance(point, v) / 1.5f;
+            return Vector2.Distance(point, v) / 1.5f * (DebugReach == true ? 15 : 1);
         }
 
         public float GetOverrideMaxDistance()

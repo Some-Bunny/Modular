@@ -19,6 +19,8 @@ using MonoMod.RuntimeDetour;
 using System.Reflection;
 using Alexandria.EnemyAPI;
 using ModularMod.Code.Hooks;
+using Dungeonator;
+using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
 
 namespace ModularMod
 {
@@ -40,6 +42,7 @@ namespace ModularMod
 
         private static bool SoundTest = false;
         private static bool Test_Copy = false;
+        private static bool DialogueTest = false;
 
         public void Start(){ ETGModMainBehaviour.WaitForGameManagerStart(GMStart); }
 
@@ -48,7 +51,7 @@ namespace ModularMod
             //Start up SaveAPI
             SaveAPIManager.Setup("mdl");
         }
-        private void GameManager_Awake(Action<GameManager> orig, GameManager self)
+        private void GameManager_Awake(System.Action<GameManager> orig, GameManager self)
         {
             orig(self);
             PastDungeon.InitCustomDungeon();
@@ -156,6 +159,12 @@ namespace ModularMod
             Burster.BuildPrefab(false);
             BigDrone.BuildPrefab();
 
+            Nopticon.BuildNode();
+            Nopticon.BuildPrefab(4);
+            Nopticon.BuildPrefab(8);
+            Nopticon.BuildPrefab(12);
+            Nopticon.BuildPrefab(16);
+
             EnergyShield.BuildPrefab(LaserDiode.guid);
             EnergyShield.BuildPrefab(Sentry.guid);
             EnergyShield.BuildPrefab(RobotMiniMecha.guid);
@@ -163,6 +172,10 @@ namespace ModularMod
             EnergyShield.BuildPrefab(Burster.guid + "_Vertical");
             EnergyShield.BuildPrefab(Burster.guid + "_Horizontal");
 
+            Slapper.BuildPrefab();
+
+            SteelPanopticon.BuildPrefab();
+            ModularPrime.BuildPrefab();
 
             //==== Build Custom Character ====//
             ToolsCharApi.EnableDebugLogging = false;
@@ -200,6 +213,9 @@ namespace ModularMod
 
             PastDungeon.Init();
             PDashTwo.Init();
+            //Alexandria.DungeonAPI.RoomUtility.EnableDebugLogging = true;
+            //Alexandria.DungeonAPI.DungeonHandler.debugFlow = true;
+            //Alexandria.DungeonAPI.RoomFactory.LoadRoomsFromRoomDirectory("Modular", this.FolderPath() + "/rooms");
 
             this.StartCoroutine(Delayedstarthandler());
             Log($"{NAME} v{VERSION} started successfully.", TEXT_COLOR);
@@ -208,8 +224,18 @@ namespace ModularMod
             {
                 new Hook(typeof(AkSoundEngine).GetMethods().Single((MethodInfo m) => m.Name == "PostEvent" && m.GetParameters().Length == 2 && m.GetParameters()[0].ParameterType == typeof(string)), typeof(Module).GetMethod("PostEventHook", BindingFlags.Static | BindingFlags.Public));
             }
+            if (DialogueTest == true)
+            {
+                new Hook(typeof(TextBoxManager).GetMethod("SetText", BindingFlags.Instance | BindingFlags.Public), typeof(Module).GetMethod("SetTextHook"));
+            }
         }
-        public static uint PostEventHook(Func<string, GameObject, uint> orig, string name, GameObject obj)
+
+        public static void SetTextHook(Action<TextBoxManager, string, Vector3, bool, TextBoxManager.BoxSlideOrientation, bool , bool , bool > orig, TextBoxManager self, string text, Vector3 worldPosition, bool instant = true, TextBoxManager.BoxSlideOrientation slideOrientation = TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, bool showContinueText = true, bool UseAlienLanguage = false, bool clampThoughtBubble = false)
+        {
+            Debug.Log(text);
+            orig(self, text, worldPosition, instant, slideOrientation, showContinueText, UseAlienLanguage, clampThoughtBubble);
+        }
+        public static uint PostEventHook(System.Func<string, GameObject, uint> orig, string name, GameObject obj)
         {
             if (name != null)
             {

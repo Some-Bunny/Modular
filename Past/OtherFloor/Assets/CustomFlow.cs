@@ -49,11 +49,54 @@ namespace ModularMod
 
                 DungeonFlowNode Node2 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_2);
                 m_CachedFlow.AddNodeToFlow(Node2, WeezerNode);
-                DungeonFlowNode Node3 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_3);
+
+                DungeonFlowNode Node3 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.HUB, FloorRoomInitialisationChain.Room_3);
                 m_CachedFlow.AddNodeToFlow(Node3, Node2);
+
+                DungeonFlowNode Node1_1 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_1_1);
+                m_CachedFlow.AddNodeToFlow(Node1_1, Node3);
+
+                DungeonFlowNode Node1_2 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_1_2);
+                m_CachedFlow.AddNodeToFlow(Node1_2, Node1_1);
+
+
+
+
+                DungeonFlowNode Node1_3 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_1_3);
+                m_CachedFlow.AddNodeToFlow(Node1_3, Node1_2);
+
+                //DungeonFlowNode FUCK2 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.ENTRANCE, FloorRoomInitialisationChain.Corridor);
+                //m_CachedFlow.AddNodeToFlow(FUCK2, Node1_3);
+
+                //DungeonFlowNode FUCK1 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.BOSS, FloorRoomInitialisationChain.BossRoom);
+                //m_CachedFlow.AddNodeToFlow(FUCK1, null);
+
+
+
+
+                DungeonFlowNode Node1_FuckYou = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_1_FuckYou);
+                m_CachedFlow.AddNodeToFlow(Node1_FuckYou, Node1_3);
+
+
+                DungeonFlowNode FUCK2 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Corridor);
+                m_CachedFlow.AddNodeToFlow(FUCK2, Node1_FuckYou);
+
+                DungeonFlowNode FUCK3 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.BOSS, FloorRoomInitialisationChain.BossRoom);
+                m_CachedFlow.AddNodeToFlow(FUCK3, FUCK2);
 
                 DungeonFlowNode Node4 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_4);
                 m_CachedFlow.AddNodeToFlow(Node4, Node3);
+
+                DungeonFlowNode Node5 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_5);
+                m_CachedFlow.AddNodeToFlow(Node5, Node4);
+
+                DungeonFlowNode Node6 = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Room_6);
+                m_CachedFlow.AddNodeToFlow(Node6, Node5);
+
+
+                //DungeonFlowNode corridor = GenerateDefaultNode(m_CachedFlow, PrototypeDungeonRoom.RoomCategory.NORMAL, FloorRoomInitialisationChain.Corridor);
+                //m_CachedFlow.AddNodeToFlow(corridor, Node1_3);
+
 
                 Default_Flow = m_CachedFlow;
                 MinesDungeonPrefab = null;

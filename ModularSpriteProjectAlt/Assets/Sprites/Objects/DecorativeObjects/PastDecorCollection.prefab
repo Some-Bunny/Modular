@@ -73,10 +73,10 @@ MonoBehaviour:
   forcedTextureWidth: 2048
   forcedTextureHeight: 2048
   textureCompression: 0
-  atlasWidth: 1024
+  atlasWidth: 2048
   atlasHeight: 2048
   forceSquareAtlas: 0
-  atlasWastage: 16.077995
+  atlasWastage: 32.281876
   allowMultipleAtlases: 0
   removeDuplicates: 1
   textureParams:
@@ -9371,6 +9371,7266 @@ MonoBehaviour:
     regionH: 0
     regionId: 0
     colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c113b2f233c55d9438d115d101fdeb29, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: dd627fbbb8110b444a409d59c830c6ce, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_009
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: cae3738768fa51849b3cafae9e96ff58, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: ca719b722614d0a4e9951cfd1d0ba4a4, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c59f7e7cdc4d8814281388ac049e7c7b, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 730eb77d816becb49bc980e2c7911133, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_010
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: cf09f6d3bf05bd54e9735dcbf91fe10a, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 937fbf06a4f0a0942916603562299f0d, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 4eeb28cf167bc794f9578575400d15aa, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_009
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 135b245b149b37d489955da893915ca9, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 3b0e13b59d020024080596be2d898e34, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 9dcc443f09bac6942b83d2128144b5a4, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 768c3c99585ccf44b899e590beed29ee, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: f3ea163b72dcea743bd3742392367dd8, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: f35ad30607882e749b92e6aa08df1e6a, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 4194df8179610854db5460d1280133cb, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_010
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 71f3a375db0c2554aaf750b4a66eb36c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 96fc509994787f5439699b92ab68544f, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_010
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 60bc808e66443944f9d16789c23cca6c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 2a4e3152083e6ab429c5d3f96b3e5025, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_009
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: dab2ebb0c166f05489bc5c445df6afcd, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: cbf013ffd451be24c9a1b4255d19bba6, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 1ec8c2756a3478c48a6c2d6fc145a3ec, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a716c6f9abc0b164482e6c9f3b4fa5e7, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: cyan_leading_line_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 90648cee2bcd7c846ab940386129d1ba, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: d8d62941c718e2f4c88504824dd16181, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 20033bf9586a7b5489888a16e3084c15, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: orange_leading_line_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 8f1a3779a07d0114f9bb89e1ad9d18e7, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 2ef8f835d552e6b40a5e9208e3d266dd, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: green_leading_line_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: d9e2a61e66cf41b4a907db3b62a94b75, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: b947e9c5a1ac95741bdfb75eb1f9b204, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: d6d6df0d53dffba428776d5b8d2bb43a, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a5603ca0de009e948bba01e874d48225, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: dceb6f01ad415a14894c1210f05ddb49, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: f910753f29f31aa409057a859504c4d4, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_shutoff_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a0e660c07c401594cb813664253cdb0f, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_shutoff_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: ffc116a1b2ec06a4baaebe95fc7429ec, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_shutoff_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 12f1f23c107aca94c81c59da52789463, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: engine_shutoff_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: b46fd51925e4b3543946a5ee9f54f67d, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_panel
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 08a16f4164b6ae64d8c46de2002f0e6e, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fence_end_LH
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 26504c7864dfae34ba6a80f2fb2dfade, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fence_end_RH
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a84ff5473760e5b4ba5a5a6c53c49390, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fence_end_VB
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: daed018af9fea734aa2a3a28630efdb7, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fence_end_VT
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 05db236c8d1ae894586a41915f0acc5b, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: electric_ahead
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 73c1c1a563e9f974f9f969f2ff7e16cf, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: vent_cover_3
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 8c7aafd6796d30841ae33b3f1988cf7c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: vent_cover_2
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 400dd88b60ed6d84ab4fcd5d8ea2f79f, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: vent_cover_1
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: eeb1d7f3b9a1bb94195ba07a01545eb4, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: short_crate
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 7c35071edb9718d4db7065af0698f576, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: tiny_ass_crate
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 23e2b40ea84962d4eaf6886d30b6d9a8, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_033
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: f28fcaa5f62c1014b9f2c3f5501a837e, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_032
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: ee0443affac1cd8459ec74e17454c5fe, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_029
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 12e8154dc76e9e4438ca0de0a1068429, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 1768578df990e65449c01e7378c48e62, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_027
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 44cf6a400e10c8840a148de65aad3cd1, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_025
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5b5f486616375ce47aa6f7ac625001a2, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_024
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 65bc0bc97b3de6f44b2d0b33fbd7753e, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_017
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 523b45b96fddab847bc5ddadf67f1b16, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_014
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 2c88f75890eea9247b957e607b4bd211, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_018
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: fc43cef24ebdec84594cf1e09cc4518b, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_019
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 12dbcfb431bfc6241a8cc2c8d60160f7, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_013
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 1ed797631cdd4184f9197acf83b8e6b4, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_028
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 7ec3de295cffa124185ca2a5ba5a959e, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_009
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 14a340f7700545347850e75b0fb3ce0c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 13d7eb1ef0c2a6a42b0a2fd721c1c0b4, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_030
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 8ae557aea6034b44cbfc072b5f5dd7eb, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_031
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 8c47cbf2c02d0f842be94fbd19678f9e, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c7210c0aa28f9c2469ca810f509c5855, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_034
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 09fb5c98bdac55247a2e8271e71ab8b6, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_035
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 81d177a9b1c2c074091042b68c9dcb04, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: de7ad2aa13a09be429835d5ad9c5851b, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_026
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a6ef5c0a60dde634d93d1e2eb740406c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_010
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: bff21aa6ad8395147bfe009255a389a1, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_020
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: e75b9e562747f114ba702465e8493b53, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_012
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5019330e5f6589449afddd9b6ed6742d, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_022
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c4a186e6f3b46e0489e402a3a3c9717f, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_023
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: bb302b8d007c7894aaf4dbd68ae5190c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_011
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: b32fb29fc3b344347af13bfe2e3ceb86, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_021
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 9d9bc21307cabc9478aec322c7e7a083, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 45bf3312aaa977944b388e38636da5ed, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 2a45d99227550ac469cab912e3b70254, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a5e59689b308e764a8e420d7cecb6b46, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_015
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a1da8584a5611d0488c7251cb08584f8, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_016
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 06ebd287e34c78346a56a5a0f6e61876, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: big_fucking_door_open_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 83e07c07cef4e204eabd7163a65d1dd6, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fake_corridor_downward
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: febaa08ea957cdc4da76cda8519d9c8e, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fake_corridor_leftwardrightward_outlinedummy
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5b5155de08c31f341871cf68b945cc6a, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fake_corridor_rightward
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c9dcb95b092b0b249b7116e7a16ff27f, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fake_corridor_upwarddownward_outlinedummy
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 67687770f5a07db4d80f73923109aacb, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fake_corridor_leftward
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 0064ccdfed410a74fa7d1a84ed31b48f, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: fake_corridor_upward
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 63ae939411165ce46ba6b90d57035196, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: vault
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 34d776ac4cab12a49b756790ab9a5c22, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: table_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 8af12984f7583aa40a7b44d2ace7e795, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: table_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5262c22d3c6e6794c94ca87c4b306dba, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 4cb54841adbd07143a0df969914c05f7, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_open
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 56b88feb741d12e49870c70e3655bc42, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5325b83f2cfcad647bfc3ad85fab3c84, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 7780d27a707f2fa4199bf21967c7b154, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 7bdebd096d8336641970705cf18d243e, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 9606fc1ee80b24d468745af8bf253a31, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c4122288f5e086a4e821171f44da19d2, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a768f7b62da4d5a45b4e8a1ab64ea576, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_takeoff_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 745b8af175e6554479a02e6e09bb4eb3, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: spaceship_closed
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 93d659b4e0e76f645b0df968166f4ccb, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 615ee566d5c73d348b44454ae0f719a9, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: ddda4979aa3a11043a658fb7f0eadfcb, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: b9ddc583b254ab34bb388579e8e0f45c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 6b7a194bba686ae46be951a77a498ade, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 05120998ef7c2584c9761333c6c3af84, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: cb9dc918332b47e45a21f074543bf202, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_009
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: af387423d0fe976458a3d1fcf9ed0728, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: cff3db7d4cd9c264d8bb0a9e74f8b366, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 287a1a3a1194f85439b12e00a689728f, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a4cf1dbcc30f62a4c98d4f9d33496f39, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5ddcdae62a7a9c444b9aae18feec3613, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 2798ae08303452943b47347e66935058, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 6e6661d8cf2708140b9c99c6e17d09b8, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: baa0e317efb923e4291b5c7993ab32d3, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_idle_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 4975028cc3ff6a64491b959a0dc00c28, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 06114706f0e279d47b081beea696ff75, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: bigzappydoor_destroy_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 94cbd6fdf6a5bc142a3554a8bc28eb10, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}

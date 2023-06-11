@@ -173,3 +173,504 @@ MonoBehaviour:
     wrapMode: 0
     minFidgetDuration: 1
     maxFidgetDuration: 2
+  - name: idle_red
+    frames:
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 225
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 224
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 226
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 227
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 222
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 222
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 223
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 223
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 223
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 222
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 222
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 227
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 227
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 226
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 224
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 225
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 228
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    fps: 12
+    loopStart: 0
+    wrapMode: 0
+    minFidgetDuration: 1
+    maxFidgetDuration: 2

@@ -39,7 +39,7 @@ namespace ModularMod
                 }
             }
         }
-        public static void BroadcastMessageToOthers(MessageContainer container, string message)
+        public static void BroadcastMessageToOthers(GameObject self, string message)
         {
             if (OnMessageRecieved != null)
             {
@@ -57,17 +57,14 @@ namespace ModularMod
                 for (int i = 0; i < RegisteredContainers.Count; i++)
                 {
                     var mc = RegisteredContainers[i];
-                    if (mc != container)
-                    {
-                        var mcG = mc.gameObject;
-                        var mcMs = mc.messages;
+                    var mcG = mc.gameObject;
+                    var mcMs = mc.messages;
 
-                        if (mcG != null)
+                    if (mcG != null)
+                    {
+                        if (mcMs.Contains(message))
                         {
-                            if (mcMs.Contains(message))
-                            {
-                                mc.recieverCall(mcG, message);
-                            }
+                            mc.recieverCall(self, message);
                         }
                     }
                 }

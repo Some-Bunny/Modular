@@ -2890,7 +2890,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -2950,7 +2950,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}

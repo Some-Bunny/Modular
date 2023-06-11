@@ -341,12 +341,17 @@ namespace ModularMod
             new Hook(typeof(PlayerStats).GetMethod("RebuildGunVolleys", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("RebuildGunVolleysHook"));
             new Hook(typeof(DungeonData).GetMethod("FloodFillDungeonInterior", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("FloodFillDungeonInteriorHook"));
             new Hook(typeof(RoomHandler).GetMethod("CheckCellArea", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("CheckCellAreaHook"));
+            new Hook(typeof(AIActor).GetMethod("TeleportSomewhere", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("TeleportationImmunity"));
 
 
             //new Hook(typeof(BaseShopController).GetMethod("HandleEnter", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandleEnterHook"));
             JuneLib.ItemsCore.AddChangeSpawnItem(ReturnObj);
         }
-
+        public static void TeleportationImmunity(Action<AIActor, IntVector2?, bool> orig, AIActor self, IntVector2? overrideClearance = null, bool keepClose = false)
+        {
+            if (self.GetComponent<TeleportationImmunity>() != null) { return; }
+            orig(self, overrideClearance, keepClose);
+        }
 
 
         public static bool CheckCellAreaHook(Func<RoomHandler, IntVector2, IntVector2, bool> orig, RoomHandler self, IntVector2 basePosition, IntVector2 objDimensions)

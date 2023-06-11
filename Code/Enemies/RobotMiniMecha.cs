@@ -40,7 +40,7 @@ namespace ModularMod
                 companion.aiActor.specRigidbody.CollideWithOthers = true;
                 companion.aiActor.specRigidbody.CollideWithTileMap = true;
                 companion.aiActor.PreventFallingInPitsEver = false;
-                companion.aiActor.healthHaver.ForceSetCurrentHealth(60f);
+                companion.aiActor.healthHaver.ForceSetCurrentHealth(50f);
                 companion.aiActor.CollisionKnockbackStrength = 0f;
                 companion.aiActor.procedurallyOutlined = true;
                 companion.aiActor.CanTargetPlayers = true;
@@ -48,7 +48,7 @@ namespace ModularMod
                 companion.aiActor.PathableTiles = CellTypes.FLOOR;
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
-                companion.aiActor.healthHaver.SetHealthMaximum(60f, null, false);
+                companion.aiActor.healthHaver.SetHealthMaximum(50f, null, false);
                 companion.aiActor.specRigidbody.PixelColliders.Clear();
 
 
@@ -277,7 +277,7 @@ namespace ModularMod
                 this.BulletBank.aiActor.aiAnimator.LockFacingDirection = true;
                 for (int i = 0; i < 300; i++)
                 {
-                    angle = Mathf.MoveTowardsAngle(angle, (this.GetPredictedTargetPositionExact(1, 25) - this.BulletBank.transform.PositionVector2()).ToAngle(), Mathf.Max(2f, 45 - i));
+                    angle = Mathf.MoveTowardsAngle(angle, (this.GetPredictedTargetPositionExact(1, 25) - this.BulletBank.transform.PositionVector2()).ToAngle(), Mathf.Max(1.25f, 45 - i));
                     this.BulletBank.aiActor.aiAnimator.FacingDirection = angle;
                     base.Fire(new Direction(angle + UnityEngine.Random.Range(-6 - (i / 90), 6 + (i / 90)), DirectionType.Absolute, -1f), new Speed(6 + (i / 10), SpeedType.Absolute), new Bullet("TurretBurst"));
                     yield return this.Wait(Mathf.Max(4, 30 - i));

@@ -42,7 +42,7 @@ namespace ModularMod
                 companion.aiActor.specRigidbody.CollideWithOthers = true;
                 companion.aiActor.specRigidbody.CollideWithTileMap = true;
                 companion.aiActor.PreventFallingInPitsEver = false;
-                companion.aiActor.healthHaver.ForceSetCurrentHealth(75f);
+                companion.aiActor.healthHaver.ForceSetCurrentHealth(70f);
                 companion.aiActor.CollisionKnockbackStrength = 0f;
                 companion.aiActor.procedurallyOutlined = true;
                 companion.aiActor.CanTargetPlayers = true;
@@ -53,7 +53,7 @@ namespace ModularMod
                 companion.aiActor.PathableTiles = CellTypes.FLOOR | CellTypes.PIT;
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
-                companion.aiActor.healthHaver.SetHealthMaximum(75f, null, false);
+                companion.aiActor.healthHaver.SetHealthMaximum(70f, null, false);
                 companion.aiActor.specRigidbody.PixelColliders.Clear();
 
 
@@ -142,15 +142,48 @@ namespace ModularMod
                 Alexandria.EnemyAPI.EnemyBuildingTools.AddNewDirectionAnimation(aiAnimator, "prepmissile", new string[] { "prepmissile" }, new DirectionalAnimation.FlipType[1]);
                 Alexandria.EnemyAPI.EnemyBuildingTools.AddNewDirectionAnimation(aiAnimator, "missile", new string[] { "missile" }, new DirectionalAnimation.FlipType[1]);
 
+                //m_ENM_cube_dash_01
+                Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(companion.spriteAnimator, "prepdash", new Dictionary<int, string> {
+                    { 0, "Play_BOSS_cyborg_charge_01" },
+                                        { 5, "Play_ENM_cube_dash_01" },
+
+                });
+
+                Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(companion.spriteAnimator, "death", new Dictionary<int, string> {
+                    { 0, "Play_BOSS_RatMech_Hop_01" },
+                    { 2, "Play_OBJ_lightning_flash_01" },
+                    { 8, "Play_OBJ_lightning_flash_01" },
+
+                });
+
+                Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(companion.spriteAnimator, "preraise", new Dictionary<int, string> {
+                    { 0, "Play_BOSS_RatMech_Shutter_01" },
+                });
+
+
+
+                Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(companion.spriteAnimator, "prepmissile", new Dictionary<int, string> {
+                    { 1, "Play_BOSS_RatMech_Squat_01" },
+                });
+
+                Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(companion.spriteAnimator, "missile", new Dictionary<int, string> {
+                    { 0, "Play_BOSS_RatMech_Missile_01" },
+                    { 3, "Play_BOSS_RatMech_Missile_01" },
+                });
+
 
                 //Alexandria.EnemyAPI.EnemyBuildingTools.AddNewDirectionAnimation(aiAnimator, "awake", new string[] { "awaken" }, new DirectionalAnimation.FlipType[0]);
 
 
                 /*
-                Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(companion.spriteAnimator, "death", new Dictionary<int, string> {
-                    { 1, "Play_ENM_plasma_burst_01" },
-                });
+
                 */
+
+                AIActor orLoadByGuid = EnemyDatabase.GetOrLoadByGuid("4d37ce3d666b4ddda8039929225b7ede");
+                ExplodeOnDeath explodeOnDeath = companion.gameObject.AddComponent<ExplodeOnDeath>();
+                ExplosionData explosionData = orLoadByGuid.GetComponent<ExplodeOnDeath>().explosionData;
+                explodeOnDeath.explosionData = explosionData;
+                explodeOnDeath.explosionData.damage = 15;
 
                 companion.aiActor.AwakenAnimType = AwakenAnimationType.Default;
 
@@ -209,7 +242,7 @@ namespace ModularMod
                 {
                     new AttackBehaviorGroup.AttackGroupItem()
                     {
-                    Probability = 10f,
+                    Probability = 0.5f,
                     Behavior = new ShootBehavior() {
                         ShootPoint = m_CachedGunAttachPoint,
                         BulletScript = new CustomBulletScriptSelector(typeof(Rockets)),
@@ -227,6 +260,44 @@ namespace ModularMod
                         MaxUsages = 1,
                         StopDuring = ShootBehavior.StopType.Attack
                     },
+                    NickName = "Rockets"
+                    },
+                    new AttackBehaviorGroup.AttackGroupItem()
+                    {
+                    Probability = 1.5f,
+                        Behavior = new ShootBehavior() {
+                        ShootPoint = m_CachedGunAttachPoint,
+                        BulletScript = new CustomBulletScriptSelector(typeof(GunGun)),
+                        LeadAmount = 0f,
+                        AttackCooldown = 0f,
+                        Cooldown = 3f,
+                        CooldownVariance = 0.5f,
+                        InitialCooldown = 4f,
+                        ChargeTime = 1,
+                        RequiresLineOfSight = true,
+                        MultipleFireEvents = true,
+                        Uninterruptible = false,
+                        StopDuring = ShootBehavior.StopType.Attack
+                    },
+                    NickName = "So Much Gun"
+                    },
+                    new AttackBehaviorGroup.AttackGroupItem()
+                    {
+                    Probability = 1f,
+                        Behavior = new ShootBehavior() {
+                        ShootPoint = m_CachedGunAttachPoint,
+                        BulletScript = new CustomBulletScriptSelector(typeof(Shotgun)),
+                        LeadAmount = 0f,
+                        AttackCooldown = 1f,
+                        Cooldown = 5f,
+                        CooldownVariance = 2f,
+                        InitialCooldown = 1f,
+                        ChargeTime = 0,
+                        RequiresLineOfSight = true,
+                        MultipleFireEvents = true,
+                        Uninterruptible = false,
+                        StopDuring = ShootBehavior.StopType.Attack
+                    },
                     NickName = "So Much Gun"
                     },
                     new AttackBehaviorGroup.AttackGroupItem()
@@ -236,11 +307,11 @@ namespace ModularMod
                         {
                         dashAnim = "dash",
                         chargeAnim = "prepdash",
-                        postDashSpeed = 4,
+                        postDashSpeed = 0,
                         ShootPoint = m_CachedGunAttachPoint,
                         dashDistance = 15f,
                         dashTime = 0.75f,
-                        AmountOfDashes = 2,
+                        AmountOfDashes = 1,
                         enableShadowTrail = true,
                         Cooldown = 5f,
                         dashDirection = DashBehavior.DashDirection.KindaTowardTarget,
@@ -251,6 +322,30 @@ namespace ModularMod
                         AttackCooldown = 0.5f,
                         RequiresLineOfSight = false,
                         bulletScript = new CustomBulletScriptSelector(typeof(Dash_)),
+                        }
+                    },
+                    new AttackBehaviorGroup.AttackGroupItem()
+                    {
+                        Probability = 1,
+                        Behavior = new CustomDashBehavior()
+                        {
+                        dashAnim = "dash",
+                        chargeAnim = "prepdash",
+                        postDashSpeed = 0,
+                        ShootPoint = m_CachedGunAttachPoint,
+                        dashDistance = 9f,
+                        dashTime = 0.5f,
+                        AmountOfDashes = 1,
+                        enableShadowTrail = true,
+                        Cooldown = 2f,
+                        dashDirection = DashBehavior.DashDirection.TowardTarget,
+                        warpDashAnimLength = true,
+                        hideShadow = false,
+                        fireAtDashStart = true,
+                        InitialCooldown = 1f,
+                        AttackCooldown = 0.5f,
+                        RequiresLineOfSight = false,
+                        //bulletScript = new CustomBulletScriptSelector(typeof(Dash_)),
                         }
                     },
                     /*
@@ -276,15 +371,16 @@ namespace ModularMod
                     */
                     new AttackBehaviorGroup.AttackGroupItem()
                     {
-                    Probability = 1f,
+                    Probability = 0.7f,
                     Behavior = new CustomBeholsterLaserBehavior() {
                     InitialCooldown = 1f,
-                    firingTime = 7.5f,
-                    AttackCooldown = 0f,
-                    Cooldown = 1,
+                    firingTime = 7f,
+                    AttackCooldown = 1f,
+                    Cooldown = 6,
                     CooldownVariance = 0,
                     RequiresLineOfSight = false,
                     UsesCustomAngle = true,
+                    MaxUsages = 2,
                     RampHeight = 14,
                     firingType = CustomBeholsterLaserBehavior.FiringType.ONLY_NORTHANGLEVARIANCE,
                     chargeTime = 1f,
@@ -299,7 +395,8 @@ namespace ModularMod
                     hurtsOtherHealthhavers = false,
                     beamSelection = ShootBeamBehavior.BeamSelection.Specify,
                     specificBeamShooters = new List<AIBeamShooter2>() { beamShooter1,beamShooter2,beamShooter3,beamShooter4 },
-
+                    MinRange = 4,
+                    Range = 10,
                     trackingType = CustomBeholsterLaserBehavior.TrackingType.ConstantTurn,
                     DoesSpeedLerp = true,
                     DoesReverseSpeedLerp = true,
@@ -309,7 +406,7 @@ namespace ModularMod
                     TimeToReachEndingSpeed = 1,
                     EndingSpeed = 0,
                     LocksFacingDirection = false,
-                    maxTurnRate = 60,
+                    maxTurnRate = 45,
                     maxUnitForCatchUp = 2f,
                     minDegreesForCatchUp = 60,
                     minUnitForCatchUp = 0.1f,
@@ -318,7 +415,7 @@ namespace ModularMod
                     unitCatchUpSpeed = 1,
                     unitOvershootSpeed = 1,
                     unitOvershootTime = 0.25f,
-                    degreeCatchUpSpeed = 180,
+                    degreeCatchUpSpeed = 90,
                     useDegreeCatchUp = companion.transform,
                     useUnitCatchUp = true,
                     useUnitOvershoot = true,
@@ -395,6 +492,8 @@ namespace ModularMod
                 {
                     this.PostWwiseEvent("Play_BOSS_RatMech_Missile_01", null);
                     this.PostWwiseEvent("Play_WPN_YariRocketLauncher_Shot_01", null);
+                    this.PostWwiseEvent("Play_BOSS_RatMech_Missile_01", null);
+                    this.PostWwiseEvent("Play_WPN_YariRocketLauncher_Shot_01", null);
                     this.Projectile.BulletScriptSettings = new BulletScriptSettings() { surviveRigidbodyCollisions = true };
                     this.Projectile.spriteAnimator.Play();
                     for (int i = 0; i < 360; i++)
@@ -416,7 +515,52 @@ namespace ModularMod
                         return;
                     }
                     base.PostWwiseEvent("Play_WPN_smallrocket_impact_01", null);
+                    base.PostWwiseEvent("Play_WPN_smallrocket_impact_01", null);
                 }
+            }
+        }
+
+        public class GunGun : Script
+        {
+            public override IEnumerator Top()
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    float aimDirection = base.GetAimDirection(1f, 30);
+                    base.Fire(new Direction( aimDirection, DirectionType.Absolute, -1f), new Speed((i * 1.5f) + 7.5f, SpeedType.Absolute), new Bullet("directedfire"));
+                    yield return this.Wait(5);
+                }
+                yield break;
+            }
+        }
+
+        public class Shotgun : Script
+        {
+            public override IEnumerator Top()
+            {
+                float aimDirection = base.GetAimDirection(1f, 7f);
+                for (int j = -4; j <= 4; j++)
+                {
+                    base.Fire(new Direction(aimDirection + (float)(j * 3), DirectionType.Absolute, -1f), new Speed(9f - (float)Mathf.Abs(j) * 0.8f, SpeedType.Absolute), new TinyBullet(false));
+                }
+                yield break;
+            }
+            public class TinyBullet : Bullet
+            {
+                public TinyBullet(bool fart) : base("reversible", false, false, false)
+                {
+                    Fart = fart;
+                }
+                public override IEnumerator Top()
+                {
+                    this.Projectile.spriteAnimator.Play();
+                    if (Fart == true)
+                    {
+                        this.ChangeSpeed(new Brave.BulletScript.Speed(0, SpeedType.Absolute), 90); yield return this.Wait(420); base.Vanish(false);
+                    }
+                    yield break;
+                }
+                private bool Fart;
             }
         }
 
@@ -426,13 +570,13 @@ namespace ModularMod
             {
                 float aimDirection = base.GetAimDirection(1f, 14f);
                 this.PostWwiseEvent("Play_BOSS_RatMech_Hop_01", null);
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < 20; i++)
                 {
                     for (int e = 0; e < 3; e++)
                     {
                         base.Fire(new Direction((120 * e) + aimDirection, DirectionType.Absolute, -1f), new Speed(0, SpeedType.Absolute), new Rotater());
                     }
-                    yield return this.Wait(2);
+                    yield return this.Wait(3);
                 }
                 yield break;
             }
@@ -458,15 +602,14 @@ namespace ModularMod
                 this.PostWwiseEvent("Play_BOSS_RatMech_Hop_01", null);
                 for (int j = 0; j < 16; j++)
                 {
-                    base.Fire(new Direction(45 * j + (j <= 7 ? 22.5f : 0), DirectionType.Absolute, -1f), new Speed(j <= 7 ? 10 : 5, SpeedType.Absolute), new TinyBullet(true));
+                    base.Fire(new Direction(45 * j + (j <= 7 ? 22.5f : 0), DirectionType.Absolute, -1f), new Speed(j <= 7 ? 8 : 5, SpeedType.Absolute), new TinyBullet(true));
                 }
                 yield return this.Wait(60);
-
                 for (int e = 0; e < 4; e++)
                 {
                     float aimDirection = base.GetAimDirection(1f, 14f);
                     this.PostWwiseEvent("Play_ENM_bulletking_shot_01", null);
-                    for (int j = -3; j <= 3; j++)
+                    for (int j = -2; j <= 2; j++)
                     {
                         base.Fire(new Direction(aimDirection + (float)(j * 4), DirectionType.Absolute, -1f), new Speed(9f - (float)Mathf.Abs(j) * 0.5f, SpeedType.Absolute), new TinyBullet(false));
                     }

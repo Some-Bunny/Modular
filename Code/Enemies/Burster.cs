@@ -173,7 +173,7 @@ namespace ModularMod
 
                 bs.MovementBehaviors = new List<MovementBehaviorBase>() {
                 new BursterMoveBehavior() {
-                    maxMoveSpeed = (isVertical ? new Vector2(1.75f, 1.75f): new Vector2(1.75f, 1.75f)),
+                    maxMoveSpeed = (isVertical ? new Vector2(1.25f, 1.25f): new Vector2(1.25f, 1.25f)),
                     moveAcceleration = (isVertical ? new Vector2(0, 2): new Vector2(2, 0))
                 } 
                 };

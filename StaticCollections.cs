@@ -37,6 +37,7 @@ namespace ModularMod
         public static tk2dSpriteCollectionData Past_Decorative_Object_Collection;
 
         public static tk2dSpriteCollectionData Enemy_Collection;
+        public static tk2dSpriteCollectionData Boss_Collection;
 
 
         public static tk2dSpriteCollectionData Modular_Character_Collection;
@@ -86,10 +87,13 @@ namespace ModularMod
 
             Past_Decorative_Object_Collection = DoFastSetup(Module.ModularAssetBundle, "PastDecorCollection", "decor material.mat");
             if (Past_Decorative_Object_Collection == null) { ETGModConsole.Log("Past_Decorative_Object_Collection is NULL"); }
-            //
-
+            
+            //Enemies
             Enemy_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularEnemyCollection", "mdlrenemy material.mat");
             if (Enemy_Collection == null) { ETGModConsole.Log("Enemy_Collection is NULL"); }
+
+            Boss_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularBossCollection", "modularboss material.mat");
+            if (Boss_Collection == null) { ETGModConsole.Log("Boss_Collection is NULL"); }
 
             //Character
             Modular_Character_Alt_Collection = DoFastSetup(Module.ModularAssetBundle, "Modular_Alt_Collection", "modular_alt material.mat");

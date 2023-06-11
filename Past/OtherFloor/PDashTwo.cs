@@ -66,6 +66,7 @@ namespace ModularMod
                 enemyHealthMultiplier = 1f, //multiplies how much health enemies have
                 damageCap = 300, // damage cap for regular enemies
                 bossDpsCap = 78, // damage cap for bosses
+                
                 flowEntries = new List<DungeonFlowLevelEntry>(0),
                 predefinedSeeds = new List<int>(0)
             };
@@ -141,16 +142,18 @@ namespace ModularMod
                 RAPID_DEBUG_DUNGEON_COUNT = 5,
                 
                 GENERATION_VIEWER_MODE = false,
-                FULL_MINIMAP_VISIBILITY = true,
+                FULL_MINIMAP_VISIBILITY = false,
                 COOP_TEST = false,
                 DISABLE_ENEMIES = false,
-                DISABLE_LOOPS = true,
-                DISABLE_SECRET_ROOM_COVERS = false,
+                DISABLE_LOOPS = false,
+                DISABLE_SECRET_ROOM_COVERS = true,
+                
                 DISABLE_OUTLINES = false,
                 WALLS_ARE_PITS = false
             };
             dungeon.ForceRegenerationOfCharacters = false;
             dungeon.ActuallyGenerateTilemap = true;
+
 
             WeightedInt weightedInt = new WeightedInt();
             weightedInt.value = 1;

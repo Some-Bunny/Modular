@@ -73,10 +73,10 @@ MonoBehaviour:
   forcedTextureWidth: 2048
   forcedTextureHeight: 2048
   textureCompression: 0
-  atlasWidth: 64
-  atlasHeight: 128
+  atlasWidth: 256
+  atlasHeight: 512
   forceSquareAtlas: 0
-  atlasWastage: 33.54492
+  atlasWastage: 43.50891
   allowMultipleAtlases: 0
   removeDuplicates: 1
   textureParams:
@@ -86,7 +86,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 7501d23b78c183c4aa338326666bdf0b, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 231581c2b4e211a4d9234881dd8dc946, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -206,7 +206,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: e7fdabd342472094eb1c50683184106c, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -266,7 +266,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: d5f177190d446904ca1f1c8047923e70, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -326,7 +326,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: e31cf5e1214f4cf43b42bd88ee25f997, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -386,7 +386,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: db201ae8dba94d84d9ce98667a0e494e, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -446,7 +446,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: dd447448256ac634d95dab27dc8ca4c0, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -506,7 +506,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: f9ef0dba598874146b88c46d20e519c0, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -566,7 +566,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 3e4a8442a8bb8c94db7ff994778f5a95, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -626,7 +626,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 8e2fc5d9f87d9af4d85b07f3c9ed206d, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -686,7 +686,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: af4ce1cc3cf17bd4699acee92b42d588, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -746,7 +746,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 8ef40aa09d8470346853cc85d6a04504, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -806,7 +806,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 1a499cc8b85e24c4c8cd947aea53d737, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -866,7 +866,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: bf1e818ad1ab3a643b46a58379ff88dc, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -926,7 +926,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: fbd5e135f625d2243a0bd0ecd08b3ffa, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -986,7 +986,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: e3e9604c7d094134caeed5c571b8d054, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1046,7 +1046,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: d456882d5fca1bd43a9b786032c68007, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1106,7 +1106,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: a32a4c685eba31f42916a5c4eb5ae8c3, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1166,7 +1166,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 944d4bb989944854aa38d13688cafc3e, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1226,7 +1226,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 7e65eb552bf81e14587a5e2e75972178, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1286,7 +1286,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: f3f7624500624d64e8250375056b97f7, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1346,7 +1346,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: f93bd27c69ef59c438f7bac84cdfcb3b, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1406,7 +1406,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: d0ff98c0ae8d37c42809855aa45ec6fc, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1466,7 +1466,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: c94260603142232468a92448fda15de0, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1510,7 +1510,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -1526,7 +1526,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 34bc7b97fa339b24b8e3ffa8cc250961, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1570,7 +1570,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -1586,7 +1586,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 1a827c67adbfc434d8ee2ae1021c22cc, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1630,7 +1630,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -1646,7 +1646,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 97759dcd3b7469849a36d4de81994ab3, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1690,7 +1690,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -1706,7 +1706,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 53f2e7c6b9992fc4ea00dffc53497cec, type: 3}
     materialId: 0
-    anchor: 6
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -1750,7 +1750,847 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_start_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 1ef4a94e65ef3af4788d93fb09130feb, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_start_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a9e6749c15319dd4e8a95c077ab5e8e9, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_startmid_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 6f84bea10ecb4b84fa198b21fba61443, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_startmid_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5313e6013ae376e4dbf1cf41470aeb49, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_startmid_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: fa2d3a957245b304ca3193c200884671, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_startmid_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: e508b5b014aae644783694223dcc5043, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_start_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: bacb1d3c9b3277e43ab1fcaf58f51c76, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_start_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: aff5f21956ec670459d07cc144674028, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_startmid_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: f839f30a0af31a34b811d80ccb52bb24, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_start_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 32e0eaabfa668aa418525e42ec789171, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_start_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: be22fcefa1a0a264c8a131f04b71d9ec, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_startmid_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 7834ef1637fd75449b039fcf59cc35d9, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_startmid_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 237e7b4afaa3b27439f1474e69a82879, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mega_beam_start_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 45bfb0dd0aeaf214aa150be917cd16ef, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}

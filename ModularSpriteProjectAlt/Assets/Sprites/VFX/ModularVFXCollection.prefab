@@ -74,9 +74,9 @@ MonoBehaviour:
   forcedTextureHeight: 2048
   textureCompression: 0
   atlasWidth: 512
-  atlasHeight: 512
+  atlasHeight: 1024
   forceSquareAtlas: 0
-  atlasWastage: 31.627655
+  atlasWastage: 38.033676
   allowMultipleAtlases: 0
   removeDuplicates: 1
   textureParams:
@@ -12490,7 +12490,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12550,7 +12550,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12610,7 +12610,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12670,7 +12670,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12730,7 +12730,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12790,7 +12790,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12850,7 +12850,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12910,7 +12910,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -12970,7 +12970,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -13030,7 +13030,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -13090,7 +13090,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -13107,6 +13107,3846 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 9102f8f19a3c00b46bba3788e404c373, type: 3}
     materialId: 0
     anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: redwarn2
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c8316e576bde47142a1bf98c5b03ed2e, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: redwarn1
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 99746ad4159fe6442811e510803762b8, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: redwarn1big2
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c2ce47d44a6b2064cb8bf947b7b30a3d, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: redwarn1big1
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 80c47887820a7724eaaad0585132c1ee, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: beamlaserthing5
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 71c76c619eac85f49aa99df065211b7c, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: beamlaserthing6
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 86d1d8971bf69fe47960e5cd8c54050a, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: beamlaserthing2
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 56c62d353ea512e499141b7c7fb648d7, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: beamlaserthing1
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 3fcca16c37e9aa64f96e71f2ea646420, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: beamlaserthing3
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 4002f4e8d729a2b40a9f4533b6e09dbd, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: beamlaserthing4
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 86c6a0ea3a08eee459639452a997c214, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: beamlaserthing7
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: d9e618bcc76048c41824e537b16a18c1, type: 3}
+    materialId: 0
+    anchor: 6
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_blast2
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 8acec6cd693174a4ea55185030f511a7, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_blast5
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 40680617498184341babfbcabd6ecd7b, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_blast3
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 3675b4496248cd94ba6e6b0de7f595bb, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_blast4
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: df5336c92a6319240ae1ed578b6975be, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_blast1
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 9d6f8fa4ddd3a3343973b010981fe4e9, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_lunge_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: de0c9d226d75e91429bed464955278cf, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_lunge_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: d4c09ff08bfb8354083297c4629344fc, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_lunge_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 2c34ef5edd9e76f41a699601d92b7a8c, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_punch_large
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: ed1104423a38c714a841a8e8b13d6f65, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_punch_large_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 09c644e51ffa6e5479f636d32e7cea62, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_punch_large_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 6c7f57cdedd426f4aa01b58519e74618, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_punch_large_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 083b184f669300b4c93db5cba872c0b8, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_punch_large_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 627879694cf3794488def7438c32e17f, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_punch_large_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: b629c6b6f40207749a6544785c71b779, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_punch_large_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: abc471dc948441047ae32a52e69ba2a7, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_lunge_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: f5e2643ad69517e49a7d703bf290a485, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_lunge_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 3082b3e123f660b45bcfa588bd782285, type: 3}
+    materialId: 0
+    anchor: 3
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_008
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: de691aeb376621d49933ca9c8a9ae962, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: b97a7667b8e58884baaa0db5c5689e13, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_010
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 7d895f096fba95b4aa7eaaa945b54f9b, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_011
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: d80ae270837073242ae505e239c8f867, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: c361673206942c94ebc2f7957f202887, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_009
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: b69cf4447aa6e0446ac8c0b0ef0e60e8, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 75af786b627061047a5dfec7c620e841, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_012
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 69706638ebeb2164eb99924bfedfdd42, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 1e7916d08c0a7cf4ea681fd3185dc117, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_007
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 459b90a3c2b9cb24daf51102176b6b0e, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 6352b27ab338ce540a8d903fb9e2c2a2, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: land_reticle_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: a24e18e5aced1b94f84636a0d5b03304, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_green_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 3df1217748edaab459ae8e14cd673fb4, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_red_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 1833d2e9d9a3c5448a51dbce799aa649, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_red_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 2b7466541924081489cf3f0c5b0310ff, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_blue_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: dde79a0038ca26a4e8e60bdb25adceec, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_green_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 405bc6f5f47ca214c8b102653722ba19, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_blue_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: d665d61177d86d2488fa6d7dcfa62487, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_green_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: ca8b956058d7bfb4ab5879b5ea3e6e97, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_green_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: cff09a72b08c9c24795b3d1fd54e7f01, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_green_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 9ec796292f207b648b511b94bf0683ff, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_red_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 42819a36bf9008b4faa1ca8cb439e9d7, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_red_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 21ec6a8dc8ccde04ab2cc9e6f576bf71, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_blue_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 643e4634185dc5b44bc75a5c8c615500, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_red_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5cd0ab20693ed3d4ba8c35dea621101f, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_red_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 0ae6f512a6333ed44adf207c27a9e899, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_blue_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 25de9a61743a5e741be7301371c79719, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_blue_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 3cf6797fa370bf4418628445f2bbebd5, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_blue_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 9c4b36b8b79c65446b8100ac2ffb0d16, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_green_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: ee47cf74b1206f34d87ec3683ac859ae, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 1
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_piss_002
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 924f91285cccb5d4691aba5639904692, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_piss_005
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 78483c8b302a01649ab9d328a1d71a21, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_piss_003
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 5f8fd6b78f99f0643acf23c2d68af7e4, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_piss_006
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 17e70d5f1fe7d68419e9742b390b28ff, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_piss_004
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: f48d10f9caf34384b8120c6d3b003768, type: 3}
+    materialId: 0
+    anchor: 4
+    anchorX: 0
+    anchorY: 0
+    overrideMesh: {fileID: 0}
+    doubleSidedSprite: 0
+    customSpriteGeometry: 0
+    geometryIslands: []
+    dice: 0
+    diceUnitX: 64
+    diceUnitY: 64
+    diceFilter: 0
+    type: 0
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    weight: 1
+    pad: 0
+    extraPadding: 0
+    source: 0
+    fromSpriteSheet: 0
+    hasSpriteSheetId: 0
+    spriteSheetId: 0
+    spriteSheetX: 0
+    spriteSheetY: 0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    regionId: 0
+    colliderType: 0
+    colliderData: []
+    boxColliderMin: {x: 0, y: 0}
+    boxColliderMax: {x: 0, y: 0}
+    polyColliderIslands: []
+    polyColliderCap: 1
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    colliderColor: 0
+    attachPoints: []
+  - name: mdlprime_teleflash_piss_001
+    disableTrimming: 0
+    additive: 0
+    scale: {x: 1, y: 1, z: 1}
+    texture: {fileID: 2800000, guid: 16812782c04ae1c4785aca2ed4ca8865, type: 3}
+    materialId: 0
+    anchor: 4
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}

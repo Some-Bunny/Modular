@@ -198,7 +198,7 @@ namespace ModularMod
         }
 
         public static GameObject AddTrailToProjectileBundle(this Projectile target, tk2dSpriteCollectionData tk2DSpriteCollectionData, string spriteName, tk2dSpriteAnimation animationLibrary, string defaultAnimation, Vector2 colliderDimensions, Vector2 colliderOffsets, bool destroyOnEmpty = false, string startAnimationName = null, 
-            float timeTillAnimStart = 0.1f, float cascadeTimer = -1, float softMaxLength = -1)
+            float timeTillAnimStart = 0f, float cascadeTimer = -1, float softMaxLength = -1)
         {
             try
             {
@@ -220,7 +220,7 @@ namespace ModularMod
                     new Vector3(convertedOffsetX, convertedOffsetY, 0f),
                     new Vector3(convertedColliderX, convertedColliderY, 0f)
                 };
-                def.ConstructOffsetsFromAnchor(tk2dBaseSprite.Anchor.MiddleLeft);
+                def.ConstructOffsetsFromAnchor(tk2dBaseSprite.Anchor.LowerLeft);
                 tk2dSpriteAnimator animator = newTrailObject.GetOrAddComponent<tk2dSpriteAnimator>();
                 animator.playAutomatically = true;
                 animator.defaultClipId = animationLibrary.GetClipIdByName(defaultAnimation);
@@ -253,7 +253,7 @@ namespace ModularMod
                 //Trail Variables
                 if (softMaxLength > 0) { trail.usesSoftMaxLength = true; trail.softMaxLength = softMaxLength; }
                 if (cascadeTimer > 0) { trail.usesCascadeTimer = true; trail.cascadeTimer = cascadeTimer; }
-                if (timeTillAnimStart > 0) { trail.usesGlobalTimer = true; trail.globalTimer = timeTillAnimStart; }
+                trail.usesGlobalTimer = true; trail.globalTimer = timeTillAnimStart;
                 trail.destroyOnEmpty = destroyOnEmpty;
                 return newTrailObject;
             }
@@ -263,12 +263,12 @@ namespace ModularMod
                 return null;
             }
         }
-        private static void SetupBeamPart(tk2dSpriteAnimation beamAnimation,string animationName, Vector2? colliderDimensions = null, Vector2? colliderOffsets = null, Vector3[] overrideVertices = null, tk2dSpriteAnimationClip.WrapMode wrapMode = tk2dSpriteAnimationClip.WrapMode.Once)
+        private static void SetupBeamPart(tk2dSpriteAnimation beamAnimation,string animationName, Vector2? colliderDimensions = null, Vector2? colliderOffsets = null, Vector3[] overrideVertices = null)
         {
             foreach (var path in beamAnimation.GetClipByName(animationName).frames)
             {
                 tk2dSpriteDefinition frameDef = path.spriteCollection.spriteDefinitions[path.spriteId];
-                frameDef.ConstructOffsetsFromAnchor(tk2dBaseSprite.Anchor.MiddleCenter);
+                frameDef.ConstructOffsetsFromAnchor(tk2dBaseSprite.Anchor.LowerLeft);
                 if (overrideVertices != null)
                 {
                     frameDef.colliderVertices = overrideVertices;

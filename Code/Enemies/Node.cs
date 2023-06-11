@@ -40,7 +40,7 @@ namespace ModularMod
                 companion.aiActor.specRigidbody.CollideWithOthers = true;
                 companion.aiActor.specRigidbody.CollideWithTileMap = true;
                 companion.aiActor.PreventFallingInPitsEver = false;
-                companion.aiActor.healthHaver.ForceSetCurrentHealth(13f);
+                companion.aiActor.healthHaver.ForceSetCurrentHealth(12f);
                 companion.aiActor.CollisionKnockbackStrength = 0f;
                 companion.aiActor.procedurallyOutlined = true;
                 companion.aiActor.CanTargetPlayers = true;
@@ -50,7 +50,7 @@ namespace ModularMod
                 companion.aiActor.PathableTiles = CellTypes.PIT | CellTypes.FLOOR;
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
-                companion.aiActor.healthHaver.SetHealthMaximum(13f, null, false);
+                companion.aiActor.healthHaver.SetHealthMaximum(12f, null, false);
                 companion.aiActor.specRigidbody.PixelColliders.Clear();
 
                 ImprovedAfterImage image = companion.aiActor.gameObject.AddComponent<ImprovedAfterImage>();

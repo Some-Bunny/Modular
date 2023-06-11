@@ -1,0 +1,1664 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1546957838706298}
+  m_IsPrefabParent: 1
+--- !u!1 &1546957838706298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4255494690322740}
+  - component: {fileID: 114616346572782996}
+  m_Layer: 0
+  m_Name: Module_T3_Collection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4255494690322740
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546957838706298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114616346572782996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546957838706298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03b1445062e71c4ca60f92cbd330aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  materialIdsValid: 1
+  needMaterialInstance: 0
+  spriteDefinitions:
+  - name: minelayer_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.7031328, y: 0.20703515}
+    - {x: 0.8828047, y: 0.20703515}
+    - {x: 0.7031328, y: 0.27733985}
+    - {x: 0.8828047, y: 0.27733985}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 62af1667c163bff44ba57da198f4ca3e
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: minelayer_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.023445312, y: 0.011722656}
+    - {x: 0.20311719, y: 0.011722656}
+    - {x: 0.023445312, y: 0.085933596}
+    - {x: 0.20311719, y: 0.085933596}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 30e16c74359c8b74cbf7d5287293528d
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: perfectclone_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.7031328, y: 0.30078515}
+    - {x: 0.8828047, y: 0.30078515}
+    - {x: 0.7031328, y: 0.37108985}
+    - {x: 0.8828047, y: 0.37108985}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 2a8666fe77c01dc4d953d0a6658d1a5c
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: perfectclone_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.2500078, y: 0.011722656}
+    - {x: 0.4296797, y: 0.011722656}
+    - {x: 0.2500078, y: 0.085933596}
+    - {x: 0.4296797, y: 0.085933596}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 9fd97a47dba75af41ac5ef2fba915441
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: swarmer_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.023445312, y: 0.3046914}
+    - {x: 0.20311719, y: 0.3046914}
+    - {x: 0.023445312, y: 0.3749961}
+    - {x: 0.20311719, y: 0.3749961}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 99e264a0b65101840b3397e74ad9f8a4
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: swarmer_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4765703, y: 0.011722656}
+    - {x: 0.6562422, y: 0.011722656}
+    - {x: 0.4765703, y: 0.085933596}
+    - {x: 0.6562422, y: 0.085933596}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: b3d91bff8eaea2e478902efb2b472d9e
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: hyperpropellant_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.2500078, y: 0.3046914}
+    - {x: 0.4296797, y: 0.3046914}
+    - {x: 0.2500078, y: 0.3749961}
+    - {x: 0.4296797, y: 0.3749961}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: d6f143c992d7fa143b14b0ed553e2701
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: hyperpropellant_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.7031328, y: 0.011722656}
+    - {x: 0.8828047, y: 0.011722656}
+    - {x: 0.7031328, y: 0.085933596}
+    - {x: 0.8828047, y: 0.085933596}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 2e82e829bf08a7b47b326f6c6c25f7bf
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: fiveshot_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4765703, y: 0.3046914}
+    - {x: 0.6562422, y: 0.3046914}
+    - {x: 0.4765703, y: 0.3749961}
+    - {x: 0.6562422, y: 0.3749961}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 94b04b6544180194692a35c5c1229e41
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: fiveshot_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.023445312, y: 0.109378904}
+    - {x: 0.20311719, y: 0.109378904}
+    - {x: 0.023445312, y: 0.18358985}
+    - {x: 0.20311719, y: 0.18358985}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: e0f48e714f275344db39232e534b9b5e
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: gravitywell_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.7031328, y: 0.39453515}
+    - {x: 0.8828047, y: 0.39453515}
+    - {x: 0.7031328, y: 0.46483985}
+    - {x: 0.8828047, y: 0.46483985}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 56089155600524143834d6c547cab113
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: gravitywell_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.2500078, y: 0.109378904}
+    - {x: 0.4296797, y: 0.109378904}
+    - {x: 0.2500078, y: 0.18358985}
+    - {x: 0.4296797, y: 0.18358985}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 932737404edfb7a4b8c2c2d53c9eab8b
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: machineinstinct_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.023445312, y: 0.3984414}
+    - {x: 0.20311719, y: 0.3984414}
+    - {x: 0.023445312, y: 0.4687461}
+    - {x: 0.20311719, y: 0.4687461}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 19fd5e1926738464bb8e012c0f5400a7
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: machineinstinct_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4765703, y: 0.109378904}
+    - {x: 0.6562422, y: 0.109378904}
+    - {x: 0.4765703, y: 0.18358985}
+    - {x: 0.6562422, y: 0.18358985}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 5378e6a9e9d5fd140b5ca32de91f0be7
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: overclockedmagazine_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.2500078, y: 0.3984414}
+    - {x: 0.4296797, y: 0.3984414}
+    - {x: 0.2500078, y: 0.4687461}
+    - {x: 0.4296797, y: 0.4687461}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 165ae33baac025240a615790bfcae61c
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: overclockedmagazine_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.7031328, y: 0.109378904}
+    - {x: 0.8828047, y: 0.109378904}
+    - {x: 0.7031328, y: 0.18358985}
+    - {x: 0.8828047, y: 0.18358985}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 6624d0dc0df272648a8bd388236b780f
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: ultraricochet_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4765703, y: 0.3984414}
+    - {x: 0.6562422, y: 0.3984414}
+    - {x: 0.4765703, y: 0.4687461}
+    - {x: 0.6562422, y: 0.4687461}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: a9019011dbe30aa4cabbc7f480b50ce7
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: ultraricochet_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.023445312, y: 0.20703515}
+    - {x: 0.20311719, y: 0.20703515}
+    - {x: 0.023445312, y: 0.2812461}
+    - {x: 0.20311719, y: 0.2812461}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 6b4c876ad43c87e458757bd485290338
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: voltaictethers_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.2500078, y: 0.20703515}
+    - {x: 0.4296797, y: 0.20703515}
+    - {x: 0.2500078, y: 0.2812461}
+    - {x: 0.4296797, y: 0.2812461}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 91ec098e11fc813489b6f50722984c4c
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: voltaictethers_t3_module
+    boundsData:
+    - {x: 0.03125, y: 0, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: 0, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.03125, y: 0, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.6875, y: -0.5625, z: 0}
+    - {x: 0.75, y: -0.5625, z: 0}
+    - {x: -0.6875, y: 0.5625, z: 0}
+    - {x: 0.75, y: 0.5625, z: 0}
+    position0: {x: -0.6875, y: -0.5625, z: 0}
+    position1: {x: 0.75, y: -0.5625, z: 0}
+    position2: {x: -0.6875, y: 0.5625, z: 0}
+    position3: {x: 0.75, y: 0.5625, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.7031328, y: 0.48828515}
+    - {x: 0.8828047, y: 0.48828515}
+    - {x: 0.7031328, y: 0.5585898}
+    - {x: 0.8828047, y: 0.5585898}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: f0da19f412dc2044196b8188bbd7c6ca
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: pandemic_t3_module_alt
+    boundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.59375, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.59375, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.1875, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.1875, z: 0}
+    - {x: 1.4375, y: 1.1875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.1875, z: 0}
+    position3: {x: 1.4375, y: 1.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4765703, y: 0.20703515}
+    - {x: 0.6562422, y: 0.20703515}
+    - {x: 0.4765703, y: 0.2812461}
+    - {x: 0.6562422, y: 0.2812461}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: 95f628e4f24bdbf4f88afae3ea671878
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: pandemic_t3_module
+    boundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.71875, y: 0.5625, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.023445312, y: 0.4921914}
+    - {x: 0.20311719, y: 0.4921914}
+    - {x: 0.023445312, y: 0.56249607}
+    - {x: 0.20311719, y: 0.56249607}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+    materialId: 0
+    sourceTextureGUID: c071953914fd88c449a51d81f98c8c92
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  premultipliedAlpha: 0
+  material: {fileID: 0}
+  materials:
+  - {fileID: 2100000, guid: aa9836f5e8b331246af4d51fae70834f, type: 2}
+  textures:
+  - {fileID: 2800000, guid: 0bd18de9b09686b4badbc29bec8b3923, type: 3}
+  pngTextures: []
+  materialPngTextureId: 00000000
+  textureFilterMode: 1
+  textureMipMaps: 0
+  allowMultipleAtlases: 0
+  spriteCollectionGUID: 0d828ddb6c99cd543bc2f3cb694832a4
+  spriteCollectionName: Module_T3_Collection
+  assetName: 
+  loadable: 0
+  invOrthoSize: 2
+  halfTargetHeight: 8
+  buildKey: 1654074758
+  dataGuid: 60f0b6391687ea54980125a0ae4959cb
+  managedSpriteCollection: 0
+  hasPlatformData: 0
+  spriteCollectionPlatforms: []
+  spriteCollectionPlatformGUIDs: []

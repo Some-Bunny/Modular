@@ -12,6 +12,13 @@ namespace ModularMod
         public static void GetDisplacerMat()
         {
             Displacer_Beast_Shader = EnemyDatabase.GetOrLoadByGuid("45192ff6d6cb43ed8f1a874ab6bef316").sprite.renderer.material.shader;
+
+
+            var orLoadByName = DungeonDatabase.GetOrLoadByName("Finalscenario_Soldier");
+            FloorTileMaterial =  new Material(orLoadByName.tileIndices.dungeonCollection.materials[0]);
+            FloorTileMaterial_Transparency = new Material(orLoadByName.tileIndices.dungeonCollection.materials[1]);
+
+            orLoadByName = null;
         }
 
         public static Shader Hologram_Shader = ShaderCache.Acquire("Brave/Internal/HologramShader");
@@ -26,5 +33,8 @@ namespace ModularMod
         public static Shader DarkPortal_Shader = ShaderCache.Acquire("Brave/Internal/DarkPortalShader");
         public static Shader SpaceFog_Shader = ShaderCache.Acquire("Brave/Internal/SpaceFogShader");
         public static Shader TransparencyShader = Shader.Find("Brave/Internal/SimpleAlphaFadeUnlit");
+        public static Material FloorTileMaterial;
+        public static Material FloorTileMaterial_Transparency;
+
     }
 }

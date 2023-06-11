@@ -32,6 +32,24 @@ namespace ModularMod.Past.Prefabs.Objects
 
             MovingTile.Init();
             ForbodingSign.Init();
+
+            Sprite_Decals.Init();
+            FakeCorridor.Init();
+            BigVaultObject.Init();
+
+            Engine.Init();
+            BigFuckOffDoor.Init();
+            TriggerEncounter.Init();
+            BigSwitch.Init();
+            BigFuckOffDoorAuto.Init();
+
+            SteelPanopticonTrigger.Init();
+
+            Spaceship.Init();
+            SpaceShiptrigger.Init();
+            ZappyDoor.Init();
+            BloodRedLightness.Init();
+            ArmorCrate.Init();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using UnityEngine;
 using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
 
 namespace ModularMod.Code.Hooks
@@ -24,7 +25,14 @@ namespace ModularMod.Code.Hooks
 
         public static bool TriggerReinforcementLayerHook(Func<RoomHandler, int, bool, bool, int, int, bool, bool> orig, RoomHandler self, int index, bool removeLayer = true, bool disableDrops = false, int specifyObjectIndex = -1, int specifyObjectCount = -1, bool instant = false)
         {
-            if (OnReinforcementWave != null) { OnReinforcementWave(self); }
+            try
+            {
+                if (OnReinforcementWave != null && self != null) { OnReinforcementWave(self); }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
             return orig(self, index, removeLayer, disableDrops, specifyObjectIndex, specifyObjectCount, instant);
         }
         public static System.Action<RoomHandler> OnReinforcementWave;

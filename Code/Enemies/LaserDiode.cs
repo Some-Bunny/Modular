@@ -46,6 +46,7 @@ namespace ModularMod
                 companion.aiActor.HasShadow = true;
                 companion.aiActor.SetIsFlying(true, "Gamemode: Creative");
                 companion.aiActor.PathableTiles = CellTypes.PIT | CellTypes.FLOOR;
+                companion.gameObject.GetOrAddComponent<TeleportationImmunity>();
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
                 companion.aiActor.healthHaver.SetHealthMaximum(33f, null, false);
@@ -189,14 +190,14 @@ namespace ModularMod
                 {
                     new AttackBehaviorGroup.AttackGroupItem()
                     {
-                    Probability = 1f,
+                    Probability = 2.5f,
                     Behavior = new ShootBehavior() {
                         ShootPoint = m_CachedGunAttachPoint,
                         BulletScript = new CustomBulletScriptSelector(typeof(LaserAttack)),
                         LeadAmount = 0f,
-                        AttackCooldown = 0f,
-                        Cooldown = 10f,
-                        CooldownVariance = 3,
+                        AttackCooldown = 0.5f,
+                        Cooldown = 5f,
+                        CooldownVariance = 1,
                         InitialCooldown = 0.5f,
                         //TellAnimation = "laserdiode_preattack1",
                         //PostFireAnimation = "laserdiode_postattack1",
@@ -363,7 +364,7 @@ namespace ModularMod
                             }
                             else if (aa.NickName == "MainLaserAttack")
                             {
-                                behavior.Cooldown += 9;
+                                behavior.Cooldown += 4;
                                 aa.Probability = 0;
                             }
                             else
@@ -374,7 +375,7 @@ namespace ModularMod
                     }
                     if (message == "DeathStun")
                     {
-                        this.aiActor.behaviorSpeculator.Stun(1.5f);
+                        this.aiActor.behaviorSpeculator.Stun(0.5f);
                         this.behaviorSpeculator.Interrupt();
                         //this.aiActor.knockbackDoer.ApplyKnockback(Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), 2), 15);
                     }

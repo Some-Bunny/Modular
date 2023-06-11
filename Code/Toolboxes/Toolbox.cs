@@ -14,6 +14,21 @@ namespace ModularMod
 {
     public static class Toolbox
     {
+        public static void ShowHitBox(this SpeculativeRigidbody body)
+        {
+            PixelCollider hitboxPixelCollider = body.HitboxPixelCollider;
+            GameObject gameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            gameObject.name = "HitboxDisplay";
+            gameObject.transform.SetParent(body.transform);
+            gameObject.layer = 28;
+            gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
+
+            //Tools.Print<string>(body.name ?? "", "FFFFFF", false);
+            //Tools.Print<string>(string.Format("    Offset: {0}, Dimesions: {1}", hitboxPixelCollider.Offset, hitboxPixelCollider.Dimensions), "FFFFFF", false);
+            gameObject.transform.localScale = new Vector3((float)hitboxPixelCollider.Dimensions.x / 16f, (float)hitboxPixelCollider.Dimensions.y / 16f, 1f);
+            Vector3 localPosition = new Vector3((float)hitboxPixelCollider.Offset.x + (float)hitboxPixelCollider.Dimensions.x * 0.5f, (float)hitboxPixelCollider.Offset.y + (float)hitboxPixelCollider.Dimensions.y * 0.5f, -16f) / 16f;
+            gameObject.transform.localPosition = localPosition;
+        }
         public static AIBulletBank.Entry CopyBulletBankEntry(AIBulletBank.Entry entryToCopy, string Name, string AudioEvent = null, VFXPool muzzleflashVFX = null, bool ChangeMuzzleFlashToEmpty = true)
         {
             AIBulletBank.Entry entry = CopyFields<AIBulletBank.Entry>(entryToCopy);
@@ -130,6 +145,12 @@ namespace ModularMod
         {
             return Mathf.Sin(t * (Mathf.PI / 2));
         }
+
+        public static float CosLerpTValue(float t)
+        {
+            return Mathf.Cos(t * (Mathf.PI));
+        }
+
 
         public static float SinLerpTValueFull(float t)
         {
@@ -411,6 +432,21 @@ namespace ModularMod
             bholsterbeam1.name = name;
             bholsterbeam1.northAngleTolerance = angle;
             return bholsterbeam1;
+        }
+
+        public static void BuildSpriteObject(string spriteName, string ObjectName)
+        {
+            GameObject obj = PrefabBuilder.BuildObject(ObjectName);
+            var tk2d = obj.AddComponent<tk2dSprite>();
+            tk2d.Collection = StaticCollections.Past_Decorative_Object_Collection;
+
+            tk2d.SetSprite(StaticCollections.Past_Decorative_Object_Collection.GetSpriteIdByName(spriteName));
+            tk2d.usesOverrideMaterial = true;
+            Material mat = new Material(StaticShaders.FloorTileMaterial_Transparency);
+            mat.SetTexture("_MainTex", tk2d.renderer.material.mainTexture);
+            tk2d.renderer.material = mat;
+            obj.SetLayerRecursively(LayerMask.NameToLayer("BG_Nonsense"));
+            Alexandria.DungeonAPI.StaticReferences.customObjects.Add(ObjectName + "_MDLR", obj);
         }
     }
 }

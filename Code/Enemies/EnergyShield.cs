@@ -44,7 +44,7 @@ namespace ModularMod
                 companion.aiActor.specRigidbody.CollideWithOthers = true;
                 companion.aiActor.specRigidbody.CollideWithTileMap = true;
                 companion.aiActor.PreventFallingInPitsEver = false;
-                companion.aiActor.healthHaver.ForceSetCurrentHealth(15f);
+                companion.aiActor.healthHaver.ForceSetCurrentHealth(14f);
                 companion.aiActor.healthHaver.minimumHealth = 1;
                 companion.aiActor.CollisionKnockbackStrength = 0f;
                 companion.aiActor.procedurallyOutlined = true;
@@ -57,7 +57,7 @@ namespace ModularMod
                 companion.aiActor.PathableTiles = CellTypes.FLOOR;
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
-                companion.aiActor.healthHaver.SetHealthMaximum(15f, null, false);
+                companion.aiActor.healthHaver.SetHealthMaximum(14f, null, false);
                 companion.aiActor.specRigidbody.PixelColliders.Clear();
 
 
@@ -437,7 +437,7 @@ namespace ModularMod
 
                 public void KaBlewy()
                 {
-                    user.healthHaver.AllDamageMultiplier = 1.125f;
+                    user.healthHaver.AllDamageMultiplier = 1.35f;
                     VFX.GetComponent<ExpandReticleRiserEffect>().Stop();
                     VFX.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("end");
                     Destroy(this, 0f);

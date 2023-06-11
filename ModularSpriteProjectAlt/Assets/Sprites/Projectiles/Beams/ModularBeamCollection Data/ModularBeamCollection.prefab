@@ -57,32 +57,32 @@ MonoBehaviour:
   spriteDefinitions:
   - name: lancebeam_impact_003
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.7343906, y: 0.023445312}
-    - {x: 0.8281094, y: 0.023445312}
-    - {x: 0.7343906, y: 0.070304684}
-    - {x: 0.8281094, y: 0.070304684}
+    - {x: 0.9179727, y: 0.09179883}
+    - {x: 0.9414023, y: 0.09179883}
+    - {x: 0.9179727, y: 0.10351367}
+    - {x: 0.9414023, y: 0.10351367}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -129,32 +129,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_impact_001
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.7343906, y: 0.117195316}
-    - {x: 0.8281094, y: 0.117195316}
-    - {x: 0.7343906, y: 0.16405469}
-    - {x: 0.8281094, y: 0.16405469}
+    - {x: 0.9648477, y: 0.09179883}
+    - {x: 0.9882773, y: 0.09179883}
+    - {x: 0.9648477, y: 0.10351367}
+    - {x: 0.9882773, y: 0.10351367}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -201,32 +201,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_impact_002
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.7343906, y: 0.21094531}
-    - {x: 0.8281094, y: 0.21094531}
-    - {x: 0.7343906, y: 0.2578047}
-    - {x: 0.8281094, y: 0.2578047}
+    - {x: 0.9179727, y: 0.11523633}
+    - {x: 0.9414023, y: 0.11523633}
+    - {x: 0.9179727, y: 0.12695117}
+    - {x: 0.9414023, y: 0.12695117}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -273,32 +273,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_impact_004
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.7343906, y: 0.3046953}
-    - {x: 0.8281094, y: 0.3046953}
-    - {x: 0.7343906, y: 0.3515547}
-    - {x: 0.8281094, y: 0.3515547}
+    - {x: 0.9648477, y: 0.11523633}
+    - {x: 0.9882773, y: 0.11523633}
+    - {x: 0.9648477, y: 0.12695117}
+    - {x: 0.9882773, y: 0.12695117}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -345,32 +345,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_impact_005
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.39064062, y: 0.3671953}
-    - {x: 0.48435938, y: 0.3671953}
-    - {x: 0.39064062, y: 0.4140547}
-    - {x: 0.48435938, y: 0.4140547}
+    - {x: 0.8320352, y: 0.13476758}
+    - {x: 0.8554648, y: 0.13476758}
+    - {x: 0.8320352, y: 0.14648242}
+    - {x: 0.8554648, y: 0.14648242}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -417,32 +417,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_001
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.5781406, y: 0.3984453}
-    - {x: 0.6718594, y: 0.3984453}
-    - {x: 0.5781406, y: 0.4453047}
-    - {x: 0.6718594, y: 0.4453047}
+    - {x: 0.8789102, y: 0.13867383}
+    - {x: 0.9023398, y: 0.13867383}
+    - {x: 0.8789102, y: 0.15038867}
+    - {x: 0.9023398, y: 0.15038867}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -489,32 +489,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_003
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.39064062, y: 0.4609453}
-    - {x: 0.48435938, y: 0.4609453}
-    - {x: 0.39064062, y: 0.5078047}
-    - {x: 0.48435938, y: 0.5078047}
+    - {x: 0.9257852, y: 0.13867383}
+    - {x: 0.9492148, y: 0.13867383}
+    - {x: 0.9257852, y: 0.15038867}
+    - {x: 0.9492148, y: 0.15038867}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -561,32 +561,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_004
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.5390703}
-    - {x: 0.14060937, y: 0.5390703}
-    - {x: 0.046890624, y: 0.5859297}
-    - {x: 0.14060937, y: 0.5859297}
+    - {x: 0.8320352, y: 0.15820508}
+    - {x: 0.8554648, y: 0.15820508}
+    - {x: 0.8320352, y: 0.16991992}
+    - {x: 0.8554648, y: 0.16991992}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -633,32 +633,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_002
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.7656406, y: 0.3984453}
-    - {x: 0.8593594, y: 0.3984453}
-    - {x: 0.7656406, y: 0.4453047}
-    - {x: 0.8593594, y: 0.4453047}
+    - {x: 0.8789102, y: 0.16211133}
+    - {x: 0.9023398, y: 0.16211133}
+    - {x: 0.8789102, y: 0.17382617}
+    - {x: 0.9023398, y: 0.17382617}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -705,32 +705,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_005
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.5781406, y: 0.4921953}
-    - {x: 0.6718594, y: 0.4921953}
-    - {x: 0.5781406, y: 0.5390547}
-    - {x: 0.6718594, y: 0.5390547}
+    - {x: 0.8320352, y: 0.18164258}
+    - {x: 0.8554648, y: 0.18164258}
+    - {x: 0.8320352, y: 0.19335742}
+    - {x: 0.8554648, y: 0.19335742}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -777,32 +777,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_start_001
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.7656406, y: 0.4921953}
-    - {x: 0.8593594, y: 0.4921953}
-    - {x: 0.7656406, y: 0.5390547}
-    - {x: 0.8593594, y: 0.5390547}
+    - {x: 0.9257852, y: 0.16211133}
+    - {x: 0.9492148, y: 0.16211133}
+    - {x: 0.9257852, y: 0.17382617}
+    - {x: 0.9492148, y: 0.17382617}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -849,32 +849,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_start_002
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.23439063, y: 0.5546953}
-    - {x: 0.32810938, y: 0.5546953}
-    - {x: 0.23439063, y: 0.6015547}
-    - {x: 0.32810938, y: 0.6015547}
+    - {x: 0.8789102, y: 0.18554883}
+    - {x: 0.9023398, y: 0.18554883}
+    - {x: 0.8789102, y: 0.19726367}
+    - {x: 0.9023398, y: 0.19726367}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -921,32 +921,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_start_003
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.6328203}
-    - {x: 0.14060937, y: 0.6328203}
-    - {x: 0.046890624, y: 0.6796797}
-    - {x: 0.14060937, y: 0.6796797}
+    - {x: 0.8320352, y: 0.20508008}
+    - {x: 0.8554648, y: 0.20508008}
+    - {x: 0.8320352, y: 0.21679492}
+    - {x: 0.8554648, y: 0.21679492}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -993,32 +993,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_mid_start_004
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.5781406, y: 0.3984453}
-    - {x: 0.6718594, y: 0.3984453}
-    - {x: 0.5781406, y: 0.4453047}
-    - {x: 0.6718594, y: 0.4453047}
+    - {x: 0.8789102, y: 0.13867383}
+    - {x: 0.9023398, y: 0.13867383}
+    - {x: 0.8789102, y: 0.15038867}
+    - {x: 0.9023398, y: 0.15038867}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1065,32 +1065,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_001
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.42189062, y: 0.5859453}
-    - {x: 0.5156094, y: 0.5859453}
-    - {x: 0.42189062, y: 0.6328047}
-    - {x: 0.5156094, y: 0.6328047}
+    - {x: 0.9257852, y: 0.18554883}
+    - {x: 0.9492148, y: 0.18554883}
+    - {x: 0.9257852, y: 0.19726367}
+    - {x: 0.9492148, y: 0.19726367}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1137,32 +1137,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_002
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.23439063, y: 0.6484453}
-    - {x: 0.32810938, y: 0.6484453}
-    - {x: 0.23439063, y: 0.6953047}
-    - {x: 0.32810938, y: 0.6953047}
+    - {x: 0.8789102, y: 0.20898633}
+    - {x: 0.9023398, y: 0.20898633}
+    - {x: 0.8789102, y: 0.22070117}
+    - {x: 0.9023398, y: 0.22070117}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1209,32 +1209,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_003
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.7265703}
-    - {x: 0.14060937, y: 0.7265703}
-    - {x: 0.046890624, y: 0.7734297}
-    - {x: 0.14060937, y: 0.7734297}
+    - {x: 0.8320352, y: 0.22851758}
+    - {x: 0.8554648, y: 0.22851758}
+    - {x: 0.8320352, y: 0.24023242}
+    - {x: 0.8554648, y: 0.24023242}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1281,32 +1281,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_005
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.6093906, y: 0.5859453}
-    - {x: 0.7031094, y: 0.5859453}
-    - {x: 0.6093906, y: 0.6328047}
-    - {x: 0.7031094, y: 0.6328047}
+    - {x: 0.9257852, y: 0.20898633}
+    - {x: 0.9492148, y: 0.20898633}
+    - {x: 0.9257852, y: 0.22070117}
+    - {x: 0.9492148, y: 0.22070117}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1353,32 +1353,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_start_001
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.7968906, y: 0.5859453}
-    - {x: 0.8906094, y: 0.5859453}
-    - {x: 0.7968906, y: 0.6328047}
-    - {x: 0.8906094, y: 0.6328047}
+    - {x: 0.8789102, y: 0.23242383}
+    - {x: 0.9023398, y: 0.23242383}
+    - {x: 0.8789102, y: 0.24413867}
+    - {x: 0.9023398, y: 0.24413867}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1425,32 +1425,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_004
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.8203203}
-    - {x: 0.14060937, y: 0.8203203}
-    - {x: 0.046890624, y: 0.8671797}
-    - {x: 0.14060937, y: 0.8671797}
+    - {x: 0.8320352, y: 0.2519551}
+    - {x: 0.8554648, y: 0.2519551}
+    - {x: 0.8320352, y: 0.2636699}
+    - {x: 0.8554648, y: 0.2636699}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1497,32 +1497,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_start_002
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.9140703}
-    - {x: 0.14060937, y: 0.9140703}
-    - {x: 0.046890624, y: 0.9609297}
-    - {x: 0.14060937, y: 0.9609297}
+    - {x: 0.9257852, y: 0.23242383}
+    - {x: 0.9492148, y: 0.23242383}
+    - {x: 0.9257852, y: 0.24413867}
+    - {x: 0.9492148, y: 0.24413867}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1569,32 +1569,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_start_003
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.42189062, y: 0.6796953}
-    - {x: 0.5156094, y: 0.6796953}
-    - {x: 0.42189062, y: 0.7265547}
-    - {x: 0.5156094, y: 0.7265547}
+    - {x: 0.8789102, y: 0.25586134}
+    - {x: 0.9023398, y: 0.25586134}
+    - {x: 0.8789102, y: 0.26757616}
+    - {x: 0.9023398, y: 0.26757616}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1641,32 +1641,32 @@ MonoBehaviour:
     attachPoints: []
   - name: lancebeam_tip_start_004
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.42189062, y: 0.5859453}
-    - {x: 0.5156094, y: 0.5859453}
-    - {x: 0.42189062, y: 0.6328047}
-    - {x: 0.5156094, y: 0.6328047}
+    - {x: 0.9257852, y: 0.18554883}
+    - {x: 0.9492148, y: 0.18554883}
+    - {x: 0.9257852, y: 0.19726367}
+    - {x: 0.9492148, y: 0.19726367}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1713,37 +1713,37 @@ MonoBehaviour:
     attachPoints: []
   - name: sentry_hitscan_004
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.023445312}
-    - {x: 0.29685938, y: 0.023445312}
-    - {x: 0.046890624, y: 0.14842969}
-    - {x: 0.29685938, y: 0.14842969}
+    - {x: 0.8320352, y: 0.005861328}
+    - {x: 0.8945273, y: 0.005861328}
+    - {x: 0.8320352, y: 0.037107423}
+    - {x: 0.8945273, y: 0.037107423}
     normalizedUvs:
     - {x: 0, y: 0}
-    - {x: 0.99999994, y: 0}
+    - {x: 1, y: 0}
     - {x: 0, y: 0.99999994}
-    - {x: 0.99999994, y: 0.99999994}
+    - {x: 1, y: 0.99999994}
     indices: 000000000300000001000000020000000300000000000000
     material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
     materialId: 0
@@ -1756,7 +1756,7 @@ MonoBehaviour:
     flipped: 0
     complexGeometry: 0
     physicsEngine: 0
-    colliderType: 0
+    colliderType: 1
     customColliders: []
     metadata:
       type: 0
@@ -1785,32 +1785,32 @@ MonoBehaviour:
     attachPoints: []
   - name: sentry_hitscan_001
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.39064062, y: 0.023445312}
-    - {x: 0.6406094, y: 0.023445312}
-    - {x: 0.39064062, y: 0.14842969}
-    - {x: 0.6406094, y: 0.14842969}
+    - {x: 0.9179727, y: 0.005861328}
+    - {x: 0.9804648, y: 0.005861328}
+    - {x: 0.9179727, y: 0.037107423}
+    - {x: 0.9804648, y: 0.037107423}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1828,7 +1828,7 @@ MonoBehaviour:
     flipped: 0
     complexGeometry: 0
     physicsEngine: 0
-    colliderType: 0
+    colliderType: 1
     customColliders: []
     metadata:
       type: 0
@@ -1857,37 +1857,37 @@ MonoBehaviour:
     attachPoints: []
   - name: sentry_hitscan_002
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.19532031}
-    - {x: 0.29685938, y: 0.19532031}
-    - {x: 0.046890624, y: 0.3203047}
-    - {x: 0.29685938, y: 0.3203047}
+    - {x: 0.8320352, y: 0.048830077}
+    - {x: 0.8945273, y: 0.048830077}
+    - {x: 0.8320352, y: 0.08007617}
+    - {x: 0.8945273, y: 0.08007617}
     normalizedUvs:
     - {x: 0, y: 0}
-    - {x: 0.99999994, y: 0}
+    - {x: 1, y: 0}
     - {x: 0, y: 1}
-    - {x: 0.99999994, y: 1}
+    - {x: 1, y: 1}
     indices: 000000000300000001000000020000000300000000000000
     material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
     materialId: 0
@@ -1900,7 +1900,7 @@ MonoBehaviour:
     flipped: 0
     complexGeometry: 0
     physicsEngine: 0
-    colliderType: 0
+    colliderType: 1
     customColliders: []
     metadata:
       type: 0
@@ -1929,32 +1929,32 @@ MonoBehaviour:
     attachPoints: []
   - name: sentry_hitscan_003
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.39064062, y: 0.19532031}
-    - {x: 0.6406094, y: 0.19532031}
-    - {x: 0.39064062, y: 0.3203047}
-    - {x: 0.6406094, y: 0.3203047}
+    - {x: 0.9179727, y: 0.048830077}
+    - {x: 0.9804648, y: 0.048830077}
+    - {x: 0.9179727, y: 0.08007617}
+    - {x: 0.9804648, y: 0.08007617}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -1972,7 +1972,7 @@ MonoBehaviour:
     flipped: 0
     complexGeometry: 0
     physicsEngine: 0
-    colliderType: 0
+    colliderType: 1
     customColliders: []
     metadata:
       type: 0
@@ -2001,37 +2001,37 @@ MonoBehaviour:
     attachPoints: []
   - name: sentry_hitscan_005
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.046890624, y: 0.3671953}
-    - {x: 0.29685938, y: 0.3671953}
-    - {x: 0.046890624, y: 0.4921797}
-    - {x: 0.29685938, y: 0.4921797}
+    - {x: 0.8320352, y: 0.09179883}
+    - {x: 0.8945273, y: 0.09179883}
+    - {x: 0.8320352, y: 0.12304492}
+    - {x: 0.8945273, y: 0.12304492}
     normalizedUvs:
     - {x: 0, y: 0}
-    - {x: 0.99999994, y: 0}
+    - {x: 1, y: 0}
     - {x: 0, y: 1}
-    - {x: 0.99999994, y: 1}
+    - {x: 1, y: 1}
     indices: 000000000300000001000000020000000300000000000000
     material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
     materialId: 0
@@ -2044,7 +2044,1015 @@ MonoBehaviour:
     flipped: 0
     complexGeometry: 0
     physicsEngine: 0
-    colliderType: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_start_001
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.011722656, y: 0.005861328}
+    - {x: 0.26171485, y: 0.005861328}
+    - {x: 0.011722656, y: 0.13085742}
+    - {x: 0.26171485, y: 0.13085742}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: 1ef4a94e65ef3af4788d93fb09130feb
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_start_007
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.28516015, y: 0.005861328}
+    - {x: 0.5351523, y: 0.005861328}
+    - {x: 0.28516015, y: 0.13085742}
+    - {x: 0.5351523, y: 0.13085742}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: a9e6749c15319dd4e8a95c077ab5e8e9
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_startmid_007
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.5585977, y: 0.005861328}
+    - {x: 0.8085898, y: 0.005861328}
+    - {x: 0.5585977, y: 0.13085742}
+    - {x: 0.8085898, y: 0.13085742}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: 6f84bea10ecb4b84fa198b21fba61443
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_startmid_003
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.011722656, y: 0.14258008}
+    - {x: 0.26171485, y: 0.14258008}
+    - {x: 0.011722656, y: 0.26757616}
+    - {x: 0.26171485, y: 0.26757616}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: 5313e6013ae376e4dbf1cf41470aeb49
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_startmid_002
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.28516015, y: 0.14258008}
+    - {x: 0.5351523, y: 0.14258008}
+    - {x: 0.28516015, y: 0.26757616}
+    - {x: 0.5351523, y: 0.26757616}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: fa2d3a957245b304ca3193c200884671
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_startmid_004
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.5585977, y: 0.14258008}
+    - {x: 0.8085898, y: 0.14258008}
+    - {x: 0.5585977, y: 0.26757616}
+    - {x: 0.8085898, y: 0.26757616}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: e508b5b014aae644783694223dcc5043
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_start_006
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.011722656, y: 0.27929884}
+    - {x: 0.26171485, y: 0.27929884}
+    - {x: 0.011722656, y: 0.4042949}
+    - {x: 0.26171485, y: 0.4042949}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: bacb1d3c9b3277e43ab1fcaf58f51c76
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_start_003
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.28516015, y: 0.27929884}
+    - {x: 0.5351523, y: 0.27929884}
+    - {x: 0.28516015, y: 0.4042949}
+    - {x: 0.5351523, y: 0.4042949}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: aff5f21956ec670459d07cc144674028
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_startmid_005
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.5585977, y: 0.27929884}
+    - {x: 0.8085898, y: 0.27929884}
+    - {x: 0.5585977, y: 0.4042949}
+    - {x: 0.8085898, y: 0.4042949}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: f839f30a0af31a34b811d80ccb52bb24
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_start_005
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.011722656, y: 0.4160176}
+    - {x: 0.26171485, y: 0.4160176}
+    - {x: 0.011722656, y: 0.54101366}
+    - {x: 0.26171485, y: 0.54101366}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: 32e0eaabfa668aa418525e42ec789171
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_start_002
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.28516015, y: 0.4160176}
+    - {x: 0.5351523, y: 0.4160176}
+    - {x: 0.28516015, y: 0.54101366}
+    - {x: 0.5351523, y: 0.54101366}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: be22fcefa1a0a264c8a131f04b71d9ec
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_startmid_006
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.5585977, y: 0.4160176}
+    - {x: 0.8085898, y: 0.4160176}
+    - {x: 0.5585977, y: 0.54101366}
+    - {x: 0.8085898, y: 0.54101366}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: 7834ef1637fd75449b039fcf59cc35d9
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_startmid_001
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.011722656, y: 0.55273634}
+    - {x: 0.26171485, y: 0.55273634}
+    - {x: 0.011722656, y: 0.6777324}
+    - {x: 0.26171485, y: 0.6777324}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: 237e7b4afaa3b27439f1474e69a82879
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: mega_beam_start_004
+    boundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    untrimmedBoundsData:
+    - {x: 0, y: 0, z: 0}
+    - {x: 4, y: 4, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataExtents: {x: 4, y: 4, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataExtents: {x: 4, y: 4, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -2, y: -2, z: 0}
+    - {x: 2, y: -2, z: 0}
+    - {x: -2, y: 2, z: 0}
+    - {x: 2, y: 2, z: 0}
+    position0: {x: -2, y: -2, z: 0}
+    position1: {x: 2, y: -2, z: 0}
+    position2: {x: -2, y: 2, z: 0}
+    position3: {x: 2, y: 2, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.011722656, y: 0.6894551}
+    - {x: 0.26171485, y: 0.6894551}
+    - {x: 0.011722656, y: 0.81445116}
+    - {x: 0.26171485, y: 0.81445116}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: a3192a03fb0e8de4c959e1b455039ad0, type: 2}
+    materialId: 0
+    sourceTextureGUID: 45bfb0dd0aeaf214aa150be917cd16ef
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
     customColliders: []
     metadata:
       type: 0
@@ -2088,7 +3096,7 @@ MonoBehaviour:
   loadable: 0
   invOrthoSize: 2
   halfTargetHeight: 8
-  buildKey: 1770720160
+  buildKey: 672181887
   dataGuid: 4b0b74029b28b3040bc413c6c5ef786d
   managedSpriteCollection: 0
   hasPlatformData: 0

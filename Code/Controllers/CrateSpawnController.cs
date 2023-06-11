@@ -166,7 +166,7 @@ namespace ModularMod
             {
                 if (UsesAltSkin() == true)
                 {
-                    //this.sprite.renderer.material.SetColor("_EmissiveColor", new Color32(0, 255, 54, 255));
+                    this.sprite.renderer.material.SetColor("_EmissiveColor", new Color32(0, 255, 54, 255));
                 }
                 this.StartCoroutine(DoFall());
 

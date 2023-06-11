@@ -76,9 +76,9 @@ namespace ModularMod
 
 
             ceilingBorderGrid.doubleNubsTop = new TileIndexList { indices = new List<int> { 57 }, indexWeights = new List<float> { 1f } };
-            ceilingBorderGrid.doubleNubsLeft = new TileIndexList { indices = new List<int> { 58 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.doubleNubsLeft = new TileIndexList { indices = new List<int> { 60 }, indexWeights = new List<float> { 1f } };
             ceilingBorderGrid.doubleNubsBottom = new TileIndexList { indices = new List<int> { 59 }, indexWeights = new List<float> { 1f } };
-            ceilingBorderGrid.doubleNubsRight = new TileIndexList { indices = new List<int> { 60 }, indexWeights = new List<float> { 1f } };
+            ceilingBorderGrid.doubleNubsRight = new TileIndexList { indices = new List<int> { 58 }, indexWeights = new List<float> { 1f } };
 
             ceilingBorderGrid.quadNubs = new TileIndexList { indices = new List<int> { 61 }, indexWeights = new List<float> { 1f } };
 
