@@ -177,7 +177,7 @@ namespace ModularMod
 
             dungeon.tileIndices = new TileIndices()
             {
-                tilesetId = (GlobalDungeonData.ValidTilesets)CustomValidTilesetsClass.CustomValidTilesets.MODULAR_PAST, //sets it to our floors CustomValidTileset
+                tilesetId = GlobalDungeonData.ValidTilesets.FINALGEON,//(GlobalDungeonData.ValidTilesets)CustomValidTilesetsClass.CustomValidTilesets.MODULAR_PAST, //sets it to our floors CustomValidTileset
                 dungeonCollection = TilesetSetupTwo.ExperimentalTilesetCollection,//TilesetToolbox.ReplaceDungeonCollection(Tileset),
                 dungeonCollectionSupportsDiagonalWalls = false,
                 aoTileIndices = new AOTileIndices() { },//RatDungeonPrefab.tileIndices.aoTileIndices,

@@ -8,6 +8,7 @@ using Dungeonator;
 using Gungeon;
 using HutongGames.PlayMaker.Actions;
 using ModularMod.Code.Enemies.EnemyBehaviours;
+using ModularMod.Past.Prefabs.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -975,11 +976,13 @@ namespace ModularMod
                 (PickupObjectDatabase.GetById(370) as Gun).muzzleFlashEffects
                 , false);
                 companion.aiActor.bulletBank.Bullets.Add(sentryEntry);
+                companion.aiActor.bulletBank.Bullets.Add(EnemyDatabase.GetOrLoadByGuid("68a238ed6a82467ea85474c595c49c6e").bulletBank.GetBullet("poundSmall"));
+
 
                 //EnemyDatabase.GetOrLoadByGuid("9189f46c47564ed588b9108965f975c9").bulletBank.GetBullet("burst")
             }
 
-            
+
         }
 
 
@@ -998,7 +1001,6 @@ namespace ModularMod
                 };
                 base.aiActor.spriteAnimator.AnimationEventTriggered += this.AnimationEventTriggered;
                 this.aiActor.GetComponent<GenericIntroDoer>().OnIntroFinished += OnIntroFinished;
-                //this.aiActor.parentRoom.Entered += ParentRoom_Entered;
             }
 
             public void ResetPredictedPos()
@@ -1103,7 +1105,7 @@ namespace ModularMod
                 return Vector3.Lerp(predictedPosition != new Vector3(-69, -69) ? predictedPosition : this.aiActor.transform.position, GameManager.Instance.PrimaryPlayer.transform.position, 0.5f);
             }
 
-            private bool Stop = false;
+            public bool Stop = false;
             public void Update()
             {
                 if (cam && Stop == false)
@@ -1113,9 +1115,9 @@ namespace ModularMod
                 if (base.aiActor.healthHaver.GetCurrentHealth() == base.aiActor.healthHaver.minimumHealth && Phase2 != true)
                 {
                     this.aiActor.behaviorSpeculator.LocalTimeScale *= 1.2f;
-                    TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wq}YES! DON'T RELENT!{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+                    TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wq}DON'T RELENT!{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
                     Phase2 = true;
-                    this.aiActor.healthHaver.minimumHealth = 0;
+                    this.aiActor.healthHaver.minimumHealth = 1;
                     AlterAttackProbability("You_Cant_Escape!", 0);
                     AlterAttackProbability("You_Cant_Escape_Upgrade", 1.1f);
 
@@ -1148,9 +1150,157 @@ namespace ModularMod
                         particleSystem.Emit(emitParams, 1);
                     }
                 }
+                if (base.aiActor.healthHaver.GetCurrentHealth() == 1 && Phase2 == true && Stop != true)
+                {
+                    GlobalMessageRadio.BroadcastMessage("LANDYOUFUCK");
+                    Stop = true;
+                    AkSoundEngine.PostEvent("Stop_MUS_All", base.gameObject);
+                    this.behaviorSpeculator.InterruptAndDisable();
+                    AkSoundEngine.PostEvent("Play_ENM_electric_charge_01", GameManager.Instance.BestActivePlayer.gameObject);
+                    AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", GameManager.Instance.BestActivePlayer.gameObject);
+                    var ob = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(443) as TargetedAttackPlayerItem).strikeExplosionData.effect, this.aiActor.sprite.WorldCenter, Quaternion.identity);
+                    Destroy(ob, 7);
+                    this.aiActor.aiAnimator.EndAnimation();
+                    this.aiActor.aiAnimator.enabled = false;
+                    GameManager.Instance.StartCoroutine(this.DoDeath());
+                }
             }
             public GameObject extantHand;
+            public IEnumerator DoDeath()
+            {
+                GameManager.Instance.PreventPausing = true;
+                GameUIRoot.Instance.ToggleLowerPanels(false, false, string.Empty);
+                Minimap.Instance.ToggleMinimap(false, false);
+                GameManager.IsBossIntro = true;
+                GameUIBossHealthController gameUIBossHealthController = GameUIRoot.Instance.bossController;
+                gameUIBossHealthController.DisableBossHealth();
+                GameUIRoot.Instance.HideCoreUI("PainAndAgony");
+                this.aiActor.ParentRoom.BecomeTerrifyingDarkRoom(2f, 0.4f, 0.1f, null);
+                StaticReferenceManager.DestroyAllEnemyProjectiles();
+
+                float e = 0;
+                while (e < 1.25f)
+                {
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                CameraController m_camera = GameManager.Instance.MainCameraController;
+                m_camera.OverridePosition = this.aiActor.sprite.WorldCenter;
+                m_camera.OverrideRecoverySpeed = 10;
+
+
+
+                for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
+                {
+                    if (GameManager.Instance.AllPlayers[j])
+                    {
+                        GameManager.Instance.AllPlayers[j].SetInputOverride("BossIntro");
+                    }
+                }
+
+                this.aiActor.ParentRoom.BecomeTerrifyingDarkRoom(5f, 0.1f, 0.35f, null);
+                m_camera.OverrideZoomScale = 1.125f;
+
+                Minimap.Instance.TemporarilyPreventMinimap = true;
+                e = 0;
+                while (e < 1.5f) {e += BraveTime.DeltaTime; yield return null; }
+
+                e = 0;
+                while (e < 1.5f) { e += BraveTime.DeltaTime; yield return null; }
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 2.5f, "{wj}AH.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                e = 0;
+                while (e < 3.25f)
+                {
+                    bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
+                    if (advancedPressed == true) { e = 25; TextBoxManager.ClearTextBox(this.transform); }
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3.5f, "{wj}YOU ARE STRONGER THAN YOU LOOK.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                e = 0;
+                while (e < 5f)
+                {
+                    bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
+                    if (advancedPressed == true) { e = 25; TextBoxManager.ClearTextBox(this.transform); }
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}...{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                e = 0;
+                while (e < 3.5f)
+                {
+                    bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
+                    if (advancedPressed == true) { e = 25; TextBoxManager.ClearTextBox(this.transform);                    }
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}YOUR EXISTENCE WON'T BE ANY EASIER...{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                e = 0;
+                while (e < 3.5f)
+                {
+                    bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
+                    if (advancedPressed == true) { e = 25; TextBoxManager.ClearTextBox(this.transform); }
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}BUT AT LEAST...{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                e = 0;
+                while (e < 5f)
+                {
+                    bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
+                    if (advancedPressed == true) { e = 25; TextBoxManager.ClearTextBox(this.transform); }
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+
+                Pixelator.Instance.FadeToColor(5f, Color.white, false, 0f);
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "YOU ARE WORTHY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                e = 0;
+                while (e < 5.5f)
+                {
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", GameManager.Instance.BestActivePlayer.gameObject);
+                bool flag = GameStatsManager.Instance.GetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST);
+                if (flag  ==true)
+                {
+                    GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, true);
+                }
+                else
+                {
+                    GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, true);
+                }
+                SpaceShiptrigger.AllowedToLeave = true;
+                GlobalMessageRadio.BroadcastMessage("PastWin");
+                Pixelator.Instance.FadeToColor(2f, Color.white, true, 1f);
+                Vector2 position = this.aiActor.gameObject.transform.PositionVector2();
+                e = 0;
+                Destroy(this.aiActor.gameObject);
+                while (e < 5f)
+                {
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                GameManager.IsBossIntro = false;
+                for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
+                {
+                    if (GameManager.Instance.AllPlayers[j])
+                    {
+                        GameManager.Instance.AllPlayers[j].ImmuneToPits = new OverridableBool(true) { };
+                        GameManager.Instance.AllPlayers[j].ClearInputOverride("BossIntro");
+                    }
+                }
+                GameManager.Instance.PreventPausing = false;
+                m_camera.SetManualControl(false, true);
+                m_camera.StartTrackingPlayer();
+                m_camera.OverrideZoomScale = 0.85f;
+                GameManager.Instance.MainCameraController.ForceUpdateControllerCameraState(CameraController.ControllerCameraState.FollowPlayer);
+
+                yield break;
+            }
         }
+
 
         public class Slow_Orb : Script
         {
@@ -1184,15 +1334,15 @@ namespace ModularMod
                 }
                 public override IEnumerator Top()
                 {
-                    this.ChangeSpeed(new Brave.BulletScript.Speed(5f, SpeedType.Absolute), 120);
+                    this.ChangeSpeed(new Brave.BulletScript.Speed(4f, SpeedType.Absolute), 180);
                     this.Projectile.IgnoreTileCollisionsFor(120);
                     for (int i = 0; i < 5; i++)
                     {
-                        yield return base.Wait(75);
+                        yield return base.Wait(90);
                         base.PostWwiseEvent("Play_BOSS_dragun_shot_02", null);
-                        for (int e = 0; e < 8; e++)
+                        for (int e = 0; e < 6; e++)
                         {
-                            base.Fire(new Direction(45 * e, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 6, 180));
+                            base.Fire(new Direction(60 * e, DirectionType.Aim, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 6, 180));
                         }
                     }
                     this.ChangeSpeed(new Brave.BulletScript.Speed(0f, SpeedType.Absolute), 45);
@@ -1220,7 +1370,7 @@ namespace ModularMod
                     this.Projectile.IgnoreTileCollisionsFor(120);
                     for (int i = 0; i < 5; i++)
                     {
-                        yield return base.Wait(60);
+                        yield return base.Wait(75);
                         base.PostWwiseEvent("Play_BOSS_dragun_shot_02", null);
                         for (int e = 0; e < 8; e++)
                         {
@@ -1228,11 +1378,13 @@ namespace ModularMod
                         }
                     }
                     this.ChangeSpeed(new Brave.BulletScript.Speed(0f, SpeedType.Absolute), 45);
-                    yield return base.Wait(60);
+                    yield return base.Wait(75);
                     base.PostWwiseEvent("Play_BOSS_dragun_rocket_01", null);
-                    for (int e = 0; e < 16; e++)
+                    for (int e = 0; e < 12; e++)
                     {
-                        base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 15, 180));
+                        base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 11, 180));
+                        base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("burst", 11, 180));
+
                     }
                     //m_BOSS_dragun_rocket_01
                     base.Vanish(false);
@@ -1348,7 +1500,28 @@ namespace ModularMod
                         base.Fire(new Direction(face + (i * 5), DirectionType.Absolute, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 360));
                     }
                 }
+                while (this.IsEnded == false || this.Destroyed == false)
+                {
+                    base.Fire(new Direction(0, DirectionType.Absolute, -1f), new Speed(0, SpeedType.Absolute), new LingeringBullet(fire == true ? 750 : 450));
+                    yield return base.Wait(1);
+                }
+
                 yield return null;
+            }
+            public class LingeringBullet : Bullet
+            {
+                public LingeringBullet(int p) : base("poundSmall", false, false, false)
+                {
+                    Length = p;
+                }
+
+                public override IEnumerator Top()
+                {
+                    yield return base.Wait(Length);
+                    base.Vanish(false);
+                    yield break;
+                }
+                private int Length;
             }
         }
         public class You_Cant_Escape : Script
@@ -1412,13 +1585,13 @@ namespace ModularMod
                 base.PostWwiseEvent("Play_BOSS_RatMech_Stomp_01", null);
                 base.PostWwiseEvent("Play_BOSS_RatMech_Stomp_01", null);
 
-                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 1f, 0.5f, 30, 1.33f);
+                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 3f, 0.125f, 30, 1.33f);
                 var onj = UnityEngine.Object.Instantiate(VFXObject, this.BulletBank.aiAnimator.sprite.WorldCenter- new Vector2(2.5f,0), Quaternion.Euler(0, 0, 0));
                 onj.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("punch_blast");
                 onj.transform.parent = this.BulletBank.transform;
                 for (int i = 0; i < 24; i++)
                 {
-                    base.Fire(new Direction(15 * i, DirectionType.Absolute, -1f), new Speed(17, SpeedType.Absolute), new SpeedChangingBullet("burst", 10, 60));
+                    base.Fire(new Direction(15 * i, DirectionType.Absolute, -1f), new Speed(16, SpeedType.Absolute), new SpeedChangingBullet("burst", 10, 60));
                 }
                 yield return null;
             }
@@ -1427,12 +1600,14 @@ namespace ModularMod
 
         public class BigBeam : Script
         {
+            public ModularPrimeController controll;
             public Vector2 FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou()
             {
                 return this.BulletBank.aiActor.sprite.WorldCenter;
             }
             public override IEnumerator Top()
             {
+                controll = this.BulletBank.aiActor.GetComponent<ModularPrimeController>();
 
                 Dictionary<int, tk2dTiledSprite> shitter = new Dictionary<int, tk2dTiledSprite>() { };
 
@@ -1463,7 +1638,7 @@ namespace ModularMod
                 float e = 0;
                 while (e < 2.5f)
                 {
-                    if (this.IsEnded | this.Destroyed)
+                    if (this.IsEnded || this.Destroyed || controll.Stop == true)
                     {
                         foreach (var entry in shitter)
                         {
@@ -1572,13 +1747,14 @@ namespace ModularMod
 
         public class BigBeam_But_Even_Faster : Script
         {
+            public ModularPrimeController controll;
             public Vector2 FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou()
             {
                 return this.BulletBank.aiActor.sprite.WorldCenter;
             }
             public override IEnumerator Top()
             {
-
+                controll = this.BulletBank.aiActor.GetComponent<ModularPrimeController>();
                 Dictionary<int, tk2dTiledSprite> shitter = new Dictionary<int, tk2dTiledSprite>() { };
 
                 for (int i = -1; i < 2; i++)
@@ -1608,7 +1784,7 @@ namespace ModularMod
                 float e = 0;
                 while (e < 1.75f)
                 {
-                    if (this.IsEnded | this.Destroyed)
+                    if (this.IsEnded || this.Destroyed || controll.Stop == true)
                     {
                         foreach (var entry in shitter)
                         {

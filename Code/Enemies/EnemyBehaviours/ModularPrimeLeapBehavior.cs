@@ -73,6 +73,12 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
                     spriteAnimator2.AnimationEventTriggered = (Action<tk2dSpriteAnimator, tk2dSpriteAnimationClip, int>)Delegate.Combine(spriteAnimator2.AnimationEventTriggered, new Action<tk2dSpriteAnimator, tk2dSpriteAnimationClip, int>(this.AnimEventTriggered));
                 }
             }
+            GlobalMessageRadio.RegisterObjectToRadio(this.m_aiActor.gameObject, new List<string>() { "LANDYOUFUCK" }, OnRecieveMessage);
+        }
+
+        public void OnRecieveMessage(GameObject obj, string message)
+        {
+            STOPYOUCUNT = true;
         }
 
         private ModularPrimeController controller;
@@ -86,6 +92,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             }
         }
 
+        private bool STOPYOUCUNT = false;
 
         public IEnumerator Takeoff()
         {
@@ -105,6 +112,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             float duraWait = 1.1f;
             while (elaWait < duraWait)
             {
+                if (STOPYOUCUNT == true) { this.m_aiActor.transform.position = cached_position;  yield break; }
                 elaWait += BraveTime.DeltaTime;
                 yield return null;
             }
@@ -125,7 +133,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
 
             while (elaWait < duraWait)
             {
-
+                if (STOPYOUCUNT == true) { this.m_aiActor.transform.position = cached_position; yield break; }
                 float t = Mathf.Min(elaWait, 1);
                 float tRue = Toolbox.SinLerpTValue(t);
                 this.m_aiActor.transform.position = Vector3.Lerp(cached_position, cached_position + new Vector2(0, 30), tRue);
@@ -162,6 +170,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             Vector3 pos = cached_position + new Vector2(0, 50);
             while (elaWait < duraWait)
             {
+                if (STOPYOUCUNT == true) { this.m_aiActor.transform.position = cached_position; yield break; }
                 float t = (float)elaWait / (float)duraWait;
                 Vector3 vector3 = Vector3.Lerp(pos - new Vector3(1, 1), cached_position - new Vector2(1, 1), t);
                 this.m_aiActor.transform.position = vector3;
@@ -190,6 +199,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             duraWait = 1f;
             while (elaWait < duraWait)
             {
+                if (STOPYOUCUNT == true) { this.m_aiActor.transform.position = cached_position; yield break; }
                 elaWait += BraveTime.DeltaTime;
                 yield return null;
             }

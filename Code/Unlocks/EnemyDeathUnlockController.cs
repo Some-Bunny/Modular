@@ -26,7 +26,6 @@ namespace ModularMod.Code.Unlocks
 
         public static void UnlockChecklist(AIActor enemy, bool IsJammed, string GUID)
         {
-
             if (enemy != null)
             {
 
@@ -49,6 +48,7 @@ namespace ModularMod.Code.Unlocks
                         //LICH
                         if (GUID == StaticGUIDs.Lich_Phase_3_GUID)
                         {
+                            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.CLEARED_BULLET_HELL, true);
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR, true);
                             if (player.PlayerHasCore().ReturnActiveTotal() < 5)
                             {

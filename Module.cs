@@ -202,7 +202,7 @@ namespace ModularMod
                          Module.ModularAssetBundle.LoadAsset<Texture2D>("modular_bosscard_001")); //Past ID String
             //Certain aspects of character gets modified here
             Modular_Character_Data = data;
-            
+            Modular_Character_Data.pastWinPic = Module.ModularAssetBundle.LoadAsset<Texture2D>("win_pic_001");
             var doer = data.idleDoer;
             doer.phases = new CharacterSelectIdlePhase[]
             {

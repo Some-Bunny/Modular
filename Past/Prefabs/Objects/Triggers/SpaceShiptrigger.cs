@@ -16,7 +16,7 @@ namespace ModularMod.Past.Prefabs.Objects
         public static void Init()
         {
             GameObject obj = PrefabBuilder.BuildObject("Trigger_SpaceShip");
-            obj.CreateFastBody(CollisionLayer.Pickup, new IntVector2(32, 64), new IntVector2(0, 0));
+            obj.CreateFastBody(CollisionLayer.Pickup, new IntVector2(48, 64), new IntVector2(0, 0));
             obj.AddComponent<CustomtriggerSpaceShip>();
             Alexandria.DungeonAPI.StaticReferences.customObjects.Add("Trigger_SpaceShip", obj);
         }
@@ -31,27 +31,36 @@ namespace ModularMod.Past.Prefabs.Objects
 
             public void Start()
             {
-                AllowedToLeave = false;
-                HasTriggered = false;
+                HasTriggered = true;
+                GlobalMessageRadio.RegisterObjectToRadio(this.gameObject, new List<string>() { "PastWin" }, OnRecieveMessage);
                 var specBody = this.GetComponent<SpeculativeRigidbody>();
                 if (specBody)
                 {
                     specBody.OnPreRigidbodyCollision += (myBody, myCollider, otherbody, otherCollider) =>
                     {
-                        var currentRoom = GameManager.Instance.Dungeon.data.rooms[1];
-                        IntVector2 pos = currentRoom.GetCenterCell();
-                        if (HasTriggered == false && AllowedToLeave == true)
+                        if (HasTriggered == false)
                         {
                             var player = otherbody.gameObject.GetComponent<PlayerController>();
                             if (player)
                             {
+
+
+                                GameManager.IsBossIntro = false;
+                                for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
+                                {
+                                    if (GameManager.Instance.AllPlayers[j])
+                                    {
+                                        GameManager.Instance.AllPlayers[j].SetInputOverride("goodbye!");
+                                    }
+                                }
+                                GlobalMessageRadio.BroadcastMessage("DoTakeOff");
+                                //GameManager.Instance.StartCoroutine(EnterTheGungeon());
                                 HasTriggered = true;
                                 PlayerController otherPlayer = GameManager.Instance.GetOtherPlayer(player);
                                 if (otherPlayer)
                                 {
                                     otherPlayer.ReuniteWithOtherPlayer(player, false);
                                 }
-
                                 Destroy(this.gameObject);
                             }
                         }
@@ -60,6 +69,12 @@ namespace ModularMod.Past.Prefabs.Objects
 
             }
 
+          
+
+            public void OnRecieveMessage(GameObject obj, string message)
+            {
+                HasTriggered = false;
+            }
             public override void OnDestroy()
             {
                 base.OnDestroy();
