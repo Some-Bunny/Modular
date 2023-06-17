@@ -26,7 +26,7 @@ namespace ModularMod.Past.Prefabs.Objects
             AdditionalBraveLight braveLight = obj.AddComponent<AdditionalBraveLight>();
             braveLight.transform.position = obj.transform.position;
             braveLight.LightColor = Color.yellow;//WarpGateExitMDLR_Past
-            braveLight.LightIntensity = 5f;
+            braveLight.LightIntensity = 2f;
             braveLight.LightRadius = 15f;
             Alexandria.DungeonAPI.StaticReferences.customObjects.Add("Yellow_Light_Horizintal", obj);
         }
@@ -48,7 +48,7 @@ namespace ModularMod.Past.Prefabs.Objects
             AdditionalBraveLight braveLight = obj.AddComponent<AdditionalBraveLight>();
             braveLight.transform.position = obj.transform.position;
             braveLight.LightColor = Color.yellow;//WarpGateExitMDLR_Past
-            braveLight.LightIntensity = 5f;
+            braveLight.LightIntensity = 2f;
             braveLight.LightRadius = 15f;
             Alexandria.DungeonAPI.StaticReferences.customObjects.Add("Yellow_Light_Vertical", obj);
         }

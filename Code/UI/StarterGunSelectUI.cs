@@ -33,6 +33,21 @@ namespace ModularMod
             {
                 df_Button = this.gameObject.GetComponent<dfButton>();
                 UpdateSprites();
+                df_Button.MouseEnter += (o1, o2) =>
+                {
+                    if (df_Button.isActiveAndEnabled)
+                    {
+                        AkSoundEngine.PostEvent("Play_UI_menu_select_01", this.gameObject);
+                    }
+                };
+                df_Button.Click += (o1, o2) =>
+                {
+                    if (df_Button.isActiveAndEnabled)
+                    {
+                        AkSoundEngine.PostEvent("Play_FS_slipper_stone_01", this.gameObject);
+                    }
+                };
+
             }
 
             public void UpdateSprites()
@@ -56,6 +71,8 @@ namespace ModularMod
 
             public bool IsUnlocked()
             {
+                if (OverrideUnlock != null) { return OverrideUnlock(); }
+
                 if (FlagToCheck != CustomDungeonFlags.NOLLA)
                 {
                     return SaveAPIManager.GetFlag(FlagToCheck);
@@ -131,6 +148,9 @@ namespace ModularMod
 
             public int Page = 0;
             public int Entry = 0;
+
+            public Func<bool> OverrideUnlock;
+
         }
 
         public class AltSkinStringStorage : MonoBehaviour
@@ -923,7 +943,7 @@ namespace ModularMod
              string asset_name_default_alt = null,
              string asset_name_highlighted_alt = null,
              string asset_name_pressed_alt = null,
-             string Label_Name_Asset_Name_Alt = "name_label_WIP_alt", string UnlockDescription = "Blah Blah Blah"
+             string Label_Name_Asset_Name_Alt = "name_label_WIP_alt", string UnlockDescription = "Blah Blah Blah", Func<bool> OverrideUnlock = null
             )
         {
             float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
@@ -964,6 +984,8 @@ namespace ModularMod
 
             upgrade_button_default_gun.Unlock_Description = UnlockDescription;
 
+            upgrade_button_default_gun.OverrideUnlock = OverrideUnlock;
+
             int integer = AddNewEntry(self, upgrade_button_default_gun);
 
             dfButton Default_Gun_Button = Default_Gun_Button_object.CreateBlankDfButton(new Vector2(160 / mult, 160 / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
@@ -981,7 +1003,7 @@ namespace ModularMod
             Default_Gun_Button.hoverSprite = asset_name_highlighted;
             Default_Gun_Button.focusSprite = asset_name_highlighted;
             Default_Gun_Button.pressedSprite = asset_name_pressed;
-
+            
 
             //Default_Gun_Button.RelativePosition = new Vector3(4, 0);
         }
@@ -1138,8 +1160,16 @@ namespace ModularMod
                             p = printerCore;
                         }
                     }
+                    AkSoundEngine.PostEvent("Play_FS_slipper_stone_01", this.gameObject);
                     OnUse(interactor, currentlySelectedButton.ReturnGun(p));
                     Inst.ToggleUI(false);
+                }
+            };
+            Accept_Button.MouseEnter += (o1, o2) =>
+            {
+                if (Close_Button.isActiveAndEnabled)
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", this.gameObject);
                 }
             };
 
@@ -1151,6 +1181,21 @@ namespace ModularMod
                     OnClosed();
                 }
             };
+            Close_Button.MouseEnter += (o1, o2) =>
+            {
+                if (Close_Button.isActiveAndEnabled)
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", this.gameObject);
+                }
+            };
+            Close_Button.Click += (o1, o2) =>
+            {
+                if (Close_Button.isActiveAndEnabled)
+                {
+                    AkSoundEngine.PostEvent("Play_FS_slipper_stone_01", this.gameObject);
+                }
+            };
+
 
             default_gun_button.df_Button.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
             {
@@ -1163,6 +1208,8 @@ namespace ModularMod
 
                 UpdatePanels();
             };
+
+
 
             foreach (var entry in ButtonControllers_Layers)
             {
@@ -1178,6 +1225,14 @@ namespace ModularMod
                 {
                     Left_Button.StartCoroutine(this.ButtonFade(v, 0.3f));
                 }
+                AkSoundEngine.PostEvent("Play_FS_slipper_stone_01", this.gameObject);
+            };
+            Left_Button.MouseEnter += (o1, o2) =>
+            {
+                if (Close_Button.isActiveAndEnabled)
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", this.gameObject);
+                }
             };
             Right_Button.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
             {
@@ -1186,6 +1241,15 @@ namespace ModularMod
                 foreach (var v in ButtonControllers_Layers)
                 {
                     Right_Button.StartCoroutine(this.ButtonFade(v ,0.3f));
+                }
+                AkSoundEngine.PostEvent("Play_FS_slipper_stone_01", this.gameObject);
+
+            };
+            Right_Button.MouseEnter += (o1, o2) =>
+            {
+                if (Close_Button.isActiveAndEnabled)
+                {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", this.gameObject);
                 }
             };
         }

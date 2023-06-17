@@ -211,6 +211,7 @@
     <Compile Include="Past\Prefabs\Objects\Solid Objects\BigVaultObject.cs" />
     <Compile Include="Past\Prefabs\Objects\Tile Decals\FakeCorridor.cs" />
     <Compile Include="Past\Prefabs\Objects\Tile Decals\BloodRedLightness.cs" />
+    <Compile Include="Past\Prefabs\Objects\Solid Objects\Dead.cs" />
     <Compile Include="Past\Prefabs\Objects\Traps\LaserSniper.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\MetalFences.cs" />
     <Compile Include="Past\Prefabs\Objects\Tile Decals\RedLight.cs" />

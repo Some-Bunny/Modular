@@ -20,6 +20,25 @@ namespace ModularMod
 {
     public static class Hooks
     {
+        public class ShittyVFXAttacher : MonoBehaviour
+        {
+            public PlayerController mainPlayer;
+            public tk2dSpriteAnimator VFX;
+            public Gun g;
+            public void Start()
+            {
+                g = this.GetComponent<Gun>();
+                VFX = UnityEngine.Object.Instantiate(VFXStorage.VFX_Modulable, g.sprite.WorldTopLeft, Quaternion.identity).GetComponent<tk2dSpriteAnimator>();
+                VFX.gameObject.transform.parent = g.gameObject.transform;
+                VFX.Play(mainPlayer.IsUsingAlternateCostume ? "start_alt" : "start");
+            }
+
+            public void OnDestroy()
+            {
+                VFX.PlayAndDestroyObject(mainPlayer.IsUsingAlternateCostume ? "break_alt" : "break");
+            }
+        }
+
         public class  ChooseModuleController : MonoBehaviour
         {
             public static Func<int, int> AdditionalOptionsModifier;
@@ -27,6 +46,45 @@ namespace ModularMod
             public int Count = 4;
             public Gun g;
             public bool isAlt = false;
+            public Dictionary<tk2dTiledSprite, ModuleUICarrier> tk2DTiledSprites = new Dictionary<tk2dTiledSprite, ModuleUICarrier>();
+
+            public Vector2 CalculateAdditionalOffset(float angle)
+            {
+                return Toolbox.GetUnitOnCircle(angle - 90, 0.5f);
+            }
+
+            public void Nudge(PlayerController p)
+            {
+                if (isNudgeable == false) { return; }
+                AkSoundEngine.PostEvent("Play_ENM_rubber_bounce_01", g.gameObject);
+                GameManager.Instance.StartCoroutine(NudgeToPlayer(p));
+            }
+
+            public IEnumerator NudgeToPlayer(PlayerController p)
+            {
+                isNudgeable = false;
+                Vector2 modPosition = g.transform.PositionVector2();
+                float elapsed = 0f;
+                while (elapsed < 0.7f)
+                {
+                    if (g == null) { yield break; }
+                    elapsed += BraveTime.DeltaTime;
+                    float t = elapsed / 1;
+                    if (elapsed > 0.35f) { elapsed = 1; }
+                    g.gameObject.transform.position = Vector3.Lerp(modPosition, p.SpriteBottomCenter, Toolbox.SinLerpTValueFull(t / 2));
+                    yield return null;
+                }
+                elapsed = 0f;
+                while (elapsed < 0.65f)
+                {
+                    if (g == null) { yield break; }
+                    elapsed += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                isNudgeable = true;
+                yield break;
+            }
+            private bool isNudgeable = true;
 
             public DefaultModule SelectModule(GenericLootTable table)
             {
@@ -34,13 +92,13 @@ namespace ModularMod
                 switch (mod.Tier)
                 {
                     case DefaultModule.ModuleTier.Tier_1:
-                        if (UnityEngine.Random.value < 0.0001) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                        if (UnityEngine.Random.value < 0.00005f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                         return mod;
                     case DefaultModule.ModuleTier.Tier_2:
-                        if (UnityEngine.Random.value < 0.0002) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                        if (UnityEngine.Random.value < 0.0001f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                         return mod;
                     case DefaultModule.ModuleTier.Tier_3:
-                        if (UnityEngine.Random.value < 0.00035) {
+                        if (UnityEngine.Random.value < 0.000175f) {
                             AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega);
                         }
                         return mod;
@@ -49,14 +107,36 @@ namespace ModularMod
             }
             public void AlterCount()
             {
-                if (g.quality == PickupObject.ItemQuality.B | g.quality == PickupObject.ItemQuality.A) { Count = 5; }
-                if (g.quality == PickupObject.ItemQuality.S) { Count = 6; }
+                if (g.quality == PickupObject.ItemQuality.B | g.quality == PickupObject.ItemQuality.A)
+                {
+                    Count++;
+                }
+                if (g.quality == PickupObject.ItemQuality.S)
+                {
+                    Count += 2;
+                }
             }
 
 
+            private bool isEven
+            {
+                get
+                {
+                    return Count.isEven();
+                }
+            }
+
             public void Start()
             {
+
                 g = this.GetComponent<Gun>();
+                var obj = g.gameObject.GetComponent<ShittyVFXAttacher>();
+                if (obj)
+                {
+                    Destroy(obj);
+                }
+                AkSoundEngine.PostEvent("Play_OBJ_paydaydrill_start_01", g.gameObject);
+
                 var light = g.gameObject.GetOrAddComponent<AdditionalBraveLight>();
                 light.LightColor = TierColor();
                 AlterCount();
@@ -73,16 +153,40 @@ namespace ModularMod
                     {
                         controller = this,
                         defaultModule = SelectModule(tableToUse),
-                        EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideArc(Vector2.up.ToAngle() + (Arc * -1), Arc * 2, Count, i) , 2f),   
+                        EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(Vector2.up.ToAngle() + (Arc * -1), Count, i), 2.5f), //, Count, i) , 2f),   
                         isUsingAlternate = isAlt
                     });
                 }
                 foreach(var r in selectableModules)
                 {
                     r.Start();
+                    var Extant_Tether = UnityEngine.Object.Instantiate(VFXStorage.VFX_Tether_Modulable, g.sprite.WorldCenter, Quaternion.identity).GetComponent<tk2dTiledSprite>();
+                    Extant_Tether.dimensions = new Vector2(1, 16f);
+                    Extant_Tether.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    Extant_Tether.GetComponent<tk2dSpriteAnimator>().Play(isAlt ? "chain_alt_start" : "chain_start");
+                    tk2DTiledSprites.Add(Extant_Tether, r);
                 }
+
+              
                 g.StartCoroutine(LerpLight(g));
             }
+
+
+
+
+            public void Update()
+            {
+                if (isBeingDestroyed == true) { return; }
+                foreach (var entry in tk2DTiledSprites)
+                {
+                    float angle = ((entry.Value.extantModule.transform.PositionVector2() - g.sprite.WorldCenter) + new Vector2(0.5f, 0.5f)).ToAngle();
+                    var vec = CalculateAdditionalOffset(angle);
+                    entry.Key.dimensions = new Vector2(Vector2.Distance(g.sprite.WorldCenter + CalculateAdditionalOffset(angle) + vec, entry.Value.extantModule.GetComponent<tk2dBaseSprite>().WorldCenter + vec) * 16, 16f);
+                    entry.Key.gameObject.transform.localRotation = Quaternion.Euler(0, 0, angle);
+                    entry.Key.gameObject.transform.position = g.sprite.WorldCenter + vec;
+                }
+            }
+
             private IEnumerator LerpLight(Gun g)
             {
                 bool emergtencyCheck = false;
@@ -140,6 +244,11 @@ namespace ModularMod
             public bool isBeingDestroyed = false;
             private IEnumerator I_DoDestroy(Gun g)
             {
+                foreach (var entry in tk2DTiledSprites)
+                {
+                    entry.Key.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "chain_alt_break" : "chain_break");
+                }
+
                 isBeingDestroyed = true;
                 bool emergtencyCheck = false;
                 var light = g.gameObject.GetOrAddComponent<AdditionalBraveLight>();
@@ -168,6 +277,7 @@ namespace ModularMod
 
             private void OnDestroy()
             {
+
                 for (int i = 0; i < selectableModules.Count; i++)
                 {
                     if (selectableModules[i].extantModule)
@@ -185,6 +295,7 @@ namespace ModularMod
 
             public class ModuleUICarrier : MonoBehaviour
             {
+                private Vector2 Offset = new Vector2(-0.5f, -0.5f);
                 public void Start()
                 {
                     HasStoppedMoving = false;
@@ -201,18 +312,11 @@ namespace ModularMod
                 public bool HasDropped = false;
                 public bool BeingDestroyed = false;
 
-
                 public bool PreInteract(DefaultModule DefMod, PlayerController p)
                 {
                     if (HasStoppedMoving == true && HasDropped == false)
                     {
-                        DebrisObject orAddComponent = DefMod.gameObject.GetOrAddComponent<DebrisObject>();
-                        orAddComponent.shouldUseSRBMotion = true;
-                        orAddComponent.angularVelocity = 0f;
-                        orAddComponent.Priority = EphemeralObject.EphemeralPriority.Critical;
-                        orAddComponent.sprite.UpdateZDepth();
-                        orAddComponent.Trigger(Vector3.up.WithZ(2f), 1, 1f);
-                        DefMod.OnEnteredRange(p);
+                        AkSoundEngine.PostEvent("Play_OBJ_metroid_roll_01", DefMod.gameObject);
                         DefMod.EnteredRange -= Entered;
                         DefMod.ExitedRange -= Exited;
                         DefMod.ChangeShader(StaticShaders.Default_Shader);
@@ -220,11 +324,41 @@ namespace ModularMod
                         controller.DestroyAllOthers();
                         DefMod.StartCoroutine(LerpLight(DefMod, 0, 7, 0, 3));
                         Destroy(this);
+                        DefMod.StartCoroutine(this.DoMovementToPlayer(DefMod, p));
                         return false;
                     }
                     return (HasStoppedMoving);
                 }
+
+                private IEnumerator DoMovementToPlayer(DefaultModule self, PlayerController p)
+                {
+                    HasStoppedMoving = false;
+                    self.PreInteractLogic -= PreInteract;
+                    Vector2 modPosition = self.transform.PositionVector2();
+                    float elapsed = 0f;
+                    while (elapsed < 0.75f)
+                    {
+                        if (self == null) { yield break; }
+                        elapsed += BraveTime.DeltaTime;
+                        float t = elapsed / 1;
+                        self.gameObject.transform.position = Vector3.Lerp(modPosition, p.SpriteBottomCenter, Toolbox.SinLerpTValue(t));
+                        yield return null;
+                    }
+                    DebrisObject orAddComponent = self.gameObject.GetOrAddComponent<DebrisObject>();
+                    orAddComponent.shouldUseSRBMotion = true;
+                    orAddComponent.angularVelocity = 0f;
+                    orAddComponent.Priority = EphemeralObject.EphemeralPriority.Critical;
+                    orAddComponent.sprite.UpdateZDepth();
+                    orAddComponent.Trigger(Vector3.up.WithZ(2f), 1, 1f);
+                    self.OnEnteredRange(p);
+
+
+                    yield break;
+                }
+
                 private bool HasStoppedMoving;
+
+
 
                 private IEnumerator LerpLight(DefaultModule self, float to, float From, float radTo, float radFrom)
                 {
@@ -249,17 +383,46 @@ namespace ModularMod
                     {
                         elapsed += BraveTime.DeltaTime;
                         float t = elapsed / duration;
-                        self.gameObject.transform.position = Vector3.Lerp(controller.g.sprite.WorldCenter, controller.g.sprite.WorldCenter + EndPosition, Toolbox.SinLerpTValue(t));
+                        self.gameObject.transform.position = Vector3.Lerp(controller.g.sprite.WorldCenter + Offset, (controller.g.sprite.WorldCenter + EndPosition) + Offset, Toolbox.SinLerpTValue(t));
                         yield return null;
                     }
                     self.EnteredRange += Entered;
                     self.ExitedRange += Exited;
                     HasStoppedMoving = true;
+                    while (this.controller)
+                    {
+                        if (HasStoppedMoving == true && extantModule.gameObject && controller.g)
+                        {
+                            extantModule.gameObject.transform.position = Vector2.MoveTowards(extantModule.gameObject.transform.position, (controller.g.sprite.WorldCenter + EndPosition) + Offset, 0.04f);
+                        }
+                        yield return null;
+                    }
                     yield break;
                 }
 
+                /*
+                public void Update()
+                {
+                    
+                    if (controller)
+                    {
+                        Debug.Log("EX: " + (extantModule != null));
+                        Debug.Log("EXOB: " + (extantModule.gameObject != null));
+                        Debug.Log("CO: " + (controller != null));
+                        Debug.Log("COG: " + (controller.g != null));
+                        Debug.Log("COGSPR: " + (controller.g.sprite != null));
+
+                        if (HasStoppedMoving == true && extantModule.gameObject && controller.g)
+                        {
+                            extantModule.gameObject.transform.position = Vector2.MoveTowards(extantModule.gameObject.transform.position, (controller.g.sprite.WorldCenter + EndPosition) + Offset, 0.075f);
+                        }
+                    }
+                    
+                }
+                */
                 public void Entered(DefaultModule DefMod)
                 {
+                    AkSoundEngine.PostEvent("Play_UI_menu_select_01", DefMod.gameObject);
                     DefMod.StartCoroutine(LerpLight(DefMod, 7, 4, 3, 2));
                     DefMod.ChangeShader(StaticShaders.Default_Shader);
                 }
@@ -278,6 +441,7 @@ namespace ModularMod
 
                 private IEnumerator I_DoDestroy(DefaultModule DefMod)
                 {
+                    //Extant_Tether.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(controller.isAlt ? "chain_alt_break" : "chain_break");
                     DefMod.OverrideCanDisplayText(false);
                     bool emergtencyCheck = false;
                     if (DefMod.BraveLight == null) { emergtencyCheck = true; }
@@ -330,12 +494,15 @@ namespace ModularMod
                 public GameObject extantModule;
                 public DefaultModule defaultModule;
                 public bool isUsingAlternate = false;
+//                private tk2dTiledSprite Extant_Tether;
 
             }
         }
         public static void Init()
         {
             new Hook(typeof(Gun).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("PickupHook"));
+            new Hook(typeof(Gun).GetMethod("OnEnteredRange", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("OnEnteredRangeHook"));
+
             new Hook(typeof(PlayerController).GetMethod("SetStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("SetStencilValHook"));
             new Hook(typeof(PlayerController).GetMethod("UpdateStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("UpdateStencilValHook"));
             new Hook(typeof(PlayerStats).GetMethod("RebuildGunVolleys", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("RebuildGunVolleysHook"));
@@ -344,9 +511,21 @@ namespace ModularMod
             new Hook(typeof(AIActor).GetMethod("TeleportSomewhere", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("TeleportationImmunity"));
 
 
-            //new Hook(typeof(BaseShopController).GetMethod("HandleEnter", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandleEnterHook"));
+            new Hook(
+                 typeof(RoomHandler).GetMethod("AddProceduralTeleporterToRoom", BindingFlags.Instance | BindingFlags.Public),
+                 typeof(Hooks).GetMethod("AddProceduralTeleporterToRoomHook", BindingFlags.Static | BindingFlags.Public)
+             );
             JuneLib.ItemsCore.AddChangeSpawnItem(ReturnObj);
         }
+
+
+        public static void AddProceduralTeleporterToRoomHook(Action<RoomHandler> orig, RoomHandler roomHandler)
+        {
+            //yes, this is a really cheap and shit way of preventing teleporters on **specificaly** my floor but it should work
+            if (GameManager.Instance.Dungeon.BossMasteryTokenItemId == ModulePrinterCore.ModulePrinterCoreID) { return; }
+            orig(roomHandler);
+        }
+
         public static void TeleportationImmunity(Action<AIActor, IntVector2?, bool> orig, AIActor self, IntVector2? overrideClearance = null, bool keepClose = false)
         {
             if (self.GetComponent<TeleportationImmunity>() != null) { return; }
@@ -495,8 +674,17 @@ namespace ModularMod
         {
             if (player.HasPickupID(ModulePrinterCore.ModulePrinterCoreID) == true)
             {
-                var yes = self.gameObject.GetOrAddComponent<ChooseModuleController>();
-                yes.isAlt = player.IsUsingAlternateCostume;
+                var yes = self.gameObject.GetComponent<ChooseModuleController>();
+                if (yes == null)
+                {
+                    yes = self.gameObject.AddComponent<ChooseModuleController>();
+                    yes.isAlt = player.IsUsingAlternateCostume;
+
+                }
+                else
+                {
+                    yes.Nudge(player);
+                }
             }
             else
             {
@@ -505,6 +693,19 @@ namespace ModularMod
                 orig(self, player);
             }
         }
+
+        public static void OnEnteredRangeHook(Action<Gun, PlayerController> orig, Gun self, PlayerController player)
+        {
+            orig(self, player);
+            if (player.PlayerHasCore() != null && self.gameObject.GetComponent<ShittyVFXAttacher>() == null && self.gameObject.GetComponent<ChooseModuleController>() == null)
+            {
+                var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
+                p.mainPlayer = player;
+            }
+        }
+
+
+        //AwakeHook
         public static bool Stencility_Enabled = true;
         public static void SetStencilValHook(Action<PlayerController, int> orig, PlayerController player, int i)
         {

@@ -205,6 +205,10 @@ MonoBehaviour:
     dataGUID: 
     managed: 0
     loadable: 0
+  - assetGUID: 9907572b82f2bdd478684151ec7aacdf
+    dataGUID: 
+    managed: 0
+    loadable: 0
   fontIndex:
   - assetGUID: 063b15d80dbb4604d890600a64c79cf8
     dataGUID: e7a6b09a73c6b2b4f8060096ddbd3b5e
@@ -3278,6 +3282,80 @@ MonoBehaviour:
     - mdlprime_teleflash_piss_006
     - mdlprime_teleflash_piss_004
     - mdlprime_teleflash_piss_001
+    - rotating_gear_break_003
+    - rotating_gear_break_004
+    - rotating_gear_break_005
+    - rotating_gear_alt_idle_005
+    - rotating_gear_alt_idle_006
+    - rotating_gear_alt_break_004
+    - rotating_gear_alt_idle_003
+    - rotating_gear_alt_idle_004
+    - rotating_gear_alt_break_001
+    - rotating_gear_alt_break_003
+    - rotating_gear_break_001
+    - rotating_gear_break_002
+    - rotating_gear_alt_start_001
+    - rotating_gear_alt_start_002
+    - rotating_gear_alt_break_002
+    - rotating_gear_alt_idle_001
+    - rotating_gear_start_003
+    - rotating_gear_start_004
+    - rotating_gear_start_005
+    - rotating_gear_alt_start_003
+    - rotating_gear_alt_start_004
+    - rotating_gear_alt_start_005
+    - rotating_gear_alt_break_005
+    - rotating_gear_alt_break_006
+    - rotating_gear_idle_003
+    - rotating_gear_idle_004
+    - rotating_gear_idle_005
+    - rotating_gear_idle_006
+    - rotating_gear_start_001
+    - rotating_gear_start_002
+    - rotating_gear_alt_idle_002
+    - rotating_gear_break_006
+    - rotating_gear_idle_001
+    - rotating_gear_idle_002
+    - chain_alt_idle_003
+    - chain_alt_idle_001
+    - chain_alt_idle_004
+    - chain_alt_idle_002
+    - chain_alt_idle_005
+    - chain_alt_idle_006
+    - chain_alt_idle_007
+    - chain_alt_idle_008
+    - chain_alt_idle_009
+    - chain_alt_idle_010
+    - chain_alt_idle_012
+    - chain_alt_idle_013
+    - chain_alt_idle_011
+    - chain_alt_idle_014
+    - chain_alt_startup_002
+    - chain_alt_startup_003
+    - chain_alt_startup_001
+    - chain_alt_startup_004
+    - chain_alt_startup_005
+    - chain_alt_startup_006
+    - chain_idle_001
+    - chain_idle_002
+    - chain_idle_003
+    - chain_idle_004
+    - chain_idle_005
+    - chain_idle_006
+    - chain_idle_007
+    - chain_idle_008
+    - chain_idle_009
+    - chain_idle_010
+    - chain_idle_011
+    - chain_idle_012
+    - chain_idle_013
+    - chain_idle_014
+    - chain_startup_001
+    - chain_startup_002
+    - chain_startup_003
+    - chain_startup_004
+    - chain_startup_005
+    - chain_startup_006
     spriteTextureGUIDs:
     - 0d8586071a928fb4c920466116729c30
     - 1cf028702d6d57440bbc887fbde8087b
@@ -3561,6 +3639,80 @@ MonoBehaviour:
     - 17e70d5f1fe7d68419e9742b390b28ff
     - f48d10f9caf34384b8120c6d3b003768
     - 16812782c04ae1c4785aca2ed4ca8865
+    - 0283a35996ab0ce43935fa86588935ec
+    - 4aa8ea5fd1a61544987c437ae34e6bc7
+    - e8ba436a5fcab814291cbee85dacad10
+    - 765ad327f78f3ed41b8338ad0922b5e3
+    - 4dafc27d64a86bf46beaa14723b7657f
+    - 8e1d16ee3fed83d40b38eef7d0179b40
+    - 9e34f79c3e526fc438ee2fc8c7405d51
+    - 823f553f77e4a724ebd6ea26247494f6
+    - 36202037bfbe42d41882f6bb7af2f03c
+    - d802c65aef63b4c47817b9fad3479248
+    - 86d4e34f19c15c94ab961aa10b3441fb
+    - 7067005d1fbc9b640b840ba7a6160fbc
+    - e42e1b0ad3bb9ba428c42c38699b08df
+    - 28dc6ab294ebc7a4db990d2415adda9e
+    - 9fae806296fecbe44b55d6dd295decab
+    - 467f700ce98bf4f40ab9fad5c7f0c65c
+    - 2c9e67a17074f214ea2733fbbb3db782
+    - e45a2bea2988bd5428142c9520464e5a
+    - c5ade88c6a577ef4fbee97413cd669ab
+    - ba372055a18a5d64baf12b3138f79729
+    - 9e6d0db0420af2841b35282d8e8239fb
+    - 19c7fbc3bafcfd54095dbda3c0b1ecae
+    - 8bb804ec7eee9754a926888a97176899
+    - 2ac43af700c0d344da9c0b2c7e23e783
+    - 81c69c1bc50082043a046f5d46d381fc
+    - df3edaeb1cc36084e99f247f10fa8d2e
+    - 4acb7bbe2db58df4391836255458ac60
+    - 9b3c6900d302c0947bc9de9e48b30983
+    - bf6eed701e8ea3e44a2a06e186311d99
+    - 70211ab2e0daa4b42abe37b18f8d220d
+    - 547ac050f6e0c884b8795d006a5506f6
+    - aa67f82b7b756c947ab921423dc52a6b
+    - d121623101d9b3143887313e310f43ce
+    - b3cf297e86767bb40b57041392041482
+    - 1dad4d36b87454d4d8feef99756ac891
+    - 2be7e9e3e08f6014f8238dc9f679325e
+    - 15a1f0e405557d44e81d158118e5928f
+    - cc38d158e3c85dd409c54641c934988f
+    - b0cb4d55ded9f814abaff39ebba67da4
+    - 6aa06f4bfa433ba449585c90d5c5665a
+    - 89aad8592521b2645859e1118619d211
+    - 44d2a1f338114f2409f71221017c15fb
+    - 7b034ca0e3036b648b97de9adcbb1a63
+    - 127824efe81d84945ba380217b1fb0e0
+    - 37203b40043a25c47ac4abf8aa834900
+    - a91b107e6ea9f5a43ac1dc1c050c6c0e
+    - fcc8ffffaaeb34940bb9700630784fd1
+    - 762c0d555b87ef94fb40dc67d1857866
+    - 05f84f1ed2d1f86489d8102b627b4528
+    - de5e2c7b89921cf43a6a21f08727c576
+    - 4aaba8b3314e89449b0657f2f04dbc28
+    - 9efbe01023628b249a61df8100ec1d9a
+    - 4b8b94d33e9b1b54fb7390086d950c3e
+    - e3708392e19c6ca46a2de091ee650259
+    - 7027680cfb8a5f14fa78935543c59c1d
+    - dd87799b838b6724f8b3d9d3153e15fc
+    - 1eed9e787136d82469c43caa58d234bf
+    - 646277be14b048445958492d08baf204
+    - 29edfdddcad560e4d8555aa302376b76
+    - 4c6d17584cc96c041ac6a973881ea2ee
+    - a071d487df62af5459dbcc0a2cf102bc
+    - c8e087ad7521b4046b25f7bd3db5a72e
+    - 406c5d5ae10ee6d429ff13cd120d5c8d
+    - e88054ba111848348af9f6ea4acf0e4e
+    - 2e810c27ea51a554b96c91a9235077e9
+    - 0829f3917b2bb03459e6bfdd7b49bcfa
+    - 80c6c15f490f0b545948ce9eebfeaa42
+    - 775ddbb105abd824eb5e90a66e8d1d36
+    - 3588e1a740a9f7149b73b520fc7049b9
+    - 291cb61dcc11d2345871b6b590df64ab
+    - f0b8f77584bb5714c835fae7b085db1d
+    - 8af8b9034e086cd4295cd29a4cca569a
+    - ed7193503ccd0cb4daf53607082a1159
+    - ed00c632dc51956438b2f23edec8ce48
     spriteTextureTimeStamps:
     - 1674763113.28595
     - 1674763113.29594
@@ -3844,6 +3996,80 @@ MonoBehaviour:
     - 1686394134.42108
     - 1686394134.41607
     - 1686394134.41107
+    - 1686877396.41949
+    - 1686877396.42149
+    - 1686877396.42449
+    - 1686877768.52631
+    - 1686877768.52831
+    - 1686877839.35175
+    - 1686877768.52131
+    - 1686877768.52331
+    - 1686877839.34397
+    - 1686877839.34897
+    - 1686877396.41448
+    - 1686877396.41749
+    - 1686877891.55477
+    - 1686877891.55784
+    - 1686877839.34697
+    - 1686877768.5163
+    - 1686877075.13421
+    - 1686877075.13621
+    - 1686877075.13922
+    - 1686877891.55985
+    - 1686877891.56285
+    - 1686877891.56485
+    - 1686877839.35375
+    - 1686877839.35675
+    - 1686876877.45482
+    - 1686876877.45782
+    - 1686876877.45882
+    - 1686876877.46183
+    - 1686877075.12921
+    - 1686877075.13121
+    - 1686877768.51831
+    - 1686877396.4265
+    - 1686876877.44981
+    - 1686876877.45282
+    - 1686880016.171
+    - 1686880016.16599
+    - 1686880016.174
+    - 1686880016.16926
+    - 1686880016.176
+    - 1686880016.179
+    - 1686880016.18
+    - 1686880016.18401
+    - 1686880016.18601
+    - 1686880016.18901
+    - 1686880016.19302
+    - 1686880016.19502
+    - 1686880016.19102
+    - 1686880016.19802
+    - 1686880251.66007
+    - 1686880251.66207
+    - 1686880251.65807
+    - 1686880251.66407
+    - 1686880251.66808
+    - 1686880251.67008
+    - 1686880090.40013
+    - 1686880090.40613
+    - 1686880090.40813
+    - 1686880090.41113
+    - 1686880090.41313
+    - 1686880090.41614
+    - 1686880090.41814
+    - 1686880090.42114
+    - 1686880090.42314
+    - 1686880090.42615
+    - 1686880090.42815
+    - 1686880090.43115
+    - 1686880090.43315
+    - 1686880090.43614
+    - 1686880213.79119
+    - 1686880213.7942
+    - 1686880213.7962
+    - 1686880213.7992
+    - 1686880213.8012
+    - 1686880213.80421
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -7372,6 +7598,9 @@ MonoBehaviour:
     - bigzappydoor_idle_003
     - bigzappydoor_destroy_006
     - bigzappydoor_destroy_001
+    - fuckingdead_001
+    - spaceship_takeoff_010
+    - spaceship_takeoff_009
     spriteTextureGUIDs:
     - 771c280b74662f545814c86c075bf0b2
     - 6b626efa14e302942961cb772e73f3e1
@@ -7649,6 +7878,9 @@ MonoBehaviour:
     - 4975028cc3ff6a64491b959a0dc00c28
     - 06114706f0e279d47b081beea696ff75
     - 94cbd6fdf6a5bc142a3554a8bc28eb10
+    - accc6484d15e1444ea72a361ed4c54e4
+    - b96de335c7a4a1840ab5636bb16003af
+    - 15d3c47b95065b8438dc5c2db58663af
     spriteTextureTimeStamps:
     - 1681656860.24387
     - 1681656867.60392
@@ -7899,15 +8131,15 @@ MonoBehaviour:
     - 1685400920.5629
     - 1685396238.88639
     - 1685396238.89649
-    - 1686494887.80072
+    - 1686690330.00021
     - 1686494128.73323
-    - 1686494887.79572
-    - 1686494887.80673
-    - 1686494887.81173
-    - 1686494887.81773
-    - 1686494887.82374
-    - 1686494887.82774
-    - 1686494887.83244
+    - 1686690329.99621
+    - 1686690330.00522
+    - 1686690330.01122
+    - 1686690330.01688
+    - 1686690330.02088
+    - 1686690330.02543
+    - 1686690330.03143
     - 1686494119.94002
     - 1686497393.73633
     - 1686497393.73933
@@ -7926,6 +8158,9 @@ MonoBehaviour:
     - 1686497393.73032
     - 1686497525.84995
     - 1686497525.83794
+    - 1686583731.82519
+    - 1686690330.04115
+    - 1686690330.03614
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -9660,6 +9895,43 @@ MonoBehaviour:
     - mdlprime_reflect_004
     - mdlprime_reflect_010
     - mdlprime_reflect_009
+    - mdlprime_death_1_012
+    - mdlprime_death_1_003
+    - mdlprime_death_1_001
+    - mdlprime_death_1_011
+    - mdlprime_death_1_006
+    - mdlprime_death_1_007
+    - mdlprime_death_1_005
+    - mdlprime_death_1_010
+    - mdlprime_death_1_002
+    - mdlprime_death_1_004
+    - mdlprime_death_1_008
+    - mdlprime_death_1_009
+    - mdlprime_death_3_008
+    - mdlprime_death_2_007
+    - mdlprime_death_2_001
+    - mdlprime_death_2_006
+    - mdlprime_death_2_009
+    - mdlprime_death_2_011
+    - mdlprime_death_2_013
+    - mdlprime_death_3_003
+    - mdlprime_death_2_015
+    - mdlprime_death_3_004
+    - mdlprime_death_2_008
+    - mdlprime_death_2_012
+    - mdlprime_death_2_014
+    - mdlprime_death_2_004
+    - mdlprime_death_2_005
+    - mdlprime_death_2_002
+    - mdlprime_death_3_006
+    - mdlprime_death_3_007
+    - mdlprime_death_3_005
+    - mdlprime_death_2_010
+    - mdlprime_death_2_003
+    - mdlprime_death_3_001
+    - mdlprime_death_3_002
+    - modularprime_icon
+    - steelpanopticon_icon
     spriteTextureGUIDs:
     - 15a52d1dc06b24944b0640007cb73a6a
     - 752df8df21396d14ca324a45d0f9cb68
@@ -9939,6 +10211,43 @@ MonoBehaviour:
     - 71221e30a67a48c4c8df25a9fc550c42
     - 9ab1c11df876f074a98debc46ceffd21
     - 00fcacf2d984d294084dca7479e19b04
+    - c88438a6c9912044b935c096de9c5dbd
+    - f1cb3d4eacf855b43a583ab3c4940241
+    - 595f1c47fd663cb44aad259827f95f97
+    - 379d7dd749bdf9647be89c74eb97a784
+    - 9b420fc94ae398d46888092d004f7273
+    - 390aca894fd486d4f81040d615e70c6e
+    - 5314a43c42fbefc44ac8d3de72e5d10c
+    - 5d82b19a79ab075469964689943f6faf
+    - 9206586869b495c45b1f27e951e66a0e
+    - a0979c3ee8a9541438a443c5c955f2c8
+    - 126d72c6387417540a07f0004bf4c4d5
+    - 2edc82f036c92974098119ce09eb8c43
+    - 99e55724a08ed6f4b99b2ef0d06fc46e
+    - 8281ff551ef46f44b87af7fd4473c668
+    - 1f5c80c9c8dfec945968df6bab91bf2d
+    - e2eada234baa7d24dbe01e207a42a23f
+    - 16f62c762e55ea34aaea07d4807dadfe
+    - 9535eca61c5c31f45af0758dffb69b1b
+    - cc4cc981df2ec9d46847c02f4122e6aa
+    - 6e8ae37c1e71ac543b57dd75ce849690
+    - 940abfac1b74e7a4cb5c1f636c936d98
+    - aada87900664f284cb02c80ba3af439e
+    - 43ba2bafd61c87c4b9b34defb380f562
+    - 7d18783c5e9c6c443a6731eb8f4f7c26
+    - 8b9160319c0da2548909f191dbd83e70
+    - 441812ee73a63c34ea44cc7d8aced360
+    - 1df32d8c3c8f9264995cd93879c7c2c5
+    - 838f9b4121c6a1f4c9d5b6a82863cb7a
+    - ad15259bcc4513a42bbf831054780c4b
+    - 84435b8cf5f9de14eb3c35c413c71f4e
+    - 7356eba7e5f03a547a0bc87b14ae516e
+    - 59cd933a01ed6af49947ea023924bde5
+    - bf1575b1d2fd09648aab0ad7559e7795
+    - e7a9c2382a1d54a4f88d86505ee5347f
+    - fe96ae83a8a63dc47b9ab9dd08ce1501
+    - 0a9ab6465529a4c4da90b35b6fa47dc2
+    - c289e83fa46ca7744a868f0fa0331473
     spriteTextureTimeStamps:
     - 1685635428.10981
     - 1685645072.59312
@@ -10218,6 +10527,43 @@ MonoBehaviour:
     - 1686175476.34286
     - 1686175476.35387
     - 1686175476.35287
+    - 1686581503.69538
+    - 1686581503.68037
+    - 1686581503.67761
+    - 1686581503.69438
+    - 1686581503.68638
+    - 1686581503.68738
+    - 1686581503.68438
+    - 1686581503.69338
+    - 1686581503.67937
+    - 1686581503.68237
+    - 1686581503.68938
+    - 1686581503.69038
+    - 1686582350.65739
+    - 1686582134.71907
+    - 1686582134.70819
+    - 1686582134.71707
+    - 1686582134.72207
+    - 1686582134.72708
+    - 1686582134.73308
+    - 1686582350.64638
+    - 1686582134.73509
+    - 1686582350.64738
+    - 1686582134.72107
+    - 1686582134.73008
+    - 1686582134.73409
+    - 1686582134.71407
+    - 1686582134.71607
+    - 1686582134.71006
+    - 1686582350.65239
+    - 1686582350.65339
+    - 1686582350.64939
+    - 1686582134.72307
+    - 1686582134.71307
+    - 1686582350.64238
+    - 1686582350.64438
+    - 1686589072.05085
+    - 1686589192.95439
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

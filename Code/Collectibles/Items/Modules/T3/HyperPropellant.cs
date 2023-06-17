@@ -53,7 +53,7 @@ namespace ModularMod
             {
                 breakSecretWalls = true,
                 comprehensiveDelay = 0,
-                damage = 30,
+                damage = 25,
                 damageRadius = 3f,
                 damageToPlayer = 0,
                 debrisForce = 100,
@@ -76,17 +76,7 @@ namespace ModularMod
                 preventPlayerForce = false,
                 pushRadius = 1,
                 secretWallsRadius = 1,
-                ss = new ScreenShakeSettings()
-                {
-                    magnitude = 10,
-                    simpleVibrationTime = Vibration.Time.Quick,
-                    time = 0.2f,
-                    vibrationType = ScreenShakeSettings.VibrationType.Auto,
-                    simpleVibrationStrength = Vibration.Strength.Medium,
-                    direction = Vector2.left,
-                    falloff = 0.5f,
-                    speed = 1,
-                },
+                ss = new ScreenShakeSettings() { },
                 ignoreList = new List<SpeculativeRigidbody>(),
                 rotateEffectToNormal = false,
                 useDefaultExplosion = false,
@@ -130,9 +120,9 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1.5f + stack;
+            p.baseData.damage *= 0.75f + stack;
             p.baseData.speed *= 2.5f + (0.5f* stack);
-            p.baseData.force *= (10f * stack);
+            p.baseData.force *= (7.5f * stack);
             p.AdditionalScaleMultiplier *= 2;
             p.pierceMinorBreakables = true;
 

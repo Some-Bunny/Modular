@@ -27,7 +27,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("conc_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Concussive Tips " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Knockback force by by\n50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + "),\nboss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.";
+            h.LabelDescription = "Increases Knockback force by 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + "),\nboss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

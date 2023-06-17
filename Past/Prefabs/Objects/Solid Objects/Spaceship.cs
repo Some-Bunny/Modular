@@ -32,7 +32,11 @@ namespace ModularMod.Past.Prefabs.Objects
             tk2dAnim.playAutomatically = true;
             obj.AddComponent<BigAssSpaceship>();
             obj.AddComponent<FakeCorridor.Fuck_You_Youre_No_Longer_Perpendicular>();
-
+            var t = obj.AddComponent<ImprovedAfterImage>();
+            t.dashColor = new Color(0, 2, 2);
+            t.shadowLifetime = 1;
+            t.shadowTimeDelay = 0.01f;
+            t.spawnShadows = false;
             obj.CreateFastBody(new IntVector2(202, 105), new IntVector2(11, 16));
             obj.CreateFastBody(new IntVector2(162, 63), new IntVector2(31, -121));
             obj.CreateFastBody(new IntVector2(144, 64), new IntVector2(40, 184));
@@ -43,15 +47,21 @@ namespace ModularMod.Past.Prefabs.Objects
 
         public class BigAssSpaceship : MonoBehaviour
         {
+            public tk2dBaseSprite sprite;
             public void Start()
             {
+                sprite = this.GetComponent<tk2dBaseSprite>();
                 GlobalMessageRadio.RegisterObjectToRadio(this.gameObject, new List<string>() { "DoTakeOff" }, OnRecieveMessage);
             }
             public void OnRecieveMessage(GameObject obj, string message)
             {
                 GameManager.Instance.StartCoroutine(EnterTheGungeon());
             }
-
+            private Vector4 GetCenterPointInScreenUV(Vector2 centerPoint)
+            {
+                Vector3 vector = GameManager.Instance.MainCameraController.Camera.WorldToViewportPoint(centerPoint.ToVector3ZUp(0f));
+                return new Vector4(vector.x, vector.y, 0f, 0f);
+            }
             public IEnumerator EnterTheGungeon()
             {
                 Pixelator.Instance.FadeToColor(1f, Color.black, false, 0.5f);
@@ -100,7 +110,8 @@ namespace ModularMod.Past.Prefabs.Objects
                     yield return null;
                 }
                 e = 0;
-                this.GetComponent<tk2dSpriteAnimator>().Play("take_off");
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3.5f, "---DESTINATION SET TO: ---\nGUNYMEDE.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+
                 while (e < 2.5f)
                 {
                     e += BraveTime.DeltaTime;
@@ -109,15 +120,55 @@ namespace ModularMod.Past.Prefabs.Objects
                 e = 0;
                 Vector2 Pos = this.transform.PositionVector2();
                 AkSoundEngine.PostEvent("Play_obj_bowler_ignite_01", GameManager.Instance.BestActivePlayer.gameObject);
-                while (e < 3.5f)
+                while (e < 1.5f)
                 {
-                    this.gameObject.transform.position = Vector2.Lerp(Pos, Pos + new Vector2(-25f, 0), Toolbox.SinLerpTValue(e / 15f));
+                    this.gameObject.transform.position = Vector2.Lerp(Pos, Pos + new Vector2(-5f, 0), Toolbox.SinLerpTValueFull(e / 3f));
                     m_camera.OverridePosition = this.GetComponent<tk2dSpriteAnimator>().sprite.WorldCenter;
                     e += BraveTime.DeltaTime;
                     yield return null;
                 }
+                AkSoundEngine.PostEvent("Play_ENM_cannonball_roll_01", GameManager.Instance.BestActivePlayer.gameObject);
 
+                this.GetComponent<tk2dSpriteAnimator>().Play("take_off");
 
+                var m_distortMaterial = new Material(ShaderCache.Acquire("Brave/Internal/DistortionRadius"));
+                m_distortMaterial.SetFloat("_Strength", 1f);
+                m_distortMaterial.SetFloat("_TimePulse", 0f);
+                m_distortMaterial.SetFloat("_RadiusFactor", 0f);
+                m_distortMaterial.SetVector("_WaveCenter", GetCenterPointInScreenUV(sprite.WorldCenter));
+                Pixelator.Instance.RegisterAdditionalRenderPass(m_distortMaterial);
+                AkSoundEngine.PostEvent("Play_ENM_Grip_Master_Linger_01", GameManager.Instance.BestActivePlayer.gameObject);
+                AkSoundEngine.PostEvent("Play_ENM_Grip_Master_Linger_01", GameManager.Instance.BestActivePlayer.gameObject);
+
+                while (e < 4.5f)
+                {
+                    Exploder.DoDistortionWave(sprite.WorldCenter, 2f, 0.75f, 22, 0.75f);
+
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                e = 0;
+                Pos = this.transform.PositionVector2();
+                AkSoundEngine.PostEvent("Play_BOSS_DragunGold_Crackle_01", GameManager.Instance.BestActivePlayer.gameObject);
+                while (e < 1f)
+                {
+
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
+                this.GetComponent<ImprovedAfterImage>().spawnShadows = true;
+                Exploder.DoDistortionWave(sprite.WorldCenter, 10f, 0.25f, 30, 0.25f);
+                e = 0;
+                AkSoundEngine.PostEvent("Play_BOSS_spacebaby_explode_01", this.gameObject);
+                while (e < 1f)
+                {
+                    this.gameObject.transform.position = Vector2.Lerp(Pos, Pos + new Vector2(0, 100), Toolbox.SinLerpTValue(e));
+                    m_distortMaterial.SetFloat("_Strength", 0);
+                    m_distortMaterial.SetFloat("_TimePulse", 0);
+                    m_distortMaterial.SetFloat("_RadiusFactor",0);
+                    e += BraveTime.DeltaTime;
+                    yield return null;
+                }
 
                 Pixelator.Instance.FreezeFrame();
                 BraveTime.RegisterTimeScaleMultiplier(0f, base.gameObject);

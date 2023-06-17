@@ -106,7 +106,7 @@ namespace ModularMod
         {
             orig(self);
             var scrapLabel = FindScrapUI(self);
-            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3(0.04f + (0.0125f * self.p_playerCoinLabel.Text.Length), -0.005f));
+            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3(0.04f + (0.0125f * self.p_playerCoinLabel.Text.Length), -0.005f) * (GameManager.Options.SmallUIEnabled ? 1 : 2));
             var thing = ScrapCounterVisible();
             scrapLabel.gameObject.GetComponentInChildren<dfLabel>().text = thing.Second.ToString();
             scrapLabel.gameObject.GetComponentInChildren<dfLabel>().Invalidate();

@@ -32,8 +32,8 @@ namespace ModularMod.Past.Prefabs.Objects
             private float Counter;
             public void Update()
             {
-                Counter += Toolbox.SinLerpTValueFull((BraveTime.DeltaTime / 5));
-                light.LightIntensity = Mathf.PingPong(Counter, 10);
+                Counter += Toolbox.SinLerpTValueFull((BraveTime.DeltaTime * 6));
+                light.LightIntensity = Mathf.PingPong(Counter, 12);
 
             }
         }

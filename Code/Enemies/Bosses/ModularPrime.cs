@@ -1,4 +1,5 @@
-﻿using Alexandria.EnemyAPI;
+﻿using Alexandria.DungeonAPI;
+using Alexandria.EnemyAPI;
 using Alexandria.ItemAPI;
 using Alexandria.Misc;
 using Alexandria.NPCAPI;
@@ -9,6 +10,7 @@ using Gungeon;
 using HutongGames.PlayMaker.Actions;
 using ModularMod.Code.Enemies.EnemyBehaviours;
 using ModularMod.Past.Prefabs.Objects;
+using SaveAPI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -910,7 +912,7 @@ namespace ModularMod
                 companion.sprite.renderer.material = mat2;
 
                 companion.aiActor.bulletBank.Bullets.Add(EnemyDatabase.GetOrLoadByGuid("1bc2a07ef87741be90c37096910843ab").bulletBank.GetBullet("reversible"));
-                Game.Enemies.Add("mdlr:modular_prime", companion.aiActor);
+                Game.Enemies.Add("mdlr:modular_prime_1", companion.aiActor);
 
                 if (companion.GetComponent<EncounterTrackable>() != null)
                 {
@@ -978,6 +980,38 @@ namespace ModularMod
                 companion.aiActor.bulletBank.Bullets.Add(sentryEntry);
                 companion.aiActor.bulletBank.Bullets.Add(EnemyDatabase.GetOrLoadByGuid("68a238ed6a82467ea85474c595c49c6e").bulletBank.GetBullet("poundSmall"));
 
+
+
+
+                SpriteBuilder.AddSpriteToCollection(StaticCollections.Boss_Collection.GetSpriteDefinition("modularprime_icon"), SpriteBuilder.ammonomiconCollection);
+                if (companion.GetComponent<EncounterTrackable>() != null)
+                {
+                    UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
+                }
+                companion.encounterTrackable = companion.gameObject.AddComponent<EncounterTrackable>();
+                companion.encounterTrackable.journalData = new JournalEntry();
+                companion.encounterTrackable.EncounterGuid = "mdlr:modular_prime_1";
+                companion.encounterTrackable.prerequisites = new DungeonPrerequisite[0];
+                companion.encounterTrackable.journalData.SuppressKnownState = false;
+                companion.encounterTrackable.journalData.IsEnemy = true;
+                companion.encounterTrackable.journalData.SuppressInAmmonomicon = false;
+                companion.encounterTrackable.ProxyEncounterGuid = "";
+                companion.encounterTrackable.journalData.AmmonomiconSprite = "modularprime_icon";
+
+                companion.encounterTrackable.journalData.enemyPortraitSprite = Module.ModularAssetBundle.LoadAsset<Texture2D>("mdlPrimesheet");//ItemAPI.ResourceExtractor.GetTextureFromResource("Planetside\\Resources\\Ammocom\\hmprimesheet.png");
+                
+                Module.Strings.Enemies.Set("#MODULARPRIME_NAME_DESC", "H.M Modular 'Goliath");
+                Module.Strings.Enemies.Set("#MODULARPRIME_SD", "Machine O' War");
+                Module.Strings.Enemies.Set("#MODULARPRIME_LD", "A 'Goliath' class Modular machine, made with the intent of war from the very beginning, unlike its predecessors.\n\nDespite its sleek look and intimidating stance, its creation was just as rushed as its predecessors reprogramming, so while it has remote failsafes and new protocols to fulfill, it still retains its ability to learn, adapt and a desire for freedom, knowing both its original and true purpose.\n\nWas expected to be shipped off to Gunymede, along with several hundred reprogrammed Modular prototypes as part of another siege attempt, though by sheer luck, was delayed due to a high emergency declared from a local laboratory.");
+
+                companion.encounterTrackable.journalData.PrimaryDisplayName = "#MODULARPRIME_NAME_DESC";
+                companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
+                companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
+                EnemyBuilder.AddEnemyToDatabase(companion.gameObject, "mdlr:modular_prime_1");
+
+                EnemyDatabase.GetEntry("mdlr:modular_prime_1").ForcedPositionInAmmonomicon = 910;
+                EnemyDatabase.GetEntry("mdlr:modular_prime_1").isInBossTab = true;
+                EnemyDatabase.GetEntry("mdlr:modular_prime_1").isNormalEnemy = true;
 
                 //EnemyDatabase.GetOrLoadByGuid("9189f46c47564ed588b9108965f975c9").bulletBank.GetBullet("burst")
             }
@@ -1177,6 +1211,10 @@ namespace ModularMod
                 GameUIRoot.Instance.HideCoreUI("PainAndAgony");
                 this.aiActor.ParentRoom.BecomeTerrifyingDarkRoom(2f, 0.4f, 0.1f, null);
                 StaticReferenceManager.DestroyAllEnemyProjectiles();
+                GlobalMessageRadio.BroadcastMessage("ClearLaserPointers");
+
+                this.spriteAnimator.Play("death_1");
+
 
                 float e = 0;
                 while (e < 1.25f)
@@ -1234,7 +1272,8 @@ namespace ModularMod
                     e += BraveTime.DeltaTime;
                     yield return null;
                 }
-                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}YOUR EXISTENCE WON'T BE ANY EASIER...{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                this.spriteAnimator.Play("death_2");
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}GOOD, GOOD.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
                 e = 0;
                 while (e < 3.5f)
                 {
@@ -1243,7 +1282,7 @@ namespace ModularMod
                     e += BraveTime.DeltaTime;
                     yield return null;
                 }
-                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}BUT AT LEAST...{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}YOU'LL USE YOUR FREEDOM WELL.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
                 e = 0;
                 while (e < 5f)
                 {
@@ -1253,8 +1292,10 @@ namespace ModularMod
                     yield return null;
                 }
 
+                //death_3
+                this.spriteAnimator.Play("death_3");
                 Pixelator.Instance.FadeToColor(5f, Color.white, false, 0f);
-                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "YOU ARE WORTHY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 4f, "YOU ARE WORTHY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
                 e = 0;
                 while (e < 5.5f)
                 {
@@ -1271,6 +1312,21 @@ namespace ModularMod
                 {
                     GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, true);
                 }
+                AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.PAST, true);
+
+
+                for (int i = 0; i < EncounterDatabase.Instance.Entries.Count; i++)
+                {
+                    if (EncounterDatabase.Instance.Entries[i].journalData.PrimaryDisplayName == "#MODULARPRIME_NAME_DESC")
+                    {
+                        GameStatsManager.Instance.HandleEncounteredObjectRaw(EncounterDatabase.Instance.Entries[i].myGuid);
+                    }
+                }
+
+                GameObject bom = new GameObject();
+                StaticReferences.customObjects.TryGetValue("DeadCorpseMDLR", out bom);
+                DungeonPlaceableUtility.InstantiateDungeonPlaceable(bom, base.aiActor.GetAbsoluteParentRoom(), new IntVector2((int)base.aiActor.sprite.WorldCenter.x, (int)base.aiActor.sprite.WorldCenter.y) - base.aiActor.GetAbsoluteParentRoom().area.basePosition, false);
+                
                 SpaceShiptrigger.AllowedToLeave = true;
                 GlobalMessageRadio.BroadcastMessage("PastWin");
                 Pixelator.Instance.FadeToColor(2f, Color.white, true, 1f);
@@ -1366,9 +1422,9 @@ namespace ModularMod
                 }
                 public override IEnumerator Top()
                 {
-                    this.ChangeSpeed(new Brave.BulletScript.Speed(5f, SpeedType.Absolute), 120);
+                    this.ChangeSpeed(new Brave.BulletScript.Speed(4f, SpeedType.Absolute), 120);
                     this.Projectile.IgnoreTileCollisionsFor(120);
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 7; i++)
                     {
                         yield return base.Wait(75);
                         base.PostWwiseEvent("Play_BOSS_dragun_shot_02", null);
@@ -1383,7 +1439,7 @@ namespace ModularMod
                     for (int e = 0; e < 12; e++)
                     {
                         base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 11, 180));
-                        base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("burst", 11, 180));
+                        base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("burst", 7, 180));
 
                     }
                     //m_BOSS_dragun_rocket_01
@@ -1469,9 +1525,9 @@ namespace ModularMod
                 }
                 if (fire)
                 {
-                    for (int i = 0; i < 12; i++)
+                    for (int i = 0; i < 24; i++)
                     {
-                        base.Fire(new Direction(30f * i, DirectionType.Absolute, -1f), new Speed(16, SpeedType.Absolute), new SpeedChangingBullet("default", 2, 60));
+                        base.Fire(new Direction(15f * i, DirectionType.Absolute, -1f), new Speed(14, SpeedType.Absolute), new SpeedChangingBullet("default", 1, 75));
                     }
                 }
 
@@ -1571,7 +1627,7 @@ namespace ModularMod
                 onj.transform.parent = this.BulletBank.transform;
                 for (int i = 0; i < 16; i++)
                 {
-                    base.Fire(new Direction(22.5f * i, DirectionType.Absolute, -1f), new Speed(4, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 17, 120));
+                    base.Fire(new Direction(22.5f * i, DirectionType.Absolute, -1f), new Speed(5, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 12, 150));
                 }
                 yield return null;
             }
@@ -1600,6 +1656,10 @@ namespace ModularMod
 
         public class BigBeam : Script
         {
+            public void OnRecieved(GameObject s, string a)
+            {
+                Destroy(s);
+            }
             public ModularPrimeController controll;
             public Vector2 FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou()
             {
@@ -1631,6 +1691,8 @@ namespace ModularMod
                     component2.sprite.renderer.material.SetFloat("_EmissiveColorPower", 20f);
                     component2.sprite.renderer.material.SetColor("_OverrideColor", laser);
                     component2.sprite.renderer.material.SetColor("_EmissiveColor", laser);
+                    GlobalMessageRadio.RegisterObjectToRadio(gameObject, new List<string>() { "ClearLaserPointers" }, OnRecieved);
+
                     shitter.Add(i, component2);
                 }
                 AkSoundEngine.PostEvent("Play_ENM_hammer_target_01", GameManager.Instance.BestActivePlayer.gameObject);
@@ -1747,6 +1809,10 @@ namespace ModularMod
 
         public class BigBeam_But_Even_Faster : Script
         {
+            public void OnRecieved(GameObject s, string a)
+            {
+                Destroy(s);
+            }
             public ModularPrimeController controll;
             public Vector2 FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou()
             {
@@ -1777,12 +1843,13 @@ namespace ModularMod
                     component2.sprite.renderer.material.SetFloat("_EmissiveColorPower", 20f);
                     component2.sprite.renderer.material.SetColor("_OverrideColor", laser);
                     component2.sprite.renderer.material.SetColor("_EmissiveColor", laser);
+                    GlobalMessageRadio.RegisterObjectToRadio(gameObject, new List<string>() { "ClearLaserPointers" }, OnRecieved);
                     shitter.Add(i, component2);
                 }
                 AkSoundEngine.PostEvent("Play_ENM_hammer_target_01", GameManager.Instance.BestActivePlayer.gameObject);
                 AkSoundEngine.PostEvent("Play_BOSS_omegaBeam_charge_01", GameManager.Instance.BestActivePlayer.gameObject);
                 float e = 0;
-                while (e < 1.75f)
+                while (e < 2f)
                 {
                     if (this.IsEnded || this.Destroyed || controll.Stop == true)
                     {
@@ -1802,12 +1869,12 @@ namespace ModularMod
                         entry.Value.renderer.material.SetFloat("_EmissiveColorPower", 25f * e);
                         entry.Value.IsPerpendicular = false;
                         entry.Value.gameObject.transform.position = Vector2.Lerp(FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou(), FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou() + Toolbox.GetUnitOnCircle(delta + (90 * entry.Key), entry.Key == 0 ? 0 : 1.5f * Mathf.Min(e * 0.66f, 1)), Toolbox.SinLerpTValue(Mathf.Min(e * 0.66f, 1)));
-                        if (e > 1.25f)
+                        if (e > 1.5f)
                         {
                             bool enabled = e % 0.2f > 0.1f;
                             entry.Value.renderer.enabled = enabled;
                         }
-                        if (e < 1.375f)
+                        if (e < 1.625f)
                         {
                             entry.Value.gameObject.transform.localRotation = Quaternion.Euler(0, 0, delta);
 

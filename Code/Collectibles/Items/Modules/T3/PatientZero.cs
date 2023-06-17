@@ -60,6 +60,19 @@ namespace ModularMod
 
         }
 
+        public static List<string> BlacklistedEffects = new List<string>()
+        {
+            "jamBuff",
+            "leadBuff",
+            "blob",
+            "web",
+            "Infection",
+            "InfectionBoss",
+            "BrainHost",
+            "broken Armor"
+        };
+
+
         public void OnKilledEnemy(ModulePrinterCore core, PlayerController player, AIActor enemy)
         {
             
@@ -76,32 +89,36 @@ namespace ModularMod
                 }
                 foreach (var effect in enemy.m_activeEffects)
                 {
-                    foreach (var enemies in enem)
+                    if (!BlacklistedEffects.Contains(effect.effectIdentifier) )
                     {
-                        if (enemies.behaviorSpeculator != null)
+                        foreach (var enemies in enem)
                         {
-                            FleePlayerData data = fleeData;
-                            data.Player = player;
-                            enemies.behaviorSpeculator.FleePlayerData = data;
-                            GameManager.Instance.StartCoroutine(Panic(enemies));
+                            if (enemies.behaviorSpeculator != null)
+                            {
+                                FleePlayerData data = fleeData;
+                                data.Player = player;
+                                enemies.behaviorSpeculator.FleePlayerData = data;
+                                GameManager.Instance.StartCoroutine(Panic(enemies));
+                            }
+                            if (enemies.healthHaver.damageTypeModifiers == null) { enemies.healthHaver.damageTypeModifiers = new List<DamageTypeModifier>(); }
+                            enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                            {
+                                damageType = CoreDamageTypes.Fire,
+                                damageMultiplier = 1 + stack
+                            });
+                            enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                            {
+                                damageType = CoreDamageTypes.Poison,
+                                damageMultiplier = 1 + stack
+                            }); ;
+                            if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 2.5f + this.ReturnStack(core))
+                            {
+                                enemies.ApplyEffect(effect);
+                            }
+                            var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
+                            Destroy(vfx, 3);
                         }
-                        if (enemies.healthHaver.damageTypeModifiers == null) { enemies.healthHaver.damageTypeModifiers = new List<DamageTypeModifier>(); }
-                        enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
-                        {
-                            damageType = CoreDamageTypes.Fire,
-                            damageMultiplier = 1 + stack
-                        });
-                        enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
-                        {
-                            damageType = CoreDamageTypes.Poison,
-                            damageMultiplier = 1 + stack
-                        }); ;
-                        if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 2.5f + this.ReturnStack(core))
-                        {
-                            enemies.ApplyEffect(effect);
-                        }
-                        var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
-                        Destroy(vfx, 3);
+
                     }
                 }
             }

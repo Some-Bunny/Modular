@@ -8,6 +8,7 @@ using Alexandria.DungeonAPI;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using ModularMod.Past.Prefabs.Objects;
+using System.Collections;
 
 namespace ModularMod
 {
@@ -61,7 +62,7 @@ namespace ModularMod
             {
                 dungeonSceneName = "tt_modular_ultrahard", //this is the name we will use whenever we want to load our dungeons scene
                 dungeonPrefabPath = "cringe_modular_past", //this is what we will use when we want to acess our dungeon prefab
-                priceMultiplier = 1.5f, //multiplies how much things cost in the shop
+                priceMultiplier = 0f, //multiplies how much things cost in the shop
                 secretDoorHealthMultiplier = 1, //multiplies how much health secret room doors have, aka how many shots you will need to expose them
                 enemyHealthMultiplier = 1f, //multiplies how much health enemies have
                 damageCap = 300, // damage cap for regular enemies
@@ -317,6 +318,7 @@ namespace ModularMod
             dungeon.phantomBlockerDoorObjects = MarinePastPrefab.phantomBlockerDoorObjects;
             dungeon.UsesWallWarpWingDoors = false;
             dungeon.gameObject.AddComponent<P_2ParticleController>();
+            dungeon.BossMasteryTokenItemId = ModulePrinterCore.ModulePrinterCoreID;
             /*
             //more variable we can copy from other floors, or make our own
             dungeon.PlaceDoors = false;
@@ -371,31 +373,46 @@ namespace ModularMod
         {
             private List<RoomHandler> allRooms;
             private ParticleSystem particleObject;
-            public void Start()
+
+            private IEnumerator Start()
             {
+                while (Dungeon.IsGenerating)
+                {
+                    yield return null;
+                }
                 allRooms = GameManager.Instance.Dungeon.data.rooms;
                 particleObject = UnityEngine.Object.Instantiate(SmokeParticleSystem.gameObject).GetComponent<ParticleSystem>();
                 particleObject.transform.parent = GameManager.Instance.Dungeon.transform;
+
+                foreach (var player in GameManager.Instance.AllPlayers)
+                {
+                    player.WarpToPoint(player.transform.PositionVector2() - new Vector2(2, 10));
+                }
             }
+           
             public void Update()
             {
-                foreach (var RoomHandler in allRooms)
+                if (particleObject)
                 {
-                    if (UnityEngine.Random.value < 0.025f)
+                    foreach (var RoomHandler in allRooms)
                     {
-                        IntVector2 cell = RoomHandler.GetRandomAvailableCellDumb();
-                        ParticleSystem particleSystem = particleObject;
-                        ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams
+                        if (UnityEngine.Random.value < 0.025f)
                         {
-                            position = cell.ToCenterVector3(1),
-                            randomSeed = (uint)UnityEngine.Random.Range(1, 1000)
-                        };
-                        var emission = particleSystem.emission;
-                        emission.enabled = false;
-                        particleSystem.gameObject.SetActive(true);
-                        particleSystem.Emit(emitParams, 1);
+                            IntVector2 cell = RoomHandler.GetRandomAvailableCellDumb();
+                            ParticleSystem particleSystem = particleObject;
+                            ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams
+                            {
+                                position = cell.ToCenterVector3(1),
+                                randomSeed = (uint)UnityEngine.Random.Range(1, 1000)
+                            };
+                            var emission = particleSystem.emission;
+                            emission.enabled = false;
+                            particleSystem.gameObject.SetActive(true);
+                            particleSystem.Emit(emitParams, 1);
+                        }
                     }
                 }
+                
             }
         }
 

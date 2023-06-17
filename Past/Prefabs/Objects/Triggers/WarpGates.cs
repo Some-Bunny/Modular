@@ -57,6 +57,9 @@ namespace ModularMod.Past.Prefabs.Objects
                             {
                                 player.WarpToPoint(pos.ToCenterVector2() - new Vector2(20, 35), false, false);
                             }
+
+                            TextBoxManager.ShowTextBox(GameManager.Instance.PrimaryPlayer.transform.position + new Vector3(1.25f, 2.5f, 0f), GameManager.Instance.PrimaryPlayer.transform, 4f, "The elevator should be nearby.\nI hope its not heavily guarded...", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+
                             if (GameManager.Instance.CurrentGameType == GameManager.GameType.COOP_2_PLAYER)
                             {
                                 PlayerController otherPlayer = GameManager.Instance.GetOtherPlayer(player);

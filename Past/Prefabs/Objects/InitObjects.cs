@@ -50,6 +50,8 @@ namespace ModularMod.Past.Prefabs.Objects
             ZappyDoor.Init();
             BloodRedLightness.Init();
             ArmorCrate.Init();
+
+            Dead.Init();
         }
     }
 }

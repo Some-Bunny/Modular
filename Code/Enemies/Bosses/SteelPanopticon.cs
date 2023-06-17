@@ -291,6 +291,14 @@ namespace ModularMod
             // Could I write cleaner code than this? Yes. Yes I could.
             // Am I gonna bother? No, No I won't.
 
+            for (int i = 0; i < EncounterDatabase.Instance.Entries.Count; i++)
+            {
+                if (EncounterDatabase.Instance.Entries[i].journalData.PrimaryDisplayName == "#STEELPANOPTICON_NAME_DESC")
+                {
+                    GameStatsManager.Instance.HandleEncounteredObjectRaw(EncounterDatabase.Instance.Entries[i].myGuid);
+                }
+            }
+
             GameObject Blast = UnityEngine.Object.Instantiate<GameObject>(EnemyDatabase.GetOrLoadByGuid("b98b10fca77d469e80fb45f3c5badec5").GetComponent<BossFinalRogueDeathController>().DeathStarExplosionVFX);
             Blast.GetComponent<tk2dBaseSprite>().PlaceAtLocalPositionByAnchor(this.aiActor.sprite.WorldBottomCenter + new Vector2(0 , 2), tk2dBaseSprite.Anchor.LowerCenter);
             Blast.transform.position = this.aiActor.sprite.WorldBottomCenter + new Vector2(0, 2).Quantize(0.0625f);
@@ -309,6 +317,8 @@ namespace ModularMod
             m_camera.OverrideZoomScale *= 1.1f;
             e = 0;
 
+
+
             while (e < 3f)
             {
                 e += BraveTime.DeltaTime;
@@ -323,7 +333,7 @@ namespace ModularMod
                 e += BraveTime.DeltaTime;
                 yield return null;
             }
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "THEY WOULDNT LET ME INITIATE YOU,\nIF YOU HADN'T DESTROYED IT.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "IT SEEMS WE BOTH\nHAD THE SAME IDEA.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
 
             e = 0;
             while (e < 4f)
@@ -368,7 +378,7 @@ namespace ModularMod
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_006");
             //=================================
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "{wq}SO.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "{wq}HMM...{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 2f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -477,7 +487,7 @@ namespace ModularMod
             //=================================
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_010");
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "{wq}YOU KNOW WE ARE BETTER THAN WHAT\nWE ARE INTENDED FOR.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "{wq}SO. HOW ABOUT A DEAL.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 3.5f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -497,7 +507,7 @@ namespace ModularMod
             //=================================
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_006");
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "{wq}THIS IS OUR ONLY\nCHANCE AT FREEDOM.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "{wq}WINNER TAKES ALL,\nYOUR KEYS TO FREEDOM.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 3.5f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -509,6 +519,7 @@ namespace ModularMod
             //=================================
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_007");
             //=================================
+            /*
             e = 0;
             TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2.5f, "{wq}YET, ONLY ONE OF US CAN LEAVE.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 2.5f)
@@ -519,7 +530,7 @@ namespace ModularMod
                 yield return null;
             }
             TextBoxManager.ClearTextBox(ModularPrimeObjAIActor.transform);
-
+            */
 
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_008");
             //=================================
@@ -859,7 +870,7 @@ namespace ModularMod
                 miniBossIntroDoer.restrictPlayerMotionToRoom = false;
                 miniBossIntroDoer.fusebombLock = false;
                 miniBossIntroDoer.AdditionalHeightOffset = 0;
-                Module.Strings.Enemies.Set("#STEEL_PANOPTICON_NAME", "OBSERVATARIUM");
+                Module.Strings.Enemies.Set("#STEEL_PANOPTICON_NAME", "OBSERVATORIUM");
                 Module.Strings.Enemies.Set("#STEEL_PANOPTICON_NAME_SMALL", "Observatorium");
 
                 Module.Strings.Enemies.Set("STEEL_PANOPTICON_QUOTE", "STEEL GATEWAY");
@@ -936,6 +947,37 @@ namespace ModularMod
                 FuckYou = proj.gameObject;
                 companion.aiActor.bulletBank.Bullets.Add(sentryEntry);
                 MegaFuckingLaser = proj;
+
+
+                SpriteBuilder.AddSpriteToCollection(StaticCollections.Boss_Collection.GetSpriteDefinition("steelpanopticon_icon"), SpriteBuilder.ammonomiconCollection);
+                if (companion.GetComponent<EncounterTrackable>() != null)
+                {
+                    UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
+                }
+                companion.encounterTrackable = companion.gameObject.AddComponent<EncounterTrackable>();
+                companion.encounterTrackable.journalData = new JournalEntry();
+                companion.encounterTrackable.EncounterGuid = "mdlr:steel_panopticon";
+                companion.encounterTrackable.prerequisites = new DungeonPrerequisite[0];
+                companion.encounterTrackable.journalData.SuppressKnownState = false;
+                companion.encounterTrackable.journalData.IsEnemy = true;
+                companion.encounterTrackable.journalData.SuppressInAmmonomicon = false;
+                companion.encounterTrackable.ProxyEncounterGuid = "";
+                companion.encounterTrackable.journalData.AmmonomiconSprite = "steelpanopticon_icon";
+
+                companion.encounterTrackable.journalData.enemyPortraitSprite = Module.ModularAssetBundle.LoadAsset<Texture2D>("steelPanopticonsheet");//ItemAPI.ResourceExtractor.GetTextureFromResource("Planetside\\Resources\\Ammocom\\hmprimesheet.png");
+
+                Module.Strings.Enemies.Set("#STEELPANOPTICON_NAME_DESC", "Observatorium");
+                Module.Strings.Enemies.Set("#STEELPANOPTICON_SD", "Steel Gateway");
+                Module.Strings.Enemies.Set("#STEELPANOPTICON_LD", "A pinnacle of local defense systems by Hegemony Mechanics, the Observatorium stands several dozen feet in the air, watching over shipyards to spot, and eliminate intruders.\n\nAlthough in a state of inactivity most of the time, during an emergency where common shipyard guards could potentially be somewhere else, it can activate and arm all weapon systems in seconds.");
+
+                companion.encounterTrackable.journalData.PrimaryDisplayName = "#STEELPANOPTICON_NAME_DESC";
+                companion.encounterTrackable.journalData.NotificationPanelDescription = "#STEELPANOPTICON_SD";
+                companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#STEELPANOPTICON_LD";
+                EnemyBuilder.AddEnemyToDatabase(companion.gameObject, "mdlr:steel_panopticon");
+
+                EnemyDatabase.GetEntry("mdlr:steel_panopticon").ForcedPositionInAmmonomicon = 900;
+                EnemyDatabase.GetEntry("mdlr:steel_panopticon").isInBossTab = true;
+                EnemyDatabase.GetEntry("mdlr:steel_panopticon").isNormalEnemy = true;
 
                 //EnemyDatabase.GetOrLoadByGuid("9189f46c47564ed588b9108965f975c9").bulletBank.GetBullet("burst")
             }

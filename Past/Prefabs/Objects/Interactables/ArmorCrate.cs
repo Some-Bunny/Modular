@@ -152,7 +152,7 @@ namespace ModularMod.Past.Prefabs.Objects
             {
                 interactor.PlayEffectOnActor(VFXStorage.HealingSparklesVFX, new Vector3(0, 0));
                 AkSoundEngine.PostEvent("Play_OBJ_heart_heal_01", interactor.gameObject);
-                interactor.healthHaver.Armor += 2;
+                interactor.healthHaver.Armor += 3;
                 this.m_parentRoom.DeregisterInteractable(this);
                 this.spriteAnimator.Play("cratealt_close");
                 this.m_useCount++;

@@ -46,10 +46,10 @@ namespace ModularMod.Past.Prefabs.Objects
             controller.Interact_String = "#MDLR_BIGFUCKOFFDOOR";
 
 
-            GameObject child = PrefabBuilder.BuildObject("BigFuckOffDoor_MDLR_transform");
-            child.transform.parent = obj.transform;
-            child.transform.localPosition = new Vector2(2, 0);
-            controller.talkPoint = child.transform;
+            var talkPoint = PrefabBuilder.BuildObject("Talkpoint");
+            talkPoint.transform.parent = obj.transform;
+            talkPoint.transform.localPosition += new Vector3(2, 0);
+            controller.talkPoint = talkPoint.transform;
             obj.CreateFastBody(new IntVector2(0, 0), new IntVector2(0, 0));
 
             obj.SetLayerRecursively(LayerMask.NameToLayer("FG_Critical"));

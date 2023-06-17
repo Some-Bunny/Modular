@@ -30,7 +30,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "0.7.0";
+        public const string VERSION = "0.9.0";
         public const string TEXT_COLOR = "#79eaff";
 
         public static string FilePathFolder;
@@ -41,7 +41,7 @@ namespace ModularMod
         public static AdvancedStringDB Strings;
 
         private static bool SoundTest = false;
-        private static bool Test_Copy = false;
+        //private static bool Test_Copy = false;
         private static bool DialogueTest = false;
 
         public void Start(){ ETGModMainBehaviour.WaitForGameManagerStart(GMStart); }
@@ -270,8 +270,9 @@ namespace ModularMod
             yield return null;
             Module.Modular = ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, "Modular");
             GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.NONE, true);
-            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, !Test_Copy);
-            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, !Test_Copy);
+            //GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, !Test_Copy);
+            //GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, !Test_Copy);
+            
             yield break;
         }
 

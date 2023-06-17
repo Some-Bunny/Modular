@@ -29,13 +29,63 @@ namespace ModularMod
             HealingSparklesVFX = (GameObject)ResourceCache.Acquire("Global VFX/VFX_Healing_Sparkles_001");
             FriendlyElectricLinkVFX = (PickupObjectDatabase.GetById(298) as ComplexProjectileModifier).ChainLightningVFX;
 
+
+
             var machoBrace = PickupObjectDatabase.GetById(665) as MachoBraceItem;
             MachoBraceDustupVFX = machoBrace.DustUpVFX;
             MachoBraceBurstVFX = machoBrace.BurstVFX;
             AssetBundle bundle = ResourceManager.LoadAssetBundle("brave_resources_001");
             LaserReticle = bundle.LoadAsset("assets/resourcesbundle/global vfx/vfx_lasersight.prefab") as GameObject;
             bundle = null;
+
+
+            var gunModulableLib = Module.ModularAssetBundle.LoadAsset<GameObject>("GunBuildAndWhatNotAnimation").GetComponent<tk2dSpriteAnimation>();
+            GameObject Tether_VFX = new GameObject("Electric Build Tether");
+            FakePrefab.DontDestroyOnLoad(Tether_VFX);
+            FakePrefab.MarkAsFakePrefab(Tether_VFX);
+            Tether_VFX.SetActive(false);
+            var tk2d = Tether_VFX.AddComponent<tk2dTiledSprite>();
+            tk2d.Collection = StaticCollections.VFX_Collection;
+            tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("chain_idle_001"));
+            var tk2dAnim = Tether_VFX.AddComponent<tk2dSpriteAnimator>();
+            tk2dAnim.Library = gunModulableLib;
+            tk2dAnim.defaultClipId = tk2dAnim.Library.GetClipIdByName("chain_start");
+            tk2dAnim.playAutomatically = true;
+            tk2d.usesOverrideMaterial = true;
+            tk2d.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
+            tk2d.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
+            tk2d.renderer.material.SetFloat("_EmissivePower", 30);
+            tk2d.renderer.material.SetFloat("_EmissiveColorPower", 30);
+            tk2d.gameObject.SetLayerRecursively(LayerMask.NameToLayer("BG_Critical"));
+            //tk2d.IsPerpendicular = false;
+            //tk2d.ShouldDoTilt = false;
+            VFX_Tether_Modulable = Tether_VFX;
+
+            GameObject VFX = new GameObject("VFX_MODULABLE");
+            FakePrefab.DontDestroyOnLoad(VFX);
+            FakePrefab.MarkAsFakePrefab(VFX);
+            VFX.SetActive(false);
+            var tk2d2 = VFX.AddComponent<tk2dSprite>();
+            tk2d2.Collection = StaticCollections.VFX_Collection;
+            tk2d2.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("rotating_gear_idle_001"));
+            var tk2dAnim_2 = VFX.AddComponent<tk2dSpriteAnimator>();
+
+            tk2dAnim_2.Library = gunModulableLib;
+            tk2dAnim_2.defaultClipId = tk2dAnim.Library.GetClipIdByName("start");
+            tk2dAnim_2.playAutomatically = true;
+            tk2d.usesOverrideMaterial = true;
+            tk2d2.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
+            tk2d2.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
+            tk2d2.renderer.material.SetFloat("_EmissivePower", 30);
+            tk2d2.renderer.material.SetFloat("_EmissiveColorPower", 30);
+            tk2d2.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
+            VFX_Modulable = VFX;
         }
+
+
+        public static GameObject VFX_Modulable;
+        public static GameObject VFX_Tether_Modulable;
+
         public static GameObject LaserReticle;
 
         public static GameObject RadialRing;

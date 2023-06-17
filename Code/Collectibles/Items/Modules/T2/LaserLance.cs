@@ -29,7 +29,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("laserlance_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Laser Lance " + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces projectile speed by 50%. Projectiles will now fire out\nshort-range, damaging beams that point in the direction the projectile is moving.\n(" + StaticColorHexes.AddColorToLabelString("+Beam Damage And Range", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Reduces projectile speed by 50%.\nProjectiles will now fire out short-range damaging beams\nthat point in the direction the projectile is moving.\n(" + StaticColorHexes.AddColorToLabelString("+Beam Damage And Range", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

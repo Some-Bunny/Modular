@@ -583,7 +583,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             obj.GetComponent<tk2dSpriteAnimator>().Play("targetreticle_target");
             obj.GetComponent<tk2dBaseSprite>().ShouldDoTilt = false;
             obj.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
-
+            obj.AddComponent<FakeCorridor.Fuck_You_Youre_No_Longer_Perpendicular>();
             float m = 1;
             float e = 0;
             while (e < FlightTime)

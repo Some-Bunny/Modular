@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 498444911
+CRC: 1014052777
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8d7a1a0c5870d3e526f47ee58e8eacaf
+    Hash: 5da99b690e45b716eff2a4a729a6e9b6
   TypeTreeHash:
     serializedVersion: 2
     Hash: d0b405c094c925d34f7a922684ac7d5f
@@ -162,6 +162,7 @@ Assets:
 - Assets/Particles/Sparks/Spark Particle System.prefab
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_charger_alt.png
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_alt.png
+- Assets/Sprites/Enemies/Bosses/steelPanopticonsheet.png
 - Assets/Particles/Smoke/SmokeParticle.prefab
 - Assets/Sprites/UI/CloseButton/ui_button_close_pressed_alt.png
 - Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/Tier_2_Module_Collection.prefab
@@ -187,6 +188,7 @@ Assets:
 - Assets/Sprites/UI/Name Label/Names/name_label_minigun.png
 - Assets/Sprites/Enemies/Node/NodeEnemyAnimation.prefab
 - Assets/Sprites/UI/ui_button_2.png
+- Assets/Sprites/VFX/Animations/GunBuildAndWhatNotAnimation.prefab
 - Assets/Sprites/Objects/DecorativeObjects/MovingTileAnimation.prefab
 - Assets/Sprites/Past Tileset 2/PastTileset2Collection Data/PastTileset2Collection.prefab
 - Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed.png
@@ -218,6 +220,7 @@ Assets:
 - Assets/Sprites/Items/Modules/T1/Tier_1_Module_Collection Data/Tier_1_Module_Collection.prefab
 - Assets/Sprites/UI/ComputerCore/ButtonLeft.png
 - Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun_pressed.png
+- Assets/Sprites/Enemies/Bosses/mdlPrimesheet.png
 - Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_highlighted_alt.png
 - Assets/Sprites/VFX/Animations/HammerStrikeAnimation.prefab
 - Assets/Sprites/PastTileset/PastTilesetCollection Data/pasttileset material.mat

@@ -39,18 +39,21 @@ namespace ModularMod
             label.shadow = true;
             label.shadowColor = new Color32(20, 20, 50, 255);
             label.shadowOffset = new Vector2(0, -0.75f);
+            //label.padding = new RectOffset(1, 1, 1, 1);
             //label.Height = 1000;
 
             label.anchorStyle = dfAnchorStyle.Top | dfAnchorStyle.Left;
 
             label.autoSize = true;
-            label.autoHeight = true;
+            label.autoHeight = false;
+            label.Height = 160;
             label.wordWrap = false;
 
             var data = new dfRenderData()
             {
                 Glitchy = false,
                 Shader = ShaderCache.Acquire("Brave/Internal/HologramShader"),
+                
             };
             label.renderData = data;
             //mdlm.renderer.material.shader = ShaderCache.Acquire("Brave/Internal/HologramShader");
@@ -506,7 +509,8 @@ namespace ModularMod
             this.panel.Width = targetWidth;
             while (elapsed < duration)
             {
-                elapsed += BraveTime.DeltaTime;            
+                elapsed += GameManager.INVARIANT_DELTA_TIME;
+                //BraveTime.DeltaTime;            
                 this.panel.Width = Mathf.Lerp(1f, targetWidth, Toolbox.SinLerpTValue(elapsed / duration));
                 yield return null;
             }

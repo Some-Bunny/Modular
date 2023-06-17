@@ -118,7 +118,7 @@ namespace ModularMod
                     return "[sprite \"" + Googly_UI_String + "\"]";
                 case ButtonUI.POWER:
                     return "[sprite \"" + "Power_B_UI_INV" + "\"]";
-                default: return "[sprite \"" + Close_Button_UI_String + "\"]"; ;
+                default: return "|[sprite \"" + Close_Button_UI_String + "\"]"; ;
             }
         }
         public static string ReturnButtonStringBright(ButtonUIBright moduleTier)
@@ -563,7 +563,7 @@ namespace ModularMod
                     if (extant_Inventory_button) { extant_Inventory_button.Inv(); }
                     if (extant_craft_button) { extant_craft_button.Inv(); }
                     if (extant_close_button) { extant_close_button.Inv(); }
-                };
+                };  
                 extant_close_button.MouseHover = (label, boolean) =>
                 {
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
@@ -600,7 +600,7 @@ namespace ModularMod
             if (Core == null) { return; }
             IsNone = Core.ModuleContainers.Count == 0;
             ToggleControl(true);
-
+            GameManager.Instance.PreventPausing = true;
             p.StartCoroutine(DoDelays(p));
         }
         public IEnumerator DoFade(bool active)
@@ -613,7 +613,7 @@ namespace ModularMod
             while (f < 0.35f)
             {
                 float q = f / 0.35f;
-                f += BraveTime.DeltaTime;
+                f += GameManager.INVARIANT_DELTA_TIME;
                 if (active == true)
                 {
                     mainCameraController.SetZoomScaleImmediate(Mathf.Lerp(1, 1.8f, q));
@@ -631,6 +631,10 @@ namespace ModularMod
             if (active == false)
             {
                 GameManager.Instance.MainCameraController.SetManualControl(false, true);
+            }
+            else
+            {
+                BraveTime.SetTimeScaleMultiplier(0, GameManager.Instance.gameObject);
             }
             yield break;
         }
@@ -682,6 +686,8 @@ namespace ModularMod
         {
             AkSoundEngine.PostEvent("Play_UI_menu_cancel_01", player.gameObject);
             AkSoundEngine.PostEvent("Play_UI_menu_unpause_01", player.gameObject);
+            GameManager.Instance.PreventPausing = false;
+            GameManager.Instance.Unpause();
 
             Minimap.Instance.TemporarilyPreventMinimap = false;
             GameManager.Instance.MainCameraController.SetManualControl(false, true);
@@ -716,6 +722,36 @@ namespace ModularMod
         }
 
 
+        public void DoUpdate(PlayerController p, int PageMove)
+        {
+            UpdatePageLabel();
+            ListEntry += PageMove;
+            UpLabel.label.Invalidate();
+
+            switch (CurrentMode)
+            {
+                case Mode.DEF:
+                    DisplayModule(p, true);
+                    return;
+                case Mode.TIERED_1:
+                    DisplayModuleTiered(p, ModuleTier.Tier_1, true);
+                    return;
+                case Mode.TIERED_2:
+                    DisplayModuleTiered(p, ModuleTier.Tier_2, true);
+                    return;
+                case Mode.TIERED_3:
+                    DisplayModuleTiered(p, ModuleTier.Tier_3, true);
+                    return;
+                case Mode.TIERED_4:
+                    DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
+                    return;
+                default:
+                    DisplayModule(p, true);
+                    return;
+
+            }
+        }
+
         public void DoButtonRefresh(PlayerController p)
         {
             Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
@@ -726,12 +762,21 @@ namespace ModularMod
                 {
                     if (IsNone == false && ListEntry > 0)
                     {
+                        DoUpdate(p, -1);
+                        /*
                         UpdatePageLabel();
                         ListEntry--;
                         UpLabel.label.Invalidate();
+
+                        switch (CurrentMode)
+                        {
+                            case Mode.DEF:
+                                DisplayModule(p, true);
+                                return;
+                        }
+
                         if (CurrentMode == Mode.DEF)
                         {
-                            DisplayModule(p, true);
                         }
                         else if (CurrentMode == Mode.TIERED_1)
                         {
@@ -739,7 +784,6 @@ namespace ModularMod
                         }
                         else if (CurrentMode == Mode.TIERED_2)
                         {
-                            DisplayModuleTiered(p, ModuleTier.Tier_2, true);
                         }
                         else if (CurrentMode == Mode.TIERED_3)
                         {
@@ -749,8 +793,9 @@ namespace ModularMod
                         {
                             DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
                         }
+                        */
                     }
-                    else
+                    else if (IsNone == false)
                     {
                         AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
                     }
@@ -784,6 +829,9 @@ namespace ModularMod
                 {
                     if (IsNone == false && ReturnPagesCount() > ListEntry)
                     {
+                        DoUpdate(p, 1);
+
+                        /*
                         UpdatePageLabel();
                         ListEntry++;
                         DownLabel.label.Invalidate();
@@ -807,8 +855,9 @@ namespace ModularMod
                         {
                             DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
                         }
+                        */
                     }
-                    else
+                    else if (IsNone == false)
                     {
                         AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
                     }
@@ -839,6 +888,7 @@ namespace ModularMod
                 CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 1.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, Scale);
                 CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    BraveTime.ClearMultiplier(GameManager.Instance.gameObject);
                     Nuke();
                     ObliterateUI();
                     Destroy(this);
@@ -941,6 +991,7 @@ namespace ModularMod
             if (AnyLabel == null)
             {
                 AnyLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 2.25f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.GOOGLY), cl, true, Scale);
+
                 AnyLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     CurrentMode = Mode.DEF;
@@ -994,6 +1045,11 @@ namespace ModularMod
             }
         }
 
+        public void InstantUpdateLabelToText(dfLabel label, string newText)
+        {
+            label.text = newText;
+            label.Invalidate();
+        }
 
         public bool CanAffordUpgrade()
         {

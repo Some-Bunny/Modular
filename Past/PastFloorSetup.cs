@@ -8,6 +8,7 @@ using Alexandria.DungeonAPI;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using ModularMod.Past.Prefabs.Objects;
+using System.Collections;
 
 namespace ModularMod
 {
@@ -112,7 +113,7 @@ namespace ModularMod
             var MinesDungeonPrefab = GetOrLoadByName_Orig("Base_Mines");
             //var CatacombsPrefab = GetOrLoadByName_Orig("Base_Catacombs");
             var RatDungeonPrefab = GetOrLoadByName_Orig("Base_ResourcefulRat");
-            //var MarinePastPrefab = DungeonDatabase.GetOrLoadByName("Finalscenario_Soldier");
+            var MarinePastPrefab = DungeonDatabase.GetOrLoadByName("Finalscenario_Soldier");
 
             dungeon.gameObject.name = "Base_Modular_Past";
             dungeon.contentSource = ContentSource.CONTENT_UPDATE_03;
@@ -245,7 +246,7 @@ namespace ModularMod
                 CanIncludePits = false
             };
             dungeon.StripPlayerOnArrival = true;
-
+            dungeon.musicEventName = MarinePastPrefab.musicEventName;
             /*
             //more variable we can copy from other floors, or make our own
             dungeon.PlaceDoors = false;
@@ -291,7 +292,7 @@ namespace ModularMod
             //CatacombsPrefab = null;
             RatDungeonPrefab = null;
             MinesDungeonPrefab = null;
-            //MarinePastPrefab = null;
+            MarinePastPrefab = null;
 
             dungeon.gameObject.AddComponent<PastFloorOneController>();
 
@@ -301,20 +302,51 @@ namespace ModularMod
         private class PastFloorOneController : MonoBehaviour
         {
 
-            public void Start()
+            public IEnumerator Start()
             {
+                while (Dungeon.IsGenerating)
+                {
+                    yield return null;
+                }
+                
+
+
                 foreach (var player in GameManager.Instance.AllPlayers)
                 {
                     if (player.characterIdentity == ModularMod.Module.Modular)
                     {
-                        player.AcquirePassiveItem(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID) as PassiveItem);
-                        player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(DefaultArmCannon.ID) as Gun, true);
+                        try
+                        {
+                            player.AcquirePassiveItem(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID) as PassiveItem);
+                            player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(DefaultArmCannon.ID) as Gun, true);
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.Log(e);
+                        }
                     }
                 }
-            }
-            public void Update()
-            {
+                Pixelator.Instance.FadeToBlack(0.25f, true, 0.05f);
+                Pixelator.Instance.TriggerPastFadeIn();
+                yield return new WaitForSeconds(0.4f);
+                Pixelator.Instance.SetOcclusionDirty();
 
+                GameManager.Instance.PrimaryPlayer.SetInputOverride("past");
+                if (GameManager.Instance.CurrentGameType == GameManager.GameType.COOP_2_PLAYER)
+                {
+                    GameManager.Instance.SecondaryPlayer.SetInputOverride("past");
+                }
+                yield return new WaitForSeconds(2f);
+                TextBoxManager.ShowTextBox(GameManager.Instance.PrimaryPlayer.transform.position + new Vector3(1.25f, 2.5f, 0f), GameManager.Instance.PrimaryPlayer.transform, 4f, "This is my chance.\nI can't stay in the dark forever.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+                yield return new WaitForSeconds(1f);
+                GameManager.Instance.PrimaryPlayer.ClearInputOverride("past");
+                if (GameManager.Instance.CurrentGameType == GameManager.GameType.COOP_2_PLAYER)
+                {
+                    GameManager.Instance.SecondaryPlayer.ClearInputOverride("past");
+                }
+
+
+                yield break;
             }
         }
         public static Dungeon GetOrLoadByName_Orig(string name)

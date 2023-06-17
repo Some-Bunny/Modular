@@ -189,10 +189,28 @@ namespace ModularMod
             return _returnVector;
         }
 
+        public const int ResolutionIBuiltOffOf_X = 1600;
+        public const int ResolutionIBuiltOffOf_Y = 1024;
+
+        public const int Resolution_Ratio_X = 25;
+        public const int Resolution_Ratio_Y = 16;
+
+        public static Vector2 CalculateScale_X_Y_Based_On_Resolution()
+        {
+            Vector2 vector2 = new Vector2();
+            vector2.x = GameManager.Options.preferredResolutionX;
+            vector2.y = GameManager.Options.preferredResolutionY;//Screen.currentResolution;
+            Debug.Log("sc: "+ vector2);
+            return new Vector2(((float)vector2.x / (float)ResolutionIBuiltOffOf_X), ((float)vector2.y / (float)ResolutionIBuiltOffOf_Y));
+        }
+
+
         public static ModifiedDefaultLabelManager GenerateText(Transform trans, Vector2 offset, float time, string Text, Color32 color, bool Autotrigger = true, float size = 5)
         {
             var labelToSet = UnityEngine.Object.Instantiate(DefaultModule.LabelController).gameObject.GetComponent<ModifiedDefaultLabelManager>();
-            labelToSet.label.textScale = size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20);
+            Vector2 scaler = CalculateScale_X_Y_Based_On_Resolution();
+
+            labelToSet.label.textScale = (size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20)) * scaler.x;
             labelToSet.label.Text = Text;
             if (Autotrigger == true)
             {
@@ -204,6 +222,29 @@ namespace ModularMod
             dfLabel componentInChildren = labelToSet.gameObject.GetComponentInChildren<dfLabel>();
             componentInChildren.ColorizeSymbols = false;
             componentInChildren.ProcessMarkup = true;
+            componentInChildren.autoHeight = true;// *= GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+            componentInChildren.updateCollider();            
+            componentInChildren.Invalidate();
+            //locScale.x = scaler.x;
+            //locScale.y = scaler.x;
+
+            //Screen.currentResolution
+            //GameManager.Options.
+
+            //foreach (var vecs in componentInChildren.cachedCorners)
+            {
+                //vecs.
+                //vecs. *= GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+
+            }
+            //componentInChildren.autoSize = true;
+
+
+            //Debug.Log(Text +" | " + componentInChildren.size);
+
+
+            //labelToSet.gameObject.transform.localScale *= GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20;
+
             return labelToSet;
         }
 
