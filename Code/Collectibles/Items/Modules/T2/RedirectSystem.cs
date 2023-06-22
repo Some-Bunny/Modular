@@ -106,13 +106,13 @@ namespace ModularMod
             RedirectSystem.allActiveComps.Add(this); }
         public void Redirect(float angle)
         {
-            var a = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(401) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, self.sprite.WorldCenter, Quaternion.Euler(0, 0, angle - 180));
+            if (self == null) { return; }
+            var a = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(401) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, this.transform.position, Quaternion.Euler(0, 0, angle - 180));
             Destroy(a, 2);
             self.SendInDirection(Toolbox.GetUnitOnCircle(angle, 1), true);
         }
         private void OnDestroy()
-        {
-            
+        {       
             if (RedirectSystem.allActiveComps.Contains(this))
             {
                 RedirectSystem.allActiveComps.Remove(this);

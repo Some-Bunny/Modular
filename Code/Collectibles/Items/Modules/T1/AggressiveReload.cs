@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Aggressive Reload",
             Description = "Air Force",
-            LongDescription = "Reloading harms, pushes and stuns enemies very close to you. Effectiveness scales on how empty the clip is.\n(Damage and force is increased per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reloading harms, pushes and stuns enemies near you. Effectiveness scales on how empty the clip is.\n(Damage and force is increased per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aggressivereload_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aggressivereload_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Aggressive Reload " + h.ReturnTierLabel();
-            h.LabelDescription = "Reloading harms, pushes and stuns enemies near you.\n(" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Reloading harms, pushes and stuns enemies near you.\nEffectiveness scales on how empty the clip is.\n(" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -65,10 +65,10 @@ namespace ModularMod
             float a =  1 - g.PercentageOfClipLeft();
             int stack = this.ReturnStack(modulePrinterCore);
             a *= 1 + (stack * 0.25f);
-            Exploder.DoRadialPush(player.sprite.WorldCenter, 80 * a, 4);
-            Exploder.DoRadialKnockback(player.sprite.WorldCenter, 80 * a, 4);
-            Exploder.DoRadialMinorBreakableBreak(player.sprite.WorldCenter, 4);
-            ApplyActionToNearbyEnemies(player.sprite.WorldCenter, 4, player.CurrentRoom, a);
+            Exploder.DoRadialPush(player.sprite.WorldCenter, 80 * a, 5);
+            Exploder.DoRadialKnockback(player.sprite.WorldCenter, 80 * a, 5);
+            Exploder.DoRadialMinorBreakableBreak(player.sprite.WorldCenter, 5);
+            ApplyActionToNearbyEnemies(player.sprite.WorldCenter, 5, player.CurrentRoom, a);
         }
         public float Mult;
 
@@ -95,7 +95,7 @@ namespace ModularMod
                             {
                                 if (aI.behaviorSpeculator.ImmuneToStun == false) { aI.behaviorSpeculator.Stun((1.5f + (Mult / 2)) * m); }
                             }
-                            aI.healthHaver.ApplyDamage((15f * Mult)*m, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
+                            aI.healthHaver.ApplyDamage((25f * Mult)*m, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
                         }
                     }
                 }

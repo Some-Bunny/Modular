@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Alexandria.VisualAPI;
 using Dungeonator;
 using FullInspector;
+using ModularMod;
 using UnityEngine;
 
 
@@ -80,13 +81,17 @@ public class CustomDashBehavior : BasicAttackBehavior
 		if (this.State == CustomDashBehavior.DashState.Dash)
 		{
 			float d = (this.dashDistance / dashTime) / (dashTime / m_dashTimer);
-			this.m_aiActor.BehaviorVelocity = d * this.m_dashDirection;
-		}
+			if (this.m_aiActor)
+			{
+				if (m_dashDirection == null) { this.m_dashDirection = Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), 1); }
+                this.m_aiActor.BehaviorVelocity = d * this.m_dashDirection;
+            }
+        }
 
 		base.ContinuousUpdate();
 		if (this.State == CustomDashBehavior.DashState.Charge)
 		{
-			if (!this.m_aiAnimator.IsPlaying(this.chargeAnim))
+			if (!string.IsNullOrEmpty(chargeAnim) && !this.m_aiAnimator.IsPlaying(this.chargeAnim))
 			{
 				SetState(CustomDashBehavior.DashState.Dash);
 			}
@@ -95,18 +100,22 @@ public class CustomDashBehavior : BasicAttackBehavior
 		{
 			if (this.doDodgeDustUp)
 			{
-				bool flag = this.m_aiActor.spriteAnimator.QueryGroundedFrame();
-				if (!this.m_cachedGrounded && flag && !this.m_aiActor.IsFalling)
+                if (this.m_aiActor)
 				{
-					GameManager.Instance.Dungeon.dungeonDustups.InstantiateLandDustup(this.m_aiActor.specRigidbody.UnitCenter);
-					this.m_aiActor.DoDustUps = this.m_cachedDoDustups;
-				}
-				this.m_cachedGrounded = flag;
+                    bool flag = this.m_aiActor.spriteAnimator.QueryGroundedFrame();
+                    if (!this.m_cachedGrounded && flag && !this.m_aiActor.IsFalling)
+                    {
+                        GameManager.Instance.Dungeon.dungeonDustups.InstantiateLandDustup(this.m_aiActor.specRigidbody.UnitCenter);
+                        this.m_aiActor.DoDustUps = this.m_cachedDoDustups;
+                    }
+                    this.m_cachedGrounded = flag;
+                }
+                   
 			}
 			if (this.enableShadowTrail && this.m_dashTimer <= 0.1f)
 			{
-                if (m_shadowTrail) { this.m_shadowTrail.spawnShadows = false; }
-                if (m_shadowTrail_2) { this.m_shadowTrail_2.spawnShadows = false; }
+                if (m_shadowTrail != null) { this.m_shadowTrail.spawnShadows = false; }
+                if (m_shadowTrail_2 != null) { this.m_shadowTrail_2.spawnShadows = false; }
             }
 			if (this.m_dashTimer <= 0f)
 			{
@@ -551,7 +560,7 @@ public class CustomDashBehavior : BasicAttackBehavior
 
 	// Token: 0x040039BA RID: 14778
 	[InspectorCategory("Visuals")]
-	public bool doDodgeDustUp;
+	public bool doDodgeDustUp =false;
 
 	// Token: 0x040039BB RID: 14779
 	[InspectorCategory("Visuals")]

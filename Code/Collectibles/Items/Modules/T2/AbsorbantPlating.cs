@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Absorbant Plating",
             Description = "Spongy",
-            LongDescription = "Fire and Poison timers are slowed by 2 (+1 per stack) times.\nGain a 50% (+50% per stack) fire rate boost when stading on any goop. Being poisoned or on fire makes projectiles inflict poison or fire." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Fire and Poison takes 2 (+1 per stack) times longer to damage you.\nGain a 66% (+66% per stack) fire rate boost when stading on any goop. Being poisoned or on fire makes projectiles inflict poison or fire." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("absorbantplate_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("absorbantplate_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Absorbant Plating" + h.ReturnTierLabel();
-            h.LabelDescription = "Fire and Poison timers are slowed by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") times.\nGain a 50% (" + StaticColorHexes.AddColorToLabelString("+50% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") fire rate boost when stading on any goop.\nBeing poisoned or on fire makes projectiles inflict poison or fire.";
+            h.LabelDescription = "Fire and Poison take 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") times longer do damage you.\nGain a 66% (" + StaticColorHexes.AddColorToLabelString("+66% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") fire rate boost when stading on any goop.\nBeing poisoned or on fire makes projectiles inflict poison or fire.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -84,7 +84,7 @@ namespace ModularMod
         {
             if (player.CurrentGoop == null) { return f; }
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.5f * stack)));
+            return f - (f - (f / (1 + 0.66f * stack)));
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

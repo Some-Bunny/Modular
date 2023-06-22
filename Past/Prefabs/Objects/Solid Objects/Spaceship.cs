@@ -110,7 +110,7 @@ namespace ModularMod.Past.Prefabs.Objects
                     yield return null;
                 }
                 e = 0;
-                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3.5f, "---DESTINATION SET TO: ---\nGUNYMEDE.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(10.25f, 12.5f, 0f), this.transform, 3.5f, "---DESTINATION SET TO: ---\nGUNYMEDE.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
 
                 while (e < 2.5f)
                 {
@@ -142,7 +142,7 @@ namespace ModularMod.Past.Prefabs.Objects
 
                 while (e < 4.5f)
                 {
-                    Exploder.DoDistortionWave(sprite.WorldCenter, 2f, 0.75f, 22, 0.75f);
+                    Exploder.DoDistortionWave(sprite.WorldCenter, 0.1f, 0.75f, 22, 0.75f);
 
                     e += BraveTime.DeltaTime;
                     yield return null;
@@ -157,7 +157,7 @@ namespace ModularMod.Past.Prefabs.Objects
                     yield return null;
                 }
                 this.GetComponent<ImprovedAfterImage>().spawnShadows = true;
-                Exploder.DoDistortionWave(sprite.WorldCenter, 10f, 0.25f, 30, 0.25f);
+                Exploder.DoDistortionWave(sprite.WorldCenter, 100f, 0.25f, 30, 0.5f);
                 e = 0;
                 AkSoundEngine.PostEvent("Play_BOSS_spacebaby_explode_01", this.gameObject);
                 while (e < 1f)
@@ -184,9 +184,6 @@ namespace ModularMod.Past.Prefabs.Objects
                 ttcc.ClearDebris();
                 yield return base.StartCoroutine(ttcc.HandleTimeTubeCredits(GameManager.Instance.PrimaryPlayer.sprite.WorldCenter, false, null, -1, false));
                 AmmonomiconController.Instance.OpenAmmonomicon(true, true);
-
-
-
                 yield break;
             }
         }

@@ -47,7 +47,10 @@ namespace ModularMod
             UnityEngine.Object.DontDestroyOnLoad(bgSpriteObject);
 
             dfTiledSprite fgSprite = fgSpriteObject.SetupDfSpriteFromTexture<dfTiledSprite>(atlas, name_full);
+            fgSprite.zindex = 7;
+
             dfTiledSprite bgSprite = bgSpriteObject.SetupDfSpriteFromTexture<dfTiledSprite>(atlas, name_empty);
+            bgSprite.zindex = 5;
             GameUIAmmoType uiammotype = new GameUIAmmoType
             {
                 ammoBarBG = bgSprite,

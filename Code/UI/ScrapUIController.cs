@@ -59,10 +59,11 @@ namespace ModularMod
             dfPanel.hotZoneScale = Vector2.one;
             dfPanel.allowSignalEvents = true;
             dfPanel.PrecludeUpdateCycle = false;
-            dfPanel.backgroundSprite = "gear_";
+            dfPanel.backgroundSprite = null;//"gear_";
             dfPanel.backgroundColor = new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
             dfPanel.padding = new RectOffset(0, 0, 0, 0);
-            dfPanel.transform.localPosition += new Vector3(0, -0.0625f);
+            dfPanel.transform.localPosition += new Vector3(0, -0.0125f);
+            
             //var dfC = dfPanel.gameObject.GetOrAddComponent<dfControl>();
             //dfC.name = "Scrap_UI_Panel";
             ScrapUI = dfPanel.gameObject;
@@ -85,7 +86,7 @@ namespace ModularMod
             };
 
             Scrap_UI.transform.parent = gearUI.transform;
-            Scrap_UI.transform.localPosition += new Vector3(1, 0f);
+            //Scrap_UI.transform.localPosition += new Vector3(1.1875f, 0f);
 
             new Hook(typeof(GameUIRoot).GetMethod("UpdatePlayerConsumables", BindingFlags.Instance | BindingFlags.Public), typeof(ScrapUIController).GetMethod("UpdatePlayerConsumablesHook", BindingFlags.Static | BindingFlags.Public));
             new Hook(typeof(GameUIRoot).GetMethod("HideCoreUI", BindingFlags.Instance | BindingFlags.Public), typeof(ScrapUIController).GetMethod("HideCoreUIHook", BindingFlags.Static | BindingFlags.Public));
@@ -106,13 +107,15 @@ namespace ModularMod
         {
             orig(self);
             var scrapLabel = FindScrapUI(self);
-            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3(0.04f + (0.0125f * self.p_playerCoinLabel.Text.Length), -0.005f) * (GameManager.Options.SmallUIEnabled ? 1 : 2));
+            int m = GameManager.Options.SmallUIEnabled ? 1 : 2;
+            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3((0.025f + (0.025f * self.p_playerCoinLabel.Text.Length) * m) * Toolbox.CalculateScale_X_Y_Based_On_Resolution().x, -0.0025f));
             var thing = ScrapCounterVisible();
-            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().text = thing.Second.ToString();
-            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().Invalidate();
-            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().isVisible = thing.First;
-            scrapLabel.gameObject.GetComponent<dfPanel>().isVisible = thing.First;
-
+            var lab = scrapLabel.gameObject.GetComponentInChildren<dfLabel>();
+            lab.text = "[sprite \"" + "gear_" + "\"]" +" "+ thing.Second.ToString();
+            lab.Invalidate();
+            lab.isVisible = thing.First;
+            lab.gameObject.transform.position = scrapLabel.gameObject.transform.position;
+            lab.gameObject.transform.localScale = self.p_playerCoinLabel.transform.localScale;
         }
 
         public static dfPanel FindScrapUI(GameUIRoot self)
@@ -123,7 +126,7 @@ namespace ModularMod
                 UI = self.Manager.AddPrefab(ScrapUI.gameObject).transform;
                 UI.name = "DO_NOT_FUCKING_CLONE";
                 var dfc = UI.gameObject.GetComponent<dfControl>();
-                dfc.RelativePosition = self.p_playerCoinLabel.transform.position + (new Vector3(0.04f + (0.0125f * self.p_playerCoinLabel.Text.Length), -0.005f));
+                dfc.RelativePosition = self.p_playerCoinLabel.transform.position + (new Vector3(0.025f + (0.025f * self.p_playerCoinLabel.Text.Length), -0.0025f));
                 self.AddControlToMotionGroups(dfc, Dungeonator.DungeonData.Direction.WEST);
                 transformInstance = UI;
             }
@@ -134,7 +137,10 @@ namespace ModularMod
         {
             orig(self, playerConsumables);
             var scrapLabel = FindScrapUI(self);
-            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3(0.04f + (0.0125f * self.p_playerCoinLabel.Text.Length), -0.005f));
+            int m = GameManager.Options.SmallUIEnabled ? 1 : 2;
+            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3((0.025f + (0.025f * self.p_playerCoinLabel.Text.Length) * m )* Toolbox.CalculateScale_X_Y_Based_On_Resolution().x, -0.0025f));
+            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().gameObject.transform.position = scrapLabel.gameObject.transform.position + new Vector3((0.05f * m), 0);
+
         }
         public static void HideCoreUIHook(Action<GameUIRoot, string> orig, GameUIRoot self, string reason)
         {

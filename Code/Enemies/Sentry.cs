@@ -381,7 +381,7 @@ namespace ModularMod
                         base.PostWwiseEvent("Play_TurretBeep", null);
                         elapsed2 = 0;
                         lightSHow = !lightSHow;
-                        Color colorLaser = lightSHow == true ? Color.red : new Color(2, 2f, 2f);
+                        Color colorLaser = lightSHow == true ? Color.red : new Color(1, 1f, 1f);
                         tiledsprite.sprite.renderer.material.SetColor("_OverrideColor", colorLaser);
                         tiledsprite.sprite.renderer.material.SetColor("_EmissiveColor", colorLaser);
                     }

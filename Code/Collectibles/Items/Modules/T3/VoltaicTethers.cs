@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using static BossFinalRogueLaunchShips1;
 using static dfMaterialCache;
 using static tk2dSpriteCollectionDefinition;
@@ -20,7 +21,7 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(VoltaicTethers))
         {
             Name = "Voltaic Tethers",
-            Description = "One For Each Finger",
+            Description = "Loaded",
             LongDescription = "Massively decreases Accuracy, and doubles Reload Time. Projectiles will stick to walls and tether electricity to players and other nearby tether nodes. (+Tether Range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("voltaictethers_t3_module"),
@@ -41,9 +42,22 @@ namespace ModularMod
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.OverrideScrapCost = 15;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
         public static int ID;
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.05f) { return; }
+            p.baseData.speed *= 0.5f;
+            p.UpdateSpeed();
+            int stack = 1;
+            var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
+            tethers.DPS = 12 * stack;
+            tethers.PylonRange = 3 * stack;
+            tethers.PlayerRange = 15 * stack;
+        }
 
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)

@@ -1,9 +1,10 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using Dungeonator;
 using UnityEngine;
 using static Alexandria.ItemAPI.ItemBuilder;
+using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
 
 namespace ModularMod 
 {
@@ -18,6 +19,9 @@ namespace ModularMod
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> ChargeSpeed_Process;
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> AngleFromAim_Process;
 
+        public Func<int, int, ModulePrinterCore, ModularGunController, PlayerController, int> FinaleClipSize_Process;
+
+
         public Func<int, ModulePrinterCore, ModularGunController, PlayerController, int> Post_Calculation_ClipSize_Process;
 
     }
@@ -31,6 +35,8 @@ namespace ModularMod
             public float Accuracy;
             public float Rate_Of_Fire;
             public int Clip_Size;
+            public int FinalProjectiles_Count;
+
         }
 
 
@@ -42,24 +48,20 @@ namespace ModularMod
 
         public float Base_Reload_Time;
         public int Base_Clip_Size;
+        public int Base_Finale_Clip_Size;
+
         public float Base_Fire_Rate;
         public float Base_Accuracy;
         public float Base_AngleFromAim;
 
         public VFXPool Base_Muzzleflash;
-
         public int AdditionalPowerSupply = 0;
-
         public string DefaultSwitchGroup;
         public Dictionary<ProjectileModule, ModuleStatStorage> Default_Module_And_Stats = new Dictionary<ProjectileModule, ModuleStatStorage>();
-
         public Dictionary<ProjectileModule, ModuleStatStorage> Modified_Module_And_Stats = new Dictionary<ProjectileModule, ModuleStatStorage>();
-
         public Dictionary<ProjectileModule.ChargeProjectile, float> Default_ChargeProj_And_Cooldown = new Dictionary<ProjectileModule.ChargeProjectile, float>();
         private Dictionary<ProjectileModule.ChargeProjectile, float> Modified_ChargeProj_And_Cooldown = new Dictionary<ProjectileModule.ChargeProjectile, float>();
-
         private ProjectileVolleyData storedVolley;
-
         public List<ModuleGunStatModifier> statMods = new List<ModuleGunStatModifier>();
 
         private void Awake()
@@ -98,11 +100,14 @@ namespace ModularMod
             Gun gun = this.gun;
             Base_Reload_Time = gun.reloadTime;
             Base_Clip_Size = gun.DefaultModule.GetModNumberOfShotsInClip(gun.CurrentOwner);
+            Base_Finale_Clip_Size = gun.DefaultModule.numberOfFinalProjectiles;
             Base_Fire_Rate = gun.DefaultModule.cooldownTime;
             Base_Accuracy = gun.DefaultModule.angleVariance;
             Base_AngleFromAim = gun.DefaultModule.angleFromAim;
             Base_Muzzleflash = gun.muzzleFlashEffects;
             storedVolley = gun.Volley;
+
+            
             foreach (var mod in gun.Volley.projectiles)
             {
                 if (!Default_Module_And_Stats.ContainsKey(mod))
@@ -112,7 +117,8 @@ namespace ModularMod
                         Accuracy = mod.angleVariance,
                         Angle_From_Aim = mod.angleFromAim,
                         Rate_Of_Fire = mod.cooldownTime,
-                        Clip_Size = mod.numberOfShotsInClip
+                        Clip_Size = mod.numberOfShotsInClip,
+                        FinalProjectiles_Count = mod.numberOfFinalProjectiles
                     });
                 }
                 foreach (var thing in mod.chargeProjectiles)
@@ -240,15 +246,23 @@ namespace ModularMod
             if (Player == null) { return; }
 
             float r = Base_Reload_Time;
+            foreach (var entry in statMods)
+            {
+                if (entry.Reload_Process != null) { r = entry.Reload_Process(r, PrinterSelf, this, Player); }
+            }
+            this.gun.reloadTime = r;
+
+            /*
             int c = GetModNumberOfShotsInClip(Player);
             float f = Base_Fire_Rate;
             float q = Base_Accuracy;
             float gg = Base_AngleFromAim;
+            int finales = Base_Finale_Clip_Size;
             //ETGModConsole.Log("Base RoF: " + f);
             //ETGModConsole.Log("Base Rel: " + r);
             //ETGModConsole.Log("Base Clip: " + c);
             //ETGModConsole.Log("======");
-
+            //This code fucking sucks...
             foreach (var entry in statMods)
             {
                 //ETGModConsole.Log("Premod RoF: " + f);
@@ -261,56 +275,63 @@ namespace ModularMod
                 if (entry.Accuracy_Process != null) { q = entry.Accuracy_Process(q, PrinterSelf, this, Player); }
 
                 if (entry.AngleFromAim_Process != null) { gg = entry.AngleFromAim_Process(gg, PrinterSelf, this, Player); }
-
-                //ETGModConsole.Log("Postmod RoF: " + f);
-                //ETGModConsole.Log("Postmod Rel: " + r);
-                //ETGModConsole.Log("Postmod Clip: " + c);
-                //ETGModConsole.Log("\n\n");
             }
+            */
+            /*
             foreach (var entry in statMods)
             {
                 if (entry.Post_Calculation_ClipSize_Process != null) { c = entry.Post_Calculation_ClipSize_Process(c, PrinterSelf, this, Player); }
             }
 
+            foreach (var entry in statMods)
+            {
+                if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, c, PrinterSelf, this, Player); }
+            }
+            */
             //ETGModConsole.Log("Processed RoF: " + f);
             //ETGModConsole.Log("Processed Rel: " + r);
             //ETGModConsole.Log("Processed Clip: " + c);
             //ETGModConsole.Log("======");
+            /*
             this.gun.DefaultModule.cooldownTime = f;
             this.gun.DefaultModule.angleVariance = q;
             this.gun.reloadTime = r;
             this.gun.DefaultModule.numberOfShotsInClip = c;
+            this.gun.DefaultModule.numberOfFinalProjectiles = finales;
 
             this.gun.DefaultModule.angleFromAim = gg;
+            */
+
 
 
             foreach (var cont in Default_Module_And_Stats)
             {
-                if (cont.Key != this.gun.DefaultModule)
-                {
-                    float BaseFireRate = cont.Value.Rate_Of_Fire;
-                    float BaseAngle = cont.Value.Accuracy;
-                    float AngleFromAim = cont.Value.Angle_From_Aim;
-                    int ClipSize = cont.Value.Clip_Size;
+                float BaseFireRate = cont.Value.Rate_Of_Fire;
+                float BaseAngle = cont.Value.Accuracy;
+                float AngleFromAim = cont.Value.Angle_From_Aim;
+                int ClipSize = cont.Value.Clip_Size;
+                int finales = cont.Value.FinalProjectiles_Count;
 
-                    foreach (var entry in statMods)
-                    {
-                        if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
-                        if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
-                        if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
-                        //if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
-                    }
-                    /*
-                    foreach (var entry in statMods)
-                    {
-                        if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
-                    }
-                    */
-                    cont.Key.cooldownTime = BaseFireRate;
-                    cont.Key.angleVariance = BaseAngle;
-                    cont.Key.angleFromAim = AngleFromAim;
-                    //cont.Key.numberOfShotsInClip = ClipSize;
+                foreach (var entry in statMods)
+                {
+                    if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
+                    if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
+                    if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
+                    if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
                 }
+
+                foreach (var entry in statMods)
+                {
+                    if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                }
+                foreach (var entry in statMods)
+                {
+                    if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player); }
+                }
+                cont.Key.cooldownTime = BaseFireRate;
+                cont.Key.angleVariance = BaseAngle;
+                cont.Key.angleFromAim = AngleFromAim;
+                cont.Key.numberOfShotsInClip = ClipSize;
             }
 
             foreach (var cont in Default_ChargeProj_And_Cooldown)
@@ -329,24 +350,28 @@ namespace ModularMod
                 float BaseAngle = cont.Value.Accuracy;
                 float AngleFromAim = cont.Value.Angle_From_Aim;
                 int ClipSize = cont.Value.Clip_Size;
+                int finales = cont.Value.FinalProjectiles_Count;
 
                 foreach (var entry in statMods)
                 {
                     if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
                     if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
                     if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
-                    //if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
                 }
-                /*
+                
                 foreach (var entry in statMods)
                 {
                     if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
                 }
-                */
+                foreach (var entry in statMods)
+                {
+                    if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player); }
+                }
                 cont.Key.cooldownTime = BaseFireRate;
                 cont.Key.angleVariance = BaseAngle;
                 cont.Key.angleFromAim = AngleFromAim;
-                //cont.Key.numberOfShotsInClip = ClipSize;
+                cont.Key.numberOfShotsInClip = ClipSize;
             }
 
             foreach (var cont in Modified_ChargeProj_And_Cooldown)
@@ -389,7 +414,8 @@ namespace ModularMod
                                         Accuracy = entry.angleVariance,
                                         Angle_From_Aim = entry.angleFromAim,
                                         Rate_Of_Fire = entry.cooldownTime,
-                                        Clip_Size = entry.numberOfShotsInClip
+                                        Clip_Size = entry.numberOfShotsInClip,
+                                        FinalProjectiles_Count = entry.numberOfFinalProjectiles
                                     });
                                     foreach (var chargeProj in entry.chargeProjectiles)
                                     {
@@ -423,7 +449,10 @@ namespace ModularMod
                                     {
                                         Accuracy = entry.angleVariance,
                                         Angle_From_Aim = entry.angleFromAim,
-                                        Rate_Of_Fire = entry.cooldownTime
+                                        Rate_Of_Fire = entry.cooldownTime,
+                                        Clip_Size = entry.numberOfShotsInClip,
+                                        FinalProjectiles_Count = entry.numberOfFinalProjectiles
+
                                     });
                                     foreach (var chargeProj in entry.chargeProjectiles)
                                     {
@@ -450,7 +479,9 @@ namespace ModularMod
                         {
                             Accuracy = entry.angleVariance,
                             Angle_From_Aim = entry.angleFromAim,
-                            Rate_Of_Fire = entry.cooldownTime
+                            Rate_Of_Fire = entry.cooldownTime,
+                            Clip_Size = entry.numberOfShotsInClip,
+                            FinalProjectiles_Count = entry.numberOfFinalProjectiles
                         });
                         foreach (var chargeProj in entry.chargeProjectiles)
                         {

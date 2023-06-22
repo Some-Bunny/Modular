@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Recycling Nanites",
             Description = "Repurposed for something better",
-            LongDescription = "While enabled, taking damage permanently increases damage by\n+2.5% (+2.5% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "While enabled, taking damage permanently increases damage by\n+3.3% (+3.3% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("recycler_tier1_module"),
             Quality = ItemQuality.SPECIAL,

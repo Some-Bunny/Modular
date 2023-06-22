@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using static BossFinalRogueLaunchShips1;
 using static dfMaterialCache;
 using static tk2dSpriteCollectionDefinition;
@@ -41,9 +42,35 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.9f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
         public static int ID;
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.05f) { return; }
+            int stack = 1;
+            p.baseData.damage *= 0.3f;
+            var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
+            aaaa.damageMultOnPierce += 1.025f;
+            aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack * 5);
+            PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
+            bounceProjModifier.penetration += stack;
+            p.baseData.range *= 4;
+            p.baseData.speed *= 0.7f;
+            p.UpdateSpeed();
+
+            ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
+            yes.spawnShadows = true;
+            yes.shadowLifetime = 0.4f;
+            yes.shadowTimeDelay = 0.01f;
+            yes.dashColor = new Color(0f, 0.3f, 1f, 1f);
+
+            HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
+            HomingMod.AngularVelocity = 480 + (stack * 120);
+            HomingMod.HomingRadius = 10 + (stack * 3.33f);
+        }
 
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)

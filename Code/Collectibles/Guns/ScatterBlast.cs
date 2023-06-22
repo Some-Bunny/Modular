@@ -52,8 +52,8 @@ namespace ModularMod
                 projectileModule.ammoCost = 1;
                 projectileModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
                 projectileModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
-                projectileModule.cooldownTime = 0.6f;
-                projectileModule.angleVariance = 21;
+                projectileModule.cooldownTime = 0.5f;
+                projectileModule.angleVariance = 19;
                 projectileModule.numberOfShotsInClip = 8;
 
 
@@ -65,14 +65,14 @@ namespace ModularMod
                 if (q == 1 | q == 2)
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.LowerCenter);
-                    projectile.baseData.range = 13;
-                    projectile.baseData.damage = 6f;
+                    projectile.baseData.range = 15;
+                    projectile.baseData.damage = 9f;
                 }
                 else
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
-                    projectile.baseData.range = 8;
-                    projectile.baseData.damage = 3f;
+                    projectile.baseData.range = 10;
+                    projectile.baseData.damage = 5f;
                 }
                 projectile.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
                 projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;

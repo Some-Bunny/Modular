@@ -88,11 +88,50 @@ namespace ModularMod
             player.OnRoomClearEvent += OnRoomClearEvent;
             player.GunChanged += Player_GunChanged;
             player.OnNewFloorLoaded += NewFloorLoaded;
+            player.OnAboutToFall += OnAboutToFall;
+            player.OnTableFlipped += OnTableFlipped;
+            player.OnTableFlipCompleted += OnTableFlipCompletely;
 
             cloakDoer = ScriptableObject.CreateInstance<CloakDoer>();
             cloakDoer.DoStartUp(player);
-
         }
+
+        public override DebrisObject Drop(PlayerController player)
+        {
+            player.OnEnteredCombat -= PlayerEnteredCombat;
+            player.OnReceivedDamage -= OnRecievedDamage;
+            player.OnReloadedGun -= OnReloadedGun;
+            player.OnKilledEnemyContext -= OnKilledEnemyContext;
+            player.OnDealtDamageContext -= OnDealtDamageContext;
+            player.PostProcessProjectile -= PostProcessProjectile;
+            player.PostProcessBeamTick -= PostProcessBeamTick;
+            player.OnDodgedProjectile -= OnDodgedProjectile;
+            player.OnDodgedBeam -= OnDodgedBeam;
+            player.OnRollStarted -= OnRollStarted;
+            player.OnRoomClearEvent -= OnRoomClearEvent;
+            player.GunChanged -= Player_GunChanged;
+            player.OnNewFloorLoaded -= NewFloorLoaded;
+            player.OnAboutToFall -= OnAboutToFall;
+            player.OnTableFlipped -= OnTableFlipped;
+            player.OnTableFlipCompleted -= OnTableFlipCompletely;
+            return base.Drop(player);
+        }
+
+        public void OnTableFlipCompletely(FlippableCover table)
+        {
+            if (TableFlipCompleted != null) { TableFlipCompleted(this, this.Owner, table); }
+        }
+        public void OnTableFlipped(FlippableCover table)
+        {
+            if (TableFlipped != null) { TableFlipped(this, this.Owner, table); }
+        }
+
+        public bool OnAboutToFall(bool b)
+        {
+            if (OnAboutToFallContext != null) { b = OnAboutToFallContext(this, this.Owner); }
+            return  b;
+        }
+
         private bool b = false;
         public void NewFloorLoaded(PlayerController player)
         {
@@ -163,6 +202,9 @@ namespace ModularMod
 
         public void UpdateModularGunController()
         {
+            if (this == null) { return; }
+            if (base.Owner == null) { return; }
+            if (base.Owner.CurrentGun == null) { return; }
             if (ModularGunController != null) { return; }
             ModularGunController = base.Owner.CurrentGun.GetComponent<ModularGunController>();
             if (ModularGunController) { ModularGunController.Start(); }
@@ -204,7 +246,65 @@ namespace ModularMod
                 }
                 modifier.stickyContexts = this.stickyContexts;
             }
+            if (this.Owner.HasPickupID(521))
+            {
+                if (UnityEngine.Random.value < 0.3f) 
+                {
+                    var bounce = p.gameObject.GetOrAddComponent<BounceProjModifier>();
+                    bounce.ExplodeOnEnemyBounce = UnityEngine.Random.value < 0.1f ? true : false;
+                    bounce.damageMultiplierOnBounce += UnityEngine.Random.Range(0.75f, 1.25f);
+                    bounce.chanceToDieOnBounce += UnityEngine.Random.Range(0.00f, 0.2f);
+                    bounce.bouncesTrackEnemies = UnityEngine.Random.value < 0.2f ? true : false;
+                    bounce.bounceTrackRadius += UnityEngine.Random.Range(1f, 25f);
+                }
+                if (UnityEngine.Random.value < 0.3f)
+                {
+                    var pierce = p.gameObject.GetOrAddComponent<PierceProjModifier>();
+                    pierce.penetration += UnityEngine.Random.Range(1, 5);
+                    if (UnityEngine.Random.value < 0.3f)
+                    {
+                        var pierceMain = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
+                        pierceMain.damageMultOnPierce *= UnityEngine.Random.Range(1.01f, 1.5f);
+                    }
+                }
+                if (UnityEngine.Random.value < 0.15f)
+                {
+                    var homing = p.gameObject.GetOrAddComponent<HomingModifier>();
+                    homing.AngularVelocity += UnityEngine.Random.Range(60f, 1080f);
+                    homing.HomingRadius += UnityEngine.Random.Range(1f, 25f);
+                }
+
+                p.AppliesPoison = true;
+                p.PoisonApplyChance = UnityEngine.Random.Range(0.01f, 1f);
+                p.healthEffect = DebuffStatics.irradiatedLeadEffect;
+
+                p.AppliesFire = true;
+                p.FireApplyChance = UnityEngine.Random.Range(0.1f, 1f);
+                p.fireEffect = UnityEngine.Random.value < 0.2 ? DebuffStatics.greenFireEffect : DebuffStatics.hotLeadEffect;
+
+                p.AppliesFreeze = true;
+                p.FreezeApplyChance = UnityEngine.Random.Range(0.1f, 1f);
+                p.freezeEffect = DebuffStatics.frostBulletsEffect;
+
+                p.AppliesCheese = true;
+                p.CheeseApplyChance = UnityEngine.Random.Range(0.02f, 0.5f);
+                p.cheeseEffect = DebuffStatics.cheeseeffect;
+
+                p.AppliesCharm = true;
+                p.CharmApplyChance = UnityEngine.Random.Range(0.02f, 0.5f);
+                p.charmEffect = DebuffStatics.charmingRoundsEffect;
+
+                p.CanTransmogrify = true;
+                p.ChanceToTransmogrify = 0.005f;
+
+                p.AdjustPlayerProjectileTint(new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f)), 10);
+                if (ModifyForChanceBullets != null) { ModifyForChanceBullets(this, p, f, Owner); }
+            }
         }
+
+
+        public static Action<ModulePrinterCore, Projectile, float, PlayerController> ModifyForChanceBullets;
+
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
         {
             if (oR != null && oR.healthHaver != null && mR.projectile != null)
@@ -257,6 +357,10 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController> OnNewFloorStarted;
         public Action<ModulePrinterCore, PlayerController, DefaultModule> OnAnyModuleObtained;
         public Action<ModulePrinterCore, PlayerController, AIActor, Projectile> OnPreEnemyHit;
+        public Action<ModulePrinterCore, PlayerController, FlippableCover> TableFlipped;
+        public Action<ModulePrinterCore, PlayerController, FlippableCover> TableFlipCompleted;
+        public Func<ModulePrinterCore, PlayerController, bool> OnAboutToFallContext;
+
 
         public float StartingPower = 5;
         public Func<ModulePrinterCore, float> AdditionalPowerMods;
@@ -320,6 +424,20 @@ namespace ModularMod
             }
             return c;
         }
+
+        public float ReturnRemainingPower()
+        {
+            float c = 0;
+            for (int i = 0; i < ModuleContainers.Count; i++)
+            {
+                if (ModuleContainers[i] != null)
+                {
+                    c += ReturnPowerConsumption(ModuleContainers[i].defaultModule);
+                }
+            }
+            return ReturnTotalPower() - c;
+        }
+
         public float ReturnPowerConsumption(DefaultModule module)
         {
             float c = 0;
@@ -520,7 +638,7 @@ namespace ModularMod
             {
                 c += ModuleContainers[i].ActiveCount;
             }
-            return 0;
+            return c;
         }
 
         public int ReturnFakeStack(string LabelName)
@@ -551,10 +669,10 @@ namespace ModularMod
                     {
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
-                            if (ModuleContainers[i].Count == 0) { ModuleContainers.Remove(ModuleContainers[i]); return; }
+                            if (ModuleContainers[i].Count == 1) { ModuleContainers.Remove(ModuleContainers[i]); return; }
                             ModuleContainers[i].Count--;
                             ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
-                            if (ModuleContainers[i].Count == 0) { ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner); ModuleContainers.Remove(ModuleContainers[i]); }
+                            if (ModuleContainers[i].Count == 1) { ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner); ModuleContainers.Remove(ModuleContainers[i]); }
                         }
                     }
                 }
@@ -592,7 +710,7 @@ namespace ModularMod
 
         public override void OnDestroy()
         {
-            for (int i = 0; i < ModuleContainers.Count; i++)
+            for (int i = ModuleContainers.Count - 1; i > -1; i--)
             {
                 var cont = ModuleContainers[i];
                 RemoveModule(cont.defaultModule, 999999);

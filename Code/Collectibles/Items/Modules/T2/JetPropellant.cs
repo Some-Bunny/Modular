@@ -55,6 +55,7 @@ namespace ModularMod
                 }
             };
             ID = h.PickupObjectId;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
         }
         public static int ID;
         public static AnimationCurve curve;
@@ -72,6 +73,18 @@ namespace ModularMod
         {
             stack = this.ReturnStack(modulePrinter);
         }
+
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.1f) { return; }
+            p.specRigidbody.OnPreRigidbodyCollision += OPC;
+            p.baseData.UsesCustomAccelerationCurve = true;
+            p.baseData.AccelerationCurve = curve;
+            var trail = p.gameObject.AddComponent<TrailRocketController>();
+            trail.self = p;
+        }
+
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {

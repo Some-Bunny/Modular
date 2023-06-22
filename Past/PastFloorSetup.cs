@@ -317,7 +317,14 @@ namespace ModularMod
                     {
                         try
                         {
-                            player.AcquirePassiveItem(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID) as PassiveItem);
+                            GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID).gameObject, Vector3.zero, Quaternion.identity);
+                            PickupObject component3 = gameObject.GetComponent<PickupObject>();
+                            if (component3 != null)
+                            {
+                                component3.CanBeDropped = false;
+                                component3.Pickup(player);
+                            }
+                            //player.AcquirePassiveItem(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID) as PassiveItem);
                             player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(DefaultArmCannon.ID) as Gun, true);
                         }
                         catch (Exception e)

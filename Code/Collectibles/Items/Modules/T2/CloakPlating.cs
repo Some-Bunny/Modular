@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Cloak Plating " + h.ReturnTierLabel();
-            h.LabelDescription = "Entering combat cloaks the player for 5 ("+ StaticColorHexes.AddColorToLabelString("+2.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking grants a\n" +
+            h.LabelDescription = "Entering combat cloaks the player for 6 ("+ StaticColorHexes.AddColorToLabelString("+3", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking grants a\n" +
                 "4x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that degrades fast.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -78,7 +78,7 @@ namespace ModularMod
             int stack = this.ReturnStack(modulePrinterCore);
             modulePrinterCore.cloakDoer.ProcessCloak(new CloakDoer.CloakContext()
             {
-                Length = 2.5f + (stack * 2.5f),
+                Length = 3f + (stack * 3f),
                 OnForceCloakBroken = PP
             });
         }

@@ -129,6 +129,9 @@ namespace ModularMod
             LightLance.Init();
             LightLanceAlt.Init();
 
+            GravityPulsar.Init();
+            GravityPulsarAlt.Init();
+
             //Test Items
             Flowder.Init();
             //TestModule.Init();
@@ -148,7 +151,7 @@ namespace ModularMod
 
 
             CrateSpawnController.Init();
-
+            ItemSynergyController.Init();
 
             //Enemies
             LaserDiode.BuildPrefab();
@@ -209,7 +212,10 @@ namespace ModularMod
                 new CharacterSelectIdlePhase() { outAnimation= "error"},
                 new CharacterSelectIdlePhase(){ outAnimation = "tummy"}
             };
-
+            foreach (var entry in data.punchoutSprites)
+            {
+                Debug.Log(entry.Value.name);
+            }
 
             PastDungeon.Init();
             PDashTwo.Init();
@@ -251,9 +257,9 @@ namespace ModularMod
             ETGModConsole.Commands.AddGroup("mdl", args =>
             {
             });
-            ETGModConsole.Commands.GetGroup("mdl").AddUnit("toggle_test_unlock", ForceEnableMixedFloor);
+            //ETGModConsole.Commands.GetGroup("mdl").AddUnit("toggle_test_unlock", ForceEnableMixedFloor);
 
-            ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
+            //ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
 
             ETGModConsole.Commands.GetGroup("mdl").AddUnit("cratetoggle", Crate);
 
@@ -270,9 +276,18 @@ namespace ModularMod
             yield return null;
             Module.Modular = ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, "Modular");
             GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.NONE, true);
+
+            bool Shit = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST);
+            bool GodDamnit = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST_ALT_SKIN);
+            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, Shit);
+            GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, GodDamnit);
+
+            //Debug.Log("Past Kill: " + GameStatsManager.Instance.GetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST));
+            //Debug.Log("Skin Past Kill: " + GameStatsManager.Instance.GetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME));
+
             //GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, !Test_Copy);
             //GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, !Test_Copy);
-            
+
             yield break;
         }
 
@@ -324,6 +339,7 @@ namespace ModularMod
             SaveAPIManager.SetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.PAST, b);
 
             ETGModConsole.Log("Unlocks are now set to : " +b);
         }
@@ -343,6 +359,7 @@ namespace ModularMod
             SaveAPIManager.SetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.PAST, b);
 
             ETGModConsole.Log("Unlocks are now set to : " + b);
         }

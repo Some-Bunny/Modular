@@ -200,7 +200,7 @@ namespace ModularMod
             Vector2 vector2 = new Vector2();
             vector2.x = GameManager.Options.preferredResolutionX;
             vector2.y = GameManager.Options.preferredResolutionY;//Screen.currentResolution;
-            Debug.Log("sc: "+ vector2);
+            //Debug.Log("sc: "+ vector2);
             return new Vector2(((float)vector2.x / (float)ResolutionIBuiltOffOf_X), ((float)vector2.y / (float)ResolutionIBuiltOffOf_Y));
         }
 
@@ -210,7 +210,7 @@ namespace ModularMod
             var labelToSet = UnityEngine.Object.Instantiate(DefaultModule.LabelController).gameObject.GetComponent<ModifiedDefaultLabelManager>();
             Vector2 scaler = CalculateScale_X_Y_Based_On_Resolution();
 
-            labelToSet.label.textScale = (size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20)) * scaler.x;
+            labelToSet.label.textScale = (size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20))* scaler.x;
             labelToSet.label.Text = Text;
             if (Autotrigger == true)
             {
@@ -222,29 +222,9 @@ namespace ModularMod
             dfLabel componentInChildren = labelToSet.gameObject.GetComponentInChildren<dfLabel>();
             componentInChildren.ColorizeSymbols = false;
             componentInChildren.ProcessMarkup = true;
-            componentInChildren.autoHeight = true;// *= GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+            componentInChildren.autoHeight = false;// *= GameManager.Options.SmallUIEnabled == true ? 1 : 2;
             componentInChildren.updateCollider();            
             componentInChildren.Invalidate();
-            //locScale.x = scaler.x;
-            //locScale.y = scaler.x;
-
-            //Screen.currentResolution
-            //GameManager.Options.
-
-            //foreach (var vecs in componentInChildren.cachedCorners)
-            {
-                //vecs.
-                //vecs. *= GameManager.Options.SmallUIEnabled == true ? 1 : 2;
-
-            }
-            //componentInChildren.autoSize = true;
-
-
-            //Debug.Log(Text +" | " + componentInChildren.size);
-
-
-            //labelToSet.gameObject.transform.localScale *= GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20;
-
             return labelToSet;
         }
 
@@ -255,8 +235,7 @@ namespace ModularMod
             braveLight.LightColor = color;
             braveLight.LightIntensity = 0f;
             braveLight.LightRadius = 0f;
-            self.BraveLight = braveLight;
-            
+            self.BraveLight = braveLight;         
         }
 
         public static void NotifyCustom(string header, string text, int spriteID, tk2dSpriteCollectionData CollectionData, UINotificationController.NotificationColor color = UINotificationController.NotificationColor.SILVER, bool forceSingleLine = false)

@@ -15,6 +15,7 @@ using FullInspector;
 using Alexandria.NPCAPI;
 using Alexandria.ItemAPI;
 using static BossFinalRogueLaunchShips1;
+using SaveAPI;
 
 namespace ModularMod
 {
@@ -88,10 +89,17 @@ namespace ModularMod
 
             public DefaultModule SelectModule(GenericLootTable table)
             {
+                
                 var mod = table.SelectByWeightNoExclusions().GetComponent<DefaultModule>();
                 switch (mod.Tier)
                 {
                     case DefaultModule.ModuleTier.Tier_1:
+                        foreach (PlayerController p in GameManager.Instance.AllPlayers)
+                        {if (p.PlayerHasCore() != null & p.HasPickupID(815)) 
+                            {
+                                return GlobalModuleStorage.SelectTable(PickupObject.ItemQuality.B).SelectByWeightNoExclusions().GetComponent<DefaultModule>();
+                            }
+                            }
                         if (UnityEngine.Random.value < 0.00005f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                         return mod;
                     case DefaultModule.ModuleTier.Tier_2:
@@ -117,14 +125,6 @@ namespace ModularMod
                 }
             }
 
-
-            private bool isEven
-            {
-                get
-                {
-                    return Count.isEven();
-                }
-            }
 
             public void Start()
             {
@@ -592,7 +592,7 @@ namespace ModularMod
             {
                 if (self.rooms[i] == self.Entrance || self.rooms[i].IsStartOfWarpWing)
                 {
-                    Debug.Log(self.rooms[i].GetRoomName());
+                    //Debug.Log(self.rooms[i].GetRoomName());
                     try
                     {
                         stack.Push(self[self.rooms[i].GetRandomAvailableCellDumb()]);
@@ -654,15 +654,16 @@ namespace ModularMod
                     var HPComp = pickup.GetComponent<HealthPickup>();
                     if (HPComp != null)
                     {
+                        bool flga = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST);
                         if (HPComp.healAmount == 0.5f)
                         {
-                            pickup = UnityEngine.Random.value < 0.02f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
+                            pickup = UnityEngine.Random.value < 0.02f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
                             pickup.gameObject.SetActive(true);
 
                         }
                         if (HPComp.healAmount == 1f)
                         {
-                            pickup = UnityEngine.Random.value < 0.035f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
+                            pickup = UnityEngine.Random.value < 0.035f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
                         }
                     }
                 }
@@ -745,15 +746,17 @@ namespace ModularMod
                     var HPComp = self.m_itemControllers[i].item.GetComponent<HealthPickup>();
                     if (self.m_itemControllers[i] && self.m_itemControllers[i].item && HPComp != null)
                     {
+                        bool flga = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST);
+
                         if (HPComp.healAmount == 0.5f)
                         {
-                            var g = UnityEngine.Random.value < 0.025f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                            var g = UnityEngine.Random.value < 0.025f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
                             self.m_shopItems[i] = g;
                             self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
                         }
                         if (HPComp.healAmount == 1f)
                         {
-                            var g = UnityEngine.Random.value < 0.0625f ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                            var g = UnityEngine.Random.value < 0.0625f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
                             self.m_shopItems[i] = g;
                             self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
                         }

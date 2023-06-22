@@ -88,6 +88,26 @@ namespace ModularMod
             }
         }
 
+        public static GenericLootTable SelectTableLichsEyeBullets(PickupObject.ItemQuality itemQuality)
+        {
+            switch (itemQuality)
+            {
+                case PickupObject.ItemQuality.D:
+                    return C_Tier_Table;
+                case PickupObject.ItemQuality.C:
+                    return B_Tier_Table;
+                case PickupObject.ItemQuality.B:
+                    return A_Tier_Table;
+                case PickupObject.ItemQuality.A:
+                    return S_Tier_Table;
+                case PickupObject.ItemQuality.S:
+                    return S_Tier_Table;
+                default:
+                    return Fallback_Table;
+            }
+        }
+
+
         private static void AssignPower(DefaultModule module)
         {
             switch (module.Tier)

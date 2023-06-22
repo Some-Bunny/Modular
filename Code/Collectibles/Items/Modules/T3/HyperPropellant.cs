@@ -87,6 +87,7 @@ namespace ModularMod
             FakePrefab.DontDestroyOnLoad(VFX);
             FakePrefab.MarkAsFakePrefab(VFX);
             var hyperProp = VFX.AddComponent<HyperPropellantAirIgnite>();
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             AirBurn = VFX;
 
         }
@@ -95,6 +96,30 @@ namespace ModularMod
         public static ExplosionData HyperPropellantExplosionData;
         public static int ID;
 
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.015f) { return; }
+            int stack = 1;
+            p.baseData.damage *= 0.75f + stack;
+            p.baseData.speed *= 2.5f + (0.5f * stack);
+            p.baseData.force *= (7.5f * stack);
+            p.AdditionalScaleMultiplier *= 2;
+            p.pierceMinorBreakables = true;
+
+            ExplosiveModifier explosiveModifier = p.gameObject.AddComponent<ExplosiveModifier>();
+            explosiveModifier.explosionData = HyperPropellantExplosionData;
+            explosiveModifier.doExplosion = true;
+            explosiveModifier.IgnoreQueues = true;
+
+            ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
+            yes.spawnShadows = true;
+            yes.shadowLifetime = 0.5f;
+            yes.shadowTimeDelay = 0.01f;
+            yes.dashColor = new Color(0.9f, 0.6f, 0f, 1f);
+
+            var uhfa = p.gameObject.AddComponent<HyperPropellantController>();
+            uhfa.Radius = 1 + stack;
+        }
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {

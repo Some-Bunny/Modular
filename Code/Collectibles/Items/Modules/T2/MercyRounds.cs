@@ -35,10 +35,20 @@ namespace ModularMod
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
             ID = h.PickupObjectId;
         }
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.15f) { return; }
+            p.specRigidbody.OnPreRigidbodyCollision += OPC;
+            p.OnHitEnemy += OHE;
+        }
+
         public static int ID;
 
         public int stack = 0;

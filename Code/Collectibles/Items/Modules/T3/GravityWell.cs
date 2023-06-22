@@ -36,9 +36,40 @@ namespace ModularMod
             h.OverrideScrapCost = 15;
 
             ID = h.PickupObjectId;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
+
         }
         public static int ID;
 
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.01f) { return; }
+            PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
+            bounceProjModifier.penetration += 10;
+            p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
+            p.AdditionalScaleMultiplier *= 2;
+
+            p.baseData.speed *= 0.25f;
+            p.UpdateSpeed();
+            var well = p.gameObject.AddComponent<EnemyGravityWell>();
+            well.self = p;
+            well.gravitationalForceActors = 125;
+            well.damageRadius = 2;
+
+            ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
+            yes.spawnShadows = true;
+            yes.shadowLifetime = 0.4f;
+            yes.shadowTimeDelay = 0.01f;
+            yes.dashColor = new Color(1f, 0.1f, 0.5f, 1f);
+
+            HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
+            HomingMod.AngularVelocity += 10;
+            HomingMod.HomingRadius += 20;
+
+            GameObject vfx = SpawnManager.SpawnVFX((PickupObjectDatabase.GetById(536) as RelodestoneItem).ContinuousVFX, true);
+            vfx.transform.parent = p.transform;
+            vfx.transform.position = p.sprite.WorldCenter;
+        }
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
@@ -87,6 +118,8 @@ namespace ModularMod
             vfx.transform.parent = p.transform;
             vfx.transform.position = p.sprite.WorldCenter;
         }
+
+
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Radar Scanner",
             Description = "Investment",
-            LongDescription = "Secret Rooms are revealed on the map. All secret rooms contain 2 (+1 per stack) extra pickups." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Secret Rooms are revealed on the map. All secret rooms contain 2 (+2 per stack) extra pickups." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("radarscanner_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.9f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Radar Scanner " + h.ReturnTierLabel();
-            h.LabelDescription = "Secret Rooms are revealed on the map.\nAll secret rooms contain 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nextra pickups.";
+            h.LabelDescription = "Secret Rooms are revealed on the map.\nAll secret rooms contain 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ")\nextra pickups.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -83,7 +83,7 @@ namespace ModularMod
                 {
                     if (roomHandler.area.PrototypeRoomCategory == PrototypeDungeonRoom.RoomCategory.SECRET)
                     {
-                        for (int q = 0; q < Stack() + 1; q++)
+                        for (int q = 0; q < Stack() * 2; q++)
                         {
                             var pickup = LootEngine.SpawnItem(GameManager.Instance.RewardManager.CurrentRewardData.SingleItemRewardTable.SelectByWeight(false), roomHandler.GetBestRewardLocation(new IntVector2(1, 1), RoomHandler.RewardLocationStyle.Original).ToCenterVector3(0), Vector2.zero, 0);
                             pickup.GetComponent<PickupObject>().IgnoredByRat = true;

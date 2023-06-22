@@ -51,7 +51,7 @@ namespace ModularMod
 
 
             gun.InfiniteAmmo = true;
-            gun.quality = PickupObject.ItemQuality.SPECIAL;
+            gun.quality = PickupObject.ItemQuality.EXCLUDED;
 
 
             Projectile dudProjectile = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);

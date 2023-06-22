@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using static BossFinalRogueLaunchShips1;
 using static dfMaterialCache;
 using static tk2dSpriteCollectionDefinition;
@@ -42,10 +43,32 @@ namespace ModularMod
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.OverrideScrapCost = 15;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
+
             ID = h.PickupObjectId;
         }
         public static int ID;
 
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.03f) { return; }
+            p.gameObject.AddComponent<RicoShot>();
+            BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
+            bounceProjModifier.numberOfBounces += (20 * 1);
+            bounceProjModifier.bouncesTrackEnemies = true;
+            bounceProjModifier.bounceTrackRadius = 7;
+            bounceProjModifier.TrackEnemyChance = 0.5f;
+            bounceProjModifier.OnBounce += () =>
+            {
+                GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+                GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
+                blankObj.transform.localScale = Vector3.one * 0.5f;
+                Destroy(blankObj, 2f);
+                Exploder.DoRadialPush(p.sprite.WorldCenter, 25 * 1, 3);
+                Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25 * 1, 3);
+                Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
+            };
+        }
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
@@ -68,7 +91,7 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.damage *= 0.7f;
+            //p.baseData.damage *= 0.7f;
             p.gameObject.AddComponent<RicoShot>();
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += (20 * this.ReturnStack(modulePrinterCore));
@@ -95,6 +118,7 @@ namespace ModularMod
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            modulePrinter.OnPostProcessProjectile -= PPP;
             if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
             player.stats.RecalculateStats(player);
         }

@@ -402,7 +402,7 @@ namespace ModularMod
                    , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Yellow_Hex) //Clipsize Secription
                    , null //Fire rate Secription
                    , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Light_Green_Hex) //Shot Speed Secription
-                   , "Grants the user 2 additional." + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)  //Additional Notes, keep at one line
+                   , "Grants the user 1 additional." + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)  //Additional Notes, keep at one line
                    , "name_label_peashooter" //Label Name Asset Name
                    , ModularPeaShooterAlt.GunID //alt gun ID
                    , "ui_button_peashooter_gun_alt" //asset name default alt
@@ -632,7 +632,7 @@ namespace ModularMod
                   , "ui_button_hammer_gun_highlighted_alt" //asset name highlighted alt
                   , "ui_button_hammer_gun_pressed_alt" //asset name pressed alt
                   , "name_label_hammer_alt"  //Label Name Asset Name Alt
-                  , "As Modular, reach and beat\n Bullet Hell."); //Unlock Description
+                  , "As Modular, reach and beat\nBullet Hell."); //Unlock Description
 
             StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
                  "ApolloAndArtemisButton"
@@ -657,11 +657,33 @@ namespace ModularMod
                  , "As Modular, beat the\nOld King."); //Unlock Description
 
             StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
+                "GravityPulsarGun"
+                , "ui_button_grav_gun" //asset name default
+                , "ui_button_grav_gun_highlighted" //asset name highlighted
+                , "ui_button_grav_gun_pressed" //asset name pressed
+                , CustomDungeonFlags.BEAT_RAT_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
+                , GravityPulsar.ID //Gun ID
+                , "Creates Rifts that attracts\nits own projectiles." //Default description
+                , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Light_Orange_Hex)  //Damage Secription
+                , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Orange_Hex)//Reload Secription
+                , StaticColorHexes.AddColorToLabelString("High", StaticColorHexes.Green_Hex) //Clipsize Secription
+                , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Light_Orange_Hex)//Fire rate Secription
+                , StaticColorHexes.AddColorToLabelString("Very Fast", StaticColorHexes.Green_Hex) //Shot Speed Secription
+                , "Group Up enemies for best results."  //Additional Notes, keep at one line
+                , "name_label_gravgun" //Label Name Asset Name
+                , GravityPulsarAlt.ID //alt gun ID
+                , "ui_button_grav_gun_alt" //asset name default alt
+                , "ui_button_grav_gun_highlighted_alt" //asset name highlighted alt
+                , "ui_button_grav_gun_pressed_alt" //asset name pressed alt
+                , "name_label_gravgun_alt"  //Label Name Asset Name Alt
+                , "As Modular, beat the\nResourceful Rat."); //Unlock Description
+
+            StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
                 "LightLanceButton"
                 , "ui_button_lance_gun" //asset name default
                 , "ui_button_lance_gun_highlighted" //asset name highlighted
                 , "ui_button_lance_gun_pressed" //asset name pressed
-                , CustomDungeonFlags.BEAT_RAT_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
+                , CustomDungeonFlags.PAST //Unlock flag, Set itt to NOLLA for no unlock condition
                 , LightLance.ID //Gun ID
                 , "Melee weapon.\nCharge up to parry projectiles." //Default description
                 , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex)  //Damage Secription
@@ -676,7 +698,7 @@ namespace ModularMod
                 , "ui_button_lance_gun_highlighted_alt" //asset name highlighted alt
                 , "ui_button_lance_gun_pressed_alt" //asset name pressed alt
                 , "name_label_lightlance_alt"  //Label Name Asset Name Alt
-                , "As Modular, beat the\nResourceful Rat."); //Unlock Description
+                , "As Modular, beat your\nPast."); //Unlock Description
 
             /*
             for (int i = 0; i < 13; i++)

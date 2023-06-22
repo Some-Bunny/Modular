@@ -35,11 +35,17 @@ namespace ModularMod
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
         public static int ID;
-
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.1f) { return; }
+            p.StartCoroutine(this.FrameDelay(p, modulePrinterCore));
+            p.HasDefaultTint = true;
+        }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {
             modulePrinter.OnPostProcessProjectile += PPP;

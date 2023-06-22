@@ -83,12 +83,13 @@ namespace ModularMod
         {
             float s = p.baseData.speed;
             float e = 0;
-            while (e < 1)
+            while (e < 0.66f)
             {
                 if (p == null) { yield break; }
-                p.baseData.speed = Mathf.Lerp(s, s * 0.1f, e);
+                float t = e / 0.66f;
+                p.baseData.speed = Mathf.Lerp(s, s * 0.1f, t);
                 p.UpdateSpeed();
-                e += (BraveTime.DeltaTime*2);
+                e += (BraveTime.DeltaTime*1.5f);
                 yield return null;
             }
             var bubble = p.gameObject.AddComponent<BoostProjectileComponent>();

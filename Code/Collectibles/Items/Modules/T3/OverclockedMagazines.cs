@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Overclocked Magazines",
             Description = "BRRAP",
-            LongDescription = "Multiplies Rate Of Fire and Clip Size by  5 (+1 per stack). Greatly increases spread." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Multiplies Rate Of Fire and Clip Size by 3 (+1 per stack). Greatly increases spread and reduces damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("overclockedmagazine_t3_module"),
             Quality = ItemQuality.SPECIAL,

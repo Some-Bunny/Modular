@@ -1303,15 +1303,15 @@ namespace ModularMod
                     yield return null;
                 }
                 AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", GameManager.Instance.BestActivePlayer.gameObject);
-                bool flag = GameStatsManager.Instance.GetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST);
-                if (flag  ==true)
+                foreach (var player in GameManager.Instance.AllPlayers)
                 {
-                    GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, true);
+                    if (player.PlayerHasCore() != null && player.IsUsingAlternateCostume == true)
+                    {
+                        AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.PAST_ALT_SKIN, true);
+                        GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST_ALTERNATE_COSTUME, true);
+                    }
                 }
-                else
-                {
-                    GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, true);
-                }
+                GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, true);
                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.PAST, true);
 
 

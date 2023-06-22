@@ -171,7 +171,10 @@ namespace ModularMod
         {
             return true;
         }
+        public virtual void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
 
+        }
         public int Stack()
         {
             return this.ReturnStack(Stored_Core);

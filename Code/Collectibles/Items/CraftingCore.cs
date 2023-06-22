@@ -3,6 +3,7 @@ using Alexandria.ItemAPI;
 using Alexandria.Misc;
 using Dungeonator;
 using JuneLib.Items;
+using SaveAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace ModularMod
             active.canStack = true;
             active.numberOfUses = 1;
             active.UsesNumberOfUsesBeforeCooldown = true;
-
+            active.SetupUnlockOnCustomFlag(CustomDungeonFlags.PAST, true);
             CraftingCoreID = pickup.PickupObjectId;
         }
 
@@ -100,6 +101,7 @@ namespace ModularMod
                     this.numberOfUses--;
                     if (this.numberOfUses < 1)
                     {
+                        BraveTime.ClearMultiplier(GameManager.Instance.gameObject);
                         cc.extant_Crafting_Controller.Nuke();
                         cc.extant_Crafting_Controller.ObliterateUI();
                         Destroy(cc.extant_Crafting_Controller);

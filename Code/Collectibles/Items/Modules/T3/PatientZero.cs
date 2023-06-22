@@ -47,10 +47,28 @@ namespace ModularMod
             PoisonPoof = (PickupObjectDatabase.GetById(28) as Gun).DefaultModule.finalVolley.projectiles[0].projectiles[2].hitEffects.enemy.effects[0].effects[0].effect;
             fleeData = new FleePlayerData();
             fleeData.StartDistance = 100f;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
+
         }
         public static int ID;
         public static GameObject PoisonPoof;
         private static FleePlayerData fleeData;
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.075f) { return; }
+            int stack = 1;
+            p.AppliesPoison = true;
+            p.PoisonApplyChance = 0.2f * stack;
+            p.healthEffect = DebuffStatics.irradiatedLeadEffect;
+            p.OnDestruction += (obj) =>
+            {
+                if (obj && UnityEngine.Random.value < (0.025f * stack))
+                {
+                    DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(JuneLib.Status.EasyGoopDefinitions.PoisonDef).TimedAddGoopCircle(obj.sprite.WorldBottomCenter, 2 + stack, 0.5f + (0.25f * stack), false);
+                }
+            };
+        }
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {

@@ -72,12 +72,34 @@ namespace ModularMod
             beamComp.interpolateStretchedBones = false;
             beamComp.ContinueBeamArtToWall = true;
 
-                        LanceBeam = beamComp.projectile;
-
+            LanceBeam = beamComp.projectile;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
         public static int ID;
         public static Projectile LanceBeam;
+
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.05f) { return; }
+            int stack = 1;
+            p.baseData.speed *= 0.5f;
+            p.UpdateSpeed();
+
+            BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
+            Projectile component3 = beamController3.GetComponent<Projectile>();
+            float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
+            component3.baseData.damage = (p.baseData.damage * (Dmg * 3f) * 1 + (0.5f * stack)) / 10f;
+            component3.AdditionalScaleMultiplier *= 0.5f;
+            component3.baseData.range *= stack;
+
+            var point = p.gameObject.AddComponent<BeamPointer>();
+            point.self = p;
+            point.beam = beamController3;
+            BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
+            bounceProjModifier.numberOfBounces += 2;
+        }
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {

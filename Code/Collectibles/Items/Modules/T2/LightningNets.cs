@@ -37,8 +37,22 @@ namespace ModularMod
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             
             ID = h.PickupObjectId;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
+
         }
         public static int ID;
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.15f) { return; }
+            int stack = 1;
+            var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
+            chain.Damage = p.baseData.damage;
+            chain.Range = 4f + (4 * stack);
+            chain.player = player;
+            chain.projectile = p.gameObject;
+            p.baseData.range += 5;
+        }
 
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

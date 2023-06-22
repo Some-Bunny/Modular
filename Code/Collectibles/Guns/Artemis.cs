@@ -40,7 +40,7 @@ namespace ModularMod
             comp.AdditionalPowerSupply = 0;
 
             gun.InfiniteAmmo = true;
-            gun.quality = PickupObject.ItemQuality.SPECIAL;
+            gun.quality = PickupObject.ItemQuality.EXCLUDED;
 
 
             for (int i = -3; i < 4; i++)
