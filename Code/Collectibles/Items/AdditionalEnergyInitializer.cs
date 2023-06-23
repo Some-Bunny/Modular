@@ -49,6 +49,12 @@ namespace ModularMod
             PickupObjectDatabase.GetById(313).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>();
             PickupObjectDatabase.GetById(570).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 2;
             PickupObjectDatabase.GetById(132).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 2;
+
+            PickupObjectDatabase.GetById(131).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
+            PickupObjectDatabase.GetById(116).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
+            PickupObjectDatabase.GetById(134).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
+
+
             new Hook(typeof(PassiveItem).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(AdditionalEnergyInitializer).GetMethod("PickupHook"));
             new Hook(typeof(PlayerItem).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(AdditionalEnergyInitializer).GetMethod("PickupHook_2"));
 

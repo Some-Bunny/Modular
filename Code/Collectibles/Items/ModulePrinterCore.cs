@@ -59,6 +59,11 @@ namespace ModularMod
             BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Internal", "yellow_chamber") { });
             BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Money = Power", "ring_of_miserly_protection") { });
 
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Full Potential", "utility_belt") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("System Upgrade", "ammo_synthesizer") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Bank", "ammo_belt") { });
+
+
             //CustomSynergies.Add("Additional Sight", new List<string> {"mdl:modular_printer_core" }, new List<string> {"lichs_eye_bullets" }, true);
             //CustomSynergies.Add("Power Allocation", new List<string> { "mdl:modular_printer_core" }, new List<string> { "unity" }, true);
             //CustomSynergies.Add("Chaos, Chaos!", new List<string> { "mdl:modular_printer_core" }, new List<string> { "chance_bullets" }, true);
