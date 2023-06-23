@@ -193,6 +193,7 @@
     <Compile Include="Code\Toolboxes\CustomSlashDoer.cs" />
     <Compile Include="Code\Toolboxes\LightningController.cs" />
     <Compile Include="Code\Toolboxes\StringsManager.cs" />
+    <Compile Include="Code\UI\BasicCustomSynergyNotify.cs" />
     <Compile Include="Code\UI\ScrapUIController.cs" />
     <Compile Include="Code\Unlocks\EnemyDeathUnlockController.cs" />
     <Compile Include="Past\OtherFloor\PDashTwo.cs" />

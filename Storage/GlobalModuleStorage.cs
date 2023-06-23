@@ -155,6 +155,17 @@ namespace ModularMod
                     break;
             }              
         }
+
+        public static DefaultModule ReturnModule(DefaultModule mod)
+        {
+            foreach(var entry in allModules)
+            {
+                if (mod.LabelName == entry.LabelName)
+                { return entry; }
+            }
+            //allModules.Where(self => self.LabelName == mod.name).First();
+            return null;
+        }
         public static DefaultModule ReturnRandomModule()
         {
             return BraveUtility.RandomElement<DefaultModule>(allModules);

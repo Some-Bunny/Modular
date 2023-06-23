@@ -23,7 +23,7 @@ namespace ModularMod
         {
             Name = "Ultra Ricochet",
             Description = "Stylish",
-            LongDescription = "Player Projectiles bounce off walls, enemies and each other, with force (+Extra Force per stack). Increases rate of fire (+25% hyperbolically per stack) and increases spread." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Player Projectiles bounce off walls, enemies and each other, with force (+Extra Force per stack). Increases rate of fire (+25% hyperbolically per stack) and increases spread. Bounces increase damage by 10% (+10% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("ultraricochet_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -35,14 +35,15 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("ultraricochet_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Ultra Ricochet " + h.ReturnTierLabel();
-            h.LabelDescription = "Player Projectiles bounce off walls, enemies and each other\nwith force (" + StaticColorHexes.AddColorToLabelString("+Extra Force", StaticColorHexes.Light_Orange_Hex) + "). Increases rate of fire (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n and increases spread.";
-            h.AddToGlobalStorage();
+            h.LabelDescription = "Player Projectiles bounce off walls, enemies and each other\nwith force (" + StaticColorHexes.AddColorToLabelString("+Extra Force", StaticColorHexes.Light_Orange_Hex) + "). Increases rate of fire (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n and increases spread.\nBounces increase damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ").";
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
             h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 15;
+            h.OverrideScrapCost = 12;
+            h.EnergyConsumption = 2;
+            h.AddToGlobalStorage();
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 
             ID = h.PickupObjectId;
@@ -54,19 +55,21 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.03f) { return; }
             p.gameObject.AddComponent<RicoShot>();
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += (20 * 1);
+            bounceProjModifier.numberOfBounces += (20 * this.ReturnStack(modulePrinterCore));
             bounceProjModifier.bouncesTrackEnemies = true;
-            bounceProjModifier.bounceTrackRadius = 7;
-            bounceProjModifier.TrackEnemyChance = 0.5f;
+            bounceProjModifier.bounceTrackRadius = 5;
+            bounceProjModifier.TrackEnemyChance = 1f;
+            bounceProjModifier.damageMultiplierOnBounce = 1 + (0.1f);
             bounceProjModifier.OnBounce += () =>
             {
                 GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
                 GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
-                blankObj.transform.localScale = Vector3.one * 0.5f;
+                blankObj.transform.localScale = Vector3.one * 0.35f;
                 Destroy(blankObj, 2f);
-                Exploder.DoRadialPush(p.sprite.WorldCenter, 25 * 1, 3);
-                Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25 * 1, 3);
+                Exploder.DoRadialPush(p.sprite.WorldCenter, 25, 3);
+                Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25, 3);
                 Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
+                Exploder.Explode(p.projectile.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, p.projectile.sprite.WorldCenter);
             };
         }
 
@@ -91,22 +94,23 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            //p.baseData.damage *= 0.7f;
             p.gameObject.AddComponent<RicoShot>();
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += (20 * this.ReturnStack(modulePrinterCore));
             bounceProjModifier.bouncesTrackEnemies = true;
-            bounceProjModifier.bounceTrackRadius = 7;
-            bounceProjModifier.TrackEnemyChance = 0.5f;
+            bounceProjModifier.bounceTrackRadius = 5;
+            bounceProjModifier.TrackEnemyChance = 1f;
+            bounceProjModifier.damageMultiplierOnBounce = 1 + (0.1f * this.ReturnStack(modulePrinterCore));
             bounceProjModifier.OnBounce += () =>
             {
                 GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
                 GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
-                blankObj.transform.localScale = Vector3.one * 0.5f;
+                blankObj.transform.localScale = Vector3.one * 0.35f;
                 Destroy(blankObj, 2f);
                 Exploder.DoRadialPush(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
                 Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
                 Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
+                Exploder.Explode(p.projectile.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, p.projectile.sprite.WorldCenter);
             };
         }
 
@@ -114,7 +118,6 @@ namespace ModularMod
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {
             player.stats.RecalculateStats(player);
-
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -146,17 +149,19 @@ namespace ModularMod
             if (otherBody.projectile && myBody.projectile)
             {
                 PhysicsEngine.SkipCollision = true;
+                myBody.RegisterTemporaryCollisionException(otherBody, 0.1f);
                 otherBody.projectile.hitEffects.HandleEnemyImpact(otherBody.projectile.sprite.WorldCenter, otherBody.transform.localEulerAngles.z, otherBody.transform, Vector2.zero, myBody.projectile.LastVelocity, true);
                 myBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
                 otherBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
                 GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
 
                 GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, myBody.projectile.sprite.WorldCenter, Quaternion.identity);
-                blankObj.transform.localScale = Vector3.one * 0.5f;
+                blankObj.transform.localScale = Vector3.one * 0.35f;
                 Destroy(blankObj, 2f);
                 Exploder.DoRadialPush(myBody.projectile.sprite.WorldCenter, 25 , 3);
                 Exploder.DoRadialKnockback(myBody.projectile.sprite.WorldCenter, 25 , 3);
                 Exploder.DoRadialMinorBreakableBreak(myBody.projectile.sprite.WorldCenter, 3);
+                Exploder.Explode(myBody.projectile.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, myBody.projectile.sprite.WorldCenter);
             }
         }
 

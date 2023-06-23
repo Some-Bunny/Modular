@@ -102,7 +102,7 @@ namespace ModularMod
             EnemyDeathUnlockController.Start();
             MultiActiveReloadManager.SetupHooks();
             CustomClipAmmoTypeToolbox.Init();
-            
+            BasicCustomSynergyNotifier.Init();
 
             //Items
             ModulePrinterCore.Init();

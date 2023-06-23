@@ -24,12 +24,13 @@ namespace ModularMod
         public class ShittyVFXAttacher : MonoBehaviour
         {
             public PlayerController mainPlayer;
+            public GameObject gameObj = VFXStorage.VFX_Modulable;
             public tk2dSpriteAnimator VFX;
-            public Gun g;
+            public PickupObject g;
             public void Start()
             {
-                g = this.GetComponent<Gun>();
-                VFX = UnityEngine.Object.Instantiate(VFXStorage.VFX_Modulable, g.sprite.WorldTopLeft, Quaternion.identity).GetComponent<tk2dSpriteAnimator>();
+                g = this.GetComponent<PickupObject>();
+                VFX = UnityEngine.Object.Instantiate(gameObj, g.sprite.WorldTopLeft, Quaternion.identity).GetComponent<tk2dSpriteAnimator>();
                 VFX.gameObject.transform.parent = g.gameObject.transform;
                 VFX.Play(mainPlayer.IsUsingAlternateCostume ? "start_alt" : "start");
             }
@@ -39,6 +40,7 @@ namespace ModularMod
                 VFX.PlayAndDestroyObject(mainPlayer.IsUsingAlternateCostume ? "break_alt" : "break");
             }
         }
+
 
         public class  ChooseModuleController : MonoBehaviour
         {
@@ -501,7 +503,7 @@ namespace ModularMod
         public static void Init()
         {
             new Hook(typeof(Gun).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("PickupHook"));
-            new Hook(typeof(Gun).GetMethod("OnEnteredRange", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("OnEnteredRangeHook"));
+            //new Hook(typeof(Gun).GetMethod("OnEnteredRange", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("OnEnteredRangeHook"));
 
             new Hook(typeof(PlayerController).GetMethod("SetStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("SetStencilValHook"));
             new Hook(typeof(PlayerController).GetMethod("UpdateStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("UpdateStencilValHook"));
@@ -516,6 +518,10 @@ namespace ModularMod
                  typeof(Hooks).GetMethod("AddProceduralTeleporterToRoomHook", BindingFlags.Static | BindingFlags.Public)
              );
             JuneLib.ItemsCore.AddChangeSpawnItem(ReturnObj);
+            
+            
+            new Hook(typeof(PickupObject).GetMethod("HandlePickupCurseParticles", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandlePickupCurseParticlesHook"));
+
         }
 
 
@@ -763,6 +769,25 @@ namespace ModularMod
                     }
                 }
             }
+        }
+
+        public static void HandlePickupCurseParticlesHook(Action<PickupObject> orig, PickupObject self)
+        {
+            orig(self);
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                if (player.PlayerHasCore() != null && self.gameObject.GetComponent<ShittyVFXAttacher>() == null && self.gameObject.GetComponent<ChooseModuleController>() == null && BasicCustomSynergyNotifier.ModularSynergy.isSynergyItem(self.PickupObjectId) == true)
+                {
+                    var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
+                    p.gameObj = VFXStorage.VFX__Synergy;
+                    p.mainPlayer = player;
+                }
+                else if (self is Gun && self.gameObject.GetComponent<ShittyVFXAttacher>() == null && self.gameObject.GetComponent<ChooseModuleController>() == null)
+                {
+                    var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
+                    p.mainPlayer = player;
+                }
+            }          
         }
     }
 }

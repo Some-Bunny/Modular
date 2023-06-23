@@ -39,6 +39,7 @@ namespace ModularMod
             bundle = null;
 
 
+
             var gunModulableLib = Module.ModularAssetBundle.LoadAsset<GameObject>("GunBuildAndWhatNotAnimation").GetComponent<tk2dSpriteAnimation>();
             GameObject Tether_VFX = new GameObject("Electric Build Tether");
             FakePrefab.DontDestroyOnLoad(Tether_VFX);
@@ -73,14 +74,38 @@ namespace ModularMod
             tk2dAnim_2.Library = gunModulableLib;
             tk2dAnim_2.defaultClipId = tk2dAnim.Library.GetClipIdByName("start");
             tk2dAnim_2.playAutomatically = true;
-            tk2d.usesOverrideMaterial = true;
+            tk2d2.usesOverrideMaterial = true;
             tk2d2.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
             tk2d2.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
             tk2d2.renderer.material.SetFloat("_EmissivePower", 30);
             tk2d2.renderer.material.SetFloat("_EmissiveColorPower", 30);
             tk2d2.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
             VFX_Modulable = VFX;
+
+
+            var SynergyLib = Module.ModularAssetBundle.LoadAsset<GameObject>("SynergyAnimation").GetComponent<tk2dSpriteAnimation>();
+            GameObject VFX_Synergy = new GameObject("VFX_SYNERGY");
+            FakePrefab.DontDestroyOnLoad(VFX_Synergy);
+            FakePrefab.MarkAsFakePrefab(VFX_Synergy);
+            VFX_Synergy.SetActive(false);
+            var tk2d3 = VFX_Synergy.AddComponent<tk2dSprite>();
+            tk2d3.Collection = StaticCollections.VFX_Collection;
+            tk2d3.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("synergy_arrow_idle_001"));
+            var tk2dAnim_3 = VFX_Synergy.AddComponent<tk2dSpriteAnimator>();
+
+            tk2dAnim_3.Library = SynergyLib;
+            tk2dAnim_3.defaultClipId = tk2dAnim.Library.GetClipIdByName("start");
+            tk2dAnim_3.playAutomatically = true;
+            tk2d3.usesOverrideMaterial = true;
+            tk2d3.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
+            tk2d3.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
+            tk2d3.renderer.material.SetFloat("_EmissivePower", 30);
+            tk2d3.renderer.material.SetFloat("_EmissiveColorPower", 30);
+            tk2d3.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
+            VFX__Synergy = VFX_Synergy;
         }
+
+        public static GameObject VFX__Synergy;
 
 
         public static GameObject VFX_Modulable;

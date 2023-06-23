@@ -14,6 +14,7 @@ using MonoMod.RuntimeDetour;
 using Planetside;
 using UnityEngine;
 using static Alexandria.Misc.CustomActions;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ModularMod
 {
@@ -39,6 +40,37 @@ namespace ModularMod
             
             ModulePrinterCore.ModulePrinterCoreID = item.PickupObjectId;
             EncounterDatabase.GetEntry(item.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
+
+
+
+            
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Additional Sight", "lichs_eye_bullets") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Allocation", "unity") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Chaos, Chaos!", "chance_bullets") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Wish I could have one of those!", "magazine_rack") { });
+
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_holster") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_lunchbox") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_locket") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_bottle") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_purse") { });
+
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Poison Power", "monster_blood") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Internal", "yellow_chamber") { });
+            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Money = Power", "ring_of_miserly_protection") { });
+
+            //CustomSynergies.Add("Additional Sight", new List<string> {"mdl:modular_printer_core" }, new List<string> {"lichs_eye_bullets" }, true);
+            //CustomSynergies.Add("Power Allocation", new List<string> { "mdl:modular_printer_core" }, new List<string> { "unity" }, true);
+            //CustomSynergies.Add("Chaos, Chaos!", new List<string> { "mdl:modular_printer_core" }, new List<string> { "chance_bullets" }, true);
+            //CustomSynergies.Add("Wish I could have one of those!", new List<string> { "mdl:modular_printer_core" }, new List<string> { "magazine_rack" }, true);
+
+            //CustomSynergies.Add("Poison Power", new List<string> { "mdl:modular_printer_core" }, new List<string> { "monster_blood" }, true);
+            //CustomSynergies.Add("Power Internal", new List<string> { "mdl:modular_printer_core" }, new List<string> { "yellow_chamber" }, true);
+            //CustomSynergies.Add("Money = Power", new List<string> { "mdl:modular_printer_core" }, new List<string> { "ring_of_miserly_protection" }, true);
+
+            //CustomSynergies.Add("Quick Draw", new List<string> { "mdl:modular_printer_core" }, new List<string> { "heart_holster" }, true);
+
+
 
             new Hook(typeof(SpawnGunslingGun).GetMethod("OnEnter", BindingFlags.Instance | BindingFlags.Public), typeof(ModulePrinterCore).GetMethod("GunslingKingGunCheck"));
         }
@@ -129,7 +161,7 @@ namespace ModularMod
         public bool OnAboutToFall(bool b)
         {
             if (OnAboutToFallContext != null) { b = OnAboutToFallContext(this, this.Owner); }
-            return  b;
+            return !b;
         }
 
         private bool b = false;
@@ -142,6 +174,15 @@ namespace ModularMod
 
         public bool TemporaryDisableDrop = false;
 
+
+        public static Color ColorToUse(PlayerController p)
+        {
+            return p.IsUsingAlternateCostume ? green_Color : cyan_Color;
+        }
+
+        private static Color32 cyan_Color = new Color32(121, 234, 255, 100);
+        private static Color32 green_Color = new Color32(0, 255, 54, 100);
+
         //Code to check for valid guns, and discards any guns considered invalid
         private void Player_GunChanged(Gun oldGun, Gun newGun, bool isNewGun)
         {
@@ -152,7 +193,7 @@ namespace ModularMod
             {
                 if (isNewGun == true)
                 {
-                    var t = Toolbox.GenerateText(base.Owner.transform, new Vector2(1.5f, 0.5f), 0.5f, "Gun Override Detected :\nWeapon Will Not Be Dropped.", new Color32(121, 234, 255, 100));
+                    var t = Toolbox.GenerateText(base.Owner.transform, new Vector2(1.5f, 0.5f), 0.5f, "Gun Override Detected :\nWeapon Will Not Be Dropped.", ColorToUse(Owner));
                     t.Invoke("Inv", 3.5f);
                 }
                 return;
@@ -171,7 +212,7 @@ namespace ModularMod
             yield return null;
             if (g == currentGunslingKingGun)
             {
-                var t = Toolbox.GenerateText(base.Owner.transform, new Vector2(1.5f, 0.5f), 0.5f, "Gun Override Detected :\nWeapon Will Not Be Dropped.", new Color32(121, 234, 255, 100));
+                var t = Toolbox.GenerateText(base.Owner.transform, new Vector2(1.5f, 0.5f), 0.5f, "Gun Override Detected :\nWeapon Will Not Be Dropped.", ColorToUse(Owner));
                 t.Invoke("Inv", 3.5f);
             }
             else
@@ -219,7 +260,47 @@ namespace ModularMod
             }
             if (ModularGunController) 
             { ModularGunController.ProcessStats(); }
+
+            LastPower_Tick = ReturnPowerConsumption();
+            LastTotal_Tick = ReturnTotalPower();
+
+            if (LastPower_Tick > LastTotal_Tick)
+            {
+                if (OnPowerUsageHigherThanCapacity != null) { OnPowerUsageHigherThanCapacity(this, Owner); }
+                DepoweredModuelNames = new Dictionary<string, int>();
+                while (LastPower_Tick > LastTotal_Tick) 
+                {
+                    List<ModuleContainer> H = new List<ModuleContainer>();
+                    H.AddRange(ModuleContainers.Where(self => self.ActiveCount > 0));
+                    H.Shuffle();
+
+                    for (int i = 0; i < H.Count; i++)
+                    {
+                        var defModule = H[i].defaultModule;
+                        DepowerModule(defModule);
+                        if (!DepoweredModuelNames.ContainsKey(defModule.LabelName)) { DepoweredModuelNames.Add(defModule.LabelName, 1); } else { DepoweredModuelNames[defModule.LabelName]++; }
+                        LastPower_Tick = ReturnPowerConsumption();
+
+                        if (LastPower_Tick == LastTotal_Tick || LastPower_Tick < LastTotal_Tick)
+                        {
+                            string t = "";
+                            foreach (var entry in DepoweredModuelNames)
+                            {
+                                t += "\n" + entry.Key + " : " + StaticColorHexes.AddColorToLabelString(entry.Value.ToString(), StaticColorHexes.Orange_Hex);
+                            }
+                            AkSoundEngine.PostEvent("Play_ENM_hammer_target_01", Owner.gameObject);
+                            var label = Toolbox.GenerateText(Owner.transform, new Vector2(2, 2), 0.5f, StaticColorHexes.AddColorToLabelString("! WARNING !", StaticColorHexes.Red_Color_Hex) + "\nPOWER USAGE EXCEEDED LIMIT.\nDepowered:" + t, ColorToUse(Owner), true, 4);
+                            label.Trigger_CustomTime(Owner.transform, new Vector2(2, 2), 0.5f, 4);
+                            return;
+                        }
+                    }
+                }
+            }
         }
+        private float LastPower_Tick, LastTotal_Tick;
+        private Dictionary<string, int> DepoweredModuelNames = new Dictionary<string, int>();
+
+        public Action<ModulePrinterCore, PlayerController> OnPowerUsageHigherThanCapacity;
 
         public void PostProcessBeamTick(BeamController b, SpeculativeRigidbody hitRigidbody ,float f)
         {
@@ -302,7 +383,6 @@ namespace ModularMod
             }
         }
 
-
         public static Action<ModulePrinterCore, Projectile, float, PlayerController> ModifyForChanceBullets;
 
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
@@ -361,10 +441,8 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, FlippableCover> TableFlipCompleted;
         public Func<ModulePrinterCore, PlayerController, bool> OnAboutToFallContext;
 
-
         public float StartingPower = 5;
         public Func<ModulePrinterCore, float> AdditionalPowerMods;
-
         public float ReturnTotalPower()
         {
             float c = StartingPower;
@@ -392,6 +470,8 @@ namespace ModularMod
             }
             return c;
         }
+
+
         public float ReturnTotalPowerMasteryless()
         {
             float c = StartingPower;
@@ -499,7 +579,6 @@ namespace ModularMod
                     {
                         c += ReturnPowerConsumption(ModuleContainers[i].defaultModule);
                     }
-
                 }
             }
             return c;
@@ -738,13 +817,7 @@ namespace ModularMod
         {
             public int AdditionalEnergy = 1;
         }
-
-        
-
-
-
         public CloakDoer cloakDoer;
-
         public List<ModuleContainer> ModuleContainers = new List<ModuleContainer>();
     }
 
@@ -756,9 +829,6 @@ namespace ModularMod
             player = p;
         }
         public List<CloakContext> cloakContexts = new List<CloakContext>();
-
-        
-
         public void ProcessCloak(CloakContext context)
         {
             cloakContexts.Add(context);
@@ -776,8 +846,6 @@ namespace ModularMod
                 }
             }
         }
-
-
         public void StartCloak()
         {
             player.StartCoroutine(HandleStealth(player));
@@ -914,6 +982,7 @@ namespace ModularMod
             public string Reason = "idk";
             public Action<PlayerController> OnEnteredCloak;
             public bool Retrigger_Enter = false;
+
             public Action<PlayerController> OnCloakBroken;
             public bool Retrigger_Cloak_Break = false;
 

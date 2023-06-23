@@ -209,6 +209,10 @@ MonoBehaviour:
     dataGUID: 
     managed: 0
     loadable: 0
+  - assetGUID: 12934ea3d2a531047bb1dcce8d3c6ab7
+    dataGUID: 
+    managed: 0
+    loadable: 0
   fontIndex:
   - assetGUID: 063b15d80dbb4604d890600a64c79cf8
     dataGUID: e7a6b09a73c6b2b4f8060096ddbd3b5e
@@ -3362,6 +3366,30 @@ MonoBehaviour:
     - chain_startup_004
     - chain_startup_005
     - chain_startup_006
+    - synergy_arrow_alt_idle_002
+    - synergy_arrow_alt_idle_003
+    - synergy_arrow_alt_idle_001
+    - synergy_arrow_alt_start_005
+    - synergy_arrow_alt_start_006
+    - synergy_arrow_alt_start_007
+    - synergy_arrow_idle_001
+    - synergy_arrow_alt_idle_005
+    - synergy_arrow_alt_start_002
+    - synergy_arrow_alt_start_003
+    - synergy_arrow_alt_idle_004
+    - synergy_arrow_alt_start_004
+    - synergy_arrow_alt_start_001
+    - synergy_arrow_idle_002
+    - synergy_arrow_idle_003
+    - synergy_arrow_idle_004
+    - synergy_arrow_idle_005
+    - synergy_arrow_start_001
+    - synergy_arrow_start_002
+    - synergy_arrow_start_003
+    - synergy_arrow_start_004
+    - synergy_arrow_start_005
+    - synergy_arrow_start_006
+    - synergy_arrow_start_007
     spriteTextureGUIDs:
     - 0d8586071a928fb4c920466116729c30
     - 1cf028702d6d57440bbc887fbde8087b
@@ -3719,6 +3747,30 @@ MonoBehaviour:
     - 8af8b9034e086cd4295cd29a4cca569a
     - ed7193503ccd0cb4daf53607082a1159
     - ed00c632dc51956438b2f23edec8ce48
+    - 413c3d9aad27e4c46bbf0e4bdff008ee
+    - 26214ae933ea72345b3cf7138768c375
+    - 8b69499fd41c39c4aafd2ea90cdbf0c5
+    - da0715c0acf69f34485caab7912b5eac
+    - 8183ec826c2aa3543a10acb6ad193ce7
+    - a7c3c6d2422ff614d8b1d6e6f2eff2b7
+    - 467159e2b22a99c43babc33821f42770
+    - 19aaccea99033914eaea31bcd1745b5e
+    - b59e12f502f4bf440b6b19d5c9e4aa35
+    - 3e7a48a9543f17d4784893d07c0b2642
+    - 3da133eb8bb5f2240adfcf81bd681d08
+    - 60fcfeae495881849833ee28fb464e0b
+    - efba2688d43d0034dbe6619c41b9eaf0
+    - 4ad542bbf9073cf43bcb88dfe99175fb
+    - c6ab45086a0147f4cb2c2f731e3a3acd
+    - ccec52299e8a4ab4aba43e84deef1baf
+    - 0ad2e2f3e05656e4bb02179f088c1081
+    - 9087bb0fe3691ab4583f43df632c00f9
+    - f11f77f1a3ae4664ab59e8f648458586
+    - 4b4e4eb0ad52ce44c82cbbeb0c38944a
+    - fa033efb5726d5b4fa8e2399b3fc7435
+    - 886a2fd3fdf996347a356f9cb38cfcbc
+    - 1fc71be7b786a794aac50879e17339cb
+    - 7052654599501ff4faf64abef4ea1815
     spriteTextureTimeStamps:
     - 1674763113.28595
     - 1674763113.29594
@@ -4076,6 +4128,30 @@ MonoBehaviour:
     - 1686880213.7992
     - 1686880213.8012
     - 1686880213.80421
+    - 1687482502.23799
+    - 1687482502.242
+    - 1687482502.2344
+    - 1687482468.46029
+    - 1687482468.46329
+    - 1687482468.46429
+    - 1687482068.64703
+    - 1687482502.246
+    - 1687482468.45378
+    - 1687482468.45578
+    - 1687482502.244
+    - 1687482468.45828
+    - 1687482468.45033
+    - 1687482068.65048
+    - 1687482068.65248
+    - 1687482068.65548
+    - 1687482068.65748
+    - 1687482251.14873
+    - 1687482251.15073
+    - 1687482251.15273
+    - 1687482251.15473
+    - 1687482251.15674
+    - 1687482251.15974
+    - 1687482251.16174
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

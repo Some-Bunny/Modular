@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Five-Shot Salute",
             Description = "One For Each Finger",
-            LongDescription = "Halves Rate Of Fire, and reduces Damage by 33%. Shoot 5 times the projectiles (+1 Projectile per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Slightly reduces Rate Of Fire, and reduces Damage by 33%. Shoot 5 times the projectiles (+1 Projectile per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Five-Shot Salute " + h.ReturnTierLabel();
-            h.LabelDescription = "Halves Rate Of Fire, and reduces Damage by 33%.\nShoot 5 times the projectiles (" + StaticColorHexes.AddColorToLabelString("+1 Projectile", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Slighly reduces Rate Of Fire and reduces Damage by 25%.\nShoot 5 times the projectiles (" + StaticColorHexes.AddColorToLabelString("+1 Projectile", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
@@ -59,15 +59,15 @@ namespace ModularMod
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 2;
+            return f * 1.2f;
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.damage *= 0.66f;
+            p.baseData.damage *= 0.75f;
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {
-            GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 3 + this.ReturnStack(Stored_Core), 18, 2);
+            GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 3 + this.ReturnStack(Stored_Core), 16, 2);
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)

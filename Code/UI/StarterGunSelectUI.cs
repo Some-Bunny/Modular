@@ -1677,7 +1677,7 @@ namespace ModularMod
             "Nearly all health upgrade items\ngrant extra "+StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+", but makes it\nharder to upgrade your Power\nin the future.",
             "Master Rounds are very valuable!\nThey grant extra "+StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+" and do NOT\nincrease the cost of\nupgrading your " + StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+"!",
             "Remember that you can switch your\nactive items Mode by pressing\nReload on a full clip.",
-            "Certain alternate weapons may do better\nwith Modules that may look\nnot very useful at first glance.",
+            "Certain alternate weapons may do\nbetter with Modules that may\nlooknot very useful at first glance.",
             "Modules need to be powered\nbefore they give any benefit.\nRemember to power them in your\nInventory.",
             "Look out after your " + StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+"!\nHigher tier modules use more" +StaticColorHexes.AddColorToLabelString("Power", StaticColorHexes.Light_Blue_Color_Hex)+"\nmake sure to manage it well!",
             "Certain Modules may give some\nbenefit without even powering them,\nbut only to a limited extent.",

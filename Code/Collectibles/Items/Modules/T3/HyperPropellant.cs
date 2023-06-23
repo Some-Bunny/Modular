@@ -131,16 +131,10 @@ namespace ModularMod
                 Reload_Process = ProcessReload,
             };
             modularGunController.statMods.Add(this.gunStatModifier);
-            modularGunController.OnGunFired += OPF;
             printer.OnPostProcessProjectile += PPP;
             modularGunController.gun.gunSwitchGroup = (PickupObjectDatabase.GetById(19) as Gun).gunSwitchGroup;
         }
 
-        public void OPF(ModulePrinterCore printer, PlayerController player, Gun gun)
-        {
-            
-
-        }
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
@@ -169,7 +163,6 @@ namespace ModularMod
         {
             modularGunController.RevertMuzzleFlash();
             if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
-            modularGunController.OnGunFired -= OPF;
             modulePrinter.OnPostProcessProjectile -= PPP;
             modularGunController.ResetSwitchGroup();
         }

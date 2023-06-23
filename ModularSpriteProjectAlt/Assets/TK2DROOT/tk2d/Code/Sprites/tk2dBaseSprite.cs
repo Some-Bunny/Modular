@@ -35,11 +35,21 @@ public abstract class tk2dBaseSprite : MonoBehaviour, tk2dRuntime.ISpriteCollect
 		UpperRight,
     }
 
-	/// <summary>
-	/// This is now private. You should use <see cref="tk2dBaseSprite.Collection">Collection</see> if you wish to read this value.
-	/// Use <see cref="tk2dBaseSprite.SetSprite">SetSprite</see> when you need to switch sprite collection.
-	/// </summary>
-	[SerializeField]
+
+    public enum PerpendicularState
+    {
+        UNDEFINED,
+        PERPENDICULAR,
+        FLAT
+    }
+    [SerializeField]
+    public tk2dBaseSprite.PerpendicularState CachedPerpState = PerpendicularState.FLAT;
+
+    /// <summary>
+    /// This is now private. You should use <see cref="tk2dBaseSprite.Collection">Collection</see> if you wish to read this value.
+    /// Use <see cref="tk2dBaseSprite.SetSprite">SetSprite</see> when you need to switch sprite collection.
+    /// </summary>
+    [SerializeField]
     private tk2dSpriteCollectionData collection;
 
 	/// <summary>

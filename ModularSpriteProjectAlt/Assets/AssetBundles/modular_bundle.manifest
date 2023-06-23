@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2445702499
+CRC: 1772028262
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 70170a7b4574beef41af8b22a4f61bb6
+    Hash: 9fc605dbea0f158a64ac99ad64c3b5c5
   TypeTreeHash:
     serializedVersion: 2
     Hash: d0b405c094c925d34f7a922684ac7d5f
@@ -80,6 +80,7 @@ Assets:
 - Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_inactive_alt.png
 - Assets/Sprites/UI/Name Label/Names/name_label_scattercannon.png
 - Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/t2_module material.mat
+- Assets/Sprites/VFX/Animations/SynergyAnimation.prefab
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun.png
 - Assets/Sprites/UI/Name Label/name_label_empty.png
 - Assets/Sprites/UI/Name Label/Alt/name_label_locked_alt.png

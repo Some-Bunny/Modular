@@ -1101,7 +1101,7 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
-                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
+                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
                         var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
@@ -1115,7 +1115,7 @@ namespace ModularMod
                         };
                         Button.OnUpdate += (l) =>
                         {              
-                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
+                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
                             l.Invalidate();
                         };
                         Button.label.MouseEnter += (o1, o2) =>
@@ -1227,7 +1227,7 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
-                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
+                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
                         var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
@@ -1241,7 +1241,7 @@ namespace ModularMod
                         };
                         Button.OnUpdate += (l) =>
                         {
-                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.ActiveStack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
+                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
                             l.Invalidate();
                         };
                         Button.label.MouseEnter += (o1, o2) =>

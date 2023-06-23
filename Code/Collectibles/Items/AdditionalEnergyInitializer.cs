@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using static ModularMod.Hooks;
 
 namespace ModularMod
 {
@@ -49,6 +50,9 @@ namespace ModularMod
             PickupObjectDatabase.GetById(570).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 2;
             PickupObjectDatabase.GetById(132).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 2;
             new Hook(typeof(PassiveItem).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(AdditionalEnergyInitializer).GetMethod("PickupHook"));
+            new Hook(typeof(PlayerItem).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(AdditionalEnergyInitializer).GetMethod("PickupHook_2"));
+
+
         }
         public static void PickupHook(Action<PassiveItem, PlayerController> orig, PassiveItem self, PlayerController player)
         {
@@ -65,6 +69,20 @@ namespace ModularMod
                     var fx = player.PlayEffectOnActor(PowerUpVFX, new Vector3(0, 1.25f));
                     fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("power_up");
                 }
+            }
+            var obj = self.gameObject.GetComponent<ShittyVFXAttacher>();
+            if (obj)
+            {
+               UnityEngine.Object.Destroy(obj);
+            }
+        }
+        public static void PickupHook_2(Action<PlayerItem, PlayerController> orig, PlayerItem self, PlayerController player)
+        {
+            orig(self, player);
+            var obj = self.gameObject.GetComponent<ShittyVFXAttacher>();
+            if (obj)
+            {
+                UnityEngine.Object.Destroy(obj);
             }
         }
     }
