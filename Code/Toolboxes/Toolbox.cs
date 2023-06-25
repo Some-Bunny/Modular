@@ -449,7 +449,6 @@ namespace ModularMod
             bholsterbeam1.beamModule = beamModule;
             bholsterbeam1.beamProjectile = beamProjectile;
             bholsterbeam1.firingEllipseCenter = transform.position;
-            bholsterbeam1.name = name;
             bholsterbeam1.northAngleTolerance = angle;
             return bholsterbeam1;
         }

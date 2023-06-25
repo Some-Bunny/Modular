@@ -99,6 +99,7 @@ namespace ModularMod
                 cc.extant_Crafting_Controller.OnCrafted += () =>
                 {
                     this.numberOfUses--;
+                    if (cc.extant_Crafting_Controller.Core.OnCraftedItem != null) { cc.extant_Crafting_Controller.Core.OnCraftedItem(cc.extant_Crafting_Controller.Core, LastOwner, this, cc.extant_Crafting_Controller.Queue); }
                     if (this.numberOfUses < 1)
                     {
                         BraveTime.ClearMultiplier(GameManager.Instance.gameObject);

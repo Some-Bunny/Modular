@@ -40,16 +40,16 @@ namespace ModularMod
                 companion.aiActor.specRigidbody.CollideWithOthers = true;
                 companion.aiActor.specRigidbody.CollideWithTileMap = true;
                 companion.aiActor.PreventFallingInPitsEver = false;
-                companion.aiActor.healthHaver.ForceSetCurrentHealth(30f);
+                companion.aiActor.healthHaver.ForceSetCurrentHealth(36f);
                 companion.aiActor.CollisionKnockbackStrength = 0f;
                 companion.aiActor.procedurallyOutlined = true;
                 companion.aiActor.CanTargetPlayers = true;
                 companion.aiActor.HasShadow = true;
                 companion.aiActor.SetIsFlying(true, "Gamemode: Creative");
                 companion.aiActor.PathableTiles = CellTypes.PIT | CellTypes.FLOOR;
-
+                companion.aiActor.AssignedCurrencyToDrop = 0;
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
-                companion.aiActor.healthHaver.SetHealthMaximum(30f, null, false);
+                companion.aiActor.healthHaver.SetHealthMaximum(36f, null, false);
                 companion.aiActor.specRigidbody.PixelColliders.Clear();
 
                 AIActor orLoadByGuid = EnemyDatabase.GetOrLoadByGuid("4d37ce3d666b4ddda8039929225b7ede");

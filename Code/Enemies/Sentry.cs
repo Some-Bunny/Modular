@@ -41,15 +41,16 @@ namespace ModularMod
                 companion.aiActor.specRigidbody.CollideWithOthers = true;
                 companion.aiActor.specRigidbody.CollideWithTileMap = true;
                 companion.aiActor.PreventFallingInPitsEver = false;
-                companion.aiActor.healthHaver.ForceSetCurrentHealth(32f);
+                companion.aiActor.healthHaver.ForceSetCurrentHealth(40f);
                 companion.aiActor.CollisionKnockbackStrength = 0f;
                 companion.aiActor.procedurallyOutlined = true;
                 companion.aiActor.CanTargetPlayers = true;
                 companion.aiActor.HasShadow = true;
                 companion.aiActor.PathableTiles = CellTypes.FLOOR;
                 companion.gameObject.GetOrAddComponent<TeleportationImmunity>();
+                companion.aiActor.AssignedCurrencyToDrop = 0;
 
-                companion.aiActor.healthHaver.SetHealthMaximum(32f, null, false);
+                companion.aiActor.healthHaver.SetHealthMaximum(40f, null, false);
                 companion.aiActor.specRigidbody.PixelColliders.Clear();
 
                 EnemyBuildingTools.AddShadowToAIActor(companion.aiActor, EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject, new Vector2(0.75f, 0.25f), "shadowPos");

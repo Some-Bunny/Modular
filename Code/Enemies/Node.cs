@@ -48,6 +48,7 @@ namespace ModularMod
                 companion.aiActor.PathableTiles = CellTypes.FLOOR;
                 companion.aiActor.SetIsFlying(true, "Gamemode: Creative");
                 companion.aiActor.PathableTiles = CellTypes.PIT | CellTypes.FLOOR;
+                companion.aiActor.AssignedCurrencyToDrop = 0;
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
                 companion.aiActor.healthHaver.SetHealthMaximum(12f, null, false);
@@ -510,21 +511,11 @@ namespace ModularMod
                     for (int i = 0; i < 12; i++)
                     {
                         base.Fire(new Direction(f + (i * 30), DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new Bullet("poundSmall"));
+                        base.Fire(new Direction(f + (i * 30), DirectionType.Absolute, -1f), new Speed(13, SpeedType.Absolute), new SpeedChangingBullet("poundSmall", 9, 120));
                     }
 
                 }
-                private void FireLine(float startingAngle)
-                {
-
-                    float num = 16.5f;
-                    for (int i = 0; i < 6; i++)
-                    {
-                        float num2 = Mathf.Atan((-45f + (float)i * num) / 45f) * 57.29578f;
-                        float num3 = Mathf.Cos(num2 * 0.017453292f);
-                        float num4 = ((double)Mathf.Abs(num3) >= 0.0001) ? (1f / num3) : 1f;
-                        base.Fire(new Direction(num2 + startingAngle, DirectionType.Absolute, -1f), new Speed(num4 * 9f, SpeedType.Absolute), new Bullet("poundSmall"));
-                    }
-                }
+              
             }
            
            

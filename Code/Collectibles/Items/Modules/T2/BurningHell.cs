@@ -163,6 +163,7 @@ namespace ModularMod
 
             modulePrinter.OnProjectileStickAction -= H;
             modulePrinter.OnStickyDestroyAction -= H2;
+            modulePrinter.OnPostProcessProjectile -= PPP;
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)

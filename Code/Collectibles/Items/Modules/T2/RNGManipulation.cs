@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "RNG Manipulation",
             Description = "Just Really Lucky",
-            LongDescription = "Grants better and more common room drops (+Chance and better loot drop odds per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants vastly improved and more common room drops (+Loot chance and better loot drop odds per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("rngmanipulation_t2_module"),
             Quality = ItemQuality.EXCLUDED,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("rngmanipulation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "RNG Manipulation " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants better and more common room drops.\n(" + StaticColorHexes.AddColorToLabelString("+Chance and better loot drop odds", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Grants vastly improved and more common room drops.\n(" + StaticColorHexes.AddColorToLabelString("+Loot chance and better loot drop odds", StaticColorHexes.Light_Orange_Hex) + ").";
             h.EnergyConsumption = 1;
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.7f;

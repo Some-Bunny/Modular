@@ -32,9 +32,23 @@ namespace ModularMod
             });
             ETGModConsole.Commands.GetGroup("pstmdl").AddUnit("load", LoadFloor);
             InitCustomDungeon();
+
+            List<AGDEnemyReplacementTier> m_cachedReplacementTiers = GameManager.Instance.EnemyReplacementTiers;
+            foreach (var entry in m_cachedReplacementTiers)
+            {
+                var h = entry.TargetGuids.Where(self => self == StaticGUIDs.Confirmed_GUID);
+                if (h.Count() > 0)
+                {
+                    ETGModConsole.Log(entry.Prereqs);
+                }
+            }
         }
         private static void LoadFloor(string[] obj)
         {
+            if (!GameManager.Instance.customFloors.Contains(PastDefinition))
+            {
+                GameManager.Instance.customFloors.Add(PastDefinition);
+            }
             GameManager.Instance.LoadCustomLevel(PastDungeon.PastDefinition.dungeonSceneName);
         }
         public static void InitCustomDungeon()
@@ -77,6 +91,10 @@ namespace ModularMod
 
         public static Dungeon GetOrLoadByNameHook(Func<string, Dungeon> orig, string name)
         {
+            if (!GameManager.Instance.customFloors.Contains(PastDefinition))
+            {
+                GameManager.Instance.customFloors.Add(PastDefinition);
+            }
             bool flag = name.ToLower() == "based_modular_past";
             Dungeon result;
             if (flag)
@@ -112,7 +130,7 @@ namespace ModularMod
         {
             var MinesDungeonPrefab = GetOrLoadByName_Orig("Base_Mines");
             //var CatacombsPrefab = GetOrLoadByName_Orig("Base_Catacombs");
-            var RatDungeonPrefab = GetOrLoadByName_Orig("Base_ResourcefulRat");
+            //var RatDungeonPrefab = GetOrLoadByName_Orig("Base_ResourcefulRat");
             var MarinePastPrefab = DungeonDatabase.GetOrLoadByName("Finalscenario_Soldier");
 
             dungeon.gameObject.name = "Base_Modular_Past";
@@ -148,6 +166,8 @@ namespace ModularMod
             WeightedIntCollection intCollection = new WeightedIntCollection();
             intCollection.elements = new WeightedInt[] { weightedInt };
             dungeon.decoSettings.standardRoomVisualSubtypes = intCollection;
+            dungeon.LevelOverrideType = GameManager.LevelOverrideState.CHARACTER_PAST;
+
             var deco = dungeon.decoSettings;
             
             deco.ambientLightColor = new Color(0.05f, 0.05f, 0.05f);
@@ -290,7 +310,7 @@ namespace ModularMod
             */
 
             //CatacombsPrefab = null;
-            RatDungeonPrefab = null;
+            //RatDungeonPrefab = null;
             MinesDungeonPrefab = null;
             MarinePastPrefab = null;
 

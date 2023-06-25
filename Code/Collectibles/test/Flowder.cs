@@ -1,5 +1,6 @@
 ﻿using Alexandria.ItemAPI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,12 @@ namespace ModularMod
         }
         public override void DoEffect(PlayerController user)
         {
+            if (this.LastOwner.PlayerHasCore() != null)
+            {
+                var core = this.LastOwner.PlayerHasCore().GiveTemporaryModule(GlobalModuleStorage.ReturnRandomModule(), "Randomweisser", 3);
+                GameManager.Instance.StartCoroutine(Delay(core.defaultModule, "Randomweisser"));
+            }
+            /*
             GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(SteelPanopticon.MegaFuckingLaser.gameObject, user.transform.position, Quaternion.Euler(0f, 0f, Vector2.down.ToAngle()), true);
             Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
             if (component != null)
@@ -41,10 +48,21 @@ namespace ModularMod
                 component.baseData.speed = 150;
                 component.Update();
             }
+            */
             //StarterGunSelectUIController.GenerateUI().ToggleUI(null, user);
 
             //GlobalMessageRadio.BroadcastMessage("eye_shot_1");
             //GameManager.Instance.LoadCustomFlowForDebug("NPCParadise", "Base_Castle", "tt_castle");
+        }
+        public IEnumerator Delay(DefaultModule mod, string context)
+        {
+
+            yield return new WaitForSeconds(5);
+            if (this.LastOwner.PlayerHasCore() != null)
+            {
+                this.LastOwner.PlayerHasCore().RemoveTemporaryModule(mod, context);
+            }
+            yield break;
         }
     }
 }

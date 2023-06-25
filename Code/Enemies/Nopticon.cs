@@ -31,8 +31,8 @@ namespace ModularMod
             public void Start()
             {
                 bodyPartController = this.GetComponent<AdvancedBodyPartController>();
-                bodyPartController.healthHaver.SetHealthMaximum(5);
-                bodyPartController.healthHaver.ForceSetCurrentHealth(5);
+                bodyPartController.healthHaver.SetHealthMaximum(8);
+                bodyPartController.healthHaver.ForceSetCurrentHealth(8);
                 //Parent = bodyPartController.MainBody;
 
                 bodyPartController.OnBodyPartPreDeath += (obj1, obj2, obj3) =>
@@ -402,6 +402,7 @@ namespace ModularMod
                 companion.aiActor.MovementSpeed = 1f;
                 companion.aiActor.healthHaver.PreventAllDamage = true;
                 companion.aiActor.healthHaver.flashesOnDamage = false;
+                companion.aiActor.AssignedCurrencyToDrop = 0;
 
                 companion.aiActor.CollisionDamage = 1f;
                 companion.aiActor.HasShadow = false;

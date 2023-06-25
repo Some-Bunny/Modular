@@ -163,8 +163,11 @@ namespace ModularMod
                 if (c.LabelName != this.LabelName)
                 {
                     found = !found;
+                    
                     c.FakeCount.Add(new Tuple<string, int>("Mirror", this.ReturnStack(printer)*2));
                     c.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
+                    
+
                     AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
                     for (int i = 0; i < this.ReturnStack(printer) * 2; i++)
                     {

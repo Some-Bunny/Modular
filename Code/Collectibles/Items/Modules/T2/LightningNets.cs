@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using static ETGMod;
 
 
 namespace ModularMod
@@ -168,19 +169,19 @@ namespace ModularMod
             m_extantLink.dimensions = new Vector2((float)num2, m_extantLink.dimensions.y);
             m_extantLink.transform.rotation = Quaternion.Euler(0f, 0f, num);
             m_extantLink.UpdateZDepth();
-            if (Damages == true)
-            {
-                Elapsed = 0;
-                this.ApplyLinearDamage(unitCenter, unitCenter2);
-                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 1.5f, Hit);
-                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
-            }
+            this.ApplyLinearDamage(unitCenter, unitCenter2);
+            this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 1.5f, Hit);
+            this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
         }
         public void Hit(AIActor aIActor, float f)
         {
-            if (aIActor.State == AIActor.ActorState.Normal)
+            if (!m_damagedEnemies_AOE.Contains(aIActor))
             {
-                aIActor.healthHaver.ApplyDamage(Damage / 4, aIActor.transform.PositionVector2(), "Zap");
+                if (aIActor.State == AIActor.ActorState.Normal)
+                {
+                    aIActor.healthHaver.ApplyDamage(Damage / 4, aIActor.transform.PositionVector2(), "Zap");
+                    GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aIActor, m_damagedEnemies_AOE));
+                }
             }
         }
         private void ApplyLinearDamage(Vector2 p1, Vector2 p2)
@@ -189,16 +190,31 @@ namespace ModularMod
             for (int i = 0; i < StaticReferenceManager.AllEnemies.Count; i++)
             {
                 AIActor aiactor = StaticReferenceManager.AllEnemies[i];
-                if (aiactor && aiactor.HasBeenEngaged && aiactor.IsNormalEnemy && aiactor.specRigidbody)
+                if (!m_damagedEnemies.Contains(aiactor))
                 {
-                    Vector2 zero = Vector2.zero;
-                    if (BraveUtility.LineIntersectsAABB(p1, p2, aiactor.specRigidbody.HitboxPixelCollider.UnitBottomLeft, aiactor.specRigidbody.HitboxPixelCollider.UnitDimensions, out zero))
+                    if (aiactor && aiactor.HasBeenEngaged && aiactor.IsNormalEnemy && aiactor.specRigidbody)
                     {
-                        aiactor.healthHaver.ApplyDamage(num, Vector2.zero, "Chain Lightning", CoreDamageTypes.Electric, DamageCategory.Normal, false, null, false);
+                        Vector2 zero = Vector2.zero;
+                        if (BraveUtility.LineIntersectsAABB(p1, p2, aiactor.specRigidbody.HitboxPixelCollider.UnitBottomLeft, aiactor.specRigidbody.HitboxPixelCollider.UnitDimensions, out zero))
+                        {
+                            aiactor.healthHaver.ApplyDamage(num, Vector2.zero, "Chain Lightning", CoreDamageTypes.Electric, DamageCategory.Normal, false, null, false);
+                            GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aiactor, m_damagedEnemies));
+                        }
                     }
-                }
+                }        
             }
         }
+
+        private IEnumerator HandleDamageCooldown(AIActor damagedTarget, HashSet<AIActor> list)
+        {
+            list.Add(damagedTarget);
+            yield return new WaitForSeconds(0.25f);
+            list.Remove(damagedTarget);
+            yield break;
+        }
+
+        private HashSet<AIActor> m_damagedEnemies = new HashSet<AIActor>();
+        private HashSet<AIActor> m_damagedEnemies_AOE = new HashSet<AIActor>();
 
 
         public float getCalculateddamage()

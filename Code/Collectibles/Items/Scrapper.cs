@@ -202,6 +202,8 @@ namespace ModularMod
             base.Pickup(player);
         }
 
+
+
         public void ReloadPressed(PlayerController p, Gun g)
         {
             if (g.ClipCapacity > g.ClipShotsRemaining) { return; }
@@ -217,8 +219,11 @@ namespace ModularMod
                 Inited = !Inited;
                 SetMode(Mode.COMPUTER);
                 base.LastOwner.OnReloadPressed += ReloadPressed;
+                cunt_To_Return_To = LastOwner;
             }
+            else if (LastOwner == null && this.GetComponent<DebrisObject>() != null) { this.Pickup(cunt_To_Return_To); }
         }
+        private PlayerController cunt_To_Return_To;
         private bool Inited = false;
 
         public void SwitchMode()
@@ -346,6 +351,12 @@ namespace ModularMod
 
         private void DoSpawnVFX(tk2dBaseSprite sprite, int ScrapCount)
         {
+            //ModifyScrapContext
+            var core = LastOwner.PlayerHasCore();
+            if (core != null && core.ModifyScrapContext != null)
+            {
+                ScrapCount = core.ModifyScrapContext(ScrapCount, core, LastOwner, this);
+            }
             Vector3 position = sprite.WorldBottomLeft;
 
             GameObject gameObject = new GameObject("suck image");
@@ -434,7 +445,6 @@ namespace ModularMod
 
                 if (StaticReferenceManager.AllDebris != null)
                 {
-                    //float num = float.MaxValue;
                     for (int i = 0; i < StaticReferenceManager.AllDebris.Count; i++)
                     {
                         DebrisObject debrisObject2 = StaticReferenceManager.AllDebris[i];
@@ -1454,7 +1464,6 @@ namespace ModularMod
         public ModifiedDefaultLabelManager PowerLabel;
 
     }
-
     public class ModuleCrafingController : ScriptableObject
     {
         private int Scale = 9;
@@ -1572,6 +1581,7 @@ namespace ModularMod
                     GameManager.Instance.AllPlayers[j].CurrentInputState = PlayerInputState.AllInput;
                 }
             }
+            if (Queue.Count == 0) { return; }
             GameManager.Instance.StartCoroutine(CraftModules(player, Queue));
         }
 
@@ -1579,7 +1589,7 @@ namespace ModularMod
         public IEnumerator CraftModules(PlayerController p, List<DefaultModule> modules)
         {
             AkSoundEngine.PostEvent("Play_OBJ_computer_boop_01", p.gameObject);
-            ETGModConsole.Log(modules.Count);
+            //ETGModConsole.Log(modules.Count);
 
             foreach (var entry in modules)
             {
@@ -1945,7 +1955,7 @@ namespace ModularMod
             }
         }
 
-        private List<DefaultModule> Queue = new List<DefaultModule>();
+        public List<DefaultModule> Queue = new List<DefaultModule>();
 
 
         public void UpdatePageLabel(List<GlobalModuleStorage.QuickAndMessyPage> quickAndMessyPages)

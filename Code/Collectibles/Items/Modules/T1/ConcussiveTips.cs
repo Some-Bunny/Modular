@@ -50,10 +50,10 @@ namespace ModularMod
         {                
             int stack = this.ReturnStack(modulePrinterCore);
             p.BossDamageMultiplier *=  1 + (0.25f * stack);
-            p.baseData.force *= 1 + (0.5f * stack);
+            p.baseData.force *= 1 + stack;
             p.StunApplyChance = 1 - (1 / (1 + 0.625f * stack));
             p.AppliesStun = true;
-            p.AppliedStunDuration = 1.5f + (0.5f * stack);
+            p.AppliedStunDuration = 1.25f *stack;
         }
     }
 }

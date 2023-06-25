@@ -103,6 +103,8 @@ namespace ModularMod
                 //companion.aiActor.CorpseObject = EnemyDatabase.GetOrLoadByGuid("01972dee89fc4404a5c408d50007dad5").CorpseObject;
                 companion.aiAnimator.OtherAnimations = new List<AIAnimator.NamedDirectionalAnimation>();
                 companion.aiActor.PreventBlackPhantom = false;
+                companion.aiActor.AssignedCurrencyToDrop = 0;
+
                 AIAnimator aiAnimator = companion.aiAnimator;
                 aiAnimator.IdleAnimation = new DirectionalAnimation
                 {

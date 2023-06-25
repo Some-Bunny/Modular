@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Text;
 using static DirectionalAnimation;
 using UnityEngine;
+using Newtonsoft.Json;
+using FullInspector;
 
 namespace ModularMod
 {
@@ -19,7 +21,7 @@ namespace ModularMod
 
         public static void Init()
         {
-            var actor = EnemyDatabase.GetOrLoadByGuid("f905765488874846b7ff257ff81d6d0c");
+            var actor = EnemyDatabase.GetOrLoadByGuid(StaticGUIDs.Fungun_GUID);
             behaviorSpeculatorPrefab = GameObject.Instantiate(actor.gameObject);
 
             foreach (Transform child in behaviorSpeculatorPrefab.transform)
@@ -205,13 +207,10 @@ namespace ModularMod
             bs.TargetBehaviors = new List<TargetBehaviorBase>();
             bs.OverrideBehaviors = new List<OverrideBehaviorBase>();
             bs.OtherBehaviors = new List<BehaviorBase>();
+            bs.AttackBehaviors = new List<AttackBehaviorBase>();
             if (UsesAttackGroup)
             {
                 bs.AttackBehaviorGroup.AttackBehaviors = new List<AttackBehaviorGroup.AttackGroupItem>();
-            }
-            else
-            {
-                bs.AttackBehaviors = new List<AttackBehaviorBase>();
             }
             //allows enemies to be tinted
             Material mat = bs.sprite.renderer.material;
@@ -233,8 +232,9 @@ namespace ModularMod
 
             EnemyDatabase.Instance.Entries.Add(enemyDatabaseEntry);
             EnemyBuilder.Dictionary.Add(guid, prefab);
-            //finalize
-            GameObject.DontDestroyOnLoad(prefab);
+            
+
+            //finalizeGameObject.DontDestroyOnLoad(prefab);
             FakePrefab.MarkAsFakePrefab(prefab);
             prefab.SetActive(false);
 
@@ -514,7 +514,7 @@ namespace ModularMod
             }
             if (customCollection == null) { ETGModConsole.Log("cullection is null"); }
             if (customCollection.spriteDefinitions == null) { ETGModConsole.Log("spriteDefinitions is null"); }
-            if (customCollection.spriteDefinitions[customCollection.GetSpriteIdByName("spriteName")] == null) { ETGModConsole.Log("spriteID is null"); }
+            if (customCollection.spriteDefinitions[customCollection.GetSpriteIdByName(spriteName)] == null) { ETGModConsole.Log("spriteID is null"); }
 
 
 
@@ -594,7 +594,7 @@ namespace ModularMod
 
             sprite.Collection = customCollection;
             customCollection.InitDictionary();
-            sprite.SetSprite(customCollection, customCollection.GetSpriteIdByName("spriteName"));
+            sprite.SetSprite(customCollection, customCollection.GetSpriteIdByName(spriteName));
             sprite.Build();
 
 

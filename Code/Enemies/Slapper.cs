@@ -111,6 +111,7 @@ namespace ModularMod
                 companion.aiActor.spriteAnimator.Library = h;
                 companion.aiActor.spriteAnimator.library = h;
                 companion.aiActor.aiAnimator.spriteAnimator = companion.aiActor.spriteAnimator;
+                companion.aiActor.AssignedCurrencyToDrop = 0;
 
 
                 Alexandria.EnemyAPI.EnemyBuildingTools.AddNewDirectionAnimation(aiAnimator, "awaken", new string[] { "awaken" }, new DirectionalAnimation.FlipType[1], DirectionalAnimation.DirectionType.Single);
@@ -186,7 +187,7 @@ namespace ModularMod
                         ShootPoint = m_CachedGunAttachPoint,
                         BulletScript = new CustomBulletScriptSelector(typeof(NormalAttack)),
                         LeadAmount = 0f,
-                        AttackCooldown = 1f,
+                        AttackCooldown = 0.5f,
                         Cooldown = 0f,
                         CooldownVariance = 0,
                         InitialCooldown = 0f,

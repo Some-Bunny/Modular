@@ -30,67 +30,7 @@ using static ModularMod.SteelPanopticon;
 namespace ModularMod
 {
 
-    /*
-    public class SteelPanopticonEngager : CustomEngageDoer
-    {
-        public void Awake()
-        {
-            this.aiActor.gameObject.GetComponent<GenericIntroDoer>().enabled = false;
-            this.aiActor.enabled = false;
-            this.aiActor.CollisionDamage = 0;
-            this.behaviorSpeculator.enabled = false;
-            this.specRigidbody.enabled = true;
-            this.aiActor.IgnoreForRoomClear = true;
-        }
-
-        public void DoDestroy()
-        {
-            this.StartCoroutine(DestroyRing());
-        }
-
-        private IEnumerator DestroyRing()
-        {
-            RoomHandler currentRoom = GameManager.Instance.BestActivePlayer.CurrentRoom;
-
-            float e = 0;
-            while (e < 0.1f)
-            {
-                e += BraveTime.DeltaTime;
-                yield return null;
-            }
-            this.aiActor.ParentRoom.EndTerrifyingDarkRoom(0.01f, 0.1f, 1f, null);
-
-
-            this.specRigidbody.enabled = false;
-            this.aiActor.IgnoreForRoomClear = false;
-
-            this.aiActor.healthHaver.bossHealthBar = HealthHaver.BossBarType.MainBar;
-            this.aiActor.healthHaver.PreventAllDamage = true;
-            this.aiActor.enabled = true;
-            this.aiActor.specRigidbody.enabled = true;
-            this.aiActor.IsGone = false;
-            this.aiActor.IgnoreForRoomClear = false;
-            this.aiActor.ToggleRenderers(true);
-            this.aiActor.State = AIActor.ActorState.Awakening;
-
-
-            this.aiActor.aiAnimator.OverrideIdleAnimation = null;
-            this.aiActor.aiAnimator.OverrideMoveAnimation = null;
-
-            this.aiActor.healthHaver.PreventAllDamage = false;
-            this.aiActor.behaviorSpeculator.enabled = true;
-            this.aiActor.HasBeenEngaged = true;
-            this.aiActor.State = AIActor.ActorState.Normal;
-
-
-            GameManager.Instance.PreventPausing = false;
-            this.aiActor.gameObject.GetComponent<GenericIntroDoer>().enabled = true;
-            this.aiActor.gameObject.GetComponent<GenericIntroDoer>().TriggerSequence(GameManager.Instance.BestActivePlayer);
-            this.aiActor.IsGone = false;
-            yield break;
-        }
-    }
-    */
+    
     public class ModularPrime : AIActor
     {
         public static GameObject prefab;
@@ -890,6 +830,8 @@ namespace ModularMod
 
                 companion.aiActor.AwakenAnimType = AwakenAnimationType.Default;
                 companion.aiActor.reinforceType = ReinforceType.Instant;
+                companion.aiActor.AssignedCurrencyToDrop = 0;
+
                 //companion.aiActor.gameObject.AddComponent<SteelPanopticonEngager>();
 
                 /*
@@ -1273,7 +1215,7 @@ namespace ModularMod
                     yield return null;
                 }
                 this.spriteAnimator.Play("death_2");
-                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}GOOD, GOOD.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}YOU'VE EARNED YOUR FREEDOM TO ME.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
                 e = 0;
                 while (e < 3.5f)
                 {
@@ -1282,7 +1224,7 @@ namespace ModularMod
                     e += BraveTime.DeltaTime;
                     yield return null;
                 }
-                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}YOU'LL USE YOUR FREEDOM WELL.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wj}GO.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
                 e = 0;
                 while (e < 5f)
                 {
@@ -1295,7 +1237,7 @@ namespace ModularMod
                 //death_3
                 this.spriteAnimator.Play("death_3");
                 Pixelator.Instance.FadeToColor(5f, Color.white, false, 0f);
-                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 4f, "YOU ARE WORTHY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
+                TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 4f, "IT WAS AN HONOR TO PROVE YOU.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, true, false);
                 e = 0;
                 while (e < 5.5f)
                 {
@@ -1436,10 +1378,10 @@ namespace ModularMod
                     this.ChangeSpeed(new Brave.BulletScript.Speed(0f, SpeedType.Absolute), 45);
                     yield return base.Wait(75);
                     base.PostWwiseEvent("Play_BOSS_dragun_rocket_01", null);
-                    for (int e = 0; e < 12; e++)
+                    for (int e = 0; e < 24; e++)
                     {
-                        base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 11, 180));
-                        base.Fire(new Direction(22.5f * e, DirectionType.Absolute, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("burst", 7, 180));
+                        base.Fire(new Direction(15 * e, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 11, 180));
+                        base.Fire(new Direction((15 * e)+7.5f, DirectionType.Absolute, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("burst", 7, 180));
 
                     }
                     //m_BOSS_dragun_rocket_01
@@ -1462,10 +1404,11 @@ namespace ModularMod
                 var onj = UnityEngine.Object.Instantiate(VFXObject, this.BulletBank.aiAnimator.sprite.WorldCenter - new Vector2(2.5f, 0), Quaternion.Euler(0, 0, 0));
                 onj.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("punch_blast");
                 onj.transform.parent = this.BulletBank.transform;
-                for (int i = 0; i < 40; i++)
+                for (int i = 0; i < 60; i++)
                 {
-                    base.Fire(new Direction(9 * i, DirectionType.Absolute, -1f), new Speed(8, SpeedType.Absolute), new Fuck());
-                    base.Fire(new Direction(9 * i, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new Fuck());
+                    base.Fire(new Direction(6 * i, DirectionType.Absolute, -1f), new Speed(5, SpeedType.Absolute), new Fuck());
+                    base.Fire(new Direction(6 * i, DirectionType.Absolute, -1f), new Speed(6, SpeedType.Absolute), new Fuck());
+                    base.Fire(new Direction(6 * i, DirectionType.Absolute, -1f), new Speed(7, SpeedType.Absolute), new Fuck());
 
                 }
                 yield return null;
@@ -1490,7 +1433,7 @@ namespace ModularMod
         {
             public override IEnumerator Top()
             {
-                for (int i = 0; i < (this.BulletBank.aiActor.GetComponent<ModularPrimeController>().Phase2 ? 10 : 4); i++)
+                for (int i = 0; i < (this.BulletBank.aiActor.GetComponent<ModularPrimeController>().Phase2 ? 20 : 8); i++)
                 {
                     base.Fire(new Direction(RandomAngle(), DirectionType.Absolute, -1f), new Speed(7, SpeedType.Absolute), new SpeedChangingBullet("burst", 12, UnityEngine.Random.Range(45, 180)));
                 }
@@ -1505,9 +1448,9 @@ namespace ModularMod
             {
                 for (int i = 0; i < 16; i++)
                 {
-                    base.Fire(new Direction(22.5f * i, DirectionType.Absolute, -1f), new Speed(14, SpeedType.Absolute), new SpeedChangingBullet("burst", 10, 60));
-                    base.Fire(new Direction((22.5f * i) + 11.25f, DirectionType.Absolute, -1f), new Speed(12, SpeedType.Absolute), new SpeedChangingBullet("burst", 10, 60));
-                    base.Fire(new Direction(22.5f * i, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 10, 60));
+                    base.Fire(new Direction(22.5f * i, DirectionType.Absolute, -1f), new Speed(14, SpeedType.Absolute), new SpeedChangingBullet("burst", 9, 60));
+                    base.Fire(new Direction((22.5f * i) + 11.25f, DirectionType.Absolute, -1f), new Speed(12, SpeedType.Absolute), new SpeedChangingBullet("burst", 9, 60));
+                    base.Fire(new Direction(22.5f * i, DirectionType.Absolute, -1f), new Speed(9, SpeedType.Absolute), new SpeedChangingBullet("burst", 9, 60));
                 }
                 yield return null;
             }
@@ -1527,12 +1470,28 @@ namespace ModularMod
                 {
                     for (int i = 0; i < 24; i++)
                     {
-                        base.Fire(new Direction(15f * i, DirectionType.Absolute, -1f), new Speed(14, SpeedType.Absolute), new SpeedChangingBullet("default", 1, 75));
+                        base.Fire(new Direction(15f * i, DirectionType.Absolute, -1f), new Speed(14, SpeedType.Absolute), new Fucky());
                     }
                 }
 
                 yield return null;
             }
+
+            public class Fucky : Bullet
+            {
+                public Fucky() : base("default", false, false, false)
+                {
+
+                }
+                public override IEnumerator Top()
+                {
+                    this.ChangeSpeed(new Brave.BulletScript.Speed(1f, SpeedType.Absolute), 75);
+                    yield return this.Wait(270);
+                    base.Vanish(false);
+                    yield break;
+                }
+            }
+
         }
 
 
@@ -1549,16 +1508,24 @@ namespace ModularMod
                 onj.transform.parent = this.BulletBank.transform;
                 for (int i = -1; i < 2; i++)
                 {
-                    base.Fire(new Direction(face + (i * 5), DirectionType.Absolute, -1f), new Speed(4, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 120));
+                    base.Fire(new Direction(face + (i * 5), DirectionType.Aim, -1f), new Speed(4, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 120));
                     if (fire)
                     {
-                        base.Fire(new Direction(face + (i * 5), DirectionType.Absolute, -1f), new Speed(2, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 240));
-                        base.Fire(new Direction(face + (i * 5), DirectionType.Absolute, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 360));
+                        base.Fire(new Direction(face + (i * 10), DirectionType.Aim, -1f), new Speed(2, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 240));
+                        base.Fire(new Direction(face + (i * 15), DirectionType.Aim, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 360));
                     }
                 }
                 while (this.IsEnded == false || this.Destroyed == false)
                 {
-                    base.Fire(new Direction(0, DirectionType.Absolute, -1f), new Speed(0, SpeedType.Absolute), new LingeringBullet(fire == true ? 750 : 450));
+                    if (fire == true)
+                    {
+                        base.Fire(new Direction(this.BulletBank.aiAnimator.FacingDirection + 150, DirectionType.Absolute, -1f), new Speed(5, SpeedType.Absolute), new LingeringBullet(fire == true ? 450 : 150));
+                        base.Fire(new Direction(this.BulletBank.aiAnimator.FacingDirection - 150, DirectionType.Absolute, -1f), new Speed(5, SpeedType.Absolute), new LingeringBullet(fire == true ? 450 : 150));
+                    }
+                    else
+                    {
+                        base.Fire(new Direction(0, DirectionType.Absolute, -1f), new Speed(0, SpeedType.Absolute), new LingeringBullet(fire == true ? 450 : 150));
+                    }
                     yield return base.Wait(1);
                 }
 
@@ -1573,6 +1540,7 @@ namespace ModularMod
 
                 public override IEnumerator Top()
                 {
+                    this.ChangeSpeed(new Brave.BulletScript.Speed(0, SpeedType.Absolute), 60);
                     yield return base.Wait(Length);
                     base.Vanish(false);
                     yield break;
@@ -1591,7 +1559,8 @@ namespace ModularMod
                 onj.transform.parent = this.BulletBank.transform;
                 for (int i = -3; i < 4; i++)
                 {
-                    base.Fire(new Direction(face + (i*7), DirectionType.Absolute, -1f), new Speed(7, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 20, 60));
+                    base.Fire(new Direction(face + (i*10), DirectionType.Absolute, -1f), new Speed(7, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 20, 60));
+                    base.Fire(new Direction(face + (i * 3), DirectionType.Absolute, -1f), new Speed(3, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 20, 150));
                 }
                 yield return null;
             }
@@ -1609,7 +1578,7 @@ namespace ModularMod
                 onj.transform.parent = this.BulletBank.transform;
                 for (int i = -7; i < 8; i++)
                 {
-                    base.Fire(new Direction(face + (i * 10), DirectionType.Absolute, -1f), new Speed(4, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 20, 120));
+                    base.Fire(new Direction(face + (i * 8), DirectionType.Absolute, -1f), new Speed(4, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 20, 120));
                 }
                 yield return null;
             }
@@ -1625,9 +1594,12 @@ namespace ModularMod
                 var onj = UnityEngine.Object.Instantiate(VFXObject, this.BulletBank.aiAnimator.sprite.WorldCenter, Quaternion.Euler(0, 0, face));
                 onj.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("punch");
                 onj.transform.parent = this.BulletBank.transform;
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < 12; i++)
                 {
-                    base.Fire(new Direction(22.5f * i, DirectionType.Absolute, -1f), new Speed(5, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 12, 150));
+                    base.Fire(new Direction(30f * i, DirectionType.Absolute, -1f), new Speed(2, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 300));
+                    base.Fire(new Direction(30f * i, DirectionType.Absolute, -1f), new Speed(2.75f, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 300));
+                    base.Fire(new Direction(30f * i, DirectionType.Absolute, -1f), new Speed(3.5f, SpeedType.Absolute), new SpeedChangingBullet("TurretBurst", 30, 300));
+
                 }
                 yield return null;
             }
@@ -1648,6 +1620,8 @@ namespace ModularMod
                 for (int i = 0; i < 24; i++)
                 {
                     base.Fire(new Direction(15 * i, DirectionType.Absolute, -1f), new Speed(16, SpeedType.Absolute), new SpeedChangingBullet("burst", 10, 60));
+                    base.Fire(new Direction((15 * i)+ 7.5f, DirectionType.Absolute, -1f), new Speed(14, SpeedType.Absolute), new SpeedChangingBullet("burst", 10, 60));
+
                 }
                 yield return null;
             }
@@ -1698,7 +1672,7 @@ namespace ModularMod
                 AkSoundEngine.PostEvent("Play_ENM_hammer_target_01", GameManager.Instance.BestActivePlayer.gameObject);
                 AkSoundEngine.PostEvent("Play_BOSS_omegaBeam_charge_01", GameManager.Instance.BestActivePlayer.gameObject);
                 float e = 0;
-                while (e < 2.5f)
+                while (e < 2f)
                 {
                     if (this.IsEnded || this.Destroyed || controll.Stop == true)
                     {
@@ -1717,13 +1691,13 @@ namespace ModularMod
                         entry.Value.renderer.material.SetFloat("_EmissivePower", 10 * e);
                         entry.Value.renderer.material.SetFloat("_EmissiveColorPower", 25f * e);
                         entry.Value.IsPerpendicular = false;
-                        entry.Value.gameObject.transform.position = Vector2.Lerp(FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou(), FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou() + Toolbox.GetUnitOnCircle(delta + (90 * entry.Key), entry.Key == 0 ? 0 : 1.5f * Mathf.Min(e * 0.66f, 1)), Toolbox.SinLerpTValue(Mathf.Min(e * 0.66f, 1)));
-                        if (e > 1.5)
+                        entry.Value.gameObject.transform.position = Vector2.Lerp(FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou(), FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou() + Toolbox.GetUnitOnCircle(delta + (90 * entry.Key), entry.Key == 0 ? 0 : 1.5f * Mathf.Min(e * 0.66f, 1)), Toolbox.SinLerpTValue(Mathf.Min(e * 0.625f, 1)));
+                        if (e > 1.375)
                         {
                             bool enabled = e % 0.2f > 0.1f;
                             entry.Value.renderer.enabled = enabled;
                         }
-                        if (e < 2f)
+                        if (e < 1.625f)
                         {
                             entry.Value.gameObject.transform.localRotation = Quaternion.Euler(0, 0, delta);
 

@@ -41,12 +41,30 @@ namespace ModularMod
 
             SmokeParticleSystem = ModularMod.Module.ModularAssetBundle.LoadAsset<GameObject>("Spooky Smoke").GetComponent<ParticleSystem>();
             InitCustomDungeon();
+            new Hook(
+                typeof(Dungeon).GetMethod("FloorReached", BindingFlags.Instance | BindingFlags.Public),
+                typeof(PDashTwo).GetMethod("FloorReachedHook", BindingFlags.Static | BindingFlags.Public)
+            );
         }
+
+        public static void FloorReachedHook(Action<Dungeon> orig, Dungeon self)
+        {
+            if (self.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.FINALGEON)
+            {
+                GameManager.Instance.RewardManager.FacelessChancePerFloor = 0;
+            }
+            orig(self);
+        }
+
 
         public static ParticleSystem SmokeParticleSystem;
 
         private static void LoadFloor(string[] obj)
         {
+            if (!GameManager.Instance.customFloors.Contains(PastDefinition)) 
+            {
+                GameManager.Instance.customFloors.Add(PastDefinition);
+            }
             GameManager.Instance.LoadCustomLevel(PDashTwo.PastDefinition.dungeonSceneName);
         }
         public static void InitCustomDungeon()
@@ -90,6 +108,10 @@ namespace ModularMod
 
         public static Dungeon GetOrLoadByNameHook(Func<string, Dungeon> orig, string name)
         {
+            if (!GameManager.Instance.customFloors.Contains(PastDefinition))
+            {
+                GameManager.Instance.customFloors.Add(PastDefinition);
+            }
             bool flag = name.ToLower() == "cringe_modular_past";
             Dungeon result;
             if (flag)
@@ -126,9 +148,10 @@ namespace ModularMod
             var MinesDungeonPrefab = GetOrLoadByName_Orig("Base_Mines");
             var MarinePastPrefab = DungeonDatabase.GetOrLoadByName("Finalscenario_Soldier");
             var RnG = GetOrLoadByName_Orig("Base_Nakatomi");
+            var Hell = GetOrLoadByName_Orig("base_bullethell");
 
 
-
+            dungeon.musicEventName = Hell.musicEventName;
             dungeon.gameObject.name = "Base_Modular_Past_2";
             dungeon.contentSource = ContentSource.CONTENT_UPDATE_03;
             dungeon.DungeonSeed = 0;
@@ -319,6 +342,7 @@ namespace ModularMod
             dungeon.UsesWallWarpWingDoors = false;
             dungeon.gameObject.AddComponent<P_2ParticleController>();
             dungeon.BossMasteryTokenItemId = ModulePrinterCore.ModulePrinterCoreID;
+            dungeon.LevelOverrideType = GameManager.LevelOverrideState.CHARACTER_PAST;
             /*
             //more variable we can copy from other floors, or make our own
             dungeon.PlaceDoors = false;
@@ -366,6 +390,7 @@ namespace ModularMod
             MinesDungeonPrefab = null;
             MarinePastPrefab = null;
             RnG = null;
+            Hell = null;
             return dungeon;
         }
 

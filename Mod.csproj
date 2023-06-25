@@ -60,6 +60,7 @@
     <Compile Include="Code\Collectibles\Guns\Gravity Pulsar\Gravity Pulsar Components.cs" />
     <Compile Include="Code\Collectibles\Guns\Gravity Pulsar\GravityPulsarAlt.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\BattersRevenge.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\TheScavenger.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T4\RoguesUltimatum.cs" />
     <Compile Include="Code\Components\TeleportationImmunity.cs" />
     <Compile Include="Code\Components\ExpandReticleRiserEffect.cs" />

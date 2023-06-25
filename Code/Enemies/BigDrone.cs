@@ -444,6 +444,7 @@ namespace ModularMod
                 mat2.SetFloat("_EmissivePower", 100);
                 mat2.SetFloat("_EmissiveThresholdSensitivity", 0.05f);
                 companion.sprite.renderer.material = mat2;
+                companion.aiActor.AssignedCurrencyToDrop = 0;
 
 
                 companion.aiActor.bulletBank.Bullets.Add(EnemyDatabase.GetOrLoadByGuid("ffca09398635467da3b1f4a54bcfda80").bulletBank.GetBullet("directedfire"));

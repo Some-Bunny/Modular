@@ -4208,6 +4208,8 @@ MonoBehaviour:
     - hunterseeker_t2_module
     - burninghell_t2_module
     - burninghell_t2_module_alt
+    - scavenger_t2_module
+    - scavenger_t2_module_alt
     spriteTextureGUIDs:
     - bbd2c1745dbb9144bae6499d8e6be2f6
     - 85671afff06206842b88bd16bfb8c70f
@@ -4257,6 +4259,8 @@ MonoBehaviour:
     - a888deba77492cb4cb221896650f5c63
     - 35c2a75c23dd4304296f4bfa01609275
     - 6db2909862e765944a26deb1f6edb68d
+    - 211ed9cf6c11f7d4fb88bc2c9be6b6d4
+    - de37247fa8d38f946a15f39d27bb92ba
     spriteTextureTimeStamps:
     - 1674916655.51335
     - 1674916696.08715
@@ -4306,6 +4310,8 @@ MonoBehaviour:
     - 1680720550.12444
     - 1680984431.82582
     - 1680984448.82806
+    - 1687554732.86708
+    - 1687554750.31917
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Avarice Cart",
             Description = "MONEY",
-            LongDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup. Enemies have a small chance of dropping a casing when killed (+7.5% per stack hyperbolically).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup. Enemies have a 10% chance of dropping a casing when killed (+10% per stack hyperbolically).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("avarice_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("avarice_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Avarice Cart " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup.\nEnemies have a small chance of\ndropping an additional casing when killed (" + StaticColorHexes.AddColorToLabelString("+7.5% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup.\nEnemies have a 10% chance of\ndropping an additional casing when killed (" + StaticColorHexes.AddColorToLabelString("+10% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AdditionalWeightMultiplier = 0.66f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -53,7 +53,7 @@ namespace ModularMod
 
         public void OKE(ModulePrinterCore modulePrinter, PlayerController player, AIActor aIActor)
         {
-            if (UnityEngine.Random.value < 1 - (1 / (1 + 0.075f * this.ReturnStack(modulePrinter))))
+            if (UnityEngine.Random.value < 1 - (1 / (1 + 0.1f * this.ReturnStack(modulePrinter))))
             {
                 LootEngine.SpawnCurrency(aIActor.sprite.WorldBottomCenter, 1);
             }

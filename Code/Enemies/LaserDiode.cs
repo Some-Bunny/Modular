@@ -3,6 +3,7 @@ using Alexandria.ItemAPI;
 using Alexandria.Misc;
 using Brave.BulletScript;
 using Dungeonator;
+using FullInspector;
 using Gungeon;
 using HutongGames.PlayMaker.Actions;
 using System;
@@ -47,6 +48,7 @@ namespace ModularMod
                 companion.aiActor.SetIsFlying(true, "Gamemode: Creative");
                 companion.aiActor.PathableTiles = CellTypes.PIT | CellTypes.FLOOR;
                 companion.gameObject.GetOrAddComponent<TeleportationImmunity>();
+                companion.aiActor.AssignedCurrencyToDrop = 0;
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
                 companion.aiActor.healthHaver.SetHealthMaximum(33f, null, false);
@@ -148,8 +150,10 @@ namespace ModularMod
 
                 var bs = prefab.GetComponent<BehaviorSpeculator>();
                 prefab.GetComponent<ObjectVisibilityManager>();
-                BehaviorSpeculator behaviorSpeculator = EnemyDatabase.GetOrLoadByGuid("01972dee89fc4404a5c408d50007dad5").behaviorSpeculator;
-                bs.OverrideBehaviors = behaviorSpeculator.OverrideBehaviors;
+                BehaviorSpeculator behaviorSpeculator = EnemyDatabase.GetOrLoadByGuid(StaticGUIDs.Bullet_Kin_GUID).behaviorSpeculator;
+
+
+                bs.OverrideBehaviors = new List<OverrideBehaviorBase>() { };//behaviorSpeculator.OverrideBehaviors;
                 bs.OtherBehaviors = behaviorSpeculator.OtherBehaviors;
 
                 var shootpoint = new GameObject("fuck");
@@ -246,6 +250,7 @@ namespace ModularMod
                     },
                     NickName = "Brapp Attack"
                     },
+
                     new AttackBehaviorGroup.AttackGroupItem()
                     {
                     Probability = 0f,
@@ -307,7 +312,9 @@ namespace ModularMod
                 bs.StartingFacingDirection = behaviorSpeculator.StartingFacingDirection;
                 bs.SkipTimingDifferentiator = behaviorSpeculator.SkipTimingDifferentiator;
 
-                
+
+                bs.RegenerateCache();
+
                 Material mat2 = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
                 mat2.mainTexture = companion.aiActor.sprite.renderer.material.mainTexture;
                 mat2.SetColor("_EmissiveColor", new Color32(255, 211, 214, 255));
@@ -342,10 +349,11 @@ namespace ModularMod
             }
             public void OnMessageRecieved(GameObject obj, string message)
             {
-                if (this.aiActor.isActiveAndEnabled == true)
+                if (this.aiActor.isActiveAndEnabled == true && this.aiActor.enabled == true)
                 {
                     if (message == "LaserDiodeLaserSync")
                     {
+                        
                         this.behaviorSpeculator.Interrupt();
                         this.behaviorSpeculator.AttackCooldown = 0f;
 
@@ -375,7 +383,6 @@ namespace ModularMod
                     }
                     if (message == "DeathStun")
                     {
-                        this.aiActor.behaviorSpeculator.Stun(0.5f);
                         this.behaviorSpeculator.Interrupt();
                         //this.aiActor.knockbackDoer.ApplyKnockback(Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), 2), 15);
                     }
