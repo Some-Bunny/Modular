@@ -36,8 +36,10 @@ namespace ModularMod
 
             FloorRoomInitialisationChain.InitCustomRooms(); //Init Rooms Before Flows
             SuperFlow.GenerateFlows(); //Flows
-
-            ETGModConsole.Commands.GetGroup("pstmdl").AddUnit("2", LoadFloor);
+            if (Module.Debug_Mode == true)
+            {
+                ETGModConsole.Commands.GetGroup("pstmdl").AddUnit("2", LoadFloor);
+            }
 
             SmokeParticleSystem = ModularMod.Module.ModularAssetBundle.LoadAsset<GameObject>("Spooky Smoke").GetComponent<ParticleSystem>();
             InitCustomDungeon();

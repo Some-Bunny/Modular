@@ -64,6 +64,7 @@ namespace ModularMod
 
             projectile.objectImpactEventName = (PickupObjectDatabase.GetById(81) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
             projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(81) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
+            projectile.pierceMinorBreakables = true;
 
             projectile.hitEffects.tileMapHorizontal = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(81) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             projectile.hitEffects.tileMapVertical = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(81) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);

@@ -2,11 +2,13 @@
 using Alexandria.Misc;
 using Dungeonator;
 using JuneLib.Items;
+using MonoMod.RuntimeDetour;
 using SaveAPI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
@@ -53,7 +55,7 @@ namespace ModularMod
 
             Up_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonUp"), "Up_B_UI_INV");
             Down_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonDown"), "Down_B_UI_INV");
-            Left_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonLeft"), "Left_B_UI_INV");
+            Left_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonLeft"), "Left_B_UI_INV"); 
             Right_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRight"), "Right_B_UI_INV");     
             Close_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Cancel"), "Close_B_UI_INV");
 
@@ -67,6 +69,9 @@ namespace ModularMod
             RightBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRightBright"), "RightBright_B_UI_INV");
             CloseBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("CanceBrightl"), "CloseBright_B_UI_INV");
 
+            Clock_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Clock"), "Clock_B_UI_INV");
+
+
             Googly_Bright_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("GooglyMooglyBright"), "GooglyMooglyBright_B_UI_INV");
 
             T1BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_1"), "T1B_B_UI_INV");
@@ -74,7 +79,39 @@ namespace ModularMod
             T3BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_3"), "T3B_B_UI_INV");
             T4BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_4"), "T4B_B_UI_INV");
             ID = pickup.PickupObjectId;
+
+            new Hook(typeof(HealthPickup).GetMethod("Start", BindingFlags.Instance | BindingFlags.Public), typeof(Scrapper).GetMethod("Start_HP"));
+            new Hook(typeof(KeyBulletPickup).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Key"));
+            new Hook(typeof(AmmoPickup).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Ammo"));
+            new Hook(typeof(SilencerItem).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Blank"));
+
         }
+
+        public static void Start_HP(Action<HealthPickup> orig, HealthPickup self)
+        {
+            orig(self);
+            if (!allPickups.Contains(self)) { allPickups.Add(self); }
+        }
+
+        public static void Start_Key(Action<KeyBulletPickup> orig, KeyBulletPickup self)
+        {
+            orig(self);
+            if (!allPickups.Contains(self)) { allPickups.Add(self); }
+        }
+        public static void Start_Ammo(Action<AmmoPickup> orig, AmmoPickup self)
+        {
+            orig(self);
+            if (!allPickups.Contains(self)) { allPickups.Add(self); }
+        }
+        public static void Start_Blank(Action<SilencerItem> orig, SilencerItem self)
+        {
+            orig(self);
+            if (!allPickups.Contains(self)) { allPickups.Add(self); }
+        }
+
+
+        public static List<PickupObject> allPickups = new List<PickupObject>();
+
         public static int ID;
 
         public static string Up_Button_UI_String;
@@ -93,6 +130,9 @@ namespace ModularMod
         public static string CloseBright_Button_UI_String;
 
         public static string Googly_Bright_UI_String;
+
+        public static string Clock_UI_String;
+
 
         public static string T1BS;
         public static string T2BS;
@@ -118,6 +158,8 @@ namespace ModularMod
                     return "[sprite \"" + Googly_UI_String + "\"]";
                 case ButtonUI.POWER:
                     return "[sprite \"" + "Power_B_UI_INV" + "\"]";
+                case ButtonUI.CLOCK:
+                    return "[sprite \"" + Clock_UI_String + "\"]";
                 default: return "|[sprite \"" + Close_Button_UI_String + "\"]"; ;
             }
         }
@@ -151,7 +193,7 @@ namespace ModularMod
 
         public enum ButtonUI
         {
-            UP, DOWN, LEFT, RIGHT, CLOSE, GOOGLY, POWER,
+            UP, DOWN, LEFT, RIGHT, CLOSE, GOOGLY, POWER, CLOCK
         }
         public enum ButtonUIBright
         {
@@ -162,27 +204,44 @@ namespace ModularMod
         public static GameObject ScrapVFX;
         public static GameObject Sparkticle;
 
-        public static List<Tuple<string, int>> tuples = new List<Tuple<string, int>>()
-        {
-            new Tuple<string, int>("IounStoneOrbitalItem", 2),
-            new Tuple<string, int>("HealthPickup", 1),
-            new Tuple<string, int>("AmmoPickup", 2),
-            new Tuple<string, int>("KeyBulletPickup", 2),
-            new Tuple<string, int>("SilencerItem", 2),
-        };
 
-        public static List<Tuple<string, int>> tuplesTypes = new List<Tuple<string, int>>()
+        public static int ReturnPickupScrapValue(PickupObject obj)
         {
-            new Tuple<string, int>("PlayerItem", 8),
-            new Tuple<string, int>("PassiveItem", 8),
-        };
+            int c = -1;
+            if (obj is IounStoneOrbitalItem) {c = 2; }
+            if (obj is HealthPickup) { c = (int)((obj as HealthPickup).healAmount * 2) + (obj as HealthPickup).armorAmount; }
+            if (obj is AmmoPickup)  { c = Amo((obj as AmmoPickup).mode);}
+            if (obj is KeyBulletPickup) { c = 1 + (obj as KeyBulletPickup).numberKeyBullets + ((obj as KeyBulletPickup).IsRatKey ? 5 : 0); }
+            if (obj is SilencerItem) { c = 2; }
+            if (obj is PassiveItem) { c = (obj as PassiveItem).Owner ? -1 : ReturnAmountBasedOnTier(obj.quality); }
+            if (obj is PlayerItem) { c = (obj as PlayerItem).LastOwner  ? -1 : ReturnAmountBasedOnTier(obj.quality); }
+            if (OverrideCustomScrapCheck != null) { c = OverrideCustomScrapCheck(obj); }
+            return c;
+        }
+        private static int Amo(AmmoPickup.AmmoPickupMode a)
+        {
+            switch (a)
+            {
+                case AmmoPickup.AmmoPickupMode.FULL_AMMO:
+                    return 2;
+                case AmmoPickup.AmmoPickupMode.SPREAD_AMMO:
+                    return 1;
+                case AmmoPickup.AmmoPickupMode.ONE_CLIP:
+                    return 1;
+            }
+            return -1;
+        }
+        public static Func<PickupObject, int> OverrideCustomScrapCheck;
+
+
+
 
         public override void Start()
         {
 
         }
 
-        public int ReturnAmountBasedOnTier(PickupObject.ItemQuality itemQuality)
+        public static int ReturnAmountBasedOnTier(PickupObject.ItemQuality itemQuality)
         {
             switch(itemQuality)
             {
@@ -275,10 +334,55 @@ namespace ModularMod
             {
                 if (currentMode == Mode.SCRAP)
                 {
+                    for (int i = allPickups.Count - 1; i > -1; i--)
+                    {
+                        PickupObject pickup = allPickups[i];
+                        if (pickup == null) { allPickups.RemoveAt(i); } else 
+                        {
+                            float sqrMagnitude = (user.CenterPosition - pickup.transform.position.XY()).sqrMagnitude;
+                            if (sqrMagnitude <= 25f)
+                            {
+                                if (Mathf.Sqrt(sqrMagnitude) < 2f)
+                                {
+                                    int scrap = ReturnPickupScrapValue(pickup);
+                                    if (scrap > 0)
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }                         
+                        }
+                    }
+                    List<DebrisObject> allDebris = StaticReferenceManager.AllDebris;
+                    if (allDebris != null)
+                    {
+                        for (int e = 0; e < allDebris.Count; e++)
+                        {
+                            DebrisObject debrisObject = allDebris[e];
+                            if (debrisObject && debrisObject.IsPickupObject)
+                            {
+
+                                float sqrMagnitude = (user.CenterPosition - debrisObject.transform.position.XY()).sqrMagnitude;
+                                if (sqrMagnitude <= 25f)
+                                {
+                                    if (Mathf.Sqrt(sqrMagnitude) < 2f)
+                                    {
+                                        int scrap = ReturnPickupScrapValue(debrisObject.GetComponent<PickupObject>());
+                                        if (scrap > 0)
+                                        {
+                                            if (!allPickups.Contains(debrisObject.GetComponent<PickupObject>())) { allPickups.Add(debrisObject.GetComponent<PickupObject>()); }
+                                            return true;
+                                        }
+                                    }
+                                }           
+                            }
+                        }
+                    }
+                    /*
                     RoomHandler room = user.GetAbsoluteParentRoom();
                     if (room != null)
                     {
-                        room.GetCenterCell();
+                        //room.GetCenterCell();
                         {
                             List<DebrisObject> allDebris = StaticReferenceManager.AllDebris;
                             if (allDebris != null)
@@ -321,24 +425,14 @@ namespace ModularMod
                                                         return true;
                                                     }
                                                 }
-                                                */
+                                                
                                             }
                                         }
                                     }
                                 }
                             }
-                            IPlayerInteractable lastInteractable = user.GetLastInteractable();
-                            if (lastInteractable is HeartDispenser)
-                            {
-                                HeartDispenser exists = lastInteractable as HeartDispenser;
-                                if (exists && HeartDispenser.CurrentHalfHeartsStored > 0)
-                                {
-                                    return true;
-                                }
-                            }
+                    */
 
-                        }
-                    }
 
                 }
                 else
@@ -351,7 +445,6 @@ namespace ModularMod
 
         private void DoSpawnVFX(tk2dBaseSprite sprite, int ScrapCount)
         {
-            //ModifyScrapContext
             var core = LastOwner.PlayerHasCore();
             if (core != null && core.ModifyScrapContext != null)
             {
@@ -388,6 +481,13 @@ namespace ModularMod
                 }
                 if (clip.GetFrame(idX).eventInfo.Contains("SpitOutScrap"))
                 {
+                    if (LastOwner.PlayerHasCore() != null) 
+                    {
+                        if (LastOwner.PlayerHasCore().OnScrapped != null)
+                        {
+                            LastOwner.PlayerHasCore().OnScrapped(ScrapCount, LastOwner.PlayerHasCore(), LastOwner, this);
+                        }
+                    }
                     AkSoundEngine.PostEvent("Stop_OBJ_paydaydrill_loop_01", Tk2dAnimator.gameObject);
                     float f = BraveUtility.RandomAngle();
                     for (int e = 0; e < ScrapCount; e++)
@@ -443,58 +543,30 @@ namespace ModularMod
                     }
                 }
 
-                if (StaticReferenceManager.AllDebris != null)
+                for (int i = allPickups.Count - 1; i > -1; i--)
                 {
-                    for (int i = 0; i < StaticReferenceManager.AllDebris.Count; i++)
+                    PickupObject pickup = allPickups[i];
+                    if (pickup == null) { allPickups.RemoveAt(i); }
+                    else
                     {
-                        DebrisObject debrisObject2 = StaticReferenceManager.AllDebris[i];
-                        bool isPickupObject = debrisObject2.IsPickupObject;
-                        if (isPickupObject)
+
+                        float sqrMagnitude = (user.CenterPosition - pickup.transform.position.XY()).sqrMagnitude;
+                        if (sqrMagnitude <= 25f)
                         {
-                            float sqrMagnitude = (user.CenterPosition - debrisObject2.transform.position.XY()).sqrMagnitude;
-                            if (sqrMagnitude <= 25f)
+                            if (Mathf.Sqrt(sqrMagnitude) < 2f)
                             {
-                                if (Mathf.Sqrt(sqrMagnitude) < 2f)
+                                int scrap = ReturnPickupScrapValue(pickup);
+                                if (scrap > 0)
                                 {
-                                    foreach (Component component in debrisObject2.GetComponents<Component>())
-                                    {
-                                        foreach (var entry in tuples)
-                                        {
-                                            if (component.GetType().ToString() == entry.First)
-                                            {
-                                                int amount = entry.Second;
-                                                DoSpawnVFX(debrisObject2.sprite, amount);
-                                                return;
-                                            }
-                                        }
-                                    }
-                                    foreach (Component component in debrisObject2.GetComponents<Component>())
-                                    {
-                                        foreach (var entry in tuplesTypes)
-                                        {
-                                            if (component.GetType().GetBaseType().ToString() == entry.First)
-                                            {
-                                                int amount = ReturnAmountBasedOnTier((debrisObject2.GetComponent(entry.First) as PickupObject).quality);
-                                                DoSpawnVFX(debrisObject2.sprite, amount);
-                                            }
-                                        }
-                                    }
-                                    /*
-                                    foreach (Component component in debrisObject2.GetComponentsInChildren<Component>())
-                                    {
-                                        if (component is Gun a)
-                                        {
-                                            float f = BraveUtility.RandomAngle();
-                                            int amount = ReturnAmountBasedOnTier(a.quality);
-                                            DoSpawnVFX(a.sprite, amount);
-                                        }
-                                    }
-                                    */
+                                    DoSpawnVFX(pickup.sprite, scrap);
                                 }
                             }
                         }
                     }
+                    
                 }
+
+               
             }
             else
             {
@@ -610,8 +682,9 @@ namespace ModularMod
             if (Core == null) { return; }
             IsNone = Core.ModuleContainers.Count == 0;
             ToggleControl(true);
-            GameManager.Instance.PreventPausing = true;
+            CursorPatch.DisplayCursorOnController = true;
             p.StartCoroutine(DoDelays(p));
+            UIHooks.OnPaused += Le_Bomb;
         }
         public IEnumerator DoFade(bool active)
         {
@@ -647,6 +720,17 @@ namespace ModularMod
                 BraveTime.SetTimeScaleMultiplier(0, GameManager.Instance.gameObject);
             }
             yield break;
+        }
+
+
+        public void Le_Bomb()
+        {
+            UIHooks.OnPaused -= Le_Bomb;
+            BraveTime.ClearMultiplier(GameManager.Instance.gameObject);
+            Nuke();
+            ObliterateUI();
+            Destroy(this);
+            CursorPatch.DisplayCursorOnController = false;
         }
         private void ToggleControl(bool active)
         {
@@ -696,7 +780,6 @@ namespace ModularMod
         {
             AkSoundEngine.PostEvent("Play_UI_menu_cancel_01", player.gameObject);
             AkSoundEngine.PostEvent("Play_UI_menu_unpause_01", player.gameObject);
-            GameManager.Instance.PreventPausing = false;
             GameManager.Instance.Unpause();
 
             Minimap.Instance.TemporarilyPreventMinimap = false;
@@ -721,7 +804,7 @@ namespace ModularMod
             CurrentMode = Mode.DEF;
             for (int i = 0; i < Core.ModuleContainers.Count; i++)
             {
-                var defMod = Core.ModuleContainers[i].defaultModule;
+                var defMod = Core.ModuleContainers[i];
                 AddNewPages(defMod);
                 AddNewPagesTiered(defMod);
             }
@@ -809,31 +892,7 @@ namespace ModularMod
                     {
                         DoUpdate(p, 1);
 
-                        /*
-                        UpdatePageLabel();
-                        ListEntry++;
-                        DownLabel.label.Invalidate();
-                        if (CurrentMode == Mode.DEF)
-                        {
-                            DisplayModule(p, true);
-                        }
-                        else if (CurrentMode == Mode.TIERED_1)
-                        {
-                            DisplayModuleTiered(p, ModuleTier.Tier_1, true);
-                        }
-                        else if (CurrentMode == Mode.TIERED_2)
-                        {
-                            DisplayModuleTiered(p, ModuleTier.Tier_2, true);
-                        }
-                        else if (CurrentMode == Mode.TIERED_3)
-                        {
-                            DisplayModuleTiered(p, ModuleTier.Tier_3, true);
-                        }
-                        else if (CurrentMode == Mode.TIERED_4)
-                        {
-                            DisplayModuleTiered(p, ModuleTier.Tier_Omega, true);
-                        }
-                        */
+                        
                     }
                     else if (IsNone == false)
                     {
@@ -866,11 +925,12 @@ namespace ModularMod
                 CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1f, 1.5f), 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, Scale);
                 CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    UIHooks.OnPaused -= Le_Bomb;
                     BraveTime.ClearMultiplier(GameManager.Instance.gameObject);
                     Nuke();
                     ObliterateUI();
                     Destroy(this);
-                    
+                    CursorPatch.DisplayCursorOnController = false;
                 };
                 CloseLabel.MouseHover = (label, boolean) =>
                 {
@@ -1111,12 +1171,18 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
-                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
+                        var module = page.moduleContainer.defaultModule;
+                        
+                        string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Blue_Color_Hex) + ") " : " ";
+                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+                        string T = module.LabelName + PowerLabels;
+                        string TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+
                         var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, page.module.LabelDescription, cl, true, Scale / 2);
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, module.LabelDescription, cl, true, Scale / 2);
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
@@ -1124,8 +1190,12 @@ namespace ModularMod
                             label.Invalidate();
                         };
                         Button.OnUpdate += (l) =>
-                        {              
-                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
+                        {
+                            Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Blue_Color_Hex) + ") " : " ";
+                            PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+                            T = module.LabelName + PowerLabels;
+                            TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+                            l.text = (Button.IsMouseHovering() == true ? TYellow : T);
                             l.Invalidate();
                         };
                         Button.label.MouseEnter += (o1, o2) =>
@@ -1137,7 +1207,7 @@ namespace ModularMod
                         var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
                         {
-                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
+                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
                             label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) +( CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
                             label.Invalidate();
@@ -1148,11 +1218,11 @@ namespace ModularMod
                         };
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
-                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
-                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && page.module.CanBeDisabled(Core, Core.ModularGunController) == true)
+                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && module.CanBeDisabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
-                                Core.DepowerModule(page.module);
+                                Core.DepowerModule(module);
                             }
                             else
                             {
@@ -1165,8 +1235,8 @@ namespace ModularMod
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
                             label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
 
@@ -1175,13 +1245,13 @@ namespace ModularMod
                         ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
 
-                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && page.module.CanBeEnabled(Core, Core.ModularGunController) == true)
+                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && module.CanBeEnabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ModulePowerUp", player.gameObject);
-                                Core.PowerModule(page.module);
+                                Core.PowerModule(module);
                             }
                             else
                             {
@@ -1237,12 +1307,18 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
-                        string T = page.module.LabelName + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(page.module) + ")";
+                        var module = page.moduleContainer.defaultModule;
+
+                        string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Blue_Color_Hex) + ") " : " ";
+                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+                        string T = module.LabelName + PowerLabels;
+                        string TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+
                         var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, page.module.LabelDescription, cl, true, Scale / 2);
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, module.LabelDescription, cl, true, Scale / 2);
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
@@ -1251,8 +1327,11 @@ namespace ModularMod
                         };
                         Button.OnUpdate += (l) =>
                         {
-                            l.text = (Button.IsMouseHovering() == true ? StaticColorHexes.AddColorToLabelString(page.module.LabelName, StaticColorHexes.Yellow_Hex) : page.module.LabelName) + " (" + StaticColorHexes.AddColorToLabelString(page.module.Stack().ToString() + " / " + page.module.TrueStack(), StaticColorHexes.Orange_Hex) + ") (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (Core.ReturnPowerConsumption(page.module)) + ")";
-                            l.Invalidate();
+                            Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Blue_Color_Hex) + ") " : " ";
+                            PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+                            T = module.LabelName + PowerLabels;
+                            TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+                            l.text = (Button.IsMouseHovering() == true ? TYellow : T); l.Invalidate();
                         };
                         Button.label.MouseEnter += (o1, o2) =>
                         {
@@ -1261,18 +1340,18 @@ namespace ModularMod
                         var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
                         {
-                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
+                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
                             label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
                             label.Invalidate();
                         };
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
-                            bool CanBeUsed = Core.ReturnActiveStack(page.module.LabelName) > 0;
-                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && page.module.CanBeDisabled(Core, Core.ModularGunController) == true)
+                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && module.CanBeDisabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
-                                Core.DepowerModule(page.module);
+                                Core.DepowerModule(module);
                             }
                             else
                             {
@@ -1288,8 +1367,8 @@ namespace ModularMod
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
                             label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
                             label.Invalidate();
@@ -1297,13 +1376,13 @@ namespace ModularMod
                         ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
-                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(page.module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(page.module.LabelName) > Core.ReturnActiveStack(page.module.LabelName);
+                            bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
 
-                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && page.module.CanBeEnabled(Core, Core.ModularGunController) == true)
+                            if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && module.CanBeEnabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ModulePowerUp", player.gameObject);
-                                Core.PowerModule(page.module);
+                                Core.PowerModule(module);
                             }
                             else
                             {
@@ -1363,7 +1442,7 @@ namespace ModularMod
         }
 
 
-        public int AddNewPages(DefaultModule module)
+        public int AddNewPages(ModuleContainer Container)
         {
             int currentPage = pages_default.Count > 0 ? pages_default.Last().Page : 0;
             int LastEntry = pages_default.Count > 0 ? pages_default.Last().Entry : -1;
@@ -1375,14 +1454,14 @@ namespace ModularMod
             QuickAndMessyPage quickAndMessy = new QuickAndMessyPage();
             quickAndMessy.Page = currentPage;
             quickAndMessy.Entry = LastEntry + 1;
-            quickAndMessy.module = module;
+            quickAndMessy.moduleContainer = Container;
             pages_default.Add(quickAndMessy);
             return LastEntry + 1;
         }
 
-        public int AddNewPagesTiered(DefaultModule module)
+        public int AddNewPagesTiered(ModuleContainer Container)
         {
-            var specList = ReturnPageListTier(module.Tier);
+            var specList = ReturnPageListTier(Container.tier);
             int currentPage = specList.Count > 0 ? specList.Last().Page : 0;
             int LastEntry = specList.Count > 0 ? specList.Last().Entry : -1;
             if (LastEntry > 3)
@@ -1393,7 +1472,7 @@ namespace ModularMod
             QuickAndMessyPage quickAndMessy = new QuickAndMessyPage();
             quickAndMessy.Page = currentPage;
             quickAndMessy.Entry = LastEntry + 1;
-            quickAndMessy.module = module;
+            quickAndMessy.moduleContainer = Container;
             specList.Add(quickAndMessy);
             return LastEntry + 1;
         }
@@ -1437,7 +1516,7 @@ namespace ModularMod
 
         public class QuickAndMessyPage
         {
-            public DefaultModule module;
+            public ModuleContainer moduleContainer;
             public int Page;
             public int Entry;
         }
@@ -1471,16 +1550,28 @@ namespace ModularMod
 
         public void DoQuickStart(PlayerController p)
         {
+
             AkSoundEngine.PostEvent("Play_UI_menu_pause_01", p.gameObject);
             player = p;
             Core = ReturnCore(p);
             if (Core == null) { return; }
             GameManager.Instance.PreventPausing = true;
+            CursorPatch.DisplayCursorOnController = true;
 
             p.StartCoroutine(DoDelays(p));
             ToggleControl(true);
-        }
+            UIHooks.OnPaused += Le_Bomb;
 
+        }
+        public void Le_Bomb()
+        {
+            UIHooks.OnPaused -= Le_Bomb;
+            BraveTime.ClearMultiplier(GameManager.Instance.gameObject);
+            Nuke();
+            ObliterateUI();
+            Destroy(this);
+            CursorPatch.DisplayCursorOnController = false;
+        }
         public IEnumerator DoFade(bool active)
         {
             GameManager.Instance.MainCameraController.SetManualControl(true, true);
@@ -1581,10 +1672,10 @@ namespace ModularMod
                     GameManager.Instance.AllPlayers[j].CurrentInputState = PlayerInputState.AllInput;
                 }
             }
+            CursorPatch.DisplayCursorOnController = false;
             if (Queue.Count == 0) { return; }
             GameManager.Instance.StartCoroutine(CraftModules(player, Queue));
         }
-
 
         public IEnumerator CraftModules(PlayerController p, List<DefaultModule> modules)
         {
@@ -1694,6 +1785,7 @@ namespace ModularMod
                 CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 0.25f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, Scale + 6);
                 CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
+                    UIHooks.OnPaused -= Le_Bomb;
                     BraveTime.ClearMultiplier(GameManager.Instance.gameObject);
                     ObliterateUI();
                     Destroy(this);
@@ -1999,13 +2091,13 @@ namespace ModularMod
 
         private void ObliterateCraftUI()
         {
-            if (pageReturnLabel) { pageReturnLabel.Inv(); }
             if (PageLabel) { PageLabel.Inv(); }
             if (extantLabel) { extantLabel.Inv(); }
             if (pageUpLabel) { pageUpLabel.Inv(); }
             if (pageDownLabel) { pageDownLabel.Inv(); }
             if (PageLabel) { PageLabel.Inv(); }
             if (craftLabel) { craftLabel.Inv(); }
+            if (pageReturnLabel) { pageReturnLabel.Inv(); }
 
 
             foreach (var entry in craftingLabels)

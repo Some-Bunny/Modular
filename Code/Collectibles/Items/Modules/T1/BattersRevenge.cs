@@ -129,8 +129,8 @@ namespace ModularMod
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
             modulePrinter.OnGunReloaded -= OGR;
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
         }
         public class BallComponent : BraveBehaviour
         {
@@ -173,7 +173,7 @@ namespace ModularMod
             {
 
                 Projectile p = otherRigidbody.projectile;
-                if (p != null && p.GetComponent<BallComponent>() == null)
+                if (p != null && otherRigidbody.GetComponent<BallComponent>() == null)
                 {
                     PhysicsEngine.SkipCollision = true;
                     myRigidbody.RegisterTemporaryCollisionException(otherRigidbody, 1);
@@ -196,7 +196,7 @@ namespace ModularMod
                         BounceProjMod1.numberOfBounces += 3;
                     }
                 }
-                else if (p.GetComponent<BallComponent>() != null)
+                else if (otherRigidbody.GetComponent<BallComponent>() != null)
                 {
                     myRigidbody.RegisterTemporaryCollisionException(otherRigidbody, 1);
                     PhysicsEngine.SkipCollision = true;

@@ -30,7 +30,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.0.0";
+        public const string VERSION = "1.0.4";
         public const string TEXT_COLOR = "#79eaff";
 
         public static string FilePathFolder;
@@ -41,7 +41,7 @@ namespace ModularMod
         public static AdvancedStringDB Strings;
 
         private static bool SoundTest = false;
-        //private static bool Test_Copy = false;
+        public static bool Debug_Mode = false;
         private static bool DialogueTest = false;
 
         public void Start(){ ETGModMainBehaviour.WaitForGameManagerStart(GMStart); }
@@ -50,7 +50,10 @@ namespace ModularMod
         {
             //Start up SaveAPI
             SaveAPIManager.Setup("mdl");
+            new Harmony(GUID).PatchAll();
         }
+
+
         private void GameManager_Awake(System.Action<GameManager> orig, GameManager self)
         {
             orig(self);
@@ -97,12 +100,12 @@ namespace ModularMod
             //==========================================//
 
             //Hooks
+            DungeonHooks.Init();
             Hooks.Init();
             Actions.Init();
             EnemyDeathUnlockController.Start();
             MultiActiveReloadManager.SetupHooks();
             CustomClipAmmoTypeToolbox.Init();
-            BasicCustomSynergyNotifier.Init();
 
             //Items
             ModulePrinterCore.Init();
@@ -219,12 +222,11 @@ namespace ModularMod
 
             PastDungeon.Init();
             PDashTwo.Init();
-            //Alexandria.DungeonAPI.RoomUtility.EnableDebugLogging = true;
-            //Alexandria.DungeonAPI.DungeonHandler.debugFlow = true;
-            //Alexandria.DungeonAPI.RoomFactory.LoadRoomsFromRoomDirectory("Modular", this.FolderPath() + "/rooms");
 
             this.StartCoroutine(Delayedstarthandler());
-            Log($"{NAME} v{VERSION} started successfully.", TEXT_COLOR);
+
+            ConsoleMagic.LogButCool($"{NAME} v{VERSION} started successfully.", Module.ModularAssetBundle.LoadAsset<Texture2D>("modular_Tex_Icon"));
+            //Log($"{NAME} v{VERSION} started successfully.", TEXT_COLOR);
 
             if (SoundTest == true)
             {
@@ -261,11 +263,14 @@ namespace ModularMod
 
             //ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
 
-            ETGModConsole.Commands.GetGroup("mdl").AddUnit("cratetoggle", Crate);
+            if (Debug_Mode == true)
+            {
+                ETGModConsole.Commands.GetGroup("mdl").AddUnit("cratetoggle", Crate);
 
 
-            ETGModConsole.Commands.GetGroup("mdl").AddUnit("lock_all", Lock);
-            ETGModConsole.Commands.GetGroup("mdl").AddUnit("unlock_all", Unlock);
+                ETGModConsole.Commands.GetGroup("mdl").AddUnit("lock_all", Lock);
+                ETGModConsole.Commands.GetGroup("mdl").AddUnit("unlock_all", Unlock);
+            }
 
 
             if (this.OnFrameDelay != null) 

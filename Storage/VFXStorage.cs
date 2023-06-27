@@ -1,8 +1,10 @@
 ﻿using Alexandria.ItemAPI;
 using Gungeon;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 
@@ -103,7 +105,26 @@ namespace ModularMod
             tk2d3.renderer.material.SetFloat("_EmissiveColorPower", 30);
             tk2d3.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
             VFX__Synergy = VFX_Synergy;
+
+            GameObject VFX_Popup = new GameObject("VFX_Popup");
+            FakePrefab.MarkAsFakePrefab(VFX_Popup);
+            FakePrefab.DontDestroyOnLoad(VFX_Popup);
+            var tk2d3_1 = VFX_Popup.AddComponent<tk2dSprite>();
+            tk2d3_1.Collection = StaticCollections.Module_T1_Collection;
+
+            AdditionalBraveLight braveLight = VFX_Popup.gameObject.AddComponent<AdditionalBraveLight>();
+            braveLight.transform.position = tk2d3_1.sprite.WorldCenter;
+            braveLight.LightColor = Color.white;
+            braveLight.LightIntensity = 0f;
+            braveLight.LightRadius = 0f;
+
+            tk2d3_1.usesOverrideMaterial = true;
+            tk2d3_1.renderer.material.shader = Shader.Find("Brave/Internal/SimpleAlphaFadeUnlit");
+            tk2d3_1.renderer.material.SetFloat("_Fade", 0f);
+
+            VFX_SpriteAppear = VFX_Popup;
         }
+        public static GameObject VFX_SpriteAppear;
 
         public static GameObject VFX__Synergy;
 
@@ -123,6 +144,100 @@ namespace ModularMod
         public static GameObject MachoBraceDustupVFX;
         public static GameObject MachoBraceBurstVFX;
         public static GameObject WarningImpactVFX;
+
+
+
+        public static void DoFancyFlashOfModules(int Amount, PlayerController player, DefaultModule Module_To_Display)
+        {
+            for (int r = 0; r < Amount; r++)
+            {
+                GameManager.Instance.StartCoroutine(DoFlashyVFX(player, Module_To_Display));
+            }
+        }
+
+        public static void DoFancyDestroyOfModules(int Amount, PlayerController player, DefaultModule Module_To_Display)
+        {
+            for (int r = 0; r < Amount; r++)
+            {
+                GameManager.Instance.StartCoroutine(DoFlashyVFX_Destroy(player, Module_To_Display));
+            }
+        }
+
+        private static IEnumerator DoFlashyVFX(PlayerController player, DefaultModule properties)
+        {
+            Vector2 playerPos = player.sprite.WorldCenter;
+
+            var VFX_Object = UnityEngine.Object.Instantiate(VFX_SpriteAppear, playerPos, Quaternion.identity).GetComponent<tk2dBaseSprite>();
+
+            VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(properties).sprite.collection, GlobalModuleStorage.ReturnModule(properties).sprite.spriteId);
+
+            var light = VFX_Object.GetComponent<AdditionalBraveLight>();
+            light.LightColor = GlobalModuleStorage.ReturnModule(properties).BraveLight.LightColor;
+
+            Vector2 offset = Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(2f, 5.0f));
+            float e = 0;
+            while (e < 1)
+            {
+                float t = Toolbox.SinLerpTValue(e);
+
+                VFX_Object.transform.position = Vector2.Lerp(playerPos, playerPos + offset, t);
+                VFX_Object.renderer.material.SetFloat("_Fade", t);
+                light.LightIntensity = Mathf.Lerp(0, 2.5f, t);
+                light.LightRadius = Mathf.Lerp(0, 2, t);
+                e += BraveTime.DeltaTime;
+                yield return null;
+            }
+            e = 0;
+            while (e < 1)
+            {
+                e += BraveTime.DeltaTime;
+                yield return null;
+            }
+            e = 0;
+            Vector2 p = VFX_Object.transform.PositionVector2();
+            float d = UnityEngine.Random.Range(0.7f, 1.5f);
+            while (e < d)
+            {
+                float t = Toolbox.SinLerpTValue(e / d);
+                VFX_Object.transform.position = Vector2.Lerp(p, player.sprite.WorldCenter, t);
+                light.LightIntensity = Mathf.Lerp(2.5f, 1, t);
+                light.LightRadius = Mathf.Lerp(0, 2, t);
+                VFX_Object.renderer.material.SetFloat("_Fade", 1 - t);
+
+                e += BraveTime.DeltaTime;
+                yield return null;
+            }
+            LootEngine.DoDefaultSynergyPoof(player.sprite.WorldCenter);
+            UnityEngine.Object.Destroy(VFX_Object.gameObject);
+            yield break;
+        }
+
+        private static IEnumerator DoFlashyVFX_Destroy(PlayerController player, DefaultModule properties)
+        {
+            Vector2 playerPos = player.sprite.WorldCenter;
+
+            var VFX_Object = UnityEngine.Object.Instantiate(VFX_SpriteAppear, playerPos, Quaternion.identity).GetComponent<tk2dBaseSprite>();
+            VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(properties).sprite.collection, GlobalModuleStorage.ReturnModule(properties).sprite.spriteId);
+            var light = VFX_Object.GetComponent<AdditionalBraveLight>();
+            light.LightColor = properties.BraveLight.LightColor;
+
+            Vector2 offset = Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(2f, 5.0f));
+            float e = 0;
+            while (e < 2)
+            {
+                float t = Toolbox.SinLerpTValueFull(e / 2);
+                float t1 = Toolbox.SinLerpTValue(e / 2);
+
+                VFX_Object.transform.position = Vector2.Lerp(playerPos, playerPos + offset, t1);
+                VFX_Object.renderer.material.SetFloat("_Fade", t);
+                light.LightIntensity = Mathf.Lerp(0, 2.5f, t);
+                light.LightRadius = Mathf.Lerp(0, 2, t);
+                e += BraveTime.DeltaTime;
+                yield return null;
+            }
+            UnityEngine.Object.Destroy(VFX_Object.gameObject);
+            yield break;
+        }
 
     }
 }

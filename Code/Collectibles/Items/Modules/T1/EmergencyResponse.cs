@@ -30,7 +30,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.8f;
             h.LabelName = "Emergency Response" + h.ReturnTierLabel();
-            h.LabelDescription = "Taking damage grants a double damage\nand double fire rate\nthat degrades over 15 (" + StaticColorHexes.AddColorToLabelString("+7.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.LabelDescription = "Taking damage grants a double damage\nand double fire rate boost\nthat degrades over 15 (" + StaticColorHexes.AddColorToLabelString("+7.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -82,7 +82,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnDamaged -= OD;
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
         }
 
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)

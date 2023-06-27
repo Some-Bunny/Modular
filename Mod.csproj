@@ -62,8 +62,9 @@
     <Compile Include="Code\Collectibles\Items\Modules\T1\BattersRevenge.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\TheScavenger.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T4\RoguesUltimatum.cs" />
-    <Compile Include="Code\Components\TeleportationImmunity.cs" />
-    <Compile Include="Code\Components\ExpandReticleRiserEffect.cs" />
+    <Compile Include="Code\Components\Enemy Components\TeleportationImmunity.cs" />
+    <Compile Include="Code\Components\VFX Components\ExpandReticleRiserEffect.cs" />
+    <Compile Include="Code\Components\VFX Components\VFXAttacher.cs" />
     <Compile Include="Code\Controllers\ItemSynergyController.cs" />
     <Compile Include="Code\Controllers\CrateSpawnController.cs" />
     <Compile Include="Code\Controllers\ExpandMusicAPI.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Code\Collectibles\Guns\DefaultArmCannon.cs" />
     <Compile Include="Code\Collectibles\Guns\ModularGunComponent.cs" />
     <Compile Include="Code\Hooks\Actions.cs" />
+    <Compile Include="Code\Hooks\Dungeon Hooks.cs" />
     <Compile Include="Code\Hooks\Hooks.cs" />
     <Compile Include="Code\Hooks\UIHooks.cs" />
     <Compile Include="Code\Collectibles\Items\AdditionalEnergyInitializer.cs" />
@@ -181,9 +183,9 @@
     <Compile Include="Code\Collectibles\Items\Modules\TemplateModule.cs" />
     <Compile Include="Code\Controllers\MultiActiveReloadManager.cs" />
     <Compile Include="Code\Collectibles\Guns\LightLance\LightLanceComponents.cs" />
-    <Compile Include="Code\Components\VoltaicTetherComponent.cs" />
-    <Compile Include="Code\Components\StickyProjectileComponent.cs" />
-    <Compile Include="Code\Components\DetachtrailFromParent.cs" />
+    <Compile Include="Code\Components\Projectile Components\VoltaicTetherComponent.cs" />
+    <Compile Include="Code\Components\Projectile Components\StickyProjectileComponent.cs" />
+    <Compile Include="Code\Components\Projectile Components\DetachtrailFromParent.cs" />
     <Compile Include="Code\Toolboxes\Assetbundle Supported\BeamToolbox.cs" />
     <Compile Include="Code\Toolboxes\Assetbundle Supported\CustomClipAmmoTypes.cs" />
     <Compile Include="Code\Toolboxes\Assetbundle Supported\EnemyBuilder.cs" />
@@ -194,7 +196,9 @@
     <Compile Include="Code\Toolboxes\CustomSlashDoer.cs" />
     <Compile Include="Code\Toolboxes\LightningController.cs" />
     <Compile Include="Code\Toolboxes\StringsManager.cs" />
-    <Compile Include="Code\UI\BasicCustomSynergyNotify.cs" />
+    <Compile Include="Code\UI\ChooseModuleController.cs" />
+    <Compile Include="Code\UI\ConsoleMagic.cs" />
+    <Compile Include="Code\UI\ControllerDisplayOverride.cs" />
     <Compile Include="Code\UI\ScrapUIController.cs" />
     <Compile Include="Code\Unlocks\EnemyDeathUnlockController.cs" />
     <Compile Include="Past\OtherFloor\PDashTwo.cs" />
@@ -1605,8 +1609,9 @@
     <EmbeddedResource Include="Sprites\Modular\newaltspritesetup\breach_idles\tummy\robot_select_tummy_011.png" />
     <EmbeddedResource Include="Sprites\Modular\newaltspritesetup\breach_idles\tummy\robot_select_tummy_012.png" />
     <EmbeddedResource Include="Sprites\Modular\newaltspritesetup\breach_idles\tummy\robot_select_tummy_013.png" />
-    <EmbeddedResource Include="Sprites\Modular\loadoutsprites\c_scrap.png" />
     <Content Include="icon.ico" />
+    <EmbeddedResource Include="Sprites\Modular\loadoutsprites\c_core.png" />
+    <EmbeddedResource Include="Sprites\Modular\loadoutsprites\d_scrap.png" />
     <Content Include="Sprites\Modular\newspritesetup\death_coop\cc_sprite_placeholder.png" />
     <EmbeddedResource Include="Sprites\Modular\newspritesetup\spinfall\robot_spinfall_001.png" />
     <EmbeddedResource Include="Sprites\Modular\newspritesetup\spinfall\robot_spinfall_002.png" />

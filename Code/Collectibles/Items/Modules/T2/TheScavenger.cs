@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "The Scavenger",
             Description = "Pointy",
-            LongDescription = "Grants 1 (+1 per stack) additional scrap when scrapping items or pickups. Grants 1 (+1 per stack) shots to your clip, +20% (+20%) damage and +10% movement speed per Scrap.\nVery slightly increase Scrap drops from room clear." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 1 (+1 per stack) additional scrap when scrapping items or pickups. Grants 1 (+1 per stack) shots to your clip and +5% movement speed per Scrap.\nVery slightly increase Scrap drops from room clear." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("scavenger_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,14 +30,14 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("scavenger_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "The Scavenger " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") additional scrap when scrapping items or pickups.\nGrants 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") shots to your clip,\n+20% (" + StaticColorHexes.AddColorToLabelString("+20", StaticColorHexes.Light_Orange_Hex) +") damage and +10% movement speed per Scrap.\nVery slightly increase Scrap drops from room clear.";
+            h.LabelDescription = "Grants 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") additional scrap when scrapping items or pickups.\nGrants 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") shots to your clip\nand +5% movement speed per Scrap.\nVery slightly increase Scrap drops from room clear.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.EnergyConsumption = 1;
-            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
+            h.AdditionalWeightMultiplier *= 0.75f;
+
             ID = h.PickupObjectId;
             ValidRoomRewardContents = new Alexandria.RoomRewardAPI.ValidRoomRewardContents()
             {
@@ -54,15 +54,10 @@ namespace ModularMod
         public static Alexandria.RoomRewardAPI.ValidRoomRewardContents ValidRoomRewardContents;
 
 
-        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
-        {
-            if (UnityEngine.Random.value > 0.15f) { return; }
-            p.baseData.damage *= 1 + (0.2f * player.GetComponent<ConsumableStorage>().GetConsumableOfName("Scrap"));
-        }
+
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            modulePrinter.OnPostProcessProjectile += PPP;
             modulePrinter.ModifyScrapContext += MSC;
             this.gunStatModifier = new ModuleGunStatModifier()
             {
@@ -74,7 +69,7 @@ namespace ModularMod
         }
         public Vector2 MovementMod(Vector2 currentVel, ModulePrinterCore core, PlayerController p)
         {
-            return currentVel *= 1 + (0.1f * (p.GetComponent<ConsumableStorage>().GetConsumableOfName("Scrap")));
+            return currentVel *= 1 + (0.05f * (p.GetComponent<ConsumableStorage>().GetConsumableOfName("Scrap")));
         }
 
 
@@ -85,8 +80,7 @@ namespace ModularMod
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
-            modulePrinter.OnPostProcessProjectile -= PPP;
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
             modulePrinter.ModifyScrapContext -= MSC;
             modulePrinter.VoluntaryMovement_Modifier -= MovementMod;
             Alexandria.RoomRewardAPI.OnRoomRewardDetermineContents -= OnDetermineContents;
@@ -95,7 +89,7 @@ namespace ModularMod
         }
         public void OnDetermineContents(RoomHandler room, Alexandria.RoomRewardAPI.ValidRoomRewardContents validRoomReward, float f)
         {
-            validRoomReward.additionalRewardChance -= (float)(0.02f + (0.02f * Stack()));
+            validRoomReward.additionalRewardChance -= (float)(0.01f + (0.01f * Stack()));
             validRoomReward.overrideItemPool.AddRange(ReturnThing());
         }
         public List<Tuple<float, int>> ReturnThing()
@@ -109,10 +103,7 @@ namespace ModularMod
             }
             return copy.overrideItemPool;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
-        {
-            p.baseData.damage *= 1 + ((0.2f * this.ReturnStack(modulePrinterCore)) * player.GetComponent<ConsumableStorage>().GetConsumableOfName("Scrap")); 
-        }
+
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             return clip + (player.GetComponent<ConsumableStorage>().GetConsumableOfName("Scrap") * this.ReturnStack(modulePrinterCore));

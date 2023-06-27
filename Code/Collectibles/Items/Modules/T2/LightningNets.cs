@@ -177,7 +177,7 @@ namespace ModularMod
         {
             if (!m_damagedEnemies_AOE.Contains(aIActor))
             {
-                if (aIActor.State == AIActor.ActorState.Normal)
+                if (aIActor.State == AIActor.ActorState.Normal && aIActor.CanTargetPlayers == true && aIActor.CanTargetEnemies == false)
                 {
                     aIActor.healthHaver.ApplyDamage(Damage / 4, aIActor.transform.PositionVector2(), "Zap");
                     GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aIActor, m_damagedEnemies_AOE));
@@ -192,7 +192,7 @@ namespace ModularMod
                 AIActor aiactor = StaticReferenceManager.AllEnemies[i];
                 if (!m_damagedEnemies.Contains(aiactor))
                 {
-                    if (aiactor && aiactor.HasBeenEngaged && aiactor.IsNormalEnemy && aiactor.specRigidbody)
+                    if (aiactor && aiactor.HasBeenEngaged && aiactor.IsNormalEnemy && aiactor.specRigidbody && aiactor.CanTargetPlayers == true && aiactor.CanTargetEnemies == false)
                     {
                         Vector2 zero = Vector2.zero;
                         if (BraveUtility.LineIntersectsAABB(p1, p2, aiactor.specRigidbody.HitboxPixelCollider.UnitBottomLeft, aiactor.specRigidbody.HitboxPixelCollider.UnitDimensions, out zero))

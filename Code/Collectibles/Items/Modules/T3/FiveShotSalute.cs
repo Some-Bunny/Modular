@@ -78,7 +78,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
             player.stats.AdditionalVolleyModifiers -= Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
         }

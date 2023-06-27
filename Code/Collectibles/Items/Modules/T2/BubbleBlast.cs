@@ -45,14 +45,14 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            mod = new ModuleGunStatModifier()
+            gunStatModifier = new ModuleGunStatModifier()
             {
                 Name = "CouterProduction",
                 Accuracy_Process = ProcessAccuracy,
                 FireRate_Process = ProcessFireRate
 
             };
-            modularGunController.statMods.Add(mod);
+            modularGunController.statMods.Add(gunStatModifier);
             modulePrinter.OnPostProcessProjectile += PPP;
             modulePrinter.OnGunReloaded += OGR;
         }
@@ -87,7 +87,7 @@ namespace ModularMod
             {
                 if (p == null) { yield break; }
                 float t = e / 0.66f;
-                p.baseData.speed = Mathf.Lerp(s, s * 0.1f, t);
+                p.baseData.speed = Mathf.Lerp(s, s * 0.0666f, t);
                 p.UpdateSpeed();
                 e += (BraveTime.DeltaTime*1.5f);
                 yield return null;
@@ -99,13 +99,10 @@ namespace ModularMod
         }
 
 
-        public ModuleGunStatModifier mod;
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController.statMods.Contains(mod)) 
-            {
-                modularGunController.statMods.Remove(mod);
-            }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnGunReloaded -= OGR;
         }
@@ -130,7 +127,7 @@ namespace ModularMod
             public void DoBoost()
             {
                 if (self == null) { return; }
-                self.baseData.speed *= 10;
+                self.baseData.speed *= 20;
                 self.UpdateSpeed();
                 self.baseData.damage *= DamageBoost;
             }

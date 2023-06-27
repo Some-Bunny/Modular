@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 471375584
+CRC: 2731463039
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c1ea95d380ae4f7d3abcda906c282f53
+    Hash: c51617d6a8a95e62e9c29496e963a089
   TypeTreeHash:
     serializedVersion: 2
     Hash: d0b405c094c925d34f7a922684ac7d5f
@@ -59,6 +59,7 @@ Assets:
 - Assets/Sprites/Enemies/ModularEnemyCollection Data/mdlrenemy material.mat
 - Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun.png
 - Assets/Sprites/Projectiles/Beams/ModularBeamCollection Data/ModularBeamCollection.prefab
+- Assets/Sprites/UI/ComputerCore/Clock.png
 - Assets/Sprites/Enemies/Slapper/SlapperAnimation.prefab
 - Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_press_alt.png
 - Assets/Sprites/Objects/Crate/CrateAnimation.prefab
@@ -83,6 +84,7 @@ Assets:
 - Assets/Sprites/VFX/Animations/SynergyAnimation.prefab
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun.png
 - Assets/Sprites/UI/Name Label/name_label_empty.png
+- Assets/Sprites/Characters/modular_Tex_Icon.png
 - Assets/Sprites/UI/Name Label/Alt/name_label_locked_alt.png
 - Assets/Sprites/Objects/DecorativeObjects/LaserTurret/LaserTurretAnimation.prefab
 - Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_pressed_alt.png

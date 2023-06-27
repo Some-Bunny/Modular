@@ -71,7 +71,7 @@ namespace ModularMod
             projectile.baseData.speed = 15f;
             projectile.baseData.damage = 3f;
             projectile.shouldRotate = false;
-            projectile.baseData.force *= 2;
+            projectile.baseData.force *= 5;
 
             Projectile LargeBullet = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(56) as Gun).DefaultModule.projectiles[0]);
             LargeBullet.gameObject.SetActive(false);
@@ -100,7 +100,7 @@ namespace ModularMod
             LargeBullet.baseData.damage = 20f;
             LargeBullet.shouldRotate = true;
             LargeBullet.AdditionalScaleMultiplier *= 1.33f;
-
+            LargeBullet.pierceMinorBreakables = true;
             ExplosiveModifier explosiveModifier = LargeBullet.gameObject.GetOrAddComponent<ExplosiveModifier>();
             explosiveModifier.explosionData = new ExplosionData()
             {

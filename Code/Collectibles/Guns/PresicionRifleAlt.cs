@@ -71,6 +71,7 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
+            projectile.pierceMinorBreakables = true;
 
             projectile.baseData.damage = 30f;
             projectile.shouldRotate = true;

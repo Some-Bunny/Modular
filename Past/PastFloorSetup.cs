@@ -30,18 +30,13 @@ namespace ModularMod
             ETGModConsole.Commands.AddGroup("pstmdl", args =>
             {
             });
-            ETGModConsole.Commands.GetGroup("pstmdl").AddUnit("load", LoadFloor);
+            if (Module.Debug_Mode == true)
+            {
+                ETGModConsole.Commands.GetGroup("pstmdl").AddUnit("load", LoadFloor);
+            }
             InitCustomDungeon();
 
-            List<AGDEnemyReplacementTier> m_cachedReplacementTiers = GameManager.Instance.EnemyReplacementTiers;
-            foreach (var entry in m_cachedReplacementTiers)
-            {
-                var h = entry.TargetGuids.Where(self => self == StaticGUIDs.Confirmed_GUID);
-                if (h.Count() > 0)
-                {
-                    ETGModConsole.Log(entry.Prereqs);
-                }
-            }
+           
         }
         private static void LoadFloor(string[] obj)
         {
@@ -364,7 +359,8 @@ namespace ModularMod
                     GameManager.Instance.SecondaryPlayer.SetInputOverride("past");
                 }
                 yield return new WaitForSeconds(2f);
-                TextBoxManager.ShowTextBox(GameManager.Instance.PrimaryPlayer.transform.position + new Vector3(1.25f, 2.5f, 0f), GameManager.Instance.PrimaryPlayer.transform, 4f, "This is my chance.\nI can't stay in the dark forever.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+
+                TextBoxManager.ShowTextBox(GameManager.Instance.PrimaryPlayer.transform.position + new Vector3(1.25f, 2.5f, 0f), GameManager.Instance.PrimaryPlayer.transform, 4f, GameManager.Instance.PrimaryPlayer.IsUsingAlternateCostume == true ? "No time to waste here.\n I remember this as clear as day.": "Here it is.\nBack here again.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
                 yield return new WaitForSeconds(1f);
                 GameManager.Instance.PrimaryPlayer.ClearInputOverride("past");
                 if (GameManager.Instance.CurrentGameType == GameManager.GameType.COOP_2_PLAYER)

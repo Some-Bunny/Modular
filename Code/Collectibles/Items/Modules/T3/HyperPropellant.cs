@@ -162,7 +162,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modularGunController.RevertMuzzleFlash();
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
             modulePrinter.OnPostProcessProjectile -= PPP;
             modularGunController.ResetSwitchGroup();
         }

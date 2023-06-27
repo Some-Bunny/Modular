@@ -44,22 +44,18 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            mod = new ModuleGunStatModifier()
+            gunStatModifier = new ModuleGunStatModifier()
             {
                 Name = "CouterProduction",
                 FireRate_Process = PFR,
                 ClipSize_Process = ProcessClipSize,
                 Reload_Process = ProcessReloadTime,
             };
-            modularGunController.statMods.Add(mod);
+            modularGunController.statMods.Add(gunStatModifier);
         }
-        public ModuleGunStatModifier mod;
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController.statMods.Contains(mod)) 
-            {
-                modularGunController.statMods.Remove(mod);
-            }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)

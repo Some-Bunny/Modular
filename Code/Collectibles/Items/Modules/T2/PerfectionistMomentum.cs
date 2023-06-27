@@ -80,10 +80,8 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnRoomCleared -= ORC;
             modulePrinter.OnDamaged -= OnDamaged;
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) 
-            {
-                modularGunController.statMods.Remove(this.gunStatModifier);
-            }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)

@@ -118,10 +118,8 @@ namespace ModularMod
             {
                 modularGunController.statMods.Remove(this.gunStatModifier);
             }
-            if (modulePrinter.stickyContexts.Contains(this.stickyContext))
-            {
-                modulePrinter.stickyContexts.Remove(this.stickyContext);
-            }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+
             modulePrinter.OnProjectileStickAction -= H;
             modulePrinter.OnStickyDestroyAction -= H2;
             modulePrinter.OnPreProjectileStickAction -= OPPS;

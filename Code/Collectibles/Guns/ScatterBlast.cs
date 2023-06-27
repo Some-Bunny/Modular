@@ -67,6 +67,8 @@ namespace ModularMod
                     projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.LowerCenter);
                     projectile.baseData.range = 15;
                     projectile.baseData.damage = 9f;
+                    projectile.pierceMinorBreakables = true;
+
                 }
                 else
                 {

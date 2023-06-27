@@ -23,7 +23,7 @@ namespace ModularMod
         {
             Name = "Ultra Ricochet",
             Description = "Stylish",
-            LongDescription = "Player Projectiles bounce off walls, enemies and each other, with force (+Extra Force per stack). Increases rate of fire (+25% hyperbolically per stack) and increases spread. Bounces increase damage by 10% (+10% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Doubles layer projectile speed. Player Projectiles bounce off walls, enemies and each other, with force (+Extra Force per stack). Increases rate of fire (+25% hyperbolically per stack) and increases spread. Bounces increase damage by 10% (+10% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("ultraricochet_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -35,7 +35,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("ultraricochet_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Ultra Ricochet " + h.ReturnTierLabel();
-            h.LabelDescription = "Player Projectiles bounce off walls, enemies and each other\nwith force (" + StaticColorHexes.AddColorToLabelString("+Extra Force", StaticColorHexes.Light_Orange_Hex) + "). Increases rate of fire (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n and increases spread.\nBounces increase damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Doubles layer projectile speed.\nPlayer Projectiles bounce off walls, enemies and each other\nwith force (" + StaticColorHexes.AddColorToLabelString("+Extra Force", StaticColorHexes.Light_Orange_Hex) + "). Increases rate of fire (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n and increases spread.\nBounces increase damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ").";
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
             h.AdditionalWeightMultiplier = 0.8f;
@@ -46,9 +46,15 @@ namespace ModularMod
             h.AddToGlobalStorage();
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 
+            ricoChetData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+            ricoChetData.damageToPlayer = 0;
+            ricoChetData.damage = 4;
+            
             ID = h.PickupObjectId;
         }
         public static int ID;
+        public static ExplosionData ricoChetData;
+
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
@@ -69,7 +75,7 @@ namespace ModularMod
                 Exploder.DoRadialPush(p.sprite.WorldCenter, 25, 3);
                 Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25, 3);
                 Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
-                Exploder.Explode(p.projectile.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, p.projectile.sprite.WorldCenter);
+                Exploder.Explode(p.projectile.sprite.WorldCenter, ricoChetData, p.projectile.sprite.WorldCenter, null, true);
             };
         }
 
@@ -95,6 +101,8 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             p.gameObject.AddComponent<RicoShot>();
+            p.baseData.speed *= 2;
+            p.UpdateSpeed();
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += (20 * this.ReturnStack(modulePrinterCore));
             bounceProjModifier.bouncesTrackEnemies = true;
@@ -110,7 +118,7 @@ namespace ModularMod
                 Exploder.DoRadialPush(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
                 Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
                 Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
-                Exploder.Explode(p.projectile.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, p.projectile.sprite.WorldCenter);
+                Exploder.Explode(p.projectile.sprite.WorldCenter, ricoChetData, p.projectile.sprite.WorldCenter, null, true);
             };
         }
 
@@ -122,7 +130,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
             player.stats.RecalculateStats(player);
         }
     }
@@ -161,7 +169,7 @@ namespace ModularMod
                 Exploder.DoRadialPush(myBody.projectile.sprite.WorldCenter, 25 , 3);
                 Exploder.DoRadialKnockback(myBody.projectile.sprite.WorldCenter, 25 , 3);
                 Exploder.DoRadialMinorBreakableBreak(myBody.projectile.sprite.WorldCenter, 3);
-                Exploder.Explode(myBody.projectile.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, myBody.projectile.sprite.WorldCenter);
+                Exploder.Explode(myBody.projectile.sprite.WorldCenter, SelfRicochet.ricoChetData, myBody.projectile.sprite.WorldCenter, null, true);
             }
         }
 

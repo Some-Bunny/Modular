@@ -38,26 +38,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             ID = h.PickupObjectId;
 
-            GameObject VFX_Popup = new GameObject("VFX_Popup");
-            FakePrefab.MarkAsFakePrefab(VFX_Popup);
-            FakePrefab.DontDestroyOnLoad(VFX_Popup);
-            var tk2d = VFX_Popup.AddComponent<tk2dSprite>();
-            tk2d.Collection = StaticCollections.Module_T1_Collection;
-
-            AdditionalBraveLight braveLight = VFX_Popup.gameObject.AddComponent<AdditionalBraveLight>();
-            braveLight.transform.position = tk2d.sprite.WorldCenter;
-            braveLight.LightColor = Color.white;
-            braveLight.LightIntensity = 0f;
-            braveLight.LightRadius = 0f;
-
-            tk2d.usesOverrideMaterial = true;
-            tk2d.renderer.material.shader = Shader.Find("Brave/Internal/SimpleAlphaFadeUnlit");
-            tk2d.renderer.material.SetFloat("_Fade", 0f);
-
-            VFX = VFX_Popup;
         }
         public static int ID;
-        public static GameObject VFX;
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -72,86 +54,8 @@ namespace ModularMod
             modulePrinter.OnRoomCleared -= ORC;
         }
 
-        public IEnumerator DoFlashyVFX(DefaultModule properties)
-        {
-            var player = this.Stored_Core.Owner;
 
-            Vector2 playerPos = player.sprite.WorldCenter;
-
-            var VFX_Object = UnityEngine.Object.Instantiate(VFX, playerPos, Quaternion.identity).GetComponent<tk2dBaseSprite>();
-            VFX_Object.collection = GlobalModuleStorage.ReturnModule(properties).sprite.Collection;
-
-            VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(properties).sprite.spriteId);
-
-            var light = VFX_Object.GetComponent<AdditionalBraveLight>();
-            light.LightColor = GlobalModuleStorage.ReturnModule(properties).BraveLight.LightColor;
-
-            Vector2 offset = Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(2.5f, 3.0f));
-            float e = 0;
-            while (e < 1)
-            {
-                float t = Toolbox.SinLerpTValue(e);
-
-                VFX_Object.transform.position = Vector2.Lerp(playerPos, playerPos + offset, t);
-                VFX_Object.renderer.material.SetFloat("_Fade", t);
-                light.LightIntensity = Mathf.Lerp(0, 5, t);
-                light.LightRadius = Mathf.Lerp(0, 3, t);
-                e += BraveTime.DeltaTime;
-                yield return null;
-            }
-            e = 0;
-            while (e < 1)
-            {
-                e += BraveTime.DeltaTime;
-                yield return null;
-            }
-            e = 0;
-            Vector2 p = VFX_Object.transform.PositionVector2();
-            float d = UnityEngine.Random.Range(0.7f, 1.5f);
-            while (e < d)
-            {
-                float t = Toolbox.SinLerpTValue(e / d);
-                VFX_Object.transform.position = Vector2.Lerp(p, player.sprite.WorldCenter, t);
-                light.LightIntensity = Mathf.Lerp(5, 1, t);
-                light.LightRadius = Mathf.Lerp(3, 1, t);
-                VFX_Object.renderer.material.SetFloat("_Fade", 1-t);
-
-                e += BraveTime.DeltaTime;
-                yield return null;
-            }
-            LootEngine.DoDefaultSynergyPoof(player.sprite.WorldCenter);
-            Destroy(VFX_Object.gameObject);
-            yield break;
-        }
-
-        public IEnumerator DoFlashyVFX_Destroy(DefaultModule properties)
-        {
-            var player = this.Stored_Core.Owner;
-            Vector2 playerPos = player.sprite.WorldCenter;
-
-            var VFX_Object = UnityEngine.Object.Instantiate(VFX, playerPos, Quaternion.identity).GetComponent<tk2dBaseSprite>();
-            VFX_Object.collection = GlobalModuleStorage.ReturnModule(properties).sprite.Collection;
-            VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(properties).sprite.spriteId);
-            var light = VFX_Object.GetComponent<AdditionalBraveLight>();
-            light.LightColor = properties.BraveLight.LightColor;
-
-            Vector2 offset = Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(2.5f, 3.0f));
-            float e = 0;
-            while (e < 2)
-            {
-                float t = Toolbox.SinLerpTValueFull(e/2);
-                float t1 = Toolbox.SinLerpTValue(e/2);
-
-                VFX_Object.transform.position = Vector2.Lerp(playerPos, playerPos + offset, t1);
-                VFX_Object.renderer.material.SetFloat("_Fade", t);
-                light.LightIntensity = Mathf.Lerp(0, 7, t);
-                light.LightRadius = Mathf.Lerp(0, 3, t);
-                e += BraveTime.DeltaTime;
-                yield return null;
-            }
-            Destroy(VFX_Object.gameObject);
-            yield break;
-        }
+        
 
         public void OEC(ModulePrinterCore printer, Dungeonator.RoomHandler roomHandler, PlayerController player)
         {
@@ -169,10 +73,8 @@ namespace ModularMod
                     
 
                     AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
-                    for (int i = 0; i < this.ReturnStack(printer) * 2; i++)
-                    {
-                        GameManager.Instance.StartCoroutine(DoFlashyVFX(c.defaultModule));
-                    }
+                    VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer), printer.Owner, c.defaultModule);
+
                 }
                 else
                 {
@@ -191,10 +93,7 @@ namespace ModularMod
                     {
                         help.FakeCount.Remove(help.FakeCount[i]);
                         help.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
-                        for (int r = 0; r < this.ReturnStack(printer) * 2; r++)
-                        {
-                            GameManager.Instance.StartCoroutine(DoFlashyVFX_Destroy(help.defaultModule));
-                        }
+                        VFXStorage.DoFancyDestroyOfModules(this.ReturnStack(printer), printer.Owner, help.defaultModule);
                     }
                 }
             }

@@ -83,6 +83,7 @@ namespace ModularMod
 
             projectile.baseData.damage = 20f;
             projectile.baseData.speed = 50f;
+            projectile.pierceMinorBreakables = true;
 
             projectile.shouldRotate = true;
 

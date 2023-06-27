@@ -45,36 +45,25 @@ namespace ModularMod
 
 
             
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Additional Sight", "lichs_eye_bullets") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Allocation", "unity") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Chaos, Chaos!", "chance_bullets") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Wish I could have one of those!", "magazine_rack") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Additional Sight", "lichs_eye_bullets") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Allocation", "unity") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Chaos, Chaos!", "chance_bullets") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Wish I could have one of those!", "magazine_rack") { });
 
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_holster") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_lunchbox") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_locket") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_bottle") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Up", "heart_purse") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Up", "heart_holster") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Up", "heart_lunchbox") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Up", "heart_locket") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Up", "heart_bottle") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Up", "heart_purse") { });
 
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Poison Power", "monster_blood") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Internal", "yellow_chamber") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Money = Power", "ring_of_miserly_protection") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Poison Power", "monster_blood") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Internal", "yellow_chamber") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Money = Power", "ring_of_miserly_protection") { });
 
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Full Potential", "utility_belt") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("System Upgrade", "ammo_synthesizer") { });
-            BasicCustomSynergyNotifier.synergizing_Items.Add(new BasicCustomSynergyNotifier.ModularSynergy("Power Bank", "ammo_belt") { });
-
-
-            //CustomSynergies.Add("Additional Sight", new List<string> {"mdl:modular_printer_core" }, new List<string> {"lichs_eye_bullets" }, true);
-            //CustomSynergies.Add("Power Allocation", new List<string> { "mdl:modular_printer_core" }, new List<string> { "unity" }, true);
-            //CustomSynergies.Add("Chaos, Chaos!", new List<string> { "mdl:modular_printer_core" }, new List<string> { "chance_bullets" }, true);
-            //CustomSynergies.Add("Wish I could have one of those!", new List<string> { "mdl:modular_printer_core" }, new List<string> { "magazine_rack" }, true);
-
-            //CustomSynergies.Add("Poison Power", new List<string> { "mdl:modular_printer_core" }, new List<string> { "monster_blood" }, true);
-            //CustomSynergies.Add("Power Internal", new List<string> { "mdl:modular_printer_core" }, new List<string> { "yellow_chamber" }, true);
-            //CustomSynergies.Add("Money = Power", new List<string> { "mdl:modular_printer_core" }, new List<string> { "ring_of_miserly_protection" }, true);
-
-            //CustomSynergies.Add("Quick Draw", new List<string> { "mdl:modular_printer_core" }, new List<string> { "heart_holster" }, true);
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Full Potential", "utility_belt") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("System Upgrade", "ammo_synthesizer") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Bank", "ammo_belt") { });
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Relics Of The Past", "sprun") { });
 
 
 
@@ -279,7 +268,7 @@ namespace ModularMod
             LastPower_Tick = ReturnPowerConsumption();
             LastTotal_Tick = ReturnTotalPower();
 
-            if (LastPower_Tick > LastTotal_Tick)
+            if (LastPower_Tick > LastTotal_Tick && OverridePower == false)
             {
                 if (OnPowerUsageHigherThanCapacity != null) { OnPowerUsageHigherThanCapacity(this, Owner); }
                 DepoweredModuelNames = new Dictionary<string, int>();
@@ -312,6 +301,7 @@ namespace ModularMod
                 }
             }
         }
+        private bool OverridePower = false;
         private float LastPower_Tick, LastTotal_Tick;
         private Dictionary<string, int> DepoweredModuelNames = new Dictionary<string, int>();
 
@@ -462,9 +452,6 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, CraftingCore, List<DefaultModule>> OnCraftedItem;
         public Func<Vector2, ModulePrinterCore, PlayerController, Vector2> VoluntaryMovement_Modifier;
         public Func<Vector2, ModulePrinterCore, PlayerController, Vector2> InVoluntaryMovement_Modifier;
-
-        //public Func<ModulePrinterCore, PlayerController, bool> OnAboutToFallContext;
-
 
         public float StartingPower = 5;
         public Func<ModulePrinterCore, float> AdditionalPowerMods;
@@ -623,7 +610,7 @@ namespace ModularMod
                             if (ModuleContainers[i].ActiveCount == 0) {return; }
                             ModuleContainers[i].ActiveCount--;
                             ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
-                            if (ModuleContainers[i].ActiveCount == 0) 
+                            if (ModuleContainers[i].ActiveCount == 0 && ModuleContainers[i].TemporaryCount.Count == 0) 
                             {
                                 ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
                             }
@@ -648,7 +635,7 @@ namespace ModularMod
                         if (OnAnyModulePowered != null) { OnAnyModulePowered(this, self, Amount_To_Add); }
                         for (int A = 0; A < Amount_To_Add; A++)
                         {
-                            if (ModuleContainers[i].ActiveCount == 0)
+                            if (ModuleContainers[i].ActiveCount == 0 && ModuleContainers[i].TemporaryCount.Count == 0)
                             {
                                 ModuleContainers[i].defaultModule.OnFirstPickup(this, this.ModularGunController, base.Owner);
                             }
@@ -682,10 +669,6 @@ namespace ModularMod
             {
                 if (ModuleContainers[i].LabelName == self.LabelName) 
                 {
-                    if (ModuleContainers[i].isPurelyFake == true) 
-                    {
-                        ModuleContainers[i].isPurelyFake = false;
-                    }
                     ModuleContainers[i].Count++;
                     return false;
                 }
@@ -703,14 +686,18 @@ namespace ModularMod
             return true;
         }
         public int Scrap = 0;
-        public int ReturnStack(string LabelName)
+
+        //==================================================================================
+        //==================================================================================
+        //==================================================================================
+        public int ReturnStack(string LabelName, bool UseTemporaryStack = true)
         {
             for (int i = 0; i < ModuleContainers.Count; i++)
             {
                 if (ModuleContainers[i].LabelName == LabelName)
                 {
                     if (ModuleContainers[i].ActiveCount == 0 && ModuleContainers[i].isPurelyFake == false) { return 0; }
-                    return ModuleContainers[i].ActiveCount + ReturnFakeStack(LabelName);
+                    return ModuleContainers[i].ActiveCount + (UseTemporaryStack ? ReturnFakeStack(LabelName) + ReturnTemporaryStack(LabelName) : 0);
                 }
             }
             return 0;
@@ -764,36 +751,68 @@ namespace ModularMod
             }
             return 0;
         }
-
-        public void RemoveModule(DefaultModule self, int Amount_To_Remove = 1)
+        public int ReturnTemporaryStack(string LabelName)
         {
             for (int i = 0; i < ModuleContainers.Count; i++)
             {
+                if (ModuleContainers[i].LabelName == LabelName)
+                {
+                    int count = 0;
+                    for (int e = 0; e < ModuleContainers[i].TemporaryCount.Count; e++)
+                    {
+                        var T = ModuleContainers[i].TemporaryCount[e];
+                        count += T.Second;
+                    }
+                    return count;
+                }
+            }
+            return 0;
+        }
+        //==================================================================================
+        //==================================================================================
+        //==================================================================================
+
+        public void RemoveModule(DefaultModule self, int Amount_To_Remove = 1)
+        {
+            for (int i = ModuleContainers.Count-1; i > -1; i--)
+            {
                 if (ModuleContainers[i] != null)
                 {
+
                     if (ModuleContainers[i].LabelName == self.LabelName)
                     {
+
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
-                            if (ModuleContainers[i].Count == 1)
-                            {
-                                if (ModuleContainers[i].WasEverFake == true && ModuleContainers[i].isPurelyFake == false)
-                                { ModuleContainers[i].isPurelyFake = true; }
-                                ModuleContainers.Remove(ModuleContainers[i]); return; }
-                            ModuleContainers[i].Count--;
-                            ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
                             
                             if (ModuleContainers[i].Count == 1)
                             {
-                                if (ModuleContainers[i].WasEverFake == true && ModuleContainers[i].isPurelyFake == false)
-                                { ModuleContainers[i].isPurelyFake = true; }
-                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner); ModuleContainers.Remove(ModuleContainers[i]); }
+                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                                ModuleContainers.Remove(ModuleContainers[i]);
+                                return;
+                               
+                            }
+
+                            ModuleContainers[i].Count--;
+                            ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+
+                            if (ModuleContainers[i].Count == 1)
+                            {
+                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                                ModuleContainers.Remove(ModuleContainers[i]);
+                                return;
+
+                            }
                         }
                     }
                 }
                 else
                 {
+                    Debug.Log(13);
+
                     ModuleContainers.Remove(ModuleContainers[i]);
+                    Debug.Log(14);
+
                 }
             }
         }
@@ -810,19 +829,15 @@ namespace ModularMod
                         {
                             if (ModuleContainers[i].Count == 1) 
                             { 
-                            
-                                if (ModuleContainers[i].WasEverFake == true && ModuleContainers[i].isPurelyFake == false) 
-                                { ModuleContainers[i].isPurelyFake = true; } 
-                                ModuleContainers.Remove(ModuleContainers[i]); return; }
+                                ModuleContainers.Remove(ModuleContainers[i]); return; 
+                            }
                             
                             ModuleContainers[i].Count--;
                             ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
                             if (ModuleContainers[i].Count == 1)
                             {
-                                
-                                if (ModuleContainers[i].WasEverFake == true && ModuleContainers[i].isPurelyFake == false)
-                                { ModuleContainers[i].isPurelyFake = true; }
-                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner); ModuleContainers.Remove(ModuleContainers[i]); }
+                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner); ModuleContainers.Remove(ModuleContainers[i]); 
+                            }
                         }
                     }
                 }
@@ -839,8 +854,12 @@ namespace ModularMod
             var modF = ModuleContainers.Where(self => self.defaultModule.LabelName == module.LabelName);
             if (modF.Count() > 0) 
             {
-                modF.First().FakeCount.Add(new Tuple<string, int>(Context, Amount_Of_Fakes) { });
+                modF.First().TemporaryCount.Add(new Tuple<string, int>(Context, Amount_Of_Fakes) { });
                 modF.First().defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
+                if (modF.First().ActiveCount == 0)
+                {
+                    modF.First().defaultModule.OnFirstPickup(this, this.ModularGunController, base.Owner);
+                }
                 return modF.First();
             }
             else
@@ -852,8 +871,7 @@ namespace ModularMod
                     ID = module.PickupObjectId,
                     Count = 0,
                     defaultModule = module,
-                    FakeCount = new List<Tuple<string, int>>() { new Tuple<string, int>(Context, Amount_Of_Fakes) { } },
-                    isPurelyFake = true,
+                    TemporaryCount = new List<Tuple<string, int>>() { new Tuple<string, int>(Context, Amount_Of_Fakes) { } },
                     WasEverFake = true
                 };
                 modCont.defaultModule.Stored_Core = this;
@@ -876,29 +894,102 @@ namespace ModularMod
             if (modf.Count() > 0)
             {
                 var mod = modf.First();
-                var c = mod.FakeCount.Where(self => self.First == Context).First();
+                var c = mod.TemporaryCount.Where(self => self.First == Context).First();
                 int count = c.Second;
-                if (mod.isPurelyFake == true)
+
+                for (int A = 0; A < count; A++)
                 {
-                    for (int A = 0; A < count; A++)
+                    mod.defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+                    if (c.Second == 1) 
                     {
-                        if (c.Second == 1) { ModuleContainers.Remove(mod); return; }
-                        mod.defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
-                        c.Second--;
-                        if (c.Second == 1) { mod.defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner); ModuleContainers.Remove(mod); }
+                        if (mod.ActiveCount == 0 || c.Second == 1)
+                        {
+                            mod.defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                            ModuleContainers.Remove(mod);
+
+                        }
+                    }
+                    c.Second--;
+                    if (c.Second == 0)
+                    {
+                        if (mod.ActiveCount == 0 || mod.Count == 0)
+                        {
+                            mod.defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                            ModuleContainers.Remove(mod);
+                        }
                     }
                 }
-                mod.FakeCount.Remove(c);          
+                mod.defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+                mod.TemporaryCount.Remove(c);
             }
         }
-
-
+        public void RemoveTemporaryModules(string Context)
+        {
+            for (int A = ModuleContainers.Count -1; A > -1; A--)
+            {
+                var mod = ModuleContainers[A];
+                if (mod.TemporaryCount.Count > 0)
+                {
+                    var c = mod.TemporaryCount.Where(self => self.First == Context);
+                    if (c.Count() > 0)
+                    {
+                        for (int fuck = c.Count() - 1; fuck > -1; fuck--)
+                        {
+                            var entry = c.ElementAt(fuck);
+                            int count = entry.Second;
+                            for (int t = count - 1; t > -1; t--)
+                            {
+                                entry.Second--;
+                                mod.defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+                                if (t == 0 && mod.ActiveCount == 0)
+                                {
+                                    mod.defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                                    mod.TemporaryCount.Remove(c.First());
+                                }
+                            }
+                            if (mod.Count == 0 && mod.FakeCount.Count == 0 && mod.TemporaryCount.Count == 0)
+                            {
+                                ModuleContainers.Remove(mod);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+            
 
         public override void OnDestroy()
         {
+
+            this.Owner.OnEnteredCombat -= PlayerEnteredCombat;
+            this.Owner.OnReceivedDamage -= OnRecievedDamage;
+            this.Owner.OnReloadedGun -= OnReloadedGun;
+            this.Owner.OnKilledEnemyContext -= OnKilledEnemyContext;
+            this.Owner.OnDealtDamageContext -= OnDealtDamageContext;
+            this.Owner.PostProcessProjectile -= PostProcessProjectile;
+            this.Owner.PostProcessBeamTick -= PostProcessBeamTick;
+            this.Owner.OnDodgedProjectile -= OnDodgedProjectile;
+            this.Owner.OnDodgedBeam -= OnDodgedBeam;
+            this.Owner.OnRollStarted -= OnRollStarted;
+            this.Owner.OnRoomClearEvent -= OnRoomClearEvent;
+            this.Owner.GunChanged -= Player_GunChanged;
+            this.Owner.OnNewFloorLoaded -= NewFloorLoaded;
+            this.Owner.OnAboutToFall -= OnAboutToFall;
+            this.Owner.OnTableFlipped -= OnTableFlipped;
+            this.Owner.OnTableFlipCompleted -= OnTableFlipCompletely;
+            this.Owner.MovementModifiers -= MovementMod;
+            OverridePower = true;
             for (int i = ModuleContainers.Count - 1; i > -1; i--)
             {
                 var cont = ModuleContainers[i];
+                //Debug.Log(this != null ? "A" : "NULL_1");
+                //Debug.Log(this.ModularGunController != null ? "B" : "NULL_2");
+                //Debug.Log(this.Owner != null ? "C" : "NULL_3");
+
+                //cont.defaultModule.OnCoreDestruction(this, this.ModularGunController);
+                //cont.defaultModule.OnLastRemoved(this, this.ModularGunController, this.Owner);
+                //cont.defaultModule.OnAnyPickup(this, this.ModularGunController, this.Owner, false);
+                //var cont = ModuleContainers[i];
                 RemoveModule(cont.defaultModule, 999999);
                 cont.defaultModule.OnCoreDestruction(this, this.ModularGunController);
             }
@@ -917,9 +1008,32 @@ namespace ModularMod
             public int ID;
             public DefaultModule.ModuleTier tier;
             public int Count;
+            
+            
             public List<Tuple<string, int>> FakeCount = new List<Tuple<string, int>>() { };
+            public Tuple<string, int> ReturnFakeContainer(string Context)
+            {
+                var t = FakeCount.Where(self => self.First == Context);
+                if (t.Count() > 0) { return t.First(); }
+                return null;
+            }
             public int ActiveCount = 0;
-            public bool isPurelyFake = false;
+            
+     
+            public List<Tuple<string, int>> TemporaryCount = new List<Tuple<string, int>>() { };
+            public Tuple<string, int> ReturnTemporaryContainer(string Context)
+            {
+                var t = TemporaryCount.Where(self => self.First == Context);
+                if (t.Count() > 0) { return t.First(); }
+                return null;
+            }
+            public bool isPurelyFake
+            {
+                get
+                {
+                    return this.Count == 0 && FakeCount.Count == 0 && (TemporaryCount.Count > 0 || WasEverFake == true);
+                }
+            }
             public bool WasEverFake = false;
         }
         public class AdditionalItemEnergyComponent : MonoBehaviour

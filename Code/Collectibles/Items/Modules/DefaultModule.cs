@@ -175,9 +175,9 @@ namespace ModularMod
         {
 
         }
-        public int Stack()
+        public int Stack(bool usesTemporaryStack = true)
         {
-            return this.ReturnStack(Stored_Core);
+            return this.ReturnStack(Stored_Core, usesTemporaryStack);
         }
         public int TrueStack()
         {
@@ -191,9 +191,9 @@ namespace ModularMod
 
         public ModulePrinterCore Stored_Core;
 
-        public int ReturnStack(ModulePrinterCore modulePrinterCore)
+        public int ReturnStack(ModulePrinterCore modulePrinterCore, bool useTemporaryStack = true)
         {
-            return modulePrinterCore.ReturnStack(this.LabelName);
+            return modulePrinterCore.ReturnStack(this.LabelName, useTemporaryStack);
         }
 
 
@@ -555,7 +555,7 @@ namespace ModularMod
             this.panel.Width = targetWidth;
             while (elapsed < duration)
             {
-                elapsed += BraveTime.DeltaTime;
+                elapsed += GameManager.INVARIANT_DELTA_TIME;
                 this.panel.Width = Mathf.Lerp(targetWidth, 0, elapsed / duration);
                 yield return null;
             }

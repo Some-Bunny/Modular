@@ -23,9 +23,150 @@ namespace ModularMod
         {
             new Hook(typeof(OurPowersCombinedItem).GetMethod("GetDamageContribution", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("GetDamageContributionHook"));
             new Hook(typeof(MagazineRackItem).GetMethod("DoEffect", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("DoEffectHook"));
+            
+            
+            new Hook(typeof(SprenOrbitalItem).GetMethod("HandleTransformationDuration", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("HandleTransformationDurationHook"));
+            new Hook(typeof(SprenOrbitalItem).GetMethod("DetransformSpren", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("DetransformSprenHook"));
 
-            //Alexandria.Misc.CustomActions.OnRunStart += OnRunStart;
-            Hooks.ChooseModuleController.AdditionalOptionsModifier += ReturnAdditionalOptions;
+            ChooseModuleController.AdditionalOptionsModifier += ReturnAdditionalOptions;
+        }
+        public static IEnumerator HandleTransformationDurationHook(Func<SprenOrbitalItem, IEnumerator> orig, SprenOrbitalItem self)
+        {
+            tk2dSpriteAnimator extantAnimator = self.m_extantOrbital.GetComponentInChildren<tk2dSpriteAnimator>();
+            extantAnimator.Play(self.GunChangeAnimation);
+            PlayerOrbitalFollower follower = self.m_extantOrbital.GetComponent<PlayerOrbitalFollower>();
+            if (follower)
+            {
+                follower.OverridePosition = true;
+            }
+            float elapsed = 0f;
+            extantAnimator.sprite.HeightOffGround = 5f;
+            while (elapsed < 1f)
+            {
+                elapsed += BraveTime.DeltaTime;
+                if (follower && self.m_player)
+                {
+                    follower.OverrideTargetPosition = self.m_player.CenterPosition;
+                }
+                yield return null;
+            }
+            extantAnimator.Play(self.GunChangeMoreAnimation);
+            while (extantAnimator.IsPlaying(self.GunChangeMoreAnimation))
+            {
+                if (follower && self.m_player)
+                {
+                    follower.OverrideTargetPosition = self.m_player.CenterPosition;
+                }
+                yield return null;
+            }
+            if (follower)
+            {
+                follower.ToggleRenderer(false);
+            }
+            self.m_player.inventory.GunChangeForgiveness = true;
+            self.m_transformation = SprenOrbitalItem.SprenTransformationState.TRANSFORMED;
+
+            Dictionary<DefaultModule, int> m = new Dictionary<DefaultModule, int>();
+
+            if (self.m_player.PlayerHasCore() != null)
+            {
+                AkSoundEngine.PostEvent("Play_BOSS_RatMech_Wizard_Cast_01", self.gameObject);
+                var help_1 = GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_1);
+                VFXStorage.DoFancyFlashOfModules(3, self.m_owner, help_1);
+                self.m_player.PlayerHasCore().GiveTemporaryModule(help_1, "Sprun", 3);
+                m.Add(help_1, 3);
+                yield return null;
+                var help_2 = GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_2);
+                VFXStorage.DoFancyFlashOfModules(2, self.m_owner, help_2);
+                self.m_player.PlayerHasCore().GiveTemporaryModule(help_2, "Sprun", 2);
+                m.Add(help_2, 2);
+
+                yield return null;
+                var help_3 = GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_3);
+                VFXStorage.DoFancyFlashOfModules(1, self.m_owner, help_3);
+                self.m_player.PlayerHasCore().GiveTemporaryModule(help_3, "Sprun", 1);
+                m.Add(help_3, 1);
+
+            }
+            else
+            {
+                Gun limitGun = PickupObjectDatabase.GetById(self.LimitGunId) as Gun;
+                self.m_extantGun = self.m_player.inventory.AddGunToInventory(limitGun, true);
+                self.m_extantGun.CanBeDropped = false;
+                self.m_extantGun.CanBeSold = false;
+                self.m_player.inventory.GunLocked.SetOverride("spren gun", true, null);
+            }
+          
+            elapsed = 0f;
+            while (elapsed < self.LimitDuration)
+            {
+                if (follower && self.m_player)
+                {
+                    follower.OverrideTargetPosition = self.m_player.CenterPosition;
+                }
+                elapsed += BraveTime.DeltaTime;
+                yield return null;
+            }
+            if (follower)
+            {
+                follower.ToggleRenderer(true);
+            }
+            if (extantAnimator)
+            {
+                extantAnimator.PlayForDuration(self.BackchangeAnimation, -1f, self.IdleAnimation, false);
+            }
+            while (extantAnimator.IsPlaying(self.BackchangeAnimation))
+            {
+                if (follower && self.m_player)
+                {
+                    follower.OverrideTargetPosition = self.m_player.CenterPosition;
+                }
+                yield return null;
+            }
+            if (self.m_player.PlayerHasCore() != null)
+            {
+                AkSoundEngine.PostEvent("Play_BOSS_RatMech_Wizard_Kick_01", self.gameObject);
+                foreach (var entry in m)
+                {
+                    VFXStorage.DoFancyDestroyOfModules(entry.Value, self.m_owner, entry.Key);
+                }
+                self.m_player.PlayerHasCore().RemoveTemporaryModules("Sprun");
+            }
+            follower.OverridePosition = false;
+            self.DetransformSpren();
+            yield break;
+        }
+
+        public static void DetransformSprenHook(Action<SprenOrbitalItem> orig, SprenOrbitalItem self)
+        {
+            if (self.m_transformation != SprenOrbitalItem.SprenTransformationState.TRANSFORMED)
+            {
+                return;
+            }
+            if (!self || !self.m_player || !self.m_extantGun)
+            {
+                return;
+            }
+            self.m_transformation = SprenOrbitalItem.SprenTransformationState.NORMAL;
+            if (self.m_player)
+            {
+                if (self.m_player.PlayerHasCore() != null)
+                {
+
+                }
+                else
+                {
+                    if (!GameManager.Instance.IsLoadingLevel && !Dungeon.IsGenerating)
+                    {
+                        Minimap.Instance.ToggleMinimap(false, false);
+                    }
+                    self.m_player.inventory.GunLocked.RemoveOverride("spren gun");
+                    self.m_player.inventory.DestroyGun(self.m_extantGun);
+                    self.m_extantGun = null;
+                }
+
+            }
+            self.m_player.inventory.GunChangeForgiveness = false;
         }
 
         public static int ReturnAdditionalOptions(int count)
@@ -36,10 +177,10 @@ namespace ModularMod
             }
             return count;
         }
-
         public static void DoEffectHook(Action<MagazineRackItem, PlayerController> orig, MagazineRackItem self, PlayerController user)
         {
-            if (user.PlayerHasCore() != null){
+            if (user.PlayerHasCore() != null)
+            {
 
                 AkSoundEngine.PostEvent("Play_OBJ_ammo_pickup_01", user.gameObject);
                 GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(ResourceCache.Acquire("Global Prefabs/HoveringGun") as GameObject, user.CenterPosition.ToVector3ZisY(0f), Quaternion.identity);
@@ -70,5 +211,88 @@ namespace ModularMod
             }
             return orig(self);
         }
+
+
+
+
+
+        public class ModularSynergy
+        {
+            public class SynergyMarker : MonoBehaviour { }
+            public static List<ModularSynergy> synergizing_Items = new List<ModularSynergy>();
+
+            public ModularSynergy(string syn, string consoleName)
+            {
+                item_Id = Gungeon.Game.Items[consoleName].PickupObjectId;
+                synergy_Name = syn;
+                var obj = PickupObjectDatabase.GetById(item_Id);
+                obj.gameObject.AddComponent<SynergyMarker>();
+                Alexandria.ItemAPI.CustomSynergies.Add(syn, new List<string> { "mdl:modular_printer_core" }, new List<string> { consoleName }, true);
+
+            }
+
+            public static string Get_Synergy_Name(int ID)
+            {
+                foreach (var entry in synergizing_Items)
+                {
+                    if (entry.item_Id == ID) { return entry.synergy_Name; }
+                }
+                return "ERROR";
+            }
+
+            public static bool isSynergyItem(int ID)
+            {
+                foreach (var entry in synergizing_Items)
+                {
+                    if (entry.item_Id == ID) { return true; }
+                }
+                return false;
+            }
+
+
+            public bool ModuleSynergyIsAvailable(PlayerController p)
+            {
+                return this.PlayerHasPickup(p, item_Id);
+            }
+
+            public bool PlayerHasPickup(PlayerController p, int pickupID)
+            {
+                if (p && p.inventory != null && p.inventory.AllGuns != null)
+                {
+                    for (int i = 0; i < p.inventory.AllGuns.Count; i++)
+                    {
+                        if (p.inventory.AllGuns[i].PickupObjectId == pickupID && p.PlayerHasCore() != null)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                if (p)
+                {
+                    for (int j = 0; j < p.activeItems.Count; j++)
+                    {
+                        if (p.activeItems[j].PickupObjectId == pickupID && p.PlayerHasCore() != null)
+                        {
+                            return true;
+                        }
+                    }
+                    for (int k = 0; k < p.passiveItems.Count; k++)
+                    {
+                        Debug.Log("fuck5");
+                        if (p.passiveItems[k].PickupObjectId == pickupID && p.PlayerHasCore() != null)
+                        {
+                            return true;
+                        }
+                    }
+                    if (pickupID == GlobalItemIds.Map && p.EverHadMap)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            public int item_Id;
+            public string synergy_Name;
+        }      
     }
 }

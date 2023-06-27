@@ -18,6 +18,8 @@ namespace ModularMod
         }
         public static string Red_Color_Hex = "ff0000";
         public static string Light_Blue_Color_Hex = "a39feb";
+        public static string Blue_Color_Hex = "5b6ee1";
+
         public static string Orange_Hex = "df7126";
         public static string Lime_Green_Hex = "7dff00";
 

@@ -29,7 +29,7 @@ namespace ModularMod.Past.Prefabs.Objects
             obj.CreateFastBody(new IntVector2(36, 32), new IntVector2(0, 0));
 
             var controller = tk2d.gameObject.AddComponent<QuickInterractableController>();
-            Module.Strings.Core.Set("#MDLR_Container_", "A shipping container marked to ship to Gunymede.\nI am not letting myself sit there.");
+            Module.Strings.Core.Set("#MDLR_Container_", "A shipping container marked to ship to Gunymede.\nI'll be returning one way or another.");
             controller.Interact_String = "#MDLR_Container_";
             controller.talkPoint = obj.transform;
             Alexandria.DungeonAPI.StaticReferences.customObjects.Add("ShippingContainerMDLR", obj);

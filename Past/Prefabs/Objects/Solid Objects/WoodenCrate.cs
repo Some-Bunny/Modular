@@ -31,12 +31,12 @@ namespace ModularMod.Past.Prefabs.Objects
               { CreateObject("box_ammo_2", "box_ammo_red", "A box filled with various munitions", new IntVector2(28, 27), new IntVector2(0, -4)), 1 },
             }));
 
-            Alexandria.DungeonAPI.StaticReferences.customObjects.Add("BustedTVMDLR", CreateObject("bustedTV", "old_robot_tv_001", "A broken television.\nWhy would they bring something like it there?", new IntVector2(14, 12), new IntVector2(1, -4)));
+            Alexandria.DungeonAPI.StaticReferences.customObjects.Add("BustedTVMDLR", CreateObject("bustedTV", "old_robot_tv_001", "A broken television.\nI still wonder why they would bring it there...", new IntVector2(14, 12), new IntVector2(1, -4)));
 
             Alexandria.DungeonAPI.StaticReferences.customObjects.Add("WoodenCrateOpenMDLR", CreateObject("box_open", "box_open", "A wooden crate.\nIt has nothing stored in it.", new IntVector2(28, 27), new IntVector2(0, -4)));
 
 
-            Alexandria.DungeonAPI.StaticReferences.customObjects.Add("HMPRIME_CART", CreateObject("hmprime_cart_mdlr", "hymprime_unit", "A H.M Prime Unit. Recently finished and designed.\nI hope to never see it again.", new IntVector2(38, 28), new IntVector2(1, -4)));
+            Alexandria.DungeonAPI.StaticReferences.customObjects.Add("HMPRIME_CART", CreateObject("hmprime_cart_mdlr", "hymprime_unit", "A H.M Prime Unit. Recently finished and designed.\nI'll see it again.", new IntVector2(38, 28), new IntVector2(1, -4)));
 
             var verytinycrate = CreateObject("box_metal_baby", "metal_crate_verytiny", "A baby metal container.\nIt seems to have lost it's parents.", new IntVector2(17, 20), new IntVector2(0, -4));
 

@@ -57,7 +57,7 @@ namespace ModularMod
         public IEnumerator Delay(DefaultModule mod, string context)
         {
 
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(12);
             if (this.LastOwner.PlayerHasCore() != null)
             {
                 this.LastOwner.PlayerHasCore().RemoveTemporaryModule(mod, context);

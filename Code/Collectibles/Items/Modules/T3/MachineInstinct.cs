@@ -303,7 +303,7 @@ namespace ModularMod
             player.m_additionalReceivesTouchDamage = true;
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnFrameUpdate -= OFU;
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
         }
     }
 }

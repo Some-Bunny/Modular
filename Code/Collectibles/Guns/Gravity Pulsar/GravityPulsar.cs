@@ -196,8 +196,6 @@ namespace ModularMod
 
         public int ProcessClipSize(int currentFinales, int clipSize, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            Debug.Log(clipSize);
-
             return clipSize - 1;
         }
         public static int ID;

@@ -16,10 +16,7 @@ namespace ModularMod
     {
         public static void Init()
         {
-           new Hook(typeof(GameManager).GetMethod("Pause", BindingFlags.Instance | BindingFlags.Public), typeof(UIHooks).GetMethod("PauseHook", BindingFlags.Static | BindingFlags.Public));
-
-
-                    
+           new Hook(typeof(GameManager).GetMethod("Pause", BindingFlags.Instance | BindingFlags.Public), typeof(UIHooks).GetMethod("PauseHook", BindingFlags.Static | BindingFlags.Public));                   
         }
         public static void PauseHook(Action<GameManager> orig, GameManager self)
         {
@@ -30,7 +27,9 @@ namespace ModularMod
             var scrapLabel = ScrapUIController.FindScrapUI(GameUIRoot.Instance);
             scrapLabel.isVisible = ScrapUIController.ScrapCounterVisible().First;
             scrapLabel.enabled = ScrapUIController.ScrapCounterVisible().First;
+            if (OnPaused != null) { OnPaused(); }
             orig(self);
         }
+        public static Action OnPaused;
     }
 }
