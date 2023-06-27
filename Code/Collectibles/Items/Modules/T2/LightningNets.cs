@@ -1,4 +1,5 @@
 ﻿using Alexandria.ItemAPI;
+using Alexandria.Misc;
 using JuneLib.Items;
 using System;
 using System.Collections;
@@ -49,7 +50,7 @@ namespace ModularMod
             int stack = 1;
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
             chain.Damage = p.baseData.damage;
-            chain.Range = 4f + (4 * stack);
+            chain.Range = 4.5f + (4.5f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
             p.baseData.range += 5;
@@ -69,7 +70,7 @@ namespace ModularMod
             int stack = this.ReturnStack(modulePrinterCore);
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
             chain.Damage = p.baseData.damage;
-            chain.Range = 4f + (4 * stack);
+            chain.Range = 4.5f + (4.5f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
             p.baseData.range += 5;
@@ -100,7 +101,16 @@ namespace ModularMod
                 {
                     foreach (ElectricChainProjectile ai in activeProjectiles)
                     {
-                        if (ai != null && Vector2.Distance(ai.gameObject.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) < Range && ai.gameObject.GetComponent<ElectricChainProjectile>() != null && ai != this.projectile)
+                        if (ExtantTethers.Count > 2)
+                        {
+                            var thing = ReturnLongestDistance(Range);
+                            if (thing != null)
+                            {
+                                ExtantTethers.Remove(ExtantTethers.KeyByValue(thing));
+                                SpawnManager.Despawn(thing);
+                            }
+                        }
+                        if (ai != null && this.ExtantTethers.Count < 3 && Vector2.Distance(ai.gameObject.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) < Range && ai.gameObject.GetComponent<ElectricChainProjectile>() != null && ai != this.projectile)
                         {
                             if (!ExtantTethers.ContainsKey(ai.gameObject) && !ai.gameObject.GetComponent<ElectricChainProjectile>().ExtantTethers.ContainsKey(ai.gameObject))
                             {
@@ -140,6 +150,27 @@ namespace ModularMod
                     return;
                 }
             }
+        }
+
+        public GameObject ReturnLongestDistance(float h)
+        {
+            List<float> distances = new List<float>();
+            Dictionary<float, GameObject> distances_V = new Dictionary<float, GameObject>();
+            foreach (var entry in ExtantTethers)
+            {
+                if (entry.Key && entry.Value)
+                {
+                    float d = Vector2.Distance(entry.Key.transform.PositionVector2(), entry.Value.transform.PositionVector2());
+                    if (!distances_V.ContainsKey(d))
+                    {
+                        distances_V.Add(d, entry.Value);
+                        distances.Add(d);
+                    }
+                }
+            }
+            distances.Sort();
+
+            return h > distances.Last() ? null : distances_V[distances.Last()];
         }
 
         public void OnDestroy()

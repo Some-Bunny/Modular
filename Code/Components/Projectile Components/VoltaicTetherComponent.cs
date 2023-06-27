@@ -14,10 +14,10 @@ namespace ModularMod
     {
         public static List<VoltaicTetherComponent> AllTethers = new List<VoltaicTetherComponent>();
 
-        public float PlayerRange = 25f;
+        public float PlayerRange = 12.5f;
         public float PylonRange = 10f;
         private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
-        public float DPS = 2.5f;
+        public float DPS = 3f;
         public tk2dBaseSprite sprite;
         public void Start()
         {
@@ -68,7 +68,18 @@ namespace ModularMod
 
         public void ProcessGameObject(GameObject ai, float Distance = 35, bool isTether = false)
         {
-            if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) < Distance && ai != this.gameObject)
+            if (ExtantTethers.Count > 1)
+            {
+                var thing = ReturnLongestDistance(Distance);
+                if (thing != null)
+                {
+                    GameObject obj_Clear;
+                    ExtantTethers.TryGetValue(thing, out obj_Clear);
+                    SpawnManager.Despawn(obj_Clear);
+                    ExtantTethers.Remove(thing);
+                }
+            }
+            if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) < Distance && ai != this.gameObject && ExtantTethers.Count < 2)
             {
                 if (!ExtantTethers.ContainsKey(ai))
                 {
@@ -76,19 +87,20 @@ namespace ModularMod
                     {
                         if(!ai.GetComponent<VoltaicTetherComponent>().ExtantTethers.ContainsKey(ai))
                         {
+                           
                             GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
                             ExtantTethers.Add(ai, obj);
-                        }
-
-                        
+                        }                     
                     }
                     else
                     {
+
                         GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
                         ExtantTethers.Add(ai, obj);
                     }
                 }
             }
+           
             if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) > Distance)
             {
                 if (ExtantTethers.ContainsKey(ai))
@@ -163,6 +175,24 @@ namespace ModularMod
         private HashSet<AIActor> m_damagedEnemies = new HashSet<AIActor>();
         private HashSet<AIActor> m_damagedEnemies_AOE = new HashSet<AIActor>();
 
+
+        public GameObject ReturnLongestDistance(float h)
+        {
+            List<float> distances = new List<float>();
+            Dictionary<float, GameObject> distances_V = new Dictionary<float, GameObject>();
+            foreach (var entry in ExtantTethers)
+            {
+                if (entry.Key && entry.Value)
+                {
+                    float d = Vector2.Distance(entry.Key.transform.PositionVector2(), entry.Value.transform.PositionVector2());
+                    distances_V.Add(d, entry.Key);
+                    distances.Add(d);
+                }
+            }
+            distances.Sort();
+           
+            return h > distances.Last() ? null : distances_V[distances.Last()];
+        }
 
         private void OnDestroy()
         {

@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Five-Shot Salute",
             Description = "One For Each Finger",
-            LongDescription = "Slightly reduces Rate Of Fire, and reduces Damage by 33%. Shoot 5 times the projectiles (+1 Projectile per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Slightly reduces Rate Of Fire, and reduces Damage by 33%. Shoot 5 times the projectiles (+2 Projectiles per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Five-Shot Salute " + h.ReturnTierLabel();
-            h.LabelDescription = "Slighly reduces Rate Of Fire and reduces Damage by 25%.\nShoot 5 times the projectiles (" + StaticColorHexes.AddColorToLabelString("+1 Projectile", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Slighly reduces Rate Of Fire and reduces Damage by 25%.\nShoot 5 times the projectiles (" + StaticColorHexes.AddColorToLabelString("+2 Projectiles", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
@@ -67,7 +67,7 @@ namespace ModularMod
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {
-            GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 3 + this.ReturnStack(Stored_Core), 16, 2);
+            GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 2 + (this.ReturnStack(Stored_Core)*2), 16, 2);
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)

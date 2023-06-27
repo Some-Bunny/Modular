@@ -116,8 +116,18 @@ namespace ModularMod
             lab.isVisible = thing.First;
             lab.gameObject.transform.position = scrapLabel.gameObject.transform.position;
             lab.gameObject.transform.localScale = self.p_playerCoinLabel.transform.localScale;
+            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().gameObject.transform.position = scrapLabel.gameObject.transform.position + new Vector3((0.00625f * m), 0);
         }
 
+        public static void UpdatePlayerConsumablesHook(Action<GameUIRoot, PlayerConsumables> orig, GameUIRoot self, PlayerConsumables playerConsumables)
+        {
+            orig(self, playerConsumables);
+            var scrapLabel = FindScrapUI(self);
+            int m = GameManager.Options.SmallUIEnabled ? 1 : 2;
+            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3((0.025f + (0.025f * self.p_playerCoinLabel.Text.Length) * m )* Toolbox.CalculateScale_X_Y_Based_On_Resolution().x, -0.0025f));
+            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().gameObject.transform.position = scrapLabel.gameObject.transform.position + new Vector3((0.00625f * m), 0);
+
+        }
         public static dfPanel FindScrapUI(GameUIRoot self)
         {
             var UI = transformInstance;
@@ -133,15 +143,7 @@ namespace ModularMod
             return UI.gameObject.GetComponent<dfPanel>();
         }
 
-        public static void UpdatePlayerConsumablesHook(Action<GameUIRoot, PlayerConsumables> orig, GameUIRoot self, PlayerConsumables playerConsumables)
-        {
-            orig(self, playerConsumables);
-            var scrapLabel = FindScrapUI(self);
-            int m = GameManager.Options.SmallUIEnabled ? 1 : 2;
-            scrapLabel.transform.position = self.p_playerCoinLabel.transform.position + (new Vector3((0.025f + (0.025f * self.p_playerCoinLabel.Text.Length) * m )* Toolbox.CalculateScale_X_Y_Based_On_Resolution().x, -0.0025f));
-            scrapLabel.gameObject.GetComponentInChildren<dfLabel>().gameObject.transform.position = scrapLabel.gameObject.transform.position + new Vector3((0.05f * m), 0);
 
-        }
         public static void HideCoreUIHook(Action<GameUIRoot, string> orig, GameUIRoot self, string reason)
         {
             orig(self, reason);

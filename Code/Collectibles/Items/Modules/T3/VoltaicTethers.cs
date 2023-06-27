@@ -49,14 +49,18 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.05f) { return; }
+            if (UnityEngine.Random.value > 0.03f) { return; }
             p.baseData.speed *= 0.5f;
             p.UpdateSpeed();
+            p.pierceMinorBreakables = true;
             int stack = 1;
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 12 * stack;
-            tethers.PylonRange = 3 * stack;
-            tethers.PlayerRange = 15 * stack;
+            tethers.DPS = 15 * stack;
+            tethers.PylonRange = 5 * stack;
+            tethers.PlayerRange = 10 * stack;
+
+            PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
+            bounceProjModifier.penetration += 2;
         }
 
 
@@ -96,11 +100,15 @@ namespace ModularMod
         {
             p.baseData.speed *= 0.5f;
             p.UpdateSpeed();
+            p.pierceMinorBreakables = true;
             int stack = this.ReturnStack(modulePrinterCore);
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 12 * stack;
-            tethers.PylonRange = 3 * stack;
-            tethers.PlayerRange = 15 * stack;
+            tethers.DPS = 15 * stack;
+            tethers.PylonRange = 5 * stack;
+            tethers.PlayerRange = 10 * stack;
+
+            PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
+            bounceProjModifier.penetration += 2;
         }
 
         public void H(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)

@@ -24,6 +24,7 @@ namespace ModularMod
             {
                 StarterGunSelectUIController.Inst.ToggleUI(false, null, true);
             }
+            CursorPatch.DisplayCursorOnController = false;
             var scrapLabel = ScrapUIController.FindScrapUI(GameUIRoot.Instance);
             scrapLabel.isVisible = ScrapUIController.ScrapCounterVisible().First;
             scrapLabel.enabled = ScrapUIController.ScrapCounterVisible().First;

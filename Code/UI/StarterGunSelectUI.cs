@@ -1168,6 +1168,7 @@ namespace ModularMod
                 }
             }
             UpdatePanels();
+            CursorPatch.DisplayCursorOnController = true;
 
             this.Accept_Button.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
             {
@@ -1201,6 +1202,7 @@ namespace ModularMod
                 if (OnClosed != null)
                 {
                     OnClosed();
+                    CursorPatch.DisplayCursorOnController = false;
                 }
             };
             Close_Button.MouseEnter += (o1, o2) =>

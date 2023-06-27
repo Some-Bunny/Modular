@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "The Marksman",
             Description = "Version First",
-            LongDescription = "Hitting an enemy grants a 25% damage boost, up to 10 (+5 per stack) consecutive hits. Missing resets the damage bonus." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Hitting an enemy grants a 10% damage boost, up to 10 (+5 per stack) consecutive hits. Missing resets the damage bonus." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("marksman_t2_module"),
             Quality = ItemQuality.SPECIAL,
