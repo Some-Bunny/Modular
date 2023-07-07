@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Regenerative Plating",
             Description = "Time Heals All",
-            LongDescription = "Entering a new floor restores 1 (+1 per stack) Armor. Scrapping pickups / items restores 1 (+1 Per stack) Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Entering a new floor restores 1 (+1 per stack) Armor. Scrapping pickups / items restores 1 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("selfcare_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.75f;
             h.LabelName = "Regenerative Plating " + h.ReturnTierLabel();
-            h.LabelDescription = "Entering a new floor restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.\nScrapping pickups / items restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.";
+            h.LabelDescription = "Entering a new floor restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.\nScrapping pickups / items restores 1 Armor.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -61,7 +61,7 @@ namespace ModularMod
         {
             player.PlayEffectOnActor(VFXStorage.HealingSparklesVFX, new Vector3(0, 0));
             AkSoundEngine.PostEvent("Play_OBJ_heart_heal_01", player.gameObject);
-            player.healthHaver.Armor += this.ReturnStack(core);
+            player.healthHaver.Armor += 1;
         }
     }
 }

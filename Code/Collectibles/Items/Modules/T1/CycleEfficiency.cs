@@ -47,15 +47,17 @@ namespace ModularMod
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
-                Reload_Process = ProcessReloadTime
+                Reload_Process = ProcessReloadTime,
+                ChargeSpeed_Process = ProcessFireRate,
+
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modularGunController.ProcessStats();
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
 
 

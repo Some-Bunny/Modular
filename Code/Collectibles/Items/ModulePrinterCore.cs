@@ -119,11 +119,30 @@ namespace ModularMod
             player.OnTableFlipped += OnTableFlipped;
             player.OnTableFlipCompleted += OnTableFlipCompletely;
             player.MovementModifiers += MovementMod;
+            player.OnTriedToInitiateAttack += OnAttemptedAttack;
 
             cloakDoer = ScriptableObject.CreateInstance<CloakDoer>();
             cloakDoer.DoStartUp(player);
+
+            if (GameManager.Instance.Dungeon)
+            {
+                for (int i = 0; i < GameManager.Instance.Dungeon.data.rooms.Count; i++)
+                {
+                    RoomHandler roomHandler = GameManager.Instance.Dungeon.data.rooms[i];
+                    roomHandler.Entered += OnAnyRoomEntered;
+                    roomHandler.Exited += OnAnyRoomExited;
+                    processedRooms.Add(roomHandler);
+                }
+            }
         }
 
+        public void OnAttemptedAttack(PlayerController p)
+        {
+            if (AttemptedToAttack != null)
+            {
+                AttemptedToAttack(this, p);
+            }
+        }
         public override DebrisObject Drop(PlayerController player)
         {
             player.OnEnteredCombat -= PlayerEnteredCombat;
@@ -143,6 +162,7 @@ namespace ModularMod
             player.OnTableFlipped -= OnTableFlipped;
             player.OnTableFlipCompleted -= OnTableFlipCompletely;
             player.MovementModifiers -= MovementMod;
+            player.OnTriedToInitiateAttack -= OnAttemptedAttack;
 
             return base.Drop(player);
         }
@@ -174,7 +194,30 @@ namespace ModularMod
             b = !b;
             if (b == false) { return; }
             if (player && OnNewFloorStarted != null) { OnNewFloorStarted(this, player); }
+            if (GameManager.Instance.Dungeon)
+            {
+                for (int i = 0; i < GameManager.Instance.Dungeon.data.rooms.Count; i++)
+                {
+                    RoomHandler roomHandler = GameManager.Instance.Dungeon.data.rooms[i];
+                    if (!processedRooms.Contains(roomHandler))
+                    {
+                        roomHandler.Entered += OnAnyRoomEntered;
+                        roomHandler.Exited += OnAnyRoomExited;
+                        processedRooms.Add(roomHandler);
+                    }
+                }
+            }
+            for (int i = processedRooms.Count - 1; i > -1; i--)
+            {
+                if (processedRooms[i] == null)
+                {
+                    processedRooms.RemoveAt(i);
+                }
+            }
+
+
         }
+        private List<RoomHandler> processedRooms = new List<RoomHandler>();
 
         public bool TemporaryDisableDrop = false;
 
@@ -190,6 +233,11 @@ namespace ModularMod
         //Code to check for valid guns, and discards any guns considered invalid
         private void Player_GunChanged(Gun oldGun, Gun newGun, bool isNewGun)
         {
+            if (newGun.GetComponent<ModularGunController>() == null) 
+            { 
+                newGun.gameObject.AddComponent<ModularGunController>().Start();
+                newGun.gameObject.AddComponent<ModularGunController>().statMods.AddRange(stored_Modifiers);
+            }
             if (TemporaryDisableDrop == true) { return; }
             if (newGun.GetComponent<ModularGunController>() != null) { UpdateModularGunController(); return; }
             if (newGun.GetComponent<ModularGunController>() == ModularGunController) { UpdateModularGunController();  return; }
@@ -225,6 +273,16 @@ namespace ModularMod
             }
             yield break;
         }
+
+        public void OnAnyRoomEntered(PlayerController player)
+        {
+            if (PlayerEnteredAnyRoom != null) { PlayerEnteredAnyRoom(this, this.Owner, this.Owner.CurrentRoom); }
+        }
+        public void OnAnyRoomExited()
+        {
+            if (PlayerExitedAnyRoom != null) { PlayerExitedAnyRoom(this, this.Owner, this.Owner.CurrentRoom); }
+        }
+
         public void OnRoomClearEvent(PlayerController p)
         {
             if (p == null) { return; }
@@ -254,10 +312,16 @@ namespace ModularMod
             ModularGunController = base.Owner.CurrentGun.GetComponent<ModularGunController>();
             if (ModularGunController) { ModularGunController.Start(); }
         }
+        public float MovingForSeconds = 0;
+        public float StillForSeconds = 0;
 
         public override void Update()
         {
             base.Update();
+            if (isStandingStill())
+            { StillForSeconds += BraveTime.DeltaTime; if (MovingForSeconds > 0) { MovingForSeconds = 0; } }
+            else { MovingForSeconds += BraveTime.DeltaTime; if (StillForSeconds > 0) { StillForSeconds = 0; } }
+
             if (OnFrameUpdate != null && base.Owner)
             {
                 OnFrameUpdate(this, base.Owner);
@@ -330,6 +394,11 @@ namespace ModularMod
                 {
                     modifier.OnPreStick = OnPreProjectileStickAction;
                 }
+                if (OnProjectileStickToWallAction != null)
+                {
+                    modifier.OnStickToWall = OnProjectileStickToWallAction;
+                }
+
                 modifier.stickyContexts = this.stickyContexts;
             }
             if (this.Owner.HasPickupID(521))
@@ -392,7 +461,7 @@ namespace ModularMod
 
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
         {
-            if (oR != null && oR.healthHaver != null && mR.projectile != null)
+            if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null)
             {
                 if (oR.healthHaver.aiActor)
                 {
@@ -445,6 +514,7 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, FlippableCover> TableFlipped;
         public Action<ModulePrinterCore, PlayerController, FlippableCover> TableFlipCompleted;
         public Func<ModulePrinterCore, PlayerController, bool> OnAboutToFallContext;
+        public Action<ModulePrinterCore, PlayerController> AttemptedToAttack;
 
         public Func<int, ModulePrinterCore, PlayerController, Scrapper, int> ModifyScrapContext;
         public Action<int, ModulePrinterCore, PlayerController, Scrapper> OnScrapped;
@@ -453,8 +523,18 @@ namespace ModularMod
         public Func<Vector2, ModulePrinterCore, PlayerController, Vector2> VoluntaryMovement_Modifier;
         public Func<Vector2, ModulePrinterCore, PlayerController, Vector2> InVoluntaryMovement_Modifier;
 
+        public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerEnteredAnyRoom;
+        public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerExitedAnyRoom;
+
         public float StartingPower = 5;
         public Func<ModulePrinterCore, float> AdditionalPowerMods;
+
+        public bool isStandingStill()
+        {
+            if (Owner == null) { return false; }
+            return this.Owner.Velocity == new Vector2(0, 0);
+        }
+
         public float ReturnTotalPower()
         {
             float c = StartingPower;
@@ -537,23 +617,27 @@ namespace ModularMod
             {
                 if (ModuleContainers[i] != null)
                 {
-                    if (ModuleContainers[i].defaultModule.LabelName == module.LabelName)
+                    var module_c = ModuleContainers[i].defaultModule;
+                    if (module_c.LabelName == module.LabelName)
                     {
-                        if (ModuleContainers[i].defaultModule.powerConsumptionData != null)
+                        if (module_c.powerConsumptionData != null)
                         {
-                            if (ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement != null)
+                            if (module_c.powerConsumptionData.OverridePowerManagement != null)
                             {
-                                c += ModuleContainers[i].defaultModule.powerConsumptionData.OverridePowerManagement(ModuleContainers[i].defaultModule, ReturnActiveStack(ModuleContainers[i].defaultModule.LabelName));
+                                c += module_c.powerConsumptionData.OverridePowerManagement(module_c, ReturnActiveStack(module_c.LabelName));
+                            }
+                            else if (module_c.powerConsumptionData.FirstStack != -420 || module_c.powerConsumptionData.AdditionalStacks != -69)
+                            {
+                                c += module_c.powerConsumptionData.FirstStack + (module_c.powerConsumptionData.AdditionalStacks * (module_c.ActiveStack() - 1));
                             }
                             else
                             {
-                                c += ModuleContainers[i].defaultModule.powerConsumptionData.FirstStack + (ModuleContainers[i].defaultModule.powerConsumptionData.AdditionalStacks * (ModuleContainers[i].defaultModule.ActiveStack() - 1));
+                                c += module_c.EnergyConsumption + ((module_c.EnergyConsumption * (module_c.ActiveStack() - 1)) / 2);
                             }
-
                         }
                         else
                         {
-                            c += ModuleContainers[i].defaultModule.EnergyConsumption + ((ModuleContainers[i].defaultModule.EnergyConsumption * (ModuleContainers[i].defaultModule.ActiveStack() - 1)) / 2);
+                            c += module_c.EnergyConsumption + ((module_c.EnergyConsumption * (module_c.ActiveStack() - 1)) / 2);
                         }
                     }           
                 }
@@ -604,7 +688,6 @@ namespace ModularMod
                 {
                     if (ModuleContainers[i].LabelName == self.LabelName)
                     {
-                        if (OnAnyModuleUnpowered != null) { OnAnyModuleUnpowered(this, self, Amount_To_Remove); }
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
                             if (ModuleContainers[i].ActiveCount == 0) {return; }
@@ -615,6 +698,7 @@ namespace ModularMod
                                 ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
                             }
                         }
+                        if (OnAnyModuleUnpowered != null) { OnAnyModuleUnpowered(this, self, Amount_To_Remove); }
                     }
                 }
                 else
@@ -632,7 +716,6 @@ namespace ModularMod
                 {
                     if (ModuleContainers[i].LabelName == self.LabelName)
                     {
-                        if (OnAnyModulePowered != null) { OnAnyModulePowered(this, self, Amount_To_Add); }
                         for (int A = 0; A < Amount_To_Add; A++)
                         {
                             if (ModuleContainers[i].ActiveCount == 0 && ModuleContainers[i].TemporaryCount.Count == 0)
@@ -642,6 +725,7 @@ namespace ModularMod
                             ModuleContainers[i].ActiveCount++;
                             ModuleContainers[i].defaultModule.OnAnyPickup(this, this.ModularGunController, base.Owner, false);                 
                         }
+                        if (OnAnyModulePowered != null) { OnAnyModulePowered(this, self, Amount_To_Add); }
                     }
                 }
                 else
@@ -685,7 +769,9 @@ namespace ModularMod
             ModuleContainers.Add(modCont);
             return true;
         }
-        public int Scrap = 0;
+
+
+
 
         //==================================================================================
         //==================================================================================
@@ -808,11 +894,7 @@ namespace ModularMod
                 }
                 else
                 {
-                    Debug.Log(13);
-
                     ModuleContainers.Remove(ModuleContainers[i]);
-                    Debug.Log(14);
-
                 }
             }
         }
@@ -849,8 +931,13 @@ namespace ModularMod
         }
 
 
-        public ModuleContainer GiveTemporaryModule(DefaultModule module, string Context, int Amount_Of_Fakes)
+        public ModuleContainer GiveTemporaryModule(DefaultModule module, string Context, int Amount_Of_Fakes, bool doVFX = false)
         {
+            if (doVFX == true)
+            {
+                VFXStorage.DoFancyFlashOfModules(Amount_Of_Fakes, this.Owner, module);
+            }
+
             var modF = ModuleContainers.Where(self => self.defaultModule.LabelName == module.LabelName);
             if (modF.Count() > 0) 
             {
@@ -888,7 +975,7 @@ namespace ModularMod
             }
         }
 
-        public void RemoveTemporaryModule(DefaultModule module, string Context)
+        public void RemoveTemporaryModule(DefaultModule module, string Context, bool playVFX = false)
         {
             var modf = ModuleContainers.Where(self => self.defaultModule.LabelName == module.LabelName);
             if (modf.Count() > 0)
@@ -896,6 +983,11 @@ namespace ModularMod
                 var mod = modf.First();
                 var c = mod.TemporaryCount.Where(self => self.First == Context).First();
                 int count = c.Second;
+
+                if (playVFX == true)
+                {
+                    VFXStorage.DoFancyDestroyOfModules(count, this.Owner, mod.defaultModule);
+                }
 
                 for (int A = 0; A < count; A++)
                 {
@@ -923,7 +1015,7 @@ namespace ModularMod
                 mod.TemporaryCount.Remove(c);
             }
         }
-        public void RemoveTemporaryModules(string Context)
+        public void RemoveTemporaryModules(string Context, bool playVFX = false)
         {
             for (int A = ModuleContainers.Count -1; A > -1; A--)
             {
@@ -935,8 +1027,13 @@ namespace ModularMod
                     {
                         for (int fuck = c.Count() - 1; fuck > -1; fuck--)
                         {
+
                             var entry = c.ElementAt(fuck);
                             int count = entry.Second;
+                            if (playVFX == true)
+                            {
+                                VFXStorage.DoFancyDestroyOfModules(count, this.Owner, mod.defaultModule);
+                            }
                             for (int t = count - 1; t > -1; t--)
                             {
                                 entry.Second--;
@@ -997,9 +1094,25 @@ namespace ModularMod
         }
         public Action<GameObject, PlayerController> OnPreProjectileStickAction;
         public Action<GameObject, StickyProjectileModifier, tk2dBaseSprite, PlayerController> OnProjectileStickAction;
+        public Action<GameObject, StickyProjectileModifier, tk2dBaseSprite, PlayerController, PhysicsEngine.Tile> OnProjectileStickToWallAction;
         public Action<GameObject, StickyProjectileModifier, PlayerController> OnStickyDestroyAction;
         public List<StickyProjectileModifier.StickyContext> stickyContexts = new List<StickyProjectileModifier.StickyContext>();
 
+        private List<ModuleGunStatModifier> stored_Modifiers = new List<ModuleGunStatModifier>();
+
+        public void ProcessGunStatModifier(ModuleGunStatModifier modifier)
+        {
+            if (modifier == null) { return; }
+            if (!stored_Modifiers.Contains(modifier)) stored_Modifiers.Add(modifier);
+            if (!ModularGunController.statMods.Contains(modifier)) { ModularGunController.statMods.Add(modifier); }
+        }
+
+        public void RemoveGunStatModifier(ModuleGunStatModifier modifier)
+        {
+            if (modifier == null) { return; }
+            if (stored_Modifiers.Contains(modifier)) stored_Modifiers.Remove(modifier);
+            if (ModularGunController.statMods.Contains(modifier)) { ModularGunController.statMods.Remove(modifier); }
+        }
 
         public class ModuleContainer
         {

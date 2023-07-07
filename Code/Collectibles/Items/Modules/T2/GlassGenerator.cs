@@ -1,4 +1,5 @@
 ﻿using Alexandria.ItemAPI;
+using Alexandria.Misc;
 using JuneLib.Items;
 using System;
 using System.Collections;
@@ -16,7 +17,7 @@ namespace ModularMod
         {
             Name = "Glass Generator",
             Description = "See The Use",
-            LongDescription = "Grants 2 Glass Guon Stones. Picking up any Module gives 2 (+2 per stack) Glass Guon Stones.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 2 Glass Guon Stones. Picking up any Module gives 2 (+2 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone (+More Fire Rate per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +29,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Glass Generator " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 2 Glass Guon Stones.\nPicking up any Module gives 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ")\nGlass Guon Stones.";
+            h.LabelDescription = "Grants 2 Glass Guon Stones.\nWhilte active, picking up any Module\ngives 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") Glass Guon Stones.\nVery slightly increases rate of fire per Glass Guon Stone\n("+ StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ").";
             h.EnergyConsumption = 1;
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.8f;
@@ -57,12 +58,40 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnAnyModuleObtained += OAMO;
-            
+            this.gunStatModifier = new ModuleGunStatModifier()
+            {
+                Name = "Glass Gen Church",
+                FireRate_Process = PFR,
+                ChargeSpeed_Process = PFR
+            };
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
+
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnAnyModuleObtained -= OAMO;
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
+
+        public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            return f - (f - (f / (1 + 0.05f * Multiplier(player, modulePrinter))));
+        }
+
+        public int Multiplier(PlayerController player, ModulePrinterCore modulePrinter)
+        {
+            int dM = 0;
+            foreach (PassiveItem item in player.passiveItems)
+            {
+                if (item.PickupObjectId == 565)
+                {
+                    dM++;
+                }
+            }
+            dM *= this.ReturnStack(modulePrinter);
+            return dM;
+        }
+
         public void OAMO(ModulePrinterCore modulePrinterCore, PlayerController player, DefaultModule defaultModule)
         {
             int amountToGive = this.ReturnStack(modulePrinterCore) * 2;

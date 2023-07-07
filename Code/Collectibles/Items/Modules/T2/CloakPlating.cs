@@ -31,7 +31,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Cloak Plating " + h.ReturnTierLabel();
             h.LabelDescription = "Entering combat cloaks the player for 6 ("+ StaticColorHexes.AddColorToLabelString("+3", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking grants a\n" +
-                "4x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that degrades fast.\nGrants a 30% movement speed buff while cloaked.";
+                "4x (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that degrades fast.\nGrants a 30% movement speed buff while cloaked.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -80,7 +80,7 @@ namespace ModularMod
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
         {
             int stack = this.ReturnStack(modulePrinter);
-            DamageMax = 3 + (stack);
+            DamageMax = 2 + (stack * 2);
         }
 
         public void OEC(ModulePrinterCore modulePrinterCore, RoomHandler room, PlayerController p)

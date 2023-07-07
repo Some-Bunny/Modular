@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Reactive Sensors",
             Description = "Get In, Get Out",
-            LongDescription = "If an enemy gets too close, releases a massive shockwave that stuns, pushes and harms enemies in a large redius (+Damage and push force per stack). Recharges over 15 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "If an enemy gets too close, releases a massive shockwave that stuns, pushes and harms enemies in a large redius (+Damage and push force per stack). Can deflect enemy projectiles within a small radius. Recharges over 15 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Reactive Sensors" + h.ReturnTierLabel();
-            h.LabelDescription = "If an enemy gets too close, releases a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage and push force", StaticColorHexes.Light_Orange_Hex) + ").\nRecharges after 15 seconds.";
+            h.LabelDescription = "If an enemy gets too close, releases a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage and push force", StaticColorHexes.Light_Orange_Hex) + ")\nCan deflect enemy projectiles within a small radius.\nRecharges after 15 seconds.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -142,9 +142,72 @@ namespace ModularMod
             Exploder.DoRadialKnockback(player.sprite.WorldCenter, 60 * stack, 8);
             Exploder.DoRadialMinorBreakableBreak(player.sprite.WorldCenter, 8);
             ApplyActionToNearbyEnemies(modulePrinterCore , player.sprite.WorldCenter, 8f, player.CurrentRoom);
+
+            foreach (Projectile proj in StaticReferenceManager.AllProjectiles)
+            {
+                if (proj != null)
+                {
+                    AIActor enemy = proj.Owner as AIActor;
+                    if (proj.GetComponent<BasicBeamController>() == null)
+                    {
+                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 3 && proj.Owner != null && proj.Owner == enemy)
+                        {
+                            FistReflectBullet(proj, player.gameActor, proj.baseData.speed *= 2f, (proj.sprite.WorldCenter - player.transform.PositionVector2()).ToAngle(), 1f, proj.IsBlackBullet ? (5 + proj.baseData.speed) * 2 : 5 + proj.baseData.speed, 0f);
+                        }
+                    }
+                }
+            }
+
             player.StartCoroutine(EnterCharge(player));
             yield break;
         }
+
+        public static void FistReflectBullet(Projectile p, GameActor newOwner, float minReflectedBulletSpeed, float ReflectAngle, float scaleModifier = 1f, float damageModifier = 10f, float spread = 0f)
+        {
+            p.RemoveBulletScriptControl();
+            Vector2 Point1 = Toolbox.GetUnitOnCircle(ReflectAngle, 1);
+            p.Direction = Point1;
+
+            if (spread != 0f)
+            {
+                p.Direction = p.Direction.Rotate(UnityEngine.Random.Range(-spread, spread));
+            }
+            if (p.Owner && p.Owner.specRigidbody)
+            {
+                p.specRigidbody.DeregisterSpecificCollisionException(p.Owner.specRigidbody);
+            }
+            p.Owner = newOwner;
+            p.SetNewShooter(newOwner.specRigidbody);
+            p.allowSelfShooting = false;
+            if (newOwner is AIActor)
+            {
+                p.collidesWithPlayer = true;
+                p.collidesWithEnemies = false;
+            }
+            else
+            {
+                p.collidesWithPlayer = false;
+                p.collidesWithEnemies = true;
+            }
+            if (scaleModifier != 1f)
+            {
+                SpawnManager.PoolManager.Remove(p.transform);
+                p.RuntimeUpdateScale(scaleModifier);
+            }
+            if (p.Speed < minReflectedBulletSpeed)
+            {
+                p.Speed = minReflectedBulletSpeed;
+            }
+            if (p.baseData.damage < ProjectileData.FixedFallbackDamageToEnemies)
+            {
+                p.baseData.damage = ProjectileData.FixedFallbackDamageToEnemies;
+            }
+            p.baseData.damage = damageModifier;
+            p.UpdateCollisionMask();
+            p.ResetDistance();
+            p.Reflected();
+        }
+
 
         public void ApplyActionToNearbyEnemies(ModulePrinterCore modulePrinterCore, Vector2 position, float radius, RoomHandler room)
         {

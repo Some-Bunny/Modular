@@ -1,4 +1,6 @@
-﻿namespace ModularMod
+﻿using System.Collections.Generic;
+
+namespace ModularMod
 {
     public class DebuffStatics
     {
@@ -22,5 +24,17 @@
         public static GameActorCheeseEffect cheeseeffect = (PickupObjectDatabase.GetById(626) as Gun).DefaultModule.projectiles[0].cheeseEffect;
         //Speed Changes
         public static GameActorSpeedEffect tripleCrossbowSlowEffect = (PickupObjectDatabase.GetById(381) as Gun).DefaultModule.projectiles[0].speedEffect;
+
+        public static List<string> BlacklistedEffects = new List<string>()
+        {
+            "jamBuff",
+            "leadBuff",
+            "blob",
+            "web",
+            "Infection",
+            "InfectionBoss",
+            "BrainHost",
+            "broken Armor"
+        };
     }
 }

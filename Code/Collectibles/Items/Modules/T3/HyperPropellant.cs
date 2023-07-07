@@ -129,8 +129,9 @@ namespace ModularMod
                 ClipSize_Process = ProcessClipSize,
                 FireRate_Process = ProcessFireRate,
                 Reload_Process = ProcessReload,
+                ChargeSpeed_Process = ProcessFireRate,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            printer.ProcessGunStatModifier(this.gunStatModifier);
             printer.OnPostProcessProjectile += PPP;
             modularGunController.gun.gunSwitchGroup = (PickupObjectDatabase.GetById(19) as Gun).gunSwitchGroup;
         }
@@ -162,7 +163,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modularGunController.RevertMuzzleFlash();
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             modulePrinter.OnPostProcessProjectile -= PPP;
             modularGunController.ResetSwitchGroup();
         }
@@ -190,37 +191,25 @@ namespace ModularMod
             self = this.GetComponent<Projectile>();
             lastStoredPosition = self.sprite.WorldCenter;
         }
+        private float DistTick = 0;
 
         public void Update()
         {
-            float Dist = (int)Vector2.Distance(self.sprite.WorldCenter, lastStoredPosition);
-            if (Dist < 1)
+            int n = 0;
+            DistTick += (int)Vector2.Distance(self.sprite.WorldCenter, lastStoredPosition);
+            for (int i = 0; i < DistTick; i++)
             {
-                if (UnityEngine.Random.value < Dist)
-                {
-                    Vector3 vector3 = self.sprite.WorldCenter;
-                    HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
-                    ignite.transform.position = self.sprite.WorldCenter;
-                   // ignite.Enable(100);
-                    ignite.radius = Radius;
-                    ignite.StartCoroutine(ignite.ReduceToZero());
-                }
+                n++;
+                float t = (float)i / DistTick;
+                Vector3 vector3 = Vector3.Lerp(self.sprite.WorldCenter, lastStoredPosition, t);
+                HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
+                ignite.transform.position = vector3;
+                //ignite.Enable(100);
+                ignite.radius = Radius;
+                ignite.StartCoroutine(ignite.ReduceToZero());
+                lastStoredPosition = self.sprite.WorldCenter;
             }
-            else
-            {
-                for (int i = 0; i < (int)Dist; i++)
-                {
-                    float t = (float)i / (float)Dist;
-                    Vector3 vector3 = Vector3.Lerp(self.sprite.WorldCenter, lastStoredPosition, t);
-                    HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
-                    ignite.transform.position = self.sprite.WorldCenter;
-                    //ignite.Enable(100);
-                    ignite.radius = Radius;
-                    ignite.StartCoroutine(ignite.ReduceToZero());
-                }
-            }
-           
-            lastStoredPosition = self.sprite.WorldCenter;
+            DistTick -= n;
         }
     }
 
@@ -248,10 +237,10 @@ namespace ModularMod
             {
                 float math = Mathf.Lerp(h, 0, f / 6);
 
-                if (asdf > 0.25f)
+                if (asdf > 0.3f)
                 {
                     asdf = 0;
-                    GlobalSparksDoer.DoSingleParticle(this.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1F, math)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
+                    GlobalSparksDoer.DoSingleParticle(this.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1f, math)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
                 }
                 this.UpdateRadius(math);
                 f += BraveTime.DeltaTime;

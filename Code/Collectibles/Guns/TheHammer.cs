@@ -200,17 +200,8 @@ namespace ModularMod
                 preventPlayerForce = true,
                 pushRadius = 1,
                 secretWallsRadius = 1,
-                ss = new ScreenShakeSettings()
-                {
-                    magnitude = 10,
-                    simpleVibrationTime = Vibration.Time.Quick,
-                    time = 0.1f,
-                    vibrationType = ScreenShakeSettings.VibrationType.Auto,
-                    simpleVibrationStrength = Vibration.Strength.UltraLight,
-                    direction = Vector2.left,
-                    falloff = 0.5f,
-                    speed = 1,
-                },
+                ss = new ScreenShakeSettings() { },
+
                 ignoreList = new List<SpeculativeRigidbody>(),
                 rotateEffectToNormal = false,
                 useDefaultExplosion = false,

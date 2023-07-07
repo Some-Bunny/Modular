@@ -1,5 +1,6 @@
 ﻿using Alexandria.ItemAPI;
 using Alexandria.Misc;
+using Dungeonator;
 using JuneLib.Items;
 using System;
 using System.Collections.Generic;
@@ -22,19 +23,14 @@ namespace ModularMod
             Quality = ItemQuality.EXCLUDED,
             PostInitAction = PostInit
         };
-        public override void Pickup(PlayerController player)
-        {
-            AkSoundEngine.PostEvent("Play_OBJ_ammo_pickup_01", player.gameObject);
-            GameStatsManager.Instance.HandleEncounteredObjectRaw(this.encounterTrackable.EncounterGuid);
-            player.BloopItemAboveHead(base.sprite, "");
-            player.gameObject.GetComponent<ConsumableStorage>().AddConsumableAmount("Scrap", 1);
-            UnityEngine.Object.Destroy(base.gameObject);
-        }
-
         public static void PostInit(PickupObject v)
         {
             v.CustomCost = 15;
             v.UsesCustomCost = true;
+            Scrap_ID = v.PickupObjectId;
+            FakePrefab.MakeFakePrefab(v.gameObject);
+            UnityEngine.Object.DontDestroyOnLoad(v.gameObject);
+
             v.gameObject.SetActive(false);
             SpeculativeRigidbody speculativeRigidbody = v.gameObject.AddComponent<SpeculativeRigidbody>();
             PixelCollider item = new PixelCollider
@@ -55,8 +51,41 @@ namespace ModularMod
             var tk2dAnim = v.gameObject.AddComponent<tk2dSpriteAnimator>();
             tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("ScrapAnimation").GetComponent<tk2dSpriteAnimation>();
             tk2dAnim.defaultClipId = tk2dAnim.GetClipIdByName("idle");
-            tk2dAnim.playAutomatically = true;
-            Scrap_ID = v.PickupObjectId;
+            //tk2dAnim.playAutomatically = true;
+
+            GameObject roomIcon = new GameObject("VFX");
+            FakePrefab.DontDestroyOnLoad(roomIcon);
+            FakePrefab.MarkAsFakePrefab(roomIcon);
+            var tk2d = roomIcon.AddComponent<tk2dSprite>();
+            tk2d.Collection = StaticCollections.Item_Collection;
+            tk2d.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("scrap_room_icon"));
+            (v as Scrap).minimapIcon = roomIcon;
+        }
+
+        public GameObject minimapIcon;
+        private GameObject extant_minimapIcon;
+        private RoomHandler m_minimapIconRoom;
+
+        public override void Pickup(PlayerController player)
+        {
+            AkSoundEngine.PostEvent("Play_OBJ_ammo_pickup_01", player.gameObject);
+            GameStatsManager.Instance.HandleEncounteredObjectRaw(this.encounterTrackable.EncounterGuid);
+            if (base.spriteAnimator)
+            {
+                base.spriteAnimator.StopAndResetFrame();
+            }
+            player.BloopItemAboveHead(base.sprite, "scrap_idle_001");
+            player.gameObject.GetComponent<ConsumableStorage>().AddConsumableAmount("Scrap", 1);
+            this.GetRidOfMinimapIcon();
+            UnityEngine.Object.Destroy(base.gameObject);
+        }
+        private void GetRidOfMinimapIcon()
+        {
+            if (this.extant_minimapIcon != null)
+            {
+                Minimap.Instance.DeregisterRoomIcon(this.m_minimapIconRoom, this.extant_minimapIcon);
+                this.extant_minimapIcon = null;
+            }
         }
 
         public static int Scrap_ID;
@@ -70,6 +99,12 @@ namespace ModularMod
                 SpeculativeRigidbody speculativeRigidbody = storedBody;
                 SpeculativeRigidbody speculativeRigidbody2 = speculativeRigidbody;
                 speculativeRigidbody2.OnTriggerCollision = (SpeculativeRigidbody.OnTriggerDelegate)Delegate.Combine(speculativeRigidbody2.OnTriggerCollision, new SpeculativeRigidbody.OnTriggerDelegate(this.OnPreCollision));
+
+                if (this.minimapIcon != null && !this.m_hasBeenPickedUp)
+                {
+                    this.m_minimapIconRoom = GameManager.Instance.Dungeon.data.GetAbsoluteRoomFromPosition(base.transform.position.IntXY(VectorConversions.Floor));
+                    this.extant_minimapIcon = Minimap.Instance.RegisterRoomIcon(this.m_minimapIconRoom, this.minimapIcon, false);
+                }
             }
             catch (Exception ex)
             {
@@ -88,6 +123,22 @@ namespace ModularMod
                     this.Pickup(component);
                 }
             }
+        }
+
+        public override void OnDestroy()
+        {
+            GetRidOfMinimapIcon();
+            base.OnDestroy();
+        }
+
+        public void Update()
+        {
+            if (base.spriteAnimator != null && base.spriteAnimator.DefaultClip != null)
+            {
+                base.spriteAnimator.SetFrame(Mathf.FloorToInt(Time.time * base.spriteAnimator.DefaultClip.fps % (float)base.spriteAnimator.DefaultClip.frames.Length));
+            }
+            var gf = this.GetComponent<SquishyBounceWiggler>();
+            if (gf) { Destroy(gf); }
         }
 
         private bool m_hasBeenPickedUp;

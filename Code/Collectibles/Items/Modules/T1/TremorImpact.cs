@@ -66,16 +66,19 @@ namespace ModularMod
                     {
                         AIActor ai = room.activeEnemies[i];
 
-                        bool flag = radius < 0f;
-                        Vector2 vector = room.activeEnemies[i].CenterPosition - position;
-                        if (!flag)
+                        if (ai)
                         {
-                            flag = (vector.sqrMagnitude < num);
-                        }
-                        if (flag)
-                        {
-                            ai.PlayEffectOnActor((PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect, new Vector3(0 ,0));
-                            ai.healthHaver.ApplyDamage(noTarget == ai ? damage / 3 : damage, position, "AoE");
+                            bool flag = radius < 0f;
+                            Vector2 vector = room.activeEnemies[i].CenterPosition - position;
+                            if (!flag)
+                            {
+                                flag = (vector.sqrMagnitude < num);
+                            }
+                            if (flag)
+                            {
+                                ai.PlayEffectOnActor((PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect, new Vector3(0, 0));
+                                ai.healthHaver.ApplyDamage(noTarget == ai ? damage / 3 : damage, position, "AoE");
+                            }
                         }
                     }
                 }

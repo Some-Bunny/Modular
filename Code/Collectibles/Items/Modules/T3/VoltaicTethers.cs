@@ -78,7 +78,7 @@ namespace ModularMod
                 CanStickToTerrain = true,
                 CanStickEnemies = false
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            printer.ProcessGunStatModifier(this.gunStatModifier);
             printer.stickyContexts.Add(this.stickyContext);
 
             printer.OnPostProcessProjectile += PPP;
@@ -129,7 +129,7 @@ namespace ModularMod
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
 
 
             modulePrinter.OnProjectileStickAction -= H;

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Barter Software",
             Description = "With Gold",
-            LongDescription = "While active, reduces all prices by 50% . Taking damage breaks this module (+Extra hits before breaking). Once enabled, cannot be disabled." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "While active, reduces all prices by 50%. Taking damage breaks this module (+Extra hits before breaking). Once enabled, cannot be disabled." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("swindler_t2_module"),
             Quality = ItemQuality.SPECIAL,

@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using static Alexandria.Misc.CustomActions;
 
 namespace ModularMod
 {
@@ -11,7 +13,11 @@ namespace ModularMod
     {
         public Action<GameObject, PlayerController> OnPreStick;
         public Action<GameObject, StickyProjectileModifier, tk2dBaseSprite, PlayerController> OnStick;
+        public Action<GameObject, StickyProjectileModifier, tk2dBaseSprite, PlayerController, PhysicsEngine.Tile> OnStickToWall;
+
         public Action<GameObject, StickyProjectileModifier, PlayerController> OnStickyDestroyed;
+        public static Action<GameObject> OnStickyProjectileStuck;
+
 
         public Projectile currentObject;
         public GameObject objectToLookOutFor;
@@ -36,9 +42,9 @@ namespace ModularMod
             {
                 if (StickToTerrain == true)
                 {
-                    currentObject.specRigidbody.OnPreTileCollision += (myRigidbody, myPixelCollider, otherRigidbody, otherPixelCollider) =>
+                    currentObject.specRigidbody.OnPreTileCollision += (myRigidbody, myPixelCollider, Tile, TilePixelCollider) =>
                     {
-                        HandleHit(currentObject, null);
+                        HandleHit(currentObject, null, Tile);
                     };
                 }
                 if (StickToEnemies == true)
@@ -49,12 +55,18 @@ namespace ModularMod
                 }           
             }
         }
-        private void HandleHit(Projectile projectile, SpeculativeRigidbody otherBody)
+        private void HandleHit(Projectile projectile, SpeculativeRigidbody otherBody, PhysicsEngine.Tile tile = null)
         {
             if (otherBody == null)
             {
-                TransformToSticky(projectile, null);
-
+                if (projectile.GetComponent<BounceProjModifier>() == null)
+                {
+                    TransformToSticky(projectile, null, tile);
+                }
+                else if (projectile.GetComponent<BounceProjModifier>().numberOfBounces == 0)
+                {
+                    TransformToSticky(projectile, null, tile);
+                }
             }
             else
             {
@@ -71,7 +83,7 @@ namespace ModularMod
             }          
         }
 
-        private void TransformToSticky(Projectile projectile, SpeculativeRigidbody otherBody)
+        private void TransformToSticky(Projectile projectile, SpeculativeRigidbody otherBody, PhysicsEngine.Tile tile = null)
         {
             if (projectile == null) { return; }
             if (OnPreStick != null)
@@ -93,6 +105,11 @@ namespace ModularMod
             {
                 OnStick(objectToLookOutFor, this, objectToLookOutFor.GetComponentInChildren<tk2dBaseSprite>(), player);
             }
+            if (OnStickToWall != null && tile != null)
+            {
+                OnStickToWall(objectToLookOutFor, this, objectToLookOutFor.GetComponentInChildren<tk2dBaseSprite>(), player, tile);
+            }
+            //if (OnStickyProjectileStuck != null) { OnStickyProjectileStuck(objectToLookOutFor); }
         }
 
         public void OnDestroy()

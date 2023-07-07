@@ -30,7 +30,7 @@ namespace ModularMod
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();
             comp.isAlt = false;
-            comp.AdditionalPowerSupply = 2;
+            comp.AdditionalPowerSupply = 1;
 
             gun.DefaultModule.ammoCost = 1;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.Automatic;

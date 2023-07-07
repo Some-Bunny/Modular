@@ -30,7 +30,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.0.5";
+        public const string VERSION = "1.0.12";
         public const string TEXT_COLOR = "#79eaff";
 
         public static string FilePathFolder;
@@ -41,7 +41,7 @@ namespace ModularMod
         public static AdvancedStringDB Strings;
 
         private static bool SoundTest = false;
-        public static bool Debug_Mode = false;
+        public static bool Debug_Mode = true;
         private static bool DialogueTest = false;
 
         public void Start(){ ETGModMainBehaviour.WaitForGameManagerStart(GMStart); }
@@ -106,6 +106,7 @@ namespace ModularMod
             EnemyDeathUnlockController.Start();
             MultiActiveReloadManager.SetupHooks();
             CustomClipAmmoTypeToolbox.Init();
+            BlessedMode_Modifier.Init();
 
             //Items
             ModulePrinterCore.Init();

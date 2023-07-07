@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("burninghell_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Burning Hell " + h.ReturnTierLabel();
-            h.LabelDescription = "Halves Clip size and Rate Of Fire.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage.", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Halves Rate Of Fire and increases accuracy.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage.", StaticColorHexes.Light_Orange_Hex) + ")";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -54,10 +54,11 @@ namespace ModularMod
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 Name = "BurningHell",
-                ClipSize_Process = PFR,
+                Accuracy_Process = PFR,
                 FireRate_Process = FireRate,
+                ChargeSpeed_Process = FireRate,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modulePrinter.stickyContexts.Add(this.stickyContext);
 
             modulePrinter.OnProjectileStickAction += H;
@@ -68,7 +69,7 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.speed *= 1.5f;
+            p.baseData.speed *= 2f;
             p.UpdateSpeed();
         }
         public void H(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)
@@ -152,7 +153,7 @@ namespace ModularMod
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
 
             if (modulePrinter.stickyContexts.Contains(this.stickyContext))
             {
@@ -168,13 +169,13 @@ namespace ModularMod
         {
         }
 
-        public int PFR(int f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
-        {
-            return f / 2;
-        }
         public float FireRate(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             return f * 2;
+        }
+        public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            return f / 2;
         }
     }
 }

@@ -86,7 +86,7 @@ namespace ModularMod
                 Accuracy_Process = ProcessAccuracy,
                 FireRate_Process = ProcessRoF
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            printer.ProcessGunStatModifier(this.gunStatModifier);
             player.stats.RecalculateStats(player);
             printer.OnPostProcessProjectile += PPP;
         }
@@ -130,7 +130,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             player.stats.RecalculateStats(player);
         }
     }
@@ -154,7 +154,7 @@ namespace ModularMod
 
         private void PissAndShit(SpeculativeRigidbody myBody, PixelCollider myCollider, SpeculativeRigidbody otherBody, PixelCollider otherCollider)
         {
-            if (otherBody.projectile && myBody.projectile)
+            if (otherBody && otherBody.projectile && myBody.projectile)
             {
                 PhysicsEngine.SkipCollision = true;
                 myBody.RegisterTemporaryCollisionException(otherBody, 0.1f);

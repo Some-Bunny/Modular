@@ -63,18 +63,27 @@ namespace ModularMod
             bool found = false;
             while (found == false && rolls > 0)
             {
-                var c = BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(printer.ModuleContainers);
-                if (c.LabelName != this.LabelName)
+
+                var list = printer.ModuleContainers.Where(self => self.ActiveCount > 0 && self.LabelName != this.LabelName); //BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(printer.ModuleContainers)
+                if (list.Count() >0)
                 {
-                    found = !found;
-                    
-                    c.FakeCount.Add(new Tuple<string, int>("Mirror", this.ReturnStack(printer)*2));
-                    c.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
-                    
+                    var c = BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(list.ToList());
+                    if (c.LabelName != this.LabelName)
+                    {
+                        found = !found;
 
-                    AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
-                    VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer), printer.Owner, c.defaultModule);
+                        c.FakeCount.Add(new Tuple<string, int>("Mirror", this.ReturnStack(printer) * 2));
+                        c.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
 
+
+                        AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
+                        VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer) * 2, printer.Owner, c.defaultModule);
+
+                    }
+                    else
+                    {
+                        rolls--;
+                    }
                 }
                 else
                 {
@@ -93,7 +102,7 @@ namespace ModularMod
                     {
                         help.FakeCount.Remove(help.FakeCount[i]);
                         help.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
-                        VFXStorage.DoFancyDestroyOfModules(this.ReturnStack(printer), printer.Owner, help.defaultModule);
+                        VFXStorage.DoFancyDestroyOfModules(this.ReturnStack(printer) * 2, printer.Owner, help.defaultModule);
                     }
                 }
             }

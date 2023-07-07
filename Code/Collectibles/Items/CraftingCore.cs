@@ -45,6 +45,14 @@ namespace ModularMod
             active.UsesNumberOfUsesBeforeCooldown = true;
             active.SetupUnlockOnCustomFlag(CustomDungeonFlags.PAST, true);
             CraftingCoreID = pickup.PickupObjectId;
+
+            GameObject roomIcon = new GameObject("VFX");
+            FakePrefab.DontDestroyOnLoad(roomIcon);
+            FakePrefab.MarkAsFakePrefab(roomIcon);
+            var tk2d = roomIcon.AddComponent<tk2dSprite>();
+            tk2d.Collection = StaticCollections.Item_Collection;
+            tk2d.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("craftingcore_room_icon"));
+            active.minimapIcon = roomIcon;
         }
 
         public override void Update()

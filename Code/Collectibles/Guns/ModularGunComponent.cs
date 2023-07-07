@@ -319,6 +319,7 @@ namespace ModularMod
                     if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
                     if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
                 }
+                ClipSize = (Mathf.Max(ClipSize, 1));
 
                 foreach (var entry in statMods)
                 {

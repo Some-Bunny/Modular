@@ -36,13 +36,20 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_Omega;
             h.LabelName = "ETERNAL WRAP " + h.ReturnTierLabel();
             h.LabelDescription = "PROJECTILES WRAP AROUND ROOMS\nAND GAIN STRENGTH WHEN THEY DO.\n(" + StaticColorHexes.AddColorToLabelString("+MORE WRAP AROUNDS AND DAMAGE", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.powerConsumptionData = new PowerConsumptionData()
+            {
+                FirstStack = 0,
+                AdditionalStacks = 0,
+                OverridePowerDescriptionLabel = "USES NO POWER."
+            };
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.red);
             h.AdditionalWeightMultiplier = 0.9f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.Label_Background_Color_Override = new Color32(255, 10, 10, 255);
+            h.Label_Background_Color_Override = new Color32(255, 10, 10, 100);
+
             ID = h.PickupObjectId;
         }
         public static int ID;

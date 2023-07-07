@@ -56,8 +56,9 @@ namespace ModularMod
                 FireRate_Process = ProcessFireRate,
                 ClipSize_Process = ProcessClipSize,
                 Accuracy_Process = ProcessAccuracy,
+                ChargeSpeed_Process = ProcessFireRate,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            printer.ProcessGunStatModifier(this.gunStatModifier);
             player.stats.RecalculateStats(player);
             printer.OnPostProcessProjectile += PPP;
         }
@@ -89,7 +90,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modularGunController.RevertMuzzleFlash();
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             player.stats.RecalculateStats(player);
         }
     }

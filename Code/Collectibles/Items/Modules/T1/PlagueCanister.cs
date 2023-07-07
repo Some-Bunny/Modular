@@ -22,7 +22,7 @@ namespace ModularMod
         public void AAA(SpeculativeRigidbody myRigidbody, PixelCollider myPixelCollider, SpeculativeRigidbody otherRigidbody, PixelCollider otherPixelCollider)
         {
             PhysicsEngine.SkipCollision = true;
-            if (otherRigidbody.healthHaver != null && otherRigidbody.healthHaver.m_player == null)
+            if (otherRigidbody.aiActor != null && otherRigidbody.healthHaver != null && otherRigidbody.healthHaver.m_player == null)
             {
                 otherRigidbody.healthHaver.ApplyDamage(5, Vector2.zero, "Glass Shards");
                 Destroy(this.gameObject);

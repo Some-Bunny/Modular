@@ -62,7 +62,7 @@ namespace ModularMod
             yield return null;
             foreach (var t1_modules in GlobalModuleStorage.all_Tier_1_Modules)
             {
-                ValidRoomRewardContents.overrideItemPool.Add(new Tuple<float, int>(0.0125f, t1_modules.PickupObjectId));
+                ValidRoomRewardContents.overrideItemPool.Add(new Tuple<float, int>(0.0005f, t1_modules.PickupObjectId));
             }
             yield break;
         }
@@ -84,7 +84,7 @@ namespace ModularMod
         }
         public void OnDetermineContents(RoomHandler room, Alexandria.RoomRewardAPI.ValidRoomRewardContents validRoomReward, float f)
         {
-            validRoomReward.additionalRewardChance -= (float)(0.0625f + (0.0625 * Stack()));
+            validRoomReward.additionalRewardChance -= (float)((0.05f * Stack()));
             validRoomReward.overrideItemPool.AddRange(ReturnThing());
         }
 

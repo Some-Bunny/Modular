@@ -43,8 +43,6 @@ namespace ModularMod.Past.Prefabs.Objects
                             var player = otherbody.gameObject.GetComponent<PlayerController>();
                             if (player)
                             {
-
-
                                 GameManager.IsBossIntro = false;
                                 for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
                                 {

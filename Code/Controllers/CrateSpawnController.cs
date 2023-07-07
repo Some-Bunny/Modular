@@ -34,7 +34,7 @@ namespace ModularMod
             tk2dAnim.renderer.material = mat;
             
 
-            SpeculativeRigidbody specBody = Crate.GetComponent<tk2dSprite>().SetUpSpeculativeRigidbody(new IntVector2(1, 1), new IntVector2(49, 56));
+            SpeculativeRigidbody specBody = Crate.GetComponent<tk2dSprite>().SetUpSpeculativeRigidbody(new IntVector2(1, -12), new IntVector2(32, 20));
             specBody.PixelColliders.Clear();
             specBody.CollideWithTileMap = false;
             specBody.PixelColliders.Add(new PixelCollider
@@ -45,10 +45,10 @@ namespace ModularMod
                 BagleUseFirstFrameOnly = false,
                 SpecifyBagelFrame = string.Empty,
                 BagelColliderNumber = 0,
-                ManualOffsetX = 1,
-                ManualOffsetY = 2,
-                ManualWidth = 26,
-                ManualHeight = 22,
+                ManualOffsetX = 0,
+                ManualOffsetY = -4,
+                ManualWidth = 32,
+                ManualHeight = 20,
                 ManualDiameter = 0,
                 ManualLeftX = 0,
                 ManualLeftY = 0,
@@ -63,10 +63,10 @@ namespace ModularMod
                 BagleUseFirstFrameOnly = false,
                 SpecifyBagelFrame = string.Empty,
                 BagelColliderNumber = 0,
-                ManualOffsetX = 1,
-                ManualOffsetY = 2,
-                ManualWidth = 26,
-                ManualHeight = 22,
+                ManualOffsetX = 0,
+                ManualOffsetY = -4,
+                ManualWidth = 32,
+                ManualHeight = 20,
                 ManualDiameter = 0,
                 ManualLeftX = 0,
                 ManualLeftY = 0,
@@ -81,10 +81,10 @@ namespace ModularMod
                 BagleUseFirstFrameOnly = false,
                 SpecifyBagelFrame = string.Empty,
                 BagelColliderNumber = 0,
-                ManualOffsetX = 1,
-                ManualOffsetY = 2,
-                ManualWidth = 26,
-                ManualHeight = 22,
+                ManualOffsetX = 0,
+                ManualOffsetY = -4,
+                ManualWidth = 32,
+                ManualHeight = 20,
                 ManualDiameter = 0,
                 ManualLeftX = 0,
                 ManualLeftY = 0,

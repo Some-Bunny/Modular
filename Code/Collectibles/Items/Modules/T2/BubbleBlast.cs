@@ -49,10 +49,10 @@ namespace ModularMod
             {
                 Name = "CouterProduction",
                 Accuracy_Process = ProcessAccuracy,
-                FireRate_Process = ProcessFireRate
-
+                FireRate_Process = ProcessFireRate,
+                ChargeSpeed_Process = ProcessFireRate,
             };
-            modularGunController.statMods.Add(gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modulePrinter.OnPostProcessProjectile += PPP;
             modulePrinter.OnGunReloaded += OGR;
         }
@@ -101,7 +101,7 @@ namespace ModularMod
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
 
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnGunReloaded -= OGR;

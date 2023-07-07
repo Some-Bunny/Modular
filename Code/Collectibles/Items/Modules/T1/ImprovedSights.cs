@@ -48,13 +48,13 @@ namespace ModularMod
             {
                 Accuracy_Process = ProcessFireRate,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modularGunController.ProcessStats();
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
 
 

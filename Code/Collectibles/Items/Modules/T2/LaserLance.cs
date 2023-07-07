@@ -90,7 +90,7 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (p.baseData.damage * (Dmg * 3f) * 1 + (0.5f * stack)) / 10f;
+            component3.baseData.damage = (p.baseData.damage * (Dmg * 4f) * 1 + (0.5f * stack)) / 10f;
             component3.AdditionalScaleMultiplier *= 0.5f;
             component3.baseData.range *= stack;
 
@@ -104,10 +104,30 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile += PPP;
+            modulePrinter.OnProjectileStickAction += OPSA;
+            modulePrinter.OnProjectileStickToWallAction += OPSAT;
+
+        }
+
+        public void OPSA(GameObject s, StickyProjectileModifier mod, tk2dBaseSprite sprite, PlayerController p)
+        {
+            if (s.GetComponent<BeamPointer>())
+            {
+                s.GetComponent<BeamPointer>().OnStuck(s);
+            }
+        }
+        public void OPSAT(GameObject s, StickyProjectileModifier mod, tk2dBaseSprite sprite, PlayerController p, PhysicsEngine.Tile t)
+        {
+            if (s.GetComponent<BeamPointer>())
+            {
+                s.GetComponent<BeamPointer>().OnStuck(s, t);
+            }
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
+            modulePrinter.OnProjectileStickAction -= OPSA;
+            modulePrinter.OnProjectileStickToWallAction -= OPSAT;
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
@@ -118,27 +138,49 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (p.baseData.damage * (Dmg * 3f) * 1 + (0.5f * stack)) / 10f;
+            component3.baseData.damage = (p.baseData.damage * (Dmg * 4f) * 1 + (0.5f * stack)) / 10f;
             component3.AdditionalScaleMultiplier *= 0.5f;
             component3.baseData.range *= stack;
 
             var point = p.gameObject.AddComponent<BeamPointer>();
             point.self = p;
+            point.Object = p.gameObject;
             point.beam = beamController3;
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += 2;
+            bounceProjModifier.numberOfBounces += 1;
         }
     }
 
     public class BeamPointer : MonoBehaviour
     {
+        public GameObject Object;
         public Projectile self;
         public BeamController beam;
+
+        public void Start()
+        {
+        }
+
+        public void OnStuck(GameObject p, PhysicsEngine.Tile t = null)
+        {
+            FUCK = true;
+            if (beam)
+            {
+                Vector2 vector2 = t != null ? GameManager.Instance.Dungeon.data.tilemap.GetTilePosition(t.X, t.Y) : new Vector3(-60, 60);
+                beam.Direction = Toolbox.GetUnitOnCircle(t != null ? BraveMathCollege.GetNearestAngle((p.transform.PositionVector2() - vector2).ToAngle(), new float[] {0,90,180,270}) : beam.Direction.ToAngle() + 180, 1);
+            }
+        }
+        public bool FUCK = false;
         public void Update()
         {
-            if (self != null && beam != null)
+            if (FUCK == false && beam != null && Object != null)
             {
                 beam.Direction = Toolbox.GetUnitOnCircle(self.LastVelocity.ToAngle(), 1);
+
+            }
+            else if (Object == null && beam != null)
+            {
+                beam.CeaseAttack();
             }
         }
     }

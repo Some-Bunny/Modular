@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Disabled Dampeners",
             Description = "Recoil Up",
-            LongDescription = "Increases Rate Of Fire by\n25% (+25% per stack hyperbolically) but disables recoil dampeners." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Rate Of Fire by\n25% (+25% per stack hyperbolically), and reduces reload time by 12.5% (+12.5% per stack hyperbolically) but disables recoil dampeners." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("nodampener_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Disabled Dampeners " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.8f;
-            h.LabelDescription = "Increases Rate Of Fire by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by 10% (" + StaticColorHexes.AddColorToLabelString("+10% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
+            h.LabelDescription = "Increases Rate Of Fire by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -44,19 +44,19 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile += PPP;
-            //modularGunController.OnPreFired += OPF;
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
+                ChargeSpeed_Process = ProcessFireRate,
                 Reload_Process = ProcessReloadTime
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
@@ -71,22 +71,14 @@ namespace ModularMod
         public float ProcessReloadTime(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.1f * stack)));
+            return f - (f - (f / (1 + 0.125f * stack)));
         }
 
-
-        public void OPF(ModulePrinterCore modulePrinterCore, Projectile p, PlayerController player, Gun gun)
-        {
-            int stack = this.ReturnStack(modulePrinterCore);
-            p.AppliesKnockbackToPlayer = true;
-            p.PlayerKnockbackForce = 10 +(5f * stack);
-        }
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            player.knockbackDoer.ApplyKnockback(Toolbox.GetUnitOnCircle(player.CurrentGun.CurrentAngle - 180, 1), (20 * stack) * (1 + (p.baseData.damage / 15)));
-
+            player.knockbackDoer.ApplyKnockback(Toolbox.GetUnitOnCircle(player.CurrentGun.CurrentAngle - 180, 1), (15 * stack) * (1 + (p.baseData.damage / 80)));
             p.baseData.speed *= 1 + (0.2f * stack);
             p.baseData.force *= 1 + (0.2f * stack);
         }

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Hunter Seeker",
             Description = "Live For The Hunt",
-            LongDescription = "Projectile speed reduced by 33% (-33% hyperbolically per stack). Projectiles grain stronger homing the longer they are in the air (+Faster Homing Ramping per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Projectile speed reduced by 33% (-33% hyperbolically per stack). Projectiles grain stronger homing the longer they are in the air. (+Faster Homing Ramping per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hunterseeker_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hunterseeker_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Hunter Seeker " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectile speed reduced by 33% (" + StaticColorHexes.AddColorToLabelString("-33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles grain stronger homing the longer they are in the air (" + StaticColorHexes.AddColorToLabelString("+Faster Homing Ramping", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Projectile speed reduced by 33% (" + StaticColorHexes.AddColorToLabelString("-33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles grain stronger homing the longer they are in the air.\n(" + StaticColorHexes.AddColorToLabelString("+Faster Homing Ramping", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

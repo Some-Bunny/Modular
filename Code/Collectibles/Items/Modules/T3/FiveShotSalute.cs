@@ -51,8 +51,9 @@ namespace ModularMod
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
+                ChargeSpeed_Process = ProcessFireRate,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            printer.ProcessGunStatModifier(this.gunStatModifier);
             player.stats.AdditionalVolleyModifiers += Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
             printer.OnPostProcessProjectile += PPP;
@@ -78,7 +79,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             player.stats.AdditionalVolleyModifiers -= Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
         }

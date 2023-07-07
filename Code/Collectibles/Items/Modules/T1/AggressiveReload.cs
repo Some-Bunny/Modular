@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Aggressive Reload",
             Description = "Air Force",
-            LongDescription = "Reloading harms, pushes and stuns enemies near you. Effectiveness scales on how empty the clip is.\n(Damage and force is increased per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reloading harms, pushes and stuns enemies near you. Effectiveness scales on how empty the clip is. (Damage and force is increased per stack). Can deflect enemy bullets, with good timing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aggressivereload_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aggressivereload_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Aggressive Reload " + h.ReturnTierLabel();
-            h.LabelDescription = "Reloading harms, pushes and stuns enemies near you.\nEffectiveness scales on how empty the clip is.\n(" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Reloading harms, pushes and stuns enemies near you.\nEffectiveness scales on how empty the clip is.\n(" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ").\nCan deflect enemy bullets, with good timing.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -60,7 +60,7 @@ namespace ModularMod
             blankObj.transform.localScale = Vector3.one;
 
             Destroy(blankObj, 2f);
-            AkSoundEngine.PostEvent("Play_BOSS_RatMech_Bomb_01", silencerVFX.gameObject);
+            AkSoundEngine.PostEvent("Play_ENM_cannonball_blast_01", player.gameObject);
 
             float a =  1 - g.PercentageOfClipLeft();
             int stack = this.ReturnStack(modulePrinterCore);
@@ -69,7 +69,70 @@ namespace ModularMod
             Exploder.DoRadialKnockback(player.sprite.WorldCenter, 80 * a, 5);
             Exploder.DoRadialMinorBreakableBreak(player.sprite.WorldCenter, 5);
             ApplyActionToNearbyEnemies(player.sprite.WorldCenter, 5, player.CurrentRoom, a);
+
+            foreach (Projectile proj in StaticReferenceManager.AllProjectiles)
+            {
+                if (proj != null)
+                {
+                    AIActor enemy = proj.Owner as AIActor;
+                    if (proj.GetComponent<BasicBeamController>() == null)
+                    {
+                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 1.375f * a && proj.Owner != null && proj.Owner == enemy)
+                        {
+                            FistReflectBullet(proj, player.gameActor, proj.baseData.speed *= 2f, (proj.sprite.WorldCenter - player.transform.PositionVector2()).ToAngle(), 1f, proj.IsBlackBullet ? (5 + proj.baseData.speed)*2 : 5 + proj.baseData.speed, 0f);
+                        }
+                    }
+                }
+            }
         }
+
+        public static void FistReflectBullet(Projectile p, GameActor newOwner, float minReflectedBulletSpeed, float ReflectAngle, float scaleModifier = 1f, float damageModifier = 10f, float spread = 0f)
+        {
+            p.RemoveBulletScriptControl();
+            Vector2 Point1 = Toolbox.GetUnitOnCircle(ReflectAngle, 1);
+            p.Direction = Point1;
+
+            if (spread != 0f)
+            {
+                p.Direction = p.Direction.Rotate(UnityEngine.Random.Range(-spread, spread));
+            }
+            if (p.Owner && p.Owner.specRigidbody)
+            {
+                p.specRigidbody.DeregisterSpecificCollisionException(p.Owner.specRigidbody);
+            }
+            p.Owner = newOwner;
+            p.SetNewShooter(newOwner.specRigidbody);
+            p.allowSelfShooting = false;
+            if (newOwner is AIActor)
+            {
+                p.collidesWithPlayer = true;
+                p.collidesWithEnemies = false;
+            }
+            else
+            {
+                p.collidesWithPlayer = false;
+                p.collidesWithEnemies = true;
+            }
+            if (scaleModifier != 1f)
+            {
+                SpawnManager.PoolManager.Remove(p.transform);
+                p.RuntimeUpdateScale(scaleModifier);
+            }
+            if (p.Speed < minReflectedBulletSpeed)
+            {
+                p.Speed = minReflectedBulletSpeed;
+            }
+            if (p.baseData.damage < ProjectileData.FixedFallbackDamageToEnemies)
+            {
+                p.baseData.damage = ProjectileData.FixedFallbackDamageToEnemies;
+            }
+            p.baseData.damage = damageModifier;
+            p.UpdateCollisionMask();
+            p.ResetDistance();
+            p.Reflected();
+        }
+
+
         public float Mult;
 
         public void ApplyActionToNearbyEnemies(Vector2 position, float radius, RoomHandler room, float m)

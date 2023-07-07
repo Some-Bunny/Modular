@@ -68,7 +68,7 @@ namespace ModularMod
 
         public void ProcessGameObject(GameObject ai, float Distance = 35, bool isTether = false)
         {
-            if (ExtantTethers.Count > 1)
+            if (ExtantTethers.Count > 2)
             {
                 var thing = ReturnLongestDistance(Distance);
                 if (thing != null)
@@ -79,7 +79,7 @@ namespace ModularMod
                     ExtantTethers.Remove(thing);
                 }
             }
-            if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) < Distance && ai != this.gameObject && ExtantTethers.Count < 2)
+            if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) < Distance && ai != this.gameObject && ExtantTethers.Count < 3)
             {
                 if (!ExtantTethers.ContainsKey(ai))
                 {
@@ -185,8 +185,11 @@ namespace ModularMod
                 if (entry.Key && entry.Value)
                 {
                     float d = Vector2.Distance(entry.Key.transform.PositionVector2(), entry.Value.transform.PositionVector2());
-                    distances_V.Add(d, entry.Key);
-                    distances.Add(d);
+                    if (!distances_V.ContainsKey(d))
+                    {
+                        distances_V.Add(d, entry.Key);
+                        distances.Add(d);
+                    }
                 }
             }
             distances.Sort();

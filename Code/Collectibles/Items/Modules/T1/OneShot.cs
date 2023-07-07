@@ -46,12 +46,12 @@ namespace ModularMod
             {
                 Post_Calculation_ClipSize_Process = ProcessClipSize
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {

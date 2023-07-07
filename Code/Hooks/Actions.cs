@@ -15,7 +15,14 @@ namespace ModularMod.Code.Hooks
         public static void Init()
         {
             new Hook(typeof(RoomHandler).GetMethod("TriggerReinforcementLayer", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("TriggerReinforcementLayerHook"));
-            //new Hook(typeof(PlayerItem).GetMethod("Use", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("PreUse"));
+            new Hook(typeof(PlayerItem).GetMethod("Drop", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("DropHook"));
+        }
+
+        public static DebrisObject DropHook(System.Func<PlayerItem, PlayerController, float, DebrisObject> orig, PlayerItem self, PlayerController player, float overrideForce = 4f)
+        {
+            var debris = orig(self, player, overrideForce);
+            if (OnActiveItemDropped != null) { OnActiveItemDropped(debris.GetComponent<PlayerItem>(), player); }
+            return debris;
         }
         public static bool PreUse(System.Func<PlayerItem, PlayerController, Single, bool> orig, PlayerItem self, PlayerController user, out Single flot)
         {
@@ -36,5 +43,7 @@ namespace ModularMod.Code.Hooks
             return orig(self, index, removeLayer, disableDrops, specifyObjectIndex, specifyObjectCount, instant);
         }
         public static System.Action<RoomHandler> OnReinforcementWave;
+        public static System.Action<PlayerItem, PlayerController> OnActiveItemDropped;
+
     }
 }

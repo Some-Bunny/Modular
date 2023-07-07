@@ -94,7 +94,7 @@ namespace ModularMod
                 companion.aiActor.specRigidbody.CollideWithOthers = true;
                 companion.aiActor.specRigidbody.CollideWithTileMap = true;
                 companion.aiActor.PreventFallingInPitsEver = false;
-                companion.aiActor.healthHaver.ForceSetCurrentHealth(550f);
+                companion.aiActor.healthHaver.ForceSetCurrentHealth(675f);
                 companion.aiActor.CollisionKnockbackStrength = 0f;
                 companion.aiActor.procedurallyOutlined = true;
                 companion.aiActor.CanTargetPlayers = true;
@@ -104,7 +104,7 @@ namespace ModularMod
                 companion.aiActor.gameObject.AddComponent<ObjectVisibilityManager>();
 
                 companion.aiActor.ShadowObject = EnemyDatabase.GetOrLoadByGuid("6c43fddfd401456c916089fdd1c99b1c").ShadowObject;
-                companion.aiActor.healthHaver.SetHealthMaximum(550f, null, false);
+                companion.aiActor.healthHaver.SetHealthMaximum(675f, null, false);
                 companion.aiActor.specRigidbody.PixelColliders.Clear();
 
                 ImprovedAfterImage image = companion.aiActor.gameObject.AddComponent<ImprovedAfterImage>();
@@ -1298,8 +1298,6 @@ namespace ModularMod
                 yield break;
             }
         }
-
-
         public class Slow_Orb : Script
         {
             public override IEnumerator Top()
@@ -1391,8 +1389,6 @@ namespace ModularMod
             }
 
         }
-
-
         public class Ultrakill : Script
         {
             public override IEnumerator Top()
@@ -1427,8 +1423,6 @@ namespace ModularMod
                 }
             }
         }
-
-
         public class Interrupt : Script
         {
             public override IEnumerator Top()
@@ -1440,8 +1434,6 @@ namespace ModularMod
                 yield return null;
             }
         }
-
-
         public class Baboomer : Script
         {
             public override IEnumerator Top()
@@ -1455,7 +1447,6 @@ namespace ModularMod
                 yield return null;
             }
         }
-
         public class Baboomer_Small : Script
         {
             public override IEnumerator Top()
@@ -1493,9 +1484,6 @@ namespace ModularMod
             }
 
         }
-
-
-
         public class Lunge : Script
         {
             public override IEnumerator Top()
@@ -1565,7 +1553,6 @@ namespace ModularMod
                 yield return null;
             }
         }
-
         public class You_Cant_Escape_Weak : Script
         {
             public override IEnumerator Top()
@@ -1583,7 +1570,6 @@ namespace ModularMod
                 yield return null;
             }
         }
-
         public class You_Cant_Escape_Weak_Upgrade : Script
         {
             public override IEnumerator Top()
@@ -1604,8 +1590,6 @@ namespace ModularMod
                 yield return null;
             }
         }
-
-
         public class Punch : Script
         {
             public override IEnumerator Top()
@@ -1625,9 +1609,7 @@ namespace ModularMod
                 }
                 yield return null;
             }
-        }
-        
-
+        }        
         public class BigBeam : Script
         {
             public void OnRecieved(GameObject s, string a)
@@ -1780,7 +1762,6 @@ namespace ModularMod
                 private Vector2 m_addtionalVelocity;
             }
         }
-
         public class BigBeam_But_Even_Faster : Script
         {
             public void OnRecieved(GameObject s, string a)
@@ -1927,8 +1908,6 @@ namespace ModularMod
                 private Vector2 m_addtionalVelocity;
             }
         }
-
-
     }
 }
 

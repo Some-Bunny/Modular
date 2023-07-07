@@ -53,7 +53,7 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += stack;
+            bounceProjModifier.numberOfBounces += stack * 2;
             bounceProjModifier.damageMultiplierOnBounce *= (1 +(0.75f * stack));
             bounceProjModifier.OnBounceContext += OBC;
             p.baseData.damage *= 1 - (1 - (1 / (1 + 0.2f * stack))); //this formula fucking sucks lmao

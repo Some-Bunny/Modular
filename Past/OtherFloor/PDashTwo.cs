@@ -47,6 +47,48 @@ namespace ModularMod
                 typeof(Dungeon).GetMethod("FloorReached", BindingFlags.Instance | BindingFlags.Public),
                 typeof(PDashTwo).GetMethod("FloorReachedHook", BindingFlags.Static | BindingFlags.Public)
             );
+
+            new Hook(
+                typeof(DungeonFloorMusicController).GetMethod("ResetForNewFloor", BindingFlags.Instance | BindingFlags.Public),
+                typeof(PDashTwo).GetMethod("ResetForNewFloorHook", BindingFlags.Static | BindingFlags.Public)
+                );
+        }
+
+        public static void ResetForNewFloorHook(Action<DungeonFloorMusicController, Dungeon> orig, DungeonFloorMusicController self, Dungeon d)
+        {
+            self.m_overrideMusic = false;
+            self.m_isVictoryState = false;
+            self.m_lastMusicChangeTime = -1000f;
+            GameManager.Instance.FlushMusicAudio();
+            if (!string.IsNullOrEmpty(d.musicEventName))
+            {
+                self.m_cachedMusicEventCore = d.musicEventName;
+            }
+            else
+            {
+                self.m_cachedMusicEventCore = "Play_MUS_Dungeon_Theme_01";
+            }
+            self.m_coreMusicEventID = AkSoundEngine.PostEvent(self.m_cachedMusicEventCore, GameManager.Instance.gameObject, 33U, new AkCallbackManager.EventCallback(self.OnAkMusicEvent), null);
+            Debug.LogWarning(string.Concat(new object[]
+            {
+            "Posting core music event: ",
+            self.m_cachedMusicEventCore,
+            " with playing ID: ",
+            self.m_coreMusicEventID
+            }));
+            if (GameManager.Instance.CurrentLevelOverrideState == GameManager.LevelOverrideState.CHARACTER_PAST && GameManager.Instance.PrimaryPlayer.characterIdentity != PlayableCharacters.Bullet && d.GetComponent<P_2ParticleController>() == null)
+            {
+                self.m_overrideMusic = true;
+                AkSoundEngine.PostEvent("Play_MUS_Ending_State_01", GameManager.Instance.gameObject) ;
+            }
+            else
+            {
+                self.SwitchToState(DungeonFloorMusicController.DungeonMusicState.FLOOR_INTRO);
+            }
+            if (GameManager.Instance.CurrentLevelOverrideState == GameManager.LevelOverrideState.FOYER && GameStatsManager.Instance.AnyPastBeaten())
+            {
+                AkSoundEngine.PostEvent("Play_MUS_State_Winner", GameManager.Instance.gameObject);
+            }
         }
 
         public static void FloorReachedHook(Action<Dungeon> orig, Dungeon self)
@@ -150,10 +192,10 @@ namespace ModularMod
             var MinesDungeonPrefab = GetOrLoadByName_Orig("Base_Mines");
             var MarinePastPrefab = DungeonDatabase.GetOrLoadByName("Finalscenario_Soldier");
             var RnG = GetOrLoadByName_Orig("Base_Nakatomi");
-            var Hell = GetOrLoadByName_Orig("base_bullethell");
+            //var Hell = GetOrLoadByName_Orig("base_bullethell");
 
 
-            dungeon.musicEventName = Hell.musicEventName;
+            //dungeon.musicEventName = Hell.musicEventName;
             dungeon.gameObject.name = "Base_Modular_Past_2";
             dungeon.contentSource = ContentSource.CONTENT_UPDATE_03;
             dungeon.DungeonSeed = 0;
@@ -392,7 +434,7 @@ namespace ModularMod
             MinesDungeonPrefab = null;
             MarinePastPrefab = null;
             RnG = null;
-            Hell = null;
+            //Hell = null;
             return dungeon;
         }
 

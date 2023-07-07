@@ -54,6 +54,8 @@ namespace ModularMod
             chain.player = player;
             chain.projectile = p.gameObject;
             p.baseData.range += 5;
+            p.baseData.speed *= 0.8f;
+            p.UpdateSpeed();
         }
 
 

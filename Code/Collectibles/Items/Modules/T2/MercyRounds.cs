@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Mercy Rounds",
             Description = "Hits The Sick Harder",
-            LongDescription = "Deal an additional 50% (+50% per stack) more damage to enemies for each buff or debuff they have." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Deal an additional 50% (+50% per stack) more damage to enemies for each buff or debuff they have. Enemies with debuffs that are directly slain by you\nspread them to nearby enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Mercy Rounds " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal an additional 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.";
+            h.LabelDescription = "Deal an additional 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.\nEnemies with debuffs that are directly slain by you\nspread them to nearby enemies.";
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
@@ -47,6 +47,7 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.15f) { return; }
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
             p.OnHitEnemy += OHE;
+            p.OnWillKillEnemy += WillKill;
         }
 
         public static int ID;
@@ -71,7 +72,33 @@ namespace ModularMod
         {
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
             p.OnHitEnemy += OHE;
+            p.OnWillKillEnemy += WillKill;
         }
+
+        public void WillKill(Projectile projectile, SpeculativeRigidbody body)
+        {
+            if (body.aiActor)
+            {
+                var enemy = body.aiActor;
+                foreach (var effect in enemy.m_activeEffects)
+                {
+                    var enem = enemy.GetAbsoluteParentRoom().activeEnemies;
+                    if (!DebuffStatics.BlacklistedEffects.Contains(effect.effectIdentifier))
+                    {
+                        foreach (var enemies in enem)
+                        {
+                            if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 3.5f)
+                            {
+                                enemies.ApplyEffect(effect);
+                                var vfx = UnityEngine.Object.Instantiate(PatientZero.PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
+                                Destroy(vfx, 3);                               
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 
         public void OHE(Projectile projectile, SpeculativeRigidbody body, bool fatal)
         {
@@ -87,11 +114,14 @@ namespace ModularMod
 
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
         {
-            if (oR != null && oR.healthHaver != null && mR.projectile != null)
+            if (oR.aiActor != null)
             {
-                float damage = mR.projectile.baseData.damage;
-                mR.projectile.baseData.damage *= 1 + ((0.5f* stack) * oR.aiActor.m_activeEffects.Count());
-                mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
+                if (oR != null && oR.healthHaver != null && mR.projectile != null)
+                {
+                    float damage = mR.projectile.baseData.damage;
+                    mR.projectile.baseData.damage *= 1 + ((0.5f * stack) * oR.aiActor.m_activeEffects.Count());
+                    mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
+                }
             }
         }
 

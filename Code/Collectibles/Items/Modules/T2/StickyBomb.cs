@@ -58,7 +58,7 @@ namespace ModularMod
             };
             modulePrinter.stickyContexts.Add(this.stickyContext);
 
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modulePrinter.OnProjectileStickAction += H;
             modulePrinter.OnStickyDestroyAction += H2;
             modulePrinter.OnPreProjectileStickAction += OPPS;
@@ -78,7 +78,7 @@ namespace ModularMod
 
         public void H(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)
         {
-            comp.StartCoroutine(DoTimer(stick, 5 - (5 - (5 / (1 + (0.15f * this.Stack()))))));
+            comp.StartCoroutine(DoTimer(stick, 4 - (4 - (4 / (1 + (0.15f * this.Stack()))))));
         }
 
         public IEnumerator DoTimer(GameObject sticky, float DetTime = 5)
@@ -118,7 +118,7 @@ namespace ModularMod
             {
                 modularGunController.statMods.Remove(this.gunStatModifier);
             }
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
 
             modulePrinter.OnProjectileStickAction -= H;
             modulePrinter.OnStickyDestroyAction -= H2;

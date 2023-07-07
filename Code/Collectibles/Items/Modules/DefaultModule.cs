@@ -69,12 +69,40 @@ namespace ModularMod
             Tier_2_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_2.png", "tier_2");
             Tier_3_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_3.png", "tier_3");
             Tier_Omega_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_4.png", "tier_omega");
+
+            GameObject roomIcon = new GameObject("VFX");
+            FakePrefab.DontDestroyOnLoad(roomIcon);
+            FakePrefab.MarkAsFakePrefab(roomIcon);
+            var tk2d_2 = roomIcon.AddComponent<tk2dSprite>();
+            tk2d_2.Collection = StaticCollections.Item_Collection;
+            tk2d_2.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("t1_a_roomicon"));
+            minimapIcon = roomIcon;
         }
+
+        public static GameObject minimapIcon;
+        private GameObject extant_minimapIcon;
+        private RoomHandler m_minimapIconRoom;
 
         public static string Tier_1_Label;
         public static string Tier_2_Label;
         public static string Tier_3_Label;
         public static string Tier_Omega_Label;
+
+        private string ReturnRoomIconSpriteName(bool alt)
+        {
+            switch (this.Tier)
+            {
+                case ModuleTier.Tier_1:
+                    return alt ? "t1_b_roomicon" : "t1_a_roomicon";
+                case ModuleTier.Tier_2:
+                    return alt ? "t2_b_roomicon" : "t2_a_roomicon";
+                case ModuleTier.Tier_3:
+                    return alt ? "t3_b_roomicon" : "t3_a_roomicon";
+                case ModuleTier.Tier_Omega:
+                    return "t4_roomicon";
+                default: return "t1_a_roomicon";
+            }
+        }
 
         public string ReturnTierLabel()
         {
@@ -126,6 +154,7 @@ namespace ModularMod
                     OnAnyEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
                 }
             }
+            this.GetRidOfMinimapIcon();
             AkSoundEngine.PostEvent("Play_ClickIntoPlace", player.gameObject);
             Toolbox.NotifyCustom("Added Module:", this.LabelName, this.sprite.spriteId, this.sprite.collection, UINotificationController.NotificationColor.PURPLE);
             UnityEngine.Object.Destroy(base.gameObject);
@@ -214,6 +243,12 @@ namespace ModularMod
         }
         protected void Start()
         {
+            if (minimapIcon != null)
+            {
+                this.m_minimapIconRoom = GameManager.Instance.Dungeon.data.GetAbsoluteRoomFromPosition(base.transform.position.IntXY(VectorConversions.Floor));
+                this.extant_minimapIcon = Minimap.Instance.RegisterRoomIcon(this.m_minimapIconRoom, minimapIcon, false);
+                extant_minimapIcon.GetComponent<tk2dBaseSprite>().SetSprite(StaticCollections.Item_Collection, ReturnRoomIconSpriteName(ModularIsAltSkin()));
+            }
             if (AltSpriteID != -69 && ModularIsAltSkin() == true) 
             {
                 this.sprite.SetSprite(AltSpriteID);
@@ -278,7 +313,7 @@ namespace ModularMod
             {
                 return;
             }
-            Color32 colorToSelect = Label_Background_Color_Override != null ? Label_Background_Color_Override.Value : interactor.IsUsingAlternateCostume == true ? Label_Background_Color_Alt : Label_Background_Color;
+            Color colorToSelect = Label_Background_Color_Override != Color.clear ? Label_Background_Color_Override : (interactor.IsUsingAlternateCostume == true ? Label_Background_Color_Alt : Label_Background_Color);
             if (ExtantLabelController == null && CanDisplayText == true)
             {
                 ExtantLabelController = Toolbox.GenerateText(this.transform, Offset_LabelDescription, 0.5f, GetLabelNameDescrption(), colorToSelect);
@@ -427,9 +462,9 @@ namespace ModularMod
         public Vector2 Offset_LabelName = new Vector2(0, 2);
         public Vector2 Offset_LabelDescription = new Vector2(0, -2);
 
-        public Color32 Label_Background_Color = new Color32(121, 234, 255, 100);
-        public Color32 Label_Background_Color_Alt = new Color32(0, 255, 54, 100);
-        public Color32? Label_Background_Color_Override = null;
+        public Color Label_Background_Color = new Color32(121, 234, 255, 100);
+        public Color Label_Background_Color_Alt = new Color32(0, 255, 54, 100);
+        public Color Label_Background_Color_Override = Color.clear;
 
 
         public int AltSpriteID = -69;
@@ -455,8 +490,20 @@ namespace ModularMod
 
 
         public static ModifiedDefaultLabelManager LabelController;
+
+
+        private void GetRidOfMinimapIcon()
+        {
+            if (this.extant_minimapIcon != null)
+            {
+                Minimap.Instance.DeregisterRoomIcon(this.m_minimapIconRoom, this.extant_minimapIcon);
+                this.extant_minimapIcon = null;
+            }
+        }
         public override void OnDestroy()
         {
+            this.GetRidOfMinimapIcon();
+
             if (ExtantLabelController != null)
             { UnityEngine.Object.Destroy(ExtantLabelController.gameObject); }
 
@@ -467,10 +514,11 @@ namespace ModularMod
 
         public class PowerConsumptionData
         {
+
             public string OverridePowerDescriptionLabel = "FUCK";
             public float FirstStack = -420;
             public float AdditionalStacks = -69f;
-            public Func<DefaultModule, int, float> OverridePowerManagement; 
+            public Func<DefaultModule, int, float> OverridePowerManagement;
         }
     }
 

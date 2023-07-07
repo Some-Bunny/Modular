@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using Alexandria;
 using Alexandria.CharacterAPI;
@@ -9,11 +11,24 @@ using Alexandria.PrefabAPI;
 using Dungeonator;
 using Planetside;
 using UnityEngine;
+using Random = System.Random;
 
 namespace ModularMod
 {
     public static class Toolbox
     {
+        public static Random RNG = new Random();
+
+        public static T RandomEnum<T>()
+        {
+            Type type = typeof(T);
+            Array values = Enum.GetValues(type);
+            lock (RNG)
+            {
+                object value = values.GetValue(RNG.Next(values.Length));
+                return (T)Convert.ChangeType(value, type);
+            }
+        }
         public static void ShowHitBox(this SpeculativeRigidbody body)
         {
             PixelCollider hitboxPixelCollider = body.HitboxPixelCollider;
@@ -214,7 +229,7 @@ namespace ModularMod
             labelToSet.label.Text = Text;
             if (Autotrigger == true)
             {
-                labelToSet.Trigger_CustomTime(trans, offset, time);
+                labelToSet.Trigger_CustomTime(trans, offset * ScaleMult(), time);
             }
             labelToSet.label.backgroundColor = color;
 
@@ -226,6 +241,13 @@ namespace ModularMod
             componentInChildren.updateCollider();            
             componentInChildren.Invalidate();
             return labelToSet;
+        }
+
+        private static float ScaleMult()
+        {
+            Vector2 val = Toolbox.CalculateScale_X_Y_Based_On_Resolution();
+            if (val.x < 1 && val.y < 1) { return 1; }
+            return 1 - (val.x - 1);
         }
 
         public static void AddColorLight(this DefaultModule self, Color color)
@@ -266,6 +288,7 @@ namespace ModularMod
             float t = q / r;
             return t;
         }
+
 
         public static DungeonPlaceable GenerateDungeonPlaceable(Dictionary<GameObject, float> gameObjects, int placeableWidth = 1, int placeableLength = 1, DungeonPrerequisite[] dungeonPrerequisites = null)
         {
@@ -402,7 +425,7 @@ namespace ModularMod
             });
         }
 
-        public static void CreateFastBody(this GameObject gameObject, CollisionLayer layer, IntVector2 colliderX_Y, IntVector2 OffsetX_Y)
+        public static SpeculativeRigidbody CreateFastBody(this GameObject gameObject, CollisionLayer layer, IntVector2 colliderX_Y, IntVector2 OffsetX_Y)
         {
             SpeculativeRigidbody specBody = gameObject.GetOrAddComponent<SpeculativeRigidbody>();
             specBody.CollideWithTileMap = false;
@@ -425,7 +448,7 @@ namespace ModularMod
                 ManualRightX = 0,
                 ManualRightY = 0,
             });
-            
+            return specBody;
         }
 
         public static void AddShadowToObject(this GameObject obj, tk2dSpriteCollectionData Data, string spriteName, Vector2 OffsetX_Y)
@@ -466,6 +489,83 @@ namespace ModularMod
             tk2d.renderer.material = mat;
             obj.SetLayerRecursively(LayerMask.NameToLayer("BG_Nonsense"));
             Alexandria.DungeonAPI.StaticReferences.customObjects.Add(ObjectName + "_MDLR", obj);
+        }
+
+        public static Delegate GetEventDelegate(this object self, string eventName)
+        {
+            Delegate result = null;
+            if (self != null)
+            {
+                FieldInfo t = self.GetType().GetField(eventName, BindingFlags.Public | BindingFlags.Instance);
+                if (t != null)
+                {
+                    object val = t.GetValue(self);
+                    if (val != null && val is Delegate)
+                    {
+                        result = val as Delegate;
+                    }
+                }
+            }
+            return result;
+        }
+        public static object InvokeNotOverride(this MethodInfo methodInfo,
+    object targetObject, params object[] arguments)
+        {
+            var parameters = methodInfo.GetParameters();
+
+            if (parameters.Length == 0)
+            {
+                if (arguments != null && arguments.Length != 0)
+                    throw new Exception("Arguments cont doesn't match");
+            }
+            else
+            {
+                if (parameters.Length != arguments.Length)
+                    throw new Exception("Arguments cont doesn't match");
+            }
+
+            Type returnType = null;
+            if (methodInfo.ReturnType != typeof(void))
+            {
+                returnType = methodInfo.ReturnType;
+            }
+
+            var type = targetObject.GetType();
+            var dynamicMethod = new DynamicMethod("", returnType,
+                    new Type[] { type, typeof(object) }, type);
+
+            var iLGenerator = dynamicMethod.GetILGenerator();
+            iLGenerator.Emit(OpCodes.Ldarg_0); // this
+
+            for (var i = 0; i < parameters.Length; i++)
+            {
+                var parameter = parameters[i];
+
+                iLGenerator.Emit(OpCodes.Ldarg_1); // load array argument
+
+                // get element at index
+                iLGenerator.Emit(OpCodes.Ldc_I4_S, i); // specify index
+                iLGenerator.Emit(OpCodes.Ldelem_Ref); // get element
+
+                var parameterType = parameter.ParameterType;
+                if (parameterType.IsPrimitive)
+                {
+                    iLGenerator.Emit(OpCodes.Unbox_Any, parameterType);
+                }
+                else if (parameterType == typeof(object))
+                {
+                    // do nothing
+                }
+                else
+                {
+                    iLGenerator.Emit(OpCodes.Castclass, parameterType);
+                }
+            }
+
+            iLGenerator.Emit(OpCodes.Call, methodInfo);
+            iLGenerator.Emit(OpCodes.Ret);
+
+            return dynamicMethod.Invoke(null, new object[] { targetObject, arguments });
         }
     }
 }

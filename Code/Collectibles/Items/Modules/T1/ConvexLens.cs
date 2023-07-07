@@ -153,7 +153,7 @@ namespace ModularMod
 
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
         {
-            if (oR != null && oR.healthHaver != null && mR.projectile != null)
+            if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null)
             {
                 if (nearbyEnemies.Contains(oR.aiActor))
                 {

@@ -30,6 +30,8 @@ namespace ModularMod
 
 
         public static tk2dSpriteCollectionData VFX_Collection;
+        public static tk2dSpriteAnimation Generic_VFX_Animation;
+
 
         public static tk2dSpriteCollectionData Crate_Collection;
         public static tk2dSpriteAnimation Crate_Animation;
@@ -106,6 +108,10 @@ namespace ModularMod
             //VFX
             VFX_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularVFXCollection", "modular_vfx material.mat");
             if (VFX_Collection == null) { ETGModConsole.Log("VFX_Collection is NULL"); }
+
+            Generic_VFX_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("GenericVFXAnimation").GetComponent<tk2dSpriteAnimation>();
+
+            //Generic_VFX_Animation
         }
 
         public static tk2dSpriteCollectionData DoFastSetup(AssetBundle bundle, string CollectionName, string MaterialName)

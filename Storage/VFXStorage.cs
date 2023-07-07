@@ -123,10 +123,17 @@ namespace ModularMod
             tk2d3_1.renderer.material.SetFloat("_Fade", 0f);
 
             VFX_SpriteAppear = VFX_Popup;
+
+
+            var scarf = PickupObjectDatabase.GetById(436) as BlinkPassiveItem;
+            ScarfObject = scarf.ScarfPrefab;
         }
         public static GameObject VFX_SpriteAppear;
 
         public static GameObject VFX__Synergy;
+
+
+        public static ScarfAttachmentDoer ScarfObject;
 
 
         public static GameObject VFX_Modulable;

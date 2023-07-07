@@ -52,8 +52,8 @@ namespace ModularMod
                 projectileModule.ammoCost = 1;
                 projectileModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
                 projectileModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
-                projectileModule.cooldownTime = 0.5f;
-                projectileModule.angleVariance = 19;
+                projectileModule.cooldownTime = 0.75f;
+                projectileModule.angleVariance = 20;
                 projectileModule.numberOfShotsInClip = 8;
 
 

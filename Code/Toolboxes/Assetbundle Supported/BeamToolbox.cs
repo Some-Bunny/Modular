@@ -377,7 +377,7 @@ namespace ModularMod
                 Vector3 vector = BraveMathCollege.DegreesToVector(targetAngle, 1f);
                 component2.Direction = vector;
                 component2.Origin = sourcePos;
-                component.StartCoroutine(BeamToolbox.HandleFreeFiringBeam(component2, rigidBod, fixedPosition, usesFixedPosition, targetAngle, duration, HasSpecrigidBody, CanRotate, RotationSpeedperSecond));
+                component.StartCoroutine(BeamToolbox.HandleFreeFiringBeam(component2, otherShooter, rigidBod, fixedPosition, usesFixedPosition, targetAngle, duration, HasSpecrigidBody, CanRotate, RotationSpeedperSecond));
 
 
 
@@ -391,7 +391,7 @@ namespace ModularMod
                 return null;
             }
         }
-        private static IEnumerator HandleFreeFiringBeam(BeamController beam, SpeculativeRigidbody otherShooter, Vector2 fixedPosition, bool usesFixedPosition, float targetAngle, float duration, bool evenHasBody, bool CanRotate = false, float RotationSpeedPerSecond = 60)
+        private static IEnumerator HandleFreeFiringBeam(BeamController beam, GameObject otherShooter, SpeculativeRigidbody body, Vector2 fixedPosition, bool usesFixedPosition, float targetAngle, float duration, bool evenHasBody, bool CanRotate = false, float RotationSpeedPerSecond = 60)
         {
             float elapsed = 0f;
             yield return null;
@@ -401,7 +401,9 @@ namespace ModularMod
                 if (otherShooter == null && evenHasBody == true) { break; }
                 if (beam == null) { break; }
                 if (usesFixedPosition) sourcePos = fixedPosition;
-                else sourcePos = otherShooter.UnitCenter;
+
+                else sourcePos = body.projectile != null ? body.UnitCenter : otherShooter.transform.PositionVector2();
+
 
                 elapsed += BraveTime.DeltaTime;
                 if (sourcePos != null)

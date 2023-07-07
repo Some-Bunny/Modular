@@ -86,7 +86,6 @@ namespace ModularMod
                 VFXStorage.DoFancyFlashOfModules(1, self.m_owner, help_3);
                 self.m_player.PlayerHasCore().GiveTemporaryModule(help_3, "Sprun", 1);
                 m.Add(help_3, 1);
-
             }
             else
             {
@@ -126,11 +125,7 @@ namespace ModularMod
             if (self.m_player.PlayerHasCore() != null)
             {
                 AkSoundEngine.PostEvent("Play_BOSS_RatMech_Wizard_Kick_01", self.gameObject);
-                foreach (var entry in m)
-                {
-                    VFXStorage.DoFancyDestroyOfModules(entry.Value, self.m_owner, entry.Key);
-                }
-                self.m_player.PlayerHasCore().RemoveTemporaryModules("Sprun");
+                self.m_player.PlayerHasCore().RemoveTemporaryModules("Sprun", true);
             }
             follower.OverridePosition = false;
             self.DetransformSpren();

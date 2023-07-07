@@ -59,7 +59,7 @@ namespace ModularMod
             modulePrinter.OnAnyModuleObtained -= OAMO;
             modulePrinter.OnAnyModulePowered -= OAMP;
             modulePrinter.OnAnyModuleUnpowered -= OAMP;
-            for (int i = 0; i < modulePrinter.ModuleContainers.Count; i++)
+            for (int i = modulePrinter.ModuleContainers.Count - 1; i > -1; i--)
             {
                 var moduleContainer = modulePrinter.ModuleContainers[i];
                 if (moduleContainer.LabelName != this.LabelName)
@@ -69,6 +69,7 @@ namespace ModularMod
                         var fake = modulePrinter.ModuleContainers[i].FakeCount[w];
                         if (fake.First == "PerfectReplication")
                         {
+                            VFXStorage.DoFancyDestroyOfModules(modulePrinter.ModuleContainers[i].FakeCount[w].Second, player, moduleContainer.defaultModule);
                             modulePrinter.ModuleContainers[i].FakeCount.RemoveAt(w);
                         }
                     }
@@ -94,11 +95,11 @@ namespace ModularMod
 
         public void DoSort(ModulePrinterCore modulePrinter, PlayerController player)
         {
-            for (int i = 0; i < modulePrinter.ModuleContainers.Count; i++)
+            for (int i = modulePrinter.ModuleContainers.Count - 1; i > -1; i--)
             {
                 bool has = false;
                 var moduleContainer = modulePrinter.ModuleContainers[i];
-                if (moduleContainer.LabelName != this.LabelName)
+                if (moduleContainer.LabelName != this.LabelName && moduleContainer.ActiveCount > 0)
                 {
                     for (int w = 0; w < modulePrinter.ModuleContainers[i].FakeCount.Count; w++)
                     {
@@ -106,6 +107,15 @@ namespace ModularMod
                         if (fake.First == "PerfectReplication")
                         {
                             has = true;
+
+                            if (fake.Second > this.ReturnStack(modulePrinter))
+                            {
+                                VFXStorage.DoFancyDestroyOfModules(fake.Second - this.ReturnStack(modulePrinter), player, moduleContainer.defaultModule);
+                            }
+                            else
+                            {
+                                VFXStorage.DoFancyFlashOfModules(this.ReturnStack(modulePrinter) - fake.Second, player, moduleContainer.defaultModule);
+                            }
                             fake.Second = this.ReturnStack(modulePrinter);
                         }
                     }
@@ -113,6 +123,20 @@ namespace ModularMod
                     {
                         moduleContainer.FakeCount.Add(new Tuple<string, int>("PerfectReplication", this.ReturnStack(modulePrinter)));
                         moduleContainer.defaultModule.OnAnyPickup(modulePrinter, modulePrinter.ModularGunController, player, false);
+                        VFXStorage.DoFancyFlashOfModules(this.ReturnStack(modulePrinter), player, moduleContainer.defaultModule);
+                    }
+                    
+                }
+                else if (moduleContainer.LabelName != this.LabelName && moduleContainer.ActiveCount == 0)
+                {
+                    for (int w = 0; w < modulePrinter.ModuleContainers[i].FakeCount.Count; w++)
+                    {
+                        var fake = modulePrinter.ModuleContainers[i].FakeCount[w];
+                        if (fake.First == "PerfectReplication")
+                        {
+                            VFXStorage.DoFancyDestroyOfModules(modulePrinter.ModuleContainers[i].FakeCount[w].Second, player, moduleContainer.defaultModule);
+                            modulePrinter.ModuleContainers[i].FakeCount.RemoveAt(w);
+                        }
                     }
                 }
             }

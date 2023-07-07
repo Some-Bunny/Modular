@@ -69,9 +69,10 @@ namespace ModularMod
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 Name = "Momentum",
-                FireRate_Process = PFR
+                FireRate_Process = PFR,
+                ChargeSpeed_Process = PFR,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
         }
 
 
@@ -80,7 +81,7 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnRoomCleared -= ORC;
             modulePrinter.OnDamaged -= OnDamaged;
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
 
         }
 

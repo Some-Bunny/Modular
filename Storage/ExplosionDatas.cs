@@ -34,6 +34,9 @@ namespace ModularMod
             playDefaultSFX = true
         };
 
+        public static ExplosionData nigNukeExplosion = (PickupObjectDatabase.GetById(443) as TargetedAttackPlayerItem).strikeExplosionData;
+
+
         public static ExplosionData CopyFields(ExplosionData explosionToCopy)
         {
             ExplosionData explosionData = new ExplosionData();

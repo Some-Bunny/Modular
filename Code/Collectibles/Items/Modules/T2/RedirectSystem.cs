@@ -53,7 +53,7 @@ namespace ModularMod
                 ClipSize_Process = ProcessClipSize,
                 Reload_Process = ProcessReloadTime,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modulePrinter.OnPostProcessProjectile += PPP;
         }
 
@@ -68,8 +68,7 @@ namespace ModularMod
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
-
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
 
@@ -96,12 +95,25 @@ namespace ModularMod
 
     public class RedirectComp : MonoBehaviour
     {
-        private void Start() { self = this.GetComponent<Projectile>(); 
+        private void Start() 
+        { 
+            self = this.GetComponent<Projectile>(); 
             foreach (var entry in RedirectSystem.allActiveComps)
             {
                 entry.Redirect(self.m_currentDirection.ToAngle());
             }
-            RedirectSystem.allActiveComps.Add(this); }
+            self.StartCoroutine(Delay());
+        }
+        public IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(0.15f);
+            if (this)
+            {
+                RedirectSystem.allActiveComps.Add(this);
+            }
+            yield break;
+        }
+
         public void Redirect(float angle)
         {
             if (self == null) { return; }

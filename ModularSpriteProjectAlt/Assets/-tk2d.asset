@@ -213,6 +213,10 @@ MonoBehaviour:
     dataGUID: 
     managed: 0
     loadable: 0
+  - assetGUID: 121b4ddc4873c0a4e92c8d69a46b4a5e
+    dataGUID: 
+    managed: 0
+    loadable: 0
   fontIndex:
   - assetGUID: 063b15d80dbb4604d890600a64c79cf8
     dataGUID: e7a6b09a73c6b2b4f8060096ddbd3b5e
@@ -297,6 +301,12 @@ MonoBehaviour:
     - plaguecanister_tier1_module_alt
     - battersrevenge_tier1_module
     - battersrevenge_tier1_module_alt.png
+    - gravecooling_tier1_module
+    - gravecooling_tier1_module_alt
+    - cleaner_tier1_module
+    - cleaner_tier1_module_alt
+    - heavyrounds_tier1_module
+    - heavyrounds_tier1_module_alt
     spriteTextureGUIDs:
     - a5ec6dd2ae0b5b34a9a3ef4f08592a6b
     - 8984dd2463ff83d418f9f2d3dfd2975d
@@ -348,6 +358,12 @@ MonoBehaviour:
     - 367302a2d4b149a49925763d21bcf79b
     - 1660ecb48e22c5b438641e88b1ee31cf
     - 136c2c373e86a1b48901c2b788b2cc27
+    - 811920e076f1fcf4d9f1f25c46baee0f
+    - 41751ebce4f6c7b4c94a1e78d723b6bb
+    - 78a4775885a77bb438c15f8c4e29af20
+    - f9b3a5d189f0fdc41b7aa56f3d126e97
+    - bf3f7f7ad4a425d42be6eeb15ef30f14
+    - 81d9dd1fe42a2ad47ae702de14242e59
     spriteTextureTimeStamps:
     - 1674414954.18848
     - 1674414983.82697
@@ -399,6 +415,12 @@ MonoBehaviour:
     - 1680965581.68953
     - 1687179670.64178
     - 1687179685.01764
+    - 1688216929.83611
+    - 1688216950.88413
+    - 1688595930.11504
+    - 1688595945.44754
+    - 1688677460.76179
+    - 1688677487.654
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -3390,6 +3412,29 @@ MonoBehaviour:
     - synergy_arrow_start_005
     - synergy_arrow_start_006
     - synergy_arrow_start_007
+    - spooky6
+    - spooky1
+    - spooky2
+    - spooky5
+    - spooky3
+    - spooky7
+    - spooky4
+    - zappyguon_idle_003
+    - zappyguon_idle_004
+    - zappyguon_idle_005
+    - zappyguon_idle_007
+    - zappyguon_idle_002
+    - zappyguon_idle_006
+    - zappyguon_idle_001
+    - wand_fx
+    - blade_fx
+    - bow_fx
+    - bow_anim_002
+    - staff_anim_001
+    - staff_anim_002
+    - blade_anim_002
+    - blade_anim_001
+    - bow_anim_001
     spriteTextureGUIDs:
     - 0d8586071a928fb4c920466116729c30
     - 1cf028702d6d57440bbc887fbde8087b
@@ -3771,6 +3816,29 @@ MonoBehaviour:
     - 886a2fd3fdf996347a356f9cb38cfcbc
     - 1fc71be7b786a794aac50879e17339cb
     - 7052654599501ff4faf64abef4ea1815
+    - af7e733cbe638764595ebc265487f495
+    - 2975af480262f1c43a617f3515ffbd44
+    - da782ad2fcf392e4196ba115d183e1b1
+    - 661d16481c7c2b0478a7363c813fa100
+    - c49aeb2f7cd615346845a21cd27f0bf5
+    - b7a017c471b80824f873f4d045449fb3
+    - b8388d5dcf6096742b26b5af2e74b364
+    - 64d365cef5d8e17498678a97e5da8fd5
+    - d5fc8e4b2632630469d481f9773be05d
+    - 109a61e9ded4fdd4c85e156e11f95bee
+    - d6c7ed2206929f945a56225200d1b8e7
+    - 380dda6ba58593c438161499173263f1
+    - f63b7b57bbe300c46b0e07e73e7de339
+    - 2e9ab17275fb4d54a9555432552b687b
+    - f52e4a6ea9bcd1c44941da56e20ffe34
+    - ee0fe23860db73943aa42486a833f17e
+    - 5c0c5932da0faaa45921d0d53ca3f318
+    - 5fd9ad9ff692dbf4aade86a0323a7b09
+    - aac6f502036ed644cb7907787dc6100a
+    - 299b0709a682681499bbfd21542067ee
+    - 5eab3ad6e7adeaa4f8287b55bc9843be
+    - 168a93009442bdb44b04a6e8855da7f1
+    - ea7bc1bad4b82414588cf811a26549a2
     spriteTextureTimeStamps:
     - 1674763113.28595
     - 1674763113.29594
@@ -4152,6 +4220,29 @@ MonoBehaviour:
     - 1687482251.15674
     - 1687482251.15974
     - 1687482251.16174
+    - 1688218275.47601
+    - 1688218275.46241
+    - 1688218275.466
+    - 1688218275.47301
+    - 1688218275.468
+    - 1688218275.47801
+    - 1688218275.47101
+    - 1688304703.38448
+    - 1688304703.38648
+    - 1688304703.38948
+    - 1688304703.39449
+    - 1688304703.38147
+    - 1688304703.39148
+    - 1688304703.3797
+    - 1688393424.66833
+    - 1688484220.58292
+    - 1688393364.93091
+    - 1688481723.04677
+    - 1688481735.08985
+    - 1688481735.09256
+    - 1688481711.79603
+    - 1688481711.79403
+    - 1688481723.04477
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4210,6 +4301,10 @@ MonoBehaviour:
     - burninghell_t2_module_alt
     - scavenger_t2_module
     - scavenger_t2_module_alt
+    - heatvectoring_t2_module_alt
+    - heatvectoring_t2_module
+    - tablekinetics_t2_module_alt
+    - tablekinetics_t2_module
     spriteTextureGUIDs:
     - bbd2c1745dbb9144bae6499d8e6be2f6
     - 85671afff06206842b88bd16bfb8c70f
@@ -4261,6 +4356,10 @@ MonoBehaviour:
     - 6db2909862e765944a26deb1f6edb68d
     - 211ed9cf6c11f7d4fb88bc2c9be6b6d4
     - de37247fa8d38f946a15f39d27bb92ba
+    - 8dd665b1e166f95478dee0db877c04e1
+    - eb3fc9ee072da594380242c4842837a9
+    - 009a7d4b9e05db54da2f503e18320aa3
+    - e29f5809fc5a18f4d9630ef52b8fd9c1
     spriteTextureTimeStamps:
     - 1674916655.51335
     - 1674916696.08715
@@ -4306,12 +4405,16 @@ MonoBehaviour:
     - 1680640986.28944
     - 1680712468.5718
     - 1680712446.91938
-    - 1680720572.34051
-    - 1680720550.12444
+    - 1688216771.60399
+    - 1688216753.65698
     - 1680984431.82582
     - 1680984448.82806
     - 1687554732.86708
     - 1687554750.31917
+    - 1688232302.46406
+    - 1688232288.05631
+    - 1688742281.19718
+    - 1688742265.09701
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4342,6 +4445,10 @@ MonoBehaviour:
     - voltaictethers_t3_module
     - pandemic_t3_module_alt
     - pandemic_t3_module
+    - tankstance_t3_module
+    - tankstance_t3_module_alt
+    - error_mod_t3_module
+    - error_mod_t3_module_alt
     spriteTextureGUIDs:
     - 62af1667c163bff44ba57da198f4ca3e
     - 30e16c74359c8b74cbf7d5287293528d
@@ -4365,6 +4472,10 @@ MonoBehaviour:
     - f0da19f412dc2044196b8188bbd7c6ca
     - 95f628e4f24bdbf4f88afae3ea671878
     - c071953914fd88c449a51d81f98c8c92
+    - f994cf26b08043343a0bc2bd5087c42e
+    - c7cc1bf4339a2a64195bcedfa2373c03
+    - 112f5eff90c0018469236c22e427c231
+    - c34bb9876187cda429626cdb77a055c5
     spriteTextureTimeStamps:
     - 1683987422.60661
     - 1683987440.71811
@@ -4388,6 +4499,10 @@ MonoBehaviour:
     - 1681042749.55702
     - 1681049083.21953
     - 1681049071.52362
+    - 1688248055.38297
+    - 1688248078.51458
+    - 1688745275.26365
+    - 1688745320.09507
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4414,6 +4529,17 @@ MonoBehaviour:
     - craftingcore_idle_004
     - craftingcore_idle_001
     - craftingcore_idle_002
+    - the_bag
+    - craftingcore_room_icon
+    - scrap_room_icon
+    - t1_a_roomicon
+    - whitebag_room_icon
+    - t1_b_roomicon
+    - t2_b_roomicon
+    - t3_a_roomicon
+    - t2_a_roomicon
+    - t3_b_roomicon
+    - t4_roomicon
     spriteTextureGUIDs:
     - df813c08dc4c8a241b2cabe9899b7ad7
     - a026eb8f6c8370947b0a46d3b470624e
@@ -4433,6 +4559,17 @@ MonoBehaviour:
     - 8ae288593cd09cd4ca7ee2210de0d52d
     - 29f09fea177cba04984c6258fabd7c1b
     - 67c0733631369d44396c7db2cb407a61
+    - 8350d29d4fd649e40ac34b00e5212fe5
+    - 89ceca03098dc7f4e8dc945297695dec
+    - 3df3d3fc4b4fbd04799558cb2c67f501
+    - 4f2a38c79bf734d42ac6f2b6681a1a54
+    - 101d25d04d9523e4b871bd2ebc187a8a
+    - ea6b66adeb333444092118031cdefed1
+    - 3b5d7da2c41fa0246b71ed51cfb480c9
+    - 4c1b10f17dc374a40a9a967e6bd97158
+    - d7a2dae85961f504c87705891e35f687
+    - 37f8c29097c8e5b4a9540ac12978e33e
+    - 2a68b8f89db89ac498a44c6a85d23e1e
     spriteTextureTimeStamps:
     - 1676123522.84831
     - 1675794515.27517
@@ -4452,6 +4589,17 @@ MonoBehaviour:
     - 1680561048.95314
     - 1680561048.94661
     - 1680561048.94814
+    - 1688393771.88511
+    - 1688695436.72007
+    - 1688695145.70201
+    - 1688696993.96799
+    - 1688696524.41314
+    - 1688697008.17762
+    - 1688697739.3858
+    - 1688698477.78956
+    - 1688697729.72592
+    - 1688698496.64291
+    - 1688737014.49068
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4463,14 +4611,17 @@ MonoBehaviour:
     - CORE_OF_GOD
     - ETERNAL_WRAP
     - ROGUE_ULTIMATUM
+    - LOOT_MADNESS
     spriteTextureGUIDs:
     - a5a59c372eee9b74e9d51cacd8c5ba9c
     - 0a654576e83621041b81e8be2954b8ef
     - a5af39ca014832d428b274ae281a4d6e
+    - 8e27fb63b3ce7b043a3cd60657c06972
     spriteTextureTimeStamps:
-    - 1678382679.9733
+    - 1688736824.66889
     - 1678384842.25589
-    - 1687018346.13911
+    - 1688736837.87291
+    - 1688386554.22054
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4727,6 +4878,12 @@ MonoBehaviour:
     - ballin_002
     - ballin_005
     - ballin_006
+    - heatvectoring_002
+    - heatvectoring_003
+    - heatvectoring_001
+    - arrow
+    - swordslash
+    - spell
     spriteTextureGUIDs:
     - 3638df8e5120f754695fa63b29e96e58
     - c389a9ceabc50f241908f1b6a9591ccc
@@ -4840,6 +4997,12 @@ MonoBehaviour:
     - d8ef2f58080a983499e0e9aea7ca7e68
     - 9f99bcb81879ef74e95773873d4e040e
     - 5c62e0494b0b1a24b8c21cb9a75f4fc4
+    - fda770f95ef0ec742ab418b7062a2535
+    - 88a169fc027cc884883fca19e30d6c9f
+    - baaa0dc7b9d30974a876a528f8c2d6d3
+    - c6dde7c971deea345a52ea037aa057ac
+    - a7e3ec2e745e6cf4eb2b922338581f65
+    - 0a6bb321a7d7b064b8a2b7e7b24f754e
     spriteTextureTimeStamps:
     - 1679785614.87981
     - 1679785610.71181
@@ -4953,6 +5116,12 @@ MonoBehaviour:
     - 1687180656.90943
     - 1687180656.91744
     - 1687180656.92044
+    - 1688230850.64908
+    - 1688230850.65108
+    - 1688230850.64607
+    - 1688408728.11153
+    - 1688408763.24399
+    - 1688408748.84459
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

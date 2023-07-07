@@ -78,17 +78,6 @@ namespace ModularMod
 
         }
 
-        public static List<string> BlacklistedEffects = new List<string>()
-        {
-            "jamBuff",
-            "leadBuff",
-            "blob",
-            "web",
-            "Infection",
-            "InfectionBoss",
-            "BrainHost",
-            "broken Armor"
-        };
 
 
         public void OnKilledEnemy(ModulePrinterCore core, PlayerController player, AIActor enemy)
@@ -107,7 +96,7 @@ namespace ModularMod
                 }
                 foreach (var effect in enemy.m_activeEffects)
                 {
-                    if (!BlacklistedEffects.Contains(effect.effectIdentifier) )
+                    if (!DebuffStatics.BlacklistedEffects.Contains(effect.effectIdentifier) )
                     {
                         foreach (var enemies in enem)
                         {
@@ -169,30 +158,33 @@ namespace ModularMod
                 var enem = enemy.GetAbsoluteParentRoom().activeEnemies;
                 foreach (var effect in enemy.m_activeEffects)
                 {
-                    foreach (var enemies in enem)
+                    if (!DebuffStatics.BlacklistedEffects.Contains(effect.effectIdentifier))
                     {
-                        if (UnityEngine.Random.value < (damage / 3))
+                        foreach (var enemies in enem)
                         {
-                            if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 2.5f + this.ReturnStack(core))
+                            if (UnityEngine.Random.value < (damage / 3))
                             {
-                                AkSoundEngine.PostEvent("Play_ENM_Tarnisher_Spit_01", enemy.gameObject);
-                                enemies.ApplyEffect(effect);
-                                var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
-                                Destroy(vfx, 3);
-                                if (enemies.healthHaver.damageTypeModifiers == null) { enemies.healthHaver.damageTypeModifiers = new List<DamageTypeModifier>(); }
-                                enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                                if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 2.5f + this.ReturnStack(core))
                                 {
-                                    damageType = CoreDamageTypes.Fire,
-                                    damageMultiplier = 1 + (0.15f * stack)
-                                });
-                                enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
-                                {
-                                    damageType = CoreDamageTypes.Poison,
-                                    damageMultiplier = 1 + (0.15f * stack)
-                                });
+                                    AkSoundEngine.PostEvent("Play_ENM_Tarnisher_Spit_01", enemy.gameObject);
+                                    enemies.ApplyEffect(effect);
+                                    var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
+                                    Destroy(vfx, 3);
+                                    if (enemies.healthHaver.damageTypeModifiers == null) { enemies.healthHaver.damageTypeModifiers = new List<DamageTypeModifier>(); }
+                                    enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                                    {
+                                        damageType = CoreDamageTypes.Fire,
+                                        damageMultiplier = 1 + (0.15f * stack)
+                                    });
+                                    enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                                    {
+                                        damageType = CoreDamageTypes.Poison,
+                                        damageMultiplier = 1 + (0.15f * stack)
+                                    });
+                                }
                             }
                         }
-                    }                     
+                    }                               
                 }
             }
         }

@@ -36,13 +36,20 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_Omega;
             h.LabelName = "ROGUES ULTIMATUM " + h.ReturnTierLabel();
             h.LabelDescription = "GRANTS A DAMAGE AND FIRE RATE BOOST\nBASED OFF HOW MUCH ENERGY YOU HAVE REMAINING.\n(" + StaticColorHexes.AddColorToLabelString("+DAMAGE AND RATE OF FIRE", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.powerConsumptionData = new PowerConsumptionData()
+            {
+                FirstStack = 0,
+                AdditionalStacks = 0,
+                OverridePowerDescriptionLabel = "USES NO POWER.",
+                OverridePowerManagement = null,
+            };
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.red);
             h.AdditionalWeightMultiplier = 1f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.Label_Background_Color_Override = new Color32(255, 10, 10, 255);
+            h.Label_Background_Color_Override = new Color32(255, 10, 10, 100);
             ID = h.PickupObjectId;
         }
         public static int ID;
@@ -53,7 +60,8 @@ namespace ModularMod
             {
                 FireRate_Process = ProcessFireRate,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            printer.ProcessGunStatModifier(this.gunStatModifier);
+
             printer.OnPostProcessProjectile += PPP;
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
@@ -74,7 +82,7 @@ namespace ModularMod
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
     }

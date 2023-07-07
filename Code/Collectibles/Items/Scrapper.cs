@@ -1,7 +1,9 @@
-﻿using Alexandria.ItemAPI;
+﻿using Alexandria.CharacterAPI;
+using Alexandria.ItemAPI;
 using Alexandria.Misc;
 using Dungeonator;
 using JuneLib.Items;
+using ModularMod.Code.Hooks;
 using MonoMod.RuntimeDetour;
 using SaveAPI;
 using System;
@@ -37,6 +39,7 @@ namespace ModularMod
         {
             pickup.AddPassiveStatModifier(PlayerStats.StatType.AdditionalItemCapacity, 1);
             pickup.CanBeDropped = false;
+            (pickup as PlayerItem).m_baseSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("computer_core");
             GameObject VFX = new GameObject("Scrapper_VFX");
             FakePrefab.DontDestroyOnLoad(VFX);
             FakePrefab.MarkAsFakePrefab(VFX);
@@ -84,9 +87,23 @@ namespace ModularMod
             new Hook(typeof(KeyBulletPickup).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Key"));
             new Hook(typeof(AmmoPickup).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Ammo"));
             new Hook(typeof(SilencerItem).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Blank"));
-
+            Actions.OnActiveItemDropped += OnThisActiveDropped;
         }
 
+
+        public static void OnThisActiveDropped(PlayerItem active, PlayerController player)
+        {
+            if (active.PickupObjectId == Scrapper.ID)
+            {
+                active.Pickup(player);          
+                (active as Scrapper).SetMode(Mode.COMPUTER);        
+            }
+
+        }
+        public override void Pickup(PlayerController player)
+        {
+            base.Pickup(player);
+        }
         public static void Start_HP(Action<HealthPickup> orig, HealthPickup self)
         {
             orig(self);
@@ -215,7 +232,10 @@ namespace ModularMod
             if (obj is SilencerItem) { c = 2; }
             if (obj is PassiveItem) { c = (obj as PassiveItem).Owner ? -1 : ReturnAmountBasedOnTier(obj.quality); }
             if (obj is PlayerItem) { c = (obj as PlayerItem).LastOwner  ? -1 : ReturnAmountBasedOnTier(obj.quality); }
-            if (OverrideCustomScrapCheck != null) { c = OverrideCustomScrapCheck(obj); }
+            if (OverrideCustomScrapCheck != null) 
+            {
+                c = OverrideCustomScrapCheck(obj, c);
+            }
             return c;
         }
         private static int Amo(AmmoPickup.AmmoPickupMode a)
@@ -231,7 +251,7 @@ namespace ModularMod
             }
             return -1;
         }
-        public static Func<PickupObject, int> OverrideCustomScrapCheck;
+        public static Func<PickupObject, int, int> OverrideCustomScrapCheck;
 
 
 
@@ -256,10 +276,7 @@ namespace ModularMod
             }
         }
 
-        public override void Pickup(PlayerController player)
-        {
-            base.Pickup(player);
-        }
+
 
 
 
@@ -272,17 +289,24 @@ namespace ModularMod
 
         public override void Update()
         {
-            base.Update();
             if (base.LastOwner != null && Inited == false)
             {
-                Inited = !Inited;
+                Inited = true;
                 SetMode(Mode.COMPUTER);
                 base.LastOwner.OnReloadPressed += ReloadPressed;
-                cunt_To_Return_To = LastOwner;
+                base.LastOwner.startingActiveItemIds.Add(this.PickupObjectId);
             }
-            else if (LastOwner == null && this.GetComponent<DebrisObject>() != null) { this.Pickup(cunt_To_Return_To); }
+            base.Update();
         }
-        private PlayerController cunt_To_Return_To;
+
+        public override void OnPreDrop(PlayerController user)
+        {
+            Inited = false;
+            base.LastOwner.OnReloadPressed -= ReloadPressed;
+            base.LastOwner = null;
+            base.OnPreDrop(user);
+        }
+
         private bool Inited = false;
 
         public void SwitchMode()
@@ -353,7 +377,9 @@ namespace ModularMod
                             }                         
                         }
                     }
+
                     List<DebrisObject> allDebris = StaticReferenceManager.AllDebris;
+                    
                     if (allDebris != null)
                     {
                         for (int e = 0; e < allDebris.Count; e++)
@@ -370,8 +396,23 @@ namespace ModularMod
                                         int scrap = ReturnPickupScrapValue(debrisObject.GetComponent<PickupObject>());
                                         if (scrap > 0)
                                         {
+                                            
                                             if (!allPickups.Contains(debrisObject.GetComponent<PickupObject>())) { allPickups.Add(debrisObject.GetComponent<PickupObject>()); }
                                             return true;
+                                        }
+                                        foreach (Component component in debrisObject.GetComponentsInChildren<Component>())
+                                        {
+                                            if (component is Gun)
+                                            {
+                                                Gun peepee = (component as Gun);
+                                                int scrapGun = ReturnPickupScrapValue(peepee);
+                                                if (scrapGun > 0)
+                                                {
+
+                                                    if (!allPickups.Contains(peepee)) { allPickups.Add(peepee); }
+                                                    return false;
+                                                }
+                                            }
                                         }
                                     }
                                 }           
@@ -562,11 +603,8 @@ namespace ModularMod
                                 }
                             }
                         }
-                    }
-                    
+                    }          
                 }
-
-               
             }
             else
             {
@@ -672,6 +710,14 @@ namespace ModularMod
     {
         private PlayerController player;
         private int Scale = 9;
+        private float ScalePos = 9;
+
+        public float ScaleMult()
+        {
+            Vector2 val=  Toolbox.CalculateScale_X_Y_Based_On_Resolution();
+            if (val.x < 1 && val.y < 1) { return 1; }
+            return 1 - (val.x - 1);
+        }
 
         public void DoQuickStart(PlayerController p)
         {
@@ -682,6 +728,7 @@ namespace ModularMod
             if (Core == null) { return; }
             IsNone = Core.ModuleContainers.Count == 0;
             ToggleControl(true);
+            ScalePos = ScaleMult();
             CursorPatch.DisplayCursorOnController = true;
             p.StartCoroutine(DoDelays(p));
             UIHooks.OnPaused += Le_Bomb;
@@ -1051,15 +1098,12 @@ namespace ModularMod
             if (PowerLabel == null)
 
             {
-                PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "[ " + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + Core.ReturnTotalPower().ToString() + " ]", cl, true, Scale-1);
+                PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "[ " + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + Core.ReturnTotalPower().ToString() + " ]" + " ["+StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) +  Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "]", cl, true, Scale-1);
                 PowerLabel.OnUpdate += (obj1) =>
                 {
                     bool h = PowerLabel.IsMouseHovering();
                     string t = "[ " + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + (h == true ? StaticColorHexes.AddColorToLabelString((Core.ReturnTotalPower() + 1).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnTotalPower().ToString()) + " ]";
-                    if (h == true)
-                    {
-                        t += " [Upgrade:"+ StaticColorHexes.AddColorToLabelString(ReturnUpgradeCost().ToString(), CanAffordUpgrade() == true ? StaticColorHexes.Green_Hex : StaticColorHexes.Red_Color_Hex) + scrapLabel + "]";
-                    }
+                    t += h == true ? " [Upgrade:" + StaticColorHexes.AddColorToLabelString(ReturnUpgradeCost().ToString(), CanAffordUpgrade() == true ? StaticColorHexes.Green_Hex : StaticColorHexes.Red_Color_Hex) + scrapLabel + "]" : " [" + StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "]";
                     obj1.color = h == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     obj1.text = t;
                     obj1.Invalidate();
@@ -1100,13 +1144,10 @@ namespace ModularMod
             }
             return false;
         }
-
         public int ReturnUpgradeCost()
         {
             return (Mathf.Max(2, Mathf.RoundToInt(Core.ReturnTotalPowerMasteryless()) + 3));
         }
-
-
         public int ReturnPagesCount()
         {
             switch (CurrentMode)

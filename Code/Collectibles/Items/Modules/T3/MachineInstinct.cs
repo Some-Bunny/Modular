@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("machineinstinct_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Machine Instinct " + h.ReturnTierLabel();
-            h.LabelDescription = "Being in proximity of projectiles and enemies increases "+ StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases both Rate Of Fire and Damage.  (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 5 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.LabelDescription = "Being in proximity of projectiles and enemies increases "+ StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases both Rate Of Fire and Damage.  (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 10 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
             h.EnergyConsumption = 2;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
@@ -53,8 +53,9 @@ namespace ModularMod
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
+                ChargeSpeed_Process = ProcessFireRate,
             };
-            modularGunController.statMods.Add(this.gunStatModifier);
+            printer.ProcessGunStatModifier(this.gunStatModifier);
             printer.OnPostProcessProjectile += PPP;
             printer.OnFrameUpdate += OFU;
             player.healthHaver.ModifyDamage += ModifyIncomingDamage;
@@ -107,7 +108,7 @@ namespace ModularMod
 
             h.IsVulnerable = true;
             f = 0;
-            while (f < 5 - (5 - (5 / (1 + 0.20f * this.ReturnStack(Stored_Core)))))
+            while (f < 10 - (10 - (10 / (1 + 0.20f * this.ReturnStack(Stored_Core)))))
             {
                 f += BraveTime.DeltaTime;
                 yield return null;
@@ -164,8 +165,8 @@ namespace ModularMod
 
         }
 
-        public float IncrementPerSecondEnemy = 0.2f;
-        public float IncrementPerSecondProjectile  = 0.1f;
+        public float IncrementPerSecondEnemy = 0.15f;
+        public float IncrementPerSecondProjectile  = 0.075f;
         public float BuildupCount = 0f;
         public bool DodgeCooldown = false;
 
@@ -303,7 +304,7 @@ namespace ModularMod
             player.m_additionalReceivesTouchDamage = true;
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnFrameUpdate -= OFU;
-            if (modularGunController && gunStatModifier != null && modularGunController.statMods.Contains(this.gunStatModifier)) { modularGunController.statMods.Remove(this.gunStatModifier); }
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
     }
 }

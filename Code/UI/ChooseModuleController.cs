@@ -247,7 +247,10 @@ namespace ModularMod
 
         private void OnDestroy()
         {
-
+            foreach (var entry in tk2DTiledSprites)
+            {
+                entry.Key.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "chain_alt_break" : "chain_break");
+            }
             for (int i = 0; i < selectableModules.Count; i++)
             {
                 if (selectableModules[i].extantModule)
@@ -370,26 +373,7 @@ namespace ModularMod
                 yield break;
             }
 
-            /*
-            public void Update()
-            {
 
-                if (controller)
-                {
-                    Debug.Log("EX: " + (extantModule != null));
-                    Debug.Log("EXOB: " + (extantModule.gameObject != null));
-                    Debug.Log("CO: " + (controller != null));
-                    Debug.Log("COG: " + (controller.g != null));
-                    Debug.Log("COGSPR: " + (controller.g.sprite != null));
-
-                    if (HasStoppedMoving == true && extantModule.gameObject && controller.g)
-                    {
-                        extantModule.gameObject.transform.position = Vector2.MoveTowards(extantModule.gameObject.transform.position, (controller.g.sprite.WorldCenter + EndPosition) + Offset, 0.075f);
-                    }
-                }
-
-            }
-            */
             public void Entered(DefaultModule DefMod)
             {
                 AkSoundEngine.PostEvent("Play_UI_menu_select_01", DefMod.gameObject);
