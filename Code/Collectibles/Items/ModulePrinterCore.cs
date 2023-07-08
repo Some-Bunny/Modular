@@ -214,8 +214,6 @@ namespace ModularMod
                     processedRooms.RemoveAt(i);
                 }
             }
-
-
         }
         private List<RoomHandler> processedRooms = new List<RoomHandler>();
 
@@ -274,11 +272,11 @@ namespace ModularMod
             yield break;
         }
 
-        public void OnAnyRoomEntered(PlayerController player)
+        private void OnAnyRoomEntered(PlayerController player)
         {
             if (PlayerEnteredAnyRoom != null) { PlayerEnteredAnyRoom(this, this.Owner, this.Owner.CurrentRoom); }
         }
-        public void OnAnyRoomExited()
+        private void OnAnyRoomExited()
         {
             if (PlayerExitedAnyRoom != null) { PlayerExitedAnyRoom(this, this.Owner, this.Owner.CurrentRoom); }
         }
@@ -403,59 +401,65 @@ namespace ModularMod
             }
             if (this.Owner.HasPickupID(521))
             {
-                if (UnityEngine.Random.value < 0.3f) 
-                {
-                    var bounce = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-                    bounce.ExplodeOnEnemyBounce = UnityEngine.Random.value < 0.1f ? true : false;
-                    bounce.damageMultiplierOnBounce += UnityEngine.Random.Range(0.75f, 1.25f);
-                    bounce.chanceToDieOnBounce += UnityEngine.Random.Range(0.00f, 0.2f);
-                    bounce.bouncesTrackEnemies = UnityEngine.Random.value < 0.2f ? true : false;
-                    bounce.bounceTrackRadius += UnityEngine.Random.Range(1f, 25f);
-                }
-                if (UnityEngine.Random.value < 0.3f)
-                {
-                    var pierce = p.gameObject.GetOrAddComponent<PierceProjModifier>();
-                    pierce.penetration += UnityEngine.Random.Range(1, 5);
-                    if (UnityEngine.Random.value < 0.3f)
-                    {
-                        var pierceMain = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-                        pierceMain.damageMultOnPierce *= UnityEngine.Random.Range(1.01f, 1.5f);
-                    }
-                }
-                if (UnityEngine.Random.value < 0.15f)
-                {
-                    var homing = p.gameObject.GetOrAddComponent<HomingModifier>();
-                    homing.AngularVelocity += UnityEngine.Random.Range(60f, 1080f);
-                    homing.HomingRadius += UnityEngine.Random.Range(1f, 25f);
-                }
-
-                p.AppliesPoison = true;
-                p.PoisonApplyChance = UnityEngine.Random.Range(0.01f, 1f);
-                p.healthEffect = DebuffStatics.irradiatedLeadEffect;
-
-                p.AppliesFire = true;
-                p.FireApplyChance = UnityEngine.Random.Range(0.1f, 1f);
-                p.fireEffect = UnityEngine.Random.value < 0.2 ? DebuffStatics.greenFireEffect : DebuffStatics.hotLeadEffect;
-
-                p.AppliesFreeze = true;
-                p.FreezeApplyChance = UnityEngine.Random.Range(0.1f, 1f);
-                p.freezeEffect = DebuffStatics.frostBulletsEffect;
-
-                p.AppliesCheese = true;
-                p.CheeseApplyChance = UnityEngine.Random.Range(0.02f, 0.5f);
-                p.cheeseEffect = DebuffStatics.cheeseeffect;
-
-                p.AppliesCharm = true;
-                p.CharmApplyChance = UnityEngine.Random.Range(0.02f, 0.5f);
-                p.charmEffect = DebuffStatics.charmingRoundsEffect;
-
-                p.CanTransmogrify = true;
-                p.ChanceToTransmogrify = 0.005f;
-
-                p.AdjustPlayerProjectileTint(new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f)), 10);
-                if (ModifyForChanceBullets != null) { ModifyForChanceBullets(this, p, f, Owner); }
+                DoChanceBulletProc(p, f);
             }
         }
+
+        public void DoChanceBulletProc(Projectile p, float f)
+        {
+            if (UnityEngine.Random.value < 0.3f)
+            {
+                var bounce = p.gameObject.GetOrAddComponent<BounceProjModifier>();
+                bounce.ExplodeOnEnemyBounce = UnityEngine.Random.value < 0.1f ? true : false;
+                bounce.damageMultiplierOnBounce += UnityEngine.Random.Range(0.75f, 1.25f);
+                bounce.chanceToDieOnBounce += UnityEngine.Random.Range(0.00f, 0.2f);
+                bounce.bouncesTrackEnemies = UnityEngine.Random.value < 0.2f ? true : false;
+                bounce.bounceTrackRadius += UnityEngine.Random.Range(1f, 25f);
+            }
+            if (UnityEngine.Random.value < 0.3f)
+            {
+                var pierce = p.gameObject.GetOrAddComponent<PierceProjModifier>();
+                pierce.penetration += UnityEngine.Random.Range(1, 5);
+                if (UnityEngine.Random.value < 0.3f)
+                {
+                    var pierceMain = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
+                    pierceMain.damageMultOnPierce *= UnityEngine.Random.Range(1.01f, 1.5f);
+                }
+            }
+            if (UnityEngine.Random.value < 0.15f)
+            {
+                var homing = p.gameObject.GetOrAddComponent<HomingModifier>();
+                homing.AngularVelocity += UnityEngine.Random.Range(60f, 1080f);
+                homing.HomingRadius += UnityEngine.Random.Range(1f, 25f);
+            }
+
+            p.AppliesPoison = true;
+            p.PoisonApplyChance = UnityEngine.Random.Range(0.01f, 1f);
+            p.healthEffect = DebuffStatics.irradiatedLeadEffect;
+
+            p.AppliesFire = true;
+            p.FireApplyChance = UnityEngine.Random.Range(0.1f, 1f);
+            p.fireEffect = UnityEngine.Random.value < 0.2 ? DebuffStatics.greenFireEffect : DebuffStatics.hotLeadEffect;
+
+            p.AppliesFreeze = true;
+            p.FreezeApplyChance = UnityEngine.Random.Range(0.1f, 1f);
+            p.freezeEffect = DebuffStatics.frostBulletsEffect;
+
+            p.AppliesCheese = true;
+            p.CheeseApplyChance = UnityEngine.Random.Range(0.02f, 0.5f);
+            p.cheeseEffect = DebuffStatics.cheeseeffect;
+
+            p.AppliesCharm = true;
+            p.CharmApplyChance = UnityEngine.Random.Range(0.02f, 0.5f);
+            p.charmEffect = DebuffStatics.charmingRoundsEffect;
+
+            p.CanTransmogrify = true;
+            p.ChanceToTransmogrify = 0.005f;
+
+            p.AdjustPlayerProjectileTint(new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f)), 10);
+            if (ModifyForChanceBullets != null) { ModifyForChanceBullets(this, p, f, Owner); }
+        }
+
 
         public static Action<ModulePrinterCore, Projectile, float, PlayerController> ModifyForChanceBullets;
 
