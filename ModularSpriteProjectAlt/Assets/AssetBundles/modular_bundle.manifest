@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3509235736
+CRC: 477668926
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 561841fbd30e58795aa711bebb0d0e4f
+    Hash: 7564d97fbe8d92ba6acb836aa0b0eb28
   TypeTreeHash:
     serializedVersion: 2
     Hash: d0b405c094c925d34f7a922684ac7d5f
@@ -137,6 +137,7 @@ Assets:
 - Assets/Sprites/UI/Accept Button/ui_button_accept_active_press.png
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_WIP_alt.png
 - Assets/Sprites/UI/Name Label/Names/Alt/name_label_suppressor_alt.png
+- Assets/Sprites/UI/ComputerCore/Info.png
 - Assets/Sprites/Experimental Tileset/ExperimentalTilesetCollection Data/experimentaltileset
   material.mat
 - Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_pressed_alt.png
@@ -248,6 +249,7 @@ Assets:
 - Assets/Sprites/Enemies/Sentry/SentryAnimation.prefab
 - Assets/Sprites/VFX/Animations/ScrapperAnimation.prefab
 - Assets/Sprites/Enemies/BigDrone/BigDroneAnimation.prefab
+- Assets/Sprites/UI/ComputerCore/Info_Hover.png
 - Assets/Sprites/UI/Page Turn Buttons/left_button_active.png
 - Assets/Sprites/UI/ui_template_bg_alt.png
 - Assets/Sprites/Characters/Modular/ModularSpriteAnimation.prefab

@@ -65,12 +65,12 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.damage *= 1 + (0.05f * player.GetComponent<ConsumableStorage>().GetConsumableOfName("Scrap") * this.ReturnStack(modulePrinterCore));
+            p.baseData.damage *= 1 + (0.05f * GlobalConsumableStorage.GetConsumableOfName("Scrap") * this.ReturnStack(modulePrinterCore));
         }
 
         public Vector2 MovementMod(Vector2 currentVel, ModulePrinterCore core, PlayerController p)
         {
-            return currentVel *= 1 + (0.025f * (p.GetComponent<ConsumableStorage>().GetConsumableOfName("Scrap")));
+            return currentVel *= 1 + (0.025f * GlobalConsumableStorage.GetConsumableOfName("Scrap"));
         }
 
 

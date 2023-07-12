@@ -25,6 +25,7 @@ namespace ModularMod
             gun.shootAnimation = "brrrminigun_fire";
             gun.reloadAnimation = "brrrminigun_reload";
             gun.introAnimation = "brrrminigun_intro";
+            gun.PersistsOnDeath = true;
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 

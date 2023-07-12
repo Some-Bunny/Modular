@@ -75,7 +75,7 @@ namespace ModularMod
                 base.spriteAnimator.StopAndResetFrame();
             }
             player.BloopItemAboveHead(base.sprite, "scrap_idle_001");
-            player.gameObject.GetComponent<ConsumableStorage>().AddConsumableAmount("Scrap", 1);
+            GlobalConsumableStorage.AddConsumableAmount("Scrap", 1);
             this.GetRidOfMinimapIcon();
             UnityEngine.Object.Destroy(base.gameObject);
         }

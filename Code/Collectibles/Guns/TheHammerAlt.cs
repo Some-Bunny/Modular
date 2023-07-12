@@ -26,6 +26,7 @@ namespace ModularMod
             gun.shootAnimation = "hammershotalt_fire";
             gun.reloadAnimation = "hammershotalt_reload";
             gun.introAnimation = "hammershotalt_intro";
+            gun.PersistsOnDeath = true;
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 

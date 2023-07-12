@@ -29,7 +29,9 @@ namespace SaveAPI
         BEAT_LICH_WITH_4_MODULES_OR_LESS, //Self Explanatory
 
         PAST_ALT_SKIN,
-        CRATE_DROP
+        CRATE_DROP,
+
+        CHECKED_ALL_ADVICE
 
         //STYLISHLY_KILL_AN_ENEMY
     }

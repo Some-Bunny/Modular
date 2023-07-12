@@ -860,7 +860,6 @@ namespace ModularMod
                     UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
                 }
                 GenericIntroDoer miniBossIntroDoer = prefab.AddComponent<GenericIntroDoer>();
-                //prefab.AddComponent<SteelPanopticonIntroDoer>();
 
                 miniBossIntroDoer.triggerType = GenericIntroDoer.TriggerType.PlayerEnteredRoom;
                 miniBossIntroDoer.initialDelay = 0.1f;
@@ -915,31 +914,7 @@ namespace ModularMod
                 companion.aiActor.bulletBank.Bullets.Add(EnemyDatabase.GetOrLoadByGuid(StaticGUIDs.Robot_Cylinder_GUID).bulletBank.GetBullet("default"));
                 companion.aiActor.bulletBank.Bullets.Add(EnemyDatabase.GetOrLoadByGuid(StaticGUIDs.Door_Lord_GUID).bulletBank.GetBullet("burst"));
 
-                /*
-                AIBulletBank.Entry FUCKYOU = new AIBulletBank.Entry();
-                FUCKYOU.Name = "BigBlast";
 
-                Projectile projectile = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(56) as Gun).DefaultModule.projectiles[0]);
-                projectile.gameObject.SetActive(false);
-                FakePrefab.MarkAsFakePrefab(projectile.gameObject);
-                UnityEngine.Object.DontDestroyOnLoad(projectile);
-
-                projectile.sprite.renderer.enabled = false;
-                FUCKYOU.BulletObject = projectile.gameObject;
-                var trailController = projectile.AddTrailToProjectileBundle(StaticCollections.Beam_Collection, "mega_beam_start_007", StaticCollections.Beam_Animation, "megabeam_midpoint", new Vector2(1, 1), new Vector2(0, 0), false, "megabeam_startpoint");
-                var sprite = trailController.GetComponent<tk2dTiledSprite>();
-                trailController.transform.parent = projectile.gameObject.transform;
-                
-                sprite.usesOverrideMaterial = true;
-                sprite.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
-                sprite.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
-                sprite.renderer.material.SetFloat("_EmissivePower", 50);
-                sprite.renderer.material.SetFloat("_EmissiveColorPower", 5);
-                projectile.BulletScriptSettings = new BulletScriptSettings() { preventPooling = true };
-                //FuckYou = proj.gameObject;
-                companion.aiActor.bulletBank.Bullets.Add(FUCKYOU);
-                MegaFuckingLaser = projectile;
-                */
 
                 AIBulletBank.Entry sentryEntry = EnemyBuildingTools.CopyBulletBankEntry(EnemyDatabase.GetOrLoadByGuid(StaticGUIDs.Helicopter_Agunim_GUID).bulletBank.GetBullet("big"), "SentryShot", null,
                 null
@@ -1083,9 +1058,6 @@ namespace ModularMod
         }
 
 
-
-
-
         public class The_Eye : Script
         {
             public override IEnumerator Top()
@@ -1199,8 +1171,6 @@ namespace ModularMod
 
 
         }
-
-
         public class Grahh : Script
         {
             public override IEnumerator Top()
@@ -1253,7 +1223,6 @@ namespace ModularMod
             }
 
         }
-
         public class RocketSpam : Script
         {
             public override IEnumerator Top()
@@ -1272,8 +1241,6 @@ namespace ModularMod
                 yield break;
             }
         }
-
-
         public class RAAAGH : Script
         {
             public float attackLength = 35f;

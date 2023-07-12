@@ -1,6 +1,7 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Dungeonator;
 using UnityEngine;
 using static Alexandria.ItemAPI.ItemBuilder;
@@ -215,6 +216,7 @@ namespace ModularMod
             {
                 if (entry.ChargeSpeed_Process != null) { overrideChargeSpeed = entry.ChargeSpeed_Process(overrideChargeSpeed, PrinterSelf, this, Player); }
             }
+
             return overrideChargeSpeed;
         }
 
@@ -309,22 +311,35 @@ namespace ModularMod
                 float BaseFireRate = cont.Value.Rate_Of_Fire;
                 float BaseAngle = cont.Value.Accuracy;
                 float AngleFromAim = cont.Value.Angle_From_Aim;
+
                 int ClipSize = cont.Value.Clip_Size;
                 int finales = cont.Value.FinalProjectiles_Count;
+
+                bool AmmoMaxIsClip = ClipSize == -1;
 
                 foreach (var entry in statMods)
                 {
                     if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
                     if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
-                    if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
-                    if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    if (entry.AngleFromAim_Process != null) 
+                    {
+                        AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player);
+                    }
+                    if (AmmoMaxIsClip == false)
+                    {
+                        if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    }
                 }
-                ClipSize = (Mathf.Max(ClipSize, 1));
-
-                foreach (var entry in statMods)
+                if (AmmoMaxIsClip == false)
                 {
-                    if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    ClipSize = (Mathf.Max(ClipSize, 1));
+                    foreach (var entry in statMods)
+                    {
+                        if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    }
                 }
+
+                
                 foreach (var entry in statMods)
                 {
                     if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player); }
@@ -352,18 +367,25 @@ namespace ModularMod
                 float AngleFromAim = cont.Value.Angle_From_Aim;
                 int ClipSize = cont.Value.Clip_Size;
                 int finales = cont.Value.FinalProjectiles_Count;
+                bool AmmoMaxIsClip = ClipSize == -1;
 
                 foreach (var entry in statMods)
                 {
                     if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
                     if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
                     if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
-                    if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    if (AmmoMaxIsClip == false)
+                    {
+                        if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    }
                 }
-                
-                foreach (var entry in statMods)
+                if (AmmoMaxIsClip == false)
                 {
-                    if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    ClipSize = (Mathf.Max(ClipSize, 1));
+                    foreach (var entry in statMods)
+                    {
+                        if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                    }
                 }
                 foreach (var entry in statMods)
                 {

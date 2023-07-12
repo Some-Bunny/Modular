@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,6 +10,7 @@ using Alexandria.CharacterAPI;
 using Alexandria.ItemAPI;
 using Alexandria.PrefabAPI;
 using Dungeonator;
+using FullInspector;
 using Planetside;
 using UnityEngine;
 using Random = System.Random;
@@ -213,41 +215,67 @@ namespace ModularMod
         public static Vector2 CalculateScale_X_Y_Based_On_Resolution()
         {
             Vector2 vector2 = new Vector2();
-            vector2.x = GameManager.Options.preferredResolutionX;
-            vector2.y = GameManager.Options.preferredResolutionY;//Screen.currentResolution;
+            vector2.x = Screen.width; //GameManager.Options.GetRecommendedResolution().width;
+            vector2.y = Screen.height; //GameManager.Options.GetRecommendedResolution().height;
             //Debug.Log("sc: "+ vector2);
             return new Vector2(((float)vector2.x / (float)ResolutionIBuiltOffOf_X), ((float)vector2.y / (float)ResolutionIBuiltOffOf_Y));
         }
 
-
+        //FUCK THIS
         public static ModifiedDefaultLabelManager GenerateText(Transform trans, Vector2 offset, float time, string Text, Color32 color, bool Autotrigger = true, float size = 5)
         {
             var labelToSet = UnityEngine.Object.Instantiate(DefaultModule.LabelController).gameObject.GetComponent<ModifiedDefaultLabelManager>();
-            Vector2 scaler = CalculateScale_X_Y_Based_On_Resolution();
 
-            labelToSet.label.textScale = (size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20))* scaler.x;
+            labelToSet.label.textScale = ((size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20) * (Smaller() ? ScaleMult().x : 1)));
             labelToSet.label.Text = Text;
+
+
+
             if (Autotrigger == true)
             {
-                labelToSet.Trigger_CustomTime(trans, offset * ScaleMult(), time);
+                labelToSet.Trigger_CustomTime(trans, offset *= ScaleMult_Inv().x, time);
             }
             labelToSet.label.backgroundColor = color;
-
+            labelToSet.scaleMultiplier = Mathf.Max(1, ScaleMult().x);
             GameUIRoot.Instance.m_manager.AddControl(labelToSet.panel);
             dfLabel componentInChildren = labelToSet.gameObject.GetComponentInChildren<dfLabel>();
+
+
             componentInChildren.ColorizeSymbols = false;
             componentInChildren.ProcessMarkup = true;
             componentInChildren.autoHeight = false;// *= GameManager.Options.SmallUIEnabled == true ? 1 : 2;
             componentInChildren.updateCollider();            
             componentInChildren.Invalidate();
+            GameManager.Instance.StartCoroutine(FuckYou(componentInChildren.gameObject));
+
             return labelToSet;
         }
+        public static IEnumerator FuckYou(GameObject sadcat)
+        {
+            yield return null;
+            sadcat.transform.localScale *= (Smaller() ? 1 : ScaleMult_Inv().x);// ScaleMult_Inv().x;//ScaleMult().x > Vector2.one.x ? ScaleMult() : Vector2.one;
 
-        private static float ScaleMult()
+
+            yield break;
+        }
+
+
+        public static bool Smaller()
         {
             Vector2 val = Toolbox.CalculateScale_X_Y_Based_On_Resolution();
-            if (val.x < 1 && val.y < 1) { return 1; }
-            return 1 - (val.x - 1);
+            return val.x < 1;
+        }
+
+        private static Vector2 ScaleMult()
+        {
+            Vector2 val = Toolbox.CalculateScale_X_Y_Based_On_Resolution();
+            return new Vector2(val.x * val.x, val.x * val.x);
+        }
+
+        private static Vector2 ScaleMult_Inv()
+        {
+            Vector2 val = Toolbox.CalculateScale_X_Y_Based_On_Resolution();
+            return new Vector2(val.x / 1, val.x / 1);
         }
 
         public static void AddColorLight(this DefaultModule self, Color color)

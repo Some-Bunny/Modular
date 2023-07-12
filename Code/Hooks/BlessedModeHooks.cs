@@ -149,13 +149,7 @@ namespace ModularMod
                 {
                     return;
                 }
-                if (self.CharacterUsesRandomGuns && self.inventory != null)
-                {
-                    while (self.inventory.AllGuns.Count > 1)
-                    {
-                        self.inventory.DestroyGun(self.inventory.AllGuns[0]);
-                    }
-                }
+
                 self.HandlePostDodgeRollTimer();
                 self.m_activeActions = BraveInput.GetInstanceForPlayer(self.PlayerIDX).ActiveActions;
                 if ((!self.AcceptingNonMotionInput || self.CurrentStoneGunTimer > 0f) && self.CurrentGun != null && self.CurrentGun.IsFiring && (!self.CurrentGun.IsCharging || (self.CurrentInputState != PlayerInputState.OnlyMovement && !GameManager.IsBossIntro)))

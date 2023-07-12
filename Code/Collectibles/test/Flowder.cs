@@ -34,7 +34,10 @@ namespace ModularMod
         {
             if (this.LastOwner.PlayerHasCore() != null)
             {
-                var core = this.LastOwner.PlayerHasCore().GiveTemporaryModule(GlobalModuleStorage.ReturnRandomModule(), "Randomweisser", 3);
+                var thing = GlobalModuleStorage.ReturnRandomModule();
+                var core = this.LastOwner.PlayerHasCore().GiveTemporaryModule(thing, "Randomweisser", 1);
+                core = this.LastOwner.PlayerHasCore().GiveTemporaryModule(thing, "Randomweisser", 2);
+
                 GameManager.Instance.StartCoroutine(Delay(core.defaultModule, "Randomweisser"));
             }
             /*
@@ -57,10 +60,10 @@ namespace ModularMod
         public IEnumerator Delay(DefaultModule mod, string context)
         {
 
-            yield return new WaitForSeconds(12);
+            yield return new WaitForSeconds(6);
             if (this.LastOwner.PlayerHasCore() != null)
             {
-                this.LastOwner.PlayerHasCore().RemoveTemporaryModule(mod, context);
+                this.LastOwner.PlayerHasCore().RemoveTemporaryModules("Randomweisser");
             }
             yield break;
         }

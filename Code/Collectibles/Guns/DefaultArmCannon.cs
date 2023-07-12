@@ -24,6 +24,7 @@ namespace ModularMod
             gun.idleAnimation = "defaultarmcannon_idle";
             gun.shootAnimation = "defaultarmcannon_fire";
             gun.reloadAnimation = "defaultarmcannon_reload";
+            gun.PersistsOnDeath = true;
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 

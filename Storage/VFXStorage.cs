@@ -53,7 +53,6 @@ namespace ModularMod
             var tk2dAnim = Tether_VFX.AddComponent<tk2dSpriteAnimator>();
             tk2dAnim.Library = gunModulableLib;
             tk2dAnim.defaultClipId = tk2dAnim.Library.GetClipIdByName("chain_start");
-            tk2dAnim.playAutomatically = true;
             tk2d.usesOverrideMaterial = true;
             tk2d.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
             tk2d.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");

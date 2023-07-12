@@ -92,13 +92,14 @@ namespace ModularMod
             new Hook(typeof(GameUIRoot).GetMethod("HideCoreUI", BindingFlags.Instance | BindingFlags.Public), typeof(ScrapUIController).GetMethod("HideCoreUIHook", BindingFlags.Static | BindingFlags.Public));
             new Hook(typeof(GameUIRoot).GetMethod("UpdateScale", BindingFlags.Instance | BindingFlags.Public), typeof(ScrapUIController).GetMethod("UpdateScaleHook", BindingFlags.Static | BindingFlags.Public));
 
-            Alexandria.Misc.CustomActions.OnNewPlayercontrollerSpawned += ONPCS;
+            GlobalConsumableStorage.AddNewConsumable("Scrap");
+            //Alexandria.Misc.CustomActions.OnNewPlayercontrollerSpawned += ONPCS;
         }
 
         public static void ONPCS(PlayerController player)
         {
-            var c = player.gameObject.AddComponent<ConsumableStorage>();
-            c.AddNewConsumable("Scrap");
+            //var c = player.gameObject.AddComponent<ConsumableStorage>();
+            GlobalConsumableStorage.AddNewConsumable("Scrap");
         }
 
         private static Transform transformInstance;
@@ -157,11 +158,8 @@ namespace ModularMod
             bool active = false;
             foreach (PlayerController player in GameManager.Instance.AllPlayers)
             {
-                var c = player.GetComponent<ConsumableStorage>();
-                if (c != null)
-                {
-                    count = c.ReturnConsumableAmount("Scrap");
-                }
+                count = GlobalConsumableStorage.ReturnConsumableAmount("Scrap");
+
                 for (int i = 0; i < player.passiveItems.Count; i++)
                 {
                     if (player.passiveItems[i] is ModulePrinterCore) { active = true; }

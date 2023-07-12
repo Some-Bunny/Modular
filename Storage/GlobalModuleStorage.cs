@@ -163,23 +163,27 @@ namespace ModularMod
                 if (mod.LabelName == entry.LabelName)
                 { return entry; }
             }
-            //allModules.Where(self => self.LabelName == mod.name).First();
             return null;
         }
-        public static DefaultModule ReturnRandomModule()
+        public static DefaultModule ReturnRandomModule(bool Exclude_T4 = true, bool ExcludeSpecialModules = true)
         {
-            return BraveUtility.RandomElement<DefaultModule>(allModules);
+            var h = (Exclude_T4 == true) ? allModules.Where(self => self.Tier != ModuleTier.Tier_Omega) : allModules;
+            var h2 = (ExcludeSpecialModules == true) ? h.Where(self => self.IsSpecialModule == false) : h;
+            return BraveUtility.RandomElement<DefaultModule>(h2.Count() > 0 ? h2.ToList() : allModules);
         }
-        public static DefaultModule ReturnRandomModule(DefaultModule.ModuleTier tier)
+        public static DefaultModule ReturnRandomModule(DefaultModule.ModuleTier tier, bool ExcludeSpecialModules = true)
         {
             switch (tier)
             {
                 case DefaultModule.ModuleTier.Tier_1:
-                    return BraveUtility.RandomElement<DefaultModule>(all_Tier_1_Modules);
+                    var h1 = (ExcludeSpecialModules == true) ? all_Tier_1_Modules.Where(self => self.IsSpecialModule == false) : all_Tier_1_Modules;
+                    return BraveUtility.RandomElement<DefaultModule>(h1.Count() > 0 ? h1.ToList() : all_Tier_1_Modules);
                 case DefaultModule.ModuleTier.Tier_2:
-                    return BraveUtility.RandomElement<DefaultModule>(all_Tier_2_Modules);
+                    var h2 = (ExcludeSpecialModules == true) ? all_Tier_2_Modules.Where(self => self.IsSpecialModule == false) : all_Tier_2_Modules;
+                    return BraveUtility.RandomElement<DefaultModule>(h2.Count() > 0 ? h2.ToList() : all_Tier_2_Modules);
                 case DefaultModule.ModuleTier.Tier_3:
-                    return BraveUtility.RandomElement<DefaultModule>(all_Tier_3_Modules);
+                    var h3 = (ExcludeSpecialModules == true) ? all_Tier_3_Modules.Where(self => self.IsSpecialModule == false) : all_Tier_3_Modules;
+                    return BraveUtility.RandomElement<DefaultModule>(h3.Count() > 0 ? h3.ToList() : all_Tier_3_Modules);
                 case DefaultModule.ModuleTier.Tier_Omega:
                     return BraveUtility.RandomElement<DefaultModule>(all_Tier_Omega_Modules);
                 default:

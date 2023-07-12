@@ -7,6 +7,6 @@ namespace SaveAPI
 {
     public enum CustomTrackedStats
     {
-        
+        ENCOUNTERS_OF_COFIDENCE
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -14,8 +15,6 @@ using MonoMod.RuntimeDetour;
 using Planetside;
 using UnityEngine;
 using static Alexandria.Misc.CustomActions;
-using static UnityEngine.ParticleSystem;
-using static UnityEngine.UI.CanvasScaler;
 
 namespace ModularMod
 {
@@ -68,6 +67,14 @@ namespace ModularMod
 
 
             new Hook(typeof(SpawnGunslingGun).GetMethod("OnEnter", BindingFlags.Instance | BindingFlags.Public), typeof(ModulePrinterCore).GetMethod("GunslingKingGunCheck"));
+            item.associatedItemChanceMods = new LootModData[]
+            {
+                new LootModData()
+                {
+                    AssociatedPickupId = ConfidenceCore.ConfidenceCoreID,
+                    DropRateMultiplier = 0
+                }
+            };
         }
 
         //Hook to make Gunsling King work as intended with Modular
@@ -231,11 +238,13 @@ namespace ModularMod
         //Code to check for valid guns, and discards any guns considered invalid
         private void Player_GunChanged(Gun oldGun, Gun newGun, bool isNewGun)
         {
+            /*
             if (newGun.GetComponent<ModularGunController>() == null) 
             { 
                 newGun.gameObject.AddComponent<ModularGunController>().Start();
                 newGun.gameObject.AddComponent<ModularGunController>().statMods.AddRange(stored_Modifiers);
             }
+            */
             if (TemporaryDisableDrop == true) { return; }
             if (newGun.GetComponent<ModularGunController>() != null) { UpdateModularGunController(); return; }
             if (newGun.GetComponent<ModularGunController>() == ModularGunController) { UpdateModularGunController();  return; }
@@ -941,17 +950,26 @@ namespace ModularMod
             {
                 VFXStorage.DoFancyFlashOfModules(Amount_Of_Fakes, this.Owner, module);
             }
-
             var modF = ModuleContainers.Where(self => self.defaultModule.LabelName == module.LabelName);
-            if (modF.Count() > 0) 
+            if (modF.Count() > 0)
             {
-                modF.First().TemporaryCount.Add(new Tuple<string, int>(Context, Amount_Of_Fakes) { });
-                modF.First().defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
-                if (modF.First().ActiveCount == 0)
+                var fuck = modF.First().TemporaryCount.Where(self => self.First == Context);
+                if (fuck.Count() > 0)
                 {
-                    modF.First().defaultModule.OnFirstPickup(this, this.ModularGunController, base.Owner);
+                    modF.First().defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
+                    fuck.First().Second += Amount_Of_Fakes;
                 }
+                else
+                {
+                    modF.First().TemporaryCount.Add(new Tuple<string, int>(Context, Amount_Of_Fakes) { });
+                    modF.First().defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
+                    if (modF.First().ActiveCount == 0)
+                    {
+                        modF.First().defaultModule.OnFirstPickup(this, this.ModularGunController, base.Owner);
+                    }
+                }              
                 return modF.First();
+
             }
             else
             {
@@ -965,6 +983,7 @@ namespace ModularMod
                     TemporaryCount = new List<Tuple<string, int>>() { new Tuple<string, int>(Context, Amount_Of_Fakes) { } },
                     WasEverFake = true
                 };
+
                 modCont.defaultModule.Stored_Core = this;
                 ModuleContainers.Add(modCont);
                 for (int A = 0; A < Amount_Of_Fakes; A++)
@@ -975,6 +994,7 @@ namespace ModularMod
                     }
                     modCont.defaultModule.OnAnyPickup(this, this.ModularGunController, base.Owner, false);
                 }
+
                 return modCont;
             }
         }

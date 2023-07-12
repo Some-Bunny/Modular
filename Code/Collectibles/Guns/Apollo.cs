@@ -6,6 +6,7 @@ using System;
 using ModularMod;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace ModularMod
 {
@@ -33,7 +34,7 @@ namespace ModularMod
 
             gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.reloadAnimation).frames[0].eventAudio = "Play_ModulePowerUp";
             gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.reloadAnimation).frames[0].triggerEvent = true;
-
+            gun.PersistsOnDeath = true;
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();
             comp.isAlt = false;
@@ -135,12 +136,20 @@ namespace ModularMod
         {
             var thing = this.gun.GetComponent<ModularGunController>();
             if (thing)
-            {                      
-                thing.statMods.Add(new ModuleGunStatModifier()
-                {
-                    AngleFromAim_Process = ProcessClipSize
-                });
+            {
+                thing.StartCoroutine(FUCK(thing));
             }
+        }
+
+        public IEnumerator FUCK(ModularGunController aaa)
+        {
+            aaa.Start();
+            yield return null;
+            aaa.statMods.Add(new ModuleGunStatModifier()
+            {
+                AngleFromAim_Process = ProcessClipSize
+            });
+            yield break;
         }
 
         public float ProcessClipSize(float clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
@@ -164,7 +173,7 @@ namespace ModularMod
                         float charge = player.stats.GetStatValue(PlayerStats.StatType.ChargeAmountMultiplier);
                         if (this.elapsed <= 1)
                         {
-                            this.elapsed += ReturnControl().GetChargeSpeed(((BraveTime.DeltaTime * charge) / 2.5f));
+                            this.elapsed += (BraveTime.DeltaTime * (charge / ReturnControl().GetChargeSpeed(1))) / 2.5f;
                         }
                         if (VFXActive != true)
                         {

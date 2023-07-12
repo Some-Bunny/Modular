@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Impact Power",
             Description = "Know Where To Go",
-            LongDescription = "Adds 1 Bounce, Reduce Damage by 20% (-20% per stack hyperbolically) But each bounce increases damage by 1.75x (+0.75x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 2 Bounces, Reduce Damage by 20% (-20% per stack hyperbolically) But each bounce increases damage by 1.75x (+0.75x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("impactpower_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("impactpower_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Impact Power " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 Bounce, Reduce Damage by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
+            h.LabelDescription = "Adds 2 Bounces, Reduce Damage by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
                 StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each bounce damage increases damage by 1.75x " +
                 StaticColorHexes.AddColorToLabelString("+0.75x", StaticColorHexes.Light_Orange_Hex) + ".";
             h.AddToGlobalStorage();

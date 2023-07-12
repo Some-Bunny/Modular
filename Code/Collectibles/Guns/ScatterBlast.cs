@@ -26,6 +26,7 @@ namespace ModularMod
             gun.shootAnimation = "scattercannon_fire";
             gun.reloadAnimation = "scattercannon_reload";
             gun.introAnimation = "scattercannon_intro";
+            gun.PersistsOnDeath = true;
 
             for (int i = 0; i < 6; i++)
             {

@@ -3801,25 +3801,25 @@ MonoBehaviour:
     attachPoints: []
   - name: cleaner_tier1_module
     boundsData:
-    - {x: 0, y: 0, z: 0}
+    - {x: 0.4375, y: 0.4375, z: 0}
     - {x: 0.875, y: 0.875, z: 0}
     untrimmedBoundsData:
-    - {x: 0, y: 0, z: 0}
+    - {x: 0.4375, y: 0.4375, z: 0}
     - {x: 0.875, y: 0.875, z: 0}
-    boundsDataCenter: {x: 0, y: 0, z: 0}
+    boundsDataCenter: {x: 0.4375, y: 0.4375, z: 0}
     boundsDataExtents: {x: 0.875, y: 0.875, z: 0}
-    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.4375, y: 0.4375, z: 0}
     untrimmedBoundsDataExtents: {x: 0.875, y: 0.875, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: -0.4375, y: -0.4375, z: 0}
-    - {x: 0.4375, y: -0.4375, z: 0}
-    - {x: -0.4375, y: 0.4375, z: 0}
-    - {x: 0.4375, y: 0.4375, z: 0}
-    position0: {x: -0.4375, y: -0.4375, z: 0}
-    position1: {x: 0.4375, y: -0.4375, z: 0}
-    position2: {x: -0.4375, y: 0.4375, z: 0}
-    position3: {x: 0.4375, y: 0.4375, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0.875, y: 0, z: 0}
+    - {x: 0, y: 0.875, z: 0}
+    - {x: 0.875, y: 0.875, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 0.875, y: 0, z: 0}
+    position2: {x: 0, y: 0.875, z: 0}
+    position3: {x: 0.875, y: 0.875, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3988,7 +3988,7 @@ MonoBehaviour:
     flipped: 0
     complexGeometry: 0
     physicsEngine: 0
-    colliderType: 0
+    colliderType: 1
     customColliders: []
     metadata:
       type: 0
@@ -4060,7 +4060,7 @@ MonoBehaviour:
     flipped: 1
     complexGeometry: 0
     physicsEngine: 0
-    colliderType: 0
+    colliderType: 1
     customColliders: []
     metadata:
       type: 0
@@ -4104,7 +4104,7 @@ MonoBehaviour:
   loadable: 0
   invOrthoSize: 2
   halfTargetHeight: 8
-  buildKey: 534967703
+  buildKey: 1300352691
   dataGuid: 3eabd87defc33e34aa9e03d89f5fe979
   managedSpriteCollection: 0
   hasPlatformData: 0

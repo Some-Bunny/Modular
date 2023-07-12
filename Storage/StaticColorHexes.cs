@@ -31,5 +31,10 @@ namespace ModularMod
         public static string Yellow_Hex = "ffcd09";
 
         public static string Default_UI_Color_Hex = "9bebc7";
+
+        public static string Purple_Hex = "9c59d1";
+        public static string Black_Hex = "000000";
+        public static string Pink_Hex = "f5a8b8";
+
     }
 }

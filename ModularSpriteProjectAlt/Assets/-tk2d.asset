@@ -3435,6 +3435,16 @@ MonoBehaviour:
     - blade_anim_002
     - blade_anim_001
     - bow_anim_001
+    - tether_alt_005
+    - tether_001 1
+    - tether_004 1
+    - tether_003 1
+    - tether_002 1
+    - tether_alt_001
+    - tether_alt_004
+    - tether_alt_002
+    - tether_alt_003
+    - tether_005 1
     spriteTextureGUIDs:
     - 0d8586071a928fb4c920466116729c30
     - 1cf028702d6d57440bbc887fbde8087b
@@ -3839,6 +3849,16 @@ MonoBehaviour:
     - 5eab3ad6e7adeaa4f8287b55bc9843be
     - 168a93009442bdb44b04a6e8855da7f1
     - ea7bc1bad4b82414588cf811a26549a2
+    - 336d388019537334d9300d375242aff1
+    - faa2f11038d5e5b48b0f1c11098904c7
+    - 2d3d431d8ced66c41ac730bdda1e170d
+    - 30f4f71dfed64004da9fdf160208c6c6
+    - 72ecc009c387fc84d9760fa90b151f88
+    - 3a3304f5813e03b47a07418fa32c8541
+    - cdde50bab1c744b4290a21c16006a711
+    - b2ef2d11d3993144d8dc336d8c971bd3
+    - 9083a8a715dc9484fbad1c3380b80aad
+    - 01353930ed69e2a429dc8c27834f329b
     spriteTextureTimeStamps:
     - 1674763113.28595
     - 1674763113.29594
@@ -4243,6 +4263,16 @@ MonoBehaviour:
     - 1688481711.79603
     - 1688481711.79403
     - 1688481723.04477
+    - 1688850789.73685
+    - 1688850764.16235
+    - 1688850764.16847
+    - 1688850764.16547
+    - 1688850764.16447
+    - 1688850789.72884
+    - 1688850789.73585
+    - 1688850789.73185
+    - 1688850789.73285
+    - 1688850764.17047
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4540,6 +4570,7 @@ MonoBehaviour:
     - t2_a_roomicon
     - t3_b_roomicon
     - t4_roomicon
+    - confidence_drive
     spriteTextureGUIDs:
     - df813c08dc4c8a241b2cabe9899b7ad7
     - a026eb8f6c8370947b0a46d3b470624e
@@ -4570,6 +4601,7 @@ MonoBehaviour:
     - d7a2dae85961f504c87705891e35f687
     - 37f8c29097c8e5b4a9540ac12978e33e
     - 2a68b8f89db89ac498a44c6a85d23e1e
+    - 89a00c91392a2104fa9ee2a45295c055
     spriteTextureTimeStamps:
     - 1676123522.84831
     - 1675794515.27517
@@ -4600,6 +4632,7 @@ MonoBehaviour:
     - 1688697729.72592
     - 1688698496.64291
     - 1688737014.49068
+    - 1688842848.96098
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

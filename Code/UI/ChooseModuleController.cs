@@ -11,78 +11,84 @@ namespace ModularMod
     public class ChooseModuleController : MonoBehaviour
     {
         public static Func<int, int> AdditionalOptionsModifier;
+        public static Func<PickupObject.ItemQuality, DefaultModule.ModuleTier, float, float> ModifyOmegaModuleChance;
 
         public int Count = 4;
         public Gun g;
         public bool isAlt = false;
         public Dictionary<tk2dTiledSprite, ModuleUICarrier> tk2DTiledSprites = new Dictionary<tk2dTiledSprite, ModuleUICarrier>();
+        private tk2dTiledSprite extantTether;
+        private PlayerController playerToFollow;
 
-        public Vector2 CalculateAdditionalOffset(float angle)
+        public Vector2 CalculateAdditionalOffset(float angle, float ang = 0.5f)
         {
-            return Toolbox.GetUnitOnCircle(angle - 90, 0.5f);
+            return Toolbox.GetUnitOnCircle(angle - 90, ang);
         }
 
         public void Nudge(PlayerController p)
         {
-            if (isNudgeable == false) { return; }
-            AkSoundEngine.PostEvent("Play_ENM_rubber_bounce_01", g.gameObject);
-            GameManager.Instance.StartCoroutine(NudgeToPlayer(p));
+            if (extantTether == null)
+            {
+                playerToFollow = p;
+                AkSoundEngine.PostEvent("Play_ENM_rubber_bounce_01", g.gameObject);
+                var Extant_Tether = UnityEngine.Object.Instantiate(VFXStorage.VFX_Tether_Modulable, g.sprite.WorldCenter, Quaternion.identity).GetComponent<tk2dTiledSprite>();
+                Extant_Tether.dimensions = new Vector2(1, 4f);
+                Extant_Tether.IsPerpendicular = false;
+                Extant_Tether.ShouldDoTilt = false;
+                Extant_Tether.UpdateCollider();
+                Extant_Tether.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                Extant_Tether.GetComponent<tk2dSpriteAnimator>().Play(isAlt ? "tether_start_alt" : "tether_start");
+                extantTether = Extant_Tether;
+            }
+            else
+            {
+                AkSoundEngine.PostEvent("Play_OBJ_lock_pick_01", g.gameObject);
+                playerToFollow = null;
+                extantTether.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "tether_alt_break" : "tether_break");
+                extantTether = null;
+            }
         }
 
-        public IEnumerator NudgeToPlayer(PlayerController p)
-        {
-            isNudgeable = false;
-            Vector2 modPosition = g.transform.PositionVector2();
-            float elapsed = 0f;
-            while (elapsed < 0.7f)
-            {
-                if (g == null) { yield break; }
-                elapsed += BraveTime.DeltaTime;
-                float t = elapsed / 1;
-                if (elapsed > 0.35f) { elapsed = 1; }
-                g.gameObject.transform.position = Vector3.Lerp(modPosition, p.SpriteBottomCenter, Toolbox.SinLerpTValueFull(t / 2));
-                yield return null;
-            }
-            elapsed = 0f;
-            while (elapsed < 0.65f)
-            {
-                if (g == null) { yield break; }
-                elapsed += BraveTime.DeltaTime;
-                yield return null;
-            }
-            isNudgeable = true;
-            yield break;
-        }
-        private bool isNudgeable = true;
+      
 
         public DefaultModule SelectModule(GenericLootTable table)
         {
-
             var mod = table.SelectByWeightNoExclusions().GetComponent<DefaultModule>();
-            switch (mod.Tier)
+
+            if (UnityEngine.Random.value < ReturnT4Chance(mod.Tier, g.quality))
+            {
+                if (UnityEngine.Random.value < 0.00005f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                return mod;
+            }
+
+            foreach (PlayerController p in GameManager.Instance.AllPlayers)
+            {
+                if (p.PlayerHasCore() != null & p.HasPickupID(815) && mod.Tier == DefaultModule.ModuleTier.Tier_1)
+                {
+                    return GlobalModuleStorage.SelectTable(PickupObject.ItemQuality.A).SelectByWeightNoExclusions().GetComponent<DefaultModule>();
+                }
+            }
+            return mod;
+        }
+
+        public float ReturnT4Chance(DefaultModule.ModuleTier tier, PickupObject.ItemQuality quality)
+        {
+            switch (tier)
             {
                 case DefaultModule.ModuleTier.Tier_1:
-                    foreach (PlayerController p in GameManager.Instance.AllPlayers)
-                    {
-                        if (p.PlayerHasCore() != null & p.HasPickupID(815))
-                        {
-                            return GlobalModuleStorage.SelectTable(PickupObject.ItemQuality.B).SelectByWeightNoExclusions().GetComponent<DefaultModule>();
-                        }
-                    }
-                    if (UnityEngine.Random.value < 0.00005f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
-                    return mod;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00005f); }
+                    return 0.00005f;
                 case DefaultModule.ModuleTier.Tier_2:
-                    if (UnityEngine.Random.value < 0.0001f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
-                    return mod;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.0001f); }
+                    return 0.0001f;
                 case DefaultModule.ModuleTier.Tier_3:
-                    if (UnityEngine.Random.value < 0.000175f)
-                    {
-                        AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega);
-                    }
-                    return mod;
-                default: return mod;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.000175f); }
+                    return 0.000175f;
+                default: return 0;
             }
         }
+
+
         public void AlterCount()
         {
             if (g.quality == PickupObject.ItemQuality.B | g.quality == PickupObject.ItemQuality.A)
@@ -155,6 +161,17 @@ namespace ModularMod
                 entry.Key.gameObject.transform.localRotation = Quaternion.Euler(0, 0, angle);
                 entry.Key.gameObject.transform.position = g.sprite.WorldCenter + vec;
             }
+            if (extantTether != null && playerToFollow != null)
+            {
+                float angle = (playerToFollow.sprite.WorldCenter - g.sprite.WorldCenter).ToAngle();
+                var vec = CalculateAdditionalOffset(angle, 0);
+                extantTether.dimensions = new Vector2(Vector2.Distance(g.sprite.WorldCenter + CalculateAdditionalOffset(angle) + vec, playerToFollow.sprite.WorldCenter + vec) * 16, 4f);
+                extantTether.gameObject.transform.localRotation = Quaternion.Euler(0, 0, angle);
+                extantTether.gameObject.transform.position = g.sprite.WorldCenter + vec;
+                extantTether.ShouldDoTilt = false;
+
+                g.gameObject.transform.position = Vector2.MoveTowards(g.gameObject.transform.position, playerToFollow.transform.position, 2.5f * BraveTime.DeltaTime);
+            }
         }
 
         private IEnumerator LerpLight(Gun g)
@@ -214,9 +231,22 @@ namespace ModularMod
         public bool isBeingDestroyed = false;
         private IEnumerator I_DoDestroy(Gun g)
         {
+            var obj = g.gameObject.GetComponent<ShittyVFXAttacher>();
+            if (obj)
+            {
+                Destroy(obj);
+            }
+            playerToFollow = null;
+            if (extantTether != null)
+            {
+                extantTether.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "tether_alt_break" : "tether_break");
+            }
             foreach (var entry in tk2DTiledSprites)
             {
-                entry.Key.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "chain_alt_break" : "chain_break");
+                if (entry.Key != null)
+                {
+                    entry.Key.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "chain_alt_break" : "chain_break");
+                }
             }
 
             isBeingDestroyed = true;
@@ -247,10 +277,25 @@ namespace ModularMod
 
         private void OnDestroy()
         {
+            var obj = g.gameObject.GetComponent<ShittyVFXAttacher>();
+            if (obj)
+            {
+                Destroy(obj);
+            }
+            playerToFollow = null;
+            if (extantTether != null)
+            {
+                extantTether.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "tether_alt_break" : "tether_break");
+            }
+
             foreach (var entry in tk2DTiledSprites)
             {
-                entry.Key.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "chain_alt_break" : "chain_break");
+                if (entry.Key != null)
+                {
+                    entry.Key.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "chain_alt_break" : "chain_break");
+                }
             }
+
             for (int i = 0; i < selectableModules.Count; i++)
             {
                 if (selectableModules[i].extantModule)
@@ -366,7 +411,7 @@ namespace ModularMod
                 {
                     if (HasStoppedMoving == true && extantModule.gameObject && controller.g)
                     {
-                        extantModule.gameObject.transform.position = Vector2.MoveTowards(extantModule.gameObject.transform.position, (controller.g.sprite.WorldCenter + EndPosition) + Offset, 0.04f);
+                        extantModule.gameObject.transform.position = Vector2.MoveTowards(extantModule.gameObject.transform.position, (controller.g.sprite.WorldCenter + EndPosition) + Offset, 2.2f * BraveTime.DeltaTime);
                     }
                     yield return null;
                 }

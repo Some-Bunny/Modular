@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Phantasm Boost",
             Description = "Cold As The Grave",
-            LongDescription = "Reload 15% (+15% hyperbolically per stack) faster after every kill. Kill count resets AFTER reloading. Projectiles will now be able to travel through internal walls and pierce debris objects." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal an additional 50% (+50% per stack) damage to Jammed enemies. Reload 15% (+15% hyperbolically per stack) faster after every kill. Kill count resets AFTER reloading. Projectiles will now be able to travel through internal walls and pierce debris objects." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("gravecooling_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("gravecooling_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Phantasm Boost " + h.ReturnTierLabel();
-            h.LabelDescription = "Reload 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through internal walls and pierce debris objects.";
+            h.LabelDescription = "Deal an additional 50% ("+ StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through internal walls and pierce debris objects.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -68,6 +68,9 @@ namespace ModularMod
             p.PenetratesInternalWalls = true;
             p.pierceMinorBreakables = true;
             p.Awake();
+            int stack = 1;
+            p.BlackPhantomDamageMultiplier *= 1f + (0.5f * stack);
+            p.CurseSparks = true;
         }
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -124,6 +127,9 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
+            int stack = this.ReturnStack(modulePrinterCore);
+            p.BlackPhantomDamageMultiplier *= 1f + (0.5f * stack);
+            p.CurseSparks = true;
             p.PenetratesInternalWalls = true;
             p.pierceMinorBreakables = true;
             p.Awake();

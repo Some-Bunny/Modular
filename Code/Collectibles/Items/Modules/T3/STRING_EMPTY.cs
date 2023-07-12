@@ -23,8 +23,8 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(STRING_EMPTY))
         {
             Name = "STRING_EMPTY",
-            Description = "One For Each Finger",
-            LongDescription = "Slightly reduces Rate Of Fire, and reduces Damage by 33%. Shoot 5 times the projectiles (+2 Projectiles per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            Description = "TODO",
+            LongDescription = "//Note: FIX THIS DAMN THING" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("error_mod_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -46,6 +46,7 @@ namespace ModularMod
             h.IsUncraftable = true;
             h.powerConsumptionData.OverridePowerDescriptionLabel = "Uses DefaultModule.PowerConsumption(ModuleQuality.Tier_3, -1)\n(" + StaticColorHexes.AddColorToLabelString("DefaultModule.AdditionalStackPowerConsumption(ModuleQuality.Tier_3, -1)", StaticColorHexes.Orange_Hex) + ")";
             h.EnergyConsumption = 0;
+            h.IsSpecialModule = true;
             h.AddToGlobalStorage();
 
 
@@ -80,9 +81,13 @@ namespace ModularMod
             material.SetFloat("_DispIntensity", 0.024f);
             material.SetFloat("_ColorProbability", 0.7f);
             material.SetFloat("_ColorIntensity", 0.1f);
+            FuckupStats(modulePrinter);
         }
 
         private tk2dTileMap currentTileMap;
+
+        private float DamageRange = 1, FireRateRange = 1, AccuracyRange = 1, ReloadRange = 1;
+
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
             currentTileMap = GameManager.Instance.Dungeon.MainTilemap;
@@ -90,23 +95,64 @@ namespace ModularMod
             printer.PlayerEnteredAnyRoom += EnteredRoom;
             printer.OnFrameUpdate += FrameUpdate;
             printer.OnPostProcessProjectile += PPP;
+            foreach (var entry in StaticReferenceManager.AllMinorBreakables)
+            {
+                if (UnityEngine.Random.value < (0.002f * this.ReturnStack(printer)))
+                {
+                    entry.gameObject.AddComponent<GlitchPot>();
+                }
+            }
+            gunStatModifier = new ModuleGunStatModifier()
+            {
+                Accuracy_Process = Acc,
+                ChargeSpeed_Process = RoF,
+                FireRate_Process = RoF,
+                Reload_Process = Reload
+            };
+            printer.ProcessGunStatModifier(this.gunStatModifier);
+        }
+
+        public float Acc(float based, ModulePrinterCore core, ModularGunController gun, PlayerController player)
+        {
+            return based * AccuracyRange;
+        }
+        public float RoF(float based, ModulePrinterCore core, ModularGunController gun, PlayerController player)
+        {
+            return based * FireRateRange;
+        }
+        public float Reload(float based, ModulePrinterCore core, ModularGunController gun, PlayerController player)
+        {
+            return based * ReloadRange;
+        }
+
+        public void FuckupStats(ModulePrinterCore core)
+        {
+            float dev = 0.05f + this.ReturnStack(core);
+
+            DamageRange *= UnityEngine.Random.Range(1- dev, 1+ dev);
+            FireRateRange *= UnityEngine.Random.Range(1- dev, 1+ dev);
+            AccuracyRange *= UnityEngine.Random.Range(1- dev, 1+ dev);
+            ReloadRange *= UnityEngine.Random.Range(1- dev, 1+ dev);
         }
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value < this.ReturnStack(modulePrinterCore) / 300)
+            if (UnityEngine.Random.value < this.ReturnStack(modulePrinterCore) / 100)
             {
                 modulePrinterCore.DoChanceBulletProc(p, f);
             }
-            if (UnityEngine.Random.value < this.ReturnStack(modulePrinterCore) / 200)
+            if (UnityEngine.Random.value < this.ReturnStack(modulePrinterCore) / 100)
             {
                 var gl = p.gameObject.AddComponent<GlitchProjectileBehavior>();
                 gl.stack = this.ReturnStack(modulePrinterCore);
-            }
+            }    
         }
+
+
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             modulePrinter.OnNewFloorStarted -= ONFS;
             modulePrinter.PlayerEnteredAnyRoom -= EnteredRoom;
             modulePrinter.OnFrameUpdate -= FrameUpdate;
@@ -141,7 +187,7 @@ namespace ModularMod
                 for (int i = core.ModuleContainers.Count - 1; i > -1; i--)
                 {
                     var moduleContainer = core.ModuleContainers[i];
-                    var shitfuck = core.ModuleContainers.Where(self => self.LabelName != this.LabelName && self.ActiveCount > 0);
+                    var shitfuck = core.ModuleContainers.Where(self => self.LabelName != this.LabelName && self.Count > 0);
                     if (shitfuck.Count() > 0)
                     {
                         var mod = BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(shitfuck.ToList()).defaultModule;
@@ -228,7 +274,18 @@ namespace ModularMod
 
 
         public void ONFS(ModulePrinterCore core, PlayerController p)
-        { currentTileMap = GameManager.Instance.Dungeon.MainTilemap; }
+        {
+            enteredRooms.Clear();
+            currentTileMap = GameManager.Instance.Dungeon.MainTilemap;
+            foreach (var entry in StaticReferenceManager.AllMinorBreakables)
+            {
+                if (UnityEngine.Random.value < 0.01f * this.ReturnStack(core))
+                {
+                    entry.gameObject.AddComponent<GlitchPot>();
+                    
+                }
+            }
+        }
 
         public static List<GlitchTileBehavior> allglitchedTiles = new List<GlitchTileBehavior>();
 
@@ -240,7 +297,7 @@ namespace ModularMod
             List<IntVector2> cells = new List<IntVector2>();
             cells.AddRange(room.Cells);
             cells.Shuffle();
-            int c = Mathf.Max((room.Cells.Count / 400) + stack, stack);
+            int c = Mathf.Max((room.Cells.Count / 600) + stack * 4, stack * 4);
 
             for (int I = 0; I < c; I++)
             {
@@ -250,15 +307,15 @@ namespace ModularMod
                 sprite.usesOverrideMaterial = true;
                 Material material = sprite.renderer.material;
                 material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
-                material.SetFloat("_GlitchInterval", 0.1f);
-                material.SetFloat("_DispProbability", 0.4f);
-                material.SetFloat("_DispIntensity", 0.024f);
-                material.SetFloat("_ColorProbability", 0.7f);
+                material.SetFloat("_GlitchInterval", 0.4f);
+                material.SetFloat("_DispProbability", 0.7f);
+                material.SetFloat("_DispIntensity", 0.025f);
+                material.SetFloat("_ColorProbability", 0.8f);
                 material.SetFloat("_ColorIntensity", 0.1f);
                 var tile = sprite.gameObject.AddComponent<GlitchTileBehavior>();
                 tile.position = tM;
                 tile.currentRoom = room;
-                tile.Damage = 7 + (stack*2);
+                tile.Damage = 3 + (stack*2);
                 tile.DelayTimer = 1.5f + stack;
 
             }
@@ -317,10 +374,10 @@ namespace ModularMod
                 sprite.usesOverrideMaterial = true;
                 Material material = sprite.renderer.material;
                 material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
-                material.SetFloat("_GlitchInterval", 0.1f);
-                material.SetFloat("_DispProbability", 0.4f);
-                material.SetFloat("_DispIntensity", 0.024f);
-                material.SetFloat("_ColorProbability", 0.7f);
+                material.SetFloat("_GlitchInterval", 0.4f);
+                material.SetFloat("_DispProbability", 0.7f);
+                material.SetFloat("_DispIntensity", 0.025f);
+                material.SetFloat("_ColorProbability", 0.8f);
                 material.SetFloat("_ColorIntensity", 0.1f);
                 var tile = sprite.gameObject.AddComponent<GlitchTileBehavior>();
                 tile.position = tM;
@@ -401,19 +458,6 @@ namespace ModularMod
                     if (!enemy.aiActor.healthHaver.IsBoss && !enemy.aiActor.healthHaver.IsSubboss && enemy.gameObject.GetComponent<QuickFreeze>() == null)
                     {
                         enemy.gameObject.AddComponent<QuickFreeze>();
-                        GameObject gameObject = (GameObject)UnityEngine.Object.Instantiate(ResourceCache.Acquire("Global VFX/VFX_Synergy_Poof_001"), enemy.transform.position, Quaternion.identity);
-                        tk2dBaseSprite component = gameObject.GetComponent<tk2dBaseSprite>();
-                        gameObject.transform.localScale *= 2.5f;
-                        component.sprite.usesOverrideMaterial = true;
-                        Material material = component.sprite.renderer.material;
-                        material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
-                        material.SetFloat("_GlitchInterval", 0.1f);
-                        material.SetFloat("_DispProbability", 0.4f);
-                        material.SetFloat("_DispIntensity", 0.024f);
-                        material.SetFloat("_ColorProbability", 0.7f);
-                        material.SetFloat("_ColorIntensity", 0.1f);
-                        Destroy(gameObject, 1.5f);
-
                     }
                 }
             }
@@ -440,8 +484,30 @@ namespace ModularMod
             {
                 lts = this.aiActor.LocalTimeScale;
                 this.aiActor.LocalTimeScale = 0;
+                mat = this.aiActor.sprite.renderer.material;
+
+                this.aiActor.sprite.renderer.material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
+                this.aiActor.sprite.renderer.material.SetFloat("_GlitchInterval", 0.1f);
+                this.aiActor.sprite.renderer.material.SetFloat("_DispProbability", 0.4f);
+                this.aiActor.sprite.renderer.material.SetFloat("_DispIntensity", 0.024f);
+                this.aiActor.sprite.renderer.material.SetFloat("_ColorProbability", 0.7f);
+                this.aiActor.sprite.renderer.material.SetFloat("_ColorIntensity", 0.1f);
+
+                GameObject gameObject = (GameObject)UnityEngine.Object.Instantiate(ResourceCache.Acquire("Global VFX/VFX_Synergy_Poof_001"), aiActor.transform.position, Quaternion.identity);
+                tk2dBaseSprite component = gameObject.GetComponent<tk2dBaseSprite>();
+                gameObject.transform.localScale *= 2.5f;
+                component.sprite.usesOverrideMaterial = true;
+                Material material = component.sprite.renderer.material;
+                material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
+                material.SetFloat("_GlitchInterval", 0.1f);
+                material.SetFloat("_DispProbability", 0.4f);
+                material.SetFloat("_DispIntensity", 0.024f);
+                material.SetFloat("_ColorProbability", 0.7f);
+                material.SetFloat("_ColorIntensity", 0.1f);
+                Destroy(gameObject, 1.5f);
 
             }
+            private Material mat;
             private float lts;
             float ela = 0;
             public void Update()
@@ -449,8 +515,85 @@ namespace ModularMod
                 ela += BraveTime.DeltaTime;
                 if (ela > 1)
                 {
+                    this.aiActor.sprite.renderer.material = mat;
                     this.aiActor.LocalTimeScale = lts;
                     Destroy(this, 2);
+                }
+            }
+        }
+
+
+        public class GlitchPot : BraveBehaviour
+        {
+            public void Start()
+            {
+                Material material = sprite.renderer.material;
+                material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
+                material.SetFloat("_GlitchInterval", 0.1f);
+                material.SetFloat("_DispProbability", 0.4f);
+                material.SetFloat("_DispIntensity", 0.024f);
+                material.SetFloat("_ColorProbability", 0.7f);
+                material.SetFloat("_ColorIntensity", 0.1f);
+                var breakable = this.GetComponent<MinorBreakable>() ?? this.GetComponentInChildren<MinorBreakable>();
+                if (breakable) breakable.OnBreak += OB;
+            }
+            public void OB()
+            {
+                var List = StaticReferenceManager.AllMinorBreakables.Where(self => self.gameObject.GetComponent<GlitchPot>() == null && Vector2.Distance(this.transform.PositionVector2(), self.transform.PositionVector2()) < 9);
+                if (List.Count() > 0)
+                {
+                    AkSoundEngine.PostEvent("Play_Glitch_Y", this.gameObject);
+                    Exploder.DoDistortionWave(this.sprite.WorldCenter, 1, 0.3f, 10, 0.15f);
+                    foreach (var entry in List.ToList())
+                    {
+                        entry.gameObject.AddComponent<GlitchPot>();
+                        ApplyActionToNearbyEnemies(this.sprite.WorldCenter, 9, this.transform.position.GetAbsoluteRoom());
+                    }
+                }
+            }
+
+
+            public void ApplyActionToNearbyEnemies(Vector2 position, float radius, RoomHandler room)
+            {
+                List<AIActor> a = new List<AIActor>();
+                float num = radius * radius;
+                if (room.activeEnemies != null)
+                {
+                    for (int i = 0; i < room.activeEnemies.Count; i++)
+                    {
+                        if (room.activeEnemies[i])
+                        {
+                            AIActor aI = room.activeEnemies[i];
+                            bool flag = radius < 0f;
+                            Vector2 vector = room.activeEnemies[i].CenterPosition - position;
+                            if (!flag)
+                            {
+                                flag = (vector.sqrMagnitude < num);
+                            }
+                            if (flag)
+                            {
+                                aI.healthHaver.ApplyDamage(25, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
+                                if (!aI.aiActor.healthHaver.IsBoss && !aI.aiActor.healthHaver.IsSubboss && aI.gameObject.GetComponent<QuickFreeze>() == null)
+                                {
+                                    aI.gameObject.AddComponent<QuickFreeze>();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            bool p = false;
+            public void Update()
+            {
+                if (p == false)
+                {
+                    if (GameManager.Instance.IsAnyPlayerInRoom(this.gameObject.transform.position.GetAbsoluteRoom()) == true)
+                    {
+                        p = !p;
+                        AkSoundEngine.PostEvent("Play_OBJ_chestglitch_loop_01", base.gameObject);
+                    }
                 }
             }
         }

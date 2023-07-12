@@ -323,9 +323,6 @@ namespace ModularMod
                 {
                     yield return null;
                 }
-                
-
-
                 foreach (var player in GameManager.Instance.AllPlayers)
                 {
                     if (player.characterIdentity == ModularMod.Module.Modular)
@@ -339,13 +336,18 @@ namespace ModularMod
                                 component3.CanBeDropped = false;
                                 component3.Pickup(player);
                             }
-                            //player.AcquirePassiveItem(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID) as PassiveItem);
                             player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(DefaultArmCannon.ID) as Gun, true);
                         }
                         catch (Exception e)
                         {
                             Debug.Log(e);
                         }
+                    }
+                    else
+                    {
+                        var g = player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(56) as Gun, true);
+                        g.InfiniteAmmo = true;
+                        g.CanBeDropped = false;
                     }
                 }
                 Pixelator.Instance.FadeToBlack(0.25f, true, 0.05f);

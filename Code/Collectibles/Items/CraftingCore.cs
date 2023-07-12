@@ -53,6 +53,28 @@ namespace ModularMod
             tk2d.Collection = StaticCollections.Item_Collection;
             tk2d.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("craftingcore_room_icon"));
             active.minimapIcon = roomIcon;
+            ChooseModuleController.ModifyOmegaModuleChance += Mod;
+        }
+
+        public static float Mod(PickupObject.ItemQuality t, DefaultModule.ModuleTier q, float f)
+        {
+            var d = GameManager.Instance.Dungeon;
+            if (d == null) { return f; }
+            switch (d.tileIndices.tilesetId)
+            {
+                case GlobalDungeonData.ValidTilesets.CASTLEGEON:
+                    return f *= 3.5f;
+                case GlobalDungeonData.ValidTilesets.GUNGEON:
+                    return f *= 2.75f;
+                case GlobalDungeonData.ValidTilesets.SEWERGEON:
+                    return f *= 2.75f;
+                case GlobalDungeonData.ValidTilesets.MINEGEON:
+                    return f *= 2f;
+                case GlobalDungeonData.ValidTilesets.CATHEDRALGEON:
+                    return f *= 2f;
+                default:
+                    return f;
+            }
         }
 
         public override void Update()

@@ -88,6 +88,7 @@ namespace ModularMod
         public static string Tier_3_Label;
         public static string Tier_Omega_Label;
 
+        public bool IsSpecialModule = false;
         private string ReturnRoomIconSpriteName(bool alt)
         {
             switch (this.Tier)
@@ -528,7 +529,7 @@ namespace ModularMod
         {
             base.StartCoroutine(this.Expand_CR_Custom(d));
         }
-
+        public float scaleMultiplier = 1;
         public void Trigger_CustomTime(Transform aTarget, Vector3 anOffset, float duration, float AutoDestroyTimer = -1)
         {
             this.offset = anOffset;
@@ -562,7 +563,7 @@ namespace ModularMod
             {
                 elapsed += GameManager.INVARIANT_DELTA_TIME;
                 //BraveTime.DeltaTime;            
-                this.panel.Width = Mathf.Lerp(1f, targetWidth, Toolbox.SinLerpTValue(elapsed / duration));
+                this.panel.Width = Mathf.Lerp(1f, targetWidth * scaleMultiplier, Toolbox.SinLerpTValue(elapsed / duration));
                 yield return null;
             }
             yield break;

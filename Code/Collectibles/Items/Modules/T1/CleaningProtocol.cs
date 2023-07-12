@@ -1,6 +1,7 @@
 ﻿using Alexandria.ItemAPI;
 using JuneLib.Items;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace ModularMod
         {
             Name = "Cleaning Protocol",
             Description = "BRUSH",
-            LongDescription = "Deal 50% (+50% per stack) more damage to Jammed enemies.\nAll enemies take an additional 25% (+25% per stack) damage multiplier from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal 100% (+100% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 25% (+25% per stack) damage multiplier from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Cleaning Protocol " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nAll enemies take an additional 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + "\ndamage multiplier from various effects.";
+            h.LabelDescription = "Deal 100% (" + StaticColorHexes.AddColorToLabelString("+100%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + "\ndamage multiplier from various effects.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -41,9 +42,23 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.1f) { return; }
-            int stack = 1;
-            p.BlackPhantomDamageMultiplier *= 1f + (0.5f * stack);
-            p.CurseSparks = true;
+            p.specRigidbody.OnPreRigidbodyCollision = (o, t, th, fr) =>
+            {
+                if (th != null && th.healthHaver != null)
+                {
+                    float maxHealth = th.healthHaver.GetMaxHealth();
+                    float num = maxHealth * 0.9f;
+                    float currentHealth = th.healthHaver.GetCurrentHealth();
+                    if (currentHealth > num)
+                    {
+                        float damage = o.projectile.baseData.damage;
+                        o.projectile.baseData.damage *= 2f;
+                        GameManager.Instance.StartCoroutine(this.ChangeProjectileDamage(o.projectile, damage));
+                        AkSoundEngine.PostEvent("Play_OBJ_cauldron_splash_01", o.gameObject);
+                        th.aiActor.PlayEffectOnActor((PickupObjectDatabase.GetById(404) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect, new Vector2(0, 0));
+                    }
+                }
+            };
         }
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -74,8 +89,33 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {                
             int stack = this.ReturnStack(modulePrinterCore);
-            p.BlackPhantomDamageMultiplier *= 1f + (0.5f * stack);
-            p.CurseSparks = true;     
+            p.specRigidbody.OnPreRigidbodyCollision = (o,t,th,fr) =>
+            {
+                if (th != null && th.aiActor && th.healthHaver != null)
+                {
+                    float maxHealth = th.healthHaver.GetMaxHealth();
+                    float num = maxHealth * 0.9f;
+                    float currentHealth = th.healthHaver.GetCurrentHealth();
+                    if (currentHealth > num)
+                    {
+                        float damage = o.projectile.baseData.damage;
+                        o.projectile.baseData.damage *= 1f + (1f * this.ReturnStack(modulePrinterCore));
+                        GameManager.Instance.StartCoroutine(this.ChangeProjectileDamage(o.projectile, damage));
+                        AkSoundEngine.PostEvent("Play_OBJ_cauldron_splash_01", o.gameObject);
+                        th.aiActor.PlayEffectOnActor((PickupObjectDatabase.GetById(404) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect, new Vector2(0, 0));
+                    }
+                }
+            };
+        }
+
+        private IEnumerator ChangeProjectileDamage(Projectile bullet, float oldDamage)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (bullet != null)
+            {
+                bullet.baseData.damage = oldDamage;
+            }
+            yield break;
         }
     }
 }

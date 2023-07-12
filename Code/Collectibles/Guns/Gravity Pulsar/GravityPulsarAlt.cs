@@ -30,6 +30,7 @@ namespace ModularMod
             gun.reloadAnimation = "gravgunalt_reload";
             gun.finalShootAnimation = "gravgunalt_altfire";
             gun.introAnimation = "gravgunalt_intro";
+            gun.PersistsOnDeath = true;
 
 
 

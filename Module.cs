@@ -21,6 +21,7 @@ using Alexandria.EnemyAPI;
 using ModularMod.Code.Hooks;
 using Dungeonator;
 using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
+using ModularMod.Code.Controllers;
 
 namespace ModularMod
 {
@@ -30,7 +31,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.0.12";
+        public const string VERSION = "1.1.4";
         public const string TEXT_COLOR = "#79eaff";
 
         public static string FilePathFolder;
@@ -52,7 +53,6 @@ namespace ModularMod
             SaveAPIManager.Setup("mdl");
             new Harmony(GUID).PatchAll();
         }
-
 
         private void GameManager_Awake(System.Action<GameManager> orig, GameManager self)
         {
@@ -107,6 +107,7 @@ namespace ModularMod
             MultiActiveReloadManager.SetupHooks();
             CustomClipAmmoTypeToolbox.Init();
             BlessedMode_Modifier.Init();
+            AdditionalShopItemController.Init();
 
             //Items
             ModulePrinterCore.Init();
