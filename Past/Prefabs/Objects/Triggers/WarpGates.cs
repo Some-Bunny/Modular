@@ -11,7 +11,7 @@ namespace ModularMod.Past.Prefabs.Objects
 {
     public class WarpGates
     {
-        private class WarpGatePoint : MonoBehaviour { public bool active = false; public void Start() { active = true; } }
+        private class WarpGatePoint : MonoBehaviour { public bool active = false; public void Start() { Debug.Log("2 " +this.transform.position); active = true; } }
         public static void Init()
         {
             GameObject obj = PrefabBuilder.BuildObject("WarpGate_Exit");
@@ -23,10 +23,10 @@ namespace ModularMod.Past.Prefabs.Objects
             AdditionalBraveLight braveLight = obj1.AddComponent<AdditionalBraveLight>();
             braveLight.transform.position = obj1.transform.position + new Vector3(4, 0);
             braveLight.LightColor = Color.white;//WarpGateExitMDLR_Past
-            braveLight.LightIntensity = 10f;
-            braveLight.LightRadius = 40f;
+            braveLight.LightIntensity = 4.2f;
+            braveLight.LightRadius = 12f;
             braveLight.LightAngle = 60;
-            braveLight.UsesCone = true;
+            braveLight.UsesCone = false;
             braveLight.LightOrient = 90;
             obj1.AddComponent<WarpGateEntrancePoint>();
 
@@ -55,10 +55,10 @@ namespace ModularMod.Past.Prefabs.Objects
                             Triggered = true;
                             if (player)
                             {
-                                player.WarpToPoint(pos.ToCenterVector2() - new Vector2(20, 35), false, false);
+                                player.WarpToPoint(this.transform.PositionVector2() + new Vector2(61, 78), false, false);
                             }
 
-                            TextBoxManager.ShowTextBox(GameManager.Instance.PrimaryPlayer.transform.position + new Vector3(1.25f, 2.5f, 0f), GameManager.Instance.PrimaryPlayer.transform, 4f, GameManager.Instance.PrimaryPlayer.IsUsingAlternateCostume == true ? "Let's do this." : "The elevator should be nearby.\nI should be able to manage it.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+                            TextBoxManager.ShowTextBox(GameManager.Instance.PrimaryPlayer.transform.position + new Vector3(1.25f, 2.5f, 0f), GameManager.Instance.PrimaryPlayer.transform, 4f, GameManager.Instance.PrimaryPlayer.IsUsingAlternateCostume == true ? "Let's do this." : "All evacuated, all according to plan.\nTake the elevator nearby and get out.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
 
                             if (GameManager.Instance.CurrentGameType == GameManager.GameType.COOP_2_PLAYER)
                             {

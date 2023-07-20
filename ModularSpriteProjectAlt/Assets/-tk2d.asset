@@ -4571,6 +4571,11 @@ MonoBehaviour:
     - t3_b_roomicon
     - t4_roomicon
     - confidence_drive
+    - performance_drive
+    - allocation_drive
+    - cqc_drive
+    - highValueInfo
+    - halfchoices_drive
     spriteTextureGUIDs:
     - df813c08dc4c8a241b2cabe9899b7ad7
     - a026eb8f6c8370947b0a46d3b470624e
@@ -4602,6 +4607,11 @@ MonoBehaviour:
     - 37f8c29097c8e5b4a9540ac12978e33e
     - 2a68b8f89db89ac498a44c6a85d23e1e
     - 89a00c91392a2104fa9ee2a45295c055
+    - 318915b562e8a224789af138591a70d5
+    - ff9d52f97a35e96498d9cd6d6bf04819
+    - b8633b33d88314c47be52a3cbbd00c03
+    - f629257dcc581b54f9ca5c51a6df3d77
+    - 3625e133cb8c82c45a5636d6e5b81530
     spriteTextureTimeStamps:
     - 1676123522.84831
     - 1675794515.27517
@@ -4633,6 +4643,11 @@ MonoBehaviour:
     - 1688698496.64291
     - 1688737014.49068
     - 1688842848.96098
+    - 1689517483.97905
+    - 1689518457.25968
+    - 1689522060.29517
+    - 1689522364.2221
+    - 1689604826.95222
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -8239,6 +8254,44 @@ MonoBehaviour:
     - fuckingdead_001
     - spaceship_takeoff_010
     - spaceship_takeoff_009
+    - pointydecal
+    - broken_modular
+    - NN_modular
+    - loader_suit
+    - Modular_Deco_LightWeight_Base_Ver0.512
+    - ModularSpiderHelloBunnyYoureAwesome
+    - shipping cratedone
+    - big_load
+    - bigload_shadow
+    - power_cell_stack_1
+    - power_cell_stack_2
+    - tile_past_decal_002
+    - tile_past_decal_009
+    - tile_past_decal_007
+    - tile_past_decal_008
+    - tile_past_decal_011
+    - tile_past_decal_001
+    - tile_past_decal_010
+    - tile_past_decal_004
+    - tile_past_decal_005
+    - tile_past_decal_003
+    - tile_past_decal_006
+    - trolleys2
+    - trolleys3
+    - trolleys4
+    - trolleys5
+    - crate_smol
+    - box_sussybox
+    - cdrivefullofmalware
+    - bolts2
+    - bolts3
+    - bolts1
+    - module_fumo_001
+    - module_fumo_002
+    - me_1
+    - me_2
+    - modulealt_fumo_002
+    - modulealt_fumo_001
     spriteTextureGUIDs:
     - 771c280b74662f545814c86c075bf0b2
     - 6b626efa14e302942961cb772e73f3e1
@@ -8519,6 +8572,44 @@ MonoBehaviour:
     - accc6484d15e1444ea72a361ed4c54e4
     - b96de335c7a4a1840ab5636bb16003af
     - 15d3c47b95065b8438dc5c2db58663af
+    - f771b8efae008414ea977917b950f7c3
+    - dac2114aade0ec14b966f58563f74b15
+    - 3efd9fd8912653c45ad51cfe644f0b69
+    - 56c155eedf720f240b8cbcb3d829786a
+    - 920bb715317a4c7459ccf42629844dbc
+    - 791a4e32723e6d548a50ae3f3cd276e0
+    - 80cac63760e29614fabca95499f2d580
+    - 4096d9bae7ab0aa4984b0b21333dadde
+    - 48aa3379afb758446b2423bd041a449e
+    - 7a1ed20f8bd5ae149bd3b114d19eb818
+    - 6cdaac19d6cae434f9f42e66f7042230
+    - 22f8d80d912dc994083b63a286bfa05c
+    - ed948ac9673cad04e86fb165d43ff8ca
+    - ff897f63933792447adaaf4a897ee616
+    - 3d640cb0350a4e3409c65251e27b8132
+    - 1b6b28c63fbb15b40a23b970b9fbd97f
+    - 19da161a6751c0d43b4472aea31cf027
+    - 762830f5f7b6fb943b5c0d7f5c097b76
+    - a0523d53f87eeb44da5218272ac7c831
+    - 86f9046d114fc124e81046c63f0fdce4
+    - 3fd99413d1d9c5e43beccf47128d8136
+    - f578b606d6422fe49af35cc25e98e6ef
+    - 38edf5df602d1e54fa56cbb550ba02e0
+    - 4c814c429f10be94abb6fa34a7aadde7
+    - 63efc11827da24b48a169f27514d4ec0
+    - 9ecb5b6e218485a4c83bbd350b7c0ea5
+    - af8b07efa5b4e2446b80ad160e428fae
+    - 61aa39173cd74e844adf56b57fc121e1
+    - c5ac926f52eeae949b07349a97bd0b6a
+    - 2cd67d5b56d64f740bfb772e2807914a
+    - 09d68e5fcb18c7946a75fed8d9e27aba
+    - 935b1141a7bb84d4b9de21e6e2b94e44
+    - dcf27e0d6166da74892da90568b154cc
+    - 4173f5ff48ab5ad49b54da70a0638f4d
+    - 833ca0892f10e0f49a1e7c190381a459
+    - f3aa86914459c2b44a3bc4db6496cbfe
+    - 470f2ca42590b2647b34e7baa9039777
+    - 1ce3183bb0cc24842ac333a0540e8bdd
     spriteTextureTimeStamps:
     - 1681656860.24387
     - 1681656867.60392
@@ -8538,7 +8629,7 @@ MonoBehaviour:
     - 1681654207.71787
     - 1681654312.95472
     - 1681654258.22294
-    - 1681666792.08032
+    - 1689375286.79821
     - 1682777822.85281
     - 1682777822.85582
     - 1682777822.85882
@@ -8799,6 +8890,44 @@ MonoBehaviour:
     - 1686583731.82519
     - 1686690330.04115
     - 1686690330.03614
+    - 1689345952.74091
+    - 1689349956.47863
+    - 1689348301.11327
+    - 1689349849.39041
+    - 1689373987.18005
+    - 1689355587.11071
+    - 1689375248.94043
+    - 1689374660.72717
+    - 1689379939.31454
+    - 1689431563.50155
+    - 1689431563.50377
+    - 1689433173.54255
+    - 1689433173.55856
+    - 1689433173.55456
+    - 1689433173.55656
+    - 1689433173.56357
+    - 1689433173.54054
+    - 1689433173.56056
+    - 1689433173.54755
+    - 1689433173.54955
+    - 1689433173.54555
+    - 1689433173.55156
+    - 1689443092.42145
+    - 1689443092.42345
+    - 1689443092.42646
+    - 1689443092.42846
+    - 1689513841.38539
+    - 1689523722.62224
+    - 1689527100.07408
+    - 1689595239.74765
+    - 1689595239.74865
+    - 1689595239.7447
+    - 1689600962.45283
+    - 1689600962.45483
+    - 1689630268.12707
+    - 1689630268.13008
+    - 1689610526.42016
+    - 1689610526.41816
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

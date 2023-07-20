@@ -46,9 +46,9 @@ namespace ModularMod
             var tk2d = VFX.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.VFX_Collection;
             tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("spooky3"));
-            var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
 
-            tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("GenericVFXAnimation").GetComponent<tk2dSpriteAnimation>();
+            var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
+            tk2dAnim.Library = StaticCollections.Generic_VFX_Animation;
 
             tk2d.usesOverrideMaterial = true;
             tk2d.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");

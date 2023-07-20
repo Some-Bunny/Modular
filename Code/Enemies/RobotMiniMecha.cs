@@ -253,6 +253,25 @@ namespace ModularMod
                 tk2d.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
                 tk2d.renderer.material.SetFloat("_EmissivePower", 30);
                 tk2d.renderer.material.SetFloat("_EmissiveColorPower", 30);
+
+                if (companion.GetComponent<EncounterTrackable>() != null)
+                {
+                    UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
+                }
+                companion.encounterTrackable = companion.gameObject.AddComponent<EncounterTrackable>();
+                companion.encounterTrackable.journalData = new JournalEntry();
+                companion.encounterTrackable.EncounterGuid = "mdlr:mini_mech";
+                companion.encounterTrackable.prerequisites = new DungeonPrerequisite[0];
+                companion.encounterTrackable.journalData.SuppressKnownState = true;
+                companion.encounterTrackable.journalData.IsEnemy = true;
+                companion.encounterTrackable.journalData.SuppressInAmmonomicon = true;
+                companion.encounterTrackable.ProxyEncounterGuid = "";
+                companion.encounterTrackable.journalData.AmmonomiconSprite = "";
+                companion.encounterTrackable.journalData.enemyPortraitSprite = null;//ItemAPI.ResourceExtractor.GetTextureFromResource("Planetside\\Resources\\Ammocom\\hmprimesheet.png");
+                Module.Strings.Enemies.Set("#MINIMEGH_NAME", "Modular Mini-Mech");
+                companion.encounterTrackable.journalData.PrimaryDisplayName = "#MINIMEGH_NAME";
+                companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
+                companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
             }
         }
 

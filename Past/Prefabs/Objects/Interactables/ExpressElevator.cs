@@ -141,7 +141,9 @@ namespace ModularMod.Past.Prefabs.Objects
                     yield return null;
                 }
                 e = 0;
-                while (e < 1)
+                
+                if (GameManager.Instance.PrimaryPlayer.IsUsingAlternateCostume == false) TextBoxManager.ShowTextBox(GameManager.Instance.PrimaryPlayer.transform.position + new Vector3(1.25f, 2.5f, 0f), GameManager.Instance.PrimaryPlayer.transform, 2f, "Let's do this.", "golem", false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+                while (e < (GameManager.Instance.PrimaryPlayer.IsUsingAlternateCostume ? 1 : 3))       
                 {
                     e += BraveTime.DeltaTime;
                     yield return null;

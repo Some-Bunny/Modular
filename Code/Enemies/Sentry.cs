@@ -274,6 +274,26 @@ namespace ModularMod
                 explodeOnDeath.explosionData.damage = 0;
 
                 Game.Enemies.Add("mdlr:sentry_turret", companion.aiActor);
+
+                if (companion.GetComponent<EncounterTrackable>() != null)
+                {
+                    UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
+                }
+                companion.encounterTrackable = companion.gameObject.AddComponent<EncounterTrackable>();
+                companion.encounterTrackable.journalData = new JournalEntry();
+                companion.encounterTrackable.EncounterGuid = "mdlr:sentry_turret";
+                companion.encounterTrackable.prerequisites = new DungeonPrerequisite[0];
+                companion.encounterTrackable.journalData.SuppressKnownState = true;
+                companion.encounterTrackable.journalData.IsEnemy = true;
+                companion.encounterTrackable.journalData.SuppressInAmmonomicon = true;
+                companion.encounterTrackable.ProxyEncounterGuid = "";
+                companion.encounterTrackable.journalData.AmmonomiconSprite = "";
+                companion.encounterTrackable.journalData.enemyPortraitSprite = null;//ItemAPI.ResourceExtractor.GetTextureFromResource("Planetside\\Resources\\Ammocom\\hmprimesheet.png");
+                Module.Strings.Enemies.Set("#SENTRY_NAME", "Sentry Turret");
+                companion.encounterTrackable.journalData.PrimaryDisplayName = "#SENTRY_NAME";
+                companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
+                companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
+
             }
         }
 
@@ -356,9 +376,8 @@ namespace ModularMod
                 component2.sprite.renderer.material.SetFloat("_EmissiveColorPower", 40f);
                 component2.sprite.renderer.material.SetColor("_OverrideColor", laser);
                 component2.sprite.renderer.material.SetColor("_EmissiveColor", laser);
-
                 GameManager.Instance.StartCoroutine(FlashReticles(component2, this));
-                yield return this.Wait((this.BulletBank.aiActor.GetComponent<TurretBehavior>().AttackFireRate * 60) + 60);
+                yield return this.Wait(((this.BulletBank.aiActor.GetComponent<TurretBehavior>().AttackFireRate * 60) + 60)* PlayerStats.GetTotalEnemyProjectileSpeedMultiplier());
                 yield break;
             }
             private IEnumerator FlashReticles(tk2dTiledSprite tiledspriteObject, MinionShotPredictive parent)
@@ -369,6 +388,7 @@ namespace ModularMod
 
                 float Time = this.BulletBank.aiActor.GetComponent<TurretBehavior>().AttackFireRate;
                 float f = 0;
+
 
                 float Interval = 0.5f;
 
@@ -500,6 +520,7 @@ namespace ModularMod
                     base.Fire(new Direction(f, DirectionType.Absolute, -1f), new Speed(250, SpeedType.Absolute), new HitScan());
 
                 }
+
                 yield break;
             }
             public class HitScan : Bullet

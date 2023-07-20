@@ -28,6 +28,7 @@ namespace ModularMod
             gun.introAnimation = "energychargeralt_intro";
             gun.chargeAnimation = "energychargeralt_charge";
             gun.PersistsOnDeath = true;
+            gun.PreventStartingOwnerFromDropping = true;
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(57) as Gun, true, false);
 
@@ -178,8 +179,8 @@ namespace ModularMod
 
             gun.carryPixelOffset = new IntVector2(4, 2);
             gun.muzzleFlashEffects = (PickupObjectDatabase.GetById(151) as Gun).muzzleFlashEffects;
-            gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.25f, 0.25f), "muzzle_point").transform;
-            gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.25f, 0.25f), "barrel_point").transform;
+            gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.25f, 0.125f), "muzzle_point").transform;
+            gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.25f, 0.125f), "barrel_point").transform;
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;

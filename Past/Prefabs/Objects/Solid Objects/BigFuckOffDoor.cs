@@ -48,7 +48,7 @@ namespace ModularMod.Past.Prefabs.Objects
 
             var talkPoint = PrefabBuilder.BuildObject("Talkpoint");
             talkPoint.transform.parent = obj.transform;
-            talkPoint.transform.localPosition += new Vector3(2, 0);
+            talkPoint.transform.localPosition += new Vector3(4, 0);
             controller.talkPoint = talkPoint.transform;
             obj.CreateFastBody(new IntVector2(0, 0), new IntVector2(0, 0));
 

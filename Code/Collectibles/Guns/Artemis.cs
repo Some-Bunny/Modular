@@ -35,6 +35,7 @@ namespace ModularMod
             gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.reloadAnimation).frames[0].eventAudio = "Play_ModulePowerUp";
             gun.GetComponent<tk2dSpriteAnimator>().GetClipByName(gun.reloadAnimation).frames[0].triggerEvent = true;
             gun.PersistsOnDeath = true;
+            gun.PreventStartingOwnerFromDropping = true;
 
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();

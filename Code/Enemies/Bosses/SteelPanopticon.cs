@@ -1067,7 +1067,7 @@ namespace ModularMod
                 dragunController.aiActor.ParentRoom.BecomeTerrifyingDarkRoom(0.5f, 0.1f, 1f, "Play_ENM_darken_world_01");
                 yield return base.Wait(30);
                 dragunController.SpotlightPos = base.BulletBank.aiActor.transform.position + new Vector3(4f, 1f);
-                dragunController.SpotlightSpeed = 10f;
+                dragunController.SpotlightSpeed = 10f * PlayerStats.GetTotalEnemyProjectileSpeedMultiplier();
                 dragunController.SpotlightSmoothTime = 0.5f;
                 dragunController.SpotlightVelocity = Vector2.zero;
                 dragunController.SpotlightRadius = 3f;

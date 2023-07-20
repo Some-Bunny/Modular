@@ -51,6 +51,29 @@ namespace ModularMod.Past.Prefabs.Objects
             Toolbox.BuildSpriteObject("orange_leading_line_008", "orange_Line_008");
             Toolbox.BuildSpriteObject("orange_leading_line_009", "orange_Line_009");
             Toolbox.BuildSpriteObject("orange_leading_line_010", "orange_Line_010");
+
+            Toolbox.BuildSpriteObject("tile_past_decal_001", "Tiled_Line_001", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_002", "Tiled_Line_002", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_003", "Tiled_Line_003", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_004", "Tiled_Line_004", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_005", "Tiled_Line_005", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_006", "Tiled_Line_006", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_007", "Tiled_Line_007", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_008", "Tiled_Line_008", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_009", "Tiled_Line_009", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_010", "Tiled_Line_010", false);
+            Toolbox.BuildSpriteObject("tile_past_decal_011", "Tiled_Line_011", false);
+
+            
+            Alexandria.DungeonAPI.StaticReferences.customPlaceables.Add("NutsAndBolts",
+            Toolbox.GenerateDungeonPlaceable(
+            new Dictionary<GameObject, float>()
+            {
+              {  Toolbox.BuildSpriteObject_FuckingSHit("bolts1", "Bolt_1"), 1 },
+              {  Toolbox.BuildSpriteObject_FuckingSHit("bolts2", "Bolt_2"), 1 },
+              {  Toolbox.BuildSpriteObject_FuckingSHit("bolts3", "Bolt_3"), 1 },
+            }));
+            
         }
     }
 }

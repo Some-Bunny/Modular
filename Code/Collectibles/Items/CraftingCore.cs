@@ -46,12 +46,14 @@ namespace ModularMod
             active.SetupUnlockOnCustomFlag(CustomDungeonFlags.PAST, true);
             CraftingCoreID = pickup.PickupObjectId;
 
-            GameObject roomIcon = new GameObject("VFX");
+            GameObject roomIcon = new GameObject("Room Icon");
             FakePrefab.DontDestroyOnLoad(roomIcon);
             FakePrefab.MarkAsFakePrefab(roomIcon);
             var tk2d = roomIcon.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.Item_Collection;
             tk2d.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("craftingcore_room_icon"));
+
+
             active.minimapIcon = roomIcon;
             ChooseModuleController.ModifyOmegaModuleChance += Mod;
         }
@@ -63,15 +65,15 @@ namespace ModularMod
             switch (d.tileIndices.tilesetId)
             {
                 case GlobalDungeonData.ValidTilesets.CASTLEGEON:
-                    return f *= 3.5f;
+                    return f *= 4f;
                 case GlobalDungeonData.ValidTilesets.GUNGEON:
-                    return f *= 2.75f;
+                    return f *= 3.5f;
                 case GlobalDungeonData.ValidTilesets.SEWERGEON:
                     return f *= 2.75f;
                 case GlobalDungeonData.ValidTilesets.MINEGEON:
-                    return f *= 2f;
+                    return f *= 2.25f;
                 case GlobalDungeonData.ValidTilesets.CATHEDRALGEON:
-                    return f *= 2f;
+                    return f *= 2.25f;
                 default:
                     return f;
             }

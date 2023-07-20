@@ -31,18 +31,18 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.1.4";
+        public const string VERSION = "1.1.8";
         public const string TEXT_COLOR = "#79eaff";
 
-        public static string FilePathFolder;
 
         public static AssetBundle ModularAssetBundle;
+
         public static CustomCharacterData Modular_Character_Data;
 
         public static AdvancedStringDB Strings;
 
         private static bool SoundTest = false;
-        public static bool Debug_Mode = true;
+        public static bool Debug_Mode = false;
         private static bool DialogueTest = false;
 
         public void Start(){ ETGModMainBehaviour.WaitForGameManagerStart(GMStart); }
@@ -59,15 +59,19 @@ namespace ModularMod
             orig(self);
             PastDungeon.InitCustomDungeon();
         }
+        public static string FilePathFolder;
+
         public void GMStart(GameManager g)
         {
+            FilePathFolder = this.FolderPath();
+
+
             Hook hook = new Hook(typeof(GameManager).GetMethod("Awake", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Module).GetMethod("GameManager_Awake", BindingFlags.Instance | BindingFlags.NonPublic), typeof(GameManager));
 
             Strings = new AdvancedStringDB();
 
 
             //==== Setup important file path stuff ====//
-            FilePathFolder = this.FolderPath();
             //====//
 
             //==== Initialise Assetbundle ====/
@@ -108,6 +112,9 @@ namespace ModularMod
             CustomClipAmmoTypeToolbox.Init();
             BlessedMode_Modifier.Init();
             AdditionalShopItemController.Init();
+            StuffedToy.Init();
+
+            SpecialCharactersController.Init();
 
             //Items
             ModulePrinterCore.Init();
@@ -211,6 +218,7 @@ namespace ModularMod
             //Certain aspects of character gets modified here
             Modular_Character_Data = data;
             Modular_Character_Data.pastWinPic = Module.ModularAssetBundle.LoadAsset<Texture2D>("win_pic_001");
+            
             var doer = data.idleDoer;
             doer.phases = new CharacterSelectIdlePhase[]
             {

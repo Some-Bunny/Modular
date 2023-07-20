@@ -222,6 +222,26 @@ namespace ModularMod
 
                 companion.aiActor.bulletBank.Bullets.Add(EnemyDatabase.GetOrLoadByGuid("1bc2a07ef87741be90c37096910843ab").bulletBank.GetBullet("reversible"));
                 Game.Enemies.Add("mdlr:slapper", companion.aiActor);
+
+
+                if (companion.GetComponent<EncounterTrackable>() != null)
+                {
+                    UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
+                }
+                companion.encounterTrackable = companion.gameObject.AddComponent<EncounterTrackable>();
+                companion.encounterTrackable.journalData = new JournalEntry();
+                companion.encounterTrackable.EncounterGuid = "mdlr:slapper";
+                companion.encounterTrackable.prerequisites = new DungeonPrerequisite[0];
+                companion.encounterTrackable.journalData.SuppressKnownState = true;
+                companion.encounterTrackable.journalData.IsEnemy = true;
+                companion.encounterTrackable.journalData.SuppressInAmmonomicon = true;
+                companion.encounterTrackable.ProxyEncounterGuid = "";
+                companion.encounterTrackable.journalData.AmmonomiconSprite = "";
+                companion.encounterTrackable.journalData.enemyPortraitSprite = null;//ItemAPI.ResourceExtractor.GetTextureFromResource("Planetside\\Resources\\Ammocom\\hmprimesheet.png");
+                Module.Strings.Enemies.Set("#SLAPPER_NAME", "Reciever");
+                companion.encounterTrackable.journalData.PrimaryDisplayName = "#SLAPPER_NAME";
+                companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
+                companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
             }
         }
 

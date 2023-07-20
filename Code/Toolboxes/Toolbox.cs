@@ -222,31 +222,34 @@ namespace ModularMod
         }
 
         //FUCK THIS
-        public static ModifiedDefaultLabelManager GenerateText(Transform trans, Vector2 offset, float time, string Text, Color32 color, bool Autotrigger = true, float size = 5)
+        public static ModifiedDefaultLabelManager GenerateText(Transform trans, Vector2 offset, float time, string Text, Color32 color, bool Autotrigger = true, float size = 5, bool UsesScaling = true)
         {
             var labelToSet = UnityEngine.Object.Instantiate(DefaultModule.LabelController).gameObject.GetComponent<ModifiedDefaultLabelManager>();
 
-            labelToSet.label.textScale = ((size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20) * (Smaller() ? ScaleMult().x : 1)));
+            labelToSet.label.textScale = ((size / (GameUIUtility.GetCurrentTK2D_DFScale(labelToSet.panel.GetManager()) * 20) * (UsesScaling ? (Smaller() ? ScaleMult().x : 1) : 1)));
             labelToSet.label.Text = Text;
 
 
 
             if (Autotrigger == true)
             {
-                labelToSet.Trigger_CustomTime(trans, offset *= ScaleMult_Inv().x, time);
+                labelToSet.Trigger_CustomTime(trans,  offset *= UsesScaling ? Smaller() ? ScaleMult_Inv().x : 1 : 1, time);
             }
             labelToSet.label.backgroundColor = color;
-            labelToSet.scaleMultiplier = Mathf.Max(1, ScaleMult().x);
+            labelToSet.scaleMultiplier = Mathf.Max(1, UsesScaling ? ScaleMult().x : 1);
             GameUIRoot.Instance.m_manager.AddControl(labelToSet.panel);
             dfLabel componentInChildren = labelToSet.gameObject.GetComponentInChildren<dfLabel>();
 
-
+            //componentInChildren.OnResolutionChanged
             componentInChildren.ColorizeSymbols = false;
             componentInChildren.ProcessMarkup = true;
             componentInChildren.autoHeight = false;// *= GameManager.Options.SmallUIEnabled == true ? 1 : 2;
             componentInChildren.updateCollider();            
             componentInChildren.Invalidate();
-            GameManager.Instance.StartCoroutine(FuckYou(componentInChildren.gameObject));
+            if (UsesScaling)
+            {
+                GameManager.Instance.StartCoroutine(FuckYou(componentInChildren.gameObject));
+            }
 
             return labelToSet;
         }
@@ -504,7 +507,7 @@ namespace ModularMod
             return bholsterbeam1;
         }
 
-        public static void BuildSpriteObject(string spriteName, string ObjectName)
+        public static void BuildSpriteObject(string spriteName, string ObjectName, bool shitfuck = true)
         {
             GameObject obj = PrefabBuilder.BuildObject(ObjectName);
             var tk2d = obj.AddComponent<tk2dSprite>();
@@ -516,7 +519,24 @@ namespace ModularMod
             mat.SetTexture("_MainTex", tk2d.renderer.material.mainTexture);
             tk2d.renderer.material = mat;
             obj.SetLayerRecursively(LayerMask.NameToLayer("BG_Nonsense"));
-            Alexandria.DungeonAPI.StaticReferences.customObjects.Add(ObjectName + "_MDLR", obj);
+            string naame = shitfuck == true ? ObjectName + "_MDLR" : ObjectName;
+            Alexandria.DungeonAPI.StaticReferences.customObjects.Add(naame, obj);
+        }
+
+
+        public static GameObject BuildSpriteObject_FuckingSHit(string spriteName, string ObjectName)
+        {
+            GameObject obj = PrefabBuilder.BuildObject(ObjectName);
+            var tk2d = obj.AddComponent<tk2dSprite>();
+            tk2d.Collection = StaticCollections.Past_Decorative_Object_Collection;
+
+            tk2d.SetSprite(StaticCollections.Past_Decorative_Object_Collection.GetSpriteIdByName(spriteName));
+            tk2d.usesOverrideMaterial = true;
+            Material mat = new Material(StaticShaders.FloorTileMaterial_Transparency);
+            mat.SetTexture("_MainTex", tk2d.renderer.material.mainTexture);
+            tk2d.renderer.material = mat;
+            obj.SetLayerRecursively(LayerMask.NameToLayer("BG_Nonsense"));
+            return obj;
         }
 
         public static Delegate GetEventDelegate(this object self, string eventName)

@@ -59,26 +59,33 @@ namespace ModularMod
         {
             if (otherBody == null)
             {
-                if (projectile.GetComponent<BounceProjModifier>() == null)
+                if (projectile)
                 {
-                    TransformToSticky(projectile, null, tile);
+                    if (projectile.GetComponent<BounceProjModifier>() == null)
+                    {
+                        TransformToSticky(projectile, null, tile);
+                    }
+                    else if (projectile.GetComponent<BounceProjModifier>().numberOfBounces == 0)
+                    {
+                        TransformToSticky(projectile, null, tile);
+                    }
                 }
-                else if (projectile.GetComponent<BounceProjModifier>().numberOfBounces == 0)
-                {
-                    TransformToSticky(projectile, null, tile);
-                }
+               
             }
             else
             {
-                if (otherBody.aiActor != null && !otherBody.healthHaver.IsDead && otherBody.aiActor.behaviorSpeculator && !otherBody.aiActor.IsHarmlessEnemy)
+                if (projectile)
                 {
-                    if (base.GetComponent<PierceProjModifier>() != null)
+                    if (otherBody.aiActor != null && !otherBody.healthHaver.IsDead && otherBody.aiActor.behaviorSpeculator && !otherBody.aiActor.IsHarmlessEnemy)
                     {
-                        if (base.GetComponent<PierceProjModifier>().penetration == 0)
+                        if (base.GetComponent<PierceProjModifier>() != null)
+                        {
+                            if (base.GetComponent<PierceProjModifier>().penetration == 0)
+                            { TransformToSticky(projectile, otherBody); }
+                        }
+                        else
                         { TransformToSticky(projectile, otherBody); }
                     }
-                    else
-                    { TransformToSticky(projectile, otherBody); }
                 }
             }          
         }

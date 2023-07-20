@@ -45,6 +45,35 @@ namespace ModularMod.Past.Prefabs.Objects
             obj.CreateFastBody(new IntVector2(26, 22), new IntVector2(1, 1));
             obj.SetLayerRecursively(LayerMask.NameToLayer("FG_Critical"));
             Alexandria.DungeonAPI.StaticReferences.customObjects.Add("ArmorCrate_MDLR", obj);
+            InitSeeecreeetCraaaate();
+        }
+        public static void InitSeeecreeetCraaaate()
+        {
+            GameObject obj = PrefabBuilder.BuildObject("SecretArmorCrate_MDLR");
+            var tk2d = obj.AddComponent<tk2dSprite>();
+            tk2d.Collection = StaticCollections.Past_Decorative_Object_Collection;
+            tk2d.SetSprite(StaticCollections.Past_Decorative_Object_Collection.GetSpriteIdByName("crate_smol"));
+            tk2d.sprite.usesOverrideMaterial = true;
+            Material mat = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
+            mat.mainTexture = tk2d.renderer.material.mainTexture;
+            mat.SetColor("_EmissiveColor", new Color32(0, 255, 54, 255));
+            mat.SetFloat("_EmissiveColorPower", 10);
+            mat.SetFloat("_EmissivePower", 10);
+            mat.SetFloat("_EmissiveThresholdSensitivity", 0.05f);
+            tk2d.renderer.material = mat;
+            obj.AddComponent<Fuck_You_Youre_No_Longer_Perpendicular>();
+            var switche = obj.AddComponent<ArmorCrateController>();
+            Module.Strings.Core.Set("#MDLR_CRATE_SECRET_DEF", "A small Modular repair kit. Take it?");
+            Module.Strings.Core.Set("#MDLR_CRATE_SECRET_ACC", StaticColorHexes.AddColorToLabelString("Take the repairs.", StaticColorHexes.Green_Hex));
+            Module.Strings.Core.Set("#MDLR_CRATE_SECRET_CAN", StaticColorHexes.AddColorToLabelString("Leave it.", StaticColorHexes.Light_Orange_Hex));
+            switche.acceptOptionKey = "#MDLR_CRATE_SECRET_ACC";
+            switche.displayTextKey = "#MDLR_CRATE_SECRET_DEF";
+            switche.declineOptionKey = "#MDLR_CRATE_SECRET_CAN";
+            switche.talkPoint = obj.transform;
+            switche.Armor = 1;
+            obj.CreateFastBody(new IntVector2(17, 18), new IntVector2(1, -3));
+            obj.SetLayerRecursively(LayerMask.NameToLayer("FG_Critical"));
+            Alexandria.DungeonAPI.StaticReferences.customObjects.Add("SecretArmorCrate_MDLR", obj);
         }
     }
 
@@ -152,7 +181,7 @@ namespace ModularMod.Past.Prefabs.Objects
             {
                 interactor.PlayEffectOnActor(VFXStorage.HealingSparklesVFX, new Vector3(0, 0));
                 AkSoundEngine.PostEvent("Play_OBJ_heart_heal_01", interactor.gameObject);
-                interactor.healthHaver.Armor += 3;
+                interactor.healthHaver.Armor += Armor;
                 this.m_parentRoom.DeregisterInteractable(this);
                 this.spriteAnimator.Play("cratealt_close");
                 this.m_useCount++;
@@ -160,6 +189,9 @@ namespace ModularMod.Past.Prefabs.Objects
             yield break;
         }
 
+
+
+        public int Armor = 3;
 
 
         public void OnEnteredRange(PlayerController interactor)

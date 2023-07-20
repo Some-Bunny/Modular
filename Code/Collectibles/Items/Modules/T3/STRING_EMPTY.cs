@@ -39,7 +39,7 @@ namespace ModularMod
             h.LabelDescription = "[Primary_Description_Placeholder]\n[secondaryEffect_Placeholder]\n"+StaticColorHexes.AddColorToLabelString("NullReferenceException: (999+)\nObject not set to an instance of an object.\nDefaultModule.ReturnTeritaryEffectText()\nTileBreaker.ReturnDescriptionLabel()", StaticColorHexes.Red_Color_Hex);
             h.SetTag("modular_module");
             h.AddColorLight(Color.white);
-            h.AdditionalWeightMultiplier = 0.4f;
+            h.AdditionalWeightMultiplier = 0.3f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.OverrideScrapCost = 15;

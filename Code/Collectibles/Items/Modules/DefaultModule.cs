@@ -317,11 +317,11 @@ namespace ModularMod
             Color colorToSelect = Label_Background_Color_Override != Color.clear ? Label_Background_Color_Override : (interactor.IsUsingAlternateCostume == true ? Label_Background_Color_Alt : Label_Background_Color);
             if (ExtantLabelController == null && CanDisplayText == true)
             {
-                ExtantLabelController = Toolbox.GenerateText(this.transform, Offset_LabelDescription, 0.5f, GetLabelNameDescrption(), colorToSelect);
+                ExtantLabelController = Toolbox.GenerateText(this.transform, Offset_LabelDescription, 0.5f, GetLabelNameDescrption(), colorToSelect, true, 5, false);
             }
             if (ExtantNameLabelController == null && CanDisplayText == true)
             {
-                ExtantNameLabelController = Toolbox.GenerateText(this.transform, Offset_LabelName, 0.5f, GetLabelNameProper(), colorToSelect);
+                ExtantNameLabelController = Toolbox.GenerateText(this.transform, Offset_LabelName, 0.5f, GetLabelNameProper(), colorToSelect, true, 5, false);
             }
             if (EnteredRange != null)
             {
@@ -410,6 +410,7 @@ namespace ModularMod
             {
                 return;
             }
+            if (interactor.PlayerHasCore() == null) { return; }
             if (RoomHandler.unassignedInteractableObjects.Contains(this))
             {
                 RoomHandler.unassignedInteractableObjects.Remove(this);

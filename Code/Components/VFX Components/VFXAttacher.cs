@@ -8,20 +8,32 @@ namespace ModularMod
 {
     public class ShittyVFXAttacher : MonoBehaviour
     {
-        public PlayerController mainPlayer;
+        public bool wasUsingAltCostume;
         public GameObject gameObj = VFXStorage.VFX_Modulable;
         public tk2dSpriteAnimator VFX;
         public PickupObject g;
+        private bool Dont = false;
         public void Start()
         {
+            if (Dont == true) { return; }
             g = this.GetComponent<PickupObject>();
             VFX = UnityEngine.Object.Instantiate(gameObj, g.sprite.WorldTopLeft, Quaternion.identity).GetComponent<tk2dSpriteAnimator>();
             VFX.gameObject.transform.parent = g.gameObject.transform;
-            VFX.Play(mainPlayer.IsUsingAlternateCostume ? "start_alt" : "start");
+            VFX.Play(wasUsingAltCostume ? "start_alt" : "start");
         }
+
+        public void CallOfTheVoid()
+        {
+            Destroy(this);
+            Dont = true;
+            if (VFX == null) { return; }
+            VFX.PlayAndDestroyObject(wasUsingAltCostume ? "break_alt" : "break");
+        }
+
         public void OnDestroy()
         {
-            VFX.PlayAndDestroyObject(mainPlayer.IsUsingAlternateCostume ? "break_alt" : "break");
+            if (VFX == null) { return; }
+            VFX.PlayAndDestroyObject(wasUsingAltCostume ? "break_alt" : "break");
         }
     }
 }

@@ -24,6 +24,8 @@ namespace ModularMod
         public static void Init()
         {
             new Hook(typeof(Gun).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("PickupHook"));
+            new Hook(typeof(Gun).GetMethod("Update", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("UpdateHook"));
+
             //new Hook(typeof(Gun).GetMethod("OnEnteredRange", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("OnEnteredRangeHook"));
 
             new Hook(typeof(PlayerController).GetMethod("SetStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("SetStencilValHook"));
@@ -38,8 +40,25 @@ namespace ModularMod
         }
 
 
-        
-
+        public static void UpdateHook(Action<Gun> orig, Gun self)
+        {
+            orig(self);
+            if (self.CurrentOwner != null)
+            {
+                for (int i = self.transform.childCount - 1; i > -1; i--)
+                {
+                    if (self.transform.GetChild(i).name.Contains("VFX_MODULABLE"))
+                    {
+                        UnityEngine.Object.Destroy(self.transform.GetChild(i).gameObject);
+                    }
+                }
+                var c = self.gameObject.GetComponent<ChooseModuleController>();
+                if (c != null)
+                {
+                    c.DestroyAllOthers(false);
+                }
+            }
+        }
         public static void TeleportationImmunity(Action<AIActor, IntVector2?, bool> orig, AIActor self, IntVector2? overrideClearance = null, bool keepClose = false)
         {
             if (self.GetComponent<TeleportationImmunity>() != null) { return; }
@@ -90,7 +109,7 @@ namespace ModularMod
 
         public static void PickupHook(Action<Gun, PlayerController> orig, Gun self, PlayerController player)
         {
-            if (player.HasPickupID(ModulePrinterCore.ModulePrinterCoreID) == true)
+            if (player.PlayerHasCore() != null)
             {
                 var yes = self.gameObject.GetComponent<ChooseModuleController>();
                 if (yes == null)
@@ -106,11 +125,19 @@ namespace ModularMod
             }
             else
             {
-                var c = self.gameObject.GetComponent<ChooseModuleController>();
-                if (c != null) { if (c.isBeingDestroyed == true) { return; } }
                 orig(self, player);
+                for (int i = self.transform.childCount - 1; i > -1; i--)
+                {
+                    if (self.transform.GetChild(i).name.Contains("VFX_MODULABLE"))
+                    {
+                        UnityEngine.Object.Destroy(self.transform.GetChild(i).gameObject);
+                    }
+                }
             }
         }
+
+
+
 
         public static void OnEnteredRangeHook(Action<Gun, PlayerController> orig, Gun self, PlayerController player)
         {
@@ -118,7 +145,7 @@ namespace ModularMod
             if (player.PlayerHasCore() != null && self.gameObject.GetComponent<ShittyVFXAttacher>() == null && self.gameObject.GetComponent<ChooseModuleController>() == null)
             {
                 var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
-                p.mainPlayer = player;
+                p.wasUsingAltCostume = player.IsUsingAlternateCostume;
             }
         }
 
@@ -191,12 +218,12 @@ namespace ModularMod
                 {
                     var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
                     p.gameObj = VFXStorage.VFX__Synergy;
-                    p.mainPlayer = player;
+                    p.wasUsingAltCostume = player.IsUsingAlternateCostume;
                 }
                 else if (self is Gun && player.PlayerHasCore() != null && self.gameObject.GetComponent<ShittyVFXAttacher>() == null && self.gameObject.GetComponent<ChooseModuleController>() == null)
                 {
                     var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
-                    p.mainPlayer = player;
+                    p.wasUsingAltCostume = player.IsUsingAlternateCostume;
                 }
             }          
         }

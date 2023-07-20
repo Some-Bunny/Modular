@@ -14,8 +14,6 @@ namespace ModularMod
             {
                 collection = ETGMod.Databases.Items.WeaponCollection;
             }
-            
-
             if (defaultSprite != null)
             {
                 AddSpriteToCollection(collection.GetSpriteDefinition(defaultSprite), ammonomiconCollection);

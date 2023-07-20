@@ -93,13 +93,14 @@ namespace ModularMod
             new Hook(typeof(GameUIRoot).GetMethod("UpdateScale", BindingFlags.Instance | BindingFlags.Public), typeof(ScrapUIController).GetMethod("UpdateScaleHook", BindingFlags.Static | BindingFlags.Public));
 
             GlobalConsumableStorage.AddNewConsumable("Scrap");
-            //Alexandria.Misc.CustomActions.OnNewPlayercontrollerSpawned += ONPCS;
+            Alexandria.Misc.CustomActions.OnRunStart += ONPCS;
+
         }
 
-        public static void ONPCS(PlayerController player)
+        public static void ONPCS(PlayerController player1, PlayerController player2, GameManager.GameMode mode)
         {
             //var c = player.gameObject.AddComponent<ConsumableStorage>();
-            GlobalConsumableStorage.AddNewConsumable("Scrap");
+            GlobalConsumableStorage.SetConsumableAmount("Scrap", 0);
         }
 
         private static Transform transformInstance;

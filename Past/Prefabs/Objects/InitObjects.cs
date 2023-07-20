@@ -33,7 +33,6 @@ namespace ModularMod.Past.Prefabs.Objects
             MovingTile.Init();
             ForbodingSign.Init();
 
-            Sprite_Decals.Init();
             FakeCorridor.Init();
             BigVaultObject.Init();
 
@@ -51,7 +50,15 @@ namespace ModularMod.Past.Prefabs.Objects
             BloodRedLightness.Init();
             ArmorCrate.Init();
 
+            Sprite_Decals.Init();
+
+
             Dead.Init();
+            PointyDecal.Init();
+            FanModulars.Init();
+            MiscDecoratives.Init();
+            SusBoxes.Init();
+            CDrive.Init();
         }
     }
 }

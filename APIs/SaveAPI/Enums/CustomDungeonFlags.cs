@@ -31,7 +31,9 @@ namespace SaveAPI
         PAST_ALT_SKIN,
         CRATE_DROP,
 
-        CHECKED_ALL_ADVICE
+        CHECKED_ALL_ADVICE,
+
+        PAST_MASTERY
 
         //STYLISHLY_KILL_AN_ENEMY
     }

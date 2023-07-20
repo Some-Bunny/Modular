@@ -438,13 +438,14 @@ namespace ModularMod
             return dungeon;
         }
 
-        private class P_2ParticleController : MonoBehaviour
+        public class P_2ParticleController : MonoBehaviour
         {
             private List<RoomHandler> allRooms;
             private ParticleSystem particleObject;
 
             private IEnumerator Start()
             {
+                RecievedDamage = false;
                 while (Dungeon.IsGenerating)
                 {
                     yield return null;
@@ -456,9 +457,21 @@ namespace ModularMod
                 foreach (var player in GameManager.Instance.AllPlayers)
                 {
                     player.WarpToPoint(player.transform.PositionVector2() - new Vector2(2, 10));
+                    player.OnReceivedDamage += Player_OnReceivedDamage;
                 }
             }
-           
+
+            private void Player_OnReceivedDamage(PlayerController obj)
+            {
+                foreach (var player in GameManager.Instance.AllPlayers)
+                {
+                    player.OnReceivedDamage -= Player_OnReceivedDamage;
+                }
+                RecievedDamage = true;
+            }
+
+            public static bool RecievedDamage = true;
+
             public void Update()
             {
                 if (particleObject)

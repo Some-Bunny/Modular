@@ -345,7 +345,7 @@ namespace ModularMod
                     }
                     else
                     {
-                        var g = player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(56) as Gun, true);
+                        var g = player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(24) as Gun, true);
                         g.InfiniteAmmo = true;
                         g.CanBeDropped = false;
                     }

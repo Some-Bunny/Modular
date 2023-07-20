@@ -23,7 +23,7 @@ namespace ModularMod
             StartRoom.customAmbientLight = new Color(0.3f, 0.3f, 0.3f, 1);
             StartRoom.usesCustomAmbientLight = true;
 
-            FirstRoom = Alexandria.DungeonAPI.RoomFactory.BuildFromResource("ModularMod/Past/Rooms/pastroom1.room").room;
+            FirstRoom = Alexandria.DungeonAPI.RoomFactory.BuildFromResource("ModularMod/Past/Rooms/MegaRoom.room").room;
             FirstRoom.overrideRoomVisualType = 2;
             FirstRoom.customAmbientLight = new Color(0.7f, 0.7f, 0.7f, 1);
             FirstRoom.usesCustomAmbientLight = true;

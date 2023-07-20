@@ -1260,7 +1260,7 @@ MonoBehaviour:
       eventFloat: 0
       eventOutline: 0
     fps: 10
-    loopStart: 0
+    loopStart: 5
     wrapMode: 1
     minFidgetDuration: 1
     maxFidgetDuration: 2

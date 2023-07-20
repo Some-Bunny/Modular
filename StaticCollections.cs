@@ -10,7 +10,6 @@ namespace ModularMod
 {
     public static class StaticCollections
     {
-        public static tk2dSpriteCollectionData Module_T1_Collection;
         public static tk2dSpriteCollectionData Module_T2_Collection;
         public static tk2dSpriteCollectionData Module_T3_Collection;
         public static tk2dSpriteCollectionData Module_T4_Collection;
@@ -30,7 +29,6 @@ namespace ModularMod
 
 
         public static tk2dSpriteCollectionData VFX_Collection;
-        public static tk2dSpriteAnimation Generic_VFX_Animation;
 
 
         public static tk2dSpriteCollectionData Crate_Collection;
@@ -47,13 +45,17 @@ namespace ModularMod
 
         public static dfAtlas Clip_Ammo_Atlas;
 
-
+        public static tk2dSpriteCollectionData Module_T1_Collection;
         public static void InitialiseCollections()
         {
+            Module_T1_Collection = DoFastSetup(Module.ModularAssetBundle, "Tier_1_Module_Collection", "t1_module material.mat");
+
 
             Clip_Ammo_Atlas = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularGunClip_Atlas").GetComponent<dfAtlas>();
 
-            Module_T1_Collection = DoFastSetup(Module.ModularAssetBundle, "Tier_1_Module_Collection", "t1_module material.mat");
+
+
+
             if (Module_T1_Collection == null) { ETGModConsole.Log("Module_T1_Collection is NULL"); }
 
             Module_T2_Collection = DoFastSetup(Module.ModularAssetBundle, "Tier_2_Module_Collection", "t2_module material.mat");
@@ -109,39 +111,37 @@ namespace ModularMod
             VFX_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularVFXCollection", "modular_vfx material.mat");
             if (VFX_Collection == null) { ETGModConsole.Log("VFX_Collection is NULL"); }
 
-            Generic_VFX_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("GenericVFXAnimation").GetComponent<tk2dSpriteAnimation>();
 
             //Generic_VFX_Animation
+            Generic_VFX_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("GenericVFXAnimation").GetComponent<tk2dSpriteAnimation>();
         }
+        public static tk2dSpriteAnimation Generic_VFX_Animation;
 
         public static tk2dSpriteCollectionData DoFastSetup(AssetBundle bundle, string CollectionName, string MaterialName)
         {
             tk2dSpriteCollectionData Colection = bundle.LoadAsset<GameObject>(CollectionName).GetComponent<tk2dSpriteCollectionData>();
             Material material = bundle.LoadAsset<Material>(MaterialName);
-            FastAssetBundleSpriteSetup(Colection, material);
-            return Colection;
-        }
-        public static void FastAssetBundleSpriteSetup(tk2dSpriteCollectionData bundleData, Material mat)
-        {
-            Texture texture = mat.GetTexture("_MainTex");
+            Texture texture = material.GetTexture("_MainTex");
             texture.filterMode = FilterMode.Point;
-            mat.SetTexture("_MainTex", texture);
-            bundleData.material = mat;
+            material.SetTexture("_MainTex", texture);
+            Colection.material = material;
 
-            bundleData.materials = new Material[]
+            Colection.materials = new Material[]
             {
-                mat,
+                material,
             };
-            bundleData.materialInsts = new Material[]
+            Colection.materialInsts = new Material[]
             {
-                mat,
+                material,
             };
-            foreach (var c in bundleData.spriteDefinitions)
+            foreach (var c in Colection.spriteDefinitions)
             {
-                c.material = bundleData.materials[0];
-                c.materialInst = bundleData.materials[0];
+                c.material = Colection.materials[0];
+                c.materialInst = Colection.materials[0];
                 c.materialId = 0;
             }
+            return Colection;
         }
+
     }
 }

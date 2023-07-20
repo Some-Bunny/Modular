@@ -1,4 +1,5 @@
 ﻿using Alexandria.PrefabAPI;
+using SaveAPI;
 using System;
 using System.Collections;
 using System.Collections.Generic;   
@@ -178,6 +179,19 @@ namespace ModularMod.Past.Prefabs.Objects
                     ela += GameManager.INVARIANT_DELTA_TIME;
                     yield return null;
                 }
+                foreach (var player in GameManager.Instance.AllPlayers)
+                {
+                    if (player.HasPickupID(HighValueInfo.CoolInfoID))
+                    {
+                        GameStatsManager.Instance.RegisterStatChange(TrackedStats.META_CURRENCY, 100);
+                        AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.PAST_MASTERY, true);
+                    }
+                }
+                if (PDashTwo.P_2ParticleController.RecievedDamage == true)
+                {
+                    AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.PAST_MASTERY, true);
+                }
+
                 BraveTime.ClearMultiplier(base.gameObject);
                 TimeTubeCreditsController ttcc = new TimeTubeCreditsController();
                 Pixelator.Instance.FadeToColor(0.15f, Color.white, true, 0.15f);

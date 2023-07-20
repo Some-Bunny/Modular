@@ -37,7 +37,7 @@ namespace ModularMod
                 companion.GUID_To_Shield = GUID;
                 companion.aiActor.knockbackDoer.weight = 50000;
                 companion.aiActor.MovementSpeed = 1f;
-                companion.aiActor.CollisionDamage = 1f;
+                companion.aiActor.CollisionDamage = 0f;
                 companion.aiActor.HasShadow = false;
                 companion.aiActor.IgnoreForRoomClear = false;
                 companion.aiActor.aiAnimator.HitReactChance = 0f;
@@ -265,7 +265,26 @@ namespace ModularMod
                     VFX_Object_Tether = VFX;
                 }
 
-                Game.Enemies.Add("mdlr:energy_shield" + "_("+GUID+")", companion.aiActor);            
+                Game.Enemies.Add("mdlr:energy_shield" + "_("+GUID+")", companion.aiActor);
+
+                if (companion.GetComponent<EncounterTrackable>() != null)
+                {
+                    UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
+                }
+                companion.encounterTrackable = companion.gameObject.AddComponent<EncounterTrackable>();
+                companion.encounterTrackable.journalData = new JournalEntry();
+                companion.encounterTrackable.EncounterGuid = "mdlr:energy_shield" + "_(" + GUID + ")";
+                companion.encounterTrackable.prerequisites = new DungeonPrerequisite[0];
+                companion.encounterTrackable.journalData.SuppressKnownState = true;
+                companion.encounterTrackable.journalData.IsEnemy = true;
+                companion.encounterTrackable.journalData.SuppressInAmmonomicon = true;
+                companion.encounterTrackable.ProxyEncounterGuid = "";
+                companion.encounterTrackable.journalData.AmmonomiconSprite = "";
+                companion.encounterTrackable.journalData.enemyPortraitSprite = null;//ItemAPI.ResourceExtractor.GetTextureFromResource("Planetside\\Resources\\Ammocom\\hmprimesheet.png");
+                Module.Strings.Enemies.Set("#ENERGYSHIELDER_NAME", "Energy Shielder");
+                companion.encounterTrackable.journalData.PrimaryDisplayName = "#ENERGYSHIELDER_NAME";
+                companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
+                companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
             }
         }
 

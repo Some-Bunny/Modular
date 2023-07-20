@@ -11,11 +11,11 @@ namespace ModularMod
     {
         public static void Init()
         {
-            CreateFakeCorridor("FakeDoor_Right_1", "fake_corridor_leftward", "fake_corridor_leftwardrightward_outlinedummy", new Vector2(-1, 4f), new Vector3(-0.5625f, 3.5f), "Locked.", new Vector3(1.75f, -1));
-            CreateFakeCorridor("FakeDoor_Left_1", "fake_corridor_rightward", "fake_corridor_leftwardrightward_outlinedummy", new Vector2(2, 4f), new Vector3(1.5625f, 3.5f), "Locked.", new Vector3(-1.75f, -1));
+            CreateFakeCorridor("FakeDoor_Right_1", "fake_corridor_leftward", "fake_corridor_leftwardrightward_outlinedummy", new Vector2(-3, 1f), new Vector3(-1.0625f, 1.5f), "Locked.", new Vector3(2.25f, 1));
+            CreateFakeCorridor("FakeDoor_Left_1", "fake_corridor_rightward", "fake_corridor_leftwardrightward_outlinedummy", new Vector2(0, 1f), new Vector3(1.0625f, 1.5f), "Locked.", new Vector3(-2.25f, 1));
 
-            CreateFakeCorridor("FakeDoor_Down_1", "fake_corridor_downward", "fake_corridor_upwarddownward_outlinedummy", new Vector2(2, 0f), new Vector3(1f, -1f), "Locked.", new Vector3(1f, 2f));
-            CreateFakeCorridor("FakeDoor_Up_1", "fake_corridor_upward", "fake_corridor_upwarddownward_outlinedummy", new Vector2(2, 2.5f), new Vector3(1f, 1f), "Locked.", new Vector3(1f, -2f));
+            CreateFakeCorridor("FakeDoor_Down_1", "fake_corridor_downward", "fake_corridor_upwarddownward_outlinedummy", new Vector2(0, -2f), new Vector3(1f, -1f), "Locked.", new Vector3(1f, 1f));
+            CreateFakeCorridor("FakeDoor_Up_1", "fake_corridor_upward", "fake_corridor_upwarddownward_outlinedummy", new Vector2(0, 0f), new Vector3(1f, 1f), "Locked.", new Vector3(1f, -1f));
 
         }
 

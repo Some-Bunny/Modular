@@ -46,8 +46,11 @@ namespace ModularMod
             var tk2d = VFX.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.VFX_Collection;
             tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("scrapper_scrap_007"));
+
             var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
             tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("ScrapperAnimation").GetComponent<tk2dSpriteAnimation>();
+
+
             Tk2dSpriteAnimatorUtility.AddEventTriggersToAnimation(tk2dAnim, "start", new Dictionary<int, string>()
             {
                 {8, "DoSparks"},
@@ -74,7 +77,6 @@ namespace ModularMod
 
             Clock_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Clock"), "Clock_B_UI_INV");
 
-
             Googly_Bright_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("GooglyMooglyBright"), "GooglyMooglyBright_B_UI_INV");
 
             T1BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_1"), "T1B_B_UI_INV");
@@ -84,7 +86,6 @@ namespace ModularMod
 
             Info_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Info"), "Info_B_UI_INV");
             Info_Bright_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Info_Hover"), "Info_B_UI_INV");
-
 
             ID = pickup.PickupObjectId;
 

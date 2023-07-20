@@ -31,6 +31,7 @@ namespace ModularMod
             gun.finalShootAnimation = "gravgunalt_altfire";
             gun.introAnimation = "gravgunalt_intro";
             gun.PersistsOnDeath = true;
+            gun.PreventStartingOwnerFromDropping = true;
 
 
 
@@ -60,7 +61,7 @@ namespace ModularMod
             gun.DefaultModule.numberOfFinalProjectiles = 25;
 
             gun.InfiniteAmmo = true;
-            gun.quality = PickupObject.ItemQuality.SPECIAL;
+            gun.quality = PickupObject.ItemQuality.EXCLUDED;
 
 
 

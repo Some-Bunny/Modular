@@ -29,7 +29,10 @@ namespace ModularMod
             new Hook(typeof(SprenOrbitalItem).GetMethod("DetransformSpren", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("DetransformSprenHook"));
 
             ChooseModuleController.AdditionalOptionsModifier += ReturnAdditionalOptions;
+            ChooseModuleController.ModifyOmegaModuleChance += OmegaChance;
+
         }
+
         public static IEnumerator HandleTransformationDurationHook(Func<SprenOrbitalItem, IEnumerator> orig, SprenOrbitalItem self)
         {
             tk2dSpriteAnimator extantAnimator = self.m_extantOrbital.GetComponentInChildren<tk2dSpriteAnimator>();
@@ -163,7 +166,14 @@ namespace ModularMod
             }
             self.m_player.inventory.GunChangeForgiveness = false;
         }
-
+        public static float OmegaChance(PickupObject.ItemQuality q, DefaultModule.ModuleTier tier, float count)
+        {
+            foreach (PlayerController p in GameManager.Instance.AllPlayers)
+            {
+                if (p.PlayerHasCore() != null && p.HasPassiveItem(815)) { return count *= 5; }
+            }
+            return count;
+        }
         public static int ReturnAdditionalOptions(int count)
         {
             foreach (PlayerController p in GameManager.Instance.AllPlayers)

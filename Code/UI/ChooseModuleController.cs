@@ -11,6 +11,9 @@ namespace ModularMod
     public class ChooseModuleController : MonoBehaviour
     {
         public static Func<int, int> AdditionalOptionsModifier;
+        public static Func<int, PickupObject.ItemQuality, int> PrimaryOptionsModifier;
+
+        //PrimaryOptionsModifier
         public static Func<PickupObject.ItemQuality, DefaultModule.ModuleTier, float, float> ModifyOmegaModuleChance;
 
         public int Count = 4;
@@ -48,8 +51,6 @@ namespace ModularMod
                 extantTether = null;
             }
         }
-
-      
 
         public DefaultModule SelectModule(GenericLootTable table)
         {
@@ -119,6 +120,8 @@ namespace ModularMod
             selectableModules = new List<ModuleUICarrier>();
             GenericLootTable tableToUse = GlobalModuleStorage.SelectTable(g.quality);
 
+            if (PrimaryOptionsModifier != null) { Count = PrimaryOptionsModifier(Count, g.quality); }
+
             if (AdditionalOptionsModifier != null) { Count = AdditionalOptionsModifier(Count); }
 
             float Arc = 30 + (Count * 15);
@@ -172,6 +175,13 @@ namespace ModularMod
 
                 g.gameObject.transform.position = Vector2.MoveTowards(g.gameObject.transform.position, playerToFollow.transform.position, 2.5f * BraveTime.DeltaTime);
             }
+            else if(playerToFollow == null && extantTether != null) 
+            {
+                AkSoundEngine.PostEvent("Play_OBJ_lock_pick_01", g.gameObject);
+                playerToFollow = null;
+                extantTether.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "tether_alt_break" : "tether_break");
+                extantTether = null;
+            }
         }
 
         private IEnumerator LerpLight(Gun g)
@@ -195,7 +205,7 @@ namespace ModularMod
         }
 
 
-        public void DestroyAllOthers()
+        public void DestroyAllOthers(bool destroyGun = true)
         {
             for (int i = 0; i < selectableModules.Count; i++)
             {
@@ -207,7 +217,7 @@ namespace ModularMod
                     }
                 }
             }
-            g.StartCoroutine(I_DoDestroy(g));
+            g.StartCoroutine(I_DoDestroy(g, destroyGun));
         }
 
         public Color TierColor()
@@ -229,7 +239,7 @@ namespace ModularMod
         }
 
         public bool isBeingDestroyed = false;
-        private IEnumerator I_DoDestroy(Gun g)
+        private IEnumerator I_DoDestroy(Gun g, bool destroyGun = true)
         {
             var obj = g.gameObject.GetComponent<ShittyVFXAttacher>();
             if (obj)
@@ -248,10 +258,16 @@ namespace ModularMod
                     entry.Key.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isAlt ? "chain_alt_break" : "chain_break");
                 }
             }
-
-            isBeingDestroyed = true;
-            bool emergtencyCheck = false;
             var light = g.gameObject.GetOrAddComponent<AdditionalBraveLight>();
+            isBeingDestroyed = true;
+
+            if (destroyGun == false)
+            {
+                light.LightIntensity = 0;
+                light.LightRadius = 0; 
+                yield break; 
+            }
+            bool emergtencyCheck = false;
             light.LightColor = TierColor();
             g.sprite.renderer.material.shader = StaticShaders.Displacer_Beast_Shader;
             g.sprite.renderer.material.SetTexture("_MainTex", g.sprite.renderer.material.mainTexture);
@@ -270,7 +286,9 @@ namespace ModularMod
                 SpriteOutlineManager.RemoveOutlineFromSprite(g.sprite, false);
                 yield return null;
             }
-            Destroy(g.gameObject);
+
+                Destroy(g.gameObject);
+            
             yield break;
         }
 
@@ -343,6 +361,7 @@ namespace ModularMod
                     DefMod.StartCoroutine(LerpLight(DefMod, 0, 7, 0, 3));
                     Destroy(this);
                     DefMod.StartCoroutine(this.DoMovementToPlayer(DefMod, p));
+                    if (OnModuleSelected != null) { OnModuleSelected(DefMod, p); }
                     return false;
                 }
                 return (HasStoppedMoving);
@@ -362,6 +381,7 @@ namespace ModularMod
                     self.gameObject.transform.position = Vector3.Lerp(modPosition, p.SpriteBottomCenter, Toolbox.SinLerpTValue(t));
                     yield return null;
                 }
+                if (OnModuleDropped != null) { OnModuleDropped(self, p); }
                 DebrisObject orAddComponent = self.gameObject.GetOrAddComponent<DebrisObject>();
                 orAddComponent.shouldUseSRBMotion = true;
                 orAddComponent.angularVelocity = 0f;
@@ -369,13 +389,11 @@ namespace ModularMod
                 orAddComponent.sprite.UpdateZDepth();
                 orAddComponent.Trigger(Vector3.up.WithZ(2f), 1, 1f);
                 self.OnEnteredRange(p);
-
-
                 yield break;
             }
-
             private bool HasStoppedMoving;
-
+            public static Action<DefaultModule, PlayerController> OnModuleDropped;
+            public static Action<DefaultModule, PlayerController> OnModuleSelected;
 
 
             private IEnumerator LerpLight(DefaultModule self, float to, float From, float radTo, float radFrom)
@@ -401,6 +419,7 @@ namespace ModularMod
                 {
                     elapsed += BraveTime.DeltaTime;
                     float t = elapsed / duration;
+                    if (controller == null) { Destroy(this); }
                     self.gameObject.transform.position = Vector3.Lerp(controller.g.sprite.WorldCenter + Offset, (controller.g.sprite.WorldCenter + EndPosition) + Offset, Toolbox.SinLerpTValue(t));
                     yield return null;
                 }
@@ -409,6 +428,7 @@ namespace ModularMod
                 HasStoppedMoving = true;
                 while (this.controller)
                 {
+                    if (controller == null) { Destroy(this); }
                     if (HasStoppedMoving == true && extantModule.gameObject && controller.g)
                     {
                         extantModule.gameObject.transform.position = Vector2.MoveTowards(extantModule.gameObject.transform.position, (controller.g.sprite.WorldCenter + EndPosition) + Offset, 2.2f * BraveTime.DeltaTime);

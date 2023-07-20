@@ -454,6 +454,25 @@ namespace ModularMod
 
                 Game.Enemies.Add("mdlr:big_drone", companion.aiActor);
 
+                if (companion.GetComponent<EncounterTrackable>() != null)
+                {
+                    UnityEngine.Object.Destroy(companion.GetComponent<EncounterTrackable>());
+                }
+                companion.encounterTrackable = companion.gameObject.AddComponent<EncounterTrackable>();
+                companion.encounterTrackable.journalData = new JournalEntry();
+                companion.encounterTrackable.EncounterGuid = "mdlr:big_drone";
+                companion.encounterTrackable.prerequisites = new DungeonPrerequisite[0];
+                companion.encounterTrackable.journalData.SuppressKnownState = true;
+                companion.encounterTrackable.journalData.IsEnemy = true;
+                companion.encounterTrackable.journalData.SuppressInAmmonomicon = true;
+                companion.encounterTrackable.ProxyEncounterGuid = "";
+                companion.encounterTrackable.journalData.AmmonomiconSprite = "";
+                companion.encounterTrackable.journalData.enemyPortraitSprite = null;//ItemAPI.ResourceExtractor.GetTextureFromResource("Planetside\\Resources\\Ammocom\\hmprimesheet.png");
+                Module.Strings.Enemies.Set("#BIGDRONE_NAME", "Security Drone");
+                companion.encounterTrackable.journalData.PrimaryDisplayName = "#BIGDRONE_NAME";
+                companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
+                companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
+
             }
         }
 

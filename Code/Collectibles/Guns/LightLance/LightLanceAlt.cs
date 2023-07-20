@@ -31,6 +31,7 @@ namespace ModularMod
             gun.introAnimation = "lightlancealt_intro";
             gun.chargeAnimation = "lightlancealt_charge";
             gun.PersistsOnDeath = true;
+            gun.PreventStartingOwnerFromDropping = true;
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 
@@ -175,7 +176,7 @@ namespace ModularMod
             };
 
 
-            tk2dSpriteAnimationClip fireClip2 = gun.spriteAnimator.GetClipByName("lightlance_fire");
+            tk2dSpriteAnimationClip fireClip2 = gun.spriteAnimator.GetClipByName("lightlancealt_fire");
             float[] offsetsX2 = new float[] { 0f, 0f, 0f, 0f, 0f, 0f, 0f, //HERE
                 0f, -0.75f, -1f, -0.5f, 0f, 0f, 0f, };
             float[] offsetsY2 = new float[] { 0f, 0.125f, 0.25f, 0.3125f, 0.3125f, 0.375f, 0.375f, -1.75f, -1.625f, -1.5f, -1.25f, -1.125f, -0.75f, -0.25f };
@@ -193,7 +194,7 @@ namespace ModularMod
             }
 
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(125) as Gun).gunSwitchGroup;
-            gun.AddGlowShaderToGun(new Color32(121, 234, 255, 255), 10, 10);
+            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 3, 3);
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
             gun.carryPixelOffset = new IntVector2(4, 2);
 

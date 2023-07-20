@@ -128,6 +128,9 @@ namespace ModularMod
             player.MovementModifiers += MovementMod;
             player.OnTriedToInitiateAttack += OnAttemptedAttack;
 
+            player.startingGunIds.AddRange(StarterGunSelectUIController.allStarterIDs);
+            player.startingGunIds.AddRange(StarterGunSelectUIController.allAltStarterIDs);
+
             cloakDoer = ScriptableObject.CreateInstance<CloakDoer>();
             cloakDoer.DoStartUp(player);
 

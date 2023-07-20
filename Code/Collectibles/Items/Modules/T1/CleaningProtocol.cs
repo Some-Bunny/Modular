@@ -63,14 +63,38 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            modulePrinter.OnEnteredCombat += EC;
             modulePrinter.OnPostProcessProjectile += PPP;
             ETGMod.AIActor.OnPreStart += OPEH;
         }
 
+        public void EC(ModulePrinterCore core, Dungeonator.RoomHandler r, PlayerController p)
+        {
+            var l = r.GetActiveEnemies(Dungeonator.RoomHandler.ActiveEnemyType.RoomClear);
+            if (l != null)
+            {
+                foreach (var enemy in l)
+                {
+                    if (enemy.CanTargetPlayers && !enemyC.Contains(enemy))
+                    {
+                        enemyC.Add(enemy);
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Fire, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Electric, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Ice, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Magic, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Poison, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Void, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Water, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                    }
+                }
+            }
+        }
+
         public void OPEH(AIActor enemy)
         {
-            if (enemy.CanTargetPlayers)
+            if (enemy.CanTargetPlayers && !enemyC.Contains(enemy))
             {
+                enemyC.Add(enemy);
                 enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Fire, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core))});
                 enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Electric, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
                 enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Ice, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
@@ -81,8 +105,11 @@ namespace ModularMod
             }
         }
 
+        private List<AIActor> enemyC = new List<AIActor>();
+
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            modulePrinter.OnEnteredCombat -= EC;
             modulePrinter.OnPostProcessProjectile -= PPP;
             ETGMod.AIActor.OnPreStart -= OPEH;
         }

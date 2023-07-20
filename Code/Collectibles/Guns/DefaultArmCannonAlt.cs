@@ -25,6 +25,7 @@ namespace ModularMod
             gun.shootAnimation = "defaultarmcannonalt_fire";
             gun.reloadAnimation = "defaultarmcannonalt_reload";
             gun.PersistsOnDeath = true;
+            gun.PreventStartingOwnerFromDropping = true;
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(56) as Gun, true, false);
 
@@ -66,7 +67,7 @@ namespace ModularMod
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 
-            gun.carryPixelOffset = new IntVector2(6, 2);
+            gun.carryPixelOffset = new IntVector2(4, 2);
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "barrel_point").transform;
 

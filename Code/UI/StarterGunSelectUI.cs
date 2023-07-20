@@ -995,6 +995,12 @@ namespace ModularMod
             upgrade_button_default_gun.GunID = GunId;
             upgrade_button_default_gun.AltGunID = Alt_GunID;
 
+            allStarterIDs.Add(GunId);
+            if (Alt_GunID != -1)
+            {
+                allAltStarterIDs.Add(Alt_GunID);
+            }
+
             upgrade_button_default_gun.Damage_Description = Damage_Description ?? StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Default_UI_Color_Hex);
             upgrade_button_default_gun.Reload_Description = Reload_Description ?? StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Default_UI_Color_Hex);
             upgrade_button_default_gun.Clipsize_Description = Clipsize_Description ?? StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Default_UI_Color_Hex);
@@ -1031,6 +1037,16 @@ namespace ModularMod
         }
 
         //RelativePosition
+
+        public static List<int> allStarterIDs = new List<int>() 
+        {
+            DefaultArmCannon.ID,
+        };
+
+        public static List<int> allAltStarterIDs = new List<int>()
+        {
+            DefaultArmCannonAlt.ID
+        };
 
         [HarmonyPatch(typeof(GameUIRoot), "Start")]
         [HarmonyPostfix]
@@ -1110,9 +1126,11 @@ namespace ModularMod
 
         public Action OnUsed;
         public Action OnClosed;
-
+        private bool CanBeUsed = true;
         public void OnUse(PlayerController player, int GunID)
         {
+            if (CanBeUsed == false) { return; }
+            CanBeUsed = false;
             Gun carriedGun = player.CurrentGun;
             ModulePrinterCore var = null;
             if (player.passiveItems != null && player.passiveItems.Count > 0) 
@@ -1169,7 +1187,7 @@ namespace ModularMod
             }
             UpdatePanels();
             CursorPatch.DisplayCursorOnController = true;
-
+            CanBeUsed = true;
             this.Accept_Button.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
             {
                 if (CanBeSelected() == true)
@@ -1515,11 +1533,11 @@ namespace ModularMod
             { statDescrptionLabel.ModifyLocalizedText(""); return; }
             
             string newtext = 
-                "Damage : " + currentlySelectedButton.Damage_Description + "\n" +
-                "Rate Of Fire : " + currentlySelectedButton.FireRate_Description + "\n" +
-                "Reload Time : " + currentlySelectedButton.Reload_Description + "\n" +
-                "Clip Size : " + currentlySelectedButton.Clipsize_Description + "\n" +
-                "Shot Speed : " + currentlySelectedButton.Shotspeed_Description + "\n" +
+                SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.DAMAGE) +" Damage : " + currentlySelectedButton.Damage_Description + "\n" +
+                 SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.FIRE_RATE) + " Rate Of Fire : " + currentlySelectedButton.FireRate_Description + "\n" +
+                SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.RELOAD) + " Reload Time : " + currentlySelectedButton.Reload_Description + "\n" +
+                SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.CLIP_CAPACITY) + " Clip Size : " + currentlySelectedButton.Clipsize_Description + "\n" +
+                SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.SHOTSPEED) + " Shot Speed : " + currentlySelectedButton.Shotspeed_Description + "\n" +
                 currentlySelectedButton.Additional_Notes;
             name_and_Description_Label.Localize();
             statDescrptionLabel.Localize();

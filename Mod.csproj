@@ -59,6 +59,8 @@
     <Compile Include="APIs\SoundAPI\SwitchedEvent.cs" />
     <Compile Include="Code\Collectibles\Guns\Gravity Pulsar\Gravity Pulsar Components.cs" />
     <Compile Include="Code\Collectibles\Guns\Gravity Pulsar\GravityPulsarAlt.cs" />
+    <Compile Include="Code\Collectibles\Items\PredefinedCore.cs" />
+    <Compile Include="Code\Collectibles\Items\PerformanceCore.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\HeavyweightRounds.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\BattersRevenge.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\CleaningProtocol.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Code\Controllers\ExpandMusicAPI.cs" />
     <Compile Include="Code\Controllers\GlobalMessageRadio.cs" />
     <Compile Include="Code\Controllers\GunBehaviors.cs" />
+    <Compile Include="Code\Controllers\StuffedToy.cs" />
     <Compile Include="Code\Enemies\Bosses\ModularPrime.cs" />
     <Compile Include="Code\Enemies\EnemyBehaviours\BodyPart.cs" />
     <Compile Include="Code\Enemies\EnemyBehaviours\ModularPrimeChargeBehavior.cs" />
@@ -219,6 +222,7 @@
     <Compile Include="Code\UI\CraftingInventory.cs" />
     <Compile Include="Code\UI\ModuleInventoryController.cs" />
     <Compile Include="Code\UI\ScrapUIController.cs" />
+    <Compile Include="Code\UI\SpecialCharacetrscs.cs" />
     <Compile Include="Code\Unlocks\EnemyDeathUnlockController.cs" />
     <Compile Include="Past\OtherFloor\PDashTwo.cs" />
     <Compile Include="Past\OtherFloor\Assets\CustomFlow.cs" />
@@ -229,11 +233,15 @@
     <Compile Include="Past\Prefabs\DungeonMaterialSetup.cs" />
     <Compile Include="Past\OtherFloor\Assets\FloorRoomInitialisation.cs" />
     <Compile Include="Past\Prefabs\Objects\InitObjects.cs" />
+    <Compile Include="Past\Prefabs\Objects\Interactables\CDrive.cs" />
+    <Compile Include="Past\Prefabs\Objects\Interactables\SusBoxes.cs" />
     <Compile Include="Past\Prefabs\Objects\Interactables\ArmorCrate.cs" />
     <Compile Include="Past\Prefabs\Objects\Interactables\ExpressElevator.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\BigFuckOffDoorAuto.cs" />
     <Compile Include="Past\Prefabs\Objects\Interactables\BigSwitch.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\BigFuckOffDoor.cs" />
+    <Compile Include="Past\Prefabs\Objects\Solid Objects\MiscDecoratives.cs" />
+    <Compile Include="Past\Prefabs\Objects\Solid Objects\FanModulars.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\ZappyDoor.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\Spaceship.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\TriggerEncounter.cs" />
@@ -242,6 +250,7 @@
     <Compile Include="Past\Prefabs\Objects\Tile Decals\FakeCorridor.cs" />
     <Compile Include="Past\Prefabs\Objects\Tile Decals\BloodRedLightness.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\Dead.cs" />
+    <Compile Include="Past\Prefabs\Objects\Tile Decals\PointyDecal.cs" />
     <Compile Include="Past\Prefabs\Objects\Traps\LaserSniper.cs" />
     <Compile Include="Past\Prefabs\Objects\Solid Objects\MetalFences.cs" />
     <Compile Include="Past\Prefabs\Objects\Tile Decals\RedLight.cs" />
@@ -1154,6 +1163,7 @@
     <EmbeddedResource Include="Past\Rooms\PastDashTwo\STEEL_PANOPTICON.room" />
     <EmbeddedResource Include="Past\Rooms\PastDashTwo\huge_fuckoff_corridor.room" />
     <EmbeddedResource Include="Past\Rooms\PastDashTwo\fyck you dodgeroll.room" />
+    <EmbeddedResource Include="Past\Rooms\MegaRoom.room" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sprites\Modular\punchout\facecard1.png" />

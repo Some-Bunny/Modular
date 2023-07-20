@@ -31,6 +31,7 @@ namespace ModularMod
             gun.finalShootAnimation = "gravgun_altfire";
             gun.introAnimation = "gravgun_intro";
             gun.PersistsOnDeath = true;
+            gun.PreventStartingOwnerFromDropping = true;
 
 
 

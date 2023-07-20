@@ -27,6 +27,7 @@ namespace ModularMod
             gun.reloadAnimation = "scattercannonalt_reload";
             gun.introAnimation = "scattercannonalt_intro";
             gun.PersistsOnDeath = true;
+            gun.PreventStartingOwnerFromDropping = true;
 
             for (int i = 0; i < 6; i++)
             {
@@ -53,7 +54,7 @@ namespace ModularMod
                 projectileModule.ammoCost = 1;
                 projectileModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
                 projectileModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
-                projectileModule.cooldownTime = 0.5f;
+                projectileModule.cooldownTime = 0.75f;
                 projectileModule.angleVariance = 19;
                 projectileModule.numberOfShotsInClip = 8;
 
