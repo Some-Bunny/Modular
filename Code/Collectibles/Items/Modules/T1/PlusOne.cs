@@ -43,7 +43,7 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.1f) { return; }
-            p.StartCoroutine(this.FrameDelay(p, modulePrinterCore));
+            p.StartCoroutine(this.FrameDelay(p, modulePrinterCore, 1));
             p.HasDefaultTint = true;
         }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
@@ -56,14 +56,14 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.StartCoroutine(this.FrameDelay(p, modulePrinterCore));
+            p.StartCoroutine(this.FrameDelay(p, modulePrinterCore, null));
             p.HasDefaultTint = true;
             p.AdjustPlayerProjectileTint(Color.yellow, 1);
         }
-        public IEnumerator FrameDelay(Projectile p, ModulePrinterCore modulePrinterCore)
+        public IEnumerator FrameDelay(Projectile p, ModulePrinterCore modulePrinterCore, int? overrideStack)
         {
             yield return null;
-            int stack = this.ReturnStack(modulePrinterCore);
+            int stack = overrideStack ?? this.ReturnStack(modulePrinterCore);
             p.baseData.damage += stack;
             yield break;
         }

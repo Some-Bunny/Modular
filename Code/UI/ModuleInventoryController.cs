@@ -41,7 +41,7 @@ namespace ModularMod
         {
             GameManager.Instance.MainCameraController.SetManualControl(true, true);
             CameraController mainCameraController = GameManager.Instance.MainCameraController;
-            mainCameraController.OverridePosition = active == true ? this.player.sprite.WorldCenter + new Vector2(7, -1.5f) : this.player.sprite.WorldCenter;
+            mainCameraController.OverridePosition = active == true ? this.player.sprite.WorldCenter + new Vector2(6, -1.5f) : this.player.sprite.WorldCenter;
 
             float f = 0;
             while (f < 0.35f)
@@ -395,7 +395,7 @@ namespace ModularMod
                             c++;
                         }
                     }
-                    extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0 - (0.75f * c)), 0.66f, GetInfoPage() + "\nPage: " + (InfoPage + 1).ToString() + "/" + Advice.Count.ToString(), cl, true, Scale / 2); ;
+                    extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, GetInfoPage() + "\nPage: " + (InfoPage + 1).ToString() + "/" + Advice.Count.ToString(), cl, true, Scale / 2); ;
                 };
                 InfoLabel.MouseHover = (label, boolean) =>
                 {
@@ -431,7 +431,6 @@ namespace ModularMod
                 };
             }
             if (PowerLabel == null)
-
             {
                 PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "[ " + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + Core.ReturnTotalPower().ToString() + " ]" + " [" + StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "]", cl, true, Scale - 1);
                 PowerLabel.OnUpdate += (obj1) =>
@@ -943,7 +942,7 @@ namespace ModularMod
         {
             "Modular cannot do a handstand, as they "+ StaticColorHexes.AddColorToLabelString("only have one hand.", StaticColorHexes.Yellow_Hex)+".",
             "There are very rare secret modules that you can find with "+ StaticColorHexes.AddColorToLabelString("very", StaticColorHexes.Yellow_Hex)+" unique effects.",
-             StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.Yellow_Hex) +"\n"+StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.White_Hex) +"\n"+StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.Purple_Hex) +"\n"+StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.Black_Hex) + "\n      :)",
+             StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.Yellow_Hex) +"\n"+StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.White_Hex) +"\n"+StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.Purple_Hex) +"\n"+StaticColorHexes.AddColorToLabelString("[][][][][][][][][][][][][][][]", StaticColorHexes.Black_Hex) + "\n" +SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.HEART)+"     "+SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.HEART)+"     "+SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.HEART),
              StaticColorHexes.AddColorToLabelString("T", StaticColorHexes.Light_Blue_Color_Hex) +  StaticColorHexes.AddColorToLabelString("r", StaticColorHexes.Pink_Hex)+"a"+ StaticColorHexes.AddColorToLabelString("n", StaticColorHexes.Pink_Hex)+ StaticColorHexes.AddColorToLabelString("s", StaticColorHexes.Light_Blue_Color_Hex)+" Rights!",
              StaticColorHexes.AddColorToLabelString("Be kind to people. <3", StaticColorHexes.Yellow_Hex),
              StaticColorHexes.AddColorToLabelString("You've got this!", StaticColorHexes.Yellow_Hex),

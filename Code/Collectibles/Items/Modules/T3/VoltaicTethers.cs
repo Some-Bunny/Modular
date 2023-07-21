@@ -49,7 +49,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.03f) { return; }
+            if (UnityEngine.Random.value > 0.02f) { return; }
             p.baseData.speed *= 0.5f;
             p.UpdateSpeed();
             p.pierceMinorBreakables = true;
@@ -61,6 +61,11 @@ namespace ModularMod
 
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += 2;
+
+            var mod = p.gameObject.GetOrAddComponent<StickyProjectileModifier>();
+            mod.stickyContexts.Add(new StickyProjectileModifier.StickyContext() { CanStickToTerrain = true });
+            mod.OnStick += H;
+            mod.OnStickyDestroyed += H2;
         }
 
 
@@ -123,15 +128,10 @@ namespace ModularMod
             var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.overrideMidairDeathVFX, stick.transform.position, Quaternion.identity);
             Destroy(obj, 2);
         }
-        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
-        {
-
-        }
+        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup) { }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
-
-
             modulePrinter.OnProjectileStickAction -= H;
             modulePrinter.OnStickyDestroyAction -= H2;
             if (modulePrinter.stickyContexts.Contains(this.stickyContext))

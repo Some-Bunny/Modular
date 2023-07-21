@@ -70,7 +70,7 @@ namespace ModularMod
                 prox.Force_Disarm = true;
                 orAddComponent.sprite.renderer.material.SetFloat("_EmissiveColorPower", 0.1f);
                 orAddComponent.sprite.renderer.material.SetFloat("_EmissivePower", 0.1f);
-                orAddComponent.StartCoroutine(ArmTime(prox));
+                orAddComponent.StartCoroutine(ArmTime(prox, 1));
             };
         }
 
@@ -194,14 +194,14 @@ namespace ModularMod
                 prox.Force_Disarm = true;
                 orAddComponent.sprite.renderer.material.SetFloat("_EmissiveColorPower", 0.1f);
                 orAddComponent.sprite.renderer.material.SetFloat("_EmissivePower", 0.1f);
-                orAddComponent.StartCoroutine(ArmTime(prox));
+                orAddComponent.StartCoroutine(ArmTime(prox, null));
             };     
         }
-        public IEnumerator ArmTime(CustomProximityMine mine)
+        public IEnumerator ArmTime(CustomProximityMine mine, float? armTime)
         {
-            mine.explosionDelay = 1.25f - (1.25f - (1.25f / (1 + 0.25f * Stack())));
+            mine.explosionDelay = 1.25f - (1.25f - (1.25f / (1 + 0.25f * (armTime ?? Stack()))));
             float d = 3.5f;
-            d *= 1 - (3.5f - (3.5f / (1 + 0.33f * Stack())));
+            d *= 1 - (3.5f - (3.5f / (1 + 0.33f * (armTime ?? Stack()))));
             float e = 0;
             while (e < d)
             {

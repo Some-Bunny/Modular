@@ -516,7 +516,7 @@ namespace ModularMod
             yield break;
         }
 
-
+        public static Action<PickupObject> OnAnythingScrapped;
         public override void DoEffect(PlayerController user)
         {
             if (currentMode == Mode.SCRAP)
@@ -557,6 +557,7 @@ namespace ModularMod
                                 int scrap = ReturnPickupScrapValue(pickup);
                                 if (scrap > 0)
                                 {
+                                    if (OnAnythingScrapped != null) { OnAnythingScrapped(pickup); }
                                     DoSpawnVFX(pickup.sprite, scrap);
                                 }
                             }

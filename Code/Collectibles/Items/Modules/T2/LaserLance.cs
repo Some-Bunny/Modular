@@ -99,6 +99,11 @@ namespace ModularMod
             point.beam = beamController3;
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += 2;
+
+            var mod = p.gameObject.GetOrAddComponent<StickyProjectileModifier>();
+            mod.stickyContexts.Add(new StickyProjectileModifier.StickyContext() { CanStickToTerrain = false, CanStickEnemies = false });
+            mod.OnStick += OPSA;
+            mod.OnStickToWall += OPSAT;
         }
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -157,9 +162,7 @@ namespace ModularMod
         public Projectile self;
         public BeamController beam;
 
-        public void Start()
-        {
-        }
+        public void Start(){}
 
         public void OnStuck(GameObject p, PhysicsEngine.Tile t = null)
         {

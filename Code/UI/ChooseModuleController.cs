@@ -286,12 +286,12 @@ namespace ModularMod
                 SpriteOutlineManager.RemoveOutlineFromSprite(g.sprite, false);
                 yield return null;
             }
-
-                Destroy(g.gameObject);
+            if (OnModuleSelectGunDestroyed != null) { OnModuleSelectGunDestroyed(g); }
+             Destroy(g.gameObject);
             
             yield break;
         }
-
+        public static Action<Gun> OnModuleSelectGunDestroyed;
 
         private void OnDestroy()
         {

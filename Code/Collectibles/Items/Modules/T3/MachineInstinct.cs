@@ -305,6 +305,8 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnFrameUpdate -= OFU;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
+            player.healthHaver.ModifyDamage -= ModifyIncomingDamage;
+
         }
     }
 }

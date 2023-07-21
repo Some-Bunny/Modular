@@ -14,7 +14,7 @@ namespace ModularMod
         {
             Name = "Gravity Well",
             Description = "The Void",
-            LongDescription = "Greatly reduces Rate Of Fire. Projectiles gain massive piercing, and greatly reduced speed. Enemies are magnetically pulled towards your projectiles, and are hurt in their proximity.(+Stronger Gravity per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Greatly reduces Rate Of Fire. Projectiles gain massive piercing, and greatly reduced speed. Enemies are magnetically pulled towards your projectiles, and are hurt in their proximity.(+Stronger Gravity And Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("gravitywell_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -26,7 +26,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("gravitywell_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Gravity Well " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly reduces Rate Of Fire.\nProjectiles gain massive piercing, and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Greatly reduces Rate Of Fire.\nProjectiles gain massive piercing, and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
@@ -55,6 +55,7 @@ namespace ModularMod
             well.self = p;
             well.gravitationalForceActors = 125;
             well.damageRadius = 2;
+            well.Stack = 1;
 
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
@@ -104,7 +105,7 @@ namespace ModularMod
             well.self = p;
             well.gravitationalForceActors = 125 * this.ReturnStack(modulePrinterCore);
             well.damageRadius = 2 * this.ReturnStack(modulePrinterCore);
-
+            well.Stack = this.ReturnStack(modulePrinterCore);
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.4f;
@@ -137,6 +138,7 @@ namespace ModularMod
         public float gravitationalForce = 10f;
         public float gravitationalForceActors = 50f;
         private float m_radiusSquared;
+        public int Stack = 1;
 
         public void Start()
         {
@@ -254,7 +256,7 @@ namespace ModularMod
                     }
                     if (BraveMathCollege.DistToRectangle(self.specRigidbody.UnitCenter, other.UnitBottomLeft, other.UnitDimensions) < this.damageRadius)
                     {
-                        other.healthHaver.ApplyDamage((self.baseData.damage * 0.125f) * BraveTime.DeltaTime, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
+                        other.healthHaver.ApplyDamage(((self.baseData.damage * 0.333f) * BraveTime.DeltaTime)* Stack, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
                     }
                     if (other.healthHaver.IsBoss)
                     {

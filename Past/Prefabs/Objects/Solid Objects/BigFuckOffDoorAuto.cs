@@ -74,6 +74,7 @@ namespace ModularMod.Past.Prefabs.Objects
 
             public void Update()
             {
+                if (GameManager.Instance.BestActivePlayer == null) { return; }
                 if (GameManager.Instance.BestActivePlayer.sprite.WorldCenter == null) { return; }
                 if (Trigger == true && Vector2.Distance(GameManager.Instance.BestActivePlayer.sprite.WorldCenter, this.gameObject.transform.PositionVector2()) < 6)
                 {

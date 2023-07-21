@@ -37,12 +37,34 @@ namespace ModularMod
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.EnergyConsumption = 2;
             h.AddToGlobalStorage();
-           
+
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
         public static int ID;
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.03f) { return; }
+            p.baseData.speed *= 2f;
+            p.pierceMinorBreakables = true;
+            p.UpdateSpeed();
+
+            var mod = p.gameObject.GetOrAddComponent<StickyProjectileModifier>();
+            mod.stickyContexts.Add(new StickyProjectileModifier.StickyContext() { CanStickToTerrain = true, CanStickEnemies = true });
+            mod.OnStick += H_S;
+            mod.OnStickyDestroyed += H2;
+        }
+    
         public static tk2dSpriteAnimation mineAnimation;
 
+
+        public void H_S(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)
+        {
+            var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(328) as Gun).DefaultModule.chargeProjectiles[0].Projectile.hitEffects.overrideMidairDeathVFX, stick.transform.position, Quaternion.identity);
+            Destroy(obj, 2);
+            GameManager.Instance.StartCoroutine(DoTimer(stick,2, 10));
+        }
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -70,6 +92,8 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             p.baseData.speed *= 2f;
+            p.pierceMinorBreakables = true;
+
             p.UpdateSpeed();
         }
         public void H(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)

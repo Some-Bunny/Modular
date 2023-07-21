@@ -51,9 +51,10 @@ namespace ModularMod
             InitSpecialCharacterContainer(SpecialCharacters.FIRE_RATE, "lync_icon_006");//, "lync_icon_red_006", "lync_icon_yellow_006", "lync_icon_green_006", "lync_icon_blue_006");
             InitSpecialCharacterContainer(SpecialCharacters.RELOAD, "lync_icon_007");//, null, null, null, null);
             InitSpecialCharacterContainer(SpecialCharacters.SHOTSPEED, "lync_icon_014");
+            InitSpecialCharacterContainer(SpecialCharacters.HEART, "lync_icon_009");
+
             /*
             InitSpecialCharacterContainer(SpecialCharacters.ENCASED_ROUND, "lync_icon_008", null, null, null, null);
-            InitSpecialCharacterContainer(SpecialCharacters.HEART, "lync_icon_009", null, null, null, null);
             InitSpecialCharacterContainer(SpecialCharacters.GRAVE, "lync_icon_010", null, null, null, null);
             InitSpecialCharacterContainer(SpecialCharacters.HOLY_CHAMBER, "lync_icon_011", null, null, null, null);
             InitSpecialCharacterContainer(SpecialCharacters.RADAR, "lync_icon_012", null, null, null, null);

@@ -42,10 +42,32 @@ namespace ModularMod
                 CanStickToTerrain = false,
                 CanStickEnemies = true
             };
-            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
         public static int ID;
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.04f) { return; }
+            p.baseData.speed *= 2f;
+            p.pierceMinorBreakables = true;
+            p.UpdateSpeed();
+
+            var mod = p.gameObject.GetOrAddComponent<StickyProjectileModifier>();
+            mod.stickyContexts.Add(new StickyProjectileModifier.StickyContext() { CanStickToTerrain = false, CanStickEnemies = true });
+            mod.OnStick += H_S;
+            mod.OnStickyDestroyed += H2;
+            mod.OnPreStick += OPPS;
+
+        }
+
+
+        public void H_S(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)
+        {
+            comp.StartCoroutine(DoTimer(stick, 4 - (4 - (4 / (1 + (0.15f * 1))))));
+        }
+
         public static tk2dSpriteAnimation mineAnimation;
 
 
@@ -72,7 +94,7 @@ namespace ModularMod
             var sprite = p.GetComponentInChildren<tk2dBaseSprite>();
             if (sprite)
             {
-                sprite.SetSprite(StaticCollections.Projectile_Collection.GetSpriteIdByName("mine_idle_001"));
+                sprite.SetSprite(StaticCollections.Projectile_Collection ,StaticCollections.Projectile_Collection.GetSpriteIdByName("mine_idle_001"));
             }
         }
 

@@ -34,6 +34,8 @@ namespace ModularMod
             //label.outlineColor = new Color32(20, 20, 50, 255);
             //label.outline = true;
             label.textScale = 5;
+            label.text = "AAAAAAAAAAAAAAAAAAAAAAAAA||||||||||||||||||||||||||||||||||";
+            label.Invalidate();
             //label.textScaleMode = dfTextScaleMode.None;
 
             label.shadow = true;
@@ -558,7 +560,7 @@ namespace ModularMod
             float elapsed = 0f;
             float targetWidth = this.label.Width + 1f;
             float targetHeight = this.label.Height + 1f;
-            panel.padding.bottom = (int)(targetHeight * -1);
+            panel.padding.bottom = (int)(targetHeight * -2);
             this.panel.Width = targetWidth;
             while (elapsed < duration)
             {
@@ -601,7 +603,7 @@ namespace ModularMod
             float elapsed = 0f;
             float targetWidth = this.label.Width + 1f;
             float targetHeight = this.label.Height + 1f;
-            panel.padding.bottom = (int)(targetHeight * -1);
+            panel.padding.bottom = (int)(targetHeight * -2);
             this.panel.Width = targetWidth;
             while (elapsed < duration)
             {

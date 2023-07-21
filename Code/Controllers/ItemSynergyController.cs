@@ -14,6 +14,7 @@ using ModularMod.Code.Hooks;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using DaikonForge.Tween;
+using System.ComponentModel;
 
 namespace ModularMod
 {
@@ -30,8 +31,68 @@ namespace ModularMod
 
             ChooseModuleController.AdditionalOptionsModifier += ReturnAdditionalOptions;
             ChooseModuleController.ModifyOmegaModuleChance += OmegaChance;
+            ChooseModuleController.OnModuleSelectGunDestroyed += OGEE;
+            Scrapper.OnAnythingScrapped += OGEE_2;
 
         }
+
+        public static void OGEE(Gun g)
+        {
+            if (g.PickupObjectId == 514)
+            {
+                GameManager.Instance.RewardManager.SpawnTotallyRandomChest(new IntVector2((int)g.transform.position.x, (int)g.transform.position.y));
+            }
+            if (g.PickupObjectId == 599 | g.PickupObjectId == 333)
+            {
+                AkSoundEngine.PostEvent("Play_ENM_blobulord_splash_01", g.gameObject);
+                float f = BraveUtility.RandomAngle();
+                for (int i = 0; i < 3; i++)
+                {
+                    var o = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(333) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, g.sprite.WorldCenter, Quaternion.Euler(0, 0, f + (120 * i)));
+                    UnityEngine.Object.Destroy(o, 0.7f);
+                }
+                var q = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(449) as TeleporterPrototypeItem).TelefragVFXPrefab, g.sprite.WorldCenter, Quaternion.identity);
+
+            }
+            if (g.PickupObjectId == 520)
+            {
+                AkSoundEngine.PostEvent("Play_OBJ_silenceblank_use_01", g.gameObject);
+                AkSoundEngine.PostEvent("Stop_ENM_attack_cancel_01", g.gameObject);
+                GameObject gameObject = new GameObject("silencer");
+                var silencer = (PickupObjectDatabase.GetById(224) as SilencerItem);
+                SilencerInstance silencerInstance = gameObject.AddComponent<SilencerInstance>();
+                silencerInstance.TriggerSilencer(g.sprite.WorldCenter, silencer.silencerSpeed, silencer.silencerRadius, silencer.silencerVFXPrefab, silencer.distortionIntensity, silencer.distortionRadius, silencer.pushForce, silencer.pushRadius, silencer.knockbackForce, silencer.knockbackRadius, silencer.additionalTimeAtMaxRadius, GameManager.Instance.PrimaryPlayer, true, false);
+            }
+        }
+        public static void OGEE_2(PickupObject g)
+        {
+            if (g.PickupObjectId == 514)
+            {
+                GameManager.Instance.RewardManager.SpawnTotallyRandomChest(new IntVector2((int)g.transform.position.x, (int)g.transform.position.y));
+            }
+            if (g.PickupObjectId == 599 | g.PickupObjectId == 333)
+            {
+                AkSoundEngine.PostEvent("Play_ENM_blobulord_splash_01", g.gameObject);
+                float f = BraveUtility.RandomAngle();
+                for (int i = 0; i < 3; i++)
+                {
+                    var o = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(333) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, g.sprite.WorldCenter, Quaternion.Euler(0, 0, f + (120 * i)));
+                    UnityEngine.Object.Destroy(o, 0.7f);
+                }
+                var q = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(449) as TeleporterPrototypeItem).TelefragVFXPrefab, g.sprite.WorldCenter, Quaternion.identity);
+
+            }
+            if (g.PickupObjectId == 520)
+            {
+                AkSoundEngine.PostEvent("Play_OBJ_silenceblank_use_01", g.gameObject);
+                AkSoundEngine.PostEvent("Stop_ENM_attack_cancel_01", g.gameObject);
+                GameObject gameObject = new GameObject("silencer");
+                var silencer = (PickupObjectDatabase.GetById(224) as SilencerItem);
+                SilencerInstance silencerInstance = gameObject.AddComponent<SilencerInstance>();
+                silencerInstance.TriggerSilencer(g.sprite.WorldCenter, silencer.silencerSpeed, silencer.silencerRadius, silencer.silencerVFXPrefab, silencer.distortionIntensity, silencer.distortionRadius, silencer.pushForce, silencer.pushRadius, silencer.knockbackForce, silencer.knockbackRadius, silencer.additionalTimeAtMaxRadius, GameManager.Instance.PrimaryPlayer, true, false);
+            }
+        }
+
 
         public static IEnumerator HandleTransformationDurationHook(Func<SprenOrbitalItem, IEnumerator> orig, SprenOrbitalItem self)
         {
