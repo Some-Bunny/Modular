@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using UnityEngine;
 
 namespace ModularMod
 {
@@ -33,13 +34,11 @@ namespace ModularMod
                             '.'
                         });
 
-                        if (array2.Length == 3)
+
+                        string text2 = array2.Last();
+                        if (text2.ToLowerInvariant() == "json" || text2.ToLowerInvariant() == "jtk2d")
                         {
-                            string text2 = array2[2];
-                            if (text2.ToLowerInvariant() == "json" || text2.ToLowerInvariant() == "jtk2d")
-                            {
-                                list5.Add(text);
-                            }
+                            list5.Add(text);
                         }
                     }
                 }
@@ -49,32 +48,38 @@ namespace ModularMod
                     {
                         '.'
                     });
-                    string collection = array5[0];
-                    string text6 = array5[1];
 
-                    if (((tk2dSpriteCollectionData != null) ? tk2dSpriteCollectionData.spriteDefinitions : null) != null && tk2dSpriteCollectionData.Count > 0)
+
+                    string collection = array5[array5.Count() - 2];
+
+
+                    if (collection != null)
                     {
-                        int spriteIdByName = tk2dSpriteCollectionData.GetSpriteIdByName(text6, -1);
-
-                        if (spriteIdByName > -1)
+                        if (((tk2dSpriteCollectionData != null) ? tk2dSpriteCollectionData.spriteDefinitions : null) != null && tk2dSpriteCollectionData.Count > 0)
                         {
-                            using (Stream manifestResourceStream2 = asmb.GetManifestResourceStream(text5))
+                            int spriteIdByName = tk2dSpriteCollectionData.GetSpriteIdByName(collection, -1);
+
+                            if (spriteIdByName > -1)
                             {
-                                AssetSpriteData assetSpriteData = default(AssetSpriteData);
-                                try
+                                using (Stream manifestResourceStream2 = asmb.GetManifestResourceStream(text5))
                                 {
-                                    assetSpriteData = JSONHelper.ReadJSON<AssetSpriteData>(manifestResourceStream2);
+                                    AssetSpriteData assetSpriteData = default(AssetSpriteData);
+                                    try
+                                    {
+                                        assetSpriteData = JSONHelper.ReadJSON<AssetSpriteData>(manifestResourceStream2);
+                                    }
+                                    catch
+                                    {
+                                        ETGModConsole.Log("Error: invalid json at project path " + text5, false);
+                                        continue;
+                                    }
+                                    tk2dSpriteCollectionData.SetAttachPoints(spriteIdByName, assetSpriteData.attachPoints);
+                                    //tk2dSpriteCollectionData.inst.SetAttachPoints(spriteIdByName, assetSpriteData.attachPoints);
                                 }
-                                catch
-                                {
-                                    ETGModConsole.Log("Error: invalid json at project path " + text5, false);
-                                    continue;
-                                }
-                                tk2dSpriteCollectionData.SetAttachPoints(spriteIdByName, assetSpriteData.attachPoints);
-                                //tk2dSpriteCollectionData.inst.SetAttachPoints(spriteIdByName, assetSpriteData.attachPoints);
                             }
                         }
                     }
+                    
                 }
             }
         }

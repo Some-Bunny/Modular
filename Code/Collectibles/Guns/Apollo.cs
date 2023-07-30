@@ -245,7 +245,7 @@ namespace ModularMod
                             Projectile proj = projectileModule.GetCurrentProjectile();
                             if (proj != null)
                             {
-                                proj.baseData.damage = ((elapsed * 8) + 2);
+                                proj.baseData.damage = ((elapsed * 5) + 2);
                             }
                         }
                         

@@ -116,7 +116,6 @@ namespace ModularMod
             {
                 OnStickToWall(objectToLookOutFor, this, objectToLookOutFor.GetComponentInChildren<tk2dBaseSprite>(), player, tile);
             }
-            //if (OnStickyProjectileStuck != null) { OnStickyProjectileStuck(objectToLookOutFor); }
         }
 
         public void OnDestroy()

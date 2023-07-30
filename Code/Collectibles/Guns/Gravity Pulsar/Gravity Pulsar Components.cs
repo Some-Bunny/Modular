@@ -30,8 +30,28 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
                 this.m_distortMaterial.SetFloat("_RadiusFactor", 0.5f);
                 this.m_distortMaterial.SetVector("_WaveCenter", this.GetCenterPointInScreenUV(projectile.sprite.WorldCenter));
                 Pixelator.Instance.RegisterAdditionalRenderPass(this.m_distortMaterial);
+                var stick =  this.gameObject.GetComponent<StickyProjectileModifier>();
+                if (stick != null)
+                {
+                    stick.OnPreStick += OPS;
+                }
             }
         }
+
+        public void OPS(GameObject proj, PlayerController player)
+        {
+            this.projectile.spriteAnimator.Stop();
+            this.projectile.sprite.SetSprite(StaticCollections.Projectile_Collection, StaticCollections.Projectile_Collection.GetSpriteIdByName("fwoomp_start_002"));
+            AkSoundEngine.PostEvent("Stop_WPN_blackhole_loop_01", base.gameObject);
+            Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f, 0.2f, 20, 0.5f);
+
+            if (Pixelator.Instance != null && this.m_distortMaterial != null)
+            {
+                Pixelator.Instance.DeregisterAdditionalRenderPass(this.m_distortMaterial);
+            }
+            Destroy(this);
+        }
+
         private Vector4 GetCenterPointInScreenUV(Vector2 centerPoint)
         {
             Vector3 vector = GameManager.Instance.MainCameraController.Camera.WorldToViewportPoint(centerPoint.ToVector3ZUp(0f));

@@ -128,8 +128,11 @@ namespace ModularMod
             player.MovementModifiers += MovementMod;
             player.OnTriedToInitiateAttack += OnAttemptedAttack;
 
-            player.startingGunIds.AddRange(StarterGunSelectUIController.allStarterIDs);
-            player.startingGunIds.AddRange(StarterGunSelectUIController.allAltStarterIDs);
+            player.startingGunIds = new List<int>();
+            player.startingGunIds.Add(player.CurrentGun.GetComponent<ModularGunController>().isAlt ? DefaultArmCannonAlt.ID : DefaultArmCannon.ID);
+
+            //player.startingGunIds.AddRange(StarterGunSelectUIController.allStarterIDs);
+            //player.startingGunIds.AddRange(StarterGunSelectUIController.allAltStarterIDs);
 
             cloakDoer = ScriptableObject.CreateInstance<CloakDoer>();
             cloakDoer.DoStartUp(player);
@@ -145,6 +148,8 @@ namespace ModularMod
                 }
             }
         }
+
+
 
         public void OnAttemptedAttack(PlayerController p)
         {

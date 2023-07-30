@@ -51,7 +51,7 @@ namespace ModularMod
 
 
             gun.reloadTime = 3f;
-            gun.DefaultModule.cooldownTime = .3f;
+            gun.DefaultModule.cooldownTime = .33f;
             gun.DefaultModule.numberOfShotsInClip = 26;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 7f;
@@ -154,7 +154,7 @@ namespace ModularMod
             MaintainDamageOnPierce noDamageLoss1 = projectile_Small.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
             noDamageLoss1.damageMultOnPierce = 1f;
 
-            projectile_Small.baseData.damage = 3f;
+            projectile_Small.baseData.damage = 2.8f;
             ImprovedAfterImage yes1 = projectile_Small.gameObject.AddComponent<ImprovedAfterImage>();
             yes1.spawnShadows = true;
             yes1.shadowLifetime = 0.3f;

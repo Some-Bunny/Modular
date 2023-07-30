@@ -31,8 +31,8 @@ namespace ModularMod
             public void Start()
             {
                 bodyPartController = this.GetComponent<AdvancedBodyPartController>();
-                bodyPartController.healthHaver.SetHealthMaximum(8);
-                bodyPartController.healthHaver.ForceSetCurrentHealth(8);
+                bodyPartController.healthHaver.SetHealthMaximum(7);
+                bodyPartController.healthHaver.ForceSetCurrentHealth(7);
                 //Parent = bodyPartController.MainBody;
 
                 bodyPartController.OnBodyPartPreDeath += (obj1, obj2, obj3) =>

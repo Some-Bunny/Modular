@@ -1153,10 +1153,13 @@ namespace ModularMod
                 var.TemporaryDisableDrop = false;
             }
             player.inventory.DestroyGun(carriedGun);
+
             if (OnUsed != null)
             {
                 OnUsed();
             }
+            player.startingGunIds.Clear();
+            player.startingGunIds.Add(GunID);
         }
 
 

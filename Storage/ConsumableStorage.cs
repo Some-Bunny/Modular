@@ -63,7 +63,7 @@ namespace ModularMod
 
     public class GlobalConsumableStorage : MonoBehaviour
     {
-        public static int GetConsumableOfName(string name)
+        public static int GetConsumableOfName(string name)  
         {
             foreach (var entry in NewCurrency)
             {

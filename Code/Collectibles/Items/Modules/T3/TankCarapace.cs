@@ -51,6 +51,7 @@ namespace ModularMod
             GameObject Guon = new GameObject("Guon_Carapace");
             FakePrefab.DontDestroyOnLoad(Guon);
             FakePrefab.MarkAsFakePrefab(Guon);
+            Guon.SetActive(false);
             var tk2d = Guon.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.VFX_Collection;
             tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("warning_003"));
@@ -129,10 +130,10 @@ namespace ModularMod
                     guon.GetComponent<DefensiveDrone>().Stack = stack;
                     guon.GetComponent<PlayerOrbital>().m_orbitalTier = h;
                     guon.GetComponent<PlayerOrbital>().orbitRadius = 2f + r;
-                    guon.GetComponent<PlayerOrbital>().orbitDegreesPerSecond = 360 / Mathf.Ceil(Orbital_Count.Count / 8) + 1;
+                    guon.GetComponent<PlayerOrbital>().orbitDegreesPerSecond = 360 / (Mathf.Ceil(Orbital_Count.Count / 8) + 1);
 
-                    guon.GetComponent<PlayerOrbital>().Initialize(player);
                     Orbital_Count.Add(guon);
+                    guon.GetComponent<PlayerOrbital>().Initialize(player);
                 }
             }
             else if (c < -0.3f && Orbital_Count.Count > 0)
@@ -169,7 +170,13 @@ namespace ModularMod
             modulePrinter.OnFrameUpdate -= OnUpdate;          
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
-            player.stats.RecalculateStats(player);        
+            player.stats.RecalculateStats(player);
+            AkSoundEngine.PostEvent("Play_OBJ_drum_break_01", player.gameObject);
+            for (int i = 0; i < Orbital_Count.Count; i++)
+            {
+                Destroy(Orbital_Count[i]);
+            }
+            Orbital_Count.Clear();
         }
 
 
@@ -184,12 +191,12 @@ namespace ModularMod
             var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect, this.sprite.WorldCenter, Quaternion.identity);
             obj.transform.parent = this.transform;
             Destroy(obj, 2);
-            room = this.transform.position.GetAbsoluteRoom();
         }
 
         public float Cooldown = 1;
         public void Update()
         {
+            room = this.transform.position.GetAbsoluteRoom();
             if (Cooldown > 0) { Cooldown -= BraveTime.DeltaTime; }
             else if (room != null)
             {

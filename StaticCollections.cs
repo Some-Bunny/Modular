@@ -77,7 +77,8 @@ namespace ModularMod
             Gun_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularGunCollection", "modulargun material.mat");
             if (Gun_Collection == null) { ETGModConsole.Log("Gun_Collection is NULL"); }
             Gun_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularGunAnimation").GetComponent<tk2dSpriteAnimation>();
-            GunJsonEmbedder.EmbedJsonDataFromAssembly(Assembly.GetExecutingAssembly(), Gun_Collection, "ModularMod");
+
+            GunJsonEmbedder.EmbedJsonDataFromAssembly(Assembly.GetExecutingAssembly(), Gun_Collection, "ModularMod/Pain/GunJsons");
 
 
             Projectile_Collection = DoFastSetup(Module.ModularAssetBundle, "ModularProjectileCollection", "modularprojectile material.mat");

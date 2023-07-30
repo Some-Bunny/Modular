@@ -517,7 +517,7 @@ namespace ModularMod
             //=================================
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_006");
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "UNFORUNATELY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "UNFORTUNATELY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 2.5f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
