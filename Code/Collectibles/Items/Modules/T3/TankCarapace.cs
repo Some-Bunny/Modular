@@ -24,7 +24,7 @@ namespace ModularMod
         {
             Name = "Tank Carapace",
             Description = "I AM BULLETPROOF",
-            LongDescription = "Grants a damage and fire rate boost (+Damage and Fire Rate) the longer you have been standing still. While standing still gain defensive orbitals that break bullets,up to 8 (+4). Lose all bonuses and orbitals when you start moving again."+ "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Grants a damage and fire rate boost (+Damage and Fire Rate per stack) the longer you have been standing still. While standing still gain defensive orbitals that break bullets,up to 8 (+4). Lose all bonuses and orbitals when you start moving again."+ "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("tankstance_t3_module"),
             Quality = ItemQuality.SPECIAL,

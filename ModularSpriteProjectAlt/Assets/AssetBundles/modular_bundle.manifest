@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2413867065
+CRC: 1559843442
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 62e43acf7e0f0bad3ba23d2001735d7d
+    Hash: c90a3968e74701893f11c2506150e032
   TypeTreeHash:
     serializedVersion: 2
     Hash: d0b405c094c925d34f7a922684ac7d5f
@@ -121,6 +121,7 @@ Assets:
 - Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_017.png
 - Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_026.png
 - Assets/Sprites/UI/Lynceus icons/White/lync_icon_015.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_030.png
 - Assets/Sprites/Characters/modular_Tex_Icon.png
 - Assets/Sprites/UI/Lynceus icons/White/lync_icon_017.png
 - Assets/Sprites/UI/Name Label/Alt/name_label_locked_alt.png

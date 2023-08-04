@@ -57,32 +57,32 @@ MonoBehaviour:
   spriteDefinitions:
   - name: defaultarmcannonalt_projectile_001
     boundsData:
-    - {x: 0.125, y: 0.125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.25, y: 0.25, z: 0}
     untrimmedBoundsData:
-    - {x: 0.125, y: 0.125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.25, y: 0.25, z: 0}
-    boundsDataCenter: {x: 0.125, y: 0.125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.25, y: 0.25, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.125, y: 0.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.25, y: 0.25, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.25, y: 0, z: 0}
-    - {x: 0, y: 0.25, z: 0}
-    - {x: 0.25, y: 0.25, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.25, y: 0, z: 0}
-    position2: {x: 0, y: 0.25, z: 0}
-    position3: {x: 0.25, y: 0.25, z: 0}
+    - {x: -0.125, y: -0.125, z: 0}
+    - {x: 0.125, y: -0.125, z: 0}
+    - {x: -0.125, y: 0.125, z: 0}
+    - {x: 0.125, y: 0.125, z: 0}
+    position0: {x: -0.125, y: -0.125, z: 0}
+    position1: {x: 0.125, y: -0.125, z: 0}
+    position2: {x: -0.125, y: 0.125, z: 0}
+    position3: {x: 0.125, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.39648634, y: 0.8222676}
-    - {x: 0.4042949, y: 0.8222676}
-    - {x: 0.39648634, y: 0.83007616}
-    - {x: 0.4042949, y: 0.83007616}
+    - {x: 0.4707051, y: 0.52343947}
+    - {x: 0.47851366, y: 0.52343947}
+    - {x: 0.4707051, y: 0.53124803}
+    - {x: 0.47851366, y: 0.53124803}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -129,32 +129,32 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_001
     boundsData:
-    - {x: 0.125, y: 0.125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.25, y: 0.25, z: 0}
     untrimmedBoundsData:
-    - {x: 0.125, y: 0.125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.25, y: 0.25, z: 0}
-    boundsDataCenter: {x: 0.125, y: 0.125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.25, y: 0.25, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.125, y: 0.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.25, y: 0.25, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.25, y: 0, z: 0}
-    - {x: 0, y: 0.25, z: 0}
-    - {x: 0.25, y: 0.25, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.25, y: 0, z: 0}
-    position2: {x: 0, y: 0.25, z: 0}
-    position3: {x: 0.25, y: 0.25, z: 0}
+    - {x: -0.125, y: -0.125, z: 0}
+    - {x: 0.125, y: -0.125, z: 0}
+    - {x: -0.125, y: 0.125, z: 0}
+    - {x: 0.125, y: 0.125, z: 0}
+    position0: {x: -0.125, y: -0.125, z: 0}
+    position1: {x: 0.125, y: -0.125, z: 0}
+    position2: {x: -0.125, y: 0.125, z: 0}
+    position3: {x: 0.125, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.4082051, y: 0.7753926}
-    - {x: 0.41601366, y: 0.7753926}
-    - {x: 0.4082051, y: 0.78320116}
-    - {x: 0.41601366, y: 0.78320116}
+    - {x: 0.4785176, y: 0.49218947}
+    - {x: 0.48632616, y: 0.49218947}
+    - {x: 0.4785176, y: 0.49999803}
+    - {x: 0.48632616, y: 0.49999803}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -201,32 +201,32 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_medium_001
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.7753926}
-    - {x: 0.3964824, y: 0.7753926}
-    - {x: 0.3847676, y: 0.7871074}
-    - {x: 0.3964824, y: 0.7871074}
+    - {x: 0.4628926, y: 0.58593947}
+    - {x: 0.4746074, y: 0.58593947}
+    - {x: 0.4628926, y: 0.5976543}
+    - {x: 0.4746074, y: 0.5976543}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -273,32 +273,32 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_medium_001
     boundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.1875, y: 0.1875, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.375, y: 0.375, z: 0}
-    boundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.375, y: 0.375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.1875, y: 0.1875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.375, y: 0.375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.375, y: 0, z: 0}
-    - {x: 0, y: 0.375, z: 0}
-    - {x: 0.375, y: 0.375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.375, y: 0, z: 0}
-    position2: {x: 0, y: 0.375, z: 0}
-    position3: {x: 0.375, y: 0.375, z: 0}
+    - {x: -0.1875, y: -0.1875, z: 0}
+    - {x: 0.1875, y: -0.1875, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.1875, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.1875, z: 0}
+    position1: {x: 0.1875, y: -0.1875, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.1875, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.7988301}
-    - {x: 0.3964824, y: 0.7988301}
-    - {x: 0.3847676, y: 0.8105449}
-    - {x: 0.3964824, y: 0.8105449}
+    - {x: 0.46679884, y: 0.55468947}
+    - {x: 0.47851366, y: 0.55468947}
+    - {x: 0.46679884, y: 0.5664043}
+    - {x: 0.47851366, y: 0.5664043}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -345,32 +345,32 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_burst_001
     boundsData:
-    - {x: 0.34375, y: 0.125, z: 0}
+    - {x: 0.03125, y: 0, z: 0}
     - {x: 0.6875, y: 0.25, z: 0}
     untrimmedBoundsData:
-    - {x: 0.34375, y: 0.125, z: 0}
+    - {x: 0.03125, y: 0, z: 0}
     - {x: 0.6875, y: 0.25, z: 0}
-    boundsDataCenter: {x: 0.34375, y: 0.125, z: 0}
+    boundsDataCenter: {x: 0.03125, y: 0, z: 0}
     boundsDataExtents: {x: 0.6875, y: 0.25, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.34375, y: 0.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.6875, y: 0.25, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.6875, y: 0, z: 0}
-    - {x: 0, y: 0.25, z: 0}
-    - {x: 0.6875, y: 0.25, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.6875, y: 0, z: 0}
-    position2: {x: 0, y: 0.25, z: 0}
-    position3: {x: 0.6875, y: 0.25, z: 0}
+    - {x: -0.3125, y: -0.125, z: 0}
+    - {x: 0.375, y: -0.125, z: 0}
+    - {x: -0.3125, y: 0.125, z: 0}
+    - {x: 0.375, y: 0.125, z: 0}
+    position0: {x: -0.3125, y: -0.125, z: 0}
+    position1: {x: 0.375, y: -0.125, z: 0}
+    position2: {x: -0.3125, y: 0.125, z: 0}
+    position3: {x: 0.375, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.40429884, y: 0.5957051}
-    - {x: 0.42577928, y: 0.5957051}
-    - {x: 0.40429884, y: 0.60351366}
-    - {x: 0.42577928, y: 0.60351366}
+    - {x: 0.4472676, y: 0.9628926}
+    - {x: 0.46874803, y: 0.9628926}
+    - {x: 0.4472676, y: 0.97070116}
+    - {x: 0.46874803, y: 0.97070116}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -417,32 +417,32 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_burst_001
     boundsData:
-    - {x: 0.34375, y: 0.125, z: 0}
+    - {x: 0.03125, y: 0, z: 0}
     - {x: 0.6875, y: 0.25, z: 0}
     untrimmedBoundsData:
-    - {x: 0.34375, y: 0.125, z: 0}
+    - {x: 0.03125, y: 0, z: 0}
     - {x: 0.6875, y: 0.25, z: 0}
-    boundsDataCenter: {x: 0.34375, y: 0.125, z: 0}
+    boundsDataCenter: {x: 0.03125, y: 0, z: 0}
     boundsDataExtents: {x: 0.6875, y: 0.25, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.34375, y: 0.125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.6875, y: 0.25, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.6875, y: 0, z: 0}
-    - {x: 0, y: 0.25, z: 0}
-    - {x: 0.6875, y: 0.25, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.6875, y: 0, z: 0}
-    position2: {x: 0, y: 0.25, z: 0}
-    position3: {x: 0.6875, y: 0.25, z: 0}
+    - {x: -0.3125, y: -0.125, z: 0}
+    - {x: 0.375, y: -0.125, z: 0}
+    - {x: -0.3125, y: 0.125, z: 0}
+    - {x: 0.375, y: 0.125, z: 0}
+    position0: {x: -0.3125, y: -0.125, z: 0}
+    position1: {x: 0.375, y: -0.125, z: 0}
+    position2: {x: -0.3125, y: 0.125, z: 0}
+    position3: {x: 0.375, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.6914082}
-    - {x: 0.3847676, y: 0.71288866}
-    - {x: 0.39257616, y: 0.6914082}
-    - {x: 0.39257616, y: 0.71288866}
+    - {x: 0.4160176, y: 0.64648634}
+    - {x: 0.4160176, y: 0.6679668}
+    - {x: 0.42382616, y: 0.64648634}
+    - {x: 0.42382616, y: 0.6679668}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 0, y: 1}
@@ -489,25 +489,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_blaster_001
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -561,25 +561,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_blaster_005
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -633,25 +633,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_blaster_004
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -705,25 +705,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_blaster_002
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -777,25 +777,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_blaster_003
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -849,25 +849,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_blaster_001
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -921,25 +921,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_blaster_002
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -993,25 +993,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_blaster_003
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1065,25 +1065,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_blaster_004
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1137,25 +1137,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_blaster_005
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1209,25 +1209,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_hammer_005
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1281,25 +1281,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_hammer_004
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1353,25 +1353,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_hammer_003
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1425,25 +1425,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_hammer_002
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1497,25 +1497,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_hammer_001
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1569,25 +1569,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_hammer_002
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1641,25 +1641,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_hammer_003
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1713,25 +1713,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_hammer_005
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1785,25 +1785,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_hammer_004
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1857,25 +1857,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_hammer_001
     boundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 1, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 1, y: 0.625, z: 0}
+    - {x: -0.5, y: -0.3125, z: 0}
+    - {x: 0.5, y: -0.3125, z: 0}
+    - {x: -0.5, y: 0.3125, z: 0}
+    - {x: 0.5, y: 0.3125, z: 0}
+    position0: {x: -0.5, y: -0.3125, z: 0}
+    position1: {x: 0.5, y: -0.3125, z: 0}
+    position2: {x: -0.5, y: 0.3125, z: 0}
+    position3: {x: 0.5, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -1929,32 +1929,32 @@ MonoBehaviour:
     attachPoints: []
   - name: mine_idle_001
     boundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.4375, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.4375, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.4375, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.4375, y: 0.4375, z: 0}
+    - {x: -0.1875, y: -0.25, z: 0}
+    - {x: 0.25, y: -0.25, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.25, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.25, z: 0}
+    position1: {x: 0.25, y: -0.25, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.25, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.72461134}
-    - {x: 0.39843553, y: 0.72461134}
-    - {x: 0.3847676, y: 0.7382793}
-    - {x: 0.39843553, y: 0.7382793}
+    - {x: 0.4238301, y: 0.6132832}
+    - {x: 0.43749803, y: 0.6132832}
+    - {x: 0.4238301, y: 0.62695116}
+    - {x: 0.43749803, y: 0.62695116}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -2001,32 +2001,32 @@ MonoBehaviour:
     attachPoints: []
   - name: mine_idle_003
     boundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.4375, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.4375, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.4375, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.4375, y: 0.4375, z: 0}
+    - {x: -0.1875, y: -0.25, z: 0}
+    - {x: 0.25, y: -0.25, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.25, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.25, z: 0}
+    position1: {x: 0.25, y: -0.25, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.25, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.40429884, y: 0.6914082}
-    - {x: 0.41796678, y: 0.6914082}
-    - {x: 0.40429884, y: 0.70507616}
-    - {x: 0.41796678, y: 0.70507616}
+    - {x: 0.43750197, y: 0.58593947}
+    - {x: 0.4511699, y: 0.58593947}
+    - {x: 0.43750197, y: 0.5996074}
+    - {x: 0.4511699, y: 0.5996074}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -2073,32 +2073,32 @@ MonoBehaviour:
     attachPoints: []
   - name: minealt_idle_001
     boundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.4375, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.4375, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.4375, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.4375, y: 0.4375, z: 0}
+    - {x: -0.1875, y: -0.25, z: 0}
+    - {x: 0.25, y: -0.25, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.25, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.25, z: 0}
+    position1: {x: 0.25, y: -0.25, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.25, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.41015822, y: 0.64843947}
-    - {x: 0.42382616, y: 0.64843947}
-    - {x: 0.41015822, y: 0.6621074}
-    - {x: 0.42382616, y: 0.6621074}
+    - {x: 0.4316426, y: 0.67968947}
+    - {x: 0.44531053, y: 0.67968947}
+    - {x: 0.4316426, y: 0.6933574}
+    - {x: 0.44531053, y: 0.6933574}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -2145,32 +2145,32 @@ MonoBehaviour:
     attachPoints: []
   - name: mine_idle_002
     boundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.4375, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.4375, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.4375, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.4375, y: 0.4375, z: 0}
+    - {x: -0.1875, y: -0.25, z: 0}
+    - {x: 0.25, y: -0.25, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.25, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.25, z: 0}
+    position1: {x: 0.25, y: -0.25, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.25, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.41797072, y: 0.61523634}
-    - {x: 0.43163866, y: 0.61523634}
-    - {x: 0.41797072, y: 0.6289043}
-    - {x: 0.43163866, y: 0.6289043}
+    - {x: 0.4316426, y: 0.7050801}
+    - {x: 0.44531053, y: 0.7050801}
+    - {x: 0.4316426, y: 0.71874803}
+    - {x: 0.44531053, y: 0.71874803}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -2217,32 +2217,32 @@ MonoBehaviour:
     attachPoints: []
   - name: minealt_idle_002
     boundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.4375, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.4375, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.4375, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.4375, y: 0.4375, z: 0}
+    - {x: -0.1875, y: -0.25, z: 0}
+    - {x: 0.25, y: -0.25, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.25, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.25, z: 0}
+    position1: {x: 0.25, y: -0.25, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.25, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.43750197, y: 0.58398634}
-    - {x: 0.4511699, y: 0.58398634}
-    - {x: 0.43750197, y: 0.5976543}
-    - {x: 0.4511699, y: 0.5976543}
+    - {x: 0.43554884, y: 0.63867384}
+    - {x: 0.44921678, y: 0.63867384}
+    - {x: 0.43554884, y: 0.6523418}
+    - {x: 0.44921678, y: 0.6523418}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -2289,32 +2289,32 @@ MonoBehaviour:
     attachPoints: []
   - name: minealt_idle_003
     boundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.21875, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.4375, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.21875, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.4375, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.4375, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.4375, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.4375, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.4375, y: 0.4375, z: 0}
+    - {x: -0.1875, y: -0.25, z: 0}
+    - {x: 0.25, y: -0.25, z: 0}
+    - {x: -0.1875, y: 0.1875, z: 0}
+    - {x: 0.25, y: 0.1875, z: 0}
+    position0: {x: -0.1875, y: -0.25, z: 0}
+    position1: {x: 0.25, y: -0.25, z: 0}
+    position2: {x: -0.1875, y: 0.1875, z: 0}
+    position3: {x: 0.25, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.75000197}
-    - {x: 0.39843553, y: 0.75000197}
-    - {x: 0.3847676, y: 0.7636699}
-    - {x: 0.39843553, y: 0.7636699}
+    - {x: 0.44922072, y: 0.6113301}
+    - {x: 0.46288866, y: 0.6113301}
+    - {x: 0.44922072, y: 0.62499803}
+    - {x: 0.46288866, y: 0.62499803}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -2361,25 +2361,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_long_002
     boundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
     untrimmedBoundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
-    boundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    boundsDataCenter: {x: 0, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.875, y: 0, z: 0}
-    - {x: 0, y: 0.3125, z: 0}
-    - {x: 0.875, y: 0.3125, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.875, y: 0, z: 0}
-    position2: {x: 0, y: 0.3125, z: 0}
-    position3: {x: 0.875, y: 0.3125, z: 0}
+    - {x: -0.4375, y: -0.1875, z: 0}
+    - {x: 0.4375, y: -0.1875, z: 0}
+    - {x: -0.4375, y: 0.125, z: 0}
+    - {x: 0.4375, y: 0.125, z: 0}
+    position0: {x: -0.4375, y: -0.1875, z: 0}
+    position1: {x: 0.4375, y: -0.1875, z: 0}
+    position2: {x: -0.4375, y: 0.125, z: 0}
+    position3: {x: 0.4375, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -2433,36 +2433,36 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_long_001
     boundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
     untrimmedBoundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
-    boundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    boundsDataCenter: {x: 0, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.875, y: 0, z: 0}
-    - {x: 0, y: 0.3125, z: 0}
-    - {x: 0.875, y: 0.3125, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.875, y: 0, z: 0}
-    position2: {x: 0, y: 0.3125, z: 0}
-    position3: {x: 0.875, y: 0.3125, z: 0}
+    - {x: -0.4375, y: -0.1875, z: 0}
+    - {x: 0.4375, y: -0.1875, z: 0}
+    - {x: -0.4375, y: 0.125, z: 0}
+    - {x: 0.4375, y: 0.125, z: 0}
+    position0: {x: -0.4375, y: -0.1875, z: 0}
+    position1: {x: 0.4375, y: -0.1875, z: 0}
+    position2: {x: -0.4375, y: 0.125, z: 0}
+    position3: {x: 0.4375, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.40429884, y: 0.5566426}
-    - {x: 0.40429884, y: 0.5839824}
-    - {x: 0.41406053, y: 0.5566426}
-    - {x: 0.41406053, y: 0.5839824}
+    - {x: 0.4550801, y: 0.98242384}
+    - {x: 0.4824199, y: 0.98242384}
+    - {x: 0.4550801, y: 0.99218553}
+    - {x: 0.4824199, y: 0.99218553}
     normalizedUvs:
     - {x: 0, y: 0}
-    - {x: 0, y: 1}
     - {x: 1, y: 0}
+    - {x: 0, y: 1}
     - {x: 1, y: 1}
     indices: 000000000300000001000000020000000300000000000000
     material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
@@ -2473,7 +2473,7 @@ MonoBehaviour:
     regionY: 0
     regionW: 0
     regionH: 0
-    flipped: 1
+    flipped: 0
     complexGeometry: 0
     physicsEngine: 0
     colliderType: 1
@@ -2505,32 +2505,32 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_long_001
     boundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
     untrimmedBoundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
-    boundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    boundsDataCenter: {x: 0, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.875, y: 0, z: 0}
-    - {x: 0, y: 0.3125, z: 0}
-    - {x: 0.875, y: 0.3125, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.875, y: 0, z: 0}
-    position2: {x: 0, y: 0.3125, z: 0}
-    position3: {x: 0.875, y: 0.3125, z: 0}
+    - {x: -0.4375, y: -0.1875, z: 0}
+    - {x: 0.4375, y: -0.1875, z: 0}
+    - {x: -0.4375, y: 0.125, z: 0}
+    - {x: 0.4375, y: 0.125, z: 0}
+    position0: {x: -0.4375, y: -0.1875, z: 0}
+    position1: {x: 0.4375, y: -0.1875, z: 0}
+    position2: {x: -0.4375, y: 0.125, z: 0}
+    position3: {x: 0.4375, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.4082051, y: 0.52343947}
-    - {x: 0.4355449, y: 0.52343947}
-    - {x: 0.4082051, y: 0.53320116}
-    - {x: 0.4355449, y: 0.53320116}
+    - {x: 0.44531447, y: 0.8164082}
+    - {x: 0.47265428, y: 0.8164082}
+    - {x: 0.44531447, y: 0.8261699}
+    - {x: 0.47265428, y: 0.8261699}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -2577,32 +2577,32 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_long_002
     boundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
     untrimmedBoundsData:
-    - {x: 0.4375, y: 0.15625, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 0.875, y: 0.3125, z: 0}
-    boundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    boundsDataCenter: {x: 0, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.4375, y: 0.15625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.875, y: 0.3125, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.875, y: 0, z: 0}
-    - {x: 0, y: 0.3125, z: 0}
-    - {x: 0.875, y: 0.3125, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.875, y: 0, z: 0}
-    position2: {x: 0, y: 0.3125, z: 0}
-    position3: {x: 0.875, y: 0.3125, z: 0}
+    - {x: -0.4375, y: -0.1875, z: 0}
+    - {x: 0.4375, y: -0.1875, z: 0}
+    - {x: -0.4375, y: 0.125, z: 0}
+    - {x: 0.4375, y: 0.125, z: 0}
+    position0: {x: -0.4375, y: -0.1875, z: 0}
+    position1: {x: 0.4375, y: -0.1875, z: 0}
+    position2: {x: -0.4375, y: 0.125, z: 0}
+    position3: {x: 0.4375, y: 0.125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.42578322, y: 0.54492384}
-    - {x: 0.42578322, y: 0.57226366}
-    - {x: 0.4355449, y: 0.54492384}
-    - {x: 0.4355449, y: 0.57226366}
+    - {x: 0.41015822, y: 0.6894551}
+    - {x: 0.41015822, y: 0.7167949}
+    - {x: 0.4199199, y: 0.6894551}
+    - {x: 0.4199199, y: 0.7167949}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 0, y: 1}
@@ -2649,25 +2649,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannon_projectile_tiny_001
     boundsData:
-    - {x: 0.0625, y: 0.0625, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.125, y: 0.125, z: 0}
     untrimmedBoundsData:
-    - {x: 0.0625, y: 0.0625, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.125, y: 0.125, z: 0}
-    boundsDataCenter: {x: 0.0625, y: 0.0625, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.125, y: 0.125, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.0625, y: 0.0625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.125, y: 0.125, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.125, y: 0, z: 0}
-    - {x: 0, y: 0.125, z: 0}
-    - {x: 0.125, y: 0.125, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.125, y: 0, z: 0}
-    position2: {x: 0, y: 0.125, z: 0}
-    position3: {x: 0.125, y: 0.125, z: 0}
+    - {x: -0.0625, y: -0.0625, z: 0}
+    - {x: 0.0625, y: -0.0625, z: 0}
+    - {x: -0.0625, y: 0.0625, z: 0}
+    - {x: 0.0625, y: 0.0625, z: 0}
+    position0: {x: -0.0625, y: -0.0625, z: 0}
+    position1: {x: 0.0625, y: -0.0625, z: 0}
+    position2: {x: -0.0625, y: 0.0625, z: 0}
+    position3: {x: 0.0625, y: 0.0625, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -2721,25 +2721,25 @@ MonoBehaviour:
     attachPoints: []
   - name: defaultarmcannonalt_projectile_tiny_001
     boundsData:
-    - {x: 0.0625, y: 0.0625, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.125, y: 0.125, z: 0}
     untrimmedBoundsData:
-    - {x: 0.0625, y: 0.0625, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.125, y: 0.125, z: 0}
-    boundsDataCenter: {x: 0.0625, y: 0.0625, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.125, y: 0.125, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.0625, y: 0.0625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.125, y: 0.125, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.125, y: 0, z: 0}
-    - {x: 0, y: 0.125, z: 0}
-    - {x: 0.125, y: 0.125, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.125, y: 0, z: 0}
-    position2: {x: 0, y: 0.125, z: 0}
-    position3: {x: 0.125, y: 0.125, z: 0}
+    - {x: -0.0625, y: -0.0625, z: 0}
+    - {x: 0.0625, y: -0.0625, z: 0}
+    - {x: -0.0625, y: 0.0625, z: 0}
+    - {x: 0.0625, y: 0.0625, z: 0}
+    position0: {x: -0.0625, y: -0.0625, z: 0}
+    position1: {x: 0.0625, y: -0.0625, z: 0}
+    position2: {x: -0.0625, y: 0.0625, z: 0}
+    position3: {x: 0.0625, y: 0.0625, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -2793,25 +2793,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_002
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -2865,25 +2865,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_001
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -2937,25 +2937,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_006
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3009,25 +3009,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_007
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3081,25 +3081,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_008
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3153,25 +3153,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_009
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3225,25 +3225,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_003
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3297,25 +3297,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_004
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3369,25 +3369,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_005
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3441,25 +3441,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_002
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3513,25 +3513,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_001
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3585,25 +3585,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_007
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3657,25 +3657,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_008
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3729,25 +3729,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_009
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3801,25 +3801,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_005
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3873,25 +3873,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_006
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -3945,25 +3945,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_004
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -4017,25 +4017,25 @@ MonoBehaviour:
     attachPoints: []
   - name: slash_projectile_alt_003
     boundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
     untrimmedBoundsData:
-    - {x: 0.625, y: 2, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1.25, y: 4, z: 0}
-    boundsDataCenter: {x: 0.625, y: 2, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1.25, y: 4, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.625, y: 2, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1.25, y: 4, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.25, y: 0, z: 0}
-    - {x: 0, y: 4, z: 0}
-    - {x: 1.25, y: 4, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.25, y: 0, z: 0}
-    position2: {x: 0, y: 4, z: 0}
-    position3: {x: 1.25, y: 4, z: 0}
+    - {x: -0.625, y: -2, z: 0}
+    - {x: 0.625, y: -2, z: 0}
+    - {x: -0.625, y: 2, z: 0}
+    - {x: 0.625, y: 2, z: 0}
+    position0: {x: -0.625, y: -2, z: 0}
+    position1: {x: 0.625, y: -2, z: 0}
+    position2: {x: -0.625, y: 2, z: 0}
+    position3: {x: 0.625, y: 2, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -4089,25 +4089,25 @@ MonoBehaviour:
     attachPoints: []
   - name: node_desparation_002
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -4161,25 +4161,25 @@ MonoBehaviour:
     attachPoints: []
   - name: node_desparation_003
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -4233,25 +4233,25 @@ MonoBehaviour:
     attachPoints: []
   - name: node_desparation_001
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -4305,25 +4305,25 @@ MonoBehaviour:
     attachPoints: []
   - name: node_desparation_005
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -4377,25 +4377,25 @@ MonoBehaviour:
     attachPoints: []
   - name: node_desparation_004
     boundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
     untrimmedBoundsData:
-    - {x: 0.5, y: 0.5, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 1, y: 1, z: 0}
-    boundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 1, y: 1, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.5, y: 0.5, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 1, y: 1, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1, y: 0, z: 0}
-    position2: {x: 0, y: 1, z: 0}
-    position3: {x: 1, y: 1, z: 0}
+    - {x: -0.5, y: -0.5, z: 0}
+    - {x: 0.5, y: -0.5, z: 0}
+    - {x: -0.5, y: 0.5, z: 0}
+    - {x: 0.5, y: 0.5, z: 0}
+    position0: {x: -0.5, y: -0.5, z: 0}
+    position1: {x: 0.5, y: -0.5, z: 0}
+    position2: {x: -0.5, y: 0.5, z: 0}
+    position3: {x: 0.5, y: 0.5, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -7473,32 +7473,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_009
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3535176, y: 0.70117384}
-    - {x: 0.3730449, y: 0.70117384}
-    - {x: 0.3535176, y: 0.72070116}
-    - {x: 0.3730449, y: 0.72070116}
+    - {x: 0.4160176, y: 0.95117384}
+    - {x: 0.4355449, y: 0.95117384}
+    - {x: 0.4160176, y: 0.97070116}
+    - {x: 0.4355449, y: 0.97070116}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -7545,32 +7545,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_003
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3535176, y: 0.73242384}
-    - {x: 0.3730449, y: 0.73242384}
-    - {x: 0.3535176, y: 0.75195116}
-    - {x: 0.3730449, y: 0.75195116}
+    - {x: 0.37890822, y: 0.70117384}
+    - {x: 0.39843553, y: 0.70117384}
+    - {x: 0.37890822, y: 0.72070116}
+    - {x: 0.39843553, y: 0.72070116}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -7617,32 +7617,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_007
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3535176, y: 0.76367384}
-    - {x: 0.3730449, y: 0.76367384}
-    - {x: 0.3535176, y: 0.78320116}
-    - {x: 0.3730449, y: 0.78320116}
+    - {x: 0.3847676, y: 0.6582051}
+    - {x: 0.4042949, y: 0.6582051}
+    - {x: 0.3847676, y: 0.6777324}
+    - {x: 0.4042949, y: 0.6777324}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -7689,32 +7689,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_004
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3535176, y: 0.79492384}
-    - {x: 0.3730449, y: 0.79492384}
-    - {x: 0.3535176, y: 0.81445116}
-    - {x: 0.3730449, y: 0.81445116}
+    - {x: 0.3925801, y: 0.61523634}
+    - {x: 0.4121074, y: 0.61523634}
+    - {x: 0.3925801, y: 0.63476366}
+    - {x: 0.4121074, y: 0.63476366}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -7761,32 +7761,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_008
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.36523634, y: 0.82617384}
-    - {x: 0.38476366, y: 0.82617384}
-    - {x: 0.36523634, y: 0.84570116}
-    - {x: 0.38476366, y: 0.84570116}
+    - {x: 0.40429884, y: 0.5566426}
+    - {x: 0.42382616, y: 0.5566426}
+    - {x: 0.40429884, y: 0.5761699}
+    - {x: 0.42382616, y: 0.5761699}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -7833,32 +7833,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_001
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.85742384}
-    - {x: 0.4042949, y: 0.85742384}
-    - {x: 0.3847676, y: 0.87695116}
-    - {x: 0.4042949, y: 0.87695116}
+    - {x: 0.4082051, y: 0.52343947}
+    - {x: 0.4277324, y: 0.52343947}
+    - {x: 0.4082051, y: 0.5429668}
+    - {x: 0.4277324, y: 0.5429668}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -7905,32 +7905,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_002
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.88867384}
-    - {x: 0.4042949, y: 0.88867384}
-    - {x: 0.3847676, y: 0.90820116}
-    - {x: 0.4042949, y: 0.90820116}
+    - {x: 0.43554884, y: 0.55468947}
+    - {x: 0.45507616, y: 0.55468947}
+    - {x: 0.43554884, y: 0.5742168}
+    - {x: 0.45507616, y: 0.5742168}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -7977,32 +7977,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_005
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.38867384, y: 0.91992384}
-    - {x: 0.40820116, y: 0.91992384}
-    - {x: 0.38867384, y: 0.93945116}
-    - {x: 0.40820116, y: 0.93945116}
+    - {x: 0.4394551, y: 0.52343947}
+    - {x: 0.4589824, y: 0.52343947}
+    - {x: 0.4394551, y: 0.5429668}
+    - {x: 0.4589824, y: 0.5429668}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -8049,32 +8049,32 @@ MonoBehaviour:
     attachPoints: []
   - name: ballin_006
     boundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.3125, y: 0.3125, z: 0}
+    - {x: 0, y: 0, z: 0}
     - {x: 0.625, y: 0.625, z: 0}
-    boundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    boundsDataCenter: {x: 0, y: 0, z: 0}
     boundsDataExtents: {x: 0.625, y: 0.625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.3125, y: 0.3125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: 0, z: 0}
     untrimmedBoundsDataExtents: {x: 0.625, y: 0.625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.625, y: 0, z: 0}
-    - {x: 0, y: 0.625, z: 0}
-    - {x: 0.625, y: 0.625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.625, y: 0, z: 0}
-    position2: {x: 0, y: 0.625, z: 0}
-    position3: {x: 0.625, y: 0.625, z: 0}
+    - {x: -0.3125, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.3125, y: 0.3125, z: 0}
+    - {x: 0.3125, y: 0.3125, z: 0}
+    position0: {x: -0.3125, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.3125, y: 0.3125, z: 0}
+    position3: {x: 0.3125, y: 0.3125, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.4160176, y: 0.95117384}
-    - {x: 0.4355449, y: 0.95117384}
-    - {x: 0.4160176, y: 0.97070116}
-    - {x: 0.4355449, y: 0.97070116}
+    - {x: 0.4472676, y: 0.49218947}
+    - {x: 0.4667949, y: 0.49218947}
+    - {x: 0.4472676, y: 0.5117168}
+    - {x: 0.4667949, y: 0.5117168}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -8121,32 +8121,32 @@ MonoBehaviour:
     attachPoints: []
   - name: heatvectoring_002
     boundsData:
-    - {x: 0.34375, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.6875, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.34375, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.6875, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.34375, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.6875, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.34375, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.6875, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.6875, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.6875, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.6875, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.6875, y: 0.4375, z: 0}
+    - {x: -0.3125, y: -0.25, z: 0}
+    - {x: 0.375, y: -0.25, z: 0}
+    - {x: -0.3125, y: 0.1875, z: 0}
+    - {x: 0.375, y: 0.1875, z: 0}
+    position0: {x: -0.3125, y: -0.25, z: 0}
+    position1: {x: 0.375, y: -0.25, z: 0}
+    position2: {x: -0.3125, y: 0.1875, z: 0}
+    position3: {x: 0.375, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.5097676, y: 0.4160176}
-    - {x: 0.53124803, y: 0.4160176}
-    - {x: 0.5097676, y: 0.42968553}
-    - {x: 0.53124803, y: 0.42968553}
+    - {x: 0.40429884, y: 0.5878926}
+    - {x: 0.42577928, y: 0.5878926}
+    - {x: 0.40429884, y: 0.60156053}
+    - {x: 0.42577928, y: 0.60156053}
     normalizedUvs:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -8193,36 +8193,36 @@ MonoBehaviour:
     attachPoints: []
   - name: heatvectoring_003
     boundsData:
-    - {x: 0.34375, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.6875, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.34375, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.6875, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.34375, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.6875, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.34375, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.6875, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.6875, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.6875, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.6875, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.6875, y: 0.4375, z: 0}
+    - {x: -0.3125, y: -0.25, z: 0}
+    - {x: 0.375, y: -0.25, z: 0}
+    - {x: -0.3125, y: 0.1875, z: 0}
+    - {x: 0.375, y: 0.1875, z: 0}
+    position0: {x: -0.3125, y: -0.25, z: 0}
+    position1: {x: 0.375, y: -0.25, z: 0}
+    position2: {x: -0.3125, y: 0.1875, z: 0}
+    position3: {x: 0.375, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3847676, y: 0.6582051}
-    - {x: 0.3847676, y: 0.67968553}
-    - {x: 0.39843553, y: 0.6582051}
-    - {x: 0.39843553, y: 0.67968553}
+    - {x: 0.39843947, y: 0.7910176}
+    - {x: 0.4199199, y: 0.7910176}
+    - {x: 0.39843947, y: 0.80468553}
+    - {x: 0.4199199, y: 0.80468553}
     normalizedUvs:
     - {x: 0, y: 0}
-    - {x: 0, y: 1}
     - {x: 1, y: 0}
+    - {x: 0, y: 1}
     - {x: 1, y: 1}
     indices: 000000000300000001000000020000000300000000000000
     material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
@@ -8233,7 +8233,7 @@ MonoBehaviour:
     regionY: 0
     regionW: 0
     regionH: 0
-    flipped: 1
+    flipped: 0
     complexGeometry: 0
     physicsEngine: 0
     colliderType: 1
@@ -8265,36 +8265,36 @@ MonoBehaviour:
     attachPoints: []
   - name: heatvectoring_001
     boundsData:
-    - {x: 0.34375, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.6875, y: 0.4375, z: 0}
     untrimmedBoundsData:
-    - {x: 0.34375, y: 0.21875, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.6875, y: 0.4375, z: 0}
-    boundsDataCenter: {x: 0.34375, y: 0.21875, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.6875, y: 0.4375, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.34375, y: 0.21875, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.6875, y: 0.4375, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.6875, y: 0, z: 0}
-    - {x: 0, y: 0.4375, z: 0}
-    - {x: 0.6875, y: 0.4375, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.6875, y: 0, z: 0}
-    position2: {x: 0, y: 0.4375, z: 0}
-    position3: {x: 0.6875, y: 0.4375, z: 0}
+    - {x: -0.3125, y: -0.25, z: 0}
+    - {x: 0.375, y: -0.25, z: 0}
+    - {x: -0.3125, y: 0.1875, z: 0}
+    - {x: 0.375, y: 0.1875, z: 0}
+    position0: {x: -0.3125, y: -0.25, z: 0}
+    position1: {x: 0.375, y: -0.25, z: 0}
+    position2: {x: -0.3125, y: 0.1875, z: 0}
+    position3: {x: 0.375, y: 0.1875, z: 0}
     normals: []
     tangents: []
     uvs:
-    - {x: 0.3925801, y: 0.61523634}
-    - {x: 0.3925801, y: 0.6367168}
-    - {x: 0.40624803, y: 0.61523634}
-    - {x: 0.40624803, y: 0.6367168}
+    - {x: 0.4316426, y: 0.7910176}
+    - {x: 0.45312303, y: 0.7910176}
+    - {x: 0.4316426, y: 0.80468553}
+    - {x: 0.45312303, y: 0.80468553}
     normalizedUvs:
     - {x: 0, y: 0}
-    - {x: 0, y: 1}
     - {x: 1, y: 0}
+    - {x: 0, y: 1}
     - {x: 1, y: 1}
     indices: 000000000300000001000000020000000300000000000000
     material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
@@ -8305,7 +8305,7 @@ MonoBehaviour:
     regionY: 0
     regionW: 0
     regionH: 0
-    flipped: 1
+    flipped: 0
     complexGeometry: 0
     physicsEngine: 0
     colliderType: 1
@@ -8337,25 +8337,25 @@ MonoBehaviour:
     attachPoints: []
   - name: arrow
     boundsData:
-    - {x: 0.75, y: 0.28125, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 1.5, y: 0.5625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.75, y: 0.28125, z: 0}
+    - {x: 0, y: -0.03125, z: 0}
     - {x: 1.5, y: 0.5625, z: 0}
-    boundsDataCenter: {x: 0.75, y: 0.28125, z: 0}
+    boundsDataCenter: {x: 0, y: -0.03125, z: 0}
     boundsDataExtents: {x: 1.5, y: 0.5625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.75, y: 0.28125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 1.5, y: 0.5625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.5, y: 0, z: 0}
-    - {x: 0, y: 0.5625, z: 0}
-    - {x: 1.5, y: 0.5625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.5, y: 0, z: 0}
-    position2: {x: 0, y: 0.5625, z: 0}
-    position3: {x: 1.5, y: 0.5625, z: 0}
+    - {x: -0.75, y: -0.3125, z: 0}
+    - {x: 0.75, y: -0.3125, z: 0}
+    - {x: -0.75, y: 0.25, z: 0}
+    - {x: 0.75, y: 0.25, z: 0}
+    position0: {x: -0.75, y: -0.3125, z: 0}
+    position1: {x: 0.75, y: -0.3125, z: 0}
+    position2: {x: -0.75, y: 0.25, z: 0}
+    position3: {x: 0.75, y: 0.25, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -8409,25 +8409,25 @@ MonoBehaviour:
     attachPoints: []
   - name: swordslash
     boundsData:
-    - {x: 0.46875, y: 1.03125, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.9375, y: 2.0625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.46875, y: 1.03125, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 0.9375, y: 2.0625, z: 0}
-    boundsDataCenter: {x: 0.46875, y: 1.03125, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 0.9375, y: 2.0625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.46875, y: 1.03125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 0.9375, y: 2.0625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0.9375, y: 0, z: 0}
-    - {x: 0, y: 2.0625, z: 0}
-    - {x: 0.9375, y: 2.0625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 0.9375, y: 0, z: 0}
-    position2: {x: 0, y: 2.0625, z: 0}
-    position3: {x: 0.9375, y: 2.0625, z: 0}
+    - {x: -0.4375, y: -1.0625, z: 0}
+    - {x: 0.5, y: -1.0625, z: 0}
+    - {x: -0.4375, y: 1, z: 0}
+    - {x: 0.5, y: 1, z: 0}
+    position0: {x: -0.4375, y: -1.0625, z: 0}
+    position1: {x: 0.5, y: -1.0625, z: 0}
+    position2: {x: -0.4375, y: 1, z: 0}
+    position3: {x: 0.5, y: 1, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -8481,25 +8481,25 @@ MonoBehaviour:
     attachPoints: []
   - name: spell
     boundsData:
-    - {x: 0.65625, y: 0.28125, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 1.3125, y: 0.5625, z: 0}
     untrimmedBoundsData:
-    - {x: 0.65625, y: 0.28125, z: 0}
+    - {x: 0.03125, y: -0.03125, z: 0}
     - {x: 1.3125, y: 0.5625, z: 0}
-    boundsDataCenter: {x: 0.65625, y: 0.28125, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     boundsDataExtents: {x: 1.3125, y: 0.5625, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.65625, y: 0.28125, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
     untrimmedBoundsDataExtents: {x: 1.3125, y: 0.5625, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: 0, y: 0, z: 0}
-    - {x: 1.3125, y: 0, z: 0}
-    - {x: 0, y: 0.5625, z: 0}
-    - {x: 1.3125, y: 0.5625, z: 0}
-    position0: {x: 0, y: 0, z: 0}
-    position1: {x: 1.3125, y: 0, z: 0}
-    position2: {x: 0, y: 0.5625, z: 0}
-    position3: {x: 1.3125, y: 0.5625, z: 0}
+    - {x: -0.625, y: -0.3125, z: 0}
+    - {x: 0.6875, y: -0.3125, z: 0}
+    - {x: -0.625, y: 0.25, z: 0}
+    - {x: 0.6875, y: 0.25, z: 0}
+    position0: {x: -0.625, y: -0.3125, z: 0}
+    position1: {x: 0.6875, y: -0.3125, z: 0}
+    position2: {x: -0.625, y: 0.25, z: 0}
+    position3: {x: 0.6875, y: 0.25, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -8516,6 +8516,1446 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
     materialId: 0
     sourceTextureGUID: 0a6bb321a7d7b064b8a2b7e7b24f754e
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_largeprojectile_001
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.37890822, y: 0.73242384}
+    - {x: 0.3964824, y: 0.73242384}
+    - {x: 0.37890822, y: 0.74999803}
+    - {x: 0.3964824, y: 0.74999803}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: a9bb7074b34d0df45ab2396f6bb4d013
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_largeprojectile_002
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.37890822, y: 0.7617207}
+    - {x: 0.3964824, y: 0.7617207}
+    - {x: 0.37890822, y: 0.7792949}
+    - {x: 0.3964824, y: 0.7792949}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: fed820f3f4a3e3f48ac35409c4d9bb66
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_largeprojectile_004
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4160176, y: 0.8164082}
+    - {x: 0.43359178, y: 0.8164082}
+    - {x: 0.4160176, y: 0.8339824}
+    - {x: 0.43359178, y: 0.8339824}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: bcd8c59390083924292152ac7f62e799
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_largeprojectile_005
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.43554884, y: 0.8457051}
+    - {x: 0.45312303, y: 0.8457051}
+    - {x: 0.43554884, y: 0.8632793}
+    - {x: 0.45312303, y: 0.8632793}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 9eff7a40a06d7804b9262820f9e9c85a
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_largeprojectile_003
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.43554884, y: 0.87500197}
+    - {x: 0.45312303, y: 0.87500197}
+    - {x: 0.43554884, y: 0.89257616}
+    - {x: 0.45312303, y: 0.89257616}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 309d69afbec981b4fb3adda0fb668e62
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_projectile_002
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4394551, y: 0.90429884}
+    - {x: 0.45702928, y: 0.90429884}
+    - {x: 0.4394551, y: 0.92187303}
+    - {x: 0.45702928, y: 0.92187303}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: a48983e01553e2b4d8ebb10b6c3c14cd
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_projectile_001
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.37890822, y: 0.73242384}
+    - {x: 0.3964824, y: 0.73242384}
+    - {x: 0.37890822, y: 0.74999803}
+    - {x: 0.3964824, y: 0.74999803}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: c567f200ef36028409dfc63b70a700fd
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_projectile_003
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4472676, y: 0.9335957}
+    - {x: 0.46484178, y: 0.9335957}
+    - {x: 0.4472676, y: 0.9511699}
+    - {x: 0.46484178, y: 0.9511699}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 980f707c249c6eb4f865d4ade25becb9
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_projectile_004
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4082051, y: 0.73242384}
+    - {x: 0.42577928, y: 0.73242384}
+    - {x: 0.4082051, y: 0.74999803}
+    - {x: 0.42577928, y: 0.74999803}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: c6d3bfb2017330043b4a7f20838b9187
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: flak_projectile_005
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 0.5625, y: 0.5625, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 0.5625, y: 0.5625, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.25, y: -0.3125, z: 0}
+    - {x: 0.3125, y: -0.3125, z: 0}
+    - {x: -0.25, y: 0.25, z: 0}
+    - {x: 0.3125, y: 0.25, z: 0}
+    position0: {x: -0.25, y: -0.3125, z: 0}
+    position1: {x: 0.3125, y: -0.3125, z: 0}
+    position2: {x: -0.25, y: 0.25, z: 0}
+    position3: {x: 0.3125, y: 0.25, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.4082051, y: 0.7617207}
+    - {x: 0.42577928, y: 0.7617207}
+    - {x: 0.4082051, y: 0.7792949}
+    - {x: 0.42577928, y: 0.7792949}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: c2a930c5fe068c74ea6363f592530bd8
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbombalt_004
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.5097676, y: 0.4160176}
+    - {x: 0.5429668, y: 0.4160176}
+    - {x: 0.5097676, y: 0.42968553}
+    - {x: 0.5429668, y: 0.42968553}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: bafb48419daeeb34aa905630de22c89a
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbombalt_005
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.3535176, y: 0.70117384}
+    - {x: 0.3535176, y: 0.73437303}
+    - {x: 0.36718553, y: 0.70117384}
+    - {x: 0.36718553, y: 0.73437303}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: fa483db81b8b00c478ab58f6803495c0
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbombalt_002
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.3535176, y: 0.7460957}
+    - {x: 0.3535176, y: 0.7792949}
+    - {x: 0.36718553, y: 0.7460957}
+    - {x: 0.36718553, y: 0.7792949}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 9bd10ce56f1b7bb4fbf27b12d11ca16b
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbombalt_003
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.3535176, y: 0.7910176}
+    - {x: 0.38671678, y: 0.7910176}
+    - {x: 0.3535176, y: 0.80468553}
+    - {x: 0.38671678, y: 0.80468553}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: f096e530095f47640839f640dddf79df
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 0
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbomb_003
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.36523634, y: 0.8164082}
+    - {x: 0.36523634, y: 0.8496074}
+    - {x: 0.37890428, y: 0.8164082}
+    - {x: 0.37890428, y: 0.8496074}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 7f0af354a4a91f24b96402d7c1ef7a25
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbomb_004
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.3847676, y: 0.8613301}
+    - {x: 0.3847676, y: 0.8945293}
+    - {x: 0.39843553, y: 0.8613301}
+    - {x: 0.39843553, y: 0.8945293}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 2c9aedefdb9ff844bafb817895aa5f77
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbomb_001
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.39062697, y: 0.8164082}
+    - {x: 0.39062697, y: 0.8496074}
+    - {x: 0.4042949, y: 0.8164082}
+    - {x: 0.4042949, y: 0.8496074}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: c72e78ab38dbad048abffc9c755214a2
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbomb_002
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.38867384, y: 0.90625197}
+    - {x: 0.38867384, y: 0.93945116}
+    - {x: 0.40234178, y: 0.90625197}
+    - {x: 0.40234178, y: 0.93945116}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 1e32fd87090a9a54ab6ef05f8208c425
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbomb_005
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.41015822, y: 0.8613301}
+    - {x: 0.41015822, y: 0.8945293}
+    - {x: 0.42382616, y: 0.8613301}
+    - {x: 0.42382616, y: 0.8945293}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 37591b55c9e6c9e41adb5e2d3d622838
+    extractRegion: 0
+    regionX: 0
+    regionY: 0
+    regionW: 0
+    regionH: 0
+    flipped: 1
+    complexGeometry: 0
+    physicsEngine: 0
+    colliderType: 1
+    customColliders: []
+    metadata:
+      type: 0
+      weight: 0
+      dungeonRoomSubType: 0
+      secondRoomSubType: 0
+      thirdRoomSubType: 0
+      preventWallStamping: 0
+      usesAnimSequence: 0
+      usesNeighborDependencies: 0
+      usesPerTileVFX: 0
+      tileVFXPlaystyle: 0
+      tileVFXChance: 0
+      tileVFXPrefab: {fileID: 0}
+      tileVFXOffset: {x: 0, y: 0}
+      tileVFXDelayTime: 0
+      tileVFXDelayVariance: 0
+      tileVFXAnimFrame: 0
+    colliderVertices: []
+    colliderIndicesFwd: 
+    colliderIndicesBack: 
+    colliderConvex: 0
+    colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
+  - name: bombbombalt_001
+    boundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsData:
+    - {x: 0.03125, y: -0.03125, z: 0}
+    - {x: 1.0625, y: 0.4375, z: 0}
+    boundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    boundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.03125, y: -0.03125, z: 0}
+    untrimmedBoundsDataExtents: {x: 1.0625, y: 0.4375, z: 0}
+    texelSize: {x: 0.0625, y: 0.0625}
+    positions:
+    - {x: -0.5, y: -0.25, z: 0}
+    - {x: 0.5625, y: -0.25, z: 0}
+    - {x: -0.5, y: 0.1875, z: 0}
+    - {x: 0.5625, y: 0.1875, z: 0}
+    position0: {x: -0.5, y: -0.25, z: 0}
+    position1: {x: 0.5625, y: -0.25, z: 0}
+    position2: {x: -0.5, y: 0.1875, z: 0}
+    position3: {x: 0.5625, y: 0.1875, z: 0}
+    normals: []
+    tangents: []
+    uvs:
+    - {x: 0.41406447, y: 0.90625197}
+    - {x: 0.41406447, y: 0.93945116}
+    - {x: 0.4277324, y: 0.90625197}
+    - {x: 0.4277324, y: 0.93945116}
+    normalizedUvs:
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    indices: 000000000300000001000000020000000300000000000000
+    material: {fileID: 2100000, guid: 9b8dd64aca22f774baa022804d294e54, type: 2}
+    materialId: 0
+    sourceTextureGUID: 37cfdceb0924fa4419bd8e9a04b34a17
     extractRegion: 0
     regionX: 0
     regionY: 0
@@ -8568,7 +10008,7 @@ MonoBehaviour:
   loadable: 0
   invOrthoSize: 2
   halfTargetHeight: 8
-  buildKey: 2084171964
+  buildKey: 925344724
   dataGuid: 2dd5daddddcb7664eb56dbfc2fc6ef67
   managedSpriteCollection: 0
   hasPlatformData: 0

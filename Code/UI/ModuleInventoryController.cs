@@ -7,6 +7,8 @@ using System.Text;
 using static ModularMod.DefaultModule;
 using static ModularMod.ModulePrinterCore;
 using UnityEngine;
+using static DwarfEventListener;
+using static Vibration;
 
 namespace ModularMod
 {
@@ -436,7 +438,17 @@ namespace ModularMod
                 PowerLabel.OnUpdate += (obj1) =>
                 {
                     bool h = PowerLabel.IsMouseHovering();
-                    string t = "[ " + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + (h == true ? StaticColorHexes.AddColorToLabelString((Core.ReturnTotalPower() + 1).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnTotalPower().ToString()) + " ]";
+                    float fuck = (float)((OverrideDisplayPowerAddOn != -999 ? OverrideDisplayPowerAddOn : Core.ReturnPowerConsumption()));
+                    string p2 = StaticColorHexes.AddColorToLabelString(fuck.ToString(), fuck > Core.ReturnTotalPower() ? StaticColorHexes.Red_Color_Hex : StaticColorHexes.Green_Hex);
+                    string t2 = Core.ReturnPowerConsumption().ToString();
+                    if (OverrideDisplayPowerAddOn != -999)
+                    {
+                        t2 += SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.ARROW);
+                        t2 += p2;
+                    }
+
+                    string t = "[ " + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + " : " + t2+ " / " + (h == true ? StaticColorHexes.AddColorToLabelString((Core.ReturnTotalPower() + 1).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnTotalPower().ToString()) + " ]";
+                    
                     t += h == true ? " [Upgrade:" + StaticColorHexes.AddColorToLabelString(ReturnUpgradeCost().ToString(), CanAffordUpgrade() == true ? StaticColorHexes.Green_Hex : StaticColorHexes.Red_Color_Hex) + scrapLabel + "]" : " [" + StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "]";
                     obj1.color = h == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     obj1.text = t;
@@ -462,7 +474,6 @@ namespace ModularMod
                 };
             }
         }
-
         public void InstantUpdateLabelToText(dfLabel label, string newText)
         {
             label.text = newText;
@@ -471,7 +482,6 @@ namespace ModularMod
 
         public bool CanAffordUpgrade()
         {
-            //if (player.gameObject.GetComponent<ConsumableStorage>() == null) { return false; }
             if (GlobalConsumableStorage.ReturnConsumableAmount("Scrap") >= ReturnUpgradeCost())
             {
                 return true;
@@ -480,7 +490,7 @@ namespace ModularMod
         }
         public int ReturnUpgradeCost()
         {
-            return (Mathf.Max(2, Mathf.RoundToInt(Core.ReturnTotalPowerMasteryless()) + 3));
+            return (Mathf.Max(3, Mathf.RoundToInt(Core.ReturnTotalPowerMasteryless()) + 3));
         }
         public int ReturnPagesCount()
         {
@@ -512,6 +522,76 @@ namespace ModularMod
             return null;
         }
 
+
+        private int ReturnStackAdd(LocalChecker localChecker)
+        {
+            int s = 0;
+            if (localChecker.isHoveringPowerUp == true) s = +1;
+            if (localChecker.isHoveringPowerDown == true) s = -1;
+            return s;
+        }
+
+        private string ReturnHexStringBasedOnPower(LocalChecker localChecker)
+        {
+            if (localChecker == null) { return StaticColorHexes.White_Hex; }
+
+            string s = StaticColorHexes.White_Hex;
+            bool p = Core.ReturnPowerConsumptionOfNextStack(localChecker.module, ReturnStackAdd(localChecker)) <= Core.ReturnTotalPower();//ReturnStackAdd(localChecker);
+            if (p == true) s = StaticColorHexes.Green_Hex;
+            else if (p == false) s = StaticColorHexes.Red_Color_Hex;
+            return s;
+        }
+
+        public float OverrideDisplayPowerAddOn = -999;
+
+
+        public void RemovePainer(DefaultModule defaultModule)
+        {
+            if (!painers.ContainsKey(defaultModule))
+            {
+                return;
+            }
+            painers.Remove(defaultModule);
+        }
+
+        public void AddPainer(DefaultModule defaultModule, float val)
+        {
+            if (painers.ContainsKey(defaultModule))
+            {
+                painers[defaultModule] = val;
+                return;
+            }
+            painers.Add(defaultModule, val);
+        }
+
+        public void ProcessPainers()
+        {
+            if (painers.Count == 0) { OverrideDisplayPowerAddOn = -999; return; }
+            OverrideDisplayPowerAddOn = painers.First().Value;
+        }
+
+        private void SetChecker(LocalChecker checker)
+        {
+            currentChecker = checker;
+        }
+        private void NullChecker()
+        {
+            currentChecker = null;
+        }
+
+        private bool ProcessCheckers(LocalChecker checker)
+        {
+            return currentChecker == checker;
+        }
+
+
+
+        private Dictionary<DefaultModule, float> painers = new Dictionary<DefaultModule, float>();
+
+        private LocalChecker currentChecker;
+
+
+
         public void DisplayModule(PlayerController p, bool ClearOut = false)
         {
             if (ClearOut == true)
@@ -530,6 +610,7 @@ namespace ModularMod
             Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
             string Text = "Modules Available:";
             garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 1.5f), 0.66f, Text, cl, true, Scale));
+            localCheckers = new Dictionary<ModifiedDefaultLabelManager, LocalChecker>();
 
             int c = 0;
             if (ModuleContainers.Count == 0)
@@ -544,10 +625,17 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
+                        LocalChecker pain = new LocalChecker();
+
                         var module = page.moduleContainer.defaultModule;
+                        pain.module = module;
 
                         string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
-                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+                        
+
+                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(false)+ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
+                            "(" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
+
                         string T = module.LabelName + PowerLabels;
                         string TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
 
@@ -559,13 +647,46 @@ namespace ModularMod
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
+                            if (pain.isHoveringPowerDown | pain.isHoveringPowerUp)
+                            {
+                                SetChecker(pain);
+                                AddPainer(module, Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)));
+                            }
+                            else
+                            {
+                                NullChecker();
+                                RemovePainer(module);
+                            }
+                            ProcessPainers();
+
                             label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.Invalidate();
                         };
                         Button.OnUpdate += (l) =>
                         {
                             Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
-                            PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+
+                            string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString(), StaticColorHexes.Orange_Hex);
+                            string a2 = StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? ReturnHexStringBasedOnPower(pain) : StaticColorHexes.Orange_Hex);
+
+                            string b1 = Core.ReturnPowerConsumption(module).ToString();
+                            string b2 = StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain), true).ToString(), ReturnHexStringBasedOnPower(pain));
+
+
+
+                            if (OverrideDisplayPowerAddOn != -999 && ProcessCheckers(pain) == true)
+                            {
+                                a1 += SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.ARROW);
+                                a1 += a2;
+
+                                b1 += SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.ARROW);
+                                b1 += b2;
+                            }
+                            
+                            PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + a1 + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + "" +
+                                "(" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + b1 + ")";
+                            
+                           
                             T = module.LabelName + PowerLabels;
                             TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
                             l.text = (Button.IsMouseHovering() == true ? TYellow : T);
@@ -576,11 +697,13 @@ namespace ModularMod
                             AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                         };
 
-
+                        //REMOVE POWER
                         var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
                         {
                             bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            pain.isHoveringPowerDown = boolean && CanBeUsed;
+
                             label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
                             label.Invalidate();
@@ -604,12 +727,17 @@ namespace ModularMod
                         };
 
                         garbageLabels.Add(ButtonLeft);
+
+                        //ADD POWER
                         var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "+", cl, true, Scale);
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
+
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
+                            pain.isHoveringPowerUp = boolean && CanBeUsed3;
+
                             label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
 
@@ -635,6 +763,7 @@ namespace ModularMod
                         {
                             AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                         };
+                        localCheckers.Add(Button, pain);
 
                         garbageLabels.Add(ButtonRight);
                         garbageLabels.Add(Button);
@@ -644,6 +773,16 @@ namespace ModularMod
             }
             PageLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, "Page:" + (ListEntry + 1).ToString() + " / " + (pages_default.Count > 0 ? (pages_default.Last().Page + 1).ToString() : "1"), cl, true, Scale);
         }
+
+
+        private Dictionary<ModifiedDefaultLabelManager, LocalChecker> localCheckers = new Dictionary<ModifiedDefaultLabelManager, LocalChecker>();
+        private class LocalChecker
+        {
+            public bool isHoveringPowerDown;
+            public bool isHoveringPowerUp;
+            public DefaultModule module;
+        }
+
 
         public void DisplayModuleTiered(PlayerController p, ModuleTier moduleTier, bool ClearOut = false)
         {
@@ -665,6 +804,7 @@ namespace ModularMod
 
             string Text = "Modules Available " + DefaultModule.ReturnTierLabel(moduleTier) + " :";
             garbageLabels.Add(Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 1.5f), 0.66f, Text, cl, true, Scale));
+            localCheckers = new Dictionary<ModifiedDefaultLabelManager, LocalChecker>();
 
 
             int c = 0;
@@ -680,10 +820,14 @@ namespace ModularMod
                 {
                     if (ListEntry == page.Page)
                     {
+                        LocalChecker pain = new LocalChecker();
                         var module = page.moduleContainer.defaultModule;
+                        pain.module = module;
 
                         string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
-                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+
+                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
+                            "(" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
                         string T = module.LabelName + PowerLabels;
                         string TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
 
@@ -695,28 +839,72 @@ namespace ModularMod
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
+
+                            if (pain.isHoveringPowerDown | pain.isHoveringPowerUp)
+                            {
+                                SetChecker(pain);
+                                AddPainer(module, Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)));
+                            }
+                            else
+                            {
+                                NullChecker();
+                                RemovePainer(module);
+                            }
+                            ProcessPainers();
+
                             label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.Invalidate();
                         };
                         Button.OnUpdate += (l) =>
                         {
                             Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
-                            PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString() + " / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " (" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + Core.ReturnPowerConsumption(module) + ")";
+
+                            string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString(), StaticColorHexes.Orange_Hex);
+                            string a2 = StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? ReturnHexStringBasedOnPower(pain) : StaticColorHexes.Orange_Hex);
+
+                            string b1 = Core.ReturnPowerConsumption(module).ToString();
+                            string b2 = StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain), true).ToString(), ReturnHexStringBasedOnPower(pain));
+
+
+
+                            if (OverrideDisplayPowerAddOn != -999 && ProcessCheckers(pain) == true)
+                            {
+                                a1 += SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.ARROW);
+                                a1 += a2;
+
+                                b1 += SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.ARROW);
+                                b1 += b2;
+                            }
+
+                            PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + a1 + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + "" +
+                                "(" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + b1 + ")";
+
+
                             T = module.LabelName + PowerLabels;
                             TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
-                            l.text = (Button.IsMouseHovering() == true ? TYellow : T); l.Invalidate();
+                            l.text = (Button.IsMouseHovering() == true ? TYellow : T);
+                            l.Invalidate();
                         };
                         Button.label.MouseEnter += (o1, o2) =>
                         {
                             AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                         };
+
+                        //REMOVE POWER
                         var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
                         {
+
                             bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            pain.isHoveringPowerDown = boolean && CanBeUsed;
+
                             label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
                             label.Invalidate();
+                        };
+                        ButtonLeft.label.MouseEnter += (o1, o2) =>
+                        {
+                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                         };
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
@@ -731,19 +919,23 @@ namespace ModularMod
                                 AkSoundEngine.PostEvent("Play_OBJ_purchase_unable_01", player.gameObject);
                             }
                         };
-                        ButtonLeft.label.MouseEnter += (o1, o2) =>
-                        {
-                            AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
-                        };
+
                         garbageLabels.Add(ButtonLeft);
+
+                        //ADD POWER
                         var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + "+", cl, true, Scale);
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
+                            pain.isHoveringPowerUp = boolean;
+
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
                             bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
+                            pain.isHoveringPowerUp = boolean && CanBeUsed3;
+
                             label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                             label.text = Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
+
                             label.Invalidate();
                         };
                         ButtonRight.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
@@ -766,6 +958,8 @@ namespace ModularMod
                         {
                             AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                         };
+                        localCheckers.Add(Button, pain);
+
                         garbageLabels.Add(ButtonRight);
                         garbageLabels.Add(Button);
                         c++;

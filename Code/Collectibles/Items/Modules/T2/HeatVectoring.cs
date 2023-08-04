@@ -59,7 +59,7 @@ namespace ModularMod
 
             projectile.AnimateProjectileBundle("heatvector_idle", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "heatvector_idle",
             new List<IntVector2>() { new IntVector2(11, 7), new IntVector2(11, 7), new IntVector2(11, 7), new IntVector2(11, 7), new IntVector2(11, 7), new IntVector2(11, 7), new IntVector2(11, 7), },
-            ProjectileToolbox.ConstructListOfSameValues(true, 7), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.LowerLeft, 7), ProjectileToolbox.ConstructListOfSameValues(true, 7), ProjectileToolbox.ConstructListOfSameValues(false, 7),
+            ProjectileToolbox.ConstructListOfSameValues(true, 7), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.MiddleCenter, 7), ProjectileToolbox.ConstructListOfSameValues(true, 7), ProjectileToolbox.ConstructListOfSameValues(false, 7),
             ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 7), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 7), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 7), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 7));
             projectile.objectImpactEventName = (PickupObjectDatabase.GetById(384) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
             projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(384) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;

@@ -68,6 +68,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             p.baseData.speed *= 1 + (0.25f * this.ReturnStack(modulePrinterCore));
+            p.UpdateSpeed();
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)

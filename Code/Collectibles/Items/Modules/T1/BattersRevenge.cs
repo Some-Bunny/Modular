@@ -28,7 +28,7 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("battersrevenge_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.7f;
+            h.AdditionalWeightMultiplier = 0.75f;
             h.LabelName = "Batters Revenge " + h.ReturnTierLabel();
             h.LabelDescription = "Reduces reload time by 20% ("+ StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nWhen reloading, toss out 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") baseballs that can be shot\nto pitch them. Damage scales with the projectile that hit it.\n(" + StaticColorHexes.AddColorToLabelString("+Higher Damage Scaling", StaticColorHexes.Light_Orange_Hex) + ")";
             h.AddToGlobalStorage();
@@ -64,7 +64,7 @@ namespace ModularMod
             projectile.gameObject.AddComponent<BallComponent>();
             projectile.AnimateProjectileBundle("ballin", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "ballin",
             new List<IntVector2>() { new IntVector2(10, 10), new IntVector2(10, 10), new IntVector2(10, 10), new IntVector2(10, 10), new IntVector2(10, 10), new IntVector2(10, 10), new IntVector2(10, 10), new IntVector2(10, 10), new IntVector2(10, 10) },
-            ProjectileToolbox.ConstructListOfSameValues(true, 9), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.LowerLeft, 9), ProjectileToolbox.ConstructListOfSameValues(true, 9), ProjectileToolbox.ConstructListOfSameValues(false, 9),
+            ProjectileToolbox.ConstructListOfSameValues(true, 9), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.MiddleCenter, 9), ProjectileToolbox.ConstructListOfSameValues(true, 9), ProjectileToolbox.ConstructListOfSameValues(false, 9),
             ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 9), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 9), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 9), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 9));
             projectile.objectImpactEventName = (PickupObjectDatabase.GetById(384) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
             projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(384) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;

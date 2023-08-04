@@ -37,6 +37,9 @@ namespace ModularMod
             JuneLib.ItemsCore.AddChangeSpawnItem(ReturnObj);
               
             new Hook(typeof(PickupObject).GetMethod("HandlePickupCurseParticles", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandlePickupCurseParticlesHook"));
+
+            new Hook(typeof(BaseShopController).GetMethod("HandleEnter", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandleEnterHook"));
+
         }
 
 
@@ -188,21 +191,43 @@ namespace ModularMod
                 for (int i = 0; i < self.m_itemControllers.Count; i++)
                 {
                     var HPComp = self.m_itemControllers[i].item.GetComponent<HealthPickup>();
-                    if (self.m_itemControllers[i] && self.m_itemControllers[i].item && HPComp != null)
+                    var AmmoComp = self.m_itemControllers[i].item.GetComponent<AmmoPickup>();
+
+                    if (self.m_itemControllers[i] && self.m_itemControllers[i].item)
                     {
                         bool flga = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST);
+                        if (HPComp != null)
+                        {
+                            Debug.Log(1);
 
-                        if (HPComp.healAmount == 0.5f)
-                        {
-                            var g = UnityEngine.Random.value < 0.025f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
-                            self.m_shopItems[i] = g;
-                            self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                            if (HPComp.healAmount == 0.5f)
+                            {
+                                var g = UnityEngine.Random.value < 0.025f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                                self.m_shopItems[i] = g;
+                                self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                            }
+                            if (HPComp.healAmount == 1f)
+                            {
+                                var g = UnityEngine.Random.value < 0.0625f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                                self.m_shopItems[i] = g;
+                                self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                            }
                         }
-                        if (HPComp.healAmount == 1f)
+                        if (AmmoComp != null)
                         {
-                            var g = UnityEngine.Random.value < 0.0625f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
-                            self.m_shopItems[i] = g;
-                            self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                            Debug.Log(2);
+                            if (AmmoComp.mode == AmmoPickup.AmmoPickupMode.SPREAD_AMMO)
+                            {
+                                var g = UnityEngine.Random.value < 0.025f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                                self.m_shopItems[i] = g;
+                                self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                            }
+                            if (AmmoComp.mode == AmmoPickup.AmmoPickupMode.FULL_AMMO)
+                            {
+                                var g = UnityEngine.Random.value < 0.0625f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;
+                                self.m_shopItems[i] = g;
+                                self.m_itemControllers[i].Initialize(g.GetComponent<PickupObject>(), self);
+                            }
                         }
                     }
                 }

@@ -89,7 +89,8 @@ namespace ModularMod
             modulePrinterCore.cloakDoer.ProcessCloak(new CloakDoer.CloakContext()
             {
                 Length = 3f + (stack * 3f),
-                OnForceCloakBroken = PP
+                OnForceCloakBroken = PP,
+                //Retrigger_Force_Cloak_Break = false
             });
         }
 

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Reactive Sensors",
             Description = "Get In, Get Out",
-            LongDescription = "If an enemy gets too close, releases a massive shockwave that stuns, pushes and harms enemies in a large redius (+Damage and push force per stack). Can deflect enemy projectiles within a small radius. Recharges over 15 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "If an enemy gets too close, releases a massive shockwave that stuns, pushes and harms enemies in a large redius (+Damage, Push Force and Detection Range per stack). Can deflect enemy projectiles within a small radius. Recharges over 15 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Reactive Sensors" + h.ReturnTierLabel();
-            h.LabelDescription = "If an enemy gets too close, releases a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage and push force", StaticColorHexes.Light_Orange_Hex) + ")\nCan deflect enemy projectiles within a small radius.\nRecharges after 15 seconds.";
+            h.LabelDescription = "If an enemy gets too close, releases a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage, Push Force and Detection Range", StaticColorHexes.Light_Orange_Hex) + ")\nCan deflect enemy projectiles within a small radius.\nRecharges after 15 seconds.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -57,8 +57,8 @@ namespace ModularMod
             ID = h.PickupObjectId;
         }
         public static int ID;
-
         public static GameObject BatteryObject;
+        private HeatIndicatorController ring;
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -66,9 +66,9 @@ namespace ModularMod
             modulePrinter.OnRoomCleared += ORC;
             player.StartCoroutine(EnterCharge(player));
         }
-
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            ProcessRing(player, false);
             modulePrinter.OnFrameUpdate -= OFU;
             modulePrinter.OnRoomCleared -= ORC;
             if (extantBattery != null)
@@ -83,6 +83,7 @@ namespace ModularMod
         {
             currentState = State.EnteredCharged;
             RechargeTime = 16;
+            ProcessRing(player, true);
 
             if (extantBattery != null)
             {
@@ -90,6 +91,11 @@ namespace ModularMod
                 extantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("finish");
                 extantBattery = null;
             }
+        }
+
+        public float ReturnRange(ModulePrinterCore core)
+        {
+            return 3.75f + (0.75f * this.ReturnStack(core));
         }
 
         public void OFU(ModulePrinterCore modulePrinter, PlayerController player)
@@ -106,6 +112,7 @@ namespace ModularMod
                 extantBattery.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("finish");
                 extantBattery = null;
                 AkSoundEngine.PostEvent("Play_BOSS_lasthuman_torch_01", player.gameObject);
+                ProcessRing(player, true);
                 extantBattery = null;
             }
             if (player.CurrentRoom == null) { return; }
@@ -113,15 +120,46 @@ namespace ModularMod
             if (enemies == null || enemies.Count == 0) { return; }
             foreach (var enemy in enemies)
             {
-                if (enemy && Vector2.Distance(enemy.sprite.WorldCenter, player.sprite.WorldCenter) < 4f)
+                if (enemy && Vector2.Distance(enemy.sprite.WorldCenter, player.sprite.WorldCenter) < ReturnRange(modulePrinter) + 0.25f)
                 {
                     currentState = State.Active;
+                    ProcessRing(player, false);
                     player.StartCoroutine(KABOOM(modulePrinter, player));
                     RechargeTime = 0;
                 }
             }
         }
         
+        private void ProcessRing(PlayerController player, bool SetActive = true)
+        {
+            if (ring == null)
+            {
+                ring = ((GameObject)UnityEngine.Object.Instantiate(ResourceCache.Acquire("Global VFX/HeatIndicator"), player.transform.position, Quaternion.identity, player.transform)).GetComponent<HeatIndicatorController>();
+                ring.CurrentRadius = ReturnRange(Stored_Core);
+                ring.CurrentColor = new Color(20, 255, 152).WithAlpha(0.02f);
+                ring.IsFire = false;
+                ring.GetComponent<MeshRenderer>().material.SetFloat("_PxWidth", 0.1f);
+                ring.transform.position = player.sprite.WorldCenter.ToVector3ZUp(100);
+                //ring.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
+            }
+            ring.StartCoroutine(DoRingLerp(ring, SetActive ? 4 : 0, !SetActive));
+        }
+
+        public IEnumerator DoRingLerp(HeatIndicatorController a, float to, bool Destroys = false)
+        {
+            float e = 0;
+            float afafaffa = a.CurrentRadius;
+            while (e < 1)
+            {
+                if (a == null) { yield break; }
+                e += BraveTime.DeltaTime;
+                a.CurrentRadius = Mathf.Lerp(afafaffa, to, Toolbox.SinLerpTValue(e));
+                yield return null;
+            }
+            if (Destroys == true) { Destroy(a.gameObject); }
+            yield break;
+        }
+
         public IEnumerator KABOOM(ModulePrinterCore modulePrinterCore, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);

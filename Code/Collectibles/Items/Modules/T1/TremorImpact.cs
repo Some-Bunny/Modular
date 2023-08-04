@@ -29,6 +29,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tremor_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Tremor Impact " + h.ReturnTierLabel();
+            h.AdditionalWeightMultiplier = 0.85f;
             h.LabelDescription = "Hitting enemies deals 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") of the damage dealt\nto enemies near the hurt enemy.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

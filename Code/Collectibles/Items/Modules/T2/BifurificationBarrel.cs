@@ -1,0 +1,96 @@
+﻿using Alexandria.ItemAPI;
+using JuneLib.Items;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
+
+
+namespace ModularMod
+{
+    public class BifurificationBarrel : DefaultModule
+    {
+        public static ItemTemplate template = new ItemTemplate(typeof(BifurificationBarrel))
+        {
+            Name = "Bifurcated Barrel",
+            Description = "Two-For-One",
+            LongDescription = "Increases rate of fire by 25% (+25% hyperbolically per stack), clip size by 25% (+25% per stack) and damage by 15%, but makes you fire in a V-formation.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            ManualSpriteCollection = StaticCollections.Module_T2_Collection,
+            ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bifurificationbarrel_t2_module"),
+            Quality = ItemQuality.SPECIAL,
+            PostInitAction = PostInit
+        };
+        public static void PostInit(PickupObject v)
+        {
+            var h = (v as DefaultModule);
+            h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bifurificationbarrel_t2_module_alt");
+            h.Tier = ModuleTier.Tier_2;
+            h.LabelName = "Bifurcated Barrel " + h.ReturnTierLabel();
+            h.LabelDescription = "Increases rate of fire by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nclip size by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") and damage by 15%,\nbut makes you fire in a V-formation.";
+            h.SetTag("modular_module");
+            h.AddColorLight(Color.green);
+            h.OverrideScrapCost = 12;
+            h.AdditionalWeightMultiplier = 0.75f;
+            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
+            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.IsUncraftable = true;
+            h.EnergyConsumption = 2;
+            h.AddToGlobalStorage();
+            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
+            ID = h.PickupObjectId;
+        }
+        public static int ID;
+
+        public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            player.stats.AdditionalVolleyModifiers += Stats_AdditionalVolleyModifiers;
+            player.stats.RecalculateStats(player);
+            modulePrinter.OnPostProcessProjectile += PPP;
+
+            this.gunStatModifier = new ModuleGunStatModifier()
+            {
+                FireRate_Process = ProcessFireRate,
+                ChargeSpeed_Process = ProcessFireRate,
+                ClipSize_Process = ProcessClipSize
+            };
+            modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
+            //modulePrinter.OnKilledEnemy += OKE;
+        }
+        public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
+        {
+            player.stats.AdditionalVolleyModifiers -= Stats_AdditionalVolleyModifiers;
+            player.stats.RecalculateStats(player);
+            modulePrinter.OnPostProcessProjectile -= PPP;
+            modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
+
+        }
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            p.baseData.damage *= 1.15f;
+            p.baseData.speed *= 1.2f;
+            p.UpdateSpeed();
+        }
+
+        public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
+        {
+            return clip + ((modularGunController.Base_Clip_Size / 4) * modulePrinterCore.ReturnStack(this.LabelName));
+        }
+
+        public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
+        {
+            int stack = this.ReturnStack(modulePrinterCore);
+            return f - (f - (f / (1 + 0.25f * stack)));
+        }
+        private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
+        {
+            GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 1, 54, 5);
+        }
+        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
+        {
+            player.stats.RecalculateStats(player);
+        }
+    }
+}
+

@@ -38,7 +38,8 @@ namespace ModularMod
             MAGNET,
             CLAM,
             RAGE,
-            WEAK
+            WEAK,
+            ARROW
         }
 
         public static void Init()
@@ -52,6 +53,7 @@ namespace ModularMod
             InitSpecialCharacterContainer(SpecialCharacters.RELOAD, "lync_icon_007");//, null, null, null, null);
             InitSpecialCharacterContainer(SpecialCharacters.SHOTSPEED, "lync_icon_014");
             InitSpecialCharacterContainer(SpecialCharacters.HEART, "lync_icon_009");
+            InitSpecialCharacterContainer(SpecialCharacters.ARROW, "lync_icon_030");
 
             /*
             InitSpecialCharacterContainer(SpecialCharacters.ENCASED_ROUND, "lync_icon_008", null, null, null, null);

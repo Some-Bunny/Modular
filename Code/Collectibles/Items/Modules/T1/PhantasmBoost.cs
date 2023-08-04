@@ -32,6 +32,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Phantasm Boost " + h.ReturnTierLabel();
             h.LabelDescription = "Deal an additional 50% ("+ StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through internal walls and pierce debris objects.";
+            h.AdditionalWeightMultiplier = 0.66f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

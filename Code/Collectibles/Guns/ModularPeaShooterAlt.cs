@@ -59,7 +59,7 @@ namespace ModularMod
             UnityEngine.Object.DontDestroyOnLoad(projectile);
             gun.DefaultModule.projectiles[0] = projectile;
 
-            projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
+            projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.MiddleCenter);
 
             projectile.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
             projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
@@ -77,7 +77,7 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
             projectile.baseData.speed *= 1.5f;
 
-            projectile.baseData.damage = 5f;
+            projectile.baseData.damage = 4.5f;
             projectile.shouldRotate = false;
             gun.gunClass = GunClass.NONE;
 

@@ -574,6 +574,9 @@ namespace ModularMod
 
         public void Update()
         {
+            if (this == null) { return; }
+            if (label == null) { return; }
+
             if (label)
             {
                 if (MouseHover != null)

@@ -56,8 +56,8 @@ MonoBehaviour:
   - name: left_button_active
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.06640625
+      x: 0.8847656
+      y: 0.203125
       width: 0.015625
       height: 0.015625
     border:
@@ -73,8 +73,8 @@ MonoBehaviour:
   - name: left_button_active_alt
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.083984375
+      x: 0.9746094
+      y: 0
       width: 0.015625
       height: 0.015625
     border:
@@ -90,8 +90,8 @@ MonoBehaviour:
   - name: left_button_highlighted
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.1015625
+      x: 0.9746094
+      y: 0.017578125
       width: 0.015625
       height: 0.015625
     border:
@@ -107,8 +107,8 @@ MonoBehaviour:
   - name: left_button_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.119140625
+      x: 0.9746094
+      y: 0.03515625
       width: 0.015625
       height: 0.015625
     border:
@@ -125,7 +125,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0
+      y: 0.052734375
       width: 0.015625
       height: 0.015625
     border:
@@ -142,7 +142,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.017578125
+      y: 0.0703125
       width: 0.015625
       height: 0.015625
     border:
@@ -159,7 +159,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.03515625
+      y: 0.087890625
       width: 0.015625
       height: 0.015625
     border:
@@ -176,7 +176,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.052734375
+      y: 0.10546875
       width: 0.015625
       height: 0.015625
     border:
@@ -345,8 +345,8 @@ MonoBehaviour:
   - name: name_label_gravgun_alt
     region:
       serializedVersion: 2
-      x: 0.75683594
-      y: 0.1015625
+      x: 0.15136719
+      y: 0.7578125
       width: 0.14941406
       height: 0.048828125
     border:
@@ -363,7 +363,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.15136719
-      y: 0.7578125
+      y: 0.80859375
       width: 0.14941406
       height: 0.048828125
     border:
@@ -380,7 +380,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.15136719
-      y: 0.80859375
+      y: 0.859375
       width: 0.14941406
       height: 0.048828125
     border:
@@ -397,7 +397,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.15136719
-      y: 0.859375
+      y: 0.91015625
       width: 0.14941406
       height: 0.048828125
     border:
@@ -413,8 +413,8 @@ MonoBehaviour:
   - name: name_label_lightlance_alt
     region:
       serializedVersion: 2
-      x: 0.15136719
-      y: 0.91015625
+      x: 0.30273438
+      y: 0.7578125
       width: 0.14941406
       height: 0.048828125
     border:
@@ -430,7 +430,7 @@ MonoBehaviour:
   - name: name_label_locked
     region:
       serializedVersion: 2
-      x: 0.30273438
+      x: 0.45410156
       y: 0.7578125
       width: 0.14941406
       height: 0.048828125
@@ -447,7 +447,7 @@ MonoBehaviour:
   - name: name_label_locked_alt
     region:
       serializedVersion: 2
-      x: 0.45410156
+      x: 0.60546875
       y: 0.7578125
       width: 0.14941406
       height: 0.048828125
@@ -464,8 +464,8 @@ MonoBehaviour:
   - name: name_label_minigun
     region:
       serializedVersion: 2
-      x: 0.60546875
-      y: 0.7578125
+      x: 0.30273438
+      y: 0.80859375
       width: 0.14941406
       height: 0.048828125
     border:
@@ -478,11 +478,45 @@ MonoBehaviour:
     textureGUID: 43ac840b08c062a45abbf372b343f614
     deleted: 0
     texture: {fileID: 0}
+  - name: name_label_nuke
+    region:
+      serializedVersion: 2
+      x: 0.30273438
+      y: 0.859375
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 8ca638c0c8c67c548968027cff616c59
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_nuke_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.3046875
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 2dc16da88cf591d4f83a0e27716710ec
+    deleted: 0
+    texture: {fileID: 0}
   - name: name_label_peashooter
     region:
       serializedVersion: 2
       x: 0.30273438
-      y: 0.80859375
+      y: 0.91015625
       width: 0.14941406
       height: 0.048828125
     border:
@@ -498,8 +532,8 @@ MonoBehaviour:
   - name: name_label_peashooter_alt
     region:
       serializedVersion: 2
-      x: 0.30273438
-      y: 0.859375
+      x: 0.45410156
+      y: 0.80859375
       width: 0.14941406
       height: 0.048828125
     border:
@@ -515,8 +549,8 @@ MonoBehaviour:
   - name: name_label_PrecisionRifle
     region:
       serializedVersion: 2
-      x: 0.30273438
-      y: 0.91015625
+      x: 0.60546875
+      y: 0.80859375
       width: 0.14941406
       height: 0.048828125
     border:
@@ -533,7 +567,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.45410156
-      y: 0.80859375
+      y: 0.859375
       width: 0.14941406
       height: 0.048828125
     border:
@@ -549,8 +583,8 @@ MonoBehaviour:
   - name: name_label_QuadBurster
     region:
       serializedVersion: 2
-      x: 0.60546875
-      y: 0.80859375
+      x: 0.45410156
+      y: 0.91015625
       width: 0.14941406
       height: 0.048828125
     border:
@@ -566,7 +600,7 @@ MonoBehaviour:
   - name: name_label_QuadBurster_alt
     region:
       serializedVersion: 2
-      x: 0.45410156
+      x: 0.60546875
       y: 0.859375
       width: 0.14941406
       height: 0.048828125
@@ -583,7 +617,7 @@ MonoBehaviour:
   - name: name_label_scattercannon
     region:
       serializedVersion: 2
-      x: 0.45410156
+      x: 0.60546875
       y: 0.91015625
       width: 0.14941406
       height: 0.048828125
@@ -600,8 +634,8 @@ MonoBehaviour:
   - name: name_label_scattercannon_alt
     region:
       serializedVersion: 2
-      x: 0.60546875
-      y: 0.859375
+      x: 0.75683594
+      y: 0
       width: 0.14941406
       height: 0.048828125
     border:
@@ -614,11 +648,45 @@ MonoBehaviour:
     textureGUID: e7f4edfa067afb04e84192c3d7ba9435
     deleted: 0
     texture: {fileID: 0}
+  - name: name_label_shrapnel
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.05078125
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: 35f6bee0f14931c44afdac17c574ac37
+    deleted: 0
+    texture: {fileID: 0}
+  - name: name_label_shrapnel_alt
+    region:
+      serializedVersion: 2
+      x: 0.75683594
+      y: 0.1015625
+      width: 0.14941406
+      height: 0.048828125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 153, y: 50}
+    textureGUID: a7b0f740a3c47614193d3744880896fd
+    deleted: 0
+    texture: {fileID: 0}
   - name: name_label_suppressor_alt
     region:
       serializedVersion: 2
-      x: 0.60546875
-      y: 0.91015625
+      x: 0.75683594
+      y: 0.15234375
       width: 0.14941406
       height: 0.048828125
     border:
@@ -634,8 +702,8 @@ MonoBehaviour:
   - name: name_label_WIP
     region:
       serializedVersion: 2
-      x: 0.75683594
-      y: 0
+      x: 0.6269531
+      y: 0.203125
       width: 0.14941406
       height: 0.048828125
     border:
@@ -651,8 +719,8 @@ MonoBehaviour:
   - name: name_label_WIP_alt
     region:
       serializedVersion: 2
-      x: 0.75683594
-      y: 0.05078125
+      x: 0.6269531
+      y: 0.25390625
       width: 0.14941406
       height: 0.048828125
     border:
@@ -669,7 +737,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.0703125
+      y: 0.123046875
       width: 0.015625
       height: 0.015625
     border:
@@ -686,7 +754,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.087890625
+      y: 0.140625
       width: 0.015625
       height: 0.015625
     border:
@@ -703,7 +771,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.10546875
+      y: 0.15820312
       width: 0.015625
       height: 0.015625
     border:
@@ -720,7 +788,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.123046875
+      y: 0.17578125
       width: 0.015625
       height: 0.015625
     border:
@@ -737,7 +805,7 @@ MonoBehaviour:
     region:
       serializedVersion: 2
       x: 0.9746094
-      y: 0.140625
+      y: 0.19335938
       width: 0.015625
       height: 0.015625
     border:
@@ -753,8 +821,8 @@ MonoBehaviour:
   - name: right_button_inactive_alt
     region:
       serializedVersion: 2
-      x: 0.7597656
-      y: 0.31835938
+      x: 0.9746094
+      y: 0.2109375
       width: 0.015625
       height: 0.015625
     border:
@@ -770,8 +838,8 @@ MonoBehaviour:
   - name: right_button_pressed
     region:
       serializedVersion: 2
-      x: 0.77734375
-      y: 0.31835938
+      x: 0.75683594
+      y: 0.48828125
       width: 0.015625
       height: 0.015625
     border:
@@ -787,8 +855,8 @@ MonoBehaviour:
   - name: right_button_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.7949219
-      y: 0.31835938
+      x: 0.7597656
+      y: 0.35546875
       width: 0.015625
       height: 0.015625
     border:
@@ -804,8 +872,8 @@ MonoBehaviour:
   - name: ui_button_accept_active
     region:
       serializedVersion: 2
-      x: 0
-      y: 0.9609375
+      x: 0.6269531
+      y: 0
       width: 0.125
       height: 0.03125
     border:
@@ -821,8 +889,8 @@ MonoBehaviour:
   - name: ui_button_accept_active_1
     region:
       serializedVersion: 2
-      x: 0.12695312
-      y: 0.9609375
+      x: 0.6269531
+      y: 0.033203125
       width: 0.125
       height: 0.03125
     border:
@@ -838,8 +906,8 @@ MonoBehaviour:
   - name: ui_button_accept_active_1_alt
     region:
       serializedVersion: 2
-      x: 0.25390625
-      y: 0.9609375
+      x: 0.6269531
+      y: 0.06640625
       width: 0.125
       height: 0.03125
     border:
@@ -855,8 +923,8 @@ MonoBehaviour:
   - name: ui_button_accept_active_alt
     region:
       serializedVersion: 2
-      x: 0.38085938
-      y: 0.9609375
+      x: 0.6269531
+      y: 0.099609375
       width: 0.125
       height: 0.03125
     border:
@@ -872,8 +940,8 @@ MonoBehaviour:
   - name: ui_button_accept_active_press
     region:
       serializedVersion: 2
-      x: 0.5078125
-      y: 0.9609375
+      x: 0.6269531
+      y: 0.1328125
       width: 0.125
       height: 0.03125
     border:
@@ -889,8 +957,8 @@ MonoBehaviour:
   - name: ui_button_accept_active_press_alt
     region:
       serializedVersion: 2
-      x: 0.6347656
-      y: 0.9609375
+      x: 0.6269531
+      y: 0.16601562
       width: 0.125
       height: 0.03125
     border:
@@ -906,8 +974,8 @@ MonoBehaviour:
   - name: ui_button_accept_highlight
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0
+      x: 0
+      y: 0.9609375
       width: 0.125
       height: 0.03125
     border:
@@ -923,8 +991,8 @@ MonoBehaviour:
   - name: ui_button_accept_highlight_alt
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.033203125
+      x: 0.12695312
+      y: 0.9609375
       width: 0.125
       height: 0.03125
     border:
@@ -940,8 +1008,8 @@ MonoBehaviour:
   - name: ui_button_apollo_gun
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.06640625
+      x: 0.25390625
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -957,8 +1025,8 @@ MonoBehaviour:
   - name: ui_button_apollo_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.06640625
+      x: 0.28710938
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -974,8 +1042,8 @@ MonoBehaviour:
   - name: ui_button_apollo_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.06640625
+      x: 0.3203125
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -991,8 +1059,8 @@ MonoBehaviour:
   - name: ui_button_artemis_gun_alt
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.099609375
+      x: 0.35351562
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1008,8 +1076,8 @@ MonoBehaviour:
   - name: ui_button_artemis_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.099609375
+      x: 0.38671875
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1025,8 +1093,8 @@ MonoBehaviour:
   - name: ui_button_artemis_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.099609375
+      x: 0.41992188
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1042,8 +1110,8 @@ MonoBehaviour:
   - name: ui_button_charger_gun
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.1328125
+      x: 0.453125
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1059,8 +1127,8 @@ MonoBehaviour:
   - name: ui_button_charger_gun_alt
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.1328125
+      x: 0.48632812
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1076,8 +1144,8 @@ MonoBehaviour:
   - name: ui_button_charger_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.1328125
+      x: 0.51953125
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1093,8 +1161,8 @@ MonoBehaviour:
   - name: ui_button_charger_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.9082031
-      y: 0
+      x: 0.5527344
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1110,8 +1178,8 @@ MonoBehaviour:
   - name: ui_button_charger_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.94140625
-      y: 0
+      x: 0.5859375
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1127,8 +1195,8 @@ MonoBehaviour:
   - name: ui_button_charger_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.9082031
-      y: 0.033203125
+      x: 0.6191406
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1144,8 +1212,8 @@ MonoBehaviour:
   - name: ui_button_close
     region:
       serializedVersion: 2
-      x: 0.94140625
-      y: 0.033203125
+      x: 0.65234375
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1161,8 +1229,8 @@ MonoBehaviour:
   - name: ui_button_close_alt
     region:
       serializedVersion: 2
-      x: 0.9082031
-      y: 0.06640625
+      x: 0.6855469
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1178,8 +1246,8 @@ MonoBehaviour:
   - name: ui_button_close_highlighted
     region:
       serializedVersion: 2
-      x: 0.94140625
-      y: 0.06640625
+      x: 0.71875
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1195,8 +1263,8 @@ MonoBehaviour:
   - name: ui_button_close_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.9082031
-      y: 0.099609375
+      x: 0.7519531
+      y: 0.9609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1212,8 +1280,8 @@ MonoBehaviour:
   - name: ui_button_close_pressed
     region:
       serializedVersion: 2
-      x: 0.94140625
-      y: 0.099609375
+      x: 0.9082031
+      y: 0
       width: 0.03125
       height: 0.03125
     border:
@@ -1229,8 +1297,8 @@ MonoBehaviour:
   - name: ui_button_close_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.9082031
-      y: 0.1328125
+      x: 0.94140625
+      y: 0
       width: 0.03125
       height: 0.03125
     border:
@@ -1246,8 +1314,8 @@ MonoBehaviour:
   - name: ui_button_default_gun
     region:
       serializedVersion: 2
-      x: 0.94140625
-      y: 0.1328125
+      x: 0.9082031
+      y: 0.033203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1263,8 +1331,8 @@ MonoBehaviour:
   - name: ui_button_default_gun_alt
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.15234375
+      x: 0.94140625
+      y: 0.033203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1280,8 +1348,8 @@ MonoBehaviour:
   - name: ui_button_default_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.16601562
+      x: 0.9082031
+      y: 0.06640625
       width: 0.03125
       height: 0.03125
     border:
@@ -1297,8 +1365,8 @@ MonoBehaviour:
   - name: ui_button_default_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.16601562
+      x: 0.94140625
+      y: 0.06640625
       width: 0.03125
       height: 0.03125
     border:
@@ -1314,8 +1382,8 @@ MonoBehaviour:
   - name: ui_button_default_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.16601562
+      x: 0.9082031
+      y: 0.099609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1331,8 +1399,8 @@ MonoBehaviour:
   - name: ui_button_default_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.7597656
-      y: 0.15234375
+      x: 0.94140625
+      y: 0.099609375
       width: 0.03125
       height: 0.03125
     border:
@@ -1348,8 +1416,8 @@ MonoBehaviour:
   - name: ui_button_grav_gun
     region:
       serializedVersion: 2
-      x: 0.79296875
-      y: 0.15234375
+      x: 0.9082031
+      y: 0.1328125
       width: 0.03125
       height: 0.03125
     border:
@@ -1365,8 +1433,8 @@ MonoBehaviour:
   - name: ui_button_grav_gun_alt
     region:
       serializedVersion: 2
-      x: 0.8261719
-      y: 0.15234375
+      x: 0.94140625
+      y: 0.1328125
       width: 0.03125
       height: 0.03125
     border:
@@ -1382,8 +1450,8 @@ MonoBehaviour:
   - name: ui_button_grav_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.859375
-      y: 0.15234375
+      x: 0.9082031
+      y: 0.16601562
       width: 0.03125
       height: 0.03125
     border:
@@ -1399,7 +1467,7 @@ MonoBehaviour:
   - name: ui_button_grav_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.8925781
+      x: 0.94140625
       y: 0.16601562
       width: 0.03125
       height: 0.03125
@@ -1416,8 +1484,8 @@ MonoBehaviour:
   - name: ui_button_grav_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.92578125
-      y: 0.16601562
+      x: 0.9082031
+      y: 0.19921875
       width: 0.03125
       height: 0.03125
     border:
@@ -1433,8 +1501,8 @@ MonoBehaviour:
   - name: ui_button_grav_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.9589844
-      y: 0.16601562
+      x: 0.94140625
+      y: 0.19921875
       width: 0.03125
       height: 0.03125
     border:
@@ -1450,8 +1518,8 @@ MonoBehaviour:
   - name: ui_button_hammer_gun
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.18554688
+      x: 0.78515625
+      y: 0.203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1467,8 +1535,8 @@ MonoBehaviour:
   - name: ui_button_hammer_gun_alt
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.19921875
+      x: 0.8183594
+      y: 0.203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1484,8 +1552,8 @@ MonoBehaviour:
   - name: ui_button_hammer_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.19921875
+      x: 0.8515625
+      y: 0.203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1501,8 +1569,8 @@ MonoBehaviour:
   - name: ui_button_hammer_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.19921875
+      x: 0.8847656
+      y: 0.23242188
       width: 0.03125
       height: 0.03125
     border:
@@ -1518,8 +1586,8 @@ MonoBehaviour:
   - name: ui_button_hammer_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.7597656
-      y: 0.18554688
+      x: 0.91796875
+      y: 0.23242188
       width: 0.03125
       height: 0.03125
     border:
@@ -1535,8 +1603,8 @@ MonoBehaviour:
   - name: ui_button_hammer_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.79296875
-      y: 0.18554688
+      x: 0.9511719
+      y: 0.23242188
       width: 0.03125
       height: 0.03125
     border:
@@ -1549,11 +1617,113 @@ MonoBehaviour:
     textureGUID: 5cfd15b9f98cc4e4e97c451b62980e36
     deleted: 0
     texture: {fileID: 0}
+  - name: ui_button_idk_gun
+    region:
+      serializedVersion: 2
+      x: 0.78515625
+      y: 0.23632812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 774efa0aabc26224e9b075ad9ee5d47d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_idk_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.8183594
+      y: 0.23632812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: eb8ef795baa9d0b4d8d7087e4fa22615
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_idk_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.8515625
+      y: 0.23632812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 9ad0ae61a243ad449a0066a6f6bdcb04
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_idk_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.8847656
+      y: 0.265625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 987019fbf2508214090444a80ddef5e4
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_idk_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.91796875
+      y: 0.265625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 7c7920f7096a36742ab341c3a366c113
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_idk_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.9511719
+      y: 0.265625
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 98196d586a31db24eb9d4451ba4d365b
+    deleted: 0
+    texture: {fileID: 0}
   - name: ui_button_lance_gun
     region:
       serializedVersion: 2
-      x: 0.8261719
-      y: 0.18554688
+      x: 0.78515625
+      y: 0.26953125
       width: 0.03125
       height: 0.03125
     border:
@@ -1569,8 +1739,8 @@ MonoBehaviour:
   - name: ui_button_lance_gun_alt
     region:
       serializedVersion: 2
-      x: 0.859375
-      y: 0.18554688
+      x: 0.8183594
+      y: 0.26953125
       width: 0.03125
       height: 0.03125
     border:
@@ -1586,8 +1756,8 @@ MonoBehaviour:
   - name: ui_button_lance_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.8925781
-      y: 0.19921875
+      x: 0.8515625
+      y: 0.26953125
       width: 0.03125
       height: 0.03125
     border:
@@ -1603,8 +1773,8 @@ MonoBehaviour:
   - name: ui_button_lance_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.92578125
-      y: 0.19921875
+      x: 0.8847656
+      y: 0.29882812
       width: 0.03125
       height: 0.03125
     border:
@@ -1620,8 +1790,8 @@ MonoBehaviour:
   - name: ui_button_lance_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.9589844
-      y: 0.19921875
+      x: 0.91796875
+      y: 0.29882812
       width: 0.03125
       height: 0.03125
     border:
@@ -1637,8 +1807,8 @@ MonoBehaviour:
   - name: ui_button_lance_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.21875
+      x: 0.9511719
+      y: 0.29882812
       width: 0.03125
       height: 0.03125
     border:
@@ -1654,8 +1824,8 @@ MonoBehaviour:
   - name: ui_button_locked
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.23242188
+      x: 0.78515625
+      y: 0.30273438
       width: 0.03125
       height: 0.03125
     border:
@@ -1671,8 +1841,8 @@ MonoBehaviour:
   - name: ui_button_locked_alt
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.23242188
+      x: 0.8183594
+      y: 0.30273438
       width: 0.03125
       height: 0.03125
     border:
@@ -1688,8 +1858,8 @@ MonoBehaviour:
   - name: ui_button_locked_highlighted
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.23242188
+      x: 0.8515625
+      y: 0.30273438
       width: 0.03125
       height: 0.03125
     border:
@@ -1705,8 +1875,8 @@ MonoBehaviour:
   - name: ui_button_locked_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.7597656
-      y: 0.21875
+      x: 0.8847656
+      y: 0.33203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1722,8 +1892,8 @@ MonoBehaviour:
   - name: ui_button_locked_pressed
     region:
       serializedVersion: 2
-      x: 0.79296875
-      y: 0.21875
+      x: 0.91796875
+      y: 0.33203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1739,8 +1909,8 @@ MonoBehaviour:
   - name: ui_button_locked_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.8261719
-      y: 0.21875
+      x: 0.9511719
+      y: 0.33203125
       width: 0.03125
       height: 0.03125
     border:
@@ -1753,11 +1923,113 @@ MonoBehaviour:
     textureGUID: 8af7b718a6bfd944bbe347f2ef8c3c5e
     deleted: 0
     texture: {fileID: 0}
+  - name: ui_button_nuke_gun
+    region:
+      serializedVersion: 2
+      x: 0.78515625
+      y: 0.3359375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 495db716c95f28f4f8fa4da538594e0d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_nuke_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.8183594
+      y: 0.3359375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: bbe118fac73fe9649a1d2be4bd88f148
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_nuke_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.8515625
+      y: 0.3359375
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 287ebc5c57baa9b498fbeb00e9facb67
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_nuke_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.35546875
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: c48e3164f1690ad4a98c2bc583a5fcda
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_nuke_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.35546875
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 6a72bec9b17d8964d8ebffbd6c86b1b8
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_nuke_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.35546875
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 5c3e45efb47f2ec40a4f809de488abdc
+    deleted: 0
+    texture: {fileID: 0}
   - name: ui_button_peashooter_gun
     region:
       serializedVersion: 2
-      x: 0.859375
-      y: 0.21875
+      x: 0.7265625
+      y: 0.35546875
       width: 0.03125
       height: 0.03125
     border:
@@ -1773,8 +2045,8 @@ MonoBehaviour:
   - name: ui_button_peashooter_gun_alt
     region:
       serializedVersion: 2
-      x: 0.8925781
-      y: 0.23242188
+      x: 0.8847656
+      y: 0.36523438
       width: 0.03125
       height: 0.03125
     border:
@@ -1790,8 +2062,8 @@ MonoBehaviour:
   - name: ui_button_peashooter_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.92578125
-      y: 0.23242188
+      x: 0.91796875
+      y: 0.36523438
       width: 0.03125
       height: 0.03125
     border:
@@ -1807,8 +2079,8 @@ MonoBehaviour:
   - name: ui_button_peashooter_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.9589844
-      y: 0.23242188
+      x: 0.9511719
+      y: 0.36523438
       width: 0.03125
       height: 0.03125
     border:
@@ -1824,8 +2096,8 @@ MonoBehaviour:
   - name: ui_button_peashooter_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.25195312
+      x: 0.78515625
+      y: 0.36914062
       width: 0.03125
       height: 0.03125
     border:
@@ -1841,8 +2113,8 @@ MonoBehaviour:
   - name: ui_button_peashooter_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.265625
+      x: 0.8183594
+      y: 0.36914062
       width: 0.03125
       height: 0.03125
     border:
@@ -1858,8 +2130,8 @@ MonoBehaviour:
   - name: ui_button_precisionrifle_gun
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.265625
+      x: 0.8515625
+      y: 0.36914062
       width: 0.03125
       height: 0.03125
     border:
@@ -1875,8 +2147,8 @@ MonoBehaviour:
   - name: ui_button_precisionrifle_gun_alt
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.265625
+      x: 0.6269531
+      y: 0.38867188
       width: 0.03125
       height: 0.03125
     border:
@@ -1892,8 +2164,8 @@ MonoBehaviour:
   - name: ui_button_precisionrifle_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.7597656
-      y: 0.25195312
+      x: 0.66015625
+      y: 0.38867188
       width: 0.03125
       height: 0.03125
     border:
@@ -1909,8 +2181,8 @@ MonoBehaviour:
   - name: ui_button_precisionrifle_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.79296875
-      y: 0.25195312
+      x: 0.6933594
+      y: 0.38867188
       width: 0.03125
       height: 0.03125
     border:
@@ -1926,8 +2198,8 @@ MonoBehaviour:
   - name: ui_button_precisionrifle_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.8261719
-      y: 0.25195312
+      x: 0.7265625
+      y: 0.38867188
       width: 0.03125
       height: 0.03125
     border:
@@ -1943,8 +2215,8 @@ MonoBehaviour:
   - name: ui_button_precisionrifle_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.859375
-      y: 0.25195312
+      x: 0.8847656
+      y: 0.3984375
       width: 0.03125
       height: 0.03125
     border:
@@ -1960,8 +2232,8 @@ MonoBehaviour:
   - name: ui_button_quadburster_gun
     region:
       serializedVersion: 2
-      x: 0.8925781
-      y: 0.265625
+      x: 0.91796875
+      y: 0.3984375
       width: 0.03125
       height: 0.03125
     border:
@@ -1977,8 +2249,8 @@ MonoBehaviour:
   - name: ui_button_quadburster_gun_alt
     region:
       serializedVersion: 2
-      x: 0.92578125
-      y: 0.265625
+      x: 0.9511719
+      y: 0.3984375
       width: 0.03125
       height: 0.03125
     border:
@@ -1994,8 +2266,8 @@ MonoBehaviour:
   - name: ui_button_quadburster_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.9589844
-      y: 0.265625
+      x: 0.78515625
+      y: 0.40234375
       width: 0.03125
       height: 0.03125
     border:
@@ -2011,8 +2283,8 @@ MonoBehaviour:
   - name: ui_button_quadburster_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.28515625
+      x: 0.8183594
+      y: 0.40234375
       width: 0.03125
       height: 0.03125
     border:
@@ -2028,8 +2300,8 @@ MonoBehaviour:
   - name: ui_button_quadburster_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.29882812
+      x: 0.8515625
+      y: 0.40234375
       width: 0.03125
       height: 0.03125
     border:
@@ -2045,8 +2317,8 @@ MonoBehaviour:
   - name: ui_button_quadburster_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.29882812
+      x: 0.6269531
+      y: 0.421875
       width: 0.03125
       height: 0.03125
     border:
@@ -2062,8 +2334,8 @@ MonoBehaviour:
   - name: ui_button_scattercannon_gun
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.29882812
+      x: 0.66015625
+      y: 0.421875
       width: 0.03125
       height: 0.03125
     border:
@@ -2079,8 +2351,8 @@ MonoBehaviour:
   - name: ui_button_scattercannon_gun_alt
     region:
       serializedVersion: 2
-      x: 0.7597656
-      y: 0.28515625
+      x: 0.6933594
+      y: 0.421875
       width: 0.03125
       height: 0.03125
     border:
@@ -2096,8 +2368,8 @@ MonoBehaviour:
   - name: ui_button_scattercannon_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.79296875
-      y: 0.28515625
+      x: 0.7265625
+      y: 0.421875
       width: 0.03125
       height: 0.03125
     border:
@@ -2113,8 +2385,8 @@ MonoBehaviour:
   - name: ui_button_scattercannon_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.8261719
-      y: 0.28515625
+      x: 0.8847656
+      y: 0.43164062
       width: 0.03125
       height: 0.03125
     border:
@@ -2130,8 +2402,8 @@ MonoBehaviour:
   - name: ui_button_scattercannon_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.859375
-      y: 0.28515625
+      x: 0.91796875
+      y: 0.43164062
       width: 0.03125
       height: 0.03125
     border:
@@ -2147,8 +2419,8 @@ MonoBehaviour:
   - name: ui_button_scattercannon_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.8925781
-      y: 0.29882812
+      x: 0.9511719
+      y: 0.43164062
       width: 0.03125
       height: 0.03125
     border:
@@ -2161,11 +2433,113 @@ MonoBehaviour:
     textureGUID: 7910e85413d6a024a806e8af0b95b64c
     deleted: 0
     texture: {fileID: 0}
+  - name: ui_button_shrapnel_gun
+    region:
+      serializedVersion: 2
+      x: 0.78515625
+      y: 0.43554688
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: de82877435b709f43a05c412936ae33a
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_shrapnel_gun_alt
+    region:
+      serializedVersion: 2
+      x: 0.8183594
+      y: 0.43554688
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 1a6639908f413d449af4cd70893aa44c
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_shrapnel_gun_highlighted
+    region:
+      serializedVersion: 2
+      x: 0.8515625
+      y: 0.43554688
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 7bdb233b84a9c5d4fbb36a7dc9d97c5d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_shrapnel_gun_highlighted_alt
+    region:
+      serializedVersion: 2
+      x: 0.6269531
+      y: 0.45507812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 1b29ce110bc66e64f9d490e75dfefae2
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_shrapnel_gun_pressed
+    region:
+      serializedVersion: 2
+      x: 0.66015625
+      y: 0.45507812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: d5f8f5c8f56b5dc4c825160550746d3d
+    deleted: 0
+    texture: {fileID: 0}
+  - name: ui_button_shrapnel_gun_pressed_alt
+    region:
+      serializedVersion: 2
+      x: 0.6933594
+      y: 0.45507812
+      width: 0.03125
+      height: 0.03125
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 32, y: 32}
+    textureGUID: 10577452308c06044a02fc3fca9cac73
+    deleted: 0
+    texture: {fileID: 0}
   - name: ui_button_suppressor_gun
     region:
       serializedVersion: 2
-      x: 0.92578125
-      y: 0.29882812
+      x: 0.7265625
+      y: 0.45507812
       width: 0.03125
       height: 0.03125
     border:
@@ -2181,8 +2555,8 @@ MonoBehaviour:
   - name: ui_button_suppressor_gun_alt
     region:
       serializedVersion: 2
-      x: 0.9589844
-      y: 0.29882812
+      x: 0.8847656
+      y: 0.46484375
       width: 0.03125
       height: 0.03125
     border:
@@ -2198,8 +2572,8 @@ MonoBehaviour:
   - name: ui_button_suppressor_gun_highlighted
     region:
       serializedVersion: 2
-      x: 0.7265625
-      y: 0.31835938
+      x: 0.91796875
+      y: 0.46484375
       width: 0.03125
       height: 0.03125
     border:
@@ -2215,8 +2589,8 @@ MonoBehaviour:
   - name: ui_button_suppressor_gun_highlighted_alt
     region:
       serializedVersion: 2
-      x: 0.6269531
-      y: 0.33203125
+      x: 0.9511719
+      y: 0.46484375
       width: 0.03125
       height: 0.03125
     border:
@@ -2232,8 +2606,8 @@ MonoBehaviour:
   - name: ui_button_suppressor_gun_pressed
     region:
       serializedVersion: 2
-      x: 0.66015625
-      y: 0.33203125
+      x: 0.78515625
+      y: 0.46875
       width: 0.03125
       height: 0.03125
     border:
@@ -2249,8 +2623,8 @@ MonoBehaviour:
   - name: ui_button_suppressor_gun_pressed_alt
     region:
       serializedVersion: 2
-      x: 0.6933594
-      y: 0.33203125
+      x: 0.6269531
+      y: 0.48828125
       width: 0.03125
       height: 0.03125
     border:

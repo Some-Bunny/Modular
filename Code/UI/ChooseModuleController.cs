@@ -23,6 +23,10 @@ namespace ModularMod
         private tk2dTiledSprite extantTether;
         private PlayerController playerToFollow;
 
+        public static Func<float, float> AngleSpawnModifier;
+        public static Func<float, float> RadiusSpawnModifier;
+
+
         public Vector2 CalculateAdditionalOffset(float angle, float ang = 0.5f)
         {
             return Toolbox.GetUnitOnCircle(angle - 90, ang);
@@ -126,13 +130,21 @@ namespace ModularMod
 
             float Arc = 30 + (Count * 15);
 
+            if (AngleSpawnModifier != null)
+            {
+                Arc = AngleSpawnModifier(Arc);
+            }
+            float radius = 2.5f;
+            if (RadiusSpawnModifier != null) { RadiusSpawnModifier(radius); }
+
+
             for (int i = 0; i < Count; i++)
             {
                 selectableModules.Add(new ModuleUICarrier()
                 {
                     controller = this,
                     defaultModule = SelectModule(tableToUse),
-                    EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(Vector2.up.ToAngle() + (Arc * -1), Count, i), 2.5f), //, Count, i) , 2f),   
+                    EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(Vector2.up.ToAngle() + (Arc * -1), Count, i), radius), //, Count, i) , 2f),   
                     isUsingAlternate = isAlt
                 });
             }
@@ -146,12 +158,8 @@ namespace ModularMod
                 tk2DTiledSprites.Add(Extant_Tether, r);
             }
 
-
             g.StartCoroutine(LerpLight(g));
         }
-
-
-
 
         public void Update()
         {

@@ -66,7 +66,7 @@ namespace ModularMod
                 projectileModule.projectiles[0] = projectile;
                 if (q == 1 | q == 2)
                 {
-                    projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.LowerCenter);
+                    projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.MiddleCenter);
                     projectile.baseData.range = 15;
                     projectile.baseData.damage = 9f;
                     projectile.pierceMinorBreakables = true;
@@ -74,7 +74,7 @@ namespace ModularMod
                 }
                 else
                 {
-                    projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
+                    projectile.SetProjectileCollisionRight("defaultarmcannon_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.MiddleCenter);
                     projectile.baseData.range = 10;
                     projectile.baseData.damage = 5f;
                 }

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Plus One",
             Description = "One Better",
-            LongDescription = "Improves Bullets by\n+1 (+1 per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Improves Bullets by exactly +1 (+1 per stack) damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plusone_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,14 +29,13 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.66f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Plus One " + h.ReturnTierLabel();
-            h.LabelDescription = "Improves Bullets by \n+1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Improves Bullets by\nexactly +1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
-            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
         public static int ID;

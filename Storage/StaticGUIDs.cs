@@ -375,6 +375,5 @@ namespace ModularMod
         public static string Pirate_Shotgun_Kin_GUID = "86dfc13486ee4f559189de53cfb84107";
         public static string Fridge_Lead_Maiden_GUID = "9215d1a221904c7386b481a171e52859";
         public static string Baby_Good_Shelleton_Companion_GUID = "3f40178e10dc4094a1565cd4fdc4af56";
-
     }
 }

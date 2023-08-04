@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Cleaning Protocol",
             Description = "BRUSH",
-            LongDescription = "Deal 100% (+100% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 25% (+25% per stack) damage multiplier from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal 100% (+100% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 25% (+25% per stack) extra damage from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Cleaning Protocol " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 100% (" + StaticColorHexes.AddColorToLabelString("+100%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + "\ndamage multiplier from various effects.";
+            h.LabelDescription = "Deal 100% (" + StaticColorHexes.AddColorToLabelString("+100%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + "\nextra damage from various effects.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

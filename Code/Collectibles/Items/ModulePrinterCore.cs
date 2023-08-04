@@ -13,6 +13,7 @@ using HutongGames.PlayMaker.Actions;
 using JuneLib.Items;
 using MonoMod.RuntimeDetour;
 using Planetside;
+using SaveAPI;
 using UnityEngine;
 using static Alexandria.Misc.CustomActions;
 
@@ -347,6 +348,11 @@ namespace ModularMod
             LastPower_Tick = ReturnPowerConsumption();
             LastTotal_Tick = ReturnTotalPower();
 
+            if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == false && Owner.HasPickupID(469) == true && Owner.HasPickupID(471) && Owner.HasPickupID(468) && Owner.HasPickupID(470) && Owner.HasPickupID(467))
+            {
+                AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, true);
+            }
+
             if (LastPower_Tick > LastTotal_Tick && OverridePower == false)
             {
                 if (OnPowerUsageHigherThanCapacity != null) { OnPowerUsageHigherThanCapacity(this, Owner); }
@@ -420,8 +426,25 @@ namespace ModularMod
             {
                 DoChanceBulletProc(p, f);
             }
+            if (OnPostProcessProjectileOneFrameDelay != null || ModifyForChanceBulletsOneFrameDelay !=null)
+            {
+                p.StartCoroutine(this.FrameDelay(p, this, 1));
+            }
         }
+        public IEnumerator FrameDelay(Projectile p, ModulePrinterCore modulePrinterCore, float f)
+        {
+            yield return null;
+            if (OnPostProcessProjectileOneFrameDelay != null)
+            {
+                OnPostProcessProjectileOneFrameDelay(modulePrinterCore, p, f, this.Owner);
 
+            }
+            if (modulePrinterCore.Owner.HasPickupID(521) && ModifyForChanceBulletsOneFrameDelay != null)
+            {
+                ModifyForChanceBulletsOneFrameDelay(this, p, f, Owner);
+            }
+            yield break;
+        }
         public void DoChanceBulletProc(Projectile p, float f)
         {
             if (UnityEngine.Random.value < 0.3f)
@@ -479,6 +502,7 @@ namespace ModularMod
 
 
         public static Action<ModulePrinterCore, Projectile, float, PlayerController> ModifyForChanceBullets;
+        public static Action<ModulePrinterCore, Projectile, float, PlayerController> ModifyForChanceBulletsOneFrameDelay;
 
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
         {
@@ -546,6 +570,9 @@ namespace ModularMod
 
         public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerEnteredAnyRoom;
         public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerExitedAnyRoom;
+
+        public Action<ModulePrinterCore, Projectile, float, PlayerController> OnPostProcessProjectileOneFrameDelay;
+
 
         public float StartingPower = 5;
         public Func<ModulePrinterCore, float> AdditionalPowerMods;
@@ -665,7 +692,7 @@ namespace ModularMod
             }
             return c;
         }
-        public float ReturnPowerConsumptionOfNextStack(DefaultModule module, int stacksToIncrement = 1)
+        public float ReturnPowerConsumptionOfNextStack(DefaultModule module, int stacksToIncrement = 1, bool Local = false)
         {
             float c = 0;
             for (int i = 0; i < ModuleContainers.Count; i++)
@@ -692,7 +719,7 @@ namespace ModularMod
                             c += ReturnActiveStack(defModule.LabelName) == 0 ? defModule.EnergyConsumption : defModule.EnergyConsumption + ((defModule.EnergyConsumption * ((defModule.ActiveStack() - 1) + stacksToIncrement)));
                         }
                     }
-                    else
+                    else if (Local == false)
                     {
                         c += ReturnPowerConsumption(ModuleContainers[i].defaultModule);
                     }

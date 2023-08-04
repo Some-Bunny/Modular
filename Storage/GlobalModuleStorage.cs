@@ -17,25 +17,25 @@ namespace ModularMod
             foreach (var entry in all_Tier_1_Modules)
             {D_Tier_Table.AddItemToPool(entry, 0.9f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { D_Tier_Table.AddItemToPool(entry, 0.6f * entry.AdditionalWeightMultiplier); }
+            { D_Tier_Table.AddItemToPool(entry, 0.5f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
             { D_Tier_Table.AddItemToPool(entry, 0.075f * entry.AdditionalWeightMultiplier); }
 
             C_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { C_Tier_Table.AddItemToPool(entry, 1f * entry.AdditionalWeightMultiplier); }
+            { C_Tier_Table.AddItemToPool(entry, 0.95f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { C_Tier_Table.AddItemToPool(entry, 0.7f * entry.AdditionalWeightMultiplier); }
+            { C_Tier_Table.AddItemToPool(entry, 0.65f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { C_Tier_Table.AddItemToPool(entry, 0.075f * entry.AdditionalWeightMultiplier); }
+            { C_Tier_Table.AddItemToPool(entry, 0.09f * entry.AdditionalWeightMultiplier); }
 
             B_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
             { B_Tier_Table.AddItemToPool(entry, 0.6f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { B_Tier_Table.AddItemToPool(entry, 0.7f * entry.AdditionalWeightMultiplier); }
+            { B_Tier_Table.AddItemToPool(entry, 0.675f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { B_Tier_Table.AddItemToPool(entry, 0.1f * entry.AdditionalWeightMultiplier); }
+            { B_Tier_Table.AddItemToPool(entry, 0.1125f * entry.AdditionalWeightMultiplier); }
 
             A_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
@@ -43,15 +43,15 @@ namespace ModularMod
             foreach (var entry in all_Tier_2_Modules)
             { A_Tier_Table.AddItemToPool(entry, 0.65f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { A_Tier_Table.AddItemToPool(entry, 0.14f * entry.AdditionalWeightMultiplier); }
+            { A_Tier_Table.AddItemToPool(entry, 0.15f * entry.AdditionalWeightMultiplier); }
 
             S_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.25f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.2f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.6f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.75f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.25f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.35f * entry.AdditionalWeightMultiplier); }
 
             Fallback_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
@@ -59,7 +59,7 @@ namespace ModularMod
             foreach (var entry in all_Tier_2_Modules)
             { Fallback_Table.AddItemToPool(entry, 0.5f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { Fallback_Table.AddItemToPool(entry, 0.1f * entry.AdditionalWeightMultiplier); }
+            { Fallback_Table.AddItemToPool(entry, 0.15f * entry.AdditionalWeightMultiplier); }
         }
         public static GenericLootTable D_Tier_Table;
         public static GenericLootTable C_Tier_Table;

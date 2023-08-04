@@ -31,7 +31,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.1.13";
+        public const string VERSION = "1.2.0";
         public const string TEXT_COLOR = "#79eaff";
 
 
@@ -138,11 +138,19 @@ namespace ModularMod
             TheHammerAlt.Init();
             Apollo.Init();
             Artemis.Init();
-            LightLance.Init();
-            LightLanceAlt.Init();
 
             GravityPulsar.Init();
             GravityPulsarAlt.Init();
+
+            LightLance.Init();
+            LightLanceAlt.Init();
+
+            FlakCannon.Init();
+            FlakCannonAlt.Init();
+
+            BigNuke.Init();
+            BigNukeAlt.Init();
+
 
             //Test Items
             Flowder.Init();
@@ -191,6 +199,8 @@ namespace ModularMod
 
             SteelPanopticon.BuildPrefab();
             ModularPrime.BuildPrefab();
+
+            AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.DO_NOT_CHANGE, true);
 
             //==== Build Custom Character ====//
             ToolsCharApi.EnableDebugLogging = false;

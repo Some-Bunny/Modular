@@ -29,7 +29,7 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("rubbercase_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.9f;
+            h.AdditionalWeightMultiplier = 0.85f;
             h.LabelName = "Rubber Fillings" + h.ReturnTierLabel();
             h.LabelDescription = "Adds 2 Bounces (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ")\nBut divides knockback force by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces accuracy by 15% " + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();

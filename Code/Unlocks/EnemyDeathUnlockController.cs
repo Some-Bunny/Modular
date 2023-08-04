@@ -28,7 +28,6 @@ namespace ModularMod.Code.Unlocks
         {
             if (enemy != null)
             {
-
                 foreach (PlayerController player in GameManager.Instance.AllPlayers)
                 {
                     if (player.PlayerHasCore() == true)
@@ -50,7 +49,7 @@ namespace ModularMod.Code.Unlocks
                         {
                             GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.CLEARED_BULLET_HELL, true);
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR, true);
-                            if (player.PlayerHasCore().ReturnActiveTotal() < 5)
+                            if (player.PlayerHasCore().ReturnActiveTotal() <= 4)
                             {
                                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_LICH_WITH_4_MODULES_OR_LESS, true);
                             }
@@ -74,7 +73,7 @@ namespace ModularMod.Code.Unlocks
                         if (StaticGUIDs.Advanced_Dragun_GUID == GUID | StaticGUIDs.Dragun_GUID == GUID)
                         {
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR, true);
-                            if (player.PlayerHasCore().ReturnActiveTotal() < 3)
+                            if (player.PlayerHasCore().ReturnActiveTotal() <= 3)
                             {
                                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, true);
                             }
@@ -83,7 +82,7 @@ namespace ModularMod.Code.Unlocks
                         if (StaticGUIDs.Advanced_Dragun_GUID == GUID)
                         {
                             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR, true);
-                            if (player.PlayerHasCore().ReturnActiveTotal() < 3)
+                            if (player.PlayerHasCore().ReturnActiveTotal() <= 3)
                             {
                                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, true);
                             }

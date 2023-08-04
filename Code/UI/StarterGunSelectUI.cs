@@ -65,9 +65,11 @@ namespace ModularMod
 
             public string ReturnAltSelection(string def, string alt)
             {
+                
                 if (Player_Using_Alt_Skin == true && alt != null) { return alt; }else { return def; }
             }
 
+            public bool overrideCanBeSelected = false;
 
             public bool IsUnlocked()
             {
@@ -700,6 +702,53 @@ namespace ModularMod
                 , "name_label_lightlance_alt"  //Label Name Asset Name Alt
                 , "As Modular, beat your\nPast."); //Unlock Description
 
+            StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
+                "ShrapnelLauncherButton"
+                , "ui_button_shrapnel_gun" //asset name default
+                , "ui_button_shrapnel_gun_highlighted" //asset name highlighted
+                , "ui_button_shrapnel_gun_pressed" //asset name pressed
+                , CustomDungeonFlags.LEAD_GOD_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
+                , FlakCannon.GunID //Gun ID
+                , "Projectile splits into multiple smaller\nprojectiles that "+StaticColorHexes.AddColorToLabelString("gain your effects", StaticColorHexes.Green_Hex) +"." //Default description
+                , StaticColorHexes.AddColorToLabelString("High", StaticColorHexes.Green_Hex)  //Damage Secription
+                , StaticColorHexes.AddColorToLabelString("Slower", StaticColorHexes.Orange_Hex)//Reload Secription
+                , StaticColorHexes.AddColorToLabelString("Small", StaticColorHexes.Orange_Hex) //Clipsize Secription
+                , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Red_Color_Hex)//Fire rate Secription
+                , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex) //Shot Speed Secription
+                , "Does not actually consume your Scrap."  //Additional Notes, keep at one line
+                , "name_label_shrapnel" //Label Name Asset Name
+                , FlakCannonAlt.GunID //alt gun ID
+                , "ui_button_shrapnel_gun_alt" //asset name default alt
+                , "ui_button_shrapnel_gun_highlighted_alt" //asset name highlighted alt
+                , "ui_button_shrapnel_gun_pressed_alt" //asset name pressed alt
+                , "name_label_shrapnel_alt"  //Label Name Asset Name Alt
+                , "As Modular, achieve\nLead God.\n\n("+StaticColorHexes.AddColorToLabelString("Duplicates and Modded\nMaster Rounds Do Not Count.", StaticColorHexes.Red_Color_Hex) +")"); //Unlock Description
+
+
+            StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
+                "NukeCannonButton"
+                , "ui_button_nuke_gun" //asset name default
+                , "ui_button_nuke_gun_highlighted" //asset name highlighted
+                , "ui_button_nuke_gun_pressed" //asset name pressed
+                , CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
+                , BigNuke.GunID //Gun ID
+                , "Fires kinetic warheads that deal\n"+StaticColorHexes.AddColorToLabelString("massive", StaticColorHexes.Light_Orange_Hex) +" AOE Damage." //Default description
+                , StaticColorHexes.AddColorToLabelString("*EXTREMELY High*", StaticColorHexes.White_Hex)  //Damage Secription
+                , StaticColorHexes.AddColorToLabelString("*EXTEREMELY Slow*", StaticColorHexes.Red_Color_Hex)//Reload Secription
+                , StaticColorHexes.AddColorToLabelString("*EXTREMELY Small*", StaticColorHexes.Red_Color_Hex) //Clipsize Secription
+                , StaticColorHexes.AddColorToLabelString("Very Slow", StaticColorHexes.Red_Color_Hex)//Fire rate Secription
+                , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Orange_Hex) //Shot Speed Secription
+                , "Make Your Shot Count."  //Additional Notes, keep at one line
+                , "name_label_nuke" //Label Name Asset Name
+                , BigNukeAlt.GunID //alt gun ID
+                , "ui_button_nuke_gun_alt" //asset name default alt
+                , "ui_button_nuke_gun_highlighted_alt" //asset name highlighted alt
+                , "ui_button_nuke_gun_pressed_alt" //asset name pressed alt
+                , "name_label_nuke_alt"  //Label Name Asset Name Alt
+                , "As Modular, beat the\nAdvanced Dragun."); //Unlock Description
+
+            GenerateFillerButtons(8, defaultAtlas, defaultFont, gunSelectUIController);
+
             /*
             for (int i = 0; i < 13; i++)
             {
@@ -952,6 +1001,35 @@ namespace ModularMod
             gunSelectUIController.Name_Panel = name_display_Object_panel;
         }
 
+        public static void GenerateFillerButtons(int amount, dfAtlas dfAtlas, dfFontBase defaultFont, StarterGunSelectUIController gunSelectUIController)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                StarterGunSelectUIController.GenerateNewGunButton(dfAtlas, defaultFont, gunSelectUIController,
+              "IDKButton_" + i.ToString()
+              , "ui_button_idk_gun" //asset name default
+              , "ui_button_idk_gun_highlighted" //asset name highlighted
+              , "ui_button_idk_gun_pressed" //asset name pressed
+              , CustomDungeonFlags.NOLLA//Unlock flag, Set itt to NOLLA for no unlock condition
+              , FlakCannon.GunID //Gun ID
+              , StaticColorHexes.AddColorToLabelString("Error!", StaticColorHexes.Red_Color_Hex) + "\n\nSeems like no gun was found here.\nPlease wait until new guns arrive.\n\nThank you for your patience,\n" + StaticColorHexes.AddColorToLabelString("Hegemony Mechanics", StaticColorHexes.Green_Hex) + "."
+              , null  //Damage Secription
+              , null//Reload Secription
+              , null //Clipsize Secription
+              , null//Fire rate Secription
+              , null //Shot Speed Secription
+              , "Does not actually consume your Scrap."  //Additional Notes, keep at one line
+              , "name_label_empty" //Label Name Asset Name
+              , FlakCannonAlt.GunID //alt gun ID
+              , "ui_button_idk_gun_alt" //asset name default alt
+              , "ui_button_idk_gun_highlighted_alt" //asset name highlighted alt
+              , "ui_button_idk_gun_pressed_alt" //asset name pressed alt
+              , "name_label_empty_alt"  //Label Name Asset Name Alt
+              , StaticColorHexes.AddColorToLabelString("Error!", StaticColorHexes.Orange_Hex)+"\n\nThere seems to be no gun found here.\nPlease stand by until new guns arrive.\nThank you for your patience,\n"+StaticColorHexes.AddColorToLabelString("Hegemony Mechanics", StaticColorHexes.Green_Hex) +".", null, true); //Unlock Description
+            }
+           
+        }
+
         public static void GenerateNewGunButton(dfAtlas dfAtlas, dfFontBase defaultFont, StarterGunSelectUIController self, string Button_Name, string asset_name_default, string asset_name_highlighted, string asset_name_pressed, CustomDungeonFlags unlock, int GunId,
             string Basic_Description = "",
             string Damage_Description = null,
@@ -965,7 +1043,7 @@ namespace ModularMod
              string asset_name_default_alt = null,
              string asset_name_highlighted_alt = null,
              string asset_name_pressed_alt = null,
-             string Label_Name_Asset_Name_Alt = "name_label_WIP_alt", string UnlockDescription = "Blah Blah Blah", Func<bool> OverrideUnlock = null
+             string Label_Name_Asset_Name_Alt = "name_label_WIP_alt", string UnlockDescription = "Blah Blah Blah", Func<bool> OverrideUnlock = null, bool overrideCanBeSelected = false
             )
         {
             float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
@@ -1000,7 +1078,7 @@ namespace ModularMod
             {
                 allAltStarterIDs.Add(Alt_GunID);
             }
-
+            upgrade_button_default_gun.overrideCanBeSelected = overrideCanBeSelected;
             upgrade_button_default_gun.Damage_Description = Damage_Description ?? StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Default_UI_Color_Hex);
             upgrade_button_default_gun.Reload_Description = Reload_Description ?? StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Default_UI_Color_Hex);
             upgrade_button_default_gun.Clipsize_Description = Clipsize_Description ?? StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Default_UI_Color_Hex);
@@ -1031,7 +1109,6 @@ namespace ModularMod
             Default_Gun_Button.hoverSprite = asset_name_highlighted;
             Default_Gun_Button.focusSprite = asset_name_highlighted;
             Default_Gun_Button.pressedSprite = asset_name_pressed;
-            
 
             //Default_Gun_Button.RelativePosition = new Vector3(4, 0);
         }
@@ -1166,6 +1243,7 @@ namespace ModularMod
         public bool CanBeSelected()
         {
             if (currentlySelectedButton == null) { Accept_Button.Disable(); return false; }
+            if (currentlySelectedButton.overrideCanBeSelected == true) { Accept_Button.Disable(); return false; }
             if (currentlySelectedButton.IsUnlocked() == false) { Accept_Button.Disable(); return false; }
             if (interactor != null)
             {
@@ -1534,7 +1612,10 @@ namespace ModularMod
 
             if (currentlySelectedButton.upgradeType == UpgradeUISelectButtonController.UpgradeType.Minor_Upgrade | currentlySelectedButton.upgradeType == UpgradeUISelectButtonController.UpgradeType.Major_Upgrade) 
             { statDescrptionLabel.ModifyLocalizedText(""); return; }
-            
+
+            if (currentlySelectedButton.overrideCanBeSelected == true)
+            { statDescrptionLabel.ModifyLocalizedText(""); return; }
+
             string newtext = 
                 SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.DAMAGE) +" Damage : " + currentlySelectedButton.Damage_Description + "\n" +
                  SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.FIRE_RATE) + " Rate Of Fire : " + currentlySelectedButton.FireRate_Description + "\n" +

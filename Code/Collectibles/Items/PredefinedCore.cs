@@ -41,6 +41,33 @@ namespace ModularMod
             });
             ChooseModuleController.PrimaryOptionsModifier += ReturnOptions;
             ChooseModuleController.ModuleUICarrier.OnModuleSelected += OnModuleDropped;
+            ChooseModuleController.AngleSpawnModifier += Ret;
+            ChooseModuleController.RadiusSpawnModifier += Radius;
+            ChooseModuleController.PrimaryOptionsModifier += ReturnOptions;
+        }
+
+        public static float Radius(float angle)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                if (player.HasPickupID(predefinedCoreID))
+                {
+                    angle += -1;
+                }
+            }
+            return angle;
+        }
+
+        public static float Ret(float angle)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                if (player.HasPickupID(predefinedCoreID))
+                {
+                    angle += BraveUtility.RandomAngle();
+                }
+            }
+            return angle;
         }
 
         public static void OnModuleDropped(DefaultModule module, PlayerController c)
@@ -110,7 +137,7 @@ namespace ModularMod
         }
         public static Tuple<int, int> ID()
         {
-            return new Tuple<int, int>(PredefinedCore.predefinedCoreID, 40);
+            return new Tuple<int, int>(PredefinedCore.predefinedCoreID, 30);
         }
         public static Vector3 Offset(BaseShopController.AdditionalShopType shopType)
         {

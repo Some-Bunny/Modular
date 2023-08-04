@@ -54,6 +54,8 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plaguecanister_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Plague Canister " + h.ReturnTierLabel();
+            h.AdditionalWeightMultiplier = 0.85f;
+
             h.LabelDescription = "Reloading has a chance to launch a\npoison canister that breaks\ninto a pool of poison, and glass shards.\n(" + StaticColorHexes.AddColorToLabelString("+Glass Shards and Goop Radius", StaticColorHexes.Light_Orange_Hex) + ").\nChance increases the emptier your clip is.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

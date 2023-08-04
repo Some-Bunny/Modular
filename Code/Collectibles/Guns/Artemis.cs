@@ -73,7 +73,7 @@ namespace ModularMod
 
                 projectile.AnimateProjectileBundle("longshotalt_idle", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "longshotalt_idle",
                 new List<IntVector2>() { new IntVector2(14, 5), new IntVector2(14, 5) },
-                ProjectileToolbox.ConstructListOfSameValues(true, 2), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.LowerLeft, 2), ProjectileToolbox.ConstructListOfSameValues(true, 2), ProjectileToolbox.ConstructListOfSameValues(false, 2),
+                ProjectileToolbox.ConstructListOfSameValues(true, 2), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.MiddleCenter, 2), ProjectileToolbox.ConstructListOfSameValues(true, 2), ProjectileToolbox.ConstructListOfSameValues(false, 2),
                 ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 2), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 2), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 2), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 2));
 
                 gun.DefaultModule.projectiles[0] = projectile;

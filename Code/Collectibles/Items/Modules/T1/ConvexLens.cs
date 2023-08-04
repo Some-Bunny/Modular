@@ -88,11 +88,12 @@ namespace ModularMod
             {
                 ring = ((GameObject)UnityEngine.Object.Instantiate(ResourceCache.Acquire("Global VFX/HeatIndicator"), player.transform.position, Quaternion.identity, player.transform)).GetComponent<HeatIndicatorController>();
                 ring.CurrentRadius = 8.5f;
-                ring.CurrentColor = new Color(0, 199, 40).WithAlpha(1.2f);
+                ring.CurrentColor = new Color(0, 199, 40).WithAlpha(0.02f);
                 ring.IsFire = false;
-                ring.GetComponent<MeshRenderer>().material.SetFloat("_PxWidth", 0.15f);
+                ring.GetComponent<MeshRenderer>().material.SetFloat("_PxWidth", 0.002f);
                 ring.transform.position = player.sprite.WorldCenter.ToVector3ZUp(100);          
                 ring.StartCoroutine(DoRingLerp(ring, 0, 8.5f));
+                //ring.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unpixelated"));
             }
             if (player.CurrentRoom != null)
             {nearbyEnemies = ApplyActionToNearbyEnemies(player.sprite.WorldCenter, 7.5f, player.CurrentRoom);}

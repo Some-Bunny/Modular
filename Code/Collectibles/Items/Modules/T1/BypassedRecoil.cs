@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("nodampener_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Disabled Dampeners " + h.ReturnTierLabel();
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.75f;
             h.LabelDescription = "Increases Rate Of Fire by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

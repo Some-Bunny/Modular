@@ -29,8 +29,8 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Line Up " + h.ReturnTierLabel();
             h.LabelDescription = "Adds 1 Pierce, Reduce Damage by 15% (" + StaticColorHexes.AddColorToLabelString("-15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
-                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.75x " +
-                StaticColorHexes.AddColorToLabelString("+0.75x", StaticColorHexes.Light_Orange_Hex) + ".";
+                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.75x (" +
+                StaticColorHexes.AddColorToLabelString("+0.75x", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

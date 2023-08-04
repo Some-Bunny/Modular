@@ -33,7 +33,9 @@ namespace SaveAPI
 
         CHECKED_ALL_ADVICE,
 
-        PAST_MASTERY
+        PAST_MASTERY,
+
+        DO_NOT_CHANGE
 
         //STYLISHLY_KILL_AN_ENEMY
     }
