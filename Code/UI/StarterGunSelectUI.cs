@@ -896,6 +896,8 @@ namespace ModularMod
             }
 
             dfLabel StatDescriptionLabel = PrefabBuilder.BuildObject("StatDescriptionLabel_Object").AddComponent<dfLabel>();
+            StatDescriptionLabel.PreventFontChanges = true;
+            StatDescriptionLabel.m_cachedLanguage = StringTableManager.GungeonSupportedLanguages.ENGLISH;
             StatDescriptionLabel.gameObject.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
             StatDescriptionLabel.AssignDefaultPresets(GameUIDefautlAtlas, defaultFont);
             StatDescriptionLabel.anchorStyle = (dfAnchorStyle.Bottom | dfAnchorStyle.Left);
@@ -930,6 +932,8 @@ namespace ModularMod
             gunSelectUIController.statDescrptionLabel = StatDescriptionLabel;
 
             dfLabel NameDescriptionLabel = PrefabBuilder.BuildObject("NameDescriptionLabel_Object").AddComponent<dfLabel>();
+            NameDescriptionLabel.PreventFontChanges = true;
+            NameDescriptionLabel.m_cachedLanguage = StringTableManager.GungeonSupportedLanguages.ENGLISH;
             NameDescriptionLabel.gameObject.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
             NameDescriptionLabel.AssignDefaultPresets(GameUIDefautlAtlas, defaultFont);
             NameDescriptionLabel.anchorStyle = (dfAnchorStyle.Bottom | dfAnchorStyle.Left);

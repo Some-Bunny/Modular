@@ -43,7 +43,9 @@ namespace ModularMod
             var DebrisObject = base.Drop(player);
             DebrisObject.OnTouchedGround += (obj) =>
             {
-                Exploder.Explode(obj.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, obj.sprite.WorldCenter);
+                var blast =StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+                blast.ignoreList = new List<SpeculativeRigidbody>() { player.specRigidbody };
+                Exploder.Explode(obj.sprite.WorldCenter, blast, obj.sprite.WorldCenter);
                 Destroy(obj.gameObject);
             };
             return DebrisObject;
@@ -87,7 +89,9 @@ namespace ModularMod
             var DebrisObject = base.Drop(player);
             DebrisObject.OnTouchedGround += (obj) =>
             {
-                Exploder.Explode(obj.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, obj.sprite.WorldCenter);
+                var blast = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+                blast.ignoreList = new List<SpeculativeRigidbody>() { player.specRigidbody };
+                Exploder.Explode(obj.sprite.WorldCenter, blast, obj.sprite.WorldCenter);
                 Destroy(obj.gameObject);
             };
             return DebrisObject;
@@ -165,7 +169,9 @@ namespace ModularMod
             var DebrisObject = base.Drop(player);
             DebrisObject.OnTouchedGround += (obj) =>
             {
-                Exploder.Explode(obj.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, obj.sprite.WorldCenter);
+                var blast = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+                blast.ignoreList = new List<SpeculativeRigidbody>() { player.specRigidbody };
+                Exploder.Explode(obj.sprite.WorldCenter, blast, obj.sprite.WorldCenter);
                 Destroy(obj.gameObject);
             };
             return DebrisObject;
@@ -217,7 +223,9 @@ namespace ModularMod
             var DebrisObject = base.Drop(player);
             DebrisObject.OnTouchedGround += (obj) =>
             {
-                Exploder.Explode(obj.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, obj.sprite.WorldCenter);
+                var blast = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+                blast.ignoreList = new List<SpeculativeRigidbody>() { player.specRigidbody };
+                Exploder.Explode(obj.sprite.WorldCenter, blast, obj.sprite.WorldCenter);
                 Destroy(obj.gameObject);
             };
             return DebrisObject;

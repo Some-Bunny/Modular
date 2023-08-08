@@ -128,7 +128,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             explosionData.CopyFrom(StaticExplosionDatas.customDynamiteExplosion);
             explosionData.ignoreList = new List<SpeculativeRigidbody>() { this.m_aiActor.specRigidbody };
             Exploder.Explode(this.m_aiActor.sprite.WorldBottomCenter, explosionData, this.m_aiActor.sprite.WorldBottomCenter);
-            Exploder.DoDistortionWave(this.m_aiActor.sprite.WorldBottomCenter, 2f, 0.5f, 30, 1f);
+            Exploder.DoDistortionWave(this.m_aiActor.sprite.WorldBottomCenter, 2f * ConfigManager.DistortionWaveMultiplier, 0.5f * ConfigManager.DistortionWaveMultiplier, 30, 1f);
 
 
             while (elaWait < duraWait)
@@ -186,7 +186,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             explosionData.ignoreList = new List<SpeculativeRigidbody>() { this.m_aiActor.specRigidbody };
             explosionData.doDestroyProjectiles = false;
             Exploder.Explode(this.m_aiActor.sprite.WorldBottomCenter, explosionData, this.m_aiActor.sprite.WorldBottomCenter);
-            Exploder.DoDistortionWave(this.m_aiActor.sprite.WorldBottomCenter, 2f, 0.5f, 30, 1f);
+            Exploder.DoDistortionWave(this.m_aiActor.sprite.WorldBottomCenter, 2f * ConfigManager.DistortionWaveMultiplier, 0.5f * ConfigManager.DistortionWaveMultiplier, 30, 1f);
 
 
             this.m_aiActor.behaviorSpeculator.PreventMovement = false;

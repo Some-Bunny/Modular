@@ -116,9 +116,12 @@ namespace ModularMod
             HomingMod.AngularVelocity += 10;
             HomingMod.HomingRadius += 20;
 
-            GameObject vfx = SpawnManager.SpawnVFX((PickupObjectDatabase.GetById(536) as RelodestoneItem).ContinuousVFX, true);
-            vfx.transform.parent = p.transform;
-            vfx.transform.position = p.sprite.WorldCenter;
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                GameObject vfx = SpawnManager.SpawnVFX((PickupObjectDatabase.GetById(536) as RelodestoneItem).ContinuousVFX, true);
+                vfx.transform.parent = p.transform;
+                vfx.transform.position = p.sprite.WorldCenter;
+            }
         }
 
 

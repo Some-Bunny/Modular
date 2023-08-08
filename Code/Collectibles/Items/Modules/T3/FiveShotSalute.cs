@@ -48,6 +48,7 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
+            printer.RegisterAction(Stats_AdditionalVolleyModifiers);
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
@@ -68,8 +69,13 @@ namespace ModularMod
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {
-            GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 2 + (this.ReturnStack(Stored_Core)*2), 16, 2);
+            Toolbox.ModifyVolley(obj, Stored_Core.Owner, 2 + (this.ReturnStack(Stored_Core) * 2), 16, 2);
+
+
+            //GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 2 + (this.ReturnStack(Stored_Core)*2), 16, 2);
         }
+
+
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {
@@ -78,10 +84,12 @@ namespace ModularMod
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            modulePrinter.DeregisterAction(Stats_AdditionalVolleyModifiers);
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             player.stats.AdditionalVolleyModifiers -= Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
+
         }
     }
 }

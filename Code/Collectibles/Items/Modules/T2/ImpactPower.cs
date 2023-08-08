@@ -60,9 +60,12 @@ namespace ModularMod
         }
         public void OBC(BounceProjModifier self, SpeculativeRigidbody body)
         {
-            var obj = UnityEngine.Object.Instantiate(VFXStorage.MachoBraceDustupVFX, self.projectile.sprite.WorldCenter, Quaternion.identity);
-            obj.transform.localPosition -= new Vector3(1.25f, 1.25f);
-            Destroy(obj, 2);
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                var obj = UnityEngine.Object.Instantiate(VFXStorage.MachoBraceDustupVFX, self.projectile.sprite.WorldCenter, Quaternion.identity);
+                obj.transform.localPosition -= new Vector3(1.25f, 1.25f);
+                Destroy(obj, 2);
+            }
             
         }
     }

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Redirect System",
             Description = "Exchange Rate",
-            LongDescription = "Increases Clip Size by 50% (+50% per stack). Decreases reload time by 33% (+33% hyperbolically) All shots will turn to face the same angle as the last fired shot." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Increases Clip Size by 33% (+33% per stack). Decreases reload time by 20% (+20% hyperbolically) All shots will turn to face the same angle as the last fired shot." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("redirectsystem_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("redirectsystem_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Redirect System " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Clip Size by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").\nDecreases reload time by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nAll shots will turn to face the same angle as the last fired shot.";
+            h.LabelDescription = "Increases Clip Size by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").\nDecreases reload time by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nAll shots will turn to face the same angle as the last fired shot.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -51,7 +51,7 @@ namespace ModularMod
             {
                 Name = "Redirect",
                 ClipSize_Process = ProcessClipSize,
-                Reload_Process = ProcessReloadTime,
+                Reload_Process = PFR,
             };
             modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modulePrinter.OnPostProcessProjectile += PPP;
@@ -76,11 +76,6 @@ namespace ModularMod
         {
         }
 
-        public float ProcessReloadTime(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
-        {
-            return f / (1 + this.ReturnStack(modulePrinterCore));
-        }
-
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             return clip + ((modularGunController.Base_Clip_Size / 3) * modulePrinterCore.ReturnStack(this.LabelName));
@@ -89,7 +84,7 @@ namespace ModularMod
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinter);
-            return f - (f - (f / (1 + (0.15f * stack))));
+            return f - (f - (f / (1 + (0.20f * stack))));
         }
     }
 
@@ -117,8 +112,12 @@ namespace ModularMod
         public void Redirect(float angle)
         {
             if (self == null) { return; }
-            var a = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(401) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, this.transform.position, Quaternion.Euler(0, 0, angle - 180));
-            Destroy(a, 2);
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                var a = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(401) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, this.transform.position, Quaternion.Euler(0, 0, angle - 180));
+                a.transform.localScale *= 0.66f;
+                Destroy(a, 2);
+            }
             self.SendInDirection(Toolbox.GetUnitOnCircle(angle, 1), true);
         }
         private void OnDestroy()

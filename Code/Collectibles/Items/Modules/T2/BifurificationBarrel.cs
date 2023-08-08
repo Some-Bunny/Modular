@@ -45,6 +45,7 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            modulePrinter.RegisterAction(Stats_AdditionalVolleyModifiers);
             player.stats.AdditionalVolleyModifiers += Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
             modulePrinter.OnPostProcessProjectile += PPP;
@@ -56,10 +57,12 @@ namespace ModularMod
                 ClipSize_Process = ProcessClipSize
             };
             modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
+
             //modulePrinter.OnKilledEnemy += OKE;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            modulePrinter.DeregisterAction(Stats_AdditionalVolleyModifiers);
             player.stats.AdditionalVolleyModifiers -= Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
             modulePrinter.OnPostProcessProjectile -= PPP;
@@ -78,6 +81,7 @@ namespace ModularMod
             return clip + ((modularGunController.Base_Clip_Size / 4) * modulePrinterCore.ReturnStack(this.LabelName));
         }
 
+
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
@@ -85,7 +89,9 @@ namespace ModularMod
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {
-            GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 1, 54, 5);
+            Toolbox.ModifyVolley(obj, Stored_Core.Owner, 1, 54, 3, 3, 0, null, 1);
+
+            //GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 1, 54, 5);
         }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {

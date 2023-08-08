@@ -94,12 +94,15 @@ namespace ModularMod
                         myRigidbody.RegisterTemporaryCollisionException(otherRigidbody, 0.4f);
                         AllTables(otherRigidbody.transform.position.GetAbsoluteRoom());
 
-                        GameObject vfx = SpawnManager.SpawnVFX(boostVFX, true);
-                        vfx.transform.position = myRigidbody.projectile.transform.position;
-                        vfx.transform.localRotation = Quaternion.Euler(0f, 0f, myRigidbody.projectile.LastVelocity.ToAngle());
-                        vfx.GetComponent<tk2dBaseSprite>().HeightOffGround = 22;
+                        if (ConfigManager.DoVisualEffect == true)
+                        {
+                            GameObject vfx = SpawnManager.SpawnVFX(boostVFX, true);
+                            vfx.transform.position = myRigidbody.projectile.transform.position;
+                            vfx.transform.localRotation = Quaternion.Euler(0f, 0f, myRigidbody.projectile.LastVelocity.ToAngle());
+                            vfx.GetComponent<tk2dBaseSprite>().HeightOffGround = 22;
 
-                        Destroy(vfx, 2);
+                            Destroy(vfx, 2);
+                        }
                     }
                     PhysicsEngine.SkipCollision = true;
                 }
@@ -141,10 +144,14 @@ namespace ModularMod
                     if (flippableCover != null)
                     {
                         int power = this.ReturnStack(Stored_Core);
-                        GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-                        GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, flippableCover.sprite.WorldCenter, Quaternion.identity);
-                        blankObj.transform.localScale = Vector3.one * 0.5f;
-                        Destroy(blankObj, 2f);
+                        if (ConfigManager.DoVisualEffect == true)
+                        {
+                            GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+                            GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, flippableCover.sprite.WorldCenter, Quaternion.identity);
+                            blankObj.transform.localScale = Vector3.one * 0.5f;
+                            Destroy(blankObj, 2f);
+                        }
+
                         Exploder.DoRadialPush(flippableCover.sprite.WorldCenter, 40 * power, 3);
                         Exploder.DoRadialKnockback(flippableCover.sprite.WorldCenter, 40 * power, 3);
                         Exploder.DoRadialMinorBreakableBreak(flippableCover.sprite.WorldCenter, 3);

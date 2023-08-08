@@ -121,8 +121,11 @@ namespace ModularMod
                 isInStasis = true;
                 self.collidesWithEnemies = false;
                 self.UpdateCollisionMask();
-                var vfx = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(13) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect, self.sprite.WorldCenter, Quaternion.identity);
-                Destroy(vfx, 3);
+                if (ConfigManager.DoVisualEffect == true)
+                {
+                    var vfx = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(13) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect, self.sprite.WorldCenter, Quaternion.identity);
+                    Destroy(vfx, 3);
+                }
             }
             private bool isInStasis = false;
             private Shader savedMaterial;
@@ -137,8 +140,11 @@ namespace ModularMod
                 self.UpdateSpeed();
                 self.collidesWithEnemies = false;
                 self.UpdateCollisionMask();
-                var vfx = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(13) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect, self.sprite.WorldCenter, Quaternion.identity);
-                Destroy(vfx, 3);
+                if (ConfigManager.DoVisualEffect == true)
+                {
+                    var vfx = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(13) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect, self.sprite.WorldCenter, Quaternion.identity);
+                    Destroy(vfx, 3);
+                }
             }
             public void Redirect()
             {
@@ -146,8 +152,11 @@ namespace ModularMod
                 if (self == null) { return; }
 
 
-                var vfx = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(13) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect, self.sprite.WorldCenter, Quaternion.identity);
-                Destroy(vfx, 3);
+                if (ConfigManager.DoVisualEffect == true)
+                {
+                    var vfx = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(13) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect, self.sprite.WorldCenter, Quaternion.identity);
+                    Destroy(vfx, 3);
+                }
 
                 self.collidesWithEnemies = true;
                 self.UpdateCollisionMask();

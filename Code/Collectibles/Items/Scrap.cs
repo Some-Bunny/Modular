@@ -100,7 +100,7 @@ namespace ModularMod
                 SpeculativeRigidbody speculativeRigidbody2 = speculativeRigidbody;
                 speculativeRigidbody2.OnTriggerCollision = (SpeculativeRigidbody.OnTriggerDelegate)Delegate.Combine(speculativeRigidbody2.OnTriggerCollision, new SpeculativeRigidbody.OnTriggerDelegate(this.OnPreCollision));
 
-                if (this.minimapIcon != null && !this.m_hasBeenPickedUp)
+                if (this.minimapIcon != null && !this.m_hasBeenPickedUp && this.gameObject.activeSelf == true)
                 {
                     this.m_minimapIconRoom = GameManager.Instance.Dungeon.data.GetAbsoluteRoomFromPosition(base.transform.position.IntXY(VectorConversions.Floor));
                     this.extant_minimapIcon = Minimap.Instance.RegisterRoomIcon(this.m_minimapIconRoom, this.minimapIcon, false);

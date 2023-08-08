@@ -22,6 +22,7 @@ using ModularMod.Code.Hooks;
 using Dungeonator;
 using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
 using ModularMod.Code.Controllers;
+using BepInEx.Configuration;
 
 namespace ModularMod
 {
@@ -31,7 +32,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.2.0";
+        public const string VERSION = "1.2.4";
         public const string TEXT_COLOR = "#79eaff";
 
 
@@ -60,9 +61,14 @@ namespace ModularMod
             PastDungeon.InitCustomDungeon();
         }
         public static string FilePathFolder;
+        public ConfigFile AutoReloadConfig;
 
         public void GMStart(GameManager g)
         {
+
+            AutoReloadConfig = Config; //Set config
+            ConfigManager.CreateConfig(AutoReloadConfig);
+
             FilePathFolder = this.FolderPath();
 
 

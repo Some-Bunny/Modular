@@ -43,8 +43,8 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(39) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 7f;
-            gun.DefaultModule.cooldownTime = 1f;
+            gun.reloadTime = 7.5f;
+            gun.DefaultModule.cooldownTime = 4.5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 4f;
@@ -97,7 +97,7 @@ namespace ModularMod
             projectile.gameObject.AddComponent<KineticBomb>();
             var explosive = projectile.gameObject.AddComponent<ExplosiveModifier>();
             explosive.explosionData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.genericLargeExplosion);
-            explosive.explosionData.damage = 40;
+            explosive.explosionData.damage = 45;
             explosive.explosionData.damageToPlayer = 0;
             explosive.explosionData.damageRadius = 7;
             explosive.explosionData.forceUseThisRadius = true;
@@ -142,7 +142,7 @@ namespace ModularMod
             Exploder.DoRadialPush(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialKnockback(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialMinorBreakableBreak(obj.sprite.WorldCenter, 8);
-            Exploder.DoDistortionWave(obj.sprite.WorldCenter, 20, 0.15f, 8, 0.5f);
+            Exploder.DoDistortionWave(obj.sprite.WorldCenter, 20 * ConfigManager.DistortionWaveMultiplier, 0.15f * ConfigManager.DistortionWaveMultiplier, 8, 0.5f);
             AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", obj.gameObject);
         }
     }

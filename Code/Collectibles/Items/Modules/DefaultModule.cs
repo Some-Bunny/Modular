@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static StringTableManager;
 
 namespace ModularMod
 {
@@ -17,6 +18,7 @@ namespace ModularMod
 
             var dlm = gameObject.GetComponent<DefaultLabelController>();
 
+
             var mdlm = gameObject.AddComponent<ModifiedDefaultLabelManager>();
             mdlm.label = dlm.label;
             mdlm.m_cachedCache = dlm.m_cachedCache;
@@ -26,16 +28,26 @@ namespace ModularMod
             mdlm.targetObject = dlm.targetObject;
             Destroy(dlm);
 
+
+
             var label = mdlm.label;
+            label.PreventFontChanges = true;
+            label.m_cachedLanguage = StringTableManager.GungeonSupportedLanguages.ENGLISH;
+            label.m_defaultAssignedFont = label.font;
+            label.m_cachedPadding = label.padding;
+            label.m_defaultAssignedFontTextScale = 5;
+
+
+            label.textScale = 5;
+
+
+
             label.backgroundColor = new Color32(121, 234, 255, 100);
             label.colorizeSymbols = false;
             //label.outlineWidth = 2;
 
             //label.outlineColor = new Color32(20, 20, 50, 255);
             //label.outline = true;
-            label.textScale = 5;
-            label.text = "AAAAAAAAAAAAAAAAAAAAAAAAA||||||||||||||||||||||||||||||||||";
-            label.Invalidate();
             //label.textScaleMode = dfTextScaleMode.None;
 
             label.shadow = true;
@@ -57,13 +69,27 @@ namespace ModularMod
                 Shader = ShaderCache.Acquire("Brave/Internal/HologramShader"),
                 
             };
+
+            label.m_defaultAssignedFont = label.font;
+            label.m_cachedPadding = label.padding;
+
+
+
+
             label.renderData = data;
+            label.text = "AAAAAAAAAAAAAAAAAAAAAAAAA||||||||||||||||||||||||||||||||||";
+            label.Invalidate();
             //mdlm.renderer.material.shader = ShaderCache.Acquire("Brave/Internal/HologramShader");
 
 
 
 
             //label.backgroundSprite = AtlasEditors.AddUITextImage("ModularMod/Sprites/modular_hud_grid.png", "modular_hud_grid");
+
+            //Debug.Log(label.m_cachedLanguage != null ? "m_cachedLanguage" : "NULL");
+            //Debug.Log(label.m_defaultAssignedFont != null ? "m_defaultAssignedFont" : "NULL");
+            //Debug.Log(label.font != null ? "font" : "NULL");
+
 
             LabelController = mdlm;
 

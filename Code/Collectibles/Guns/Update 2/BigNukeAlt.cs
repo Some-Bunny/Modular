@@ -43,8 +43,8 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(39) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 7f;
-            gun.DefaultModule.cooldownTime = 4f;
+            gun.reloadTime = 7.5f;
+            gun.DefaultModule.cooldownTime = 4.5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 4f;
@@ -77,7 +77,7 @@ namespace ModularMod
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.4f;
             yes.shadowTimeDelay = 0.01f;
-            yes.dashColor = new Color(0f, 0, 1f, 1f);
+            yes.dashColor = new Color(0f, 1f, 0f, 1f);
 
             var homing = projectile.gameObject.GetOrAddComponent<HomingModifier>();
             homing.AngularVelocity = 60;
@@ -97,7 +97,7 @@ namespace ModularMod
             projectile.gameObject.AddComponent<KineticBomb>();
             var explosive = projectile.gameObject.AddComponent<ExplosiveModifier>();
             explosive.explosionData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.genericLargeExplosion);
-            explosive.explosionData.damage = 40;
+            explosive.explosionData.damage = 45;
             explosive.explosionData.damageToPlayer = 0;
             explosive.explosionData.damageRadius = 7;
             explosive.explosionData.forceUseThisRadius = true;

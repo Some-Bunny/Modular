@@ -171,7 +171,7 @@ namespace ModularMod
                 yield return null;
             }
             AkSoundEngine.PostEvent("Play_BOSS_RatMech_Stomp_01", player.gameObject);
-            Exploder.DoDistortionWave(player.sprite.WorldBottomCenter, 20, 0.125f, 8, 0.2f);
+            Exploder.DoDistortionWave(player.sprite.WorldBottomCenter * ConfigManager.DistortionWaveMultiplier, 20 * ConfigManager.DistortionWaveMultiplier, 0.125f, 8, 0.2f);
             for (int I = 0; I < 240; I++)
             {
                 GlobalSparksDoer.DoSingleParticle(player.sprite.WorldCenter, Toolbox.GetUnitOnCircle((float)I * 1.5f, UnityEngine.Random.Range(1.1f, 6.0f) * 3), null, 0.9f, null, GlobalSparksDoer.SparksType.FLOATY_CHAFF);

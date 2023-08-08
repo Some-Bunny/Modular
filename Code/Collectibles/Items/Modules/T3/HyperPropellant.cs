@@ -240,7 +240,10 @@ namespace ModularMod
                 if (asdf > 0.3f)
                 {
                     asdf = 0;
-                    GlobalSparksDoer.DoSingleParticle(this.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1f, math)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
+                    if (UnityEngine.Random.value < ConfigManager.ImportantVFXMultiplier)
+                    {
+                        GlobalSparksDoer.DoSingleParticle(this.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1f, math)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
+                    }
                 }
                 this.UpdateRadius(math);
                 f += BraveTime.DeltaTime;

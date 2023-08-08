@@ -68,10 +68,13 @@ namespace ModularMod
             bounceProjModifier.damageMultiplierOnBounce = 1 + (0.1f);
             bounceProjModifier.OnBounce += () =>
             {
-                GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-                GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
-                blankObj.transform.localScale = Vector3.one * 0.35f;
-                Destroy(blankObj, 2f);
+                if (ConfigManager.DoVisualEffect == true)
+                {
+                    GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+                    GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
+                    blankObj.transform.localScale = Vector3.one * 0.35f;
+                    Destroy(blankObj, 2f);
+                }
                 Exploder.DoRadialPush(p.sprite.WorldCenter, 25, 3);
                 Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25, 3);
                 Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
@@ -111,10 +114,13 @@ namespace ModularMod
             bounceProjModifier.damageMultiplierOnBounce = 1 + (0.1f * this.ReturnStack(modulePrinterCore));
             bounceProjModifier.OnBounce += () =>
             {
-                GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-                GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
-                blankObj.transform.localScale = Vector3.one * 0.35f;
-                Destroy(blankObj, 2f);
+                if (ConfigManager.DoVisualEffect == true)
+                {
+                    GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+                    GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
+                    blankObj.transform.localScale = Vector3.one * 0.35f;
+                    Destroy(blankObj, 2f);
+                }
                 Exploder.DoRadialPush(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
                 Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
                 Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
@@ -161,13 +167,17 @@ namespace ModularMod
                 otherBody.projectile.hitEffects.HandleEnemyImpact(otherBody.projectile.sprite.WorldCenter, otherBody.transform.localEulerAngles.z, otherBody.transform, Vector2.zero, myBody.projectile.LastVelocity, true);
                 myBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
                 otherBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
-                GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
 
-                GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, myBody.projectile.sprite.WorldCenter, Quaternion.identity);
-                blankObj.transform.localScale = Vector3.one * 0.35f;
-                Destroy(blankObj, 2f);
-                Exploder.DoRadialPush(myBody.projectile.sprite.WorldCenter, 25 , 3);
-                Exploder.DoRadialKnockback(myBody.projectile.sprite.WorldCenter, 25 , 3);
+                if (ConfigManager.DoVisualEffect == true)
+                {
+                    GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+
+                    GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, myBody.projectile.sprite.WorldCenter, Quaternion.identity);
+                    blankObj.transform.localScale = Vector3.one * 0.35f;
+                    Destroy(blankObj, 2f);
+                }
+                Exploder.DoRadialPush(myBody.projectile.sprite.WorldCenter, 25, 3);
+                Exploder.DoRadialKnockback(myBody.projectile.sprite.WorldCenter, 25, 3);
                 Exploder.DoRadialMinorBreakableBreak(myBody.projectile.sprite.WorldCenter, 3);
                 Exploder.Explode(myBody.projectile.sprite.WorldCenter, SelfRicochet.ricoChetData, myBody.projectile.sprite.WorldCenter, null, true);
             }
@@ -204,11 +214,16 @@ namespace ModularMod
                     dirVec = closestToPosition.CenterPosition - obj.transform.position.XY();
                 }
             }
-            GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+            if (ConfigManager.DoVisualEffect == true)
+            {
 
-            GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, obj.projectile.sprite.WorldCenter, Quaternion.identity);
-            blankObj.transform.localScale = Vector3.one * 0.5f;
-            Destroy(blankObj, 2f);
+                GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+
+                GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, obj.projectile.sprite.WorldCenter, Quaternion.identity);
+                blankObj.transform.localScale = Vector3.one * 0.5f;
+                Destroy(blankObj, 2f);
+            }
+
             Exploder.DoRadialPush(obj.projectile.sprite.WorldCenter, 25, 3);
             Exploder.DoRadialKnockback(obj.projectile.sprite.WorldCenter, 25, 3);
             Exploder.DoRadialMinorBreakableBreak(obj.projectile.sprite.WorldCenter, 3);

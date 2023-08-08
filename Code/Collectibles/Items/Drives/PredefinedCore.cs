@@ -123,6 +123,7 @@ namespace ModularMod
 
         public static bool Cond(BaseShopController.AdditionalShopType shopType)
         {
+            if (AdvancedGameStatsManager.Instance == null) { return false; }
             if (AdvancedGameStatsManager.Instance.GetSessionStatValue(CustomTrackedStats.ENCOUNTERS_OF_PREDEFINED) > 0) { return false; }
             if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR) == false) { return false; }
             if (shopType != BaseShopController.AdditionalShopType.NONE) { return false; }
@@ -151,7 +152,9 @@ namespace ModularMod
             var DebrisObject = base.Drop(player);
             DebrisObject.OnTouchedGround += (obj) =>
             {
-                Exploder.Explode(obj.sprite.WorldCenter, StaticExplosionDatas.explosiveRoundsExplosion, obj.sprite.WorldCenter);
+                var blast = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+                blast.ignoreList = new List<SpeculativeRigidbody>() { player.specRigidbody };
+                Exploder.Explode(obj.sprite.WorldCenter, blast, obj.sprite.WorldCenter);
                 Destroy(obj.gameObject);
             };
             return DebrisObject;

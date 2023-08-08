@@ -46,7 +46,7 @@ namespace ModularMod
             gun.DefaultModule.cooldownTime = 1.1f;
             gun.DefaultModule.numberOfShotsInClip = 3;
             gun.SetBaseMaxAmmo(250);
-            gun.DefaultModule.angleVariance = 6f;
+            gun.DefaultModule.angleVariance = 7f;
 
             gun.InfiniteAmmo = true;
             gun.quality = PickupObject.ItemQuality.SPECIAL;

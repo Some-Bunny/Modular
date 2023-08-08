@@ -1323,7 +1323,7 @@ namespace ModularMod
                 float Angle = m_extantReticleQuad.transform.localRotation.eulerAngles.z;
                 base.PostWwiseEvent("Play_BOSS_RatMech_Stomp_01", null);
                 
-                Exploder.DoDistortionWave(BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f), 0.3f, 0.25f, 30, 1.33f);
+                Exploder.DoDistortionWave(BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f), 0.3f * ConfigManager.DistortionWaveMultiplier, 0.25f * ConfigManager.DistortionWaveMultiplier, 30, 1.33f);
 
                 while (e < 0.25f)
                 {

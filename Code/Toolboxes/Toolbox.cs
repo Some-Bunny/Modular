@@ -19,6 +19,92 @@ namespace ModularMod
 {
     public static class Toolbox
     {
+
+        public static void ModifyVolley(ProjectileVolleyData volleyToModify, PlayerController player, int DuplicatesOfEachModule = 1, float DuplicateAngleOffset = 3, float DuplicateAngleBaseOffset = 0, float EachModuleOffsetAngle = 3, int DuplicatesOfBaseModule = 0, ProjectileModule moduleToAdd = null, int frameDelay = 0)
+        {
+
+            GameManager.Instance.StartCoroutine(WhateverThisIs(volleyToModify, player, DuplicatesOfEachModule, DuplicateAngleOffset, DuplicateAngleBaseOffset, EachModuleOffsetAngle, DuplicatesOfBaseModule, moduleToAdd, frameDelay));
+        }
+
+        public static IEnumerator WhateverThisIs(ProjectileVolleyData volleyToModify, PlayerController player, int DuplicatesOfEachModule = 1, float DuplicateAngleOffset = 3, float DuplicateAngleBaseOffset = 0, float EachModuleOffsetAngle = 3, int DuplicatesOfBaseModule = 0, ProjectileModule moduleToAdd = null, int frameDelay = 0)
+        {
+            if (frameDelay > 0)
+            {
+                int de = 0;
+                while (de < frameDelay)
+                {
+                    de++;
+                    yield return null;
+                }
+            }
+            if (moduleToAdd != null)
+            {
+                bool flag = true;
+                if (volleyToModify != null && volleyToModify.projectiles.Count > 0 && volleyToModify.projectiles[0].projectiles != null && volleyToModify.projectiles[0].projectiles.Count > 0)
+                {
+                    Projectile projectile = volleyToModify.projectiles[0].projectiles[0];
+                    if (projectile && projectile.GetComponent<ArtfulDodgerProjectileController>())
+                    {
+                        flag = false;
+                    }
+                }
+                if (flag)
+                {
+                    moduleToAdd.isExternalAddedModule = true;
+                    volleyToModify.projectiles.Add(moduleToAdd);
+                }
+            }
+            if (DuplicatesOfEachModule > 0)
+            {
+                int num = 1;
+                int count = volleyToModify.projectiles.Count;
+                for (int i = 0; i < count; i++)
+                {
+
+
+
+                    float num2 = (float)(DuplicatesOfEachModule * DuplicateAngleOffset) * -1f / 2f;
+
+
+                    //num2 += EachModuleOffsetAngle;
+
+                    ProjectileModule projectileModule = volleyToModify.projectiles[i];
+                    for (int j = 0; j < DuplicatesOfEachModule; j++)
+                    {
+
+                        projectileModule.angleFromAim = num2;
+
+                        int sourceIndex = num;
+                        if (projectileModule.CloneSourceIndex >= 0)
+                        {
+                            sourceIndex = projectileModule.CloneSourceIndex;
+                        }
+                        ProjectileModule projectileModule2 = ProjectileModule.CreateClone(projectileModule, false, sourceIndex);
+                        float angleFromAim = num2 + DuplicateAngleOffset * (float)(j + 1);
+
+                        projectileModule2.angleFromAim = angleFromAim;
+                        projectileModule2.ignoredForReloadPurposes = true;
+                        projectileModule2.ammoCost = 0;
+                        volleyToModify.projectiles.Add(projectileModule2);
+
+                    }
+                    num++;
+                }
+                if (!volleyToModify.UsesShotgunStyleVelocityRandomizer)
+                {
+                    volleyToModify.UsesShotgunStyleVelocityRandomizer = true;
+                    volleyToModify.DecreaseFinalSpeedPercentMin = -10f;
+                    volleyToModify.IncreaseFinalSpeedPercentMax = 10f;
+                }
+            }
+            if (DuplicatesOfBaseModule > 0)
+            {
+                GunVolleyModificationItem.AddDuplicateOfBaseModule(volleyToModify, player, DuplicatesOfBaseModule, DuplicateAngleOffset, DuplicateAngleBaseOffset);
+            }
+            yield break;
+        }
+
+
         public static Random RNG = new Random();
 
         public static T RandomEnum<T>()

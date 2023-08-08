@@ -86,6 +86,8 @@ namespace ModularMod
 
         public static Dungeon GetOrLoadByNameHook(Func<string, Dungeon> orig, string name)
         {
+
+
             if (!GameManager.Instance.customFloors.Contains(PastDefinition))
             {
                 GameManager.Instance.customFloors.Add(PastDefinition);
@@ -327,8 +329,11 @@ namespace ModularMod
                 {
                     if (player.characterIdentity == ModularMod.Module.Modular)
                     {
+                        player.startingGunIds = new List<int>() { DefaultArmCannon.ID };
+
                         try
                         {
+                            player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(DefaultArmCannon.ID) as Gun, true);
                             GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(ModulePrinterCore.ModulePrinterCoreID).gameObject, Vector3.zero, Quaternion.identity);
                             PickupObject component3 = gameObject.GetComponent<PickupObject>();
                             if (component3 != null)
@@ -336,7 +341,6 @@ namespace ModularMod
                                 component3.CanBeDropped = false;
                                 component3.Pickup(player);
                             }
-                            player.inventory.AddGunToInventory(PickupObjectDatabase.GetById(DefaultArmCannon.ID) as Gun, true);
                         }
                         catch (Exception e)
                         {

@@ -143,7 +143,7 @@ namespace ModularMod.Past.Prefabs.Objects
 
                 while (e < 4.5f)
                 {
-                    Exploder.DoDistortionWave(sprite.WorldCenter, 0.1f, 0.75f, 22, 0.75f);
+                    Exploder.DoDistortionWave(sprite.WorldCenter, 0.1f * ConfigManager.DistortionWaveMultiplier, 0.75f * ConfigManager.DistortionWaveMultiplier, 22, 0.75f);
 
                     e += BraveTime.DeltaTime;
                     yield return null;
@@ -158,7 +158,7 @@ namespace ModularMod.Past.Prefabs.Objects
                     yield return null;
                 }
                 this.GetComponent<ImprovedAfterImage>().spawnShadows = true;
-                Exploder.DoDistortionWave(sprite.WorldCenter, 100f, 0.25f, 30, 0.5f);
+                Exploder.DoDistortionWave(sprite.WorldCenter, 100f * ConfigManager.DistortionWaveMultiplier, 0.25f * ConfigManager.DistortionWaveMultiplier, 30, 0.5f);
                 e = 0;
                 AkSoundEngine.PostEvent("Play_BOSS_spacebaby_explode_01", this.gameObject);
                 while (e < 1f)

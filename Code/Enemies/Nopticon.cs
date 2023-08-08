@@ -676,24 +676,28 @@ namespace ModularMod
                 IsNodedUp = true;
                 this.aiActor.healthHaver.OnPreDeath += (vector2) =>
                 {
-                    Exploder.DoDistortionWave(base.aiActor.sprite.WorldCenter, 1f, 0.75f, 50, 1);
+                    Exploder.DoDistortionWave(base.aiActor.sprite.WorldCenter, 5f * ConfigManager.DistortionWaveMultiplier, 0.1f * ConfigManager.DistortionWaveMultiplier, 50, 1);
                     Vector3 vector = this.aiActor.sprite.WorldBottomCenter;
                     AkSoundEngine.PostEvent("Play_BOSS_queenship_explode_01", this.gameObject);
-                    GameObject teleportVFX = (PickupObjectDatabase.GetById(573) as ChestTeleporterItem).TeleportVFX;
-                    SpawnManager.SpawnVFX(teleportVFX, vector, Quaternion.identity, true);
 
+
+                    if (ConfigManager.DoVisualEffect == true)
+                    {
+                        GameObject teleportVFX = (PickupObjectDatabase.GetById(573) as ChestTeleporterItem).TeleportVFX;
+                        SpawnManager.SpawnVFX(teleportVFX, vector, Quaternion.identity, true);
+                    }
                 };
                 this.aiActor.healthHaver.OnDamaged += HealthHaver_OnDamaged;
             }
 
             private void HealthHaver_OnDamaged(float resultValue, float maxValue, CoreDamageTypes damageTypes, DamageCategory damageCategory, Vector2 damageDirection)
             {
-                Debug.Log("yep, thats damage");
+                //Debug.Log("yep, thats damage");
             }
 
             public void OhFuck()
             {
-                Exploder.DoDistortionWave(base.aiActor.sprite.WorldCenter, 0.1f, 0.25f, 25, 0.5f);
+                Exploder.DoDistortionWave(base.aiActor.sprite.WorldCenter, 1f * ConfigManager.DistortionWaveMultiplier, 0.05f * ConfigManager.DistortionWaveMultiplier, 25, 0.5f);
                 AkSoundEngine.PostEvent("Play_BOSS_RatMech_Wizard_Death_01", this.gameObject);
                 //this.behaviorSpeculator.Interrupt();
 

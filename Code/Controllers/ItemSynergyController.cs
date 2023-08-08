@@ -54,7 +54,7 @@ namespace ModularMod
                 var q = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(449) as TeleporterPrototypeItem).TelefragVFXPrefab, g.sprite.WorldCenter, Quaternion.identity);
 
             }
-            if (g.PickupObjectId == 520)
+            if (g.PickupObjectId == 520 | g.PickupObjectId == 337)
             {
                 AkSoundEngine.PostEvent("Play_OBJ_silenceblank_use_01", g.gameObject);
                 AkSoundEngine.PostEvent("Stop_ENM_attack_cancel_01", g.gameObject);
@@ -62,6 +62,14 @@ namespace ModularMod
                 var silencer = (PickupObjectDatabase.GetById(224) as SilencerItem);
                 SilencerInstance silencerInstance = gameObject.AddComponent<SilencerInstance>();
                 silencerInstance.TriggerSilencer(g.sprite.WorldCenter, silencer.silencerSpeed, silencer.silencerRadius, silencer.silencerVFXPrefab, silencer.distortionIntensity, silencer.distortionRadius, silencer.pushForce, silencer.pushRadius, silencer.knockbackForce, silencer.knockbackRadius, silencer.additionalTimeAtMaxRadius, GameManager.Instance.PrimaryPlayer, true, false);
+            }
+            if (g.PickupObjectId == 95)
+            {
+                float f = BraveUtility.RandomAngle();
+                for (int i = 0; i < 3; i++)
+                {
+                    LootEngine.SpawnItem(PickupObjectDatabase.GetById(67).gameObject, g.sprite.WorldTopCenter, Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, 3, i), 1), 2, true, true);
+                }
             }
         }
         public static void OGEE_2(PickupObject g)
@@ -82,7 +90,7 @@ namespace ModularMod
                 var q = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(449) as TeleporterPrototypeItem).TelefragVFXPrefab, g.sprite.WorldCenter, Quaternion.identity);
 
             }
-            if (g.PickupObjectId == 520)
+            if (g.PickupObjectId == 520 | g.PickupObjectId == 337)
             {
                 AkSoundEngine.PostEvent("Play_OBJ_silenceblank_use_01", g.gameObject);
                 AkSoundEngine.PostEvent("Stop_ENM_attack_cancel_01", g.gameObject);
@@ -90,6 +98,14 @@ namespace ModularMod
                 var silencer = (PickupObjectDatabase.GetById(224) as SilencerItem);
                 SilencerInstance silencerInstance = gameObject.AddComponent<SilencerInstance>();
                 silencerInstance.TriggerSilencer(g.sprite.WorldCenter, silencer.silencerSpeed, silencer.silencerRadius, silencer.silencerVFXPrefab, silencer.distortionIntensity, silencer.distortionRadius, silencer.pushForce, silencer.pushRadius, silencer.knockbackForce, silencer.knockbackRadius, silencer.additionalTimeAtMaxRadius, GameManager.Instance.PrimaryPlayer, true, false);
+            }
+            if (g.PickupObjectId == 95)
+            {
+                float f = BraveUtility.RandomAngle();
+                for (int i = 0; i < 3; i++)
+                {
+                    LootEngine.SpawnItem(PickupObjectDatabase.GetById(67).gameObject, g.sprite.WorldTopCenter, Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, 3, i), 1), 2, true, true);
+                }
             }
         }
 

@@ -258,7 +258,7 @@ namespace ModularMod
                 container = GlobalMessageRadio.RegisterObjectToRadio(this.gameObject, new List<string>() { "SlapperSync" }, OnMessageRecieved);
                 this.aiActor.healthHaver.OnPreDeath += (v2) =>
                 {
-                    Exploder.DoDistortionWave(base.aiActor.sprite.WorldCenter, 0.1f,0.5f, 10, 0.5f);
+                    Exploder.DoDistortionWave(base.aiActor.sprite.WorldCenter, 0.1f * ConfigManager.DistortionWaveMultiplier, 0.5f * ConfigManager.DistortionWaveMultiplier, 10, 0.5f);
                 };
             }
             public void OnMessageRecieved(GameObject obj, string message)

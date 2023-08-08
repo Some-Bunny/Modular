@@ -504,7 +504,7 @@ namespace ModularMod
                 {
                     base.PostWwiseEvent("Play_WPN_chargelaser_shot_01", null);
 
-                    Exploder.DoDistortionWave(this.Projectile.sprite.WorldCenter, 3, 0.3f, 10, 0.5f);
+                    Exploder.DoDistortionWave(this.Projectile.sprite.WorldCenter, 3 * ConfigManager.DistortionWaveMultiplier, 0.3f * ConfigManager.DistortionWaveMultiplier, 10, 0.5f);
                     this.ChangeSpeed(new Brave.BulletScript.Speed(20, SpeedType.Absolute), 120);
                     yield return base.Wait(15);
                     for (int i = 0; i < 120; i++)
@@ -524,7 +524,7 @@ namespace ModularMod
                 }
                 public override void OnBulletDestruction(Bullet.DestroyType destroyType, SpeculativeRigidbody hitRigidbody, bool preventSpawningProjectiles)
                 {
-                    Exploder.DoDistortionWave(this.Projectile.sprite.WorldCenter, 3, 0.3f, 10, 0.2f);
+                    Exploder.DoDistortionWave(this.Projectile.sprite.WorldCenter, 3 * ConfigManager.DistortionWaveMultiplier, 0.3f * ConfigManager.DistortionWaveMultiplier, 10, 0.2f);
 
                     AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", this.Projectile.gameObject);
                     float f = BraveUtility.RandomAngle();

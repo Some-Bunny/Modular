@@ -80,7 +80,10 @@ namespace ModularMod
         public void OnRoomClearItemDrop(DebrisObject debrisObject, RoomHandler room)
         {
             AkSoundEngine.PostEvent("Play_OBJ_dice_bless_01", debrisObject.gameObject);
-            UnityEngine.Object.Instantiate(VFXStorage.TeleportDistortVFX, debrisObject.sprite.WorldCenter, Quaternion.identity);
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                UnityEngine.Object.Instantiate(VFXStorage.TeleportDistortVFX, debrisObject.sprite.WorldCenter, Quaternion.identity);
+            }
         }
         public void OnDetermineContents(RoomHandler room, Alexandria.RoomRewardAPI.ValidRoomRewardContents validRoomReward, float f)
         {

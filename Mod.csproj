@@ -68,8 +68,8 @@
     <Compile Include="Code\Collectibles\Items\Modules\T2\TimeWarp.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\BifurificationBarrel.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\QuantumLeap.cs" />
-    <Compile Include="Code\Collectibles\Items\PredefinedCore.cs" />
-    <Compile Include="Code\Collectibles\Items\PerformanceCore.cs" />
+    <Compile Include="Code\Collectibles\Items\Drives\PredefinedCore.cs" />
+    <Compile Include="Code\Collectibles\Items\Drives\PerformanceCore.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\HeavyweightRounds.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\BattersRevenge.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\CleaningProtocol.cs" />
@@ -87,7 +87,7 @@
     <Compile Include="Code\Collectibles\Items\Modules\T4\ROTMG Module\Template\WeaponTrait.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T4\ROTMG Module\WeaponPickup.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T4\ROTMG Module\White_Bag.cs" />
-    <Compile Include="Code\Collectibles\Items\ConfidenceCore.cs" />
+    <Compile Include="Code\Collectibles\Items\Drives\ConfidenceCore.cs" />
     <Compile Include="Code\Components\Enemy Components\TeleportationImmunity.cs" />
     <Compile Include="Code\Components\Projectile Components\NevernamedsProjectileSplitController.cs" />
     <Compile Include="Code\Components\VFX Components\ExpandReticleRiserEffect.cs" />
@@ -234,6 +234,7 @@
     <Compile Include="Code\UI\ScrapUIController.cs" />
     <Compile Include="Code\UI\SpecialCharacetrscs.cs" />
     <Compile Include="Code\Unlocks\EnemyDeathUnlockController.cs" />
+    <Compile Include="ConfigManager.cs" />
     <Compile Include="Past\OtherFloor\PDashTwo.cs" />
     <Compile Include="Past\OtherFloor\Assets\CustomFlow.cs" />
     <Compile Include="Past\Prefabs\CustomValidTilesets.cs" />

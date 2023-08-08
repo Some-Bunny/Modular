@@ -1116,6 +1116,14 @@ namespace ModularMod
 
         public override void OnDestroy()
         {
+            foreach (var entry in VolleysToRemoveOnSuddenDestruction)
+            {
+                if (entry != null)
+                {
+                    base.Owner.stats.AdditionalVolleyModifiers -= entry;
+                }
+            }
+
 
             this.Owner.OnEnteredCombat -= PlayerEnteredCombat;
             this.Owner.OnReceivedDamage -= OnRecievedDamage;
@@ -1159,6 +1167,19 @@ namespace ModularMod
 
         private List<ModuleGunStatModifier> stored_Modifiers = new List<ModuleGunStatModifier>();
 
+        public List<Action<ProjectileVolleyData>> VolleysToRemoveOnSuddenDestruction = new List<Action<ProjectileVolleyData>>();
+
+        public void RegisterAction(Action<ProjectileVolleyData> action)
+        {
+            if (VolleysToRemoveOnSuddenDestruction.Contains(action)) { return; }
+            VolleysToRemoveOnSuddenDestruction.Add(action);
+        }
+
+        public void DeregisterAction(Action<ProjectileVolleyData> action)
+        {
+            if (!VolleysToRemoveOnSuddenDestruction.Contains(action)) { return; }
+            VolleysToRemoveOnSuddenDestruction.Remove(action);
+        }
         public void ProcessGunStatModifier(ModuleGunStatModifier modifier)
         {
             if (modifier == null) { return; }

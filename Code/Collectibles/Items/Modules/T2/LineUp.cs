@@ -67,8 +67,11 @@ namespace ModularMod
         }
         public void OP(Projectile p, SpeculativeRigidbody speculativeRigidbody)
         {
-            var VFX = UnityEngine.Object.Instantiate(PierceImpact, p.sprite.WorldCenter - new Vector2(1.5f, 0), Quaternion.identity);
-            Destroy(VFX, 2);
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                var VFX = UnityEngine.Object.Instantiate(PierceImpact, p.sprite.WorldCenter - new Vector2(1.5f, 0), Quaternion.identity);
+                Destroy(VFX, 2);
+            }
         }
     }
 }

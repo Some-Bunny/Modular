@@ -54,8 +54,9 @@ namespace ModularMod
             {
                 if (entry.area.PrototypeRoomCategory == PrototypeDungeonRoom.RoomCategory.SECRET && entry.RevealedOnMap == false)
                 {
-                    if (playedSound == false)
+                    if (playedSound == false && ConfigManager.DoVisualEffect == true)
                     {
+                        
                         GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
                         GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, player.sprite.WorldCenter, Quaternion.identity);
                         blankObj.transform.localScale = Vector3.one * 5;

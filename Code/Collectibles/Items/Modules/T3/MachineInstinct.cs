@@ -174,6 +174,8 @@ namespace ModularMod
         public void DoFlameParticles(tk2dBaseSprite targetSprite, float zOffset = 0f)
         {
             if (GameManager.Instance.IsPaused == true) { return; }
+
+            if (UnityEngine.Random.value > Mathf.Max(0.1f, ConfigManager.ImportantVFXMultiplier))
             if (targetSprite)
             {
                 Vector3 vector = targetSprite.WorldBottomLeft.ToVector3ZisY(zOffset);

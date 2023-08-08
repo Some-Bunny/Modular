@@ -83,7 +83,10 @@ namespace ModularMod.Past.Prefabs.Objects
     {
         public void Start()
         {
-            this.spriteAnimator.Play("cratealt_idle");
+            if (spriteAnimator)
+            {
+                this.spriteAnimator.Play("cratealt_idle");
+            }
         }
 
 

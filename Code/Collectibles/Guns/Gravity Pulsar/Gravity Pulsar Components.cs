@@ -22,7 +22,7 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
             if (this.projectile != null)
             {
                 AkSoundEngine.PostEvent("Play_WPN_blackhole_loop_01", base.gameObject);
-                Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f, 0.2f, 20, 0.5f);
+                Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f * ConfigManager.DistortionWaveMultiplier, 0.2f * ConfigManager.DistortionWaveMultiplier, 20, 0.5f);
 
                 this.m_distortMaterial = new Material(ShaderCache.Acquire("Brave/Internal/DistortionRadius"));
                 this.m_distortMaterial.SetFloat("_Strength", 0f);
@@ -43,7 +43,7 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
             this.projectile.spriteAnimator.Stop();
             this.projectile.sprite.SetSprite(StaticCollections.Projectile_Collection, StaticCollections.Projectile_Collection.GetSpriteIdByName("fwoomp_start_002"));
             AkSoundEngine.PostEvent("Stop_WPN_blackhole_loop_01", base.gameObject);
-            Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f, 0.2f, 20, 0.5f);
+            Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f * ConfigManager.DistortionWaveMultiplier, 0.2f * ConfigManager.DistortionWaveMultiplier, 20, 0.5f);
 
             if (Pixelator.Instance != null && this.m_distortMaterial != null)
             {
@@ -63,7 +63,7 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
         public void OnDestroy()
         {
             AkSoundEngine.PostEvent("Stop_WPN_blackhole_loop_01", base.gameObject);
-            Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f, 0.2f, 20, 0.5f);
+            Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f * ConfigManager.DistortionWaveMultiplier, 0.2f * ConfigManager.DistortionWaveMultiplier, 20, 0.5f);
 
             if (Pixelator.Instance != null && this.m_distortMaterial != null)
             {

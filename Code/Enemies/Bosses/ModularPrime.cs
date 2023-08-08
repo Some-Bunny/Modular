@@ -1308,7 +1308,7 @@ namespace ModularMod
 
                 bool fire = this.BulletBank.aiActor.GetComponent<ModularPrimeController>().Phase2;
 
-                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter,0.5f, 5f, 50, 1f);
+                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter,0.5f * ConfigManager.DistortionWaveMultiplier, 5f * ConfigManager.DistortionWaveMultiplier, 50, 1f);
                 var onj = UnityEngine.Object.Instantiate(VFXObject, this.BulletBank.aiAnimator.sprite.WorldCenter - new Vector2(2.5f, 0), Quaternion.Euler(0, 0, 0));
                 onj.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("punch_blast");
                 if (fire == true)
@@ -1396,7 +1396,7 @@ namespace ModularMod
                 base.PostWwiseEvent("Play_BOSS_RatMech_Stomp_01", null);
                 base.PostWwiseEvent("Play_BOSS_RatMech_Stomp_01", null);
 
-                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 2f, 1f, 50, 1f);
+                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 2f * ConfigManager.DistortionWaveMultiplier, 1f * ConfigManager.DistortionWaveMultiplier, 50, 1f);
                 var onj = UnityEngine.Object.Instantiate(VFXObject, this.BulletBank.aiAnimator.sprite.WorldCenter - new Vector2(2.5f, 0), Quaternion.Euler(0, 0, 0));
                 onj.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("punch_blast");
                 onj.transform.parent = this.BulletBank.transform;
@@ -1597,7 +1597,7 @@ namespace ModularMod
                 base.PostWwiseEvent("Play_BOSS_RatMech_Stomp_01", null);
                 base.PostWwiseEvent("Play_BOSS_RatMech_Stomp_01", null);
 
-                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 3f, 0.125f, 30, 1.33f);
+                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 3f * ConfigManager.DistortionWaveMultiplier, 0.125f * ConfigManager.DistortionWaveMultiplier, 30, 1.33f);
                 var onj = UnityEngine.Object.Instantiate(VFXObject, this.BulletBank.aiAnimator.sprite.WorldCenter- new Vector2(2.5f,0), Quaternion.Euler(0, 0, 0));
                 onj.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("punch_blast");
                 onj.transform.parent = this.BulletBank.transform;
@@ -1695,7 +1695,7 @@ namespace ModularMod
                 {
                     Destroy(entry.Value.gameObject);
                 }
-                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 1f, 5f, 50, 0.75f);
+                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 1f * ConfigManager.DistortionWaveMultiplier, 5f * ConfigManager.DistortionWaveMultiplier, 50, 0.75f);
                 AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", GameManager.Instance.BestActivePlayer.gameObject);
                 GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(SteelPanopticon.MegaFuckingLaser.gameObject, FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou(), Quaternion.Euler(0f, 0f, angle), true);
                 Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
@@ -1845,7 +1845,7 @@ namespace ModularMod
                 {
                     Destroy(entry.Value.gameObject);
                 }
-                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 5f, 0.05f, 50, 0.25f);
+                Exploder.DoDistortionWave(this.BulletBank.aiAnimator.sprite.WorldCenter, 5f * ConfigManager.DistortionWaveMultiplier, 0.05f * ConfigManager.DistortionWaveMultiplier, 50, 0.25f);
                 AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", GameManager.Instance.BestActivePlayer.gameObject);
                 GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(SteelPanopticon.MegaFuckingLaser.gameObject, FuckYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYouIHateYou(), Quaternion.Euler(0f, 0f, angle), true);
                 Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();

@@ -77,7 +77,7 @@ namespace ModularMod
             Material material = sprite.renderer.material;
             material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
             material.SetFloat("_GlitchInterval", 0.1f);
-            material.SetFloat("_DispProbability", 0.6f);
+            material.SetFloat("_DispProbability", 0.6f * ConfigManager.ImportantVFXMultiplier);
             material.SetFloat("_DispIntensity", 0.024f);
             material.SetFloat("_ColorProbability", 0.7f);
             material.SetFloat("_ColorIntensity", 0.1f);
@@ -308,7 +308,7 @@ namespace ModularMod
                 Material material = sprite.renderer.material;
                 material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
                 material.SetFloat("_GlitchInterval", 0.4f);
-                material.SetFloat("_DispProbability", 0.7f);
+                material.SetFloat("_DispProbability", 0.7f * ConfigManager.ImportantVFXMultiplier);
                 material.SetFloat("_DispIntensity", 0.025f);
                 material.SetFloat("_ColorProbability", 0.8f);
                 material.SetFloat("_ColorIntensity", 0.1f);
@@ -444,7 +444,7 @@ namespace ModularMod
                 Material material = projectile.sprite.renderer.material;
                 material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
                 material.SetFloat("_GlitchInterval", 0.1f);
-                material.SetFloat("_DispProbability", 0.4f);
+                material.SetFloat("_DispProbability", 0.4f * ConfigManager.ImportantVFXMultiplier);
                 material.SetFloat("_DispIntensity", 0.024f);
                 material.SetFloat("_ColorProbability", 0.7f);
                 material.SetFloat("_ColorIntensity", 0.1f);
@@ -488,7 +488,7 @@ namespace ModularMod
 
                 this.aiActor.sprite.renderer.material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
                 this.aiActor.sprite.renderer.material.SetFloat("_GlitchInterval", 0.1f);
-                this.aiActor.sprite.renderer.material.SetFloat("_DispProbability", 0.4f);
+                this.aiActor.sprite.renderer.material.SetFloat("_DispProbability", 0.4f * ConfigManager.ImportantVFXMultiplier);
                 this.aiActor.sprite.renderer.material.SetFloat("_DispIntensity", 0.024f);
                 this.aiActor.sprite.renderer.material.SetFloat("_ColorProbability", 0.7f);
                 this.aiActor.sprite.renderer.material.SetFloat("_ColorIntensity", 0.1f);
@@ -500,7 +500,7 @@ namespace ModularMod
                 Material material = component.sprite.renderer.material;
                 material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
                 material.SetFloat("_GlitchInterval", 0.1f);
-                material.SetFloat("_DispProbability", 0.4f);
+                material.SetFloat("_DispProbability", 0.4f * ConfigManager.ImportantVFXMultiplier);
                 material.SetFloat("_DispIntensity", 0.024f);
                 material.SetFloat("_ColorProbability", 0.7f);
                 material.SetFloat("_ColorIntensity", 0.1f);
@@ -530,7 +530,7 @@ namespace ModularMod
                 Material material = sprite.renderer.material;
                 material.shader = ShaderCache.Acquire("Brave/Internal/Glitch");
                 material.SetFloat("_GlitchInterval", 0.1f);
-                material.SetFloat("_DispProbability", 0.4f);
+                material.SetFloat("_DispProbability", 0.4f * ConfigManager.ImportantVFXMultiplier);
                 material.SetFloat("_DispIntensity", 0.024f);
                 material.SetFloat("_ColorProbability", 0.7f);
                 material.SetFloat("_ColorIntensity", 0.1f);
@@ -543,7 +543,7 @@ namespace ModularMod
                 if (List.Count() > 0)
                 {
                     AkSoundEngine.PostEvent("Play_Glitch_Y", this.gameObject);
-                    Exploder.DoDistortionWave(this.sprite.WorldCenter, 1, 0.3f, 10, 0.15f);
+                    Exploder.DoDistortionWave(this.sprite.WorldCenter, 1 * ConfigManager.DistortionWaveMultiplier, 0.3f * ConfigManager.DistortionWaveMultiplier, 10, 0.15f);
                     foreach (var entry in List.ToList())
                     {
                         entry.gameObject.AddComponent<GlitchPot>();
