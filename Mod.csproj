@@ -65,7 +65,7 @@
     <Compile Include="Code\Collectibles\Guns\Update 2\FlakCannon.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\FlakShot.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\UncontrolledBlast.cs" />
-    <Compile Include="Code\Collectibles\Items\Modules\T2\TimeWarp.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\TachyonWarp.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\BifurificationBarrel.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\QuantumLeap.cs" />
     <Compile Include="Code\Collectibles\Items\Drives\PredefinedCore.cs" />

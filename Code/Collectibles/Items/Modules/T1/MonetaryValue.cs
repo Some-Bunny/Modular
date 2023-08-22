@@ -27,7 +27,7 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("moneyvalue_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.75f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Monetary Value " + h.ReturnTierLabel();
             h.LabelDescription = "Gain 0.5% damage (" + StaticColorHexes.AddColorToLabelString("+0.5%", StaticColorHexes.Light_Orange_Hex) + ") \nfor each casing you have.\nYour casing value is increased by 25% every floor.";

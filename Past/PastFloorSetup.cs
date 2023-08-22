@@ -135,7 +135,7 @@ namespace ModularMod
             dungeon.DungeonSeed = 0;
             dungeon.DungeonFloorName = "Hegemony Mechanics Loading Bay."; // what shows up At the top when floor is loaded
             dungeon.DungeonShortName = "Modulars Past."; // no clue lol, just make it the same
-            dungeon.DungeonFloorLevelTextOverride = "17 Years Prior..."; // what shows up below the floorname
+            dungeon.DungeonFloorLevelTextOverride = "7 Years Prior..."; // what shows up below the floorname
             dungeon.LevelOverrideType = GameManager.LevelOverrideState.NONE;
             dungeon.debugSettings = new DebugDungeonSettings()
             {

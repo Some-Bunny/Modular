@@ -32,7 +32,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.2.4";
+        public const string VERSION = "1.2.6";
         public const string TEXT_COLOR = "#79eaff";
 
 
@@ -241,6 +241,7 @@ namespace ModularMod
                 new CharacterSelectIdlePhase() { outAnimation= "error"},
                 new CharacterSelectIdlePhase(){ outAnimation = "tummy"}
             };
+
 
 
             PastDungeon.Init();

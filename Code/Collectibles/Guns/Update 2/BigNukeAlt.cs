@@ -35,6 +35,8 @@ namespace ModularMod
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();
             comp.isAlt = true;
+            comp.AdditionalPowerSupply = -2;
+
 
             gun.DefaultModule.ammoCost = 1;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.Automatic;
@@ -43,8 +45,8 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(39) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 7.5f;
-            gun.DefaultModule.cooldownTime = 4.5f;
+            gun.reloadTime = 8f;
+            gun.DefaultModule.cooldownTime = 5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 4f;

@@ -51,9 +51,9 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.05f) { return; }
             int stack = 1;
-            p.baseData.damage *= 0.35f;
+            p.baseData.damage *= 0.225f;
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-            aaaa.damageMultOnPierce *= 1.075f;
+            aaaa.damageMultOnPierce *= 1.05f;
             aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack * 5);
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += (stack + 1);

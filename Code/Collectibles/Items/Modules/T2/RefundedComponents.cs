@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Refunded Components",
             Description = "Exchange Rate",
-            LongDescription = "Missed shots are refunded back into your clip. Gain a 50% (+50% per stack) boost to damage when you miss, up to 15 misses.\nLanding a hit will use all stored damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Missed shots are refunded back into your clip. Gain a 33% (+33% per stack) boost to damage when you miss, up to 15 misses.\nLanding a hit will use all stored damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Refunded Components" + h.ReturnTierLabel();
-            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ") boost to damage when you miss, up to 15 misses.\nLanding a hit will use all stored damage.";
+            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") boost to damage when you miss, up to 15 misses.\nLanding a hit will use all stored damage.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -73,7 +73,7 @@ namespace ModularMod
             if (Misses == 0) { return; }
             var vfx = player.PlayEffectOnActor(HitOrMissVFX, new Vector3(0, 2));
             vfx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("vfx_hit");
-            float mult = 1 + ((0.1f * this.ReturnStack(modulePrinter)*Misses));
+            float mult = 1 + ((0.33f * this.ReturnStack(modulePrinter)*Misses));
             p.baseData.damage *= mult;
             Misses = 0;
             AkSoundEngine.PostEvent("Play_OBJ_box_uncover_01", player.gameObject);

@@ -165,8 +165,8 @@ namespace ModularMod
 
         }
 
-        public float IncrementPerSecondEnemy = 0.15f;
-        public float IncrementPerSecondProjectile  = 0.075f;
+        public float IncrementPerSecondEnemy = 0.1f;
+        public float IncrementPerSecondProjectile  = 0.05f;
         public float BuildupCount = 0f;
         public bool DodgeCooldown = false;
 
@@ -292,7 +292,7 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.damage *= 1 + (Mathf.Min(currentRisk, RiskCap) / 3);
+            p.baseData.damage *= 1 + (Mathf.Min(currentRisk, RiskCap) / 5);
         }
      
 

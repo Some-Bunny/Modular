@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("jetpropellant_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Jet Propellant " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles start slow, but accelerate to\nhigh speeds after 1 second.\nProjectiles now deal 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
+            h.LabelDescription = "Projectiles start slow, but accelerate to\nhigh speeds after 1 second.\nProjectiles now deal 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.9f;
             h.SetTag("modular_module");
@@ -99,7 +99,7 @@ namespace ModularMod
             if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null)
             {
                 float damage = mR.projectile.baseData.damage;
-                float damageMult = (mR.projectile.baseData.speed / 1000) * (2f * stack);
+                float damageMult = (mR.projectile.baseData.speed / 1000) * (1.25f * stack);
                 mR.projectile.baseData.damage *= 1 + damageMult;
                 mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
             }

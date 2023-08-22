@@ -60,7 +60,7 @@ namespace ModularMod
 
             Vector2 startLocation = player.sprite.WorldCenter +Toolbox.GetUnitOnCircle(g.CurrentAngle, (1f + (0.25f * stack)) + 1f);
 
-            Vector2 endLocation = startLocation + Toolbox.GetUnitOnCircle(g.CurrentAngle, (4f + (stack * 1.5f)) * a);
+            Vector2 endLocation = startLocation + Toolbox.GetUnitOnCircle(g.CurrentAngle, (5f + (stack * 2.5f)) * a);
 
             DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(Alexandria.Misc.GoopUtility.FireDef).TimedAddGoopLine(startLocation, endLocation, 1f + (0.25f * stack), 0.35f);
             player.StartCoroutine(BurningWitness(player.CurrentRoom, startLocation, endLocation, 1f + (0.25f * stack), 0.35f));
@@ -80,7 +80,7 @@ namespace ModularMod
                     Vector2 center = lastEnd + (currentEnd - lastEnd) * (((float)i + 1f) / (float)steps);
                     if (room != null)
                     {
-                        room.ApplyActionToNearbyEnemies(center, radius + 0.5f, Burn);
+                        room.ApplyActionToNearbyEnemies(center, radius + 0.75f, Burn);
                     }
                     GlobalSparksDoer.DoSingleParticle(center + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0, radius)), Vector2.zero, null, null, null, GlobalSparksDoer.SparksType.STRAIGHT_UP_FIRE);
                 }
@@ -93,7 +93,7 @@ namespace ModularMod
         {
             if (enemy) 
             {
-                enemy.healthHaver.ApplyDamage(1.5f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
+                enemy.healthHaver.ApplyDamage(2f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
                 enemy.ApplyEffect(DebuffStatics.hotLeadEffect);
             }
         }

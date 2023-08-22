@@ -58,7 +58,7 @@ namespace ModularMod
                 for (int i = 0; i < amtToSplitTo; i++)
                 {
                     float finalAngle  = isPurelyRandomizedSplitAngle ? BraveUtility.RandomAngle() : startAngle - (ProjectileInterval * i);
-                    GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(parentProjectile.gameObject, parentProjectile.sprite.WorldCenter, Quaternion.Euler(0f, 0f, finalAngle + Addon), true);
+                    GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(parentProjectile.PossibleSourceGun != null ? parentProjectile.PossibleSourceGun.DefaultModule.projectiles[0].gameObject : parentProjectile.gameObject, parentProjectile.sprite.WorldCenter, Quaternion.Euler(0f, 0f, finalAngle + Addon), true);
                     Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
                     if (component != null)
                     {
@@ -68,20 +68,30 @@ namespace ModularMod
                         component.baseData.speed *= speedMultAfterSplit;
                         component.UpdateSpeed();
                         component.RuntimeUpdateScale(sizeMultAfterSplit);
+                        if (DoesSplitPostProcess == true && parentOwner != null)
+                        {
+                            parentOwner.DoPostProcessProjectile(component);
+                        }
                         ProjectileSplitController split2 = component.gameObject.GetComponent<ProjectileSplitController>();
                         if (split2 && removeComponentAfterUse)
                         {
                             UnityEngine.Object.Destroy(split2);
                         }
+                        var shrapnelbolb = component.gameObject.GetComponent<SpawnProjModifier>();
+                        if (shrapnelbolb)
+                        {
+                            UnityEngine.Object.Destroy(shrapnelbolb);
+                        }
                     }
                 }
-                if (parentProjectile)
+                if (parentProjectile && DestroysProjectileOnSplit)
                 {
                     UnityEngine.Object.Destroy(parentProjectile.gameObject);
                 }
             }
             hasSplit = true;
         }
+        public bool DestroysProjectileOnSplit = true;
         private Projectile parentProjectile;
         private PlayerController parentOwner;
         private bool hasSplit;
@@ -104,6 +114,7 @@ namespace ModularMod
         public bool removeComponentAfterUse;
 
         public bool SplitsOnDestroy;
+        public bool DoesSplitPostProcess = false;
 
     }
 }

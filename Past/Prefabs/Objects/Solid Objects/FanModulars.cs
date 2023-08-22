@@ -12,7 +12,7 @@ namespace ModularMod.Past.Prefabs.Objects
         public static void Init()
         {
             //obj.SetLayerRecursively(LayerMask.NameToLayer("BG_Nonsense"));
-            CreateObject("NN_Modular", "NN_modular", "Modular Version 0.314.\nOriginally intended research for research.", new IntVector2(17, 21), new IntVector2(0, -4));
+            CreateObject("NN_Modular", "NN_modular", "Modular Version 0.314.\nOriginally intended for research.", new IntVector2(17, 21), new IntVector2(0, -4));
             CreateObject("_X_Modular", "broken_modular", "Modular Version 0.7.\nA release candidate version, until it was\nunceremoniously dropped, and broken.\nMissing its AI drive, and has a cracked screen.", new IntVector2(16, 22), new IntVector2(0, -4));
 
             CreateObject("Lynceus_Modular", "ModularSpiderHelloBunnyYoureAwesome", "Modular Version 0.49.\nReconnaissance machine. Equipped for all terrain. I would be jealous, if I could be jealous.", new IntVector2(18, 17), new IntVector2(0, -4));

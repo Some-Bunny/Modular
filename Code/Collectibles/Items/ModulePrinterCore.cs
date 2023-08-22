@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -400,7 +399,10 @@ namespace ModularMod
         public void PostProcessProjectile(Projectile p, float f)
         {
             if (base.Owner == null) { return; }
-            if (OnPostProcessProjectile != null && p != null) { OnPostProcessProjectile(this, p, f, base.Owner); }
+            if (OnPostProcessProjectile != null && p != null) 
+            {
+                OnPostProcessProjectile(this, p, f, base.Owner); 
+            }
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
             if (OnProjectileStickAction != null)
             {
@@ -754,6 +756,10 @@ namespace ModularMod
                     ModuleContainers.Remove(ModuleContainers[i]);
                 }
             }
+            if (base.Owner)
+            {
+                base.Owner.stats.RecalculateStats(base.Owner);
+            }
         }
         public void PowerModule(DefaultModule self, int Amount_To_Add = 1)
         {
@@ -780,6 +786,10 @@ namespace ModularMod
                 {
                     ModuleContainers.Remove(ModuleContainers[i]);
                 }
+            }
+            if (base.Owner)
+            {
+                base.Owner.stats.RecalculateStats(base.Owner);
             }
         }
 

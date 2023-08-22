@@ -87,23 +87,27 @@ namespace ModularMod
         }
         public void PP_E(PlayerController ppe)
         {
-            foreach (var entry in allActiveComps)
+            for (int i = allActiveComps.Count - 1; i > -1; i--)
             {
+                var entry = allActiveComps[i];
                 entry.Redirect();
             }
         }
         public void PP(PlayerController ppe)
         {
-            foreach(var entry in allActiveComps)
+            for (int i = allActiveComps.Count - 1; i > -1; i--)
             {
+                var entry = allActiveComps[i];
                 entry.DoCloak();
             }
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
-            modulePrinter.OnPostProcessProjectileOneFrameDelay += PPP;
+            modulePrinter.OnPostProcessProjectileOneFrameDelay -= PPP;
+            modulePrinter.OnGunReloaded -= OGR;
             player.stats.RecalculateStats(player);
+
         }
         public static List<QuantumComponent> allActiveComps = new List<QuantumComponent>();
 
@@ -134,6 +138,7 @@ namespace ModularMod
             public void DoCloak()
             {
                 if (isInStasis == true) { return; }
+                if (self == null) { OnDestroy(); return; }
                 isInStasis = true;
                 self.sprite.renderer.material.shader = StaticShaders.Hologram_Shader;
                 self.baseData.speed = 0f;

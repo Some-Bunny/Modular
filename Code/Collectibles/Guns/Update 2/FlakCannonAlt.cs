@@ -43,7 +43,7 @@ namespace ModularMod
 
 
             gun.reloadTime = 3.5f;
-            gun.DefaultModule.cooldownTime = 1.1f;
+            gun.DefaultModule.cooldownTime = 1.25f;
             gun.DefaultModule.numberOfShotsInClip = 3;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 7f;
@@ -78,7 +78,7 @@ namespace ModularMod
             var p = projectile.gameObject.AddComponent<ExplosiveModifier>().CopyFrom<ExplosiveModifier>(hhh);
             Destroy(hhh);
             p.explosionData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
-            p.explosionData.damage = 3;
+            p.explosionData.damage = 2;
             p.explosionData.damageToPlayer = 0;
 
             projectile.AnimateProjectileBundle("flakcannon", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "flakcannon",
@@ -108,7 +108,7 @@ namespace ModularMod
             shrapnelbolb.fireRandomlyInAngle = true;
             shrapnelbolb.collisionSpawnStyle = SpawnProjModifier.CollisionSpawnStyle.FLAK_BURST;
             shrapnelbolb.PostprocessSpawnedProjectiles = true;
-            shrapnelbolb.numberToSpawnOnCollison = 9;
+            shrapnelbolb.numberToSpawnOnCollison = 7;
 
 
             shrapnelbolb.spawnProjectilesOnCollision = true;

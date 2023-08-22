@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Five-Shot Salute",
             Description = "One For Each Finger",
-            LongDescription = "Slightly reduces Rate Of Fire, and reduces Damage by 33%. Shoot 5 times the projectiles (+2 Projectiles per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Reduces Rate Of Fire and Damage by 30%. Shoot 5 (+2 per stack) times the projectiles." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Five-Shot Salute " + h.ReturnTierLabel();
-            h.LabelDescription = "Slighly reduces Rate Of Fire and reduces Damage by 25%.\nShoot 5 times the projectiles (" + StaticColorHexes.AddColorToLabelString("+2 Projectiles", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Reduces Rate Of Fire and Damage by 30%.\nShoot 5 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") times the projectiles.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
@@ -61,18 +61,15 @@ namespace ModularMod
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 1.2f;
+            return f * 1.3f;
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.damage *= 0.75f;
+            p.baseData.damage *= 0.7f;
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {
             Toolbox.ModifyVolley(obj, Stored_Core.Owner, 2 + (this.ReturnStack(Stored_Core) * 2), 16, 2);
-
-
-            //GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 2 + (this.ReturnStack(Stored_Core)*2), 16, 2);
         }
 
 
@@ -89,7 +86,6 @@ namespace ModularMod
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             player.stats.AdditionalVolleyModifiers -= Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
-
         }
     }
 }

@@ -548,7 +548,7 @@ namespace ModularMod
                    , "ui_button_precisionrifle_gun_pressed" //asset name pressed
                    , CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
                    , PresicionRifle.ID //Gun ID
-                   , "A slow fire, accurate rifle.\nCan "+ StaticColorHexes.AddColorToLabelString("pierce", StaticColorHexes.Orange_Hex) + " enemies." //Default description
+                   , "A slow firing, accurate rifle.\nCan "+ StaticColorHexes.AddColorToLabelString("pierce", StaticColorHexes.Orange_Hex) + " enemies." //Default description
                    , StaticColorHexes.AddColorToLabelString("Very High", StaticColorHexes.Green_Hex)  //Damage Secription
                    , StaticColorHexes.AddColorToLabelString("Very Slow", StaticColorHexes.Red_Color_Hex) //Reload Secription
                    , StaticColorHexes.AddColorToLabelString("Very Low", StaticColorHexes.Red_Color_Hex) //Clipsize Secription
@@ -595,7 +595,7 @@ namespace ModularMod
                    , "ui_button_suppressor_gun_pressed" //asset name pressed
                    , CustomDungeonFlags.BEAT_LICH_AS_MODULAR //Unlock flag, Set itt to NOLLA for no unlock condition
                    , Suppressor.GunID //Gun ID
-                   , "Starts off slow, but\nfire rate increases fast." //Default description
+                   , "Starts off slow, but\nfire rate quickly increases." //Default description
                    , StaticColorHexes.AddColorToLabelString("Very Low", StaticColorHexes.Red_Color_Hex)  //Damage Secription
                    , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Light_Orange_Hex) //Reload Secription
                    , StaticColorHexes.AddColorToLabelString("Very High", StaticColorHexes.Green_Hex) //Clipsize Secription
@@ -608,7 +608,7 @@ namespace ModularMod
                    , "ui_button_suppressor_gun_highlighted_alt" //asset name highlighted alt
                    , "ui_button_suppressor_gun_pressed_alt" //asset name pressed alt
                    , "name_label_suppressor_alt"  //Label Name Asset Name Alt
-                   , "As Modular, reach and beat\n Bullet Hell."); //Unlock Description
+                   , "As Modular, reach and beat\nBullet Hell."); //Unlock Description
 
             //=============================================================================================================================================
             //=============================================================================================================================================
@@ -738,7 +738,7 @@ namespace ModularMod
                 , StaticColorHexes.AddColorToLabelString("*EXTREMELY Small*", StaticColorHexes.Red_Color_Hex) //Clipsize Secription
                 , StaticColorHexes.AddColorToLabelString("Very Slow", StaticColorHexes.Red_Color_Hex)//Fire rate Secription
                 , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Orange_Hex) //Shot Speed Secription
-                , "Make Your Shot Count."  //Additional Notes, keep at one line
+                , "Massive Power Drain, has -2 starting" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)  //Additional Notes, keep at one line
                 , "name_label_nuke" //Label Name Asset Name
                 , BigNukeAlt.GunID //alt gun ID
                 , "ui_button_nuke_gun_alt" //asset name default alt

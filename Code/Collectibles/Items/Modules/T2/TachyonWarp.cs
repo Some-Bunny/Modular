@@ -12,12 +12,12 @@ using UnityEngine;
 
 namespace ModularMod
 {
-    public class TimeWarp : DefaultModule
+    public class TachyonWarp : DefaultModule
     {
-        public static ItemTemplate template = new ItemTemplate(typeof(TimeWarp))
+        public static ItemTemplate template = new ItemTemplate(typeof(TachyonWarp))
         {
             Name = "Tachyon Warp",
-            Description = "MONEY",
+            Description = "WARP ZONE!!!!",
             LongDescription = "Greatly increases accuracy, adds slight homing to your projectiles and slightly increases damage (+Stronger Homing and Damage per stack). Projectiles fire from walls, instead of your gun. Shooting pushes nearby enemies away slightly. (+Stronger push force per stack)\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tachyonwarp_t2_module"),
@@ -38,7 +38,7 @@ namespace ModularMod
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.IsUncraftable = true;
-            h.EnergyConsumption = 1;
+            h.EnergyConsumption = 2;
             h.AddToGlobalStorage();
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
@@ -211,7 +211,6 @@ namespace ModularMod
             modularGunController.RevertMuzzleFlash();
             modulePrinter.OnPostProcessProjectileOneFrameDelay -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
-
         }
     }
 }

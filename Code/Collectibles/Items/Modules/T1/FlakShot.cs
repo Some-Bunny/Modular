@@ -48,13 +48,16 @@ namespace ModularMod
             int stack = 1;
             p.baseData.damage *= 1 - (1 - (1 / (1 + 0.20f)));
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
-            split.dmgMultAfterSplit = 0.25f + (0.15f * stack);
+            split.dmgMultAfterSplit = 0.2f + (0.075f * stack);
             split.speedMultAfterSplit = 0.7f + (0.025f * stack);
             split.amtToSplitTo = 1 + stack;
             split.SplitsOnDestroy = true;
             split.isPurelyRandomizedSplitAngle = true;
             split.removeComponentAfterUse = true;
             split.sizeMultAfterSplit = 0.66f;
+            split.DestroysProjectileOnSplit = false;
+            split.DoesSplitPostProcess = true;
+
         }
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -70,13 +73,15 @@ namespace ModularMod
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage *= 1 - (1 - (1 / (1 + 0.20f)));
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
-            split.dmgMultAfterSplit = 0.3f + (0.1f * stack);
-            split.speedMultAfterSplit = 0.7f + (0.1f * stack);
+            split.dmgMultAfterSplit = 0.2f + (0.075f * stack);
+            split.speedMultAfterSplit = 0.7f + (0.025f * stack);
             split.amtToSplitTo = 1 + stack;
             split.SplitsOnDestroy = true;
             split.isPurelyRandomizedSplitAngle = true;
             split.removeComponentAfterUse = true;
-            split.sizeMultAfterSplit = 0.5f;
+            split.sizeMultAfterSplit = 0.66f;
+            split.DestroysProjectileOnSplit = false;
+            split.DoesSplitPostProcess = true;
         }
     }
 }

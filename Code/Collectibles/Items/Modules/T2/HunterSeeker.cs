@@ -31,6 +31,7 @@ namespace ModularMod
             h.LabelDescription = "Projectile speed reduced by 33% (" + StaticColorHexes.AddColorToLabelString("-33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles grain stronger homing the longer they are in the air.\n(" + StaticColorHexes.AddColorToLabelString("+Faster Homing Ramping", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
+            h.AdditionalWeightMultiplier = 0.85f;
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);

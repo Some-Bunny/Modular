@@ -44,7 +44,10 @@ namespace ModularMod
             };
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
+            Data = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+            Data.damage = 5;
         }
+        public static ExplosionData Data;
         public static int ID;
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
@@ -59,7 +62,6 @@ namespace ModularMod
             mod.OnStick += H_S;
             mod.OnStickyDestroyed += H2;
             mod.OnPreStick += OPPS;
-
         }
 
 
@@ -131,7 +133,7 @@ namespace ModularMod
 
         public void H2(GameObject stick, StickyProjectileModifier comp, PlayerController p)
         {
-            Exploder.Explode(stick.transform.position, StaticExplosionDatas.explosiveRoundsExplosion, Vector2.zero);
+            Exploder.Explode(stick.transform.position, Data, Vector2.zero);
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

@@ -46,7 +46,7 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.03f) { return; }
-            p.baseData.speed *= 2f;
+            p.baseData.speed *= 1.66f;
             p.pierceMinorBreakables = true;
             p.UpdateSpeed();
 
@@ -63,7 +63,7 @@ namespace ModularMod
         {
             var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(328) as Gun).DefaultModule.chargeProjectiles[0].Projectile.hitEffects.overrideMidairDeathVFX, stick.transform.position, Quaternion.identity);
             Destroy(obj, 2);
-            GameManager.Instance.StartCoroutine(DoTimer(stick,2, 10));
+            GameManager.Instance.StartCoroutine(DoTimer(stick,2.5f, 10));
         }
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -91,7 +91,7 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            p.baseData.speed *= 2f;
+            p.baseData.speed *= 1.66f;
             p.pierceMinorBreakables = true;
 
             p.UpdateSpeed();
@@ -100,7 +100,7 @@ namespace ModularMod
         {
             var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(328) as Gun).DefaultModule.chargeProjectiles[0].Projectile.hitEffects.overrideMidairDeathVFX, stick.transform.position, Quaternion.identity);
             Destroy(obj, 2);
-            GameManager.Instance.StartCoroutine(DoTimer(stick, 1 + this.Stack(), 10));
+            GameManager.Instance.StartCoroutine(DoTimer(stick, 2.5f + this.Stack(), 10));
         }
 
         //This code fucking sucks lmfaoooo
@@ -161,7 +161,7 @@ namespace ModularMod
         {
             if (aI)
             {
-                aI.healthHaver.ApplyDamage((2 * this.Stack()) * BraveTime.DeltaTime, Vector2.zero, "Hellfire", CoreDamageTypes.Fire, DamageCategory.DamageOverTime);
+                aI.healthHaver.ApplyDamage((2.5f * this.Stack()) * BraveTime.DeltaTime, Vector2.zero, "Hellfire", CoreDamageTypes.Fire, DamageCategory.DamageOverTime);
                 if (UnityEngine.Random.value < 0.025f)
                 {
                     aI.gameActor.ApplyEffect(DebuffStatics.hotLeadEffect);

@@ -140,7 +140,7 @@ namespace ModularMod
             behavior.canAttemptActiveReload = true;
             behavior.reloads = new List<MultiActiveReloadData>
             {
-                new MultiActiveReloadData(0.25f, 30, 50, 48, 20, true, false, new ActiveReloadData
+                new MultiActiveReloadData(0, 50, 60, 48, 0, true, false, new ActiveReloadData
                 {
                     damageMultiply = 1f,
 

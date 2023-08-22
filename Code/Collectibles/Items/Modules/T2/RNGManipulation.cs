@@ -31,7 +31,7 @@ namespace ModularMod
             h.LabelDescription = "Grants vastly improved and more common room drops.\n(" + StaticColorHexes.AddColorToLabelString("+Loot chance and better loot drop odds", StaticColorHexes.Light_Orange_Hex) + ").";
             h.EnergyConsumption = 1;
             h.AddToGlobalStorage();
-            h.AdditionalWeightMultiplier = 0.7f;
+            h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);

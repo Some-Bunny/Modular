@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Uncontrolled Blast",
             Description = "Spray And Pray",
-            LongDescription = "Massively boosts clip size and fire rate (+More Fire Rate per stack),but reduces and damage gives virtually uncontrollable spread. (+Even More Spread per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Massively boosts clip size and fire rate (+More Fire Rate per stack),but reduces damage and gives virtually uncontrollable spread. (+Even More Spread per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("uncontrolledblast_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,9 +31,9 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("uncontrolledblast_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Uncontrolled Blast " + h.ReturnTierLabel();
-            h.LabelDescription = "Massively boosts clip size and fire rate (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + "),\nbut reduces and damage gives "+ StaticColorHexes.AddColorToLabelString("virtually uncontrollable spread", StaticColorHexes.Red_Color_Hex) + ".\n(" + StaticColorHexes.AddColorToLabelString("+Even More Spread", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Massively boosts clip size and fire rate (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + "),\nbut reduces damage and gives " + StaticColorHexes.AddColorToLabelString("virtually uncontrollable spread", StaticColorHexes.Red_Color_Hex) + ".\n(" + StaticColorHexes.AddColorToLabelString("+Even More Spread", StaticColorHexes.Light_Orange_Hex) + ")";
             h.OverrideScrapCost = 7;
-            h.AdditionalWeightMultiplier = 0.3f;
+            h.AdditionalWeightMultiplier = 0.2f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.IsSpecialModule = true;
@@ -68,7 +68,7 @@ namespace ModularMod
         }
         public int ProcessClipSize(int f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return (int)(f * 2.5f);
+            return (int)(f * 2f);
         }
 
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
