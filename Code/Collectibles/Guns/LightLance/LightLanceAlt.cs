@@ -22,7 +22,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Slashes enemies, can be charged to do a deflecting attack with an energy projectile.\n\nA close-combat weapon. In the hands of a machine with a fast enough camera, it can fulfill the dream of every person with a samurai sword.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "coollancealt_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "coollancealt_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "lightlancealt_idle";
@@ -83,7 +83,7 @@ namespace ModularMod
             projectileSlashingBehaviour.SlashDamageUsesBaseProjectileDamage = false;
             projectileSlashingBehaviour.initialDelay = 0.1f;
             //projectileSlashingBehaviour.slashParameters.CustomReflectProjectile += OnDoSlash;
-            projectileSlashingBehaviour.slashParameters.damage = 12.5f;
+            projectileSlashingBehaviour.slashParameters.damage = 25f;
             projectileSlashingBehaviour.slashParameters.damagesBreakables = true;
 
 
@@ -118,10 +118,10 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 50);
             projectile.sprite.renderer.material = mat;
             projectile.gameObject.AddComponent<LightLance.SpeedUp>();
-            projectile.baseData.damage = 7.5f;
+            projectile.baseData.damage = 16f;
             projectile.baseData.speed = 1;
             projectile.shouldRotate = true;
-            projectile.baseData.range = 7;
+            projectile.baseData.range = 9;
             projectile.PenetratesInternalWalls = true;
 
             CustomProjectileSlashingBehaviour projectileSlashingBehaviour2 = projectile.gameObject.AddComponent<CustomProjectileSlashingBehaviour>();
@@ -134,13 +134,13 @@ namespace ModularMod
             var slash = ScriptableObject.CreateInstance<SpecialLaserSlash>();
             slash.projInteractMode = CustomSlashDoer.ProjInteractMode.REFLECTANDPOSTPROCESS;
             slash.playerKnockbackForce = 20;
-            slash.enemyKnockbackForce = 30;
+            slash.enemyKnockbackForce = 70;
             slash.doVFX = false;
             slash.doHitVFX = true;
-            slash.slashRange = 4f;
+            slash.slashRange = 4.25f;
             slash.slashDegrees = 120;
             slash.soundEvent = "Play_WPN_beam_slash_01";
-            slash.damage = 21;
+            slash.damage = 45;
             slash.damagesBreakables = true;
             slash.hitVFX = (PickupObjectDatabase.GetById(345) as Gun).DefaultModule.projectiles[0].hitEffects.enemy;
             customSlash = slash;
@@ -163,7 +163,7 @@ namespace ModularMod
             {
                 Projectile = projectile,
                 OverrideShootAnimation = "lightlancealt_altfire",
-                ChargeTime = 0.875f,
+                ChargeTime = 0.7f,
                 AmmoCost = 2,
                 UsedProperties = ProjectileModule.ChargeProjectileProperties.shootAnim | ProjectileModule.ChargeProjectileProperties.additionalWwiseEvent,
                 AdditionalWwiseEvent = "Play_BOSS_agunim_orb_01"

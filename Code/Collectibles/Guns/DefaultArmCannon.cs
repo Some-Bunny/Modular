@@ -18,7 +18,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires simple energy balls. Compatible with Modular Upgrade Software.\n\nGiven the right circumstances, this piece of equipment would have been able to assist in many different ways with construction. An under-the-table deal weaponized it.");
             
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "defaultarmcannon_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "defaultarmcannon_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "defaultarmcannon_idle";

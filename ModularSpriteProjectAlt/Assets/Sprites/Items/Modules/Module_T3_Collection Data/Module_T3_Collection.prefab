@@ -1425,25 +1425,25 @@ MonoBehaviour:
     attachPoints: []
   - name: voltaictethers_t3_module
     boundsData:
-    - {x: 0.03125, y: 0, z: 0}
+    - {x: 0.71875, y: 0.5625, z: 0}
     - {x: 1.4375, y: 1.125, z: 0}
     untrimmedBoundsData:
-    - {x: 0.03125, y: 0, z: 0}
+    - {x: 0.71875, y: 0.5625, z: 0}
     - {x: 1.4375, y: 1.125, z: 0}
-    boundsDataCenter: {x: 0.03125, y: 0, z: 0}
+    boundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
     boundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
-    untrimmedBoundsDataCenter: {x: 0.03125, y: 0, z: 0}
+    untrimmedBoundsDataCenter: {x: 0.71875, y: 0.5625, z: 0}
     untrimmedBoundsDataExtents: {x: 1.4375, y: 1.125, z: 0}
     texelSize: {x: 0.0625, y: 0.0625}
     positions:
-    - {x: -0.6875, y: -0.5625, z: 0}
-    - {x: 0.75, y: -0.5625, z: 0}
-    - {x: -0.6875, y: 0.5625, z: 0}
-    - {x: 0.75, y: 0.5625, z: 0}
-    position0: {x: -0.6875, y: -0.5625, z: 0}
-    position1: {x: 0.75, y: -0.5625, z: 0}
-    position2: {x: -0.6875, y: 0.5625, z: 0}
-    position3: {x: 0.75, y: 0.5625, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 1.4375, y: 0, z: 0}
+    - {x: 0, y: 1.125, z: 0}
+    - {x: 1.4375, y: 1.125, z: 0}
+    position0: {x: 0, y: 0, z: 0}
+    position1: {x: 1.4375, y: 0, z: 0}
+    position2: {x: 0, y: 1.125, z: 0}
+    position3: {x: 1.4375, y: 1.125, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -2088,7 +2088,7 @@ MonoBehaviour:
   loadable: 0
   invOrthoSize: 2
   halfTargetHeight: 8
-  buildKey: 988080986
+  buildKey: 304294486
   dataGuid: 60f0b6391687ea54980125a0ae4959cb
   managedSpriteCollection: 0
   hasPlatformData: 0

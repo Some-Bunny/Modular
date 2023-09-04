@@ -41,6 +41,7 @@ namespace ModularMod
         }
 
 
+        public Projectile projectileToCopyForFlak;
 
         public Gun gun;
         public PlayerController Player;
@@ -348,6 +349,8 @@ namespace ModularMod
                 cont.Key.angleVariance = BaseAngle;
                 cont.Key.angleFromAim = AngleFromAim;
                 cont.Key.numberOfShotsInClip = ClipSize;
+                cont.Key.numberOfFinalProjectiles = finales;
+
             }
 
             foreach (var cont in Default_ChargeProj_And_Cooldown)
@@ -395,6 +398,7 @@ namespace ModularMod
                 cont.Key.angleVariance = BaseAngle;
                 cont.Key.angleFromAim = AngleFromAim;
                 cont.Key.numberOfShotsInClip = ClipSize;
+                cont.Key.numberOfFinalProjectiles = finales;
             }
 
             foreach (var cont in Modified_ChargeProj_And_Cooldown)

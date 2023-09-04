@@ -430,7 +430,7 @@ namespace ModularMod
                    , "ui_button_scattercannon_gun_pressed" //asset name pressed
                    , CustomDungeonFlags.BEAT_FLOOR_3 //Unlock flag, Set itt to NOLLA for no unlock condition
                    , ScatterBlast.ID //Gun ID
-                   , "A basic scatter cannon.\nFires 6 pellets with one shot." //Default description
+                   , "A basic scatter cannon.\nFires 7 pellets with one shot." //Default description
                    , StaticColorHexes.AddColorToLabelString("High", StaticColorHexes.Orange_Hex)  //Damage Secription
                    , StaticColorHexes.AddColorToLabelString("Slower Than Average", StaticColorHexes.Yellow_Hex) //Reload Secription
                    , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Yellow_Hex) //Clipsize Secription
@@ -512,8 +512,8 @@ namespace ModularMod
                    , "A charge-shot gun. Charge up\nto fire a fast, high damage shot." //Default description
                    , StaticColorHexes.AddColorToLabelString("High", StaticColorHexes.Green_Hex)  //Damage Secription
                    , StaticColorHexes.AddColorToLabelString("Very Slow", StaticColorHexes.Red_Color_Hex) //Reload Secription
-                   , StaticColorHexes.AddColorToLabelString("Low", StaticColorHexes.Orange_Hex) //Clipsize Secription
-                   , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex) //Fire rate Secription
+                   , StaticColorHexes.AddColorToLabelString("Below Average", StaticColorHexes.Yellow_Hex) //Clipsize Secription
+                   , StaticColorHexes.AddColorToLabelString("Below Average", StaticColorHexes.Yellow_Hex) //Fire rate Secription
                    , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Green_Hex) //Shot Speed Secription
                    , "Make your shots count."  //Additional Notes, keep at one line
                    , "name_label_energycharger" //Label Name Asset Name
@@ -688,7 +688,7 @@ namespace ModularMod
                 , CustomDungeonFlags.PAST //Unlock flag, Set itt to NOLLA for no unlock condition
                 , LightLance.ID //Gun ID
                 , "Melee weapon.\nCharge up to parry projectiles." //Default description
-                , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex)  //Damage Secription
+                , StaticColorHexes.AddColorToLabelString("High", StaticColorHexes.Green_Hex)  //Damage Secription
                 , StaticColorHexes.AddColorToLabelString("Slower Than Average", StaticColorHexes.Light_Orange_Hex)//Reload Secription
                 , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex) //Clipsize Secription
                 , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Green_Hex)//Fire rate Secription

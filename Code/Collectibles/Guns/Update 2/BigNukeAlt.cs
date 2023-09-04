@@ -19,7 +19,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires kinetic warheads. Compatible with Modular Upgrade Software.\n\nComplete overkill, in the palm of your hand.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "bigbombalt_idle_004", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "bigbombalt_idle_004");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "bignukealt_idle";

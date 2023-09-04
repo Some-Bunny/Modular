@@ -22,7 +22,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires large rifts, followed up with energy attracted to said rifts. Compatible with Modular Upgrade Software.\n\nAn experimental tech graciously provided by a local laboratory, weaponized into an exotic weapon.");
             
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "gravgun_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "gravgun_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "gravgun_idle";
@@ -155,6 +155,7 @@ namespace ModularMod
             yes1.shadowLifetime = 0.3f;
             yes1.shadowTimeDelay = 0.01f;
             yes1.dashColor = new Color(0f, 0.7f, 0.7f, 1f);
+            comp.projectileToCopyForFlak = projectile_Small;
 
 
             gun.gunClass = GunClass.NONE;

@@ -20,7 +20,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires chunks of completely waste material. Compatible with Modular Upgrade Software.\n\nA somewhat effective way to get rid of waste material that simply cannot be repurposed.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "flakcannonalt_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "flakcannonalt_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "flakcannonalt_idle";
@@ -43,7 +43,7 @@ namespace ModularMod
 
 
             gun.reloadTime = 3.5f;
-            gun.DefaultModule.cooldownTime = 1.25f;
+            gun.DefaultModule.cooldownTime = 1.2f;
             gun.DefaultModule.numberOfShotsInClip = 3;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 7f;
@@ -78,7 +78,7 @@ namespace ModularMod
             var p = projectile.gameObject.AddComponent<ExplosiveModifier>().CopyFrom<ExplosiveModifier>(hhh);
             Destroy(hhh);
             p.explosionData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
-            p.explosionData.damage = 2;
+            p.explosionData.damage = 3;
             p.explosionData.damageToPlayer = 0;
 
             projectile.AnimateProjectileBundle("flakcannon", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "flakcannon",
@@ -97,7 +97,7 @@ namespace ModularMod
 
 
             projectile.baseData.speed *= 1f;
-            projectile.baseData.damage = 15f;
+            projectile.baseData.damage = 20f;
             projectile.shouldRotate = false;
 
             Material mat = new Material(StaticShaders.Default_Shader);

@@ -19,7 +19,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires high power energy. Hitting the active reload timing instantly reloads the clip. Compatible with Modular Upgrade Software.\n\nBuilt off of a mechanism that would lightly hammer in nails for hanging up things, but taken to the logical extreme.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "hammershotalt_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "hammershotalt_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "hammershotalt_idle";
@@ -136,6 +136,18 @@ namespace ModularMod
             explosiveModifier.doExplosion = true;
             explosiveModifier.IgnoreQueues = true;
 
+            gun.activeReloadData = new ActiveReloadData()
+            {
+                reloadSpeedMultiplier = 1.025f,
+                ActiveReloadIncrementsTier = true,
+                ActiveReloadStacks = true,
+                MaxTier = 10
+            };
+            gun.m_canAttemptActiveReload = true;
+            gun.LocalActiveReload = true;
+            behavior.activeReloadEnabled = true;
+            behavior.canAttemptActiveReload = true;
+            /*
             behavior.activeReloadEnabled = true;
             behavior.canAttemptActiveReload = true;
             behavior.reloads = new List<MultiActiveReloadData>
@@ -146,6 +158,7 @@ namespace ModularMod
 
                 }, true, "SwitchClip"),
             };
+            */
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
         }

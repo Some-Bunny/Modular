@@ -18,7 +18,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires high velocity piercing shots. Compatible with Modular Upgrade Software.\n\nA reconstructed nailgun. Though, realistically, it would have been recalled very fast if made available to the general public.");
             
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "bigsnipe_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "bigsnipe_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "bigsnipe_idle";

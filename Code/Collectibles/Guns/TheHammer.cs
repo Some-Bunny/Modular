@@ -23,7 +23,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires high power energy. Hitting the active reload timing instantly reloads the clip. Compatible with Modular Upgrade Software.\n\nBuilt off of a mechanism that would lightly hammer in nails for hanging up things, but taken to the logical extreme.");
             
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "hammershot_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "hammershot_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "hammershot_idle";
@@ -45,7 +45,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(383) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 6f;
+            gun.reloadTime = 5f;
             gun.DefaultModule.cooldownTime = .5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
@@ -132,7 +132,18 @@ namespace ModularMod
 
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("ThehammerOfTheFunny", StaticCollections.Clip_Ammo_Atlas, "hammer_1", "hammer_2");
-
+            gun.activeReloadData = new ActiveReloadData()
+            {
+                reloadSpeedMultiplier = 1.025f,
+                ActiveReloadIncrementsTier = true,
+                ActiveReloadStacks = true,
+                MaxTier = 10
+            };
+            gun.m_canAttemptActiveReload = true;
+            gun.LocalActiveReload = true;
+            behavior.activeReloadEnabled = true;
+            behavior.canAttemptActiveReload = true;
+            /*
             behavior.activeReloadEnabled = true;
             behavior.canAttemptActiveReload = true;
             behavior.reloads = new List<MultiActiveReloadData>
@@ -143,6 +154,7 @@ namespace ModularMod
 
                 }, true, "SwitchClip"),
             };
+            */
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
 

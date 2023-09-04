@@ -58,7 +58,8 @@ namespace ModularMod
                 for (int i = 0; i < amtToSplitTo; i++)
                 {
                     float finalAngle  = isPurelyRandomizedSplitAngle ? BraveUtility.RandomAngle() : startAngle - (ProjectileInterval * i);
-                    GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(parentProjectile.PossibleSourceGun != null ? parentProjectile.PossibleSourceGun.DefaultModule.projectiles[0].gameObject : parentProjectile.gameObject, parentProjectile.sprite.WorldCenter, Quaternion.Euler(0f, 0f, finalAngle + Addon), true);
+
+                    GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(parentProjectile.gameObject, parentProjectile.sprite.WorldCenter, Quaternion.Euler(0f, 0f, finalAngle + Addon), true);
                     Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
                     if (component != null)
                     {
@@ -72,15 +73,27 @@ namespace ModularMod
                         {
                             parentOwner.DoPostProcessProjectile(component);
                         }
-                        ProjectileSplitController split2 = component.gameObject.GetComponent<ProjectileSplitController>();
-                        if (split2 && removeComponentAfterUse)
+                        if (removeComponentAfterUse)
                         {
-                            UnityEngine.Object.Destroy(split2);
+                            List<ProjectileSplitController> split2 = component.gameObject.GetComponents<ProjectileSplitController>().ToList();
+                            if (split2 != null && split2.Count > 0)
+                            {
+                                for (int e = split2.Count - 1; e > -1; e--)
+                                {
+                                    var p = split2[e];
+                                    UnityEngine.Object.Destroy(p);
+                                }
+                            }
                         }
-                        var shrapnelbolb = component.gameObject.GetComponent<SpawnProjModifier>();
-                        if (shrapnelbolb)
+
+                        List<SpawnProjModifier> split2e = component.gameObject.GetComponents<SpawnProjModifier>().ToList();
+                        if (split2e != null && split2e.Count > 0)
                         {
-                            UnityEngine.Object.Destroy(shrapnelbolb);
+                            for (int e = split2e.Count - 1; e > -1; e--)
+                            {
+                                var p = split2e[e];
+                                UnityEngine.Object.Destroy(p);
+                            }
                         }
                     }
                 }

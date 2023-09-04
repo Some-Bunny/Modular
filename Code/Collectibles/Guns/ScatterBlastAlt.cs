@@ -19,7 +19,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires an energy spread. Compatible with Modular Upgrade Software.\n\nA very unusual modification of a paint gun. *Very* unusual.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "scattercannonalt_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "scattercannonalt_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "scattercannonalt_idle";
@@ -29,7 +29,7 @@ namespace ModularMod
             gun.PersistsOnDeath = true;
             gun.PreventStartingOwnerFromDropping = true;
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 gun.AddProjectileModuleFrom(PickupObjectDatabase.GetById(88) as Gun, true, true);
             }
@@ -48,14 +48,18 @@ namespace ModularMod
             gun.quality = PickupObject.ItemQuality.EXCLUDED;
 
             int q = 0;
+            gun.Volley.UsesShotgunStyleVelocityRandomizer = true;
+            gun.Volley.DecreaseFinalSpeedPercentMin = 0.7f;
+            gun.Volley.IncreaseFinalSpeedPercentMax = 1.2f;
+
             foreach (ProjectileModule projectileModule in gun.Volley.projectiles)
             {
                 q++;
                 projectileModule.ammoCost = 1;
                 projectileModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
                 projectileModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
-                projectileModule.cooldownTime = 0.75f;
-                projectileModule.angleVariance = 19;
+                projectileModule.cooldownTime = 1f;
+                projectileModule.angleVariance = 33;
                 projectileModule.numberOfShotsInClip = 8;
 
 
@@ -68,14 +72,14 @@ namespace ModularMod
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_medium_001", StaticCollections.Projectile_Collection, 6, 6, false, tk2dBaseSprite.Anchor.MiddleCenter);
                     projectile.baseData.range = 15;
-                    projectile.baseData.damage = 9f;
+                    projectile.baseData.damage = 7.5f;
                     projectile.pierceMinorBreakables = true;
                 }
                 else
                 {
                     projectile.SetProjectileCollisionRight("defaultarmcannonalt_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.MiddleCenter);
                     projectile.baseData.range = 10;
-                    projectile.baseData.damage = 5f;
+                    projectile.baseData.damage = 3;
                 }
                 projectile.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
                 projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;

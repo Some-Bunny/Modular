@@ -8,7 +8,7 @@ namespace ModularMod
 {
     public static class GunInt
     {
-        public static void SetupSprite(this Gun gun, tk2dSpriteCollectionData collection = null, string defaultSprite = null, int fps = 0)
+        public static void SetupSprite(this Gun gun, tk2dSpriteCollectionData collection = null, string defaultSprite = null)
         {
             if ((object)collection == null)
             {
@@ -19,15 +19,10 @@ namespace ModularMod
                 AddSpriteToCollection(collection.GetSpriteDefinition(defaultSprite), ammonomiconCollection);
                 gun.encounterTrackable.journalData.AmmonomiconSprite = defaultSprite;
             }
-            gun.UpdateAnimations(collection);
             tk2dBaseSprite sprite = gun.GetSprite();
             tk2dSpriteCollectionData newCollection = collection;
             int newSpriteId = (gun.DefaultSpriteID = collection.GetSpriteIdByName(gun.encounterTrackable.journalData.AmmonomiconSprite));
             sprite.SetSprite(newCollection, newSpriteId);
-            if (fps != 0)
-            {
-                gun.SetAnimationFPS(fps);
-            }
         }
         private static int AddSpriteToCollection(tk2dSpriteDefinition spriteDefinition, tk2dSpriteCollectionData collection)
         {

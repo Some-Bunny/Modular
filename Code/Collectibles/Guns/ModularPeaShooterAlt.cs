@@ -18,7 +18,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires small energy balls. Compatible with Modular Upgrade Software.\n\nIts smaller demeanor allows for the user to reroute more power into upgrades from the gun.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "modulepeashooteralt_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "modulepeashooteralt_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "modulepeashooteralt_idle";

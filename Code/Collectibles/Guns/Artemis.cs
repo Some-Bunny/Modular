@@ -20,7 +20,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires multiple shots in a fixed spread.\n\nOne half of a pair, this weapon is used to keep clusters at bay and priority targets in check.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "artemis_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "artemis_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "artemis_idle";

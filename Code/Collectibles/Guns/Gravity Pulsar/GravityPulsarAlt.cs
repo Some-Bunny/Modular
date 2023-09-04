@@ -22,7 +22,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires large rifts, followed up with energy attracted to said rifts. Compatible with Modular Upgrade Software.\n\nAn experimental tech graciously provided by a local laboratory, weaponized into an exotic weapon.");
             
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "gravgunalt_idle_002", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "gravgunalt_idle_002");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "gravgunalt_idle";
@@ -147,6 +147,8 @@ namespace ModularMod
             projectile_Small.hitEffects.enemy = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(89) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects.First().effects.First().effect);
             projectile_Small.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(89) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects.First().effects.First().effect);
 
+
+
             BounceProjModifier BounceProjMod1 = projectile_Small.gameObject.GetOrAddComponent<BounceProjModifier>();
             BounceProjMod1.bouncesTrackEnemies = false;
             BounceProjMod1.numberOfBounces = 10;
@@ -160,7 +162,7 @@ namespace ModularMod
             yes1.shadowLifetime = 0.3f;
             yes1.shadowTimeDelay = 0.01f;
             yes1.dashColor = new Color(0f, 0.7f, 0f, 1f);
-
+            comp.projectileToCopyForFlak = projectile_Small;
 
             gun.gunClass = GunClass.NONE;
 

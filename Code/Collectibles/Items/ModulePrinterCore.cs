@@ -37,13 +37,13 @@ namespace ModularMod
             item.UsesCustomCost = true;
             item.CustomCost = 25;
             item.CanBeDropped = false;
-            
+
             ModulePrinterCore.ModulePrinterCoreID = item.PickupObjectId;
             EncounterDatabase.GetEntry(item.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
 
 
-            
+
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Additional Sight", "lichs_eye_bullets") { });
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Allocation", "unity") { });
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Chaos, Chaos!", "chance_bullets") { });
@@ -255,7 +255,7 @@ namespace ModularMod
             */
             if (TemporaryDisableDrop == true) { return; }
             if (newGun.GetComponent<ModularGunController>() != null) { UpdateModularGunController(); return; }
-            if (newGun.GetComponent<ModularGunController>() == ModularGunController) { UpdateModularGunController();  return; }
+            if (newGun.GetComponent<ModularGunController>() == ModularGunController) { UpdateModularGunController(); return; }
             if (newGun.PickupObjectId == 251 || newGun.HasTag("modular_special_override"))
             {
                 if (isNewGun == true)
@@ -341,7 +341,7 @@ namespace ModularMod
             {
                 OnFrameUpdate(this, base.Owner);
             }
-            if (ModularGunController) 
+            if (ModularGunController)
             { ModularGunController.ProcessStats(); }
 
             LastPower_Tick = ReturnPowerConsumption();
@@ -356,7 +356,7 @@ namespace ModularMod
             {
                 if (OnPowerUsageHigherThanCapacity != null) { OnPowerUsageHigherThanCapacity(this, Owner); }
                 DepoweredModuelNames = new Dictionary<string, int>();
-                while (LastPower_Tick > LastTotal_Tick) 
+                while (LastPower_Tick > LastTotal_Tick)
                 {
                     List<ModuleContainer> H = new List<ModuleContainer>();
                     H.AddRange(ModuleContainers.Where(self => self.ActiveCount > 0));
@@ -391,24 +391,24 @@ namespace ModularMod
 
         public Action<ModulePrinterCore, PlayerController> OnPowerUsageHigherThanCapacity;
 
-        public void PostProcessBeamTick(BeamController b, SpeculativeRigidbody hitRigidbody ,float f)
+        public void PostProcessBeamTick(BeamController b, SpeculativeRigidbody hitRigidbody, float f)
         {
             if (base.Owner == null) { return; }
-            if (OnPostProcessBeamTick != null && b != null && hitRigidbody != null) { OnPostProcessBeamTick(this, b,hitRigidbody ,f, base.Owner); }
+            if (OnPostProcessBeamTick != null && b != null && hitRigidbody != null) { OnPostProcessBeamTick(this, b, hitRigidbody, f, base.Owner); }
         }
         public void PostProcessProjectile(Projectile p, float f)
         {
             if (base.Owner == null) { return; }
-            if (OnPostProcessProjectile != null && p != null) 
+            if (OnPostProcessProjectile != null && p != null)
             {
-                OnPostProcessProjectile(this, p, f, base.Owner); 
+                OnPostProcessProjectile(this, p, f, base.Owner);
             }
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
             if (OnProjectileStickAction != null)
             {
                 var modifier = p.gameObject.AddComponent<StickyProjectileModifier>();
                 modifier.OnStick = OnProjectileStickAction;
-                
+
                 if (OnStickyDestroyAction != null)
                 {
                     modifier.OnStickyDestroyed = OnStickyDestroyAction;
@@ -428,7 +428,7 @@ namespace ModularMod
             {
                 DoChanceBulletProc(p, f);
             }
-            if (OnPostProcessProjectileOneFrameDelay != null || ModifyForChanceBulletsOneFrameDelay !=null)
+            if (OnPostProcessProjectileOneFrameDelay != null || ModifyForChanceBulletsOneFrameDelay != null)
             {
                 p.StartCoroutine(this.FrameDelay(p, this, 1));
             }
@@ -550,7 +550,7 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, AIActor, float> OnDamagedEnemy;
         public Action<ModulePrinterCore, PlayerController> OnFrameUpdate;
         public Action<ModulePrinterCore, Projectile, float, PlayerController> OnPostProcessProjectile;
-        public Action<ModulePrinterCore, BeamController, SpeculativeRigidbody,float ,PlayerController> OnPostProcessBeamTick;
+        public Action<ModulePrinterCore, BeamController, SpeculativeRigidbody, float, PlayerController> OnPostProcessBeamTick;
         public Action<ModulePrinterCore, Projectile, PlayerController> DodgedProjectile;
         public Action<ModulePrinterCore, BeamController, PlayerController> DodgedBeam;
         public Action<ModulePrinterCore, PlayerController, Vector2> RollStarted;
@@ -598,7 +598,7 @@ namespace ModularMod
                 {
                     if (mastery.IsMasteryToken == true)
                     {
-                        c++;                    
+                        c++;
                     }
                 }
                 if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
@@ -606,11 +606,24 @@ namespace ModularMod
                     c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
                 }
             }
-            if (ModularGunController != null) 
+            if (ModularGunController != null)
             {
                 c += ModularGunController.AdditionalPowerSupply;
             }
             return c;
+        }
+
+        public int ReturnPowerCellCount()
+        {
+            int cells = 0;
+            foreach (PassiveItem item in this.Owner.passiveItems)
+            {
+                if (item is PowerCell)
+                {
+                    cells++;
+                }
+            }
+            return cells;
         }
 
 

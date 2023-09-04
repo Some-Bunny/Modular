@@ -158,8 +158,9 @@ namespace ModularMod
         {
             List<float> distances = new List<float>();
             Dictionary<float, GameObject> distances_V = new Dictionary<float, GameObject>();
-            foreach (var entry in ExtantTethers)
+            for (int i = ExtantTethers.Count - 1; i > -1; i--)
             {
+                var entry = ExtantTethers.ElementAt(i);
                 if (entry.Key && entry.Value)
                 {
                     float d = Vector2.Distance(entry.Key.transform.PositionVector2(), entry.Value.transform.PositionVector2());

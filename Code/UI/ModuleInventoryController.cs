@@ -490,7 +490,7 @@ namespace ModularMod
         }
         public int ReturnUpgradeCost()
         {
-            return (Mathf.Max(3, Mathf.RoundToInt(Core.ReturnTotalPowerMasteryless()) + 3));
+            return (Mathf.Max(6, Mathf.RoundToInt((Core.ReturnTotalPowerMasteryless()) + 3)+Core.ReturnPowerCellCount()));
         }
         public int ReturnPagesCount()
         {

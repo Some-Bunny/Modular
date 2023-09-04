@@ -18,7 +18,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires small energy balls at an increasing rate. Compatible with Modular Upgrade Software.\n\nThe fast rotation was repurposed from a fan. No-one really knows why they made an arm for the Modular that was a fan.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "minigunalt_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "minigunalt_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "brrrminigunalt_idle";

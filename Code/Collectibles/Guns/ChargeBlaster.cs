@@ -19,7 +19,7 @@ namespace ModularMod
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires weak energy pellets, can be charged up for a strong attack. Compatible with Modular Upgrade Software.\n\nDraws a lot of power to fire.");
 
-            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "energycharger_idle_001", 11);
+            GunInt.SetupSprite(gun, StaticCollections.Gun_Collection, "energycharger_idle_001");
             gun.spriteAnimator.Library = StaticCollections.Gun_Animation;
             gun.sprite.SortingOrder = 1;
             gun.idleAnimation = "energycharger_idle";
@@ -45,7 +45,7 @@ namespace ModularMod
 
             gun.reloadTime = 4f;
             gun.DefaultModule.cooldownTime = .2f;
-            gun.DefaultModule.numberOfShotsInClip = 5;
+            gun.DefaultModule.numberOfShotsInClip = 8;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 3f;
 
@@ -150,7 +150,7 @@ namespace ModularMod
             ProjectileModule.ChargeProjectile item3 = new ProjectileModule.ChargeProjectile
             {
                 Projectile = LargeBullet,
-                ChargeTime = 0.7f,
+                ChargeTime = 2f,
                 AmmoCost = 2,
                 
             };
