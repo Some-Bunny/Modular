@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Bubble Blast",
             Description = "Bubbles!",
-            LongDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 25% (+25% per stack hyperbolically). Projectiles will slow to a crawl after a moment. Reloading boosts all projectiles greatly and increases their damage by 33% (+33% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 20% (+20% per stack hyperbolically). Projectiles will slow to a crawl after a moment. Reloading boosts all projectiles greatly and increases their damage by 33% (+33% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bubbleblast_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,13 +30,16 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bubbleblast_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Bubble Blast " + h.ReturnTierLabel();
-            h.LabelDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment.\nReloading boosts all projectiles greatly\nand increases their damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment.\nReloading boosts all projectiles greatly\nand increases their damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 9;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -72,7 +75,7 @@ namespace ModularMod
         }
 
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.range += 5;
             p.StartCoroutine(SpeedChange(p));   
@@ -113,12 +116,12 @@ namespace ModularMod
 
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 1.25f;
+            return f * 1.20f;
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.25f * stack)));
+            return f - (f - (f / (1 + 0.20f * stack)));
         }
         public List<BoostProjectileComponent> activeBubbles = new List<BoostProjectileComponent>();
 

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Artemis", "artemis_mdlr");
             Game.Items.Rename("outdated_gun_mods:artemis", "mdl:armcannon_8_alt");
-            var h = gun.gameObject.AddComponent<Artemis>();
+            var c = gun.gameObject.AddComponent<Artemis>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires multiple shots in a fixed spread.\n\nOne half of a pair, this weapon is used to keep clusters at bay and priority targets in check.");
 
@@ -125,6 +125,18 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
+        }
+
+        public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return; }
+            p.baseData.damage *= 0.9f;
+            p.baseData.damage += stack;
+            p.baseData.speed *= 0.8f;
+            var bounce = p.gameObject.GetOrAddComponent<BounceProjModifier>();
+            bounce.bouncesTrackEnemies = true;
+            bounce.numberOfBounces += stack;
         }
 
 
@@ -154,6 +166,17 @@ namespace ModularMod
             return q;
         }
 
+        public bool CheckModule()
+        {
+            if (gun.CurrentOwner as PlayerController)
+            {
+                if (GlobalModuleStorage.PlayerHasActiveModule((gun.CurrentOwner as PlayerController), IteratedDesign.ID))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public override void Update()
         {
             base.Update();
@@ -167,7 +190,7 @@ namespace ModularMod
                         float charge = player.stats.GetStatValue(PlayerStats.StatType.ChargeAmountMultiplier);
                         if (this.elapsed <= 1)
                         {
-                            this.elapsed += (BraveTime.DeltaTime * (charge / ReturnControl().GetChargeSpeed(1))) / 2.5f;
+                            this.elapsed += (BraveTime.DeltaTime * (charge / ReturnControl().GetChargeSpeed(1))) / (CheckModule() == true ? 1.5f : 2.5f);
                         }
                         if (VFXActive != true)
                         {
@@ -237,11 +260,12 @@ namespace ModularMod
                             Projectile proj = projectileModule.GetCurrentProjectile();
                             if (proj != null)
                             {
-                                proj.baseData.damage = (7 - (elapsed * 5));
+                                proj.baseData.damage = (5.25f - (elapsed * 4));
                             }
 
                         }
                     }
+
                     else
                     {
                         elapsed = 0;

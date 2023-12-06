@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Plus One",
             Description = "One Better",
-            LongDescription = "Improves Bullets by exactly +1 (+1 per stack) damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Improves projectiles by exactly +1 (+1 per stack) damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plusone_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,12 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.66f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Plus One " + h.ReturnTierLabel();
-            h.LabelDescription = "Improves Bullets by\nexactly +1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage.";
+            h.LabelDescription = "Improves projectiles by\nexactly +1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage.";
+
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -53,7 +58,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.StartCoroutine(this.FrameDelay(p, modulePrinterCore, null));
             p.HasDefaultTint = true;

@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("The Hammer", "thehammer");
             Game.Items.Rename("outdated_gun_mods:the_hammer", "mdl:armcannon_7");
-            var behavior =  gun.gameObject.AddComponent<TheHammer>();
+            var c =  gun.gameObject.AddComponent<TheHammer>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires high power energy. Hitting the active reload timing instantly reloads the clip. Compatible with Modular Upgrade Software.\n\nBuilt off of a mechanism that would lightly hammer in nails for hanging up things, but taken to the logical extreme.");
             
@@ -83,7 +83,7 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 25f;
+            projectile.baseData.damage = 30f;
             projectile.baseData.speed = 50f;
             projectile.pierceMinorBreakables = true;
 
@@ -134,15 +134,16 @@ namespace ModularMod
             gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("ThehammerOfTheFunny", StaticCollections.Clip_Ammo_Atlas, "hammer_1", "hammer_2");
             gun.activeReloadData = new ActiveReloadData()
             {
-                reloadSpeedMultiplier = 1.025f,
+                reloadSpeedMultiplier = 1.075f,
+                damageMultiply = 1.05f,
                 ActiveReloadIncrementsTier = true,
                 ActiveReloadStacks = true,
-                MaxTier = 10
+                MaxTier = 20
             };
             gun.m_canAttemptActiveReload = true;
             gun.LocalActiveReload = true;
-            behavior.activeReloadEnabled = true;
-            behavior.canAttemptActiveReload = true;
+            c.activeReloadEnabled = true;
+            c.canAttemptActiveReload = true;
             /*
             behavior.activeReloadEnabled = true;
             behavior.canAttemptActiveReload = true;
@@ -191,7 +192,7 @@ namespace ModularMod
             {
                 breakSecretWalls = true,
                 comprehensiveDelay = 0,
-                damage = 10,
+                damage = 25,
                 damageRadius = 3f,
                 damageToPlayer = 0,
                 debrisForce = 100,
@@ -227,7 +228,26 @@ namespace ModularMod
             explosiveModifier.explosionData = HammerData;
             explosiveModifier.doExplosion = true;
             explosiveModifier.IgnoreQueues = true;
+
+            IteratedDesign.SpecialProcessGunSpecific += c.Process;
+            IteratedDesign.SpecialProcessGunSpecificReload += c.ProcessReloadSpecial;
+
         }
+        public float ProcessReloadSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 5));
+        }
+        public void Process(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
+            p.baseData.damage += 5 * stack;
+            p.StunApplyChance = 0.2f;
+            p.AppliesStun = true;
+        }
+
+
+
         public static ExplosionData HammerData;
 
         public static GameObject StrikeVFX;
@@ -249,7 +269,21 @@ namespace ModularMod
         {
             base.OnActiveReloadFailure(reload);
             AkSoundEngine.PostEvent("Play_DragunGrenade", gun.gameObject);
-            Exploder.Explode(gun.sprite.WorldCenter, HammerData, gun.sprite.WorldCenter);
+            if (gun.CurrentOwner as PlayerController)
+            {
+                if (GlobalModuleStorage.PlayerHasActiveModule((gun.CurrentOwner as PlayerController), IteratedDesign.ID))
+                {
+                    var newData = StaticExplosionDatas.CopyFields(HammerData);
+                    newData.damage = 70;
+                    newData.damageRadius = 4;
+                    Exploder.Explode(gun.sprite.WorldCenter, newData, gun.sprite.WorldCenter);
+
+                }
+            }
+            else
+            {
+                Exploder.Explode(gun.sprite.WorldCenter, HammerData, gun.sprite.WorldCenter);
+            }
         }
 
 

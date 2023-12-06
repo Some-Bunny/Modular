@@ -14,7 +14,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Modular Arm Cannon", "defaultarmcannonalt");
             Game.Items.Rename("outdated_gun_mods:modular_arm_cannon", "mdl:armcannon_0_alt");
-            gun.gameObject.AddComponent<DefaultArmCannonAlt>();
+            var c = gun.gameObject.AddComponent<DefaultArmCannonAlt>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires simple energy balls. Compatible with Modular Upgrade Software.\n\nGiven the right circumstances, this piece of equipment would have been able to assist in many different ways with construction. An under-the-table deal weaponized it.");
 
@@ -93,6 +93,13 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+        }
+
+        public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 5));
         }
         public static int ID;
     }

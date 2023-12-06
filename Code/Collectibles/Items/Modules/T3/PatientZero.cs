@@ -37,10 +37,16 @@ namespace ModularMod
             h.LabelName = "Patient Zero " + h.ReturnTierLabel();
             h.LabelDescription = "Chance to poison enemies on hit, and to spawn\npoison pools on projectile destruction.\n(" + StaticColorHexes.AddColorToLabelString("+Poison Chance And Pool Radius", StaticColorHexes.Light_Orange_Hex) + ").\nHurting enemies can spread debuffs to other\nnearby enemies, breaking their resistances.\nSlain enemies cause an outbreak,\ngreatly reducing resistances and causing panic.\n(" + StaticColorHexes.AddColorToLabelString("+Virality and Severity", StaticColorHexes.Light_Orange_Hex) + ")";
             h.EnergyConsumption = 2;
+
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
+            h.AdditionalWeightMultiplier = 0.9f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.9f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             ID = h.PickupObjectId;
@@ -90,8 +96,12 @@ namespace ModularMod
 
                 if (enemy.m_activeEffects != null || enemy.m_activeEffects.Count > 0)
                 {
-                    var vfx1 = UnityEngine.Object.Instantiate(PoisonPoof, enemy.sprite.WorldCenter, Quaternion.identity);
-                    Destroy(vfx1, 3);
+                    if (ConfigManager.DoVisualEffect == true)
+                    {
+                        var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemy.sprite.WorldCenter, Quaternion.identity);
+                        vfx.transform.localScale = Vector3.one * 0.5f;
+                        Destroy(vfx, 3);
+                    }
                     AkSoundEngine.PostEvent("Play_ENM_Tarnisher_Bite_01", enemy.gameObject);
                 }
                 foreach (var effect in enemy.m_activeEffects)
@@ -111,19 +121,23 @@ namespace ModularMod
                             enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
                             {
                                 damageType = CoreDamageTypes.Fire,
-                                damageMultiplier = 1 + stack
+                                damageMultiplier = 1 + (stack / 4)
                             });
                             enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
                             {
                                 damageType = CoreDamageTypes.Poison,
-                                damageMultiplier = 1 + stack
+                                damageMultiplier = 1 + (stack / 4)
                             }); ;
                             if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 2.5f + this.ReturnStack(core))
                             {
                                 enemies.ApplyEffect(effect);
                             }
-                            var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
-                            Destroy(vfx, 3);
+                            if (ConfigManager.DoVisualEffect == true)
+                            {
+                                var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
+                                vfx.transform.localScale = Vector3.one * 0.5f;
+                                Destroy(vfx, 3);
+                            }
                         }
 
                     }
@@ -144,6 +158,8 @@ namespace ModularMod
             yield break;
         }
 
+        private Dictionary<AIActor, int> Infections = new Dictionary<AIActor, int>();
+
 
         public void OnDamagedEnemy(ModulePrinterCore core, PlayerController player, AIActor enemy, float damage)
         {
@@ -162,44 +178,61 @@ namespace ModularMod
                     {
                         foreach (var enemies in enem)
                         {
-                            if (UnityEngine.Random.value < (damage / 3))
+                            if (!Infections.ContainsKey(enemies))
                             {
-                                if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 2.5f + this.ReturnStack(core))
+                                Infections.Add(enemies, 0);
+                            }
+
+                            if (Infections[enemies] < 2)
+                            {
+                                if (UnityEngine.Random.value < (damage / 4))
                                 {
-                                    AkSoundEngine.PostEvent("Play_ENM_Tarnisher_Spit_01", enemy.gameObject);
-                                    enemies.ApplyEffect(effect);
-                                    var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
-                                    Destroy(vfx, 3);
-                                    if (enemies.healthHaver.damageTypeModifiers == null) { enemies.healthHaver.damageTypeModifiers = new List<DamageTypeModifier>(); }
-                                    enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                                    Infections[enemies]++;
+                                    if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 2.5f + this.ReturnStack(core))
                                     {
-                                        damageType = CoreDamageTypes.Fire,
-                                        damageMultiplier = 1 + (0.15f * stack)
-                                    });
-                                    enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
-                                    {
-                                        damageType = CoreDamageTypes.Poison,
-                                        damageMultiplier = 1 + (0.15f * stack)
-                                    });
+                                        AkSoundEngine.PostEvent("Play_ENM_Tarnisher_Spit_01", enemy.gameObject);
+                                        enemies.ApplyEffect(effect);
+
+                                        if (ConfigManager.DoVisualEffect == true)
+                                        {
+                                            var vfx = UnityEngine.Object.Instantiate(PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
+                                            vfx.transform.localScale = Vector3.one * 0.5f;
+                                            Destroy(vfx, 3);
+                                        }
+
+                                        if (enemies.healthHaver.damageTypeModifiers == null) { enemies.healthHaver.damageTypeModifiers = new List<DamageTypeModifier>(); }
+                                        enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                                        {
+                                            damageType = CoreDamageTypes.Fire,
+                                            damageMultiplier = 1 + (0.1f * stack)
+                                        });
+                                        enemies.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier()
+                                        {
+                                            damageType = CoreDamageTypes.Poison,
+                                            damageMultiplier = 1 + (0.1f * stack)
+                                        });
+                                    }
                                 }
                             }
+
+                            
                         }
                     }                               
                 }
             }
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.AppliesPoison = true;
-            p.PoisonApplyChance = 0.2f * stack;
+            p.PoisonApplyChance = 0.1f * stack;
             p.healthEffect = DebuffStatics.irradiatedLeadEffect;
             p.OnDestruction += (obj) =>
             {
                 if (obj && UnityEngine.Random.value < (0.025f * stack))
                 {
-                    DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(JuneLib.Status.EasyGoopDefinitions.PoisonDef).TimedAddGoopCircle(obj.sprite.WorldBottomCenter, 2 + stack, 0.5f + (0.25f * stack), false);
+                    DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(JuneLib.Status.EasyGoopDefinitions.PoisonDef).TimedAddGoopCircle(obj.sprite.WorldBottomCenter, stack, 0.5f + (0.25f * stack), false);
                 }
             };
         }
@@ -207,6 +240,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnDamagedEnemy -= OnDamagedEnemy;
+            modulePrinter.OnKilledEnemy -= OnKilledEnemy;
         }
     }
 }

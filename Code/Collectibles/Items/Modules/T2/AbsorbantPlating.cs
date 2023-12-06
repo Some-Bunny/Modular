@@ -34,12 +34,16 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Absorbant Plating" + h.ReturnTierLabel();
             h.LabelDescription = "Fire and Poison take 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") times longer do damage you.\nGain a 66% (" + StaticColorHexes.AddColorToLabelString("+66% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") fire rate boost when stading on any goop.\nBeing poisoned or on fire makes projectiles inflict poison or fire.";
+
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 9;
+            h.OverrideScrapCost = 7;
             h.EnergyConsumption = 1;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
@@ -96,7 +100,7 @@ namespace ModularMod
         }
 
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             if (p.statusEffectsToApply == null)
                 {p.statusEffectsToApply = new List<GameActorEffect>(); }

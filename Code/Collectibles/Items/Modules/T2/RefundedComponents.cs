@@ -32,12 +32,14 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Refunded Components" + h.ReturnTierLabel();
             h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") boost to damage when you miss, up to 15 misses.\nLanding a hit will use all stored damage.";
+
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 10;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
             GameObject VFX = new GameObject("HitOrMiss_VFX");
@@ -79,7 +81,7 @@ namespace ModularMod
             AkSoundEngine.PostEvent("Play_OBJ_box_uncover_01", player.gameObject);
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.OnDestruction += this.HandleProjectileDestruction;
         }

@@ -31,6 +31,10 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.9f;
             h.LabelName = "Liquid Metal" + h.ReturnTierLabel();
             h.LabelDescription = "Adds 1 Pierce (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nbut reduces projectile speed by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -64,7 +68,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             PierceProjModifier bounceProjModifier =  p.gameObject.GetOrAddComponent<PierceProjModifier>();

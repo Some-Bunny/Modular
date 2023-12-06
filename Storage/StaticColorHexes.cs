@@ -7,7 +7,7 @@ namespace ModularMod
 {
     public static class StaticColorHexes
     {
-        public static string AddColorToLabelString(string text, string hexValue = "ff8888")
+        public static string AddColorToLabelString(string text, string hexValue = "f7a403")
         {
             return "[color #" + hexValue + "]" + text + "[/color]";
         }
@@ -36,5 +36,8 @@ namespace ModularMod
         public static string Black_Hex = "000000";
         public static string Pink_Hex = "f5a8b8";
 
+        public static string Light_Purple_Hex = "7d78d7";
+
+        //7d78d7
     }
 }

@@ -61,7 +61,7 @@ namespace ModularMod
             printer.OnPostProcessProjectile += PPP;
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             var wrap = p.gameObject.GetOrAddComponent<WraparoundProjectile>();
             wrap.Cap = 2 + this.ReturnStack(modulePrinterCore);

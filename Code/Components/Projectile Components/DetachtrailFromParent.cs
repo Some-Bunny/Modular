@@ -8,7 +8,7 @@ namespace ModularMod
 {
     public class DetachTrailFromParent : MonoBehaviour
     {
-        public void OnDestroy()
+        public void DoDetach(float DetachTime = 0)
         {
             if (this.gameObject)
             {
@@ -16,10 +16,17 @@ namespace ModularMod
                 if (transform)
                 {
                     transform.parent = null;
-                    Destroy(transform.gameObject, 2.5f);
+                    Destroy(transform.gameObject, DetachTime);
                 }
             }
         }
+
+        public void OnDestroy()
+        {
+            DoDetach(WaitTime);
+        }
+        public float WaitTime = 2.5f;
         public string trail_child_object_name = "trail object";
     }
+
 }

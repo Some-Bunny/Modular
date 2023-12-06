@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Perfectionist Momentum",
             Description = "Keeping It Up",
-            LongDescription = "Grants a 3.3% Fire rate and Damage upgrade for every room cleared without taking damage, capped at 10 (+10 per stack) rooms.\nBonuses reset when you take damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants a 5% Fire rate and Damage upgrade for every room cleared without taking damage, capped at 10 (+10 per stack) rooms.\nBonuses reset when you take damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("perfectmomentum_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,9 +30,12 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("perfectmomentum_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Perfectionist Momentum " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants a 3.3% Fire Rate and Damage upgrade for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") rooms.\n"+ StaticColorHexes.AddColorToLabelString("Bonuses reset when you take damage.", StaticColorHexes.Dark_Red_Hex);
-            h.AddToGlobalStorage();
+            h.LabelDescription = "Grants a 5% Fire Rate and Damage upgrade for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") rooms.\n"+ StaticColorHexes.AddColorToLabelString("Bonuses reset when you take damage.", StaticColorHexes.Dark_Red_Hex);
+
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AdditionalWeightMultiplier = 0.8f;
+
+            h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -91,7 +94,7 @@ namespace ModularMod
         }
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            return f - (f - (f / (1 + 0.033f * RoomPerfectCount)));
+            return f - (f - (f / (1 + 0.05f * RoomPerfectCount)));
         }
 
         public void ORC(ModulePrinterCore modulePrinterCore, PlayerController player, RoomHandler room)
@@ -119,9 +122,9 @@ namespace ModularMod
         public int RoomPerfectCount = 0;
         public int RoomPerfectCountCap = 10;
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + (0.033f * RoomPerfectCount);
+            p.baseData.damage *= 1 + (0.05f * RoomPerfectCount);
         }
     }
 }

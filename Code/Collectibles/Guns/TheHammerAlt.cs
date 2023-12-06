@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("The Hammer", "thehammeralt");
             Game.Items.Rename("outdated_gun_mods:the_hammer", "mdl:armcannon_7_alt");
-            var behavior =  gun.gameObject.AddComponent<TheHammerAlt>();
+            var c =  gun.gameObject.AddComponent<TheHammerAlt>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires high power energy. Hitting the active reload timing instantly reloads the clip. Compatible with Modular Upgrade Software.\n\nBuilt off of a mechanism that would lightly hammer in nails for hanging up things, but taken to the logical extreme.");
 
@@ -80,7 +80,7 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 25f;
+            projectile.baseData.damage = 30f;
             projectile.baseData.speed = 50f;
 
             projectile.shouldRotate = true;
@@ -138,15 +138,16 @@ namespace ModularMod
 
             gun.activeReloadData = new ActiveReloadData()
             {
-                reloadSpeedMultiplier = 1.025f,
+                reloadSpeedMultiplier = 1.075f,
+                damageMultiply = 1.05f,
                 ActiveReloadIncrementsTier = true,
                 ActiveReloadStacks = true,
-                MaxTier = 10
+                MaxTier = 20
             };
             gun.m_canAttemptActiveReload = true;
             gun.LocalActiveReload = true;
-            behavior.activeReloadEnabled = true;
-            behavior.canAttemptActiveReload = true;
+            c.activeReloadEnabled = true;
+            c.canAttemptActiveReload = true;
             /*
             behavior.activeReloadEnabled = true;
             behavior.canAttemptActiveReload = true;
@@ -161,6 +162,23 @@ namespace ModularMod
             */
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificReload += c.ProcessReloadSpecial;
+            IteratedDesign.SpecialProcessGunSpecific += c.Process;
+
+        }
+
+        public void Process(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
+            p.baseData.damage += 5 * stack;
+            p.StunApplyChance = 0.2f;
+            p.AppliesStun = true;
+        }
+
+        public float ProcessReloadSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 5));
         }
 
         public override void OnReloadEndedSafe(PlayerController player, Gun gun)
@@ -179,7 +197,21 @@ namespace ModularMod
         {
             base.OnActiveReloadFailure(reload);
             AkSoundEngine.PostEvent("Play_DragunGrenade", gun.gameObject);
-            Exploder.Explode(gun.sprite.WorldCenter, TheHammer.HammerData, gun.sprite.WorldCenter);
+            if (gun.CurrentOwner as PlayerController)
+            {
+                if (GlobalModuleStorage.PlayerHasActiveModule((gun.CurrentOwner as PlayerController), IteratedDesign.ID))
+                {
+                    var newData = StaticExplosionDatas.CopyFields(TheHammer.HammerData);
+                    newData.damage = 70;
+                    newData.damageRadius = 4;
+                    Exploder.Explode(gun.sprite.WorldCenter, newData, gun.sprite.WorldCenter);
+
+                }
+            }
+            else
+            {
+                Exploder.Explode(gun.sprite.WorldCenter, TheHammer.HammerData, gun.sprite.WorldCenter);
+            }
         }
 
         public static int ID;

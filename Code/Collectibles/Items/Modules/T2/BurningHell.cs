@@ -36,6 +36,11 @@ namespace ModularMod
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.EnergyConsumption = 2;
+
+            h.AddModuleTag(BaseModuleTags.STICKY);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+
             h.AddToGlobalStorage();
 
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
@@ -89,9 +94,9 @@ namespace ModularMod
         }
 
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.speed *= 1.66f;
+            p.baseData.speed *= 1.5f;
             p.pierceMinorBreakables = true;
 
             p.UpdateSpeed();
@@ -161,7 +166,7 @@ namespace ModularMod
         {
             if (aI)
             {
-                aI.healthHaver.ApplyDamage((2.5f * this.Stack()) * BraveTime.DeltaTime, Vector2.zero, "Hellfire", CoreDamageTypes.Fire, DamageCategory.DamageOverTime);
+                aI.healthHaver.ApplyDamage((2f * this.Stack()) * BraveTime.DeltaTime, Vector2.zero, "Hellfire", CoreDamageTypes.Fire, DamageCategory.DamageOverTime);
                 if (UnityEngine.Random.value < 0.025f)
                 {
                     aI.gameActor.ApplyEffect(DebuffStatics.hotLeadEffect);

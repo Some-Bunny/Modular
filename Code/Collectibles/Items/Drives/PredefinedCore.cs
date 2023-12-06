@@ -123,7 +123,13 @@ namespace ModularMod
 
         public static bool Cond(BaseShopController.AdditionalShopType shopType)
         {
+
+            if (GameManager.Instance == null) { return false; }
             if (AdvancedGameStatsManager.Instance == null) { return false; }
+            if (GameStatsManager.Instance.IsInSession == false) { return false; }
+            if (GameManager.Instance.Dungeon == null) { return false; }
+            if (GameManager.Instance.AllPlayers.Count() == 0) { return false; }
+
             if (AdvancedGameStatsManager.Instance.GetSessionStatValue(CustomTrackedStats.ENCOUNTERS_OF_PREDEFINED) > 0) { return false; }
             if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR) == false) { return false; }
             if (shopType != BaseShopController.AdditionalShopType.NONE) { return false; }

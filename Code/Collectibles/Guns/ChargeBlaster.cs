@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Charge Blaster", "energycharger");
             Game.Items.Rename("outdated_gun_mods:charge_blaster", "mdl:armcannon_4");
-            gun.gameObject.AddComponent<ChargeBlaster>();
+            var c = gun.gameObject.AddComponent<ChargeBlaster>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires weak energy pellets, can be charged up for a strong attack. Compatible with Modular Upgrade Software.\n\nDraws a lot of power to fire.");
 
@@ -70,10 +70,10 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
-            projectile.baseData.speed = 15f;
+            projectile.baseData.speed = 50f;
             projectile.baseData.damage = 3f;
             projectile.shouldRotate = false;
-            projectile.baseData.force *= 5;
+            projectile.baseData.force *= 10;
 
             Projectile LargeBullet = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(56) as Gun).DefaultModule.projectiles[0]);
             LargeBullet.gameObject.SetActive(false);
@@ -179,7 +179,17 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
         }
+
+        public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return; }
+            p.baseData.damage *= 1 + (0.15f * stack);
+            p.AdditionalScaleMultiplier *= 1 + (0.25f * stack);
+            p.baseData.force *= 5;
+        }
+
         public static int GunID;
     }
 }

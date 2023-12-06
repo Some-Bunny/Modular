@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Minelayer System",
             Description = "Fortification Expert",
-            LongDescription = "Projectile damage reduced by 66%. Increases Rate Of Fire by 25% and massively reduces spread. On destruction, projectiles now leave proximity mines that take 3 (-33% hyperbolically per stack) seconds to prime, and take 1 (-25% hyperbolically per stack) second to detonate." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Projectile damage reduced by 75%. Increases Rate Of Fire by 25% and massively reduces spread. On destruction, projectiles now leave proximity mines that take 3 (-33% hyperbolically per stack) seconds to prime, and take 1 (-25% hyperbolically per stack) second to detonate. (+Explosion Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,13 +33,16 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Minelayer System " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectile damage reduced by 66%.\nIncreases Rate Of Fire by 25% and massively reduces spread.\nOn destruction, projectiles now leave proximity mines that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") second to detonate.";
+            h.LabelDescription = "Projectile damage reduced by 75%.\nIncreases Rate Of Fire by 25% and massively reduces spread.\nOn destruction, projectiles now leave proximity mines that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") second to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
+
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             Mine = BuildPrefab();
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 
@@ -50,8 +53,8 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.05f) { return; }
-            p.baseData.damage *= 0.33f;
+            if (UnityEngine.Random.value > 0.01f) { return; }
+            p.baseData.damage *= 0.25f;
             p.baseData.force *= 1.5f;
 
             p.OnDestruction += (ONJ) =>
@@ -119,12 +122,12 @@ namespace ModularMod
                 }
             };
 
-            var exData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
-            exData.damage = 18;
-            exData.force = 0;
+            data = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
+            data.damage = 15;
+            data.force = 0;
             CustomProximityMine proximityMine = new CustomProximityMine
             {
-                explosionData = exData,
+                explosionData = data,
                 explosionStyle = CustomProximityMine.ExplosiveStyle.PROXIMITY,
                 detectRadius = 2.25f,
                 explosionDelay = 1f,
@@ -144,6 +147,7 @@ namespace ModularMod
             return VFX;
         }
 
+        public static ExplosionData data;
 
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -173,9 +177,9 @@ namespace ModularMod
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 0.33f;
+            p.baseData.damage *= 0.25f;
             p.baseData.force *= 1.5f;
 
             p.OnDestruction += (ONJ) =>
@@ -192,6 +196,9 @@ namespace ModularMod
                 orAddComponent.Trigger(vector.WithZ(2f), 0.5f, 1f);
                 var prox = orAddComponent.gameObject.GetComponent<CustomProximityMine>();
                 prox.Force_Disarm = true;
+                var ex = StaticExplosionDatas.CopyFields(data);
+                ex.damage = 10 + (5* Stack());
+                prox.explosionData = ex;
                 orAddComponent.sprite.renderer.material.SetFloat("_EmissiveColorPower", 0.1f);
                 orAddComponent.sprite.renderer.material.SetFloat("_EmissivePower", 0.1f);
                 orAddComponent.StartCoroutine(ArmTime(prox, null));
@@ -200,10 +207,12 @@ namespace ModularMod
         public IEnumerator ArmTime(CustomProximityMine mine, float? armTime)
         {
             mine.explosionDelay = 1.25f - (1.25f - (1.25f / (1 + 0.25f * (armTime ?? Stack()))));
-            float d = 3.5f;
-            d *= 1 - (3.5f - (3.5f / (1 + 0.33f * (armTime ?? Stack()))));
+            float d1 = 3.5f;
+            d1 *= (3.5f - (3.5f / (1 + 0.33f * (armTime ?? Stack()))));
+
+
             float e = 0;
-            while (e < d)
+            while (e < d1)
             {
                 e += BraveTime.DeltaTime;
                 yield return null;
@@ -224,6 +233,7 @@ namespace ModularMod
             }
             mine.sprite.renderer.material.SetFloat("_EmissiveColorPower", 15f);
             mine.sprite.renderer.material.SetFloat("_EmissivePower", 15f);
+            Destroy(mine.gameObject, 20);
             yield break;
         }
     }

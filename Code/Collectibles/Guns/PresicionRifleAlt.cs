@@ -14,7 +14,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Precision Rifle", "bigsnipealt");
             Game.Items.Rename("outdated_gun_mods:precision_rifle", "mdl:armcannon_5_alt");
-            gun.gameObject.AddComponent<PresicionRifleAlt>();
+            var c = gun.gameObject.AddComponent<PresicionRifleAlt>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires high velocity piercing shots. Compatible with Modular Upgrade Software.\n\nA reconstructed nailgun. Though, realistically, it would have been recalled very fast if made available to the general public.");
             
@@ -41,7 +41,7 @@ namespace ModularMod
 
 
             gun.reloadTime = 3.5f;
-            gun.DefaultModule.cooldownTime = 1f;
+            gun.DefaultModule.cooldownTime = 1.25f;
             gun.DefaultModule.numberOfShotsInClip = 4;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 1;
@@ -75,7 +75,7 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
             projectile.pierceMinorBreakables = true;
 
-            projectile.baseData.damage = 30f;
+            projectile.baseData.damage = 25f;
             projectile.shouldRotate = true;
             projectile.baseData.speed = 75;
             projectile.baseData.range *= 10;
@@ -83,7 +83,7 @@ namespace ModularMod
             ImprovedAfterImage yes = projectile.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.4f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowTimeDelay = 0.05f;
             yes.dashColor = new Color(0f, 1f, 0.1f, 1f);
 
             PierceProjModifier bounceProjModifier = projectile.gameObject.GetOrAddComponent<PierceProjModifier>();
@@ -104,6 +104,23 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
+            IteratedDesign.SpecialProcessGunSpecificAccuracy += c.ProcessAccuracySpecial;
+
+        }
+
+        public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
+            p.baseData.speed *= 1 + (0.5f * stack);
+            p.Update();
+            p.baseData.range *= 2;
+        }
+
+        public float ProcessAccuracySpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 3));
         }
         public static int ID;
     }

@@ -32,6 +32,10 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Focusing Lens " + h.ReturnTierLabel();
             h.LabelDescription = "Deal 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ") more damage\nto nearby enemies.";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -129,7 +133,7 @@ namespace ModularMod
         private List<AIActor> nearbyEnemies = new List<AIActor>();
         private HeatIndicatorController ring;
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
         }

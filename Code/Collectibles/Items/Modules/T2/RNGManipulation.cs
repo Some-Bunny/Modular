@@ -30,6 +30,11 @@ namespace ModularMod
             h.LabelName = "RNG Manipulation " + h.ReturnTierLabel();
             h.LabelDescription = "Grants vastly improved and more common room drops.\n(" + StaticColorHexes.AddColorToLabelString("+Loot chance and better loot drop odds", StaticColorHexes.Light_Orange_Hex) + ").";
             h.EnergyConsumption = 1;
+            h.AppearsInRainbowMode = false;
+
+            h.AddModuleTag(BaseModuleTags.GENERATION);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");

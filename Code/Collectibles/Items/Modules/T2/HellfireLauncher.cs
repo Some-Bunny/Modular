@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Hellfire Launcher",
             Description = "Love The Smell",
-            LongDescription = "Reloading creates a line of fire in the direction you are aiming. The trail will initially hurt enemies directly when created. (+Range, Damage and Radius per stack) Scales with amount of shots left in the clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants Fire Immunity. Reloading creates a line of fire in the direction you are aiming. The trail will initially hurt enemies directly when created. (+Range, Damage and Radius per stack) Scales with amount of shots left in the clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hellfire_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,8 +29,11 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hellfire_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Hellfire Launcher " + h.ReturnTierLabel();
-            h.LabelDescription = "Reloading creates a line of fire\nin the direction you are aiming.\nThe trail will initially hurt enemies directly when created.\n(" + StaticColorHexes.AddColorToLabelString("+Range, Damage and Radius", StaticColorHexes.Light_Orange_Hex) + "). Scales with amount of shots\nleft in the clip.";
+            h.LabelDescription = "Grants Fire Immunity.\nReloading creates a line of fire in the direction you are aiming.\nThe trail will initially hurt enemies directly when created.\n(" + StaticColorHexes.AddColorToLabelString("+Range, Damage and Radius", StaticColorHexes.Light_Orange_Hex) + ").\nScales with amount of shots left in the clip.";
             h.AdditionalWeightMultiplier = 0.9f;
+
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
 
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -43,12 +46,20 @@ namespace ModularMod
         }
         public static int ID;
 
+        public DamageTypeModifier FireImmunity = new DamageTypeModifier()
+        {
+            damageMultiplier = 0,
+            damageType = CoreDamageTypes.Fire
+        };
+
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            player.healthHaver.damageTypeModifiers.Add(FireImmunity);
             modulePrinter.OnGunReloaded += OGR;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            player.healthHaver.damageTypeModifiers.Remove(FireImmunity);
             modulePrinter.OnGunReloaded -= OGR;
         }
         public void OGR(ModulePrinterCore modulePrinterCore, PlayerController player, Gun g)
@@ -60,9 +71,9 @@ namespace ModularMod
 
             Vector2 startLocation = player.sprite.WorldCenter +Toolbox.GetUnitOnCircle(g.CurrentAngle, (1f + (0.25f * stack)) + 1f);
 
-            Vector2 endLocation = startLocation + Toolbox.GetUnitOnCircle(g.CurrentAngle, (5f + (stack * 2.5f)) * a);
+            Vector2 endLocation = startLocation + Toolbox.GetUnitOnCircle(g.CurrentAngle, (5.5f + (stack * 4f)) * a);
 
-            DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(Alexandria.Misc.GoopUtility.FireDef).TimedAddGoopLine(startLocation, endLocation, 1f + (0.25f * stack), 0.35f);
+            DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(Alexandria.Misc.GoopUtility.FireDef).TimedAddGoopLine(startLocation, endLocation, 1f + (0.33f * stack), 0.35f);
             player.StartCoroutine(BurningWitness(player.CurrentRoom, startLocation, endLocation, 1f + (0.25f * stack), 0.35f));
         }
         private IEnumerator BurningWitness(RoomHandler room, Vector2 p1, Vector2 p2, float radius, float duration)

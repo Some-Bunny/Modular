@@ -30,13 +30,21 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Reactive Sensors" + h.ReturnTierLabel();
-            h.LabelDescription = "If an enemy gets too close, releases a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage, Push Force and Detection Range", StaticColorHexes.Light_Orange_Hex) + ")\nCan deflect enemy projectiles within a small radius.\nRecharges after 15 seconds.";
+            h.LabelDescription = "If an enemy gets too close, releases a massive shockwave\nthat stuns, pushes and harms enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage, Push Force and Detection Range", StaticColorHexes.Light_Orange_Hex) + ")\nCan deflect enemy projectiles.\nRecharges after 15 seconds.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             h.EnergyConsumption = 1;
+            h.AdditionalWeightMultiplier = 0.85f;
+
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+            h.AddModuleTag(BaseModuleTags.RETALIATION);
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+
+
             h.AddToGlobalStorage();
             GameObject VFX = new GameObject("VFX");
             FakePrefab.DontDestroyOnLoad(VFX);
@@ -95,7 +103,7 @@ namespace ModularMod
 
         public float ReturnRange(ModulePrinterCore core)
         {
-            return 3.75f + (0.75f * this.ReturnStack(core));
+            return 3.75f + (this.ReturnStack(core));
         }
 
         public void OFU(ModulePrinterCore modulePrinter, PlayerController player)
@@ -188,7 +196,7 @@ namespace ModularMod
                     AIActor enemy = proj.Owner as AIActor;
                     if (proj.GetComponent<BasicBeamController>() == null)
                     {
-                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 3 && proj.Owner != null && proj.Owner == enemy)
+                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 8 && proj.Owner != null && proj.Owner == enemy)
                         {
                             FistReflectBullet(proj, player.gameActor, proj.baseData.speed *= 2f, (proj.sprite.WorldCenter - player.transform.PositionVector2()).ToAngle(), 1f, proj.IsBlackBullet ? (5 + proj.baseData.speed) * 2 : 5 + proj.baseData.speed, 0f);
                         }

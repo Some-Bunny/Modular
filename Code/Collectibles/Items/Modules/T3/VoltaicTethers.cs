@@ -35,13 +35,16 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Voltaic Tethers " + h.ReturnTierLabel();
             h.LabelDescription = "Massively decreases Accuracy, and doubles Reload Time.\nProjectiles will stick to walls and tether\nelectricity to players and other nearby tether nodes.\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.STICKY);
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 15;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
@@ -55,7 +58,7 @@ namespace ModularMod
             p.pierceMinorBreakables = true;
             int stack = 1;
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 15 * stack;
+            tethers.DPS = 10 * stack;
             tethers.PylonRange = 5 * stack;
             tethers.PlayerRange = 10 * stack;
 
@@ -101,7 +104,7 @@ namespace ModularMod
             return f * 3;
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.speed *= 0.5f;
             p.UpdateSpeed();

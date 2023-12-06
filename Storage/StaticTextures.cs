@@ -12,14 +12,14 @@ namespace ModularMod
 {
     public class StaticTextures
     {
-        public static Texture2D tiled_Modular_Background;
+        //public static Texture2D tiled_Modular_Background;
         public static Texture2D nebula_Background;
         public static Texture Displacer_NoiseTex;
         public static Texture Displacer_SpaceTex;
 
         public static void InitTextures()
         {
-            tiled_Modular_Background = ResourceExtractor.GetTextureFromResource("ModularMod/Sprites/modular_hud_grid.png");
+            //tiled_Modular_Background = ResourceExtractor.GetTextureFromResource("ModularMod/Sprites/modular_hud_grid.png");
             nebula_Background = Module.ModularAssetBundle.LoadAsset<Texture2D>("nebula_reducednoise");//ResourceExtractor.GetTextureFromResource("ModularMod/Sprites/nebula_reducednoise.png");
 
             var Displacer_Beast_Mat = EnemyDatabase.GetOrLoadByGuid("45192ff6d6cb43ed8f1a874ab6bef316").sprite.renderer.material;

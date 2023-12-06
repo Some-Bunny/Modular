@@ -264,6 +264,23 @@ namespace ModularMod
                 Override_Name = "Accelerating",
                 Weight = 0.5f,
             });
+            AddTo_1(new Trait()
+            {
+                OnProjectileFired = (proj, r_M, rarity_Int) => {
+
+                    proj.baseData.damage *= 1.1f;
+                    proj.baseData.speed *= 1.3f * r_M;
+                    proj.UpdateSpeed();
+                    proj.AppliedStunDuration = 1.2f * r_M;
+                    proj.StunApplyChance = 0.3f * r_M;
+                    proj.AppliesStun = true;
+                },
+                ThisRarity = Trait.RARITY.ALL,
+                Common_Name = "Stunning",
+                Rare_Name = "Concussive",
+                Legendary_Name = "Knock-Out Cold",
+                Weight = 0.5f,
+            });
         }
         public static void InitSecondaries()
         {

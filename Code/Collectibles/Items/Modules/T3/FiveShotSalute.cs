@@ -34,13 +34,16 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Five-Shot Salute " + h.ReturnTierLabel();
             h.LabelDescription = "Reduces Rate Of Fire and Damage by 30%.\nShoot 5 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") times the projectiles.";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AdditionalWeightMultiplier = 0.8f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 15;
             ID = h.PickupObjectId;
         }
         public static int ID;
@@ -63,7 +66,7 @@ namespace ModularMod
         {
             return f * 1.3f;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 0.7f;
         }

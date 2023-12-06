@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Shrapnel Launcher", "flakcannon");
             Game.Items.Rename("outdated_gun_mods:shrapnel_launcher", "mdl:armcannon_11");
-            gun.gameObject.AddComponent<FlakCannon>();
+            var c = gun.gameObject.AddComponent<FlakCannon>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires chunks of completely waste material. Compatible with Modular Upgrade Software.\n\nA somewhat effective way to get rid of waste material that simply cannot be repurposed.");
 
@@ -97,7 +97,7 @@ namespace ModularMod
 
 
             projectile.baseData.speed *= 1f;
-            projectile.baseData.damage = 20f;
+            projectile.baseData.damage = 25f;
             projectile.shouldRotate = false;
 
             Material mat = new Material(StaticShaders.Default_Shader);
@@ -106,10 +106,10 @@ namespace ModularMod
 
             var shrapnelbolb = projectile.gameObject.AddComponent<SpawnProjModifier>();
             shrapnelbolb.fireRandomlyInAngle = true;
-            shrapnelbolb.collisionSpawnStyle = SpawnProjModifier.CollisionSpawnStyle.FLAK_BURST;
+            shrapnelbolb.collisionSpawnStyle = SpawnProjModifier.CollisionSpawnStyle.RADIAL;
             shrapnelbolb.PostprocessSpawnedProjectiles = true;
-            shrapnelbolb.numberToSpawnOnCollison = 7;
-
+            shrapnelbolb.numberToSpawnOnCollison = 9;
+            projectile.gameObject.AddComponent<BaseShrapnelProj>();
 
             shrapnelbolb.spawnProjectilesOnCollision = true;
             shrapnelbolb.spawnCollisionProjectilesOnBounce = true;
@@ -138,8 +138,22 @@ namespace ModularMod
             gun.muzzleOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.125f, 0.125f), "muzzle_point").transform;
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.125f, 0.125f), "barrel_point").transform;
 
+            gun.gameObject.transform.Find("Clip").transform.position = new Vector3(1.125f, 0.1875f);
+
+            gun.clipObject = Toolbox.GenerateDebrisObject("flancannon_clip", StaticCollections.Gun_Collection, true, 1, 3, 60, 20, null, 2, "Play_ITM_Crisis_Stone_Impact_02", null, 1).gameObject;
+
+            gun.reloadClipLaunchFrame = 6;
+            gun.clipsToLaunchOnReload = 1;
+
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             FlakCannon.GunID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificClipPostCalc += c.ProcessClipSpecial;
+
+        }
+        public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return f; }
+            return f + stack;
         }
 
         public static Projectile ReturnShrapnel(string spriteName, IntVector2 size, float damage, float speed)
@@ -157,8 +171,8 @@ namespace ModularMod
             ImprovedAfterImage yes = projectile.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.5f;
-            yes.shadowTimeDelay = 0.01f;
-            yes.dashColor = new Color(0.35f, 0.35f, 0.35f, 1f);
+            yes.shadowTimeDelay = 0.1f;
+            yes.dashColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 
             PierceProjModifier bounceProjModifier = projectile.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration = 1;
@@ -168,6 +182,23 @@ namespace ModularMod
             projectile.baseData.speed = speed * 3f;
             return projectile;
         }
+
+        public class BaseShrapnelProj : MonoBehaviour
+        {
+            public void Start()
+            {
+                this.projectile = base.GetComponent<Projectile>();
+                this.Player = projectile.Owner as PlayerController;
+                if (IteratedDesign.PlayerHasIteratedDesign(Player) > 0)
+                {
+                    var spawns= projectile.gameObject.GetComponent<SpawnProjModifier>();
+                    spawns.numberToSpawnOnCollison += IteratedDesign.PlayerHasIteratedDesign(Player) * 3;
+                }
+            }
+            private PlayerController Player;
+            private Projectile projectile;
+        }
+
 
         public static int GunID;
     }

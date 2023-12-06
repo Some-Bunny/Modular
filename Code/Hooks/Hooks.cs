@@ -40,7 +40,181 @@ namespace ModularMod
 
             new Hook(typeof(BaseShopController).GetMethod("HandleEnter", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("HandleEnterHook"));
 
+            new Hook(typeof(Projectile).GetMethod("BeamCollision", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("FuckYou"));
+            //new Hook(typeof(BasicBeamController).GetMethod("FindBeamTarget", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("FuckYouToo"));
         }
+
+        public static bool FuckYouToo(MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers.Func<BasicBeamController, Vector2, Vector2, float, int, Vector2, Vector2, SpeculativeRigidbody, PixelCollider, List<PointcastResult>, System.Func<SpeculativeRigidbody, bool>, 
+            SpeculativeRigidbody[], bool> orig, BasicBeamController self, Vector2 origin, Vector2 direction, float distance, int collisionMask, Vector2 targetPoint, Vector2 targetNormal, SpeculativeRigidbody hitRigidbody, PixelCollider hitPixelCollider, List<PointcastResult> boneCollisions, Func<SpeculativeRigidbody, bool> rigidbodyExcluder = null, params SpeculativeRigidbody[] ignoreRigidbodies)
+        {
+            bool flag = false;
+            targetPoint = new Vector2(-1f, -1f);
+            targetNormal = new Vector2(0f, 0f);
+            hitRigidbody = null;
+            hitPixelCollider = null;
+            if (self.collisionType == BasicBeamController.BeamCollisionType.Rectangle)
+            {
+                if (!self.specRigidbody)
+                {
+                    self.specRigidbody = self.gameObject.AddComponent<SpeculativeRigidbody>();
+                    self.specRigidbody.CollideWithTileMap = false;
+                    self.specRigidbody.CollideWithOthers = true;
+                    PixelCollider pixelCollider = new PixelCollider();
+                    pixelCollider.Enabled = false;
+                    pixelCollider.CollisionLayer = CollisionLayer.PlayerBlocker;
+                    pixelCollider.Enabled = true;
+                    pixelCollider.IsTrigger = true;
+                    pixelCollider.ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual;
+                    pixelCollider.ManualOffsetX = 0;
+                    pixelCollider.ManualOffsetY = self.collisionWidth / -2;
+                    pixelCollider.ManualWidth = self.collisionLength;
+                    pixelCollider.ManualHeight = self.collisionWidth;
+                    self.specRigidbody.PixelColliders = new List<PixelCollider>(1);
+                    self.specRigidbody.PixelColliders.Add(pixelCollider);
+                    self.specRigidbody.Initialize();
+                }
+                if (self.m_cachedRectangleOrigin != origin || self.m_cachedRectangleDirection != direction)
+                {
+                    self.specRigidbody.Position = new Position(origin);
+                    self.specRigidbody.PrimaryPixelCollider.SetRotationAndScale(direction.ToAngle(), Vector2.one);
+                    self.specRigidbody.UpdateColliderPositions();
+                    self.m_cachedRectangleOrigin = origin;
+                    self.m_cachedRectangleDirection = direction;
+                }
+                int num = CollisionMask.LayerToMask(CollisionLayer.PlayerHitBox);
+                if ((collisionMask & num) == num)
+                {
+                    self.specRigidbody.PrimaryPixelCollider.CollisionLayerIgnoreOverride &= ~CollisionMask.LayerToMask(CollisionLayer.PlayerHitBox, CollisionLayer.PlayerCollider);
+                }
+                else
+                {
+                    self.specRigidbody.PrimaryPixelCollider.CollisionLayerIgnoreOverride |= CollisionMask.LayerToMask(CollisionLayer.PlayerHitBox, CollisionLayer.PlayerCollider);
+                }
+                List<CollisionData> list = new List<CollisionData>();
+                self.specRigidbody.PrimaryPixelCollider.Enabled = true;
+                flag = PhysicsEngine.Instance.OverlapCast(self.specRigidbody, list, false, true, null, null, false, null, null, ignoreRigidbodies);
+                self.specRigidbody.PrimaryPixelCollider.Enabled = false;
+                boneCollisions = new List<PointcastResult>();
+                if (!flag)
+                {
+                    return false;
+                }
+                targetNormal = list[0].Normal;
+                targetPoint = list[0].Contact;
+                hitRigidbody = list[0].OtherRigidbody;
+                hitPixelCollider = list[0].OtherPixelCollider;
+            }
+            else if (self.UsesBones)
+            {
+                float num2 = -self.collisionRadius * self.m_projectileScale * PhysicsEngine.Instance.PixelUnitWidth;
+                float num3 = self.collisionRadius * self.m_projectileScale * PhysicsEngine.Instance.PixelUnitWidth;
+                int num4 = Mathf.Max(2, Mathf.CeilToInt((num3 - num2) / 0.25f));
+                int ignoreTileBoneCount;
+                List<IntVector2> points = self.GeneratePixelCloud(num2, num3, (float)num4, out ignoreTileBoneCount);
+                List<IntVector2> lastFramePoints = self.GenerateLastPixelCloud(num2, num3, (float)num4);
+                if (!PhysicsEngine.Instance.Pointcast(points, lastFramePoints, num4, out boneCollisions, true, true, collisionMask, new CollisionLayer?(CollisionLayer.Projectile), false, rigidbodyExcluder, ignoreTileBoneCount, ignoreRigidbodies))
+                {
+                    return false;
+                }
+                PointcastResult pointcastResult = boneCollisions[0];
+                for (int i = 0; i < boneCollisions.Count; i++)
+                {
+                    if (boneCollisions[i].hitDirection == HitDirection.Forward && boneCollisions[i].boneIndex > 0)
+                    {
+                        pointcastResult = boneCollisions[i];
+                        break;
+                    }
+                }
+                targetPoint = pointcastResult.hitResult.Contact;
+                targetNormal = pointcastResult.hitResult.Normal;
+                hitRigidbody = pointcastResult.hitResult.SpeculativeRigidbody;
+                hitPixelCollider = pointcastResult.hitResult.OtherPixelCollider;
+            }
+            else
+            {
+                float num5 = -self.collisionRadius * self.m_projectileScale * PhysicsEngine.Instance.PixelUnitWidth;
+                float num6 = self.collisionRadius * self.m_projectileScale * PhysicsEngine.Instance.PixelUnitWidth;
+                int num7 = Mathf.Max(2, Mathf.CeilToInt((num6 - num5) / 0.25f));
+                RaycastResult raycastResult = null;
+                for (int j = 0; j < num7; j++)
+                {
+                    float y = Mathf.Lerp(num5, num6, (float)j / (float)(num7 - 1));
+                    Vector2 unitOrigin = origin + new Vector2(0f, y).Rotate(direction.ToAngle());
+                    RaycastResult raycastResult2;
+                    if (PhysicsEngine.Instance.RaycastWithIgnores(unitOrigin, direction.normalized, distance, out raycastResult2, true, true, collisionMask, new CollisionLayer?(CollisionLayer.Projectile), false, rigidbodyExcluder, ignoreRigidbodies))
+                    {
+                        flag = true;
+                        if (raycastResult == null || raycastResult2.Distance < raycastResult.Distance)
+                        {
+                            RaycastResult.Pool.Free(ref raycastResult);
+                            raycastResult = raycastResult2;
+                        }
+                        else
+                        {
+                            RaycastResult.Pool.Free(ref raycastResult2);
+                        }
+                    }
+                }
+                boneCollisions = new List<PointcastResult>();
+                if (!flag)
+                {
+                    return false;
+                }
+                targetNormal = raycastResult.Normal;
+                targetPoint = origin + BraveMathCollege.DegreesToVector(direction.ToAngle(), raycastResult.Distance);
+                hitRigidbody = raycastResult.SpeculativeRigidbody;
+                hitPixelCollider = raycastResult.OtherPixelCollider;
+                RaycastResult.Pool.Free(ref raycastResult);
+            }
+            if (hitRigidbody == null)
+            {
+                return true;
+            }
+            if (hitRigidbody.minorBreakable && !hitRigidbody.minorBreakable.OnlyBrokenByCode)
+            {
+                hitRigidbody.minorBreakable.Break(direction);
+            }
+            DebrisObject component = hitRigidbody.GetComponent<DebrisObject>();
+            if (component)
+            {
+                component.Trigger(direction, 0.5f, 1f);
+            }
+            TorchController component2 = hitRigidbody.GetComponent<TorchController>();
+            if (component2)
+            {
+                component2.BeamCollision(self.projectile);
+            }
+            if (hitRigidbody.projectile && hitRigidbody.projectile.collidesWithProjectiles)
+            {
+                hitRigidbody.projectile.BeamCollision(self.projectile);
+                var pain = hitRigidbody.projectile.gameObject.GetComponent<BeamCollisionEvent>();
+                if (pain != null)
+                {
+                    return pain.isCollisionEvent;
+                }
+            }
+
+
+            return true;
+        }
+
+        public static void FuckYou(Action<Projectile, Projectile> orig, Projectile self, Projectile currentProjectile)
+        {
+            var eventComp = self.projectile.GetComponent<BeamCollisionEvent>();
+            if (eventComp != null)
+            {
+                bool Destroyed = eventComp.DetermineDestroy != null ? eventComp.DetermineDestroy(self) : eventComp.WillBeDestroyed;
+                if (Destroyed == true)
+                {
+                    self.DieInAir(false, true, true, false);
+                }
+            }
+            else
+            {
+                orig(self, currentProjectile);
+            }
+        }
+
 
 
         public static void UpdateHook(Action<Gun> orig, Gun self)
@@ -58,7 +232,7 @@ namespace ModularMod
                 var c = self.gameObject.GetComponent<ChooseModuleController>();
                 if (c != null)
                 {
-                    c.DestroyAllOthers(false);
+                    c.DestroyAllOthers(false, true);
                 }
             }
         }
@@ -97,7 +271,6 @@ namespace ModularMod
                         if (HPComp.healAmount == 0.5f)
                         {
                             pickup = UnityEngine.Random.value < 0.02f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
-                            pickup.gameObject.SetActive(true);
 
                         }
                         if (HPComp.healAmount == 1f)

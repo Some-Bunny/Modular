@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 
@@ -28,7 +29,10 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mirrored_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Mirrored Software " + h.ReturnTierLabel();
-            h.LabelDescription = "Acts as 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") copies of\na random active module.\nSwitches at every combat encounter.";
+            h.LabelDescription = "Acts as 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") copies of\na random active module.\nSwitches on every floor.";
+
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AddModuleTag(BaseModuleTags.GENERATION);
 
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -43,22 +47,61 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            modulePrinter.OnEnteredCombat += OEC;
-            modulePrinter.OnRoomCleared += ORC;
+            DoSelect(modulePrinter, player);
+            modulePrinter.OnNewFloorStarted += ONFS;
+            modulePrinter.OnAnyModulePowered += OAMP;
         }
 
+        public void OAMP(ModulePrinterCore modulePrinter, DefaultModule player, int i)
+        {
+            DoSelect(modulePrinter, modulePrinter.Owner);
+        }
+
+        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
+        {
+            if (containerSelected != null)
+            {
+                var c = containerSelected.FakeCount.Where(self => self.First == "Mirror");
+
+                if (c.Count() > 0)
+                {
+                    int Count = c.First().Second;
+                    c.First().Second = this.ReturnStack(modulePrinter) * 2;
+                    containerSelected.defaultModule.OnAnyPickup(modulePrinter, modulePrinter.ModularGunController, player, false);
+                    AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
+                    VFXStorage.DoFancyFlashOfModules((this.ReturnStack(modulePrinter) * 2) - Count, modulePrinter.Owner, containerSelected.defaultModule);
+                }
+            }
+        }
+
+        public void ONFS(ModulePrinterCore modulePrinter, PlayerController player)
+        {
+            ORC(modulePrinter, player);
+            containerSelected = null;
+            DoSelect(modulePrinter, player);
+        }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            modulePrinter.OnEnteredCombat -= OEC;
-            modulePrinter.OnRoomCleared -= ORC;
+            ORC(modulePrinter, player);
+            modulePrinter.OnNewFloorStarted -= ONFS;
         }
 
-
-        
-
-        public void OEC(ModulePrinterCore printer, Dungeonator.RoomHandler roomHandler, PlayerController player)
+        public ModulePrinterCore.ModuleContainer containerSelected = null;
+       
+        public void DoSelect(ModulePrinterCore printer, PlayerController player)
         {
+            if (containerSelected != null) 
+            {
+                if (containerSelected.FakeCount.Where(self => self.First == "Mirror").Count() == 0)
+                {
+                    containerSelected.FakeCount.Add(new Tuple<string, int>("Mirror", this.ReturnStack(printer) * 2));
+                    containerSelected.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
+                    AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
+                    VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer) * 2, printer.Owner, containerSelected.defaultModule);
+                }
+                return; 
+            }
             int rolls = 5;
             bool found = false;
             while (found == false && rolls > 0)
@@ -72,13 +115,15 @@ namespace ModularMod
                     {
                         found = !found;
 
+                        containerSelected = c;
+                                     
                         c.FakeCount.Add(new Tuple<string, int>("Mirror", this.ReturnStack(printer) * 2));
                         c.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
 
 
                         AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
                         VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer) * 2, printer.Owner, c.defaultModule);
-
+                        
                     }
                     else
                     {
@@ -91,19 +136,21 @@ namespace ModularMod
                 }
             }
         }
-        public void ORC(ModulePrinterCore printer, PlayerController player, Dungeonator.RoomHandler roomHandler)
+
+
+
+
+        public void ORC(ModulePrinterCore printer, PlayerController player)
         {
-            foreach (var help in printer.ModuleContainers)
+            if (containerSelected == null) { return; }
+            for (int i = 0; i < containerSelected.FakeCount.Count; i++)
             {
-                for (int i = 0; i < help.FakeCount.Count; i++)
+                var faker = containerSelected.FakeCount[i];
+                if (faker.First == "Mirror")
                 {
-                    var faker = help.FakeCount[i];
-                    if (faker.First == "Mirror")
-                    {
-                        help.FakeCount.Remove(help.FakeCount[i]);
-                        help.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
-                        VFXStorage.DoFancyDestroyOfModules(this.ReturnStack(printer) * 2, printer.Owner, help.defaultModule);
-                    }
+                    containerSelected.FakeCount.Remove(containerSelected.FakeCount[i]);
+                    containerSelected.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
+                    VFXStorage.DoFancyDestroyOfModules(this.ReturnStack(printer) * 2, printer.Owner, containerSelected.defaultModule);
                 }
             }
         }

@@ -1,9 +1,12 @@
 ﻿using Alexandria.ItemAPI;
 using Dungeonator;
+using ModularMod.Code.Components.Projectile_Components;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static ModularMod.ChooseModuleController;
 using static StringTableManager;
 
 namespace ModularMod
@@ -17,6 +20,11 @@ namespace ModularMod
             DontDestroyOnLoad(gameObject);
 
             var dlm = gameObject.GetComponent<DefaultLabelController>();
+
+
+
+
+
 
 
             var mdlm = gameObject.AddComponent<ModifiedDefaultLabelManager>();
@@ -35,12 +43,16 @@ namespace ModularMod
             label.m_cachedLanguage = StringTableManager.GungeonSupportedLanguages.ENGLISH;
             label.m_defaultAssignedFont = label.font;
             label.m_cachedPadding = label.padding;
-            label.m_defaultAssignedFontTextScale = 5;
+            label.m_defaultAssignedFontTextScale = 2;
 
 
-            label.textScale = 5;
+            label.textScale = 2;
 
 
+            label.atlas = StaticCollections.ModularUIAtlas;
+            label.font = StaticCollections.ModularFont;
+
+            label.backgroundSprite = "basicSheet";
 
             label.backgroundColor = new Color32(121, 234, 255, 100);
             label.colorizeSymbols = false;
@@ -62,41 +74,31 @@ namespace ModularMod
             label.autoHeight = false;
             label.Height = 160;
             label.wordWrap = false;
-
             var data = new dfRenderData()
             {
                 Glitchy = false,
                 Shader = ShaderCache.Acquire("Brave/Internal/HologramShader"),
-                
+               
             };
 
             label.m_defaultAssignedFont = label.font;
             label.m_cachedPadding = label.padding;
-
+            dfLabel.m_cachedScaleTileScale = 30;
 
 
 
             label.renderData = data;
             label.text = "AAAAAAAAAAAAAAAAAAAAAAAAA||||||||||||||||||||||||||||||||||";
             label.Invalidate();
-            //mdlm.renderer.material.shader = ShaderCache.Acquire("Brave/Internal/HologramShader");
-
-
-
-
-            //label.backgroundSprite = AtlasEditors.AddUITextImage("ModularMod/Sprites/modular_hud_grid.png", "modular_hud_grid");
-
-            //Debug.Log(label.m_cachedLanguage != null ? "m_cachedLanguage" : "NULL");
-            //Debug.Log(label.m_defaultAssignedFont != null ? "m_defaultAssignedFont" : "NULL");
-            //Debug.Log(label.font != null ? "font" : "NULL");
-
 
             LabelController = mdlm;
-
+            /*
             Tier_1_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_1.png", "tier_1");
             Tier_2_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_2.png", "tier_2");
             Tier_3_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_3.png", "tier_3");
             Tier_Omega_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_4.png", "tier_omega");
+            Tier_Unique_Label = AtlasEditors.AddUITextImage("ModularMod/Sprites/Icons/tier_label_unique.png", "tier_unique");
+            */
 
             GameObject roomIcon = new GameObject("VFX");
             FakePrefab.DontDestroyOnLoad(roomIcon);
@@ -107,16 +109,108 @@ namespace ModularMod
             minimapIcon = roomIcon;
         }
 
+        public string ReturnBackGroundSheet()
+        {
+
+
+            switch (this.Tier)
+            {
+                case ModuleTier.Tier_1:
+                    return "Background_Tier_1";
+                case ModuleTier.Tier_2:
+                    return "Background_Tier_2";
+                case ModuleTier.Tier_3:
+                    return "Background_Tier_3";
+                case ModuleTier.Tier_Omega:
+                    return "Background_Tier_4";
+                default:
+                    return OverrideBackground_Sprite ?? "basicSheet";
+            }
+
+        }
+
+        public static string OverrideBackground_Sprite;
+
+        public static string ReturnBackGroundSheet(DefaultModule.ModuleTier moduleTier)
+        {
+            switch (moduleTier)
+            {
+                case ModuleTier.Tier_1:
+                    return "Background_Tier_1";
+                case ModuleTier.Tier_2:
+                    return "Background_Tier_2";
+                case ModuleTier.Tier_3:
+                    return "Background_Tier_3";
+                case ModuleTier.Tier_Omega:
+                    return "Background_Tier_4";
+                default:
+                    return "basicSheet";
+            }
+        }
+
+        public enum BaseModuleTags
+        {
+            BASIC,
+            
+            DEFENSIVE,
+            
+            GENERATION,
+            
+            RETALIATION,
+
+            DAMAGE_OVER_TIME,
+
+            UNIQUE,
+
+            CONDITIONAL,
+
+            TRADE_OFF,
+
+            STICKY,
+
+            CRIT
+        }
+
+        public void AddModuleTag(BaseModuleTags tag)
+        {
+            if (!ModuleTags.Contains(tag.ToString())) { ModuleTags.Add(tag.ToString()); }
+        }
+
+        public void RemoveModuleTag(BaseModuleTags tag)
+        {
+            if (ModuleTags.Contains(tag.ToString())) { ModuleTags.Remove(tag.ToString()); }
+        }
+        public void AddModuleTag(string tag)
+        {
+            if (!ModuleTags.Contains(tag)) { ModuleTags.Add(tag); }
+        }
+
+        public void RemoveModuleTag(string tag)
+        {
+            if (ModuleTags.Contains(tag)) { ModuleTags.Remove(tag); }
+        }
+
+        public bool ContainsTag(BaseModuleTags tag)
+        {
+            return ModuleTags.Contains(tag.ToString());
+        }
+
+        public bool ContainsTag(string tag)
+        {
+            return ModuleTags.Contains(tag);
+        }
+
+        public List<string> ModuleTags = new List<string>();
+
+        public bool AppearsInRainbowMode = true;
+        public bool AppearsFromBlessedModeRoll = true;
+
+
         public static GameObject minimapIcon;
         private GameObject extant_minimapIcon;
         private RoomHandler m_minimapIconRoom;
-
-        public static string Tier_1_Label;
-        public static string Tier_2_Label;
-        public static string Tier_3_Label;
-        public static string Tier_Omega_Label;
-
         public bool IsSpecialModule = false;
+
         private string ReturnRoomIconSpriteName(bool alt)
         {
             switch (this.Tier)
@@ -129,9 +223,20 @@ namespace ModularMod
                     return alt ? "t3_b_roomicon" : "t3_a_roomicon";
                 case ModuleTier.Tier_Omega:
                     return "t4_roomicon";
+                case ModuleTier.Unique:
+                    return "u_module_icon";
                 default: return "t1_a_roomicon";
             }
         }
+
+        /*
+        public static string Tier_1_Label;
+        public static string Tier_2_Label;
+        public static string Tier_3_Label;
+        public static string Tier_Omega_Label;
+        public static string Tier_Unique_Label;
+
+       
 
         public string ReturnTierLabel()
         {
@@ -145,9 +250,13 @@ namespace ModularMod
                     return "[sprite \"" + Tier_3_Label + "\"]"; ;
                 case ModuleTier.Tier_Omega:
                     return "[sprite \"" + Tier_Omega_Label + "\"]";
+                case ModuleTier.Unique:
+                    return "[sprite \"" + Tier_Unique_Label + "\"]";
+
                 default: return "[sprite \"" + Tier_1_Label + "\"]";
             }
         }
+
 
         public static string ReturnTierLabel(ModuleTier moduleTier)
         {
@@ -161,10 +270,49 @@ namespace ModularMod
                     return "[sprite \"" + Tier_3_Label + "\"]";
                 case ModuleTier.Tier_Omega:
                     return "[sprite \"" + Tier_Omega_Label + "\"]";
+                case ModuleTier.Unique:
+                    return "[sprite \"" + Tier_Unique_Label + "\"]";
                 default: return "[sprite \"" + Tier_1_Label + "\"]"; ;
             }
         }
+        */
+        
+        public static string ReturnTierLabel(ModuleTier moduleTier)
+        {
+            switch (moduleTier)
+            {
+                case ModuleTier.Tier_1:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T1);
+                case ModuleTier.Tier_2:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T2);
+                case ModuleTier.Tier_3:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T3);
+                case ModuleTier.Tier_Omega:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T4);
+                case ModuleTier.Unique:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T_UNIQUE);
+                default: return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T1);
+            }
+        }
+        
+        public string ReturnTierLabel()
+        {
+            switch (this.Tier)
+            {
+                case ModuleTier.Tier_1:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T1);
+                case ModuleTier.Tier_2:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T2);
+                case ModuleTier.Tier_3:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T3);
+                case ModuleTier.Tier_Omega:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T4);
+                case ModuleTier.Unique:
+                    return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T_UNIQUE);
+                default: return SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.T1);
 
+            }
+        }
 
         public override void Pickup(PlayerController player)
         {
@@ -233,6 +381,21 @@ namespace ModularMod
         {
 
         }
+
+        public virtual bool IsAvailable()
+        {
+            return true;
+        }
+
+        public virtual float ProcessedWeightMultiplier()
+        {
+            return 1;
+        }
+
+        public virtual float ProcessedWeightAdditional()
+        {
+            return 0;
+        }
         public int Stack(bool usesTemporaryStack = true)
         {
             return this.ReturnStack(Stored_Core, usesTemporaryStack);
@@ -270,8 +433,20 @@ namespace ModularMod
             }
             return false;
         }
+
+        public virtual void OnModuleSpawned()
+        {
+
+        }
+
+        public virtual void OnModuleSpawnAsChoice(ChooseModuleController chooseModuleController, ModuleUICarrier moduleUICarrier)
+        {
+
+        }
+
         protected void Start()
         {
+            OnModuleSpawned();
             if (minimapIcon != null)
             {
                 this.m_minimapIconRoom = GameManager.Instance.Dungeon.data.GetAbsoluteRoomFromPosition(base.transform.position.IntXY(VectorConversions.Floor));
@@ -350,6 +525,7 @@ namespace ModularMod
             if (ExtantNameLabelController == null && CanDisplayText == true)
             {
                 ExtantNameLabelController = Toolbox.GenerateText(this.transform, Offset_LabelName, 0.5f, GetLabelNameProper(), colorToSelect, true, 5, false);
+
             }
             if (EnteredRange != null)
             {
@@ -479,7 +655,8 @@ namespace ModularMod
             Tier_1 = 0,
             Tier_2 = 1,
             Tier_3 = 2,
-            Tier_Omega = 3
+            Tier_Omega = 3,
+            Unique = 4
         };
 
         public string LabelName = "Default Module";
@@ -503,6 +680,7 @@ namespace ModularMod
         public float EnergyConsumption = -1;
 
         public StickyProjectileModifier.StickyContext stickyContext = new StickyProjectileModifier.StickyContext();
+        public CriticalHitComponent.CritContext CritContext;
 
 
         public PowerConsumptionData powerConsumptionData = new PowerConsumptionData() 
@@ -591,12 +769,15 @@ namespace ModularMod
             while (elapsed < duration)
             {
                 elapsed += GameManager.INVARIANT_DELTA_TIME;
-                //BraveTime.DeltaTime;            
-                this.panel.Width = Mathf.Lerp(1f, targetWidth * scaleMultiplier, Toolbox.SinLerpTValue(elapsed / duration));
+                //BraveTime.DeltaTime;
+                //T
+                T = Toolbox.SinLerpTValue(elapsed / duration);
+                this.panel.Width = Mathf.Lerp(1f, targetWidth * scaleMultiplier, T);
                 yield return null;
             }
             yield break;
         }
+        public float T = 1;
 
         public void Update()
         {
@@ -637,7 +818,8 @@ namespace ModularMod
             while (elapsed < duration)
             {
                 elapsed += GameManager.INVARIANT_DELTA_TIME;
-                this.panel.Width = Mathf.Lerp(targetWidth, 0, elapsed / duration);
+                T = elapsed / duration;
+                this.panel.Width = Mathf.Lerp(targetWidth, 0, T);
                 yield return null;
             }
             if (willDestroy == true)

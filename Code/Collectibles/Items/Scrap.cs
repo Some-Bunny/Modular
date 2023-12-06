@@ -28,10 +28,10 @@ namespace ModularMod
             v.CustomCost = 15;
             v.UsesCustomCost = true;
             Scrap_ID = v.PickupObjectId;
+            v.gameObject.SetActive(false);
             FakePrefab.MakeFakePrefab(v.gameObject);
             UnityEngine.Object.DontDestroyOnLoad(v.gameObject);
 
-            v.gameObject.SetActive(false);
             SpeculativeRigidbody speculativeRigidbody = v.gameObject.AddComponent<SpeculativeRigidbody>();
             PixelCollider item = new PixelCollider
             {
@@ -99,7 +99,6 @@ namespace ModularMod
                 SpeculativeRigidbody speculativeRigidbody = storedBody;
                 SpeculativeRigidbody speculativeRigidbody2 = speculativeRigidbody;
                 speculativeRigidbody2.OnTriggerCollision = (SpeculativeRigidbody.OnTriggerDelegate)Delegate.Combine(speculativeRigidbody2.OnTriggerCollision, new SpeculativeRigidbody.OnTriggerDelegate(this.OnPreCollision));
-
                 if (this.minimapIcon != null && !this.m_hasBeenPickedUp && this.gameObject.activeSelf == true)
                 {
                     this.m_minimapIconRoom = GameManager.Instance.Dungeon.data.GetAbsoluteRoomFromPosition(base.transform.position.IntXY(VectorConversions.Floor));

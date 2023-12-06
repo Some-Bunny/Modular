@@ -31,6 +31,10 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Lightning Nets " + h.ReturnTierLabel();
             h.LabelDescription = "Player Projectiles are now tethered with electricity\n(" + StaticColorHexes.AddColorToLabelString("+Tether range and Damage", StaticColorHexes.Light_Orange_Hex) + ")";
+
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -49,7 +53,7 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.15f) { return; }
             int stack = 1;
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
-            chain.Damage = p.baseData.damage;
+            chain.Damage = p.baseData.damage * 1.2f;
             chain.Range = 4.5f + (4.5f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
@@ -67,7 +71,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
@@ -89,7 +93,7 @@ namespace ModularMod
         }
 
         private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
-        private float Tick = 0.25f;
+        private float Tick = 0.33f;
         private float Elapsed = 0;
 
 
@@ -172,6 +176,7 @@ namespace ModularMod
                 }
             }
             distances.Sort();
+            if (distances == null | distances.Count() == 0) { return null; }
 
             return h > distances.Last() ? null : distances_V[distances.Last()];
         }
@@ -213,7 +218,7 @@ namespace ModularMod
             {
                 if (aIActor.State == AIActor.ActorState.Normal && aIActor.CanTargetPlayers == true && aIActor.CanTargetEnemies == false)
                 {
-                    aIActor.healthHaver.ApplyDamage(Damage / 4, aIActor.transform.PositionVector2(), "Zap");
+                    aIActor.healthHaver.ApplyDamage(Damage / 3, aIActor.transform.PositionVector2(), "Zap");
                     GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aIActor, m_damagedEnemies_AOE));
                 }
             }

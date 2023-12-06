@@ -1,0 +1,924 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1741209800465960}
+  m_IsPrefabParent: 1
+--- !u!1 &1741209800465960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4111886109899058}
+  - component: {fileID: 114673872577752670}
+  m_Layer: 0
+  m_Name: ShootPeopUltra-16
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4111886109899058
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741209800465960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114673872577752670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741209800465960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f659c90c0e4834b9249664c8d0e6a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atlas: {fileID: 114051579065403702, guid: 0cb274df398b83944a1507ebe063c194, type: 2}
+  sprite: ShootPeoplTest_0
+  face: ShootPeopUltra
+  size: -16
+  bold: 0
+  italic: 0
+  charset: 
+  stretchH: 100
+  smooth: 0
+  aa: 1
+  padding: 00000000000000000000000000000000
+  spacing: 0100000001000000
+  outline: 0
+  lineHeight: 15
+  glyphs:
+  - id: 32
+    x: 217
+    y: 16
+    width: 5
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 5
+    rotated: 0
+  - id: 33
+    x: 252
+    y: 0
+    width: 3
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 3
+    rotated: 0
+  - id: 34
+    x: 6
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 35
+    x: 63
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 36
+    x: 70
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 37
+    x: 18
+    y: 0
+    width: 7
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 7
+    rotated: 0
+  - id: 38
+    x: 26
+    y: 0
+    width: 7
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 7
+    rotated: 0
+  - id: 39
+    x: 253
+    y: 16
+    width: 2
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 2
+    rotated: 0
+  - id: 40
+    x: 11
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 41
+    x: 16
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 42
+    x: 21
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 43
+    x: 42
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 44
+    x: 56
+    y: 32
+    width: 3
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 3
+    rotated: 0
+  - id: 45
+    x: 119
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 46
+    x: 76
+    y: 32
+    width: 2
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 2
+    rotated: 0
+  - id: 47
+    x: 26
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 48
+    x: 140
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 49
+    x: 31
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 50
+    x: 154
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 51
+    x: 161
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 52
+    x: 168
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 53
+    x: 175
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 54
+    x: 105
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 55
+    x: 189
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 56
+    x: 196
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 57
+    x: 203
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 58
+    x: 79
+    y: 32
+    width: 2
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 2
+    rotated: 0
+  - id: 59
+    x: 60
+    y: 32
+    width: 3
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 3
+    rotated: 0
+  - id: 60
+    x: 223
+    y: 16
+    width: 5
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 5
+    rotated: 0
+  - id: 61
+    x: 231
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 62
+    x: 229
+    y: 16
+    width: 5
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 5
+    rotated: 0
+  - id: 63
+    x: 245
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 64
+    x: 9
+    y: 0
+    width: 8
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 8
+    rotated: 0
+  - id: 65
+    x: 0
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 66
+    x: 7
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 67
+    x: 14
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 68
+    x: 21
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 69
+    x: 34
+    y: 0
+    width: 7
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 7
+    rotated: 0
+  - id: 70
+    x: 28
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 71
+    x: 35
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 72
+    x: 42
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 73
+    x: 36
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 74
+    x: 49
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 75
+    x: 56
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 76
+    x: 63
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 77
+    x: 70
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 78
+    x: 77
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 79
+    x: 84
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 80
+    x: 91
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 81
+    x: 98
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 82
+    x: 105
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 83
+    x: 112
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 84
+    x: 119
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 85
+    x: 126
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 86
+    x: 133
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 87
+    x: 140
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 88
+    x: 147
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 89
+    x: 154
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 90
+    x: 161
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 91
+    x: 68
+    y: 32
+    width: 3
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 3
+    rotated: 0
+  - id: 92
+    x: 51
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 93
+    x: 64
+    y: 32
+    width: 3
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 3
+    rotated: 0
+  - id: 94
+    x: 168
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 95
+    x: 0
+    y: 32
+    width: 5
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 5
+    rotated: 0
+  - id: 96
+    x: 72
+    y: 32
+    width: 3
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 3
+    rotated: 0
+  - id: 97
+    x: 175
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 98
+    x: 182
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 99
+    x: 189
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 100
+    x: 196
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 101
+    x: 203
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 102
+    x: 210
+    y: 16
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 103
+    x: 49
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 104
+    x: 126
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 105
+    x: 82
+    y: 32
+    width: 2
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 2
+    rotated: 0
+  - id: 106
+    x: 241
+    y: 16
+    width: 5
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 5
+    rotated: 0
+  - id: 107
+    x: 247
+    y: 16
+    width: 5
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 5
+    rotated: 0
+  - id: 108
+    x: 85
+    y: 32
+    width: 2
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 2
+    rotated: 0
+  - id: 109
+    x: 56
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 110
+    x: 77
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 111
+    x: 84
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 112
+    x: 91
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 113
+    x: 98
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 114
+    x: 112
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 115
+    x: 238
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 116
+    x: 235
+    y: 16
+    width: 5
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 5
+    rotated: 0
+  - id: 117
+    x: 133
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 118
+    x: 147
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 119
+    x: 182
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 120
+    x: 210
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 121
+    x: 217
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 122
+    x: 224
+    y: 0
+    width: 6
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 6
+    rotated: 0
+  - id: 123
+    x: 41
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 124
+    x: 88
+    y: 32
+    width: 2
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 2
+    rotated: 0
+  - id: 125
+    x: 46
+    y: 32
+    width: 4
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 4
+    rotated: 0
+  - id: 126
+    x: 0
+    y: 0
+    width: 8
+    height: 15
+    xoffset: 0
+    yoffset: 0
+    xadvance: 8
+    rotated: 0
+  kerning: []

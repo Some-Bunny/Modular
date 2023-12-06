@@ -8,6 +8,7 @@ namespace ModularMod
 {
     public class SpecialCharactersController
     {
+       
         public enum SpecialCharacters
         {
             DAMAGE,
@@ -39,7 +40,10 @@ namespace ModularMod
             CLAM,
             RAGE,
             WEAK,
-            ARROW
+            ARROW,
+
+            UP, DOWN, LEFT, RIGHT, CLOSE, GOOGLY, POWER, CLOCK, INFO, T1, T2, T3, T4, T_UNIQUE,
+            
         }
 
         public static void Init()
@@ -54,6 +58,28 @@ namespace ModularMod
             InitSpecialCharacterContainer(SpecialCharacters.SHOTSPEED, "lync_icon_014");
             InitSpecialCharacterContainer(SpecialCharacters.HEART, "lync_icon_009");
             InitSpecialCharacterContainer(SpecialCharacters.ARROW, "lync_icon_030");
+
+            InitSpecialCharacterContainer(SpecialCharacters.UP, "ButtonUp", "ButtonUpBright");
+            InitSpecialCharacterContainer(SpecialCharacters.DOWN, "ButtonDown", "ButtonDownBright");
+            InitSpecialCharacterContainer(SpecialCharacters.LEFT, "ButtonLeft", "ButtonLeftBright");
+            InitSpecialCharacterContainer(SpecialCharacters.RIGHT, "ButtonRight", "ButtonRightBright");
+
+            InitSpecialCharacterContainer(SpecialCharacters.CLOSE, "Cancel", "CanceBrightl");
+
+            InitSpecialCharacterContainer(SpecialCharacters.POWER, "Power");
+
+            InitSpecialCharacterContainer(SpecialCharacters.GOOGLY, "GooglyMoogly", "GooglyMooglyBright");
+
+            InitSpecialCharacterContainer(SpecialCharacters.CLOCK, "Clock");
+
+            InitSpecialCharacterContainer(SpecialCharacters.T1, "tier_label_1_d", "tier_label_1");
+            InitSpecialCharacterContainer(SpecialCharacters.T2, "tier_label_2_d", "tier_label_2");
+            InitSpecialCharacterContainer(SpecialCharacters.T3, "tier_label_3_d", "tier_label_3");
+            InitSpecialCharacterContainer(SpecialCharacters.T4, "tier_label_4_d", "tier_label_4");
+            InitSpecialCharacterContainer(SpecialCharacters.T_UNIQUE, "tier_label_unique_d", "tier_label_unique");
+
+            InitSpecialCharacterContainer(SpecialCharacters.INFO, "Info", "Info_Hover");
+
 
             /*
             InitSpecialCharacterContainer(SpecialCharacters.ENCASED_ROUND, "lync_icon_008", null, null, null, null);
@@ -82,21 +108,25 @@ namespace ModularMod
 
 
 
-        public static void InitSpecialCharacterContainer(SpecialCharacters Character, string defaultCharacter)
+        public static void InitSpecialCharacterContainer(SpecialCharacters Character, string defaultCharacter, string brightVariant = null)
         {
             var container = new SpecialCharacterContainer();
             container.defaultCharacter = Character;
-            container.DefaultVariant = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>(defaultCharacter), defaultCharacter + "_MDLR"); ;
+            container.DefaultVariant = defaultCharacter;//AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>(defaultCharacter), defaultCharacter + "_MDLR");
+            if (brightVariant != null)
+            {
+                container.BrightVariant = brightVariant;//AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>(brightVariant), brightVariant + "_MDLR");
+            }
             SpecialCharacterList.Add(container);
         }
 
 
-        public static string ReturnSpecialCharacter(SpecialCharacters specialCharacter)
+        public static string ReturnSpecialCharacter(SpecialCharacters specialCharacter, bool IsBright = false)
         {
             var List = SpecialCharacterList.Where(self => self.defaultCharacter == specialCharacter);
             if (List.Count() > 0) 
             {
-                return List.First().GetColor(SpecialCharacterContainer.Color.NONE);
+                return List.First().GetColor(SpecialCharacterContainer.Color.NONE, IsBright);
             }
             Debug.Log("Failed To Get Character: |" + specialCharacter);
             return null;
@@ -107,8 +137,13 @@ namespace ModularMod
         public class SpecialCharacterContainer
         {
             public SpecialCharacters defaultCharacter;
-            public string GetColor(Color c)
+            public string GetColor(Color c, bool IsBright)
             {
+                if (IsBright == true)
+                {
+                    return BrightVariant != null ? "[sprite " + BrightVariant + "]" : "[sprite " + DefaultVariant + "]";
+
+                }
                 switch (c)
                 {
                     case Color.NONE:
@@ -130,6 +165,7 @@ namespace ModularMod
             public string YellowVariant;
             public string GreenVariant;
             public string BlueVariant;
+            public string BrightVariant;
 
             public enum Color
             {

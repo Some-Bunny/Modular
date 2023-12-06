@@ -403,6 +403,32 @@ namespace ModularMod
                     if (message == "DeathStun")
                     {
                         this.behaviorSpeculator.Interrupt();
+                        for (int i = 0; i < this.behaviorSpeculator.AttackBehaviorGroup.AttackBehaviors.Count; i++)
+                        {
+                            var aa = (this.behaviorSpeculator.AttackBehaviorGroup.AttackBehaviors[i]);
+                            var behavior = aa.Behavior as BasicAttackBehavior;
+                            if (aa.NickName == "Laser Attack Dummy")
+                            {
+                                behavior.Cooldown = 2;
+                                behavior.MinRange = -1f;
+                                behavior.Range = 1000f;
+                                behavior.RequiresLineOfSight = false;
+                                (behavior as CustomBeholsterLaserBehavior).Bap = true;
+                                aa.Probability = 1;
+                            }
+                            else if (aa.NickName == "MainLaserAttack")
+                            {
+                                behavior.Cooldown = 4;
+                                aa.Probability = 0;
+                            }
+                            else
+                            {
+                                behavior.Cooldown = 2;
+                                aa.Probability = 1;
+                            }
+                        }
+
+
                         //this.aiActor.knockbackDoer.ApplyKnockback(Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), 2), 15);
                     }
                 }

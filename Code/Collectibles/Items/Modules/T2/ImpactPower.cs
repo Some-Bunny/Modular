@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Impact Power",
             Description = "Know Where To Go",
-            LongDescription = "Adds 2 Bounces, Reduce Damage by 20% (-20% per stack hyperbolically) But each bounce increases damage by 1.75x (+0.75x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 2 Bounces, Reduce Damage by 20% (-20% per stack hyperbolically) But each bounce increases damage by 1.5x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("impactpower_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,8 +29,12 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Impact Power " + h.ReturnTierLabel();
             h.LabelDescription = "Adds 2 Bounces, Reduce Damage by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
-                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each bounce damage increases damage by 1.75x " +
-                StaticColorHexes.AddColorToLabelString("+0.75x", StaticColorHexes.Light_Orange_Hex) + ".";
+                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each bounce damage increases damage by 1.5x " +
+                StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ".";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -49,12 +53,12 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += stack * 2;
-            bounceProjModifier.damageMultiplierOnBounce *= (1 +(0.75f * stack));
+            bounceProjModifier.damageMultiplierOnBounce *= (1 +(0.5f * stack));
             bounceProjModifier.OnBounceContext += OBC;
             p.baseData.damage *= 1 - (1 - (1 / (1 + 0.2f * stack))); //this formula fucking sucks lmao
         }
@@ -65,8 +69,7 @@ namespace ModularMod
                 var obj = UnityEngine.Object.Instantiate(VFXStorage.MachoBraceDustupVFX, self.projectile.sprite.WorldCenter, Quaternion.identity);
                 obj.transform.localPosition -= new Vector3(1.25f, 1.25f);
                 Destroy(obj, 2);
-            }
-            
+            }     
         }
     }
 }

@@ -1254,7 +1254,7 @@ namespace ModularMod
                     }
                 }
                 GameStatsManager.Instance.SetCharacterSpecificFlag(ETGModCompatibility.ExtendEnum<PlayableCharacters>(Module.GUID, Module.Modular_Character_Data.nameShort), CharacterSpecificGungeonFlags.KILLED_PAST, true);
-                AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.PAST, true);
+
 
 
                 for (int i = 0; i < EncounterDatabase.Instance.Entries.Count; i++)
@@ -1280,6 +1280,12 @@ namespace ModularMod
                     e += BraveTime.DeltaTime;
                     yield return null;
                 }
+                if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST) == false)
+                {
+                    Toolbox.NotifyCustom("You Unlocked:", "Light Lance", StaticCollections.Gun_Collection.GetSpriteIdByName("coollance_idle_001"), StaticCollections.Gun_Collection);
+                }
+                AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.PAST, true);
+
                 GameManager.IsBossIntro = false;
                 for (int j = 0; j < GameManager.Instance.AllPlayers.Length; j++)
                 {

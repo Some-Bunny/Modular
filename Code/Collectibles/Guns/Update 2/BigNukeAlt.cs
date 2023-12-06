@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Kinetic Payload", "bignukegunalt");
             Game.Items.Rename("outdated_gun_mods:kinetic_payload", "mdl:armcannon_12_alt");
-            gun.gameObject.AddComponent<BigNukeAlt>();
+            var c = gun.gameObject.AddComponent<BigNukeAlt>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires kinetic warheads. Compatible with Modular Upgrade Software.\n\nComplete overkill, in the palm of your hand.");
 

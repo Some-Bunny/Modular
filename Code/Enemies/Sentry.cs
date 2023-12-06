@@ -456,12 +456,23 @@ namespace ModularMod
                     if (tiledspriteObject != null)
                     {
                         tiledsprite.transform.position = this.BulletBank.sprite.WorldCenter;
+                        Func<SpeculativeRigidbody, bool> rigidbodyExcluder = (SpeculativeRigidbody otherRigidbody) => otherRigidbody.minorBreakable && !otherRigidbody.minorBreakable.stopsBullets;
 
                         Vector2 predictedPosition = BraveMathCollege.GetPredictedPosition(this.BulletManager.PlayerPosition(), this.BulletManager.PlayerVelocity(), this.BulletBank.GetComponent<tk2dBaseSprite>().WorldCenter, 90f);
                         float CentreAngle = (predictedPosition - this.Position).ToAngle();
                         f = CentreAngle;
                         tiledsprite.transform.localRotation = Quaternion.Euler(0f, 0f, CentreAngle);
-                        tiledsprite.dimensions = new Vector2(Vector2.Distance(this.Position, this.BulletManager.PlayerPosition()) * 160, 1f);
+                        float num9 = 0;
+
+                        int rayMask2 = CollisionMask.LayerToMask(CollisionLayer.HighObstacle, CollisionLayer.BulletBlocker, CollisionLayer.PlayerHitBox, CollisionLayer.BulletBreakable);
+                        RaycastResult raycastResult2;
+                        if (PhysicsEngine.Instance.Raycast(this.Position, (predictedPosition - this.Position),1000, out raycastResult2, true, true, rayMask2, null, false, rigidbodyExcluder, null))
+                        {
+                            num9 = raycastResult2.Distance;
+                        }
+                        RaycastResult.Pool.Free(ref raycastResult2);
+
+                        tiledsprite.dimensions = new Vector2(num9 / 0.0625f, 1f);// this.BulletManager.PlayerPosition()) * 160, 1f);
                         tiledsprite.UpdateZDepth();
                     }
                     elapsed += BraveTime.DeltaTime;
@@ -497,8 +508,26 @@ namespace ModularMod
                     if (tiledspriteObject != null)
                     {
                         tiledsprite.transform.position = this.BulletBank.sprite.WorldCenter;
-                        tiledsprite.dimensions = new Vector2(Vector2.Distance(this.Position, this.BulletManager.PlayerPosition()) * 160, 1f);
-                        tiledsprite.HeightOffGround = -2;
+
+
+
+                        Func<SpeculativeRigidbody, bool> rigidbodyExcluder = (SpeculativeRigidbody otherRigidbody) => otherRigidbody.minorBreakable && !otherRigidbody.minorBreakable.stopsBullets;
+
+                        Vector2 predictedPosition = BraveMathCollege.GetPredictedPosition(this.BulletManager.PlayerPosition(), this.BulletManager.PlayerVelocity(), this.BulletBank.GetComponent<tk2dBaseSprite>().WorldCenter, 90f);
+                        float CentreAngle = (predictedPosition - this.Position).ToAngle();
+                        f = CentreAngle;
+                        tiledsprite.transform.localRotation = Quaternion.Euler(0f, 0f, CentreAngle);
+                        float num9 = 0;
+
+                        int rayMask2 = CollisionMask.LayerToMask(CollisionLayer.HighObstacle, CollisionLayer.BulletBlocker, CollisionLayer.PlayerHitBox, CollisionLayer.BulletBreakable);
+                        RaycastResult raycastResult2;
+                        if (PhysicsEngine.Instance.Raycast(this.Position, (predictedPosition - this.Position), 1000, out raycastResult2, true, true, rayMask2, null, false, rigidbodyExcluder, null))
+                        {
+                            num9 = raycastResult2.Distance;
+                        }
+                        RaycastResult.Pool.Free(ref raycastResult2);
+
+                        tiledsprite.dimensions = new Vector2(num9 / 0.0625f, 1f);
                         tiledsprite.renderer.gameObject.layer = 23;
                         tiledsprite.UpdateZDepth();
                         bool enabled = elapsed % 0.25f > 0.125f;

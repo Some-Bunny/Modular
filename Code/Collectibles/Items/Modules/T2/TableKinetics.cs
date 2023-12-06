@@ -36,8 +36,12 @@ namespace ModularMod
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.IsUncraftable = true;
             h.EnergyConsumption = 1;
+
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
@@ -75,7 +79,7 @@ namespace ModularMod
             }
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.specRigidbody.OnPreRigidbodyCollision += HandlePreCollision;
         }
@@ -106,9 +110,7 @@ namespace ModularMod
                     }
                     PhysicsEngine.SkipCollision = true;
                 }
-            }
-
-           
+            }       
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -130,11 +132,17 @@ namespace ModularMod
             PhysicsEngine.Instance.RegisterOverlappingGhostCollisionExceptions(componentInChildren, null, false);
         }
 
-
-
+        private bool Cooled_down = true;
+        public void Cooldown()
+        {
+            Cooled_down = true;
+        }
 
         public void AllTables(RoomHandler r)
         {
+            if (Cooled_down == false) { return; }
+            Cooled_down = false;
+            this.Invoke("Cooldown", 0.75f);
             ReadOnlyCollection<IPlayerInteractable> roomInteractables = r.GetRoomInteractables();
             for (int i = 0; i < roomInteractables.Count; i++)
             {
@@ -180,7 +188,7 @@ namespace ModularMod
                         }
                         if (flag)
                         {
-                            aI.healthHaver.ApplyDamage(8 * m, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
+                            aI.healthHaver.ApplyDamage(10 * m, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
                         }
                     }
                 }

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Singularity Pulsar", "singularity_pulsar");
             Game.Items.Rename("outdated_gun_mods:singularity_pulsar", "mdl:armcannon_10");
-            gun.gameObject.AddComponent<GravityPulsar>();
+            var c = gun.gameObject.AddComponent<GravityPulsar>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires large rifts, followed up with energy attracted to said rifts. Compatible with Modular Upgrade Software.\n\nAn experimental tech graciously provided by a local laboratory, weaponized into an exotic weapon.");
             
@@ -78,12 +78,11 @@ namespace ModularMod
             ProjectileToolbox.ConstructListOfSameValues(true, 22), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.MiddleCenter, 22), ProjectileToolbox.ConstructListOfSameValues(true, 22), ProjectileToolbox.ConstructListOfSameValues(false, 22),
             ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 22), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 22), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 22), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 22));
 
-            projectile.hitEffects.tileMapHorizontal = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
-            projectile.hitEffects.tileMapVertical = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projectile.hitEffects.tileMapHorizontal = new VFXPool { type = VFXPoolType.None, effects = new VFXComplex[0] };//Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projectile.hitEffects.tileMapVertical = new VFXPool { type = VFXPoolType.None, effects = new VFXComplex[0] }; //Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             projectile.hitEffects.enemy = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             projectile.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
-            projectile.hitEffects.alwaysUseMidair = true;// Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
-            projectile.hitEffects.overrideMidairDeathVFX = (PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect;
+            projectile.hitEffects.alwaysUseMidair = false;// Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             projectile.pierceMinorBreakables = true;
             projectile.PenetratesInternalWalls = true;
             projectile.objectImpactEventName = (PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
@@ -183,6 +182,13 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+        }
+
+        public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 4));
         }
 
         public void Start()
@@ -197,9 +203,21 @@ namespace ModularMod
             }
         }
 
+        public bool CheckModule()
+        {
+            if (gun.CurrentOwner as PlayerController)
+            {
+                if (GlobalModuleStorage.PlayerHasActiveModule((gun.CurrentOwner as PlayerController), IteratedDesign.ID))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public int ProcessClipSize(int currentFinales, int clipSize, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return clipSize - 1;
+            return clipSize - (CheckModule() == true ? 2 : 1);
         }
         public static int ID;
     }

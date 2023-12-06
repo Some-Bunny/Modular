@@ -35,13 +35,17 @@ namespace ModularMod
             h.LabelName = "Machine Instinct " + h.ReturnTierLabel();
             h.LabelDescription = "Being in proximity of projectiles and enemies increases "+ StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases both Rate Of Fire and Damage.  (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 10 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
             h.EnergyConsumption = 2;
+
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.RETALIATION);
+            h.OverrideScrapCost = 10;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
             h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 12;
 
             ID = h.PickupObjectId;
         }
@@ -290,7 +294,7 @@ namespace ModularMod
             if (q > RiskCap) { q = RiskCap; }
             return f / q;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 1 + (Mathf.Min(currentRisk, RiskCap) / 5);
         }

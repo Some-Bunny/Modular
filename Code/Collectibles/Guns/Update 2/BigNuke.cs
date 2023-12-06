@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Kinetic Payload", "bignukegun");
             Game.Items.Rename("outdated_gun_mods:kinetic_payload", "mdl:armcannon_12");
-            gun.gameObject.AddComponent<BigNuke>();
+            var c = gun.gameObject.AddComponent<BigNuke>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Fires kinetic warheads. Compatible with Modular Upgrade Software.\n\nComplete overkill, in the palm of your hand.");
 
@@ -62,7 +62,7 @@ namespace ModularMod
             projectile.SetProjectileCollisionRight("bombbomb_001", StaticCollections.Projectile_Collection, 17, 7, false, tk2dBaseSprite.Anchor.MiddleCenter);
 
             projectile.AnimateProjectileBundle("bombomb", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "bombomb",
-            new List<IntVector2>() { new IntVector2(17, 7), new IntVector2(17, 7), new IntVector2(17, 7), new IntVector2(17, 7), new IntVector2(17, 7)},
+            new List<IntVector2>() { new IntVector2(17, 7), new IntVector2(17, 7), new IntVector2(17, 7), new IntVector2(17, 7), new IntVector2(17, 7) },
             ProjectileToolbox.ConstructListOfSameValues(true, 5), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.MiddleCenter, 5), ProjectileToolbox.ConstructListOfSameValues(true, 5), ProjectileToolbox.ConstructListOfSameValues(false, 5),
             ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 5), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 5), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 5), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 5));
 
@@ -123,9 +123,23 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             BigNuke.GunID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificClipPostCalc += c.ProcessClipSpecial;
+            IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+
+        }
+        public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return f; }
+            return f + stack;
+        }
+        public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return f; }
+            return f / (1 + (stack / 3));
         }
         public static int GunID;
     }
+
 
     public class KineticBomb : MonoBehaviour
     {

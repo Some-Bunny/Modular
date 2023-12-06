@@ -10,10 +10,11 @@ using System.Globalization;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityMaterial = UnityEngine.Material;
 using UnityFont = UnityEngine.Font;
 
+[ExecuteInEditMode]
+[AddComponentMenu("Daikon Forge/User Interface/Basic Font")]
 [Serializable]
 public abstract class dfFontBase : MonoBehaviour
 {

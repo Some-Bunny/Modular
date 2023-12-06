@@ -26,17 +26,20 @@ namespace ModularMod
         public static void PostInit(PickupObject v)
         {
             var h = (v as DefaultModule);
-            h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("battersrevenge_tier1_module_alt");
+            h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("battersrevenge_tier1_module_alt.png");
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.75f;
             h.LabelName = "Batters Revenge " + h.ReturnTierLabel();
             h.LabelDescription = "Reduces reload time by 20% ("+ StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nWhen reloading, toss out 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") baseballs that can be shot\nto pitch them. Damage scales with the projectile that hit it.\n(" + StaticColorHexes.AddColorToLabelString("+Higher Damage Scaling", StaticColorHexes.Light_Orange_Hex) + ")";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
-            h.OverrideScrapCost = 4;
+
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
@@ -47,7 +50,7 @@ namespace ModularMod
             FakePrefab.MakeFakePrefab(projectile.gameObject);
             DontDestroyOnLoad(projectile.gameObject);
 
-            projectile.baseData.damage = 5f;
+            projectile.baseData.damage = 7f;
             projectile.shouldRotate = false;
             projectile.baseData.range = 1000f;
             projectile.baseData.speed = 8;
@@ -118,13 +121,12 @@ namespace ModularMod
                 Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
                 if (component != null)
                 {
-                    component.baseData.speed *= UnityEngine.Random.Range(0.7f, 1.3f);
+                    component.baseData.speed *= UnityEngine.Random.Range(0.85f, 1.5f);
                     component.UpdateSpeed();
                     component.Owner = player;
                     component.Shooter = player.specRigidbody;
                     component.GetComponent<BallComponent>().Stack = stacc;
                 }
-
             }
         }
 

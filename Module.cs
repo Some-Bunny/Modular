@@ -23,6 +23,8 @@ using Dungeonator;
 using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
 using ModularMod.Code.Controllers;
 using BepInEx.Configuration;
+using ModularMod.Code.Components.Projectile_Components;
+
 
 namespace ModularMod
 {
@@ -32,9 +34,8 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.2.9";
+        public const string VERSION = "1.3.2";
         public const string TEXT_COLOR = "#79eaff";
-
 
         public static AssetBundle ModularAssetBundle;
 
@@ -65,7 +66,6 @@ namespace ModularMod
 
         public void GMStart(GameManager g)
         {
-
             AutoReloadConfig = Config; //Set config
             ConfigManager.CreateConfig(AutoReloadConfig);
 
@@ -82,6 +82,7 @@ namespace ModularMod
 
             //==== Initialise Assetbundle ====/
             Module.ModularAssetBundle = AssetBundleLoader.LoadAssetBundleFromLiterallyAnywhere("modular_bundle");
+            CriticalHitComponent.Init();
             StaticCollections.InitialiseCollections();
             //====//
 
@@ -103,6 +104,16 @@ namespace ModularMod
             SoundManager.LoadBankFromModProject("ModularMod/Modular_Soundbank");
             //=============================//
 
+            //==== Initialise Special Characters ====//
+
+            SpecialCharactersController.Init();
+            //=============================//
+
+            //============ Effects =======================//
+            MarkedEffect.BuildVFX();
+            //============================================//
+
+
             //==== Initialise Auto-Item Initialiser ====//
             JuneLib.PrefixHandler.AddPrefixForAssembly("mdl");
             ItemTemplateManager.Init();
@@ -119,7 +130,6 @@ namespace ModularMod
             AdditionalShopItemController.Init();
             StuffedToy.Init();
 
-            SpecialCharactersController.Init();
 
             //Items
             ModulePrinterCore.Init();
@@ -131,8 +141,8 @@ namespace ModularMod
             ModularPeaShooterAlt.Init();
             ScatterBlast.Init();
             ScatterBlastAlt.Init();
-            TriBurst.Init();
-            TriBurstAlt.Init();
+            AutoBurst.Init();
+            AutoBurstAlt.Init();
             ChargeBlaster.Init();
             ChargeBlasterAlt.Init();
             PresicionRifle.Init();
@@ -143,19 +153,25 @@ namespace ModularMod
             TheHammerAlt.Init();
             Apollo.Init();
             Artemis.Init();
-
             GravityPulsar.Init();
             GravityPulsarAlt.Init();
-
             LightLance.Init();
             LightLanceAlt.Init();
-
             FlakCannon.Init();
             FlakCannonAlt.Init();
-
             BigNuke.Init();
             BigNukeAlt.Init();
 
+            Flamethrower.Init();
+            FlamethrowerAlt.Init();
+
+            ShieldGenerator.Init();
+            ShieldGeneratorAlt.Init();
+
+            Fortifier.Init();
+            FortifierAlt.Init();
+
+            GunInt.FinalizeSprites();
 
             //Test Items
             Flowder.Init();
@@ -206,6 +222,8 @@ namespace ModularMod
             ModularPrime.BuildPrefab();
 
             AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.DO_NOT_CHANGE, true);
+
+
 
             //==== Build Custom Character ====//
             ToolsCharApi.EnableDebugLogging = false;
@@ -284,11 +302,11 @@ namespace ModularMod
             });
             //ETGModConsole.Commands.GetGroup("mdl").AddUnit("toggle_test_unlock", ForceEnableMixedFloor);
 
-            //ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
 
             if (Debug_Mode == true)
             {
                 ETGModConsole.Commands.GetGroup("mdl").AddUnit("cratetoggle", Crate);
+                ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
 
 
                 ETGModConsole.Commands.GetGroup("mdl").AddUnit("lock_all", Lock);
@@ -347,6 +365,8 @@ namespace ModularMod
             SaveAPIManager.SetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.BOSS_RUSH_AS_MODULAR));
             SaveAPIManager.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, !SaveAPIManager.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR));
             SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, !SaveAPIManager.GetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.CHALLENGEMODE_DRAGUN, !SaveAPIManager.GetFlag(CustomDungeonFlags.CHALLENGEMODE_DRAGUN));
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BLESSED_MODE, !SaveAPIManager.GetFlag(CustomDungeonFlags.BLESSED_MODE));
 
             ETGModConsole.Log("Unlocks are now set to : " + SaveAPIManager.GetFlag(CustomDungeonFlags.TEST_UNLOCK));
         }
@@ -369,6 +389,9 @@ namespace ModularMod
             SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.PAST, b);
 
+            SaveAPIManager.SetFlag(CustomDungeonFlags.CHALLENGEMODE_DRAGUN, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BLESSED_MODE, b);
+
             ETGModConsole.Log("Unlocks are now set to : " +b);
         }
 
@@ -388,6 +411,9 @@ namespace ModularMod
             SaveAPIManager.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.FIRST_FLOOR_NO_MODULES, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.PAST, b);
+
+            SaveAPIManager.SetFlag(CustomDungeonFlags.CHALLENGEMODE_DRAGUN, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.BLESSED_MODE, b);
 
             ETGModConsole.Log("Unlocks are now set to : " + b);
         }

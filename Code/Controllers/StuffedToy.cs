@@ -202,7 +202,14 @@ namespace ModularMod.Code.Controllers
                 this.GetComponent<tk2dBaseSprite>().SetSprite(StaticCollections.Past_Decorative_Object_Collection.GetSpriteIdByName(SpriteName_Def));
                 if (isDev == true)
                 {
-                    TextBoxManager.ShowTextBox(this.sprite.WorldCenter + new Vector2(1.25f, 1f), this.gameObject.transform, 2.5f,BraveUtility.RandomElement<string>(ThankYous), Alexandria.NPCAPI.ShopAPI.ReturnVoiceBox(ShopAPI.VoiceBoxes.SER_MANUEL), false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
+                    string tetx = BraveUtility.RandomElement<string>(ThankYous);
+                    var date = System.DateTime.Now;
+                    if (tetx == "Merry Christmas!" && date.Day == 25 && date.Month == 12)
+                    {
+                        tetx = "Happy Halloween!";
+                    }
+
+                    TextBoxManager.ShowTextBox(this.sprite.WorldCenter + new Vector2(1.25f, 1f), this.gameObject.transform, 2.5f, tetx, Alexandria.NPCAPI.ShopAPI.ReturnVoiceBox(ShopAPI.VoiceBoxes.SER_MANUEL), false, TextBoxManager.BoxSlideOrientation.NO_ADJUSTMENT, true, false);
                     e = 0;
                     while (e < 3)
                     {

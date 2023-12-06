@@ -6,6 +6,7 @@ using System.Text;
 using ModularMod;
 using static ModularMod.ModulePrinterCore;
 using static ModularMod.DefaultModule;
+using UnityEngine;
 
 namespace ModularMod
 {
@@ -15,11 +16,11 @@ namespace ModularMod
         {
             D_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            {D_Tier_Table.AddItemToPool(entry, 0.9f * entry.AdditionalWeightMultiplier); }
+            {D_Tier_Table.AddItemToPool(entry,  entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
             { D_Tier_Table.AddItemToPool(entry, 0.5f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { D_Tier_Table.AddItemToPool(entry, 0.075f * entry.AdditionalWeightMultiplier); }
+            { D_Tier_Table.AddItemToPool(entry, 0.045f * entry.AdditionalWeightMultiplier); }
 
             C_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
@@ -27,31 +28,31 @@ namespace ModularMod
             foreach (var entry in all_Tier_2_Modules)
             { C_Tier_Table.AddItemToPool(entry, 0.65f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { C_Tier_Table.AddItemToPool(entry, 0.09f * entry.AdditionalWeightMultiplier); }
+            { C_Tier_Table.AddItemToPool(entry, 0.05f * entry.AdditionalWeightMultiplier); }
 
             B_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { B_Tier_Table.AddItemToPool(entry, 0.6f * entry.AdditionalWeightMultiplier); }
+            { B_Tier_Table.AddItemToPool(entry, 0.85f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { B_Tier_Table.AddItemToPool(entry, 0.675f * entry.AdditionalWeightMultiplier); }
+            { B_Tier_Table.AddItemToPool(entry, 0.75f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { B_Tier_Table.AddItemToPool(entry, 0.1125f * entry.AdditionalWeightMultiplier); }
+            { B_Tier_Table.AddItemToPool(entry, 0.1f * entry.AdditionalWeightMultiplier); }
 
             A_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { A_Tier_Table.AddItemToPool(entry, 0.3f * entry.AdditionalWeightMultiplier); }
+            { A_Tier_Table.AddItemToPool(entry, 0.35f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
-            { A_Tier_Table.AddItemToPool(entry, 0.65f * entry.AdditionalWeightMultiplier); }
+            { A_Tier_Table.AddItemToPool(entry, 0.7f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { A_Tier_Table.AddItemToPool(entry, 0.15f * entry.AdditionalWeightMultiplier); }
+            { A_Tier_Table.AddItemToPool(entry, 0.175f * entry.AdditionalWeightMultiplier); }
 
             S_Tier_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.2f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.35f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_2_Modules)
             { S_Tier_Table.AddItemToPool(entry, 0.75f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { S_Tier_Table.AddItemToPool(entry, 0.35f * entry.AdditionalWeightMultiplier); }
+            { S_Tier_Table.AddItemToPool(entry, 0.225f * entry.AdditionalWeightMultiplier); }
 
             Fallback_Table = LootUtility.CreateLootTable();
             foreach (var entry in all_Tier_1_Modules)
@@ -59,7 +60,7 @@ namespace ModularMod
             foreach (var entry in all_Tier_2_Modules)
             { Fallback_Table.AddItemToPool(entry, 0.5f * entry.AdditionalWeightMultiplier); }
             foreach (var entry in all_Tier_3_Modules)
-            { Fallback_Table.AddItemToPool(entry, 0.15f * entry.AdditionalWeightMultiplier); }
+            { Fallback_Table.AddItemToPool(entry, 0.2f * entry.AdditionalWeightMultiplier); }
         }
         public static GenericLootTable D_Tier_Table;
         public static GenericLootTable C_Tier_Table;
@@ -133,7 +134,7 @@ namespace ModularMod
             {
                 AssignPower(module);
             }
-            module.LabelDescription += "\n" + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? module.powerConsumptionData.OverridePowerDescriptionLabel : "Uses " + (module.powerConsumptionData.FirstStack != -420 ? module.powerConsumptionData.FirstStack : module.EnergyConsumption) + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? "" : " (" +StaticColorHexes.AddColorToLabelString((module.powerConsumptionData.AdditionalStacks != -69 ? module.powerConsumptionData.AdditionalStacks : module.EnergyConsumption / 2).ToString(), StaticColorHexes.Light_Orange_Hex) + ")" + Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)));
+            module.LabelDescription += "\n" + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? module.powerConsumptionData.OverridePowerDescriptionLabel : "Uses " + (module.powerConsumptionData.FirstStack != -420 ? module.powerConsumptionData.FirstStack : module.EnergyConsumption) + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? "" : " (" + StaticColorHexes.AddColorToLabelString((module.powerConsumptionData.AdditionalStacks != -69 ? module.powerConsumptionData.AdditionalStacks : module.EnergyConsumption / 2).ToString(), StaticColorHexes.Light_Orange_Hex) + ")" + SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.POWER))); // Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)));
             allModules.Add(module);
             if (module.IsUncraftable == false)
             {
@@ -200,6 +201,74 @@ namespace ModularMod
         public static List<DefaultModule> all_Tier_3_Modules = new List<DefaultModule>();
         public static List<DefaultModule> all_Tier_Omega_Modules = new List<DefaultModule>();
 
+        public static bool PlayerHasThisModule(this PlayerController player, int ModuleID)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    foreach (var container in printerCore.ModuleContainers)
+                    {
+                        if (container.defaultModule.PickupObjectId == ModuleID) { return true; }
+                    }
+                }
+            }
+            return false;
+        }
+        public static bool PlayerHasThisModule(this PlayerController player, DefaultModule defaultModule)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    foreach (var container in printerCore.ModuleContainers)
+                    {
+                        if (container.defaultModule.DisplayName == defaultModule.DisplayName) { return true; }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool PlayerHasThisModule(int ModuleID)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                for (int c = 0; c < player.passiveItems.Count; c++)
+                {
+                    var entry = player.passiveItems[c];
+                    if (entry is ModulePrinterCore printerCore)
+                    {
+                        foreach (var container in printerCore.ModuleContainers)
+                        {
+                            if (container.defaultModule.PickupObjectId == ModuleID) { return true; }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public static bool PlayerHasThisModule(DefaultModule defaultModule)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                for (int c = 0; c < player.passiveItems.Count; c++)
+                {
+                    var entry = player.passiveItems[c];
+                    if (entry is ModulePrinterCore printerCore)
+                    {
+                        foreach (var container in printerCore.ModuleContainers)
+                        {
+                            if (container.defaultModule.DisplayName == defaultModule.DisplayName) { return true; }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
 
         public static ModulePrinterCore.ModuleContainer PlayerHasModule(this PlayerController player, int ModuleID)
         {
@@ -215,6 +284,112 @@ namespace ModularMod
                 }
             }
             return null;
+        }
+
+
+        public static bool AnyPlayerHasModuleWithTag(DefaultModule.BaseModuleTags tag, bool requiresActive = false)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                for (int c = 0; c < player.passiveItems.Count; c++)
+                {
+                    var entry = player.passiveItems[c];
+                    if (entry is ModulePrinterCore printerCore)
+                    {
+                        foreach (var container in printerCore.ModuleContainers)
+                        {
+                            if (container.defaultModule.ModuleTags.Contains(tag.ToString()))
+                            {
+                                return requiresActive == true ? (container.ActiveCount > 0) ? true : false : true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool PlayerHasModuleWithTag(this PlayerController player, DefaultModule.BaseModuleTags tag, bool requiresActive = false)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    foreach (var container in printerCore.ModuleContainers)
+                    {
+                        if (container.defaultModule.ModuleTags.Contains(tag.ToString()))
+                        {
+                            return requiresActive == true ? (container.ActiveCount > 0) ? true : false : true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool AnyPlayerHasModuleWithTag(string tag, bool requiresActive = false)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                for (int c = 0; c < player.passiveItems.Count; c++)
+                {
+                    var entry = player.passiveItems[c];
+                    if (entry is ModulePrinterCore printerCore)
+                    {
+                        foreach (var container in printerCore.ModuleContainers)
+                        {
+                            if (container.defaultModule.ModuleTags.Contains(tag))
+                            {
+                                return requiresActive == true ? (container.ActiveCount > 0) ? true : false : true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool PlayerHasModuleWithTag(this PlayerController player, string tag, bool requiresActive = false)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    foreach (var container in printerCore.ModuleContainers)
+                    {
+                        if (container.defaultModule.ModuleTags.Contains(tag))
+                        {
+                            return requiresActive == true ? (container.ActiveCount > 0) ? true : false : true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        public static bool AnyPlayerHasActiveModule(int ModuleID)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                for (int c = 0; c < player.passiveItems.Count; c++)
+                {
+                    var entry = player.passiveItems[c];
+                    if (entry is ModulePrinterCore printerCore)
+                    {
+                        foreach (var container in printerCore.ModuleContainers)
+                        {
+                            if (container.defaultModule.PickupObjectId == ModuleID)
+                            {
+                                return (container.ActiveCount > 0) ? true : false;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         public static bool PlayerHasActiveModule(this PlayerController player, int ModuleID)
@@ -235,6 +410,25 @@ namespace ModularMod
             }
             return false;
         }
+        public static int PlayerActiveModuleCount(this PlayerController player, int ModuleID)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    foreach (var container in printerCore.ModuleContainers)
+                    {
+                        if (container.defaultModule.PickupObjectId == ModuleID)
+                        {
+                            return container.ActiveCount;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+
 
         public static ModulePrinterCore PlayerHasCore(this PlayerController player)
         {
@@ -337,8 +531,6 @@ namespace ModularMod
             specList.Add(quickAndMessy);
             return LastEntry + 1;
         }
-
-
         private static List<QuickAndMessyPage> ReturnPageListTier(ModuleTier moduleTier)
         {
             switch (moduleTier)
@@ -366,5 +558,84 @@ namespace ModularMod
             public int Page;
             public int Entry;
         }
+
+
+        public class ModulePoolType
+        {
+            public string Identifier = "";
+            public GenericLootTable ModuleLootTable;
+        }
+
+
+        public static Func<DefaultModule, bool> AlterModuleIsSelected;
+        public static Func<DefaultModule, float, float> AlterModuleWeight;
+
+        public static GameObject ModularSelectByWeight(this GenericLootTable table, bool useSeedRandom = false, Func<DefaultModule, bool> CustomProcess = null)
+        {
+            int num = -1;
+
+            List<WeightedGameObject> list = new List<WeightedGameObject>();
+            float num2 = 0f;
+            float MultWeight = 1f;
+            float MultWeightInt = 1f;
+
+            for (int i = 0; i < table.defaultItemDrops.elements.Count; i++)
+            {
+                WeightedGameObject weightedGameObject = table.defaultItemDrops.elements[i];
+                bool flag = true;
+                
+
+                if (weightedGameObject.gameObject != null)
+                {
+                    var module = weightedGameObject.gameObject.GetComponent<DefaultModule>();
+                    if (module != null)
+                    {
+                        flag = module.IsAvailable();
+                        MultWeight = module.ProcessedWeightMultiplier();
+                        MultWeightInt = module.ProcessedWeightAdditional();
+
+                        if (AlterModuleWeight != null)
+                        {
+                            MultWeight = AlterModuleWeight(module, MultWeight);
+                        }
+
+
+                        if (CustomProcess != null)
+                        {
+                            flag = CustomProcess(module);
+                        }
+                        if (AlterModuleIsSelected != null)
+                        {
+                            flag = AlterModuleIsSelected(module);
+                        }
+
+                    }
+                }
+
+                if (flag)
+                {
+                    list.Add(weightedGameObject);
+                    num2 += (weightedGameObject.weight + MultWeightInt) * MultWeight;
+                }
+            }
+
+            float num3 = (!useSeedRandom ? UnityEngine.Random.value : BraveRandom.GenerationRandomValue()) * num2;
+            float num4 = 0f;
+            for (int k = 0; k < list.Count; k++)
+            {
+                var module = list[k].gameObject.GetComponent<DefaultModule>();
+                num4 += (list[k].weight + ((module != null ? module.ProcessedWeightAdditional() : 0))) * (module != null ? module.ProcessedWeightMultiplier() : 1);
+                if (num4 > num3)
+                {
+                    num = table.defaultItemDrops.elements.IndexOf(list[k]);
+                    return list[k].gameObject;
+                }
+            }
+
+            num = table.defaultItemDrops.elements.IndexOf(list[list.Count - 1]);
+            return list[list.Count - 1].gameObject;
+        }
+
+
     }
 }

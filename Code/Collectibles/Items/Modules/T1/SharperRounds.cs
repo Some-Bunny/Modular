@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Sharper Rounds",
             Description = "Damage Up",
-            LongDescription = "Increases Damage by\n33% (+33% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by 25% (+25% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("damage_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,7 +27,10 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("damage_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Sharper Rounds " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by\n33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Increases Damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -46,10 +49,10 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.33f * stack);
+            p.baseData.damage *= 1 + (0.25f * stack);
         }
     }
 }

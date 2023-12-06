@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Bifurcated Barrel",
             Description = "Two-For-One",
-            LongDescription = "Increases rate of fire by 20% (+20% hyperbolically per stack), clip size by 20% (+20% per stack) and damage by 15%, but makes you fire in a V-formation.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Increases rate of fire by 20% (+20% hyperbolically per stack), clip size by 20% (+20% per stack), but makes you fire in a V-formation.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bifurificationbarrel_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,15 +28,17 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bifurificationbarrel_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Bifurcated Barrel " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases rate of fire by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nclip size by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ") and damage by 15%,\nbut makes you fire in a V-formation.";
+            h.LabelDescription = "Increases rate of fire by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nclip size by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + "),\nbut makes you fire in a V-formation.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.OverrideScrapCost = 12;
+            h.OverrideScrapCost = 10;
             h.AdditionalWeightMultiplier = 0.75f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.IsUncraftable = true;
-            h.EnergyConsumption = 2;
+
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
@@ -46,9 +48,10 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.RegisterAction(Stats_AdditionalVolleyModifiers);
+            modulePrinter.OnPostProcessProjectile += PPP;
+
             player.stats.AdditionalVolleyModifiers += Stats_AdditionalVolleyModifiers;
             player.stats.RecalculateStats(player);
-            modulePrinter.OnPostProcessProjectile += PPP;
 
             this.gunStatModifier = new ModuleGunStatModifier()
             {
@@ -57,8 +60,6 @@ namespace ModularMod
                 ClipSize_Process = ProcessClipSize
             };
             modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
-
-            //modulePrinter.OnKilledEnemy += OKE;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -67,21 +68,16 @@ namespace ModularMod
             player.stats.RecalculateStats(player);
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
-
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1.15f;
-            p.baseData.speed *= 1.2f;
+            p.baseData.speed *= 1.15f;
             p.UpdateSpeed();
         }
-
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             return clip + ((modularGunController.Base_Clip_Size / 5) * modulePrinterCore.ReturnStack(this.LabelName));
         }
-
-
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
@@ -90,8 +86,6 @@ namespace ModularMod
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {
             Toolbox.ModifyVolley(obj, Stored_Core.Owner, 1, 54, 3, 3, 0, null, 1);
-
-            //GunVolleyModificationItem.AddDuplicateOfBaseModule(obj, this.Stored_Core.Owner, 1, 54, 5);
         }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {

@@ -30,12 +30,20 @@ namespace ModularMod
             h.LabelName = "Barter Software " + h.ReturnTierLabel();
             h.LabelDescription = "While active, reduces all prices by 50%.\nTaking damage breaks this module\n(" + StaticColorHexes.AddColorToLabelString("+Extra hits before breaking", StaticColorHexes.Light_Orange_Hex) + ").\n" + StaticColorHexes.AddColorToLabelString("Once enabled, cannot be disabled.", StaticColorHexes.Red_Color_Hex);
             h.EnergyConsumption = 1;
+            h.AppearsInRainbowMode = false;
+            h.AppearsFromBlessedModeRoll = false;
+            h.IsSpecialModule = true;
+            h.IsUncraftable = true;
+
+            h.AddModuleTag(BaseModuleTags.GENERATION);
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.IsSpecialModule = true;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
             Alexandria.NPCAPI.CustomDiscountManager.DiscountsToAdd.Add(new Alexandria.NPCAPI.ShopDiscount()

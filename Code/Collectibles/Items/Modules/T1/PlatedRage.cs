@@ -29,6 +29,10 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Plated Rage " + h.ReturnTierLabel();
             h.LabelDescription = "Increases Damage by 5% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ")\nfor each piece of armor held.";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -54,7 +58,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage *= 1 + ((0.05f * stack) * player.healthHaver.Armor);

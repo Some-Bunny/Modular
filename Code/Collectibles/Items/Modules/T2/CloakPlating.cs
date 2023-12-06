@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Cloak Plating",
             Description = "+60%",
-            LongDescription = "Entering combat cloaks the player for 5 (+2.5 per stack) seconds. Uncloaking forcefully grants a 4x (+1 per stack) damage multiplier that degrades fast. Grants a 30% movement speed buff while cloaked." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Entering combat cloaks the player for 5 (+2.5 per stack) seconds. Uncloaking forcefully grants a 4x (+2 per stack) damage multiplier that degrades fast. Grants a 30% movement speed buff while cloaked." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -37,6 +37,10 @@ namespace ModularMod
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.EnergyConsumption = 1;
+            h.AdditionalWeightMultiplier = 0.8f;
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
@@ -97,12 +101,15 @@ namespace ModularMod
         public void PP(PlayerController ppe)
         {
             AkSoundEngine.PostEvent("Play_BOSS_cyborg_storm_01", ppe.gameObject);
-            ppe.PlayEffectOnActor(VFXStorage.MachoBraceDustupVFX, new Vector3(-1f, -1f));
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                ppe.PlayEffectOnActor(VFXStorage.MachoBraceDustupVFX, new Vector3(-1f, -1f));
+            }
             Mult = DamageMax;
         }
 
         private float Mult = 1;
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= Mult;
             p.AdditionalScaleMultiplier *= Mathf.Min(Mult, 2.5f);

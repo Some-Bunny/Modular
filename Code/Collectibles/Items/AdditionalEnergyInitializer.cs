@@ -47,12 +47,13 @@ namespace ModularMod
             Heart5.gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>();
 
             PickupObjectDatabase.GetById(313).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>();
-            PickupObjectDatabase.GetById(570).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 2;
-            PickupObjectDatabase.GetById(132).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 2;
+            PickupObjectDatabase.GetById(570).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
+            PickupObjectDatabase.GetById(132).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
 
-            PickupObjectDatabase.GetById(131).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
-            PickupObjectDatabase.GetById(116).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
-            PickupObjectDatabase.GetById(134).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
+            PickupObjectDatabase.GetById(131).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 0.5f;
+            PickupObjectDatabase.GetById(116).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 0.5f;
+            PickupObjectDatabase.GetById(134).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 0.5f;
+            PickupObjectDatabase.GetById(260).gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 0.5f;
 
 
             new Hook(typeof(PassiveItem).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(AdditionalEnergyInitializer).GetMethod("PickupHook"));

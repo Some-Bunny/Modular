@@ -14,29 +14,42 @@ namespace ModularMod
             {
                 collection = ETGMod.Databases.Items.WeaponCollection;
             }
-            if (defaultSprite != null)
+            if (defaultSprite != null)// && !GunSpriteDefs.Contains(gun))
             {
-                AddSpriteToCollection(collection.GetSpriteDefinition(defaultSprite), ammonomiconCollection);
+                GunSpriteDefs.Add(collection.GetSpriteDefinition(defaultSprite));
+
+                //AddSpriteToCollection(collection.GetSpriteDefinition(defaultSprite), ammonomiconCollection);
                 gun.encounterTrackable.journalData.AmmonomiconSprite = defaultSprite;
             }
+            gun.emptyAnimation = null;
+
+
             tk2dBaseSprite sprite = gun.GetSprite();
             tk2dSpriteCollectionData newCollection = collection;
             int newSpriteId = (gun.DefaultSpriteID = collection.GetSpriteIdByName(gun.encounterTrackable.journalData.AmmonomiconSprite));
             sprite.SetSprite(newCollection, newSpriteId);
         }
-        private static int AddSpriteToCollection(tk2dSpriteDefinition spriteDefinition, tk2dSpriteCollectionData collection)
+
+        private static List<tk2dSpriteDefinition> GunSpriteDefs = new List<tk2dSpriteDefinition>();
+
+        private static void AddSpritesToCollection(tk2dSpriteCollectionData collection)
         {
             tk2dSpriteDefinition[] spriteDefinitions = collection.spriteDefinitions;
-            tk2dSpriteDefinition[] array = spriteDefinitions.Concat(new tk2dSpriteDefinition[]
-            {
-                spriteDefinition
-            }).ToArray<tk2dSpriteDefinition>();
+            tk2dSpriteDefinition[] array = spriteDefinitions.Concat(GunSpriteDefs.ToArray()).ToArray<tk2dSpriteDefinition>();
+            
             collection.spriteDefinitions = array;
-            FieldInfo field = typeof(tk2dSpriteCollectionData).GetField("spriteNameLookupDict", BindingFlags.Instance | BindingFlags.NonPublic);
-            field.SetValue(collection, null);
-            collection.InitDictionary();
-            return array.Length - 1;
+            for (int i = 0; i < collection.spriteDefinitions.Length; i++)
+            {
+                collection.spriteNameLookupDict[collection.spriteDefinitions[i].name] = i;
+            }
         }
+
+
+        public static void FinalizeSprites()
+        {
+            AddSpritesToCollection(ammonomiconCollection);
+        }
+
         public static tk2dSpriteCollectionData ammonomiconCollection = AmmonomiconController.ForceInstance.EncounterIconCollection;
     }
 }

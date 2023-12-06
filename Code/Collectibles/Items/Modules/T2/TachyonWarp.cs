@@ -31,14 +31,17 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Tachyon Warp " + h.ReturnTierLabel();
             h.LabelDescription = "Greatly increases accuracy, adds slight homing to your projectiles\nand slightly increases damage (" + StaticColorHexes.AddColorToLabelString("+Stronger Homing and Damage", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles fire from walls, instead of your gun. Shooting pushes\nnearby enemies away slightly. (" + StaticColorHexes.AddColorToLabelString("+Stronger Push Force", StaticColorHexes.Light_Orange_Hex) + ")";
-            h.OverrideScrapCost = 9;
+            h.OverrideScrapCost = 7;
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.IsUncraftable = true;
-            h.EnergyConsumption = 2;
+
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
@@ -85,7 +88,7 @@ namespace ModularMod
             p.baseData.force *= 0.33f;
             p.UpdateSpeed();
             var homing = p.gameObject.GetOrAddComponent<HomingModifier>();
-            homing.AngularVelocity += 90 * stack;
+            homing.AngularVelocity += 60 * stack;
             homing.HomingRadius += 5 * stack;
             p.pierceMinorBreakables = true;
             p.baseData.damage *= 1 + (0.15f * stack);
@@ -113,7 +116,7 @@ namespace ModularMod
             return f - (f - (f / (1 + 0.5f)));
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
 
@@ -135,7 +138,7 @@ namespace ModularMod
             p.baseData.force *= 0.33f;
             p.UpdateSpeed();
             var homing = p.gameObject.GetOrAddComponent<HomingModifier>();
-            homing.AngularVelocity += 90 * stack;
+            homing.AngularVelocity += 60 * stack;
             homing.HomingRadius += 5 * stack;
             p.pierceMinorBreakables = true;
             p.baseData.damage *= 1 + (0.15f * stack);

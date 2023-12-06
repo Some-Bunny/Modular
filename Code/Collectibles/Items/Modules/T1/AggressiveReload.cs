@@ -35,6 +35,8 @@ namespace ModularMod
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -75,10 +77,9 @@ namespace ModularMod
             {
                 if (proj != null)
                 {
-                    AIActor enemy = proj.Owner as AIActor;
                     if (proj.GetComponent<BasicBeamController>() == null)
                     {
-                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 1.375f * a && proj.Owner != null && proj.Owner == enemy)
+                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 5 * a && proj.Owner != null && proj.Owner as AIActor)
                         {
                             FistReflectBullet(proj, player.gameActor, proj.baseData.speed *= 2f, (proj.sprite.WorldCenter - player.transform.PositionVector2()).ToAngle(), 1f, proj.IsBlackBullet ? (5 + proj.baseData.speed)*2 : 5 + proj.baseData.speed, 0f);
                         }

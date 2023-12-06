@@ -14,7 +14,6 @@ namespace ModularMod.Past.Prefabs.Objects
             GameObject obj = PrefabBuilder.BuildObject("Forboding_Sign_Sticker");
             var tk2d = obj.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.Past_Decorative_Object_Collection;
-
             tk2d.SetSprite(StaticCollections.Past_Decorative_Object_Collection.GetSpriteIdByName("p-2"));
             tk2d.usesOverrideMaterial = true;
             Material mat = new Material(StaticShaders.Default_Shader);

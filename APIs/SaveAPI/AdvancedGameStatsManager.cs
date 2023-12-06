@@ -391,20 +391,26 @@ namespace SaveAPI
         /// <returns>Saved session stats</returns>
         public AdvancedGameStats MoveSessionStatsToSavedSessionStats()
         {
-            if (!this.IsInSession)
+            if (!this.IsInSession || (!(GameStatsManager.Instance?.IsInSession ?? false)))
             {
                 return null;
             }
             if (this.m_sessionStats != null)
             {
-                if (this.m_characterStats.ContainsKey(this.m_sessionCharacter))
+                if (this.m_characterStats != null)
                 {
-                    this.m_characterStats[this.m_sessionCharacter].AddStats(this.m_sessionStats);
+                    if (this.m_characterStats.ContainsKey(this.m_sessionCharacter))
+                    {
+                        this.m_characterStats[this.m_sessionCharacter].AddStats(this.m_sessionStats);
+                    }
                 }
-                this.m_savedSessionStats.AddStats(this.m_sessionStats);
-                this.m_sessionStats.ClearAllState();
+                if (this.m_sessionStats != null && this.m_savedSessionStats != null)
+                {
+                    this.m_savedSessionStats.AddStats(this.m_sessionStats);
+                    this.m_sessionStats.ClearAllState();
+                }
             }
-            return this.m_savedSessionStats;
+            return this.m_savedSessionStats ?? null;
         }
 
         /// <summary>
@@ -638,7 +644,7 @@ namespace SaveAPI
         public string midGameSaveGuid;
         [fsProperty]
         public Dictionary<PlayableCharacters, AdvancedGameStats> m_characterStats;
-        private AdvancedGameStats m_sessionStats;
+        public AdvancedGameStats m_sessionStats;
         private AdvancedGameStats m_savedSessionStats;
         private PlayableCharacters m_sessionCharacter;
         private int m_numCharacters;

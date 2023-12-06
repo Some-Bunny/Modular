@@ -28,6 +28,9 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Larger Clips " + h.ReturnTierLabel();
             h.LabelDescription = "Increases Clip Capacity by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

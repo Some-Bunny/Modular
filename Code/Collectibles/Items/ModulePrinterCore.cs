@@ -10,6 +10,7 @@ using Brave.BulletScript;
 using Dungeonator;
 using HutongGames.PlayMaker.Actions;
 using JuneLib.Items;
+using ModularMod.Code.Components.Projectile_Components;
 using MonoMod.RuntimeDetour;
 using Planetside;
 using SaveAPI;
@@ -41,9 +42,6 @@ namespace ModularMod
             ModulePrinterCore.ModulePrinterCoreID = item.PickupObjectId;
             EncounterDatabase.GetEntry(item.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
-
-
-
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Additional Sight", "lichs_eye_bullets") { });
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Allocation", "unity") { });
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Chaos, Chaos!", "chance_bullets") { });
@@ -64,7 +62,9 @@ namespace ModularMod
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Power Bank", "ammo_belt") { });
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Relics Of The Past", "sprun") { });
 
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Rotational Power", "pink_guon_stone") { });
 
+            ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Triple Crit", "turkey") { });
 
             new Hook(typeof(SpawnGunslingGun).GetMethod("OnEnter", BindingFlags.Instance | BindingFlags.Public), typeof(ModulePrinterCore).GetMethod("GunslingKingGunCheck"));
             item.associatedItemChanceMods = new LootModData[]
@@ -131,8 +131,7 @@ namespace ModularMod
             player.startingGunIds = new List<int>();
             player.startingGunIds.Add(player.CurrentGun.GetComponent<ModularGunController>().isAlt ? DefaultArmCannonAlt.ID : DefaultArmCannon.ID);
 
-            //player.startingGunIds.AddRange(StarterGunSelectUIController.allStarterIDs);
-            //player.startingGunIds.AddRange(StarterGunSelectUIController.allAltStarterIDs);
+
 
             cloakDoer = ScriptableObject.CreateInstance<CloakDoer>();
             cloakDoer.DoStartUp(player);
@@ -173,6 +172,7 @@ namespace ModularMod
             player.OnRoomClearEvent -= OnRoomClearEvent;
             player.GunChanged -= Player_GunChanged;
             player.OnNewFloorLoaded -= NewFloorLoaded;
+
             player.OnAboutToFall -= OnAboutToFall;
             player.OnTableFlipped -= OnTableFlipped;
             player.OnTableFlipCompleted -= OnTableFlipCompletely;
@@ -180,30 +180,10 @@ namespace ModularMod
             player.OnTriedToInitiateAttack -= OnAttemptedAttack;
 
             return base.Drop(player);
+
+            //player.OnNewFloorLoaded += NewFloorLoaded;
         }
 
-        public void MovementMod(ref Vector2 voluntaryVel, ref Vector2 involuntaryVel)
-        {
-            if (VoluntaryMovement_Modifier != null) { voluntaryVel = VoluntaryMovement_Modifier(voluntaryVel, this, Owner); }
-            if (InVoluntaryMovement_Modifier != null) { involuntaryVel = InVoluntaryMovement_Modifier(involuntaryVel, this, Owner); }
-        }
-
-        public void OnTableFlipCompletely(FlippableCover table)
-        {
-            if (TableFlipCompleted != null) { TableFlipCompleted(this, this.Owner, table); }
-        }
-        public void OnTableFlipped(FlippableCover table)
-        {
-            if (TableFlipped != null) { TableFlipped(this, this.Owner, table); }
-        }
-
-        public bool OnAboutToFall(bool b)
-        {
-            if (OnAboutToFallContext != null) { b = OnAboutToFallContext(this, this.Owner); }
-            return !b;
-        }
-
-        private bool b = false;
         public void NewFloorLoaded(PlayerController player)
         {
             b = !b;
@@ -230,6 +210,30 @@ namespace ModularMod
                 }
             }
         }
+
+
+        public void MovementMod(ref Vector2 voluntaryVel, ref Vector2 involuntaryVel)
+        {
+            if (VoluntaryMovement_Modifier != null) { voluntaryVel = VoluntaryMovement_Modifier(voluntaryVel, this, Owner); }
+            if (InVoluntaryMovement_Modifier != null) { involuntaryVel = InVoluntaryMovement_Modifier(involuntaryVel, this, Owner); }
+        }
+
+        public void OnTableFlipCompletely(FlippableCover table)
+        {
+            if (TableFlipCompleted != null) { TableFlipCompleted(this, this.Owner, table); }
+        }
+        public void OnTableFlipped(FlippableCover table)
+        {
+            if (TableFlipped != null) { TableFlipped(this, this.Owner, table); }
+        }
+
+        public bool OnAboutToFall(bool b)
+        {
+            if (OnAboutToFallContext != null) { b = OnAboutToFallContext(this, this.Owner); }
+            return !b;
+        }
+
+        private bool b = false;
         private List<RoomHandler> processedRooms = new List<RoomHandler>();
 
         public bool TemporaryDisableDrop = false;
@@ -349,6 +353,10 @@ namespace ModularMod
 
             if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == false && Owner.HasPickupID(469) == true && Owner.HasPickupID(471) && Owner.HasPickupID(468) && Owner.HasPickupID(470) && Owner.HasPickupID(467))
             {
+                if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == false)
+                {
+                    Toolbox.NotifyCustom("You Unlocked:", "Shrapnel Launcher", StaticCollections.Gun_Collection.GetSpriteIdByName("flakcannon_idle_001"), StaticCollections.Gun_Collection);
+                }
                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, true);
             }
 
@@ -388,22 +396,49 @@ namespace ModularMod
         private bool OverridePower = false;
         private float LastPower_Tick, LastTotal_Tick;
         private Dictionary<string, int> DepoweredModuelNames = new Dictionary<string, int>();
-
         public Action<ModulePrinterCore, PlayerController> OnPowerUsageHigherThanCapacity;
-
         public void PostProcessBeamTick(BeamController b, SpeculativeRigidbody hitRigidbody, float f)
         {
             if (base.Owner == null) { return; }
             if (OnPostProcessBeamTick != null && b != null && hitRigidbody != null) { OnPostProcessBeamTick(this, b, hitRigidbody, f, base.Owner); }
         }
+
+
+        public Action<Projectile, PlayerController> OnCritProjectileRolled;
+        public Action<Projectile, PlayerController> OnCritProjectileFailRoll;
+        public Action<Projectile, PlayerController> OnCritProjectileDestroyed;
+
+        public Action<Projectile, PlayerController, AIActor> OnCritProjectileHitEnemy;
+        public Action<Projectile, PlayerController, PhysicsEngine.Tile> OnCritProjectileHitWall;
+
+
+        public List<CriticalHitComponent.CritContext> CritContexts = new List<CriticalHitComponent.CritContext>();
+
+        public bool NextShotCrit = false;
+
         public void PostProcessProjectile(Projectile p, float f)
         {
             if (base.Owner == null) { return; }
-            if (OnPostProcessProjectile != null && p != null)
+            bool IsCrit = false;
+
+            if (CritContexts.Count() > 0 || NextShotCrit == true)
             {
-                OnPostProcessProjectile(this, p, f, base.Owner);
+                var crit = p.gameObject.GetOrAddComponent<CriticalHitComponent>();
+                crit.player = this.Owner;
+                crit.critContexts.AddRange(CritContexts);
+                crit.OnCritProc = OnCritProjectileRolled;
+                crit.OnCritFailed = OnCritProjectileFailRoll;
+                IsCrit = crit.Process(NextShotCrit);
+                if (NextShotCrit == true) { NextShotCrit = !NextShotCrit; }
+
+                if (IsCrit == true)
+                {
+                    crit.OnCritDestroyed = OnCritProjectileDestroyed;
+                    crit.OnCritHitEnemy = OnCritProjectileHitEnemy;
+                    crit.OnCritHitWall = OnCritProjectileHitWall;
+                }
+
             }
-            p.specRigidbody.OnPreRigidbodyCollision += OPC;
             if (OnProjectileStickAction != null)
             {
                 var modifier = p.gameObject.AddComponent<StickyProjectileModifier>();
@@ -424,21 +459,38 @@ namespace ModularMod
 
                 modifier.stickyContexts = this.stickyContexts;
             }
+            if (OnPostProcessProjectile != null && p != null)
+            {
+                OnPostProcessProjectile(this, p, f, base.Owner, IsCrit);
+            }
+            p.specRigidbody.OnPreRigidbodyCollision += OPC;
+
             if (this.Owner.HasPickupID(521))
             {
                 DoChanceBulletProc(p, f);
             }
             if (OnPostProcessProjectileOneFrameDelay != null || ModifyForChanceBulletsOneFrameDelay != null)
             {
-                p.StartCoroutine(this.FrameDelay(p, this, 1));
+                p.StartCoroutine(this.FrameDelay(p, this, 1, IsCrit));
+            }
+            p.OnDestruction += this.HandleProjectileDestruction;
+        }
+
+        private void HandleProjectileDestruction(Projectile source)
+        {
+            if (source && OnModularProjectileDestroyed != null)
+            {
+                OnModularProjectileDestroyed(this, source, source.HasImpactedEnemy);
             }
         }
-        public IEnumerator FrameDelay(Projectile p, ModulePrinterCore modulePrinterCore, float f)
+        public Action<ModulePrinterCore, Projectile, bool> OnModularProjectileDestroyed;
+
+        public IEnumerator FrameDelay(Projectile p, ModulePrinterCore modulePrinterCore, float f, bool IsCrit)
         {
             yield return null;
             if (OnPostProcessProjectileOneFrameDelay != null)
             {
-                OnPostProcessProjectileOneFrameDelay(modulePrinterCore, p, f, this.Owner);
+                OnPostProcessProjectileOneFrameDelay(modulePrinterCore, p, f, this.Owner, IsCrit);
 
             }
             if (modulePrinterCore.Owner.HasPickupID(521) && ModifyForChanceBulletsOneFrameDelay != null)
@@ -549,7 +601,7 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, AIActor> OnKilledEnemy;
         public Action<ModulePrinterCore, PlayerController, AIActor, float> OnDamagedEnemy;
         public Action<ModulePrinterCore, PlayerController> OnFrameUpdate;
-        public Action<ModulePrinterCore, Projectile, float, PlayerController> OnPostProcessProjectile;
+        public Action<ModulePrinterCore, Projectile, float, PlayerController, bool> OnPostProcessProjectile;
         public Action<ModulePrinterCore, BeamController, SpeculativeRigidbody, float, PlayerController> OnPostProcessBeamTick;
         public Action<ModulePrinterCore, Projectile, PlayerController> DodgedProjectile;
         public Action<ModulePrinterCore, BeamController, PlayerController> DodgedBeam;
@@ -573,7 +625,7 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerEnteredAnyRoom;
         public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerExitedAnyRoom;
 
-        public Action<ModulePrinterCore, Projectile, float, PlayerController> OnPostProcessProjectileOneFrameDelay;
+        public Action<ModulePrinterCore, Projectile, float, PlayerController, bool> OnPostProcessProjectileOneFrameDelay;
 
 
         public float StartingPower = 5;
@@ -594,16 +646,19 @@ namespace ModularMod
             }
             foreach (PassiveItem item in this.Owner.passiveItems)
             {
-                if (item is BasicStatPickup mastery)
+                if (item.gameObject)
                 {
-                    if (mastery.IsMasteryToken == true)
+                    if (item is BasicStatPickup mastery)
                     {
-                        c++;
+                        if (mastery.IsMasteryToken == true)
+                        {
+                            c++;
+                        }
                     }
-                }
-                if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
-                {
-                    c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
+                    if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
+                    {
+                        c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
+                    }
                 }
             }
             if (ModularGunController != null)
@@ -900,8 +955,7 @@ namespace ModularMod
                     int count = 0;
                     for (int e = 0; e < ModuleContainers[i].FakeCount.Count; e++)
                     {
-                        var T = ModuleContainers[i].FakeCount[e];
-                        count += T.Second;
+                        count += ModuleContainers[i].FakeCount[e].Second;
                     }
                     return count;
                 }
@@ -917,8 +971,7 @@ namespace ModularMod
                     int count = 0;
                     for (int e = 0; e < ModuleContainers[i].TemporaryCount.Count; e++)
                     {
-                        var T = ModuleContainers[i].TemporaryCount[e];
-                        count += T.Second;
+                        count += ModuleContainers[i].TemporaryCount[e].Second;
                     }
                     return count;
                 }
@@ -929,45 +982,52 @@ namespace ModularMod
         //==================================================================================
         //==================================================================================
 
-        public void RemoveModule(DefaultModule self, int Amount_To_Remove = 1)
+        public int RemoveModule(DefaultModule self, int Amount_To_Remove = 1)
         {
+            int Amount = 0;
             for (int i = ModuleContainers.Count-1; i > -1; i--)
             {
                 if (ModuleContainers[i] != null)
                 {
-
                     if (ModuleContainers[i].LabelName == self.LabelName)
                     {
-
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
                             
                             if (ModuleContainers[i].Count == 1)
                             {
                                 ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                                ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
                                 ModuleContainers.Remove(ModuleContainers[i]);
-                                return;
-                               
+                                Amount++;
+                                return Amount;
+                              
                             }
-
                             ModuleContainers[i].Count--;
                             ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
-
-                            if (ModuleContainers[i].Count == 1)
+                            if (ModuleContainers[i].Count < ModuleContainers[i].ActiveCount)
+                            {
+                                ModuleContainers[i].ActiveCount--;
+                            }
+                            Amount++;
+                            if (ModuleContainers[i].Count == 0)
                             {
                                 ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
                                 ModuleContainers.Remove(ModuleContainers[i]);
-                                return;
-
+                                
+                                return Amount;
                             }
                         }
                     }
                 }
                 else
                 {
+                    
                     ModuleContainers.Remove(ModuleContainers[i]);
+                    return 0;
                 }
             }
+            return 0;
         }
 
         public void RemoveModule(int ID, int Amount_To_Remove = 1)
@@ -980,16 +1040,25 @@ namespace ModularMod
                     {
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
-                            if (ModuleContainers[i].Count == 1) 
-                            { 
-                                ModuleContainers.Remove(ModuleContainers[i]); return; 
-                            }
-                            
-                            ModuleContainers[i].Count--;
-                            ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+
                             if (ModuleContainers[i].Count == 1)
                             {
-                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner); ModuleContainers.Remove(ModuleContainers[i]); 
+                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                                ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+                                ModuleContainers.Remove(ModuleContainers[i]);
+                                return;
+                            }
+                            ModuleContainers[i].Count--;
+                            ModuleContainers[i].defaultModule.OnAnyRemoved(this, this.ModularGunController, base.Owner);
+                            if (ModuleContainers[i].Count < ModuleContainers[i].ActiveCount)
+                            {
+                                ModuleContainers[i].ActiveCount--;
+                            }
+                            if (ModuleContainers[i].Count == 0)
+                            {
+                                ModuleContainers[i].defaultModule.OnLastRemoved(this, this.ModularGunController, base.Owner);
+                                ModuleContainers.Remove(ModuleContainers[i]);
+                                return;
                             }
                         }
                     }
@@ -1011,22 +1080,24 @@ namespace ModularMod
             var modF = ModuleContainers.Where(self => self.defaultModule.LabelName == module.LabelName);
             if (modF.Count() > 0)
             {
-                var fuck = modF.First().TemporaryCount.Where(self => self.First == Context);
+                var x = modF.First();
+
+                var fuck = x.TemporaryCount.Where(self => self.First == Context);
                 if (fuck.Count() > 0)
                 {
-                    modF.First().defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
+                    x.defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
                     fuck.First().Second += Amount_Of_Fakes;
                 }
                 else
                 {
-                    modF.First().TemporaryCount.Add(new Tuple<string, int>(Context, Amount_Of_Fakes) { });
-                    modF.First().defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
-                    if (modF.First().ActiveCount == 0)
+                    x.TemporaryCount.Add(new Tuple<string, int>(Context, Amount_Of_Fakes) { });
+                    x.defaultModule.OnAnyPickup(this, this.ModularGunController, Owner, false);
+                    if (x.ActiveCount == 0)
                     {
-                        modF.First().defaultModule.OnFirstPickup(this, this.ModularGunController, base.Owner);
+                        x.defaultModule.OnFirstPickup(this, this.ModularGunController, base.Owner);
                     }
                 }              
-                return modF.First();
+                return x;
 
             }
             else
@@ -1188,6 +1259,7 @@ namespace ModularMod
         public Action<GameObject, StickyProjectileModifier, PlayerController> OnStickyDestroyAction;
         public List<StickyProjectileModifier.StickyContext> stickyContexts = new List<StickyProjectileModifier.StickyContext>();
 
+
         private List<ModuleGunStatModifier> stored_Modifiers = new List<ModuleGunStatModifier>();
 
         public List<Action<ProjectileVolleyData>> VolleysToRemoveOnSuddenDestruction = new List<Action<ProjectileVolleyData>>();
@@ -1254,7 +1326,7 @@ namespace ModularMod
         }
         public class AdditionalItemEnergyComponent : MonoBehaviour
         {
-            public int AdditionalEnergy = 1;
+            public float AdditionalEnergy = 0.5f;
         }
         public CloakDoer cloakDoer;
         public List<ModuleContainer> ModuleContainers = new List<ModuleContainer>();

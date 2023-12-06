@@ -582,6 +582,7 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
             var obj = UnityEngine.Object.Instantiate(ModularPrime.VFXObject, startsPosition, Quaternion.Euler(0, 0, 0));
             obj.GetComponent<tk2dSpriteAnimator>().Play("targetreticle_target");
             obj.GetComponent<tk2dBaseSprite>().ShouldDoTilt = false;
+
             obj.SetLayerRecursively(LayerMask.NameToLayer("Unoccluded"));
             obj.AddComponent<FakeCorridor.Fuck_You_Youre_No_Longer_Perpendicular>();
             float m = 1;
@@ -602,7 +603,8 @@ namespace ModularMod.Code.Enemies.EnemyBehaviours
                     float t2 = (float)ads / (float)0.5f;
                     m = Mathf.Lerp(1, 0, Toolbox.SinLerpTValue(t2));
                 }
-                startsPosition = centerPoint + BraveMathCollege.DegreesToVector(a, dist * TrackingSpeedMultiplier).ToVector3ZisY();
+                startsPosition = centerPoint + BraveMathCollege.DegreesToVector(a, dist * TrackingSpeedMultiplier).ToVector3ZUp();
+                startsPosition.WithZ(-10);
                 obj.transform.position = startsPosition;
                 cached_position = startsPosition;
                 controller.predictedPosition = startsPosition;

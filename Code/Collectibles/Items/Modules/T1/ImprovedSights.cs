@@ -32,6 +32,9 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Improved Sights " + h.ReturnTierLabel();
             h.LabelDescription = "Improves Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nIncreases shotspeed by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -65,7 +68,7 @@ namespace ModularMod
         }
 
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.speed *= 1 + (0.25f * this.ReturnStack(modulePrinterCore));
             p.UpdateSpeed();

@@ -27,12 +27,16 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("conc_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Concussive Tips " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Knockback force by 2x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + "),\nboss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.";
+            h.LabelDescription = "Increases Knockback force by 2x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + "),\nBoss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 
@@ -59,7 +63,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {                
             int stack = this.ReturnStack(modulePrinterCore);
             p.BossDamageMultiplier *=  1 + (0.25f * stack);

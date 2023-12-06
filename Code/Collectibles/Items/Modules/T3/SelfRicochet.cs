@@ -37,18 +37,21 @@ namespace ModularMod
             h.LabelName = "Ultra Ricochet " + h.ReturnTierLabel();
             h.LabelDescription = "Doubles layer projectile speed.\nPlayer Projectiles bounce off walls, enemies and each other\nwith force (" + StaticColorHexes.AddColorToLabelString("+Extra Force", StaticColorHexes.Light_Orange_Hex) + "). Increases rate of fire (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand increases spread.\nBounces increase damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ").";
             h.SetTag("modular_module");
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 12;
+            h.OverrideScrapCost = 10;
             h.EnergyConsumption = 2;
             h.AddToGlobalStorage();
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 
             ricoChetData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
             ricoChetData.damageToPlayer = 0;
-            ricoChetData.damage = 4;
+            ricoChetData.damage = 2.5f;
             
             ID = h.PickupObjectId;
         }
@@ -101,7 +104,7 @@ namespace ModularMod
         {
             return f - (f - (f / (1 + 0.25f * this.ReturnStack(modulePrinterCore))));
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.gameObject.AddComponent<RicoShot>();
             p.baseData.speed *= 2;
@@ -160,8 +163,10 @@ namespace ModularMod
 
         private void PissAndShit(SpeculativeRigidbody myBody, PixelCollider myCollider, SpeculativeRigidbody otherBody, PixelCollider otherCollider)
         {
-            if (otherBody && otherBody.projectile && myBody.projectile)
+            if (otherBody && otherBody.projectile && myBody.projectile && Can == true)
             {
+                Can = false;
+                this.Invoke("C", 1);
                 PhysicsEngine.SkipCollision = true;
                 myBody.RegisterTemporaryCollisionException(otherBody, 0.1f);
                 otherBody.projectile.hitEffects.HandleEnemyImpact(otherBody.projectile.sprite.WorldCenter, otherBody.transform.localEulerAngles.z, otherBody.transform, Vector2.zero, myBody.projectile.LastVelocity, true);
@@ -182,6 +187,13 @@ namespace ModularMod
                 Exploder.Explode(myBody.projectile.sprite.WorldCenter, SelfRicochet.ricoChetData, myBody.projectile.sprite.WorldCenter, null, true);
             }
         }
+
+        private bool Can = true;
+        public void C()
+        {
+            Can = true;
+        }
+
 
         private void HandleProjectileHitEnemy(Projectile obj, SpeculativeRigidbody enemy, bool killed)
         {

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Radar Scanner",
             Description = "Sonar",
-            LongDescription = "Secret Rooms are revealed if you are near them. All secret rooms contain 2 (+2 per stack) extra pickups." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Secret Rooms are revealed if you are near them. While powered, all secret rooms contain 2 (+2 per stack) extra pickups." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("radarscanner_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,13 +31,18 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.85f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Radar Scanner " + h.ReturnTierLabel();
-            h.LabelDescription = "Secret Rooms are revealed if you are near them.\nAll secret rooms contain 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") extra pickups\nstarting from the next floor.";
+            h.LabelDescription = "Secret Rooms are revealed if you are near them.\nWhile powered, all secret rooms contain\n2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") extra pickups\nstarting from the next floor.";
+            h.AppearsFromBlessedModeRoll = false;
+
+            h.AddModuleTag(BaseModuleTags.GENERATION);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
-            h.OverrideScrapCost = 10;
+            h.OverrideScrapCost = 8;
             ID = h.PickupObjectId;
         }
         public static int ID;

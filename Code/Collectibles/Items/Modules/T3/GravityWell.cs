@@ -27,13 +27,17 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Gravity Well " + h.ReturnTierLabel();
             h.LabelDescription = "Greatly reduces Rate Of Fire.\nProjectiles gain massive piercing, and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+
+
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AdditionalWeightMultiplier = 0.9f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 15;
 
             ID = h.PickupObjectId;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
@@ -92,7 +96,7 @@ namespace ModularMod
             return (int)(f / 2f);
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += 10;
@@ -259,7 +263,7 @@ namespace ModularMod
                     }
                     if (BraveMathCollege.DistToRectangle(self.specRigidbody.UnitCenter, other.UnitBottomLeft, other.UnitDimensions) < this.damageRadius)
                     {
-                        other.healthHaver.ApplyDamage(((self.baseData.damage * 0.333f) * BraveTime.DeltaTime)* Stack, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
+                        other.healthHaver.ApplyDamage(((self.baseData.damage * 0.25f) * BraveTime.DeltaTime)* Stack, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
                     }
                     if (other.healthHaver.IsBoss)
                     {

@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Heavyweight Rounds",
             Description = "Plonk",
-            LongDescription = "Increases Damage by 50% (+50%), and bullet scale by 25% (+25%) but reduces player bullet speed by 50% (+50% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by 33% (+33%), and bullet scale by 25% (+25%) but reduces player bullet speed by 50% (+50% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("heavyrounds_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,11 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Heavyweight Rounds" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + "),\nand bullet scale by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nbut reduces player bullet speed by 50% (" + StaticColorHexes.AddColorToLabelString("+50% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Increases Damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + "),\nand bullet scale by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nbut reduces player bullet speed by 50% (" + StaticColorHexes.AddColorToLabelString("+50% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -44,7 +48,7 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.1f) { return; }
             int stack = 1;
-            p.baseData.damage *= 1 + (0.5f * stack);
+            p.baseData.damage *= 1 + (0.33f * stack);
             p.AdditionalScaleMultiplier *= 1 + (0.25f * stack);
             p.baseData.speed *= 1 - (1 - (1 / (1 + 0.5f * stack)));
             p.UpdateSpeed();
@@ -59,7 +63,7 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage *= 1 + (0.5f * stack);

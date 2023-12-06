@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Repair Kit",
             Description = "Up Keep",
-            LongDescription = "Increases Damage by\n15% (+15% per stack), and restores 2 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n12.5% (+12.5% per stack), and restores 2 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("repairtool_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,15 +28,21 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Repair Kit " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 15% (" + StaticColorHexes.AddColorToLabelString("+15%", StaticColorHexes.Light_Orange_Hex) + ").\nRestores 2 Armor on Pickup.";
+            h.LabelDescription = "Increases Damage by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) + ").\nRestores 2 Armor on Pickup.";
             h.EnergyConsumption = 0.5f;
+            h.AppearsFromBlessedModeRoll = false;
+
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
+            h.OverrideScrapCost = 6;
+            h.IsUncraftable = true;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
-            h.OverrideScrapCost = 6;
           
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
@@ -63,11 +69,11 @@ namespace ModularMod
         {
 
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage += (0.5f * stack);
-            p.baseData.damage *= 1 + (0.15f * stack);
+            p.baseData.damage *= 1 + (0.1f * stack);
         }
     }
 }

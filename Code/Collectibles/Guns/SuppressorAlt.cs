@@ -14,7 +14,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("The Suppressor", "suppressoralt");
             Game.Items.Rename("outdated_gun_mods:the_suppressor", "mdl:armcannon_6_alt");
-            gun.gameObject.AddComponent<SuppressorAlt>();
+            var c = gun.gameObject.AddComponent<SuppressorAlt>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires small energy balls at an increasing rate. Compatible with Modular Upgrade Software.\n\nThe fast rotation was repurposed from a fan. No-one really knows why they made an arm for the Modular that was a fan.");
 
@@ -97,6 +97,20 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificClip += c.ProcessClipSpecial;
+            IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+
+        }
+
+        public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return f; }
+            return f / (1 + (stack / 5));
+        }
+        public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return f; }
+            return f + ((f / 2) * stack);
         }
         public static int GunID;
     }

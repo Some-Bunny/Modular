@@ -36,10 +36,14 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "The Swarm " + h.ReturnTierLabel();
             h.LabelDescription = "Massively reduces damage.\nProjectiles gain massively increased lifetime,\npiercing and homing. (" + StaticColorHexes.AddColorToLabelString("+Bounces, Pierces and stronger Homing", StaticColorHexes.Light_Orange_Hex) + ")";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+            h.AdditionalWeightMultiplier = 0.8f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.9f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
@@ -51,7 +55,7 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.05f) { return; }
             int stack = 1;
-            p.baseData.damage *= 0.225f;
+            p.baseData.damage *= 0.2f;
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
             aaaa.damageMultOnPierce *= 1.05f;
             aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack * 5);
@@ -78,7 +82,7 @@ namespace ModularMod
             printer.OnPostProcessProjectile += PPP;
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage *= 0.35f;

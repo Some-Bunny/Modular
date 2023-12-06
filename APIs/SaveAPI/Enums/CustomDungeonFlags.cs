@@ -23,6 +23,7 @@ namespace SaveAPI
         BEAT_RAT_AS_MODULAR, //Rat
         LEAD_GOD_AS_MODULAR, //Lead God
         BOSS_RUSH_AS_MODULAR, //Boss Rush
+
         PAST, //TO_DO
         OVERLOADED, //10 Active Modules at once
         BEAT_DRAGUN_WITH_3_ACTIVE_MODULES_OR_LESS, //Self Explanatory
@@ -35,7 +36,10 @@ namespace SaveAPI
 
         PAST_MASTERY,
 
-        DO_NOT_CHANGE
+        DO_NOT_CHANGE,
+        CHALLENGEMODE_DRAGUN, //Boss Rush
+        CHALLENGEMODE_LICH,
+        BLESSED_MODE
 
         //STYLISHLY_KILL_AN_ENEMY
     }

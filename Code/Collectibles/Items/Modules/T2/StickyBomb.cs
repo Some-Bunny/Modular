@@ -35,7 +35,9 @@ namespace ModularMod
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.EnergyConsumption = 2;
+
+            h.AddModuleTag(BaseModuleTags.STICKY);
+
             h.AddToGlobalStorage();
             h.stickyContext = new StickyProjectileModifier.StickyContext()
             {

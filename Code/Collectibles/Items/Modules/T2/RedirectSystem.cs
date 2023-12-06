@@ -31,11 +31,14 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Redirect System " + h.ReturnTierLabel();
             h.LabelDescription = "Increases Clip Size by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").\nDecreases reload time by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nAll shots will turn to face the same angle as the last fired shot.";
+
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 9;
+            h.OverrideScrapCost = 7;
             h.EnergyConsumption = 1;
             h.AddToGlobalStorage();
 
@@ -57,10 +60,10 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile += PPP;
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.gameObject.GetOrAddComponent<RedirectComp>();
-            p.baseData.speed *= 0.66f;
+            p.baseData.speed *= 0.7f;
             p.UpdateSpeed();
         }
 
@@ -112,12 +115,14 @@ namespace ModularMod
         public void Redirect(float angle)
         {
             if (self == null) { return; }
+            /*
             if (ConfigManager.DoVisualEffect == true)
             {
                 var a = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(401) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, this.transform.position, Quaternion.Euler(0, 0, angle - 180));
-                a.transform.localScale *= 0.66f;
+                a.transform.localScale *= 0.3f;
                 Destroy(a, 2);
             }
+            */
             self.SendInDirection(Toolbox.GetUnitOnCircle(angle, 1), true);
         }
         private void OnDestroy()

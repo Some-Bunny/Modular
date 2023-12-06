@@ -38,6 +38,16 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
             }
         }
 
+        public bool CheckModule()
+        {
+            if (GlobalModuleStorage.PlayerHasActiveModule(Player, IteratedDesign.ID))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         public void OPS(GameObject proj, PlayerController player)
         {
             this.projectile.spriteAnimator.Stop();
@@ -150,7 +160,7 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
                     if (vector != Vector2.zero)
                     {
                         projectile.Direction = vector.normalized;
-                        projectile.Speed = Mathf.Max(13f, vector.magnitude);
+                        projectile.Speed = Mathf.Max(CheckModule() ? 10 : 13f, vector.magnitude);
                         other.Velocity = projectile.Direction * projectile.Speed;
                         if (projectile.shouldRotate && (vector.x != 0f || vector.y != 0f))
                         {

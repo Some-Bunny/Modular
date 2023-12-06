@@ -25,6 +25,10 @@ namespace ModularMod
 
         public static Func<float, float> AngleSpawnModifier;
         public static Func<float, float> RadiusSpawnModifier;
+        public static Func<int, int> ChoicesAmountModifier;
+
+        public static Func<List<ModuleUICarrier>, ChooseModuleController, List<ModuleUICarrier>> CarrierModifier;
+
 
 
         public Vector2 CalculateAdditionalOffset(float angle, float ang = 0.5f)
@@ -58,7 +62,7 @@ namespace ModularMod
 
         public DefaultModule SelectModule(GenericLootTable table)
         {
-            var mod = table.SelectByWeightNoExclusions().GetComponent<DefaultModule>();
+            var mod = table.ModularSelectByWeight().GetComponent<DefaultModule>();
 
             if (UnityEngine.Random.value < ReturnT4Chance(mod.Tier, g.quality))
             {
@@ -81,14 +85,14 @@ namespace ModularMod
             switch (tier)
             {
                 case DefaultModule.ModuleTier.Tier_1:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00005f); }
-                    return 0.00005f;
-                case DefaultModule.ModuleTier.Tier_2:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.0001f); }
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00025f); }
                     return 0.0001f;
+                case DefaultModule.ModuleTier.Tier_2:
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00075f); }
+                    return 0.0005f;
                 case DefaultModule.ModuleTier.Tier_3:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.000175f); }
-                    return 0.000175f;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00125f); }
+                    return 0.00075f;
                 default: return 0;
             }
         }
@@ -109,6 +113,10 @@ namespace ModularMod
 
         public void Start()
         {
+            if (ChoicesAmountModifier != null)
+            {
+                AmountOfChoices = ChoicesAmountModifier(AmountOfChoices);
+            }
 
             g = this.GetComponent<Gun>();
             var obj = g.gameObject.GetComponent<ShittyVFXAttacher>();
@@ -134,20 +142,31 @@ namespace ModularMod
             {
                 Arc = AngleSpawnModifier(Arc);
             }
-            float radius = 2.5f;
+            float radius = 2f;
             if (RadiusSpawnModifier != null) { RadiusSpawnModifier(radius); }
 
-
+            List<ModuleUICarrier> carriersToSpawn = new List<ModuleUICarrier>();
             for (int i = 0; i < Count; i++)
             {
-                selectableModules.Add(new ModuleUICarrier()
+                carriersToSpawn.Add(new ModuleUICarrier()
                 {
                     controller = this,
                     defaultModule = SelectModule(tableToUse),
-                    EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(Vector2.up.ToAngle() + (Arc * -1), Count, i), radius), //, Count, i) , 2f),   
+                    //EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(Vector2.up.ToAngle() + (Arc * -1), Count, i), radius), //, Count, i) , 2f),   
                     isUsingAlternate = isAlt
                 });
             }
+            if (CarrierModifier != null) { carriersToSpawn = CarrierModifier(carriersToSpawn, this); }
+            Count = carriersToSpawn.Count();
+            selectableModules = carriersToSpawn;
+
+            for (int i = 0; i < Count; i++)
+            {
+                selectableModules[i].EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(Vector2.up.ToAngle() + (Arc * -1), Count, i), radius);//, //, Count, i) , 2f),               
+            }
+
+
+
             foreach (var r in selectableModules)
             {
                 r.Start();
@@ -156,6 +175,7 @@ namespace ModularMod
                 Extant_Tether.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 Extant_Tether.GetComponent<tk2dSpriteAnimator>().Play(isAlt ? "chain_alt_start" : "chain_start");
                 tk2DTiledSprites.Add(Extant_Tether, r);
+                r.extantTether = Extant_Tether.gameObject;
             }
 
             g.StartCoroutine(LerpLight(g));
@@ -166,11 +186,14 @@ namespace ModularMod
             if (isBeingDestroyed == true) { return; }
             foreach (var entry in tk2DTiledSprites)
             {
-                float angle = ((entry.Value.extantModule.transform.PositionVector2() - g.sprite.WorldCenter) + new Vector2(0.5f, 0.5f)).ToAngle();
-                var vec = CalculateAdditionalOffset(angle);
-                entry.Key.dimensions = new Vector2(Vector2.Distance(g.sprite.WorldCenter + CalculateAdditionalOffset(angle) + vec, entry.Value.extantModule.GetComponent<tk2dBaseSprite>().WorldCenter + vec) * 16, 16f);
-                entry.Key.gameObject.transform.localRotation = Quaternion.Euler(0, 0, angle);
-                entry.Key.gameObject.transform.position = g.sprite.WorldCenter + vec;
+                if (entry.Key != null)
+                {
+                    float angle = ((entry.Value.extantModule.transform.PositionVector2() - g.sprite.WorldCenter) + new Vector2(0.5f, 0.5f)).ToAngle();
+                    var vec = CalculateAdditionalOffset(angle);
+                    entry.Key.dimensions = new Vector2(Vector2.Distance(g.sprite.WorldCenter + CalculateAdditionalOffset(angle) + vec, entry.Value.extantModule.GetComponent<tk2dBaseSprite>().WorldCenter + vec) * 16, 16f);
+                    entry.Key.gameObject.transform.localRotation = Quaternion.Euler(0, 0, angle);
+                    entry.Key.gameObject.transform.position = g.sprite.WorldCenter + vec;
+                }
             }
             if (extantTether != null && playerToFollow != null)
             {
@@ -212,9 +235,15 @@ namespace ModularMod
             yield break;
         }
 
+        public int AmountOfChoices = 1;
 
-        public void DestroyAllOthers(bool destroyGun = true)
+        public void DestroyAllOthers(bool destroyGun = true, bool autoDestroy = false)
         {
+            AmountOfChoices--;
+            if (AmountOfChoices > 0 && autoDestroy == false) 
+            {
+                return;
+            }
             for (int i = 0; i < selectableModules.Count; i++)
             {
                 if (selectableModules[i].extantModule)
@@ -347,7 +376,7 @@ namespace ModularMod
                 var DefMod = extantModule.GetComponent<DefaultModule>();
                 DefMod.ChangeShader(StaticShaders.Hologram_Shader);
                 DefMod.sprite.renderer.material.SetFloat("_IsGreen", isUsingAlternate == true ? 1 : 0);
-
+                DefMod.OnModuleSpawnAsChoice(controller, this);
                 DefMod.PreInteractLogic += PreInteract;
                 DefMod.StartCoroutine(this.DoMovement(1f, DefMod));
                 DefMod.StartCoroutine(LerpLight(DefMod, 4, 0, 2, 0));
@@ -365,11 +394,13 @@ namespace ModularMod
                     DefMod.ExitedRange -= Exited;
                     DefMod.ChangeShader(StaticShaders.Default_Shader);
                     HasDropped = true;
-                    controller.DestroyAllOthers();
+                    controller.DestroyAllOthers(true);
+                    extantTether.gameObject.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(isUsingAlternate ? "chain_alt_break" : "chain_break");
+
                     DefMod.StartCoroutine(LerpLight(DefMod, 0, 7, 0, 3));
-                    Destroy(this);
                     DefMod.StartCoroutine(this.DoMovementToPlayer(DefMod, p));
                     if (OnModuleSelected != null) { OnModuleSelected(DefMod, p); }
+                    Destroy(this);
                     return false;
                 }
                 return (HasStoppedMoving);
@@ -521,6 +552,7 @@ namespace ModularMod
             public GameObject extantModule;
             public DefaultModule defaultModule;
             public bool isUsingAlternate = false;
+            public GameObject extantTether;
 
         }
     }

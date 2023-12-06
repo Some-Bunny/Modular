@@ -30,6 +30,11 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Laser Lance " + h.ReturnTierLabel();
             h.LabelDescription = "Reduces projectile speed by 50%.\nProjectiles will now fire out short-range damaging beams\nthat point in the direction the projectile is moving.\n(" + StaticColorHexes.AddColorToLabelString("+Beam Damage And Range", StaticColorHexes.Light_Orange_Hex) + ")";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AdditionalWeightMultiplier = 0.9f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -90,7 +95,7 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (p.baseData.damage * (Dmg * 3.33f) * 1 + (0.5f * stack)) / 10f;
+            component3.baseData.damage = (p.baseData.damage * (Dmg * 2.7f) * 1 + (0.5f * stack)) / 10f;
             component3.AdditionalScaleMultiplier *= 0.5f;
             component3.baseData.range *= stack;
 
@@ -134,7 +139,7 @@ namespace ModularMod
             modulePrinter.OnProjectileStickAction -= OPSA;
             modulePrinter.OnProjectileStickToWallAction -= OPSAT;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.speed *= 0.5f;
@@ -163,6 +168,7 @@ namespace ModularMod
         public BeamController beam;
 
         public void Start(){}
+
 
         public void OnStuck(GameObject p, PhysicsEngine.Tile t = null)
         {

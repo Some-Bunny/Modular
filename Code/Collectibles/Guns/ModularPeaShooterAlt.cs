@@ -14,7 +14,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Modular Pea Shooter", "modulepeashooteralt");
             Game.Items.Rename("outdated_gun_mods:modular_pea_shooter", "mdl:armcannon_1_alt");
-            gun.gameObject.AddComponent<ModularPeaShooterAlt>();
+            var c = gun.gameObject.AddComponent<ModularPeaShooterAlt>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires small energy balls. Compatible with Modular Upgrade Software.\n\nIts smaller demeanor allows for the user to reroute more power into upgrades from the gun.");
 
@@ -92,6 +92,15 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ModularPeaShooterAlt.GunID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
+        }
+
+        public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return; }
+            p.baseData.damage += 0.75f * stack;
+            p.baseData.force *= 1 + stack;
+            p.damageTypes = CoreDamageTypes.Electric;
         }
         public static int GunID;
     }

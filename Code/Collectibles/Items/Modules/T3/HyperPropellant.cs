@@ -36,10 +36,13 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Hyper Propellant " + h.ReturnTierLabel();
             h.LabelDescription = "Greatly reduces fire rate, clip size and increases reload time.\nProjectiles ignite the air around them (" + StaticColorHexes.AddColorToLabelString("+Larger Ignition Area", StaticColorHexes.Light_Orange_Hex) + "),\ntravel at very high speeds, and hit with massive force.\n(" + StaticColorHexes.AddColorToLabelString("+Speed, Force And Damage", StaticColorHexes.Light_Orange_Hex) + ")";
+
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.9f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             ID = h.PickupObjectId;
@@ -53,7 +56,7 @@ namespace ModularMod
             {
                 breakSecretWalls = true,
                 comprehensiveDelay = 0,
-                damage = 25,
+                damage = 20,
                 damageRadius = 3f,
                 damageToPlayer = 0,
                 debrisForce = 100,
@@ -100,7 +103,7 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.015f) { return; }
             int stack = 1;
-            p.baseData.damage *= 0.75f + stack;
+            p.baseData.damage *= 0.625f + stack;
             p.baseData.speed *= 2.5f + (0.5f * stack);
             p.baseData.force *= (7.5f * stack);
             p.AdditionalScaleMultiplier *= 2;
@@ -118,7 +121,8 @@ namespace ModularMod
             yes.dashColor = new Color(0.9f, 0.6f, 0f, 1f);
 
             var uhfa = p.gameObject.AddComponent<HyperPropellantController>();
-            uhfa.Radius = 1 + stack;
+            uhfa.Radius = 1.25f + stack;
+            uhfa.DPS = 3 + stack;
         }
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
@@ -137,11 +141,11 @@ namespace ModularMod
         }
 
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 0.75f + stack;
-            p.baseData.speed *= 2.5f + (0.5f* stack);
+            p.baseData.damage *= 0.625f + stack;
+            p.baseData.speed *= 2.5f + (0.5f * stack);
             p.baseData.force *= (7.5f * stack);
             p.AdditionalScaleMultiplier *= 2;
             p.pierceMinorBreakables = true;
@@ -158,7 +162,8 @@ namespace ModularMod
             yes.dashColor = new Color(0.9f, 0.6f, 0f, 1f);
 
             var uhfa = p.gameObject.AddComponent<HyperPropellantController>();
-            uhfa.Radius = 1 + stack;
+            uhfa.Radius = 1.25f + stack;
+            uhfa.DPS = 3 + stack;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -169,15 +174,15 @@ namespace ModularMod
         }
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return (int)(clip / 4);
+            return (int)(clip / 5);
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 4;
+            return f * 4f;
         }
         public float ProcessReload(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 2;
+            return f * 1.75f;
         }
     }
 
@@ -185,7 +190,9 @@ namespace ModularMod
     {
         public Projectile self;
         public Vector2 lastStoredPosition;
-        public float Radius = 2;
+        public float Radius = 2.25f;
+        public float DPS = 4;
+
         public void Start()
         {
             self = this.GetComponent<Projectile>();
@@ -196,7 +203,7 @@ namespace ModularMod
         public void Update()
         {
             int n = 0;
-            DistTick += (int)Vector2.Distance(self.sprite.WorldCenter, lastStoredPosition);
+            DistTick += (int)Vector2.Distance(self.sprite.WorldCenter, lastStoredPosition) / 2;
             for (int i = 0; i < DistTick; i++)
             {
                 n++;
@@ -204,6 +211,7 @@ namespace ModularMod
                 Vector3 vector3 = Vector3.Lerp(self.sprite.WorldCenter, lastStoredPosition, t);
                 HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
                 ignite.transform.position = vector3;
+                ignite.DamagePerSecond = DPS;
                 //ignite.Enable(100);
                 ignite.radius = Radius;
                 ignite.StartCoroutine(ignite.ReduceToZero());
@@ -216,7 +224,7 @@ namespace ModularMod
 
     public class HyperPropellantAirIgnite : MagicCircle
     {
-        public float DamagePerSecond = 3;
+        public float DamagePerSecond = 4;
         public HyperPropellantAirIgnite()
         {
             this.emitsParticles = false;
@@ -259,8 +267,12 @@ namespace ModularMod
         public override void OnEnabled()
         {
             base.OnEnabled();
-            var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(328) as Gun).DefaultModule.chargeProjectiles[0].Projectile.hitEffects.overrideMidairDeathVFX, base.gameObject.transform.position, Quaternion.identity);
-            Destroy(obj, 2);
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(328) as Gun).DefaultModule.chargeProjectiles[0].Projectile.hitEffects.overrideMidairDeathVFX, base.gameObject.transform.position, Quaternion.identity);
+                obj.transform.localScale *= 0.6f;
+                Destroy(obj, 2);
+            }
         }
         private bool Enabled;
         public override void TickOnEnemy(AIActor enemy)

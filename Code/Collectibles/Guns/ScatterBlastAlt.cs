@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Scatter Blast", "scattercannonalt");
             Game.Items.Rename("outdated_gun_mods:scatter_blast", "mdl:armcannon_2_alt");
-            gun.gameObject.AddComponent<ScatterBlastAlt>();
+            var c = gun.gameObject.AddComponent<ScatterBlastAlt>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Fires an energy spread. Compatible with Modular Upgrade Software.\n\nA very unusual modification of a paint gun. *Very* unusual.");
 
@@ -127,6 +127,22 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
+            IteratedDesign.SpecialProcessGunSpecificAccuracy += c.ProcessAccuracySpecial;
+
+        }
+
+        public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
+            p.baseData.force *= 1 + stack;
+            p.baseData.range *= 1 + stack;
+        }
+
+        public float ProcessAccuracySpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 4));
         }
         public static int ID;
     }

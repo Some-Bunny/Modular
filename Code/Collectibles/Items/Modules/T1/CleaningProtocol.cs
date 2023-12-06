@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Cleaning Protocol",
             Description = "BRUSH",
-            LongDescription = "Deal 100% (+100% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 25% (+25% per stack) extra damage from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal 75% (+75% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 25% (+25% per stack) extra damage from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,10 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Cleaning Protocol " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 100% (" + StaticColorHexes.AddColorToLabelString("+100%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.";
+            h.LabelDescription = "Deal 75% (" + StaticColorHexes.AddColorToLabelString("+75%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.";
+
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -52,7 +55,7 @@ namespace ModularMod
                     if (currentHealth > num)
                     {
                         float damage = o.projectile.baseData.damage;
-                        o.projectile.baseData.damage *= 2f;
+                        o.projectile.baseData.damage *= 1.75f;
                         GameManager.Instance.StartCoroutine(this.ChangeProjectileDamage(o.projectile, damage));
                         AkSoundEngine.PostEvent("Play_OBJ_cauldron_splash_01", o.gameObject);
                         th.aiActor.PlayEffectOnActor((PickupObjectDatabase.GetById(404) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect, new Vector2(0, 0));
@@ -113,7 +116,7 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
             ETGMod.AIActor.OnPreStart -= OPEH;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {                
             int stack = this.ReturnStack(modulePrinterCore);
             p.specRigidbody.OnPreRigidbodyCollision = (o,t,th,fr) =>

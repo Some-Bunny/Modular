@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Line Up",
             Description = "Knock 'Em Down",
-            LongDescription = "Adds 2 Pierces, Reduce Damage by 15% (-15% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.75x (+0.75x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 2 Pierces, Reduce Damage by 15% (-15% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.5x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("lineup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,8 +29,12 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Line Up " + h.ReturnTierLabel();
             h.LabelDescription = "Adds 1 Pierce, Reduce Damage by 15% (" + StaticColorHexes.AddColorToLabelString("-15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
-                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.75x (" +
-                StaticColorHexes.AddColorToLabelString("+0.75x", StaticColorHexes.Light_Orange_Hex) + ").";
+                StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.5x (" +
+                StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -51,13 +55,13 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage *= 1 - (1 - (1 / (1 + 0.15f * stack)));
 
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-            aaaa.damageMultOnPierce = 1 + (0.75f * stack);
+            aaaa.damageMultOnPierce = 1 + (0.5f * stack);
             aaaa.AmountOfPiercesBeforeFalloff = 2 + stack;
             aaaa.OnPierce += OP;
             p.baseData.range += 3;

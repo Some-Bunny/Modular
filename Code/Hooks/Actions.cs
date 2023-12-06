@@ -95,14 +95,6 @@ namespace ModularMod.Code.Hooks
             self.m_bossIndex++;
 
             return ModifyBossDrop != null ? ModifyBossDrop(self.PregeneratedBossRewardsGunsOnly[self.m_bossGunIndex - 1]) : self.PregeneratedBossRewards[self.m_bossIndex - 1];
-            /*
-            if (ModifyBossDrop != null)
-            {
-                return ModifyBossDrop();
-            }
-            var item = orig(self, b);    
-            return item;
-            */
         }
 
         public static DebrisObject DropHook(System.Func<PlayerItem, PlayerController, float, DebrisObject> orig, PlayerItem self, PlayerController player, float overrideForce = 4f)

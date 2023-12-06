@@ -26,9 +26,12 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("selfcare_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.75f;
+            h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Regenerative Plating " + h.ReturnTierLabel();
             h.LabelDescription = "Entering a new floor restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.\nScrapping pickups / items restores 1 Armor.";
+
+            h.AddModuleTag(BaseModuleTags.GENERATION);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

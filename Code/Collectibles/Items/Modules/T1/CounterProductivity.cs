@@ -32,6 +32,10 @@ namespace ModularMod
             h.LabelName = "Counter Productivity " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.75f;
             h.LabelDescription = "Divides Clip Size and Reload Time by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nSlightly increases fire rate  (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

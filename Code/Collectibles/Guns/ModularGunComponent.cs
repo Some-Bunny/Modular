@@ -22,6 +22,7 @@ namespace ModularMod
 
         public Func<int, int, ModulePrinterCore, ModularGunController, PlayerController, int> FinaleClipSize_Process;
 
+        public Func<int, int, ModulePrinterCore, ModularGunController, PlayerController, int> BurstAmount_Process;
 
         public Func<int, ModulePrinterCore, ModularGunController, PlayerController, int> Post_Calculation_ClipSize_Process;
 
@@ -37,6 +38,7 @@ namespace ModularMod
             public float Rate_Of_Fire;
             public int Clip_Size;
             public int FinalProjectiles_Count;
+            public int BurstShots;
 
         }
 
@@ -105,6 +107,7 @@ namespace ModularMod
             Base_Finale_Clip_Size = gun.DefaultModule.numberOfFinalProjectiles;
             Base_Fire_Rate = gun.DefaultModule.cooldownTime;
             Base_Accuracy = gun.DefaultModule.angleVariance;
+
             Base_AngleFromAim = gun.DefaultModule.angleFromAim;
             Base_Muzzleflash = gun.muzzleFlashEffects;
             storedVolley = gun.Volley;
@@ -120,7 +123,8 @@ namespace ModularMod
                         Angle_From_Aim = mod.angleFromAim,
                         Rate_Of_Fire = mod.cooldownTime,
                         Clip_Size = mod.numberOfShotsInClip,
-                        FinalProjectiles_Count = mod.numberOfFinalProjectiles
+                        FinalProjectiles_Count = mod.numberOfFinalProjectiles,
+                        BurstShots = mod.burstShotCount
                     });
                 }
                 foreach (var thing in mod.chargeProjectiles)
@@ -210,7 +214,14 @@ namespace ModularMod
             }
             return overrideRateOfFire;
         }
-
+        public float GetReload(float overrideReload)
+        {
+            foreach (var entry in statMods)
+            {
+                if (entry.Reload_Process != null) { overrideReload = entry.Reload_Process(overrideReload, PrinterSelf, this, Player); }
+            }
+            return overrideReload;
+        }
         public float GetChargeSpeed(float overrideChargeSpeed)
         {
             foreach (var entry in statMods)
@@ -219,6 +230,22 @@ namespace ModularMod
             }
 
             return overrideChargeSpeed;
+        }
+
+        public int GetClipSize(int overrideClipSize)
+        {
+            foreach (var entry in statMods)
+            {
+                if (entry.ClipSize_Process != null) { overrideClipSize = entry.ClipSize_Process(overrideClipSize, PrinterSelf, this, Player); }
+            }
+
+            overrideClipSize = (Mathf.Max(overrideClipSize, 1));
+            foreach (var entry in statMods)
+            {
+                if (entry.Post_Calculation_ClipSize_Process != null) { overrideClipSize = entry.Post_Calculation_ClipSize_Process(overrideClipSize, PrinterSelf, this, Player); }
+            }
+
+            return overrideClipSize;
         }
 
         public int GetModNumberOfShotsInClip(GameActor owner)
@@ -315,6 +342,7 @@ namespace ModularMod
 
                 int ClipSize = cont.Value.Clip_Size;
                 int finales = cont.Value.FinalProjectiles_Count;
+                int burstShots = cont.Value.BurstShots;
 
                 bool AmmoMaxIsClip = ClipSize == -1;
 
@@ -344,6 +372,7 @@ namespace ModularMod
                 foreach (var entry in statMods)
                 {
                     if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player); }
+                    if (entry.BurstAmount_Process != null) { burstShots = entry.BurstAmount_Process(burstShots, ClipSize, PrinterSelf, this, Player); }
                 }
                 cont.Key.cooldownTime = BaseFireRate;
                 cont.Key.angleVariance = BaseAngle;
@@ -370,6 +399,8 @@ namespace ModularMod
                 float AngleFromAim = cont.Value.Angle_From_Aim;
                 int ClipSize = cont.Value.Clip_Size;
                 int finales = cont.Value.FinalProjectiles_Count;
+                int burstShots = cont.Value.BurstShots;
+
                 bool AmmoMaxIsClip = ClipSize == -1;
 
                 foreach (var entry in statMods)
@@ -393,6 +424,7 @@ namespace ModularMod
                 foreach (var entry in statMods)
                 {
                     if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player); }
+                    if (entry.BurstAmount_Process != null) { burstShots = entry.BurstAmount_Process(burstShots, ClipSize, PrinterSelf, this, Player); }
                 }
                 cont.Key.cooldownTime = BaseFireRate;
                 cont.Key.angleVariance = BaseAngle;
@@ -442,7 +474,9 @@ namespace ModularMod
                                         Angle_From_Aim = entry.angleFromAim,
                                         Rate_Of_Fire = entry.cooldownTime,
                                         Clip_Size = entry.numberOfShotsInClip,
-                                        FinalProjectiles_Count = entry.numberOfFinalProjectiles
+                                        FinalProjectiles_Count = entry.numberOfFinalProjectiles,
+                                        BurstShots = entry.burstShotCount
+
                                     });
                                     foreach (var chargeProj in entry.chargeProjectiles)
                                     {
@@ -478,7 +512,9 @@ namespace ModularMod
                                         Angle_From_Aim = entry.angleFromAim,
                                         Rate_Of_Fire = entry.cooldownTime,
                                         Clip_Size = entry.numberOfShotsInClip,
-                                        FinalProjectiles_Count = entry.numberOfFinalProjectiles
+                                        FinalProjectiles_Count = entry.numberOfFinalProjectiles,
+                                        BurstShots = entry.burstShotCount
+
 
                                     });
                                     foreach (var chargeProj in entry.chargeProjectiles)
@@ -508,7 +544,8 @@ namespace ModularMod
                             Angle_From_Aim = entry.angleFromAim,
                             Rate_Of_Fire = entry.cooldownTime,
                             Clip_Size = entry.numberOfShotsInClip,
-                            FinalProjectiles_Count = entry.numberOfFinalProjectiles
+                            FinalProjectiles_Count = entry.numberOfFinalProjectiles,
+                            BurstShots = entry.burstShotCount
                         });
                         foreach (var chargeProj in entry.chargeProjectiles)
                         {
@@ -525,5 +562,9 @@ namespace ModularMod
         }
         private int storedCount = 0;
         private int storedCountBase = 0;
+
+
+
+
     }
 }

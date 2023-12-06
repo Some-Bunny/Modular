@@ -10,9 +10,11 @@ namespace ModularMod
 {
     public static class StaticCollections
     {
+        public static tk2dSpriteCollectionData Module_T1_Collection;
         public static tk2dSpriteCollectionData Module_T2_Collection;
         public static tk2dSpriteCollectionData Module_T3_Collection;
         public static tk2dSpriteCollectionData Module_T4_Collection;
+        public static tk2dSpriteCollectionData Module_Unique_Collection;
 
         public static tk2dSpriteCollectionData Item_Collection;
         public static tk2dSpriteCollectionData UI_Collection;
@@ -45,16 +47,22 @@ namespace ModularMod
 
         public static dfAtlas Clip_Ammo_Atlas;
 
-        public static tk2dSpriteCollectionData Module_T1_Collection;
+        public static dfFontBase ModularFont;
+        public static dfAtlas ModularUIAtlas;
+
         public static void InitialiseCollections()
         {
             Module_T1_Collection = DoFastSetup(Module.ModularAssetBundle, "Tier_1_Module_Collection", "t1_module material.mat");
 
 
+            ModularFont = Module.ModularAssetBundle.LoadAsset<GameObject>("ShootPeopUltra-16").GetComponent<dfFont>();
+            //Mechanical Demo (Dynamic)
+            //ShootPeopUltra (Dynamic)
             Clip_Ammo_Atlas = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularGunClip_Atlas").GetComponent<dfAtlas>();
 
-
-
+            GameObject obj = Module.ModularAssetBundle.LoadAsset<GameObject>("ModularUIAtlas");
+            UnityEngine.Object.DontDestroyOnLoad(obj);
+            ModularUIAtlas = obj.GetComponent<dfAtlas>();
 
             if (Module_T1_Collection == null) { ETGModConsole.Log("Module_T1_Collection is NULL"); }
 
@@ -66,6 +74,11 @@ namespace ModularMod
 
             Module_T4_Collection = DoFastSetup(Module.ModularAssetBundle, "ModuleTier4Collection", "modulrt4 material.mat");
             if (Module_T4_Collection == null) { ETGModConsole.Log("Module_T4_Collection is NULL"); }
+
+            Module_Unique_Collection = DoFastSetup(Module.ModularAssetBundle, "UniqueModuleCollection", "unique module material.mat");
+            if (Module_Unique_Collection == null) { ETGModConsole.Log("Module_Unique_Collection is NULL"); }
+
+            
 
             Item_Collection = DoFastSetup(Module.ModularAssetBundle, "ModuleItemCollection", "moduleitem material.mat");
             if (Item_Collection == null) { ETGModConsole.Log("Item_Collection is NULL"); }

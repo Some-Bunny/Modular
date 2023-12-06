@@ -59,6 +59,8 @@ namespace ModularMod.Past.Prefabs.Objects
             MiscDecoratives.Init();
             SusBoxes.Init();
             CDrive.Init();
+
+            SecretSwitch.Init();
         }
     }
 }

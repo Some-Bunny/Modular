@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Light Lance", "lightlance");
             Game.Items.Rename("outdated_gun_mods:light_lance", "mdl:armcannon_9");
-            gun.gameObject.AddComponent<LightLance>();
+            var c = gun.gameObject.AddComponent<LightLance>();
             gun.SetShortDescription("Mk.1");
             gun.SetLongDescription("Slashes enemies, can be charged to do a deflecting attack with an energy projectile.\n\nA close-combat prototype weapon. In the hands of a machine with a fast enough camera, it can fulfill the dream of every person with a samurai sword.");
 
@@ -208,6 +208,13 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+        }
+
+        public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 4));
         }
 
 
@@ -245,6 +252,18 @@ namespace ModularMod
                 return newData;
             }
 
+
+            public bool CheckModule(GameActor owner)
+            {
+                if (owner as PlayerController)
+                {
+                    if (GlobalModuleStorage.PlayerHasActiveModule((owner as PlayerController), IteratedDesign.ID))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
             public override void OnProjectileReflect(Projectile p, bool retargetReflectedBullet, GameActor newOwner, float minReflectedBulletSpeed, bool doPostProcessing = false, float scaleModifier = 1, float baseDamage = 10, float spread = 0, string sfx = null)
             {
                 AkSoundEngine.PostEvent("Play_ITM_Crisis_Stone_Impact_01", p.gameObject);
@@ -255,6 +274,7 @@ namespace ModularMod
                 {
                     p.specRigidbody.DeregisterSpecificCollisionException(p.Owner.specRigidbody);
                 }
+                bool isIterated = CheckModule(newOwner);
 
                 p.Owner = newOwner;
                 p.SetNewShooter(newOwner.specRigidbody);
@@ -273,8 +293,16 @@ namespace ModularMod
                 float previousSpeed = p.baseData.speed;
 
                 p.baseData.damage = 2.5f + (p.baseData.speed * 0.66f);
+                if (isIterated == true)
+                {
+                    p.baseData.damage *= 1.2f;
+                    p.baseData.speed *= 1.2f;
+                }
 
                 p.baseData.speed *= 2;
+
+
+
                 p.UpdateSpeed();
                 if (newOwner is PlayerController)
                 {
@@ -286,7 +314,7 @@ namespace ModularMod
                         var controller = playerController.CurrentGun.GetComponent<ModularGunController>();
                         if (controller != null)
                         {
-                            float speedMath = Mathf.Max(0, 90 - (previousSpeed * 3f));
+                            float speedMath = Mathf.Max(0, (isIterated == true ? 75 : 90) - (previousSpeed * 3f));
                             p.Direction = Toolbox.GetUnitOnCircle(playerController.CurrentGun.CurrentAngle + UnityEngine.Random.Range(controller.GetAccuracy(speedMath), controller.GetAccuracy(speedMath * -1)), 1);
                             var VFX = UnityEngine.Object.Instantiate(controller.isAlt == true ? ConvexLens.greenImpact.effects[0].effects[0].effect : LineUp.PierceImpact, p.sprite.WorldCenter - new Vector2(1.5f, 0), Quaternion.identity);
                             Destroy(VFX, 2);

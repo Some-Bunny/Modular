@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Mercy Rounds",
             Description = "Hits The Sick Harder",
-            LongDescription = "Deal an additional 50% (+50% per stack) more damage to enemies for each buff or debuff they have. Enemies with debuffs that are directly slain by you\nspread them to nearby enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Deal an additional 33% (+33% per stack) more damage to enemies for each buff or debuff they have. Enemies with debuffs that are directly slain by you\nspread them to nearby enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,11 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Mercy Rounds " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal an additional 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.\nEnemies with debuffs that are directly slain by you\nspread them to nearby enemies.";
+            h.LabelDescription = "Deal an additional 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.\nEnemies with debuffs that are directly slain by you\nspread them to nearby enemies.";
+
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+
             h.AddToGlobalStorage();
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
@@ -68,7 +72,7 @@ namespace ModularMod
             stack = this.ReturnStack(modulePrinter);
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
             p.OnHitEnemy += OHE;
@@ -89,9 +93,14 @@ namespace ModularMod
                         {
                             if (enemies != null && Vector2.Distance(enemies.transform.PositionVector2(), enemy.transform.PositionVector2()) < 3.5f)
                             {
+
                                 enemies.ApplyEffect(effect);
-                                var vfx = UnityEngine.Object.Instantiate(PatientZero.PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
-                                Destroy(vfx, 3);                               
+                                if (ConfigManager.DoVisualEffect == true)
+                                {
+                                    var vfx = UnityEngine.Object.Instantiate(PatientZero.PoisonPoof, enemies.sprite.WorldCenter, Quaternion.identity);
+                                    vfx.transform.localScale *= 0.6f;
+                                    Destroy(vfx, 3);
+                                }                            
                             }
                         }
                     }
@@ -106,8 +115,13 @@ namespace ModularMod
             {
                 if (body.aiActor.m_activeEffects.Count() > 0) 
                 {
-                    var VFX = UnityEngine.Object.Instantiate(VFXStorage.MachoBraceBurstVFX, body.aiActor.sprite.WorldCenter - new Vector2(1.5f, 0), Quaternion.identity);
-                    Destroy(VFX, 2);
+                    if (ConfigManager.DoVisualEffect == true)
+                    {
+                        var VFX = UnityEngine.Object.Instantiate(VFXStorage.MachoBraceBurstVFX, body.aiActor.sprite.WorldCenter - new Vector2(1.5f, 0), Quaternion.identity);
+                        VFX.transform.localScale *= 0.6f;
+
+                        Destroy(VFX, 2);
+                    }
                 }
             }
         }
@@ -119,7 +133,7 @@ namespace ModularMod
                 if (oR != null && oR.healthHaver != null && mR.projectile != null)
                 {
                     float damage = mR.projectile.baseData.damage;
-                    mR.projectile.baseData.damage *= 1 + ((0.5f * stack) * oR.aiActor.m_activeEffects.Count());
+                    mR.projectile.baseData.damage *= 1 + ((0.33f * stack) * oR.aiActor.m_activeEffects.Count());
                     mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
                 }
             }

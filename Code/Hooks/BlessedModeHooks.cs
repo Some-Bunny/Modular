@@ -24,30 +24,25 @@ namespace ModularMod
 
         public static DefaultModule ReturnSelectedModule(int tier)
         {
-            switch (tier)
-            {
-                case 1:
-                    var help_3 = GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_3);
-                    return help_3;
-                case 2 | 3 | 4:
-                    var help_2 = GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_2);
-                    return help_2;
+            var mod = GlobalModuleStorage.SelectTable(PickupObject.ItemQuality.B);
+            return mod.ModularSelectByWeight(false, Func).GetComponent<DefaultModule>();
+        }
 
-                default:
-                    var help_1 = GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_1);
-                    return help_1;
-            }
+        private static bool Func(DefaultModule defaultModule)
+        {
+            if (defaultModule.AppearsFromBlessedModeRoll == false) { return false; }
+            return true;
         }
 
         public static int FloorMultiplier(Dungeon floor)
         {
             if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.CASTLEGEON) { return 0; }
-            if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.GUNGEON) { return 1; }
+            if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.GUNGEON) { return 0; }
             if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.MINEGEON) { return 1; }
-            if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.CATACOMBGEON) { return 2; }
+            if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.CATACOMBGEON) { return 1; }
             if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.FORGEGEON) { return 2; }
             if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.SEWERGEON) { return 1; }
-            if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.CATHEDRALGEON) { return 2; }
+            if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.CATHEDRALGEON) { return 1; }
             if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.OFFICEGEON) { return 2; }
             if (floor.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.HELLGEON) { return 2; }
 
@@ -58,7 +53,7 @@ namespace ModularMod
             if (self.PlayerHasCore() != null)
             {
                 self.m_gunGameElapsed = 0f;
-                self.m_gunGameDamageThreshold = 200f + UnityEngine.Random.Range(25, 200);
+                self.m_gunGameDamageThreshold = 1250f + UnityEngine.Random.Range(0, 1250);
                 if (self.inventory.GunLocked.Value)
                 {
                     return;
@@ -70,7 +65,7 @@ namespace ModularMod
                 self.PlayEffectOnActor(ResourceCache.Acquire("Global VFX/VFX_MagicFavor_Change") as GameObject, new Vector3(0f, -1f, 0f), true, false, false);
                 var core = self.PlayerHasCore();
                 core.RemoveTemporaryModules("BLESSED_MODE", true);
-                int amount = UnityEngine.Random.Range(1, 5);
+                int amount = UnityEngine.Random.Range(1, 2);
                 amount += FloorMultiplier(GameManager.Instance.Dungeon);
                 for (int i = 1; i < amount + 1; i++)
                 {
@@ -201,7 +196,7 @@ namespace ModularMod
                 Delegate dodge = self.GetEventDelegate("OnIsRolling");
                 if (self.IsDodgeRolling && dodge != null)
                 {
-                    dodge.DynamicInvoke(new object[] { self});
+                    dodge.DynamicInvoke(new object[] { self });
                 }
 
                 CellVisualData.CellFloorType cellFloorType = CellVisualData.CellFloorType.Stone;

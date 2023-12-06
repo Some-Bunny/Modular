@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Recycling Nanites",
             Description = "Repurposed for something better",
-            LongDescription = "While enabled, taking damage permanently increases damage by\n+7.5% (+7.5% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "While enabled, taking damage increases damage by\n+7.5% (+7.5% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("recycler_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -26,16 +26,21 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("recycler_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.6f;
+            h.AdditionalWeightMultiplier = 0.75f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Recycling Nanites " + h.ReturnTierLabel();
-            h.LabelDescription = "While enabled, taking damage permanently increases damage by \n+7.5% (" + StaticColorHexes.AddColorToLabelString("+7.5%", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "While enabled, taking damage increases damage by \n+7.5% (" + StaticColorHexes.AddColorToLabelString("+7.5%", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.AppearsFromBlessedModeRoll = false;
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.RETALIATION);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
-            h.OverrideScrapCost = 4;
+            h.OverrideScrapCost = 3;
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
@@ -58,7 +63,7 @@ namespace ModularMod
             AkSoundEngine.PostEvent("Play_OBJ_med_kit_01", player.gameObject);
         }
         private int DamageTaken = 0;
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage *= 1 + ((0.075f * stack) * DamageTaken);

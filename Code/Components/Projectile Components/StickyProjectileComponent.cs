@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -31,6 +30,7 @@ namespace ModularMod
 
         public void Start()
         {
+
             foreach (var contexts in stickyContexts)
             {
                 if (contexts.CanStickEnemies == true) { StickToEnemies = true; }
@@ -52,7 +52,8 @@ namespace ModularMod
                     currentObject.specRigidbody.OnPreRigidbodyCollision += (myRigidbody, myPixelCollider, otherRigidbody, otherPixelCollider) => {
                         HandleHit(currentObject, otherRigidbody);
                     };
-                }           
+                }
+
             }
         }
         private void HandleHit(Projectile projectile, SpeculativeRigidbody otherBody, PhysicsEngine.Tile tile = null)
@@ -101,6 +102,14 @@ namespace ModularMod
                 }
             }
             projectile.DestroyMode = Projectile.ProjectileDestroyMode.DestroyComponent;
+            if (projectile.gameObject.GetComponent<ProjectileTrailRendererController>() != null)
+            {
+                Destroy(projectile.gameObject.GetComponent<ProjectileTrailRendererController>());
+            }
+            if (projectile.gameObject.GetComponent<DetachTrailFromParent>() != null)
+            {
+                projectile.gameObject.GetComponent<DetachTrailFromParent>().DoDetach(0);
+            }
             objectToLookOutFor = projectile.gameObject;
             if (otherBody != null)
             {

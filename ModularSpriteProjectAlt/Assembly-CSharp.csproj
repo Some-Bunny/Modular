@@ -326,6 +326,7 @@
      <None Include="Assets\DFGUI\Examples\Skins\AnimatedSprite\OpenSans-Semibold-18px.fnt" />
      <None Include="Assets\DFGUI\Examples\Resources\Fonts\SIL Open Font License.txt" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\resources\BlendVertexColor.shader" />
+     <None Include="Assets\Sprites\UI\Font\ShootPeoplTest.fnt" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\LitCutoutVertexColor.shader" />
      <None Include="Assets\DFGUI\DFGUI\Shaders\Dynamic Font Shader.shader" />
      <None Include="Assets\DFGUI\Resources\Change Log.txt" />

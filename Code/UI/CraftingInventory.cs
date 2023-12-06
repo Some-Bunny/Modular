@@ -146,7 +146,6 @@ namespace ModularMod
         public IEnumerator CraftModules(PlayerController p, List<DefaultModule> modules)
         {
             AkSoundEngine.PostEvent("Play_OBJ_computer_boop_01", p.gameObject);
-            //ETGModConsole.Log(modules.Count);
 
             foreach (var entry in modules)
             {
@@ -182,13 +181,18 @@ namespace ModularMod
             //DisplayModule(p);
         }
 
+        public string R_C(SpecialCharactersController.SpecialCharacters specialCharacter, bool isBright = false)
+        {
+            return SpecialCharactersController.ReturnSpecialCharacter(specialCharacter, isBright);
+        }
+
         public void DoButtonRefreshSelect(PlayerController p)
         {
             Tier = SelectedTier.NONE;
             Color32 cl = p.IsUsingAlternateCostume == true ? new Color32(0, 255, 54, 100) : new Color32(121, 234, 255, 100);
             if (T1_Select == null)
             {
-                T1_Select = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 0.25f) + AdditionalOffset, 0.5f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_1), cl, true, Scale + 6);
+                T1_Select = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 0.25f) + AdditionalOffset, 0.5f, R_C(SpecialCharactersController.SpecialCharacters.T1), cl, true, Scale + 6);
                 T1_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     Tier = SelectedTier.T1;
@@ -197,7 +201,7 @@ namespace ModularMod
                 };
                 T1_Select.MouseHover = (label, boolean) =>
                 {
-                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T1B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_1);
+                    label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T1, true) : R_C(SpecialCharactersController.SpecialCharacters.T1);
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
@@ -208,7 +212,7 @@ namespace ModularMod
             }
             if (T2_Select == null)
             {
-                T2_Select = Toolbox.GenerateText(p.transform, new Vector2(3.5f, 0.25f) + AdditionalOffset, 0.75f, DefaultModule.ReturnTierLabel(ModuleTier.Tier_2), cl, true, Scale + 6);
+                T2_Select = Toolbox.GenerateText(p.transform, new Vector2(3.5f, 0.25f) + AdditionalOffset, 0.75f, R_C(SpecialCharactersController.SpecialCharacters.T2), cl, true, Scale + 6);
                 T2_Select.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     Tier = SelectedTier.T2;
@@ -217,7 +221,7 @@ namespace ModularMod
                 };
                 T2_Select.MouseHover = (label, boolean) =>
                 {
-                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T2B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_2);
+                    label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T2, true) : R_C(SpecialCharactersController.SpecialCharacters.T2);
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
@@ -237,7 +241,7 @@ namespace ModularMod
                 };
                 T3_Select.MouseHover = (label, boolean) =>
                 {
-                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.T3B) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_3);
+                    label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T3, true) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_3);
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
@@ -248,7 +252,7 @@ namespace ModularMod
             }
             if (CloseLabel == null)
             {
-                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 0.25f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl, true, Scale + 6);
+                CloseLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, 0.25f) + AdditionalOffset, 0.5f, R_C(SpecialCharactersController.SpecialCharacters.CLOSE), cl, true, Scale + 6);
                 CloseLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     UIHooks.OnPaused -= Le_Bomb;
@@ -260,7 +264,7 @@ namespace ModularMod
                 };
                 CloseLabel.MouseHover = (label, boolean) =>
                 {
-                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.CLOSE_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE);
+                    label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.CLOSE, true) : R_C(SpecialCharactersController.SpecialCharacters.CLOSE);
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
@@ -294,7 +298,7 @@ namespace ModularMod
             if (pageUpLabel) { Destroy(pageUpLabel.gameObject); }
             if (pageUpLabel == null)
             {
-                pageUpLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -1f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP), cl, true, Scale + 6);
+                pageUpLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -1f) + AdditionalOffset, 0.5f, R_C(SpecialCharactersController.SpecialCharacters.UP), cl, true, Scale + 6);
                 pageUpLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
 
@@ -311,7 +315,7 @@ namespace ModularMod
                 {
                     if (ListEntry > 0)
                     {
-                        label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.UP_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.UP);
+                        label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.UP, true) : R_C(SpecialCharactersController.SpecialCharacters.UP);
                         label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
@@ -329,15 +333,15 @@ namespace ModularMod
             if (pageReturnLabel) { Destroy(pageReturnLabel.gameObject); }
             if (pageReturnLabel == null)
             {
-                pageReturnLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -3.5f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.LEFT), cl, true, Scale + 6);
+                pageReturnLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -3.5f) + AdditionalOffset, 0.5f, R_C(SpecialCharactersController.SpecialCharacters.LEFT), cl, true, Scale + 6);
                 pageReturnLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
-                    ObliterateCraftUI();
+                    SuperObliterateCraftUI();
                     DoButtonRefreshSelect(p);
                 };
                 pageReturnLabel.MouseHover = (label, boolean) =>
                 {
-                    label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.LEFT_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.LEFT);
+                    label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.LEFT, true) : R_C(SpecialCharactersController.SpecialCharacters.LEFT);
                     label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                     label.Invalidate();
                 };
@@ -350,7 +354,7 @@ namespace ModularMod
             if (pageDownLabel) { Destroy(pageDownLabel.gameObject); }
             if (pageDownLabel == null)
             {
-                pageDownLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -2.25f) + AdditionalOffset, 0.5f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN), cl, true, Scale + 6);
+                pageDownLabel = Toolbox.GenerateText(p.transform, new Vector2(1.5f, -2.25f) + AdditionalOffset, 0.5f, R_C(SpecialCharactersController.SpecialCharacters.DOWN), cl, true, Scale + 6);
                 pageDownLabel.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                 {
                     if (ReturnPagesCount(quickAndMessyPages) > ListEntry)
@@ -365,7 +369,7 @@ namespace ModularMod
                 {
                     if (ReturnPagesCount(quickAndMessyPages) > ListEntry)
                     {
-                        label.text = boolean == true ? Scrapper.ReturnButtonStringBright(Scrapper.ButtonUIBright.DOWN_BRIGHT) : Scrapper.ReturnButtonString(Scrapper.ButtonUI.DOWN);
+                        label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.DOWN, true) : R_C(SpecialCharactersController.SpecialCharacters.DOWN);
                         label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
                         label.Invalidate();
                     }
@@ -380,10 +384,28 @@ namespace ModularMod
                     AkSoundEngine.PostEvent("Play_UI_menu_select_01", player.gameObject);
                 };
             }
+            if (CurrentScrapLabel) { Destroy(CurrentScrapLabel.gameObject); }
+            if (CurrentScrapLabel == null)
+            {
+                CurrentScrapLabel = Toolbox.GenerateText(p.transform, new Vector2(2.5f, 1f) + AdditionalOffset, 0.5f, "[" + scrapLabel + " " + GetScrapCount(player) + "]", cl, true, 9);
+                CurrentScrapLabel.OnUpdate = (self) =>
+                {
+                    self.text = "[" + scrapLabel + " " + GetScrapCount(player) + "]";
+                    self.Invalidate();
+                    CurrentScrapLabel.offset = (craftLabel != null ? new Vector2(2.5f + ((ProcessText(craftLabel.label.text) * 0.125f) * (Mathf.Min(1, craftLabel.T * 4))), 1f) + AdditionalOffset : new Vector2(2.5f, 1f) + AdditionalOffset);             
+                };
+            }
+
             UpdateOptions();
         }
         private PlayerController player;
 
+        public int ProcessText(string text)
+        {
+            int textLength = text.Length;
+            if (text.Contains(scrapLabel)) { textLength -= 40; }
+            return textLength;
+        }
 
 
         public void UpdateOptions()
@@ -450,6 +472,7 @@ namespace ModularMod
                                     AkSoundEngine.PostEvent("Play_OBJ_metronome_jingle_01", player.gameObject);
                                     Toolbox.NotifyCustom("Crafted Module:", page.module.LabelName, page.module.sprite.spriteId, page.module.sprite.collection, UINotificationController.NotificationColor.PURPLE);
                                     GlobalConsumableStorage.RemoveConsumableAmount("Scrap", ModuleCost(page.module));
+                                    
                                     Queue.Add(page.module);
                                     if (OnCrafted != null) { OnCrafted(); }
                                 }
@@ -501,13 +524,13 @@ namespace ModularMod
             switch (module.Tier)
             {
                 case ModuleTier.Tier_1:
-                    return 5;
+                    return 4;
                 case ModuleTier.Tier_2:
-                    return 10;
+                    return 8;
                 case ModuleTier.Tier_3:
-                    return 15;
+                    return 12;
                 default:
-                    return 10;
+                    return 8;
             }
         }
 
@@ -562,6 +585,7 @@ namespace ModularMod
             if (PageLabel) { PageLabel.Inv(); }
             if (craftLabel) { craftLabel.Inv(); }
             if (pageReturnLabel) { pageReturnLabel.Inv(); }
+            if (CurrentScrapLabel) { { CurrentScrapLabel.Inv(); } }
 
 
             foreach (var entry in craftingLabels)
@@ -570,12 +594,35 @@ namespace ModularMod
             }
             craftingLabels.Clear();
         }
+
+        private void SuperObliterateCraftUI()
+        {
+            if (PageLabel) { Destroy(PageLabel.gameObject); }
+            if (extantLabel) { Destroy(extantLabel.gameObject); }
+            if (pageUpLabel) { Destroy(pageUpLabel.gameObject); }
+            if (pageDownLabel) { Destroy(pageDownLabel.gameObject); }
+            if (PageLabel) { Destroy(PageLabel.gameObject); }
+            if (craftLabel) { Destroy(craftLabel.gameObject); }
+            if (pageReturnLabel) { Destroy(pageReturnLabel.gameObject); }
+            if (CurrentScrapLabel) { { Destroy(CurrentScrapLabel.gameObject); } }
+
+
+            foreach (var entry in craftingLabels)
+            {
+                if (entry.Key != null) { entry.Key.Inv(); }
+            }
+            craftingLabels.Clear();
+        }
+
+
+
         private void ObliterateSelectUI()
         {
             if (T1_Select) { Destroy(T1_Select.gameObject); }
             if (T2_Select) { Destroy(T2_Select.gameObject); }
             if (T3_Select) { Destroy(T3_Select.gameObject); }
             if (basicgarbageLabel) { Destroy(basicgarbageLabel.gameObject); }
+            if (CurrentScrapLabel) { { Destroy(CurrentScrapLabel.gameObject); } }
 
         }
 
@@ -592,7 +639,7 @@ namespace ModularMod
             if (pageReturnLabel) { pageReturnLabel.Inv(); }
             if (craftLabel) { craftLabel.Inv(); }
             if (basicgarbageLabel) { Destroy(basicgarbageLabel.gameObject); }
-
+            if (CurrentScrapLabel) { { Destroy(CurrentScrapLabel.gameObject); } }
 
             foreach (var entry in craftingLabels)
             {
@@ -623,6 +670,7 @@ namespace ModularMod
         public ModifiedDefaultLabelManager pageReturnLabel;
 
         public ModifiedDefaultLabelManager basicgarbageLabel;
+        public ModifiedDefaultLabelManager CurrentScrapLabel;
 
         private enum SelectedTier
         {

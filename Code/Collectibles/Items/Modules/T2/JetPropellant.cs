@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Jet Propellant",
             Description = "Speed Is War",
-            LongDescription = "Projectiles start slow, but accelarate to high speeds after 1 second. Projectiles now deal 20% (+20% per stack) of their speed as damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Projectiles start slow, but accelarate to high speeds after 1 second. Projectiles now deal 10% (+10% per stack) of their speed as damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("jetpropellant_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,9 +28,13 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("jetpropellant_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Jet Propellant " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles start slow, but accelerate to\nhigh speeds after 1 second.\nProjectiles now deal 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
+            h.LabelDescription = "Projectiles start slow, but accelerate to\nhigh speeds after a second.\nProjectiles now deal 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
-            h.AdditionalWeightMultiplier = 0.9f;
+            h.AdditionalWeightMultiplier = 0.85f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -86,7 +90,7 @@ namespace ModularMod
         }
 
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
             p.baseData.UsesCustomAccelerationCurve = true;
@@ -99,7 +103,7 @@ namespace ModularMod
             if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null)
             {
                 float damage = mR.projectile.baseData.damage;
-                float damageMult = (mR.projectile.baseData.speed / 1000) * (1.25f * stack);
+                float damageMult = (mR.projectile.baseData.speed / 1000) * (stack);
                 mR.projectile.baseData.damage *= 1 + damageMult;
                 mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
             }

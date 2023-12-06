@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-
+using System.Collections;
 
 namespace ModularMod
 {
@@ -19,12 +19,15 @@ namespace ModularMod
             var body = this.GetComponent<SpeculativeRigidbody>();
             body.OnPreRigidbodyCollision += AAA;
         }
+
+        public float Damage = 6;
+
         public void AAA(SpeculativeRigidbody myRigidbody, PixelCollider myPixelCollider, SpeculativeRigidbody otherRigidbody, PixelCollider otherPixelCollider)
         {
             PhysicsEngine.SkipCollision = true;
             if (otherRigidbody.aiActor != null && otherRigidbody.healthHaver != null && otherRigidbody.healthHaver.m_player == null)
             {
-                otherRigidbody.healthHaver.ApplyDamage(5, Vector2.zero, "Glass Shards");
+                otherRigidbody.healthHaver.ApplyDamage(Damage, Vector2.zero, "Glass Shards");
                 Destroy(this.gameObject);
             }
         }
@@ -42,7 +45,7 @@ namespace ModularMod
         {
             Name = "Plague Canister",
             Description = "Yah Yeet!",
-            LongDescription = "Reloading has a chance to launch a poison canister that breaks into a pool of poison, and glass shards. (+Glass Shards and Goop Radius per stack). Chance increases the emptier your clip is." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reloading has a chance to launch 1 (+1 per stack) poison canister that breaks into a pool of poison and glass shards. (+Glass Shards and Goop Radius per stack). Chance increases the emptier your clip is." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plaguecanister_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -56,13 +59,20 @@ namespace ModularMod
             h.LabelName = "Plague Canister " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.85f;
 
-            h.LabelDescription = "Reloading has a chance to launch a\npoison canister that breaks\ninto a pool of poison, and glass shards.\n(" + StaticColorHexes.AddColorToLabelString("+Glass Shards and Goop Radius", StaticColorHexes.Light_Orange_Hex) + ").\nChance increases the emptier your clip is.";
+            h.LabelDescription = "Reloading has a chance to launch 1 ("+StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) +") poison canisters\nthat breaks into a pool of poison and glass shards.\n(" + StaticColorHexes.AddColorToLabelString("+Glass Shards and Goop Radius", StaticColorHexes.Light_Orange_Hex) + ").\nChance increases the emptier your clip is.";
+
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
+
+
 
             GameObject VFX = new GameObject("Plague Canister");
             FakePrefab.DontDestroyOnLoad(VFX);
@@ -77,7 +87,7 @@ namespace ModularMod
             tk2dAnim.playAutomatically = true;
             var gooper = VFX.AddComponent<ThrownGoopItem>();
             gooper.goop = JuneLib.Status.EasyGoopDefinitions.PoisonDef;
-            gooper.goopRadius = 2;
+            gooper.goopRadius = 2.75f;
             gooper.burstAnim = "vial_break";
             Vial = VFX;
              ID = h.PickupObjectId;
@@ -147,11 +157,10 @@ namespace ModularMod
             int stack = this.ReturnStack(modulePrinter);
         }
 
-        public void OGR(ModulePrinterCore modulePrinterCore, PlayerController user, Gun g)
+        public IEnumerator TossCanisters(int stack, PlayerController user)
         {
-            if (UnityEngine.Random.value > g.PercentageOfClipLeft())
+            for (int i = 0; i < stack; i++)
             {
-
                 Vector3 vector = user.unadjustedAimPoint - user.LockedApproximateSpriteCenter;
                 Vector3 vector2 = user.specRigidbody.UnitCenter;
                 if (vector.y > 0f)
@@ -166,7 +175,7 @@ namespace ModularMod
                 }
 
                 Vector2 vector3 = user.unadjustedAimPoint - user.LockedApproximateSpriteCenter;
-                DebrisObject debrisObject = LootEngine.DropItemWithoutInstantiating(gameObject2, gameObject2.transform.position, vector3, 7.5f + (this.ReturnStack(modulePrinterCore)*7.5f), false, false, true, false);
+                DebrisObject debrisObject = LootEngine.DropItemWithoutInstantiating(gameObject2, gameObject2.transform.position, vector3, 6.5f + (stack * 2f), false, false, true, false);
                 if (vector.y > 0f && debrisObject)
                 {
                     debrisObject.additionalHeightBoost = -1f;
@@ -175,18 +184,31 @@ namespace ModularMod
                         debrisObject.sprite.UpdateZDepth();
                     }
                 }
-                gameObject2.GetComponent<ThrownGoopItem>().goopRadius = 1.5f + this.ReturnStack(modulePrinterCore);
+                gameObject2.GetComponent<ThrownGoopItem>().goopRadius = 1.5f + (stack / 2);
                 debrisObject.IsAccurateDebris = true;
                 debrisObject.Priority = EphemeralObject.EphemeralPriority.Critical;
                 debrisObject.bounceCount = 0;
                 debrisObject.OnGrounded += (obj) =>
                 {
-                    for (int i = 0; i < this.ReturnStack(modulePrinterCore) * 3; i++)
+                    for (int e = 0; e < 2 + stack; e++)
                     {
                         GameObject shard = UnityEngine.Object.Instantiate<GameObject>(BraveUtility.RandomElement<GameObject>(GlassShards), debrisObject.transform.position, Quaternion.identity);
-                        shard.GetComponent<DebrisObject>().Trigger(Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.5f, 4 + this.ReturnStack(modulePrinterCore))), 1);
+                        shard.GetComponent<DebrisObject>().Trigger(Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.5f, 4 + stack)), 1);
+                        shard.GetComponent<GlassShardBehavior>().Damage += stack / 3;
                     }
                 };
+                yield return new WaitForSeconds(user.CurrentGun.reloadTime / stack);
+            }
+            yield break;
+        }
+
+
+        public void OGR(ModulePrinterCore modulePrinterCore, PlayerController user, Gun g)
+        {
+            if (UnityEngine.Random.value > g.PercentageOfClipLeft())
+            {
+                user.StartCoroutine(TossCanisters(this.ReturnStack(modulePrinterCore), user));
+               
             }
         }  
     }

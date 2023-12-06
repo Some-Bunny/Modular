@@ -34,10 +34,14 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Perfect Replica" + h.ReturnTierLabel();
             h.LabelDescription = "Acts as 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") of every module currently active.";
+
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AddModuleTag(BaseModuleTags.GENERATION);
+            h.AdditionalWeightMultiplier = 0.75f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.8f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.OverrideScrapCost = 20;

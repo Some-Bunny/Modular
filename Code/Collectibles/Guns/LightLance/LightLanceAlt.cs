@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Gun gun = ETGMod.Databases.Items.NewGun("Light Lance", "lightlancealt");
             Game.Items.Rename("outdated_gun_mods:light_lance", "mdl:armcannon_9_alt");
-            gun.gameObject.AddComponent<LightLance>();
+            var c = gun.gameObject.AddComponent<LightLance>();
             gun.SetShortDescription("Mk.2");
             gun.SetLongDescription("Slashes enemies, can be charged to do a deflecting attack with an energy projectile.\n\nA close-combat weapon. In the hands of a machine with a fast enough camera, it can fulfill the dream of every person with a samurai sword.");
 
@@ -208,6 +208,13 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
+            IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+        }
+
+        public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f / (1 + (stack / 4));
         }
 
 

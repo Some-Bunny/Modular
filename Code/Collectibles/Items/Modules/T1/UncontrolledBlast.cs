@@ -33,7 +33,12 @@ namespace ModularMod
             h.LabelName = "Uncontrolled Blast " + h.ReturnTierLabel();
             h.LabelDescription = "Massively boosts clip size and fire rate (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + "),\nbut reduces damage and gives " + StaticColorHexes.AddColorToLabelString("virtually uncontrollable spread", StaticColorHexes.Red_Color_Hex) + ".\n(" + StaticColorHexes.AddColorToLabelString("+Even More Spread", StaticColorHexes.Light_Orange_Hex) + ")";
             h.OverrideScrapCost = 7;
-            h.AdditionalWeightMultiplier = 0.2f;
+            h.AdditionalWeightMultiplier = 0.15f;
+            h.AppearsFromBlessedModeRoll = false;
+
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.IsSpecialModule = true;
@@ -78,7 +83,7 @@ namespace ModularMod
         }
 
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 0.8f;
             p.baseData.speed *= 2;

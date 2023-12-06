@@ -31,6 +31,13 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "The Scavenger " + h.ReturnTierLabel();
             h.LabelDescription = "Allows you to scrap Guns.\nGrants +5% damage ("+ StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") and +2.5% movement speed per Scrap.";
+            h.AppearsInRainbowMode = false;
+            h.AppearsFromBlessedModeRoll = false;
+
+            h.AddModuleTag(BaseModuleTags.GENERATION);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AdditionalWeightMultiplier = 0.7f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -63,7 +70,7 @@ namespace ModularMod
             return currentCost; //ALWAYS RETURN CURRENT COST IF YOUR CONDITION ISNT FULFILLED
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 1 + (0.05f * GlobalConsumableStorage.GetConsumableOfName("Scrap") * this.ReturnStack(modulePrinterCore));
         }

@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Phantasm Boost",
             Description = "Cold As The Grave",
-            LongDescription = "Deal an additional 50% (+50% per stack) damage to Jammed enemies. Reload 15% (+15% hyperbolically per stack) faster after every kill. Kill count resets AFTER reloading. Projectiles will now be able to travel through internal walls and pierce debris objects." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal an additional 33% (+33% per stack) damage to Jammed enemies. Reload 15% (+15% hyperbolically per stack) faster after every kill. Kill count resets AFTER reloading. Projectiles will now be able to travel through internal walls and pierce various debris." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("gravecooling_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,12 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("gravecooling_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Phantasm Boost " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal an additional 50% ("+ StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through internal walls and pierce debris objects.";
+            h.LabelDescription = "Deal an additional 33% ("+ StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through\ninternal walls and pierce various debris.";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.CONDITIONAL);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AdditionalWeightMultiplier = 0.66f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
@@ -70,7 +75,7 @@ namespace ModularMod
             p.pierceMinorBreakables = true;
             p.Awake();
             int stack = 1;
-            p.BlackPhantomDamageMultiplier *= 1f + (0.5f * stack);
+            p.BlackPhantomDamageMultiplier *= 1f + (0.33f * stack);
             p.CurseSparks = true;
         }
 
@@ -126,7 +131,7 @@ namespace ModularMod
         {
             modularGunController.ProcessStats();
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.BlackPhantomDamageMultiplier *= 1f + (0.5f * stack);

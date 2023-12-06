@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Rubber Fillings",
             Description = "Ricochet Up",
-            LongDescription = "Adds 2 Bounce to player projectiles (+2 per stack), but divides knockback force by (2 + stack) and reduces accuracy by 15% (+15% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Adds 2 Bounce to player projectiles (+2 per stack), but divides knockback force by 2 (+1 per stack ) and reduces accuracy by 15% (+15% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("rubbercase_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,11 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.85f;
             h.LabelName = "Rubber Fillings" + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 2 Bounces (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ")\nBut divides knockback force by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces accuracy by 15% " + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Adds 2 Bounces (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ")\nbut divides knockback force by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces accuracy by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -64,7 +68,7 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
             BounceProjModifier bounceProjModifier =  p.gameObject.GetOrAddComponent<BounceProjModifier>();

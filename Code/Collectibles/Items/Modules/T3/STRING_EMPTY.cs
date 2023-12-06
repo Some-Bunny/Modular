@@ -39,14 +39,18 @@ namespace ModularMod
             h.LabelDescription = "[Primary_Description_Placeholder]\n[secondaryEffect_Placeholder]\n"+StaticColorHexes.AddColorToLabelString("NullReferenceException: (999+)\nObject not set to an instance of an object.\nDefaultModule.ReturnTeritaryEffectText()\nTileBreaker.ReturnDescriptionLabel()", StaticColorHexes.Red_Color_Hex);
             h.SetTag("modular_module");
             h.AddColorLight(Color.white);
-            h.AdditionalWeightMultiplier = 0.25f;
+            h.AdditionalWeightMultiplier = 0.2f;
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 15;
             h.IsUncraftable = true;
             h.powerConsumptionData.OverridePowerDescriptionLabel = "Uses DefaultModule.PowerConsumption(ModuleQuality.Tier_3, -1)\n(" + StaticColorHexes.AddColorToLabelString("DefaultModule.AdditionalStackPowerConsumption(ModuleQuality.Tier_3, -1)", StaticColorHexes.Orange_Hex) + ")";
             h.EnergyConsumption = 0;
             h.IsSpecialModule = true;
+            h.AppearsInRainbowMode = false;
+            h.AppearsFromBlessedModeRoll = false;
+
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
 
 
@@ -127,7 +131,7 @@ namespace ModularMod
 
         public void FuckupStats(ModulePrinterCore core)
         {
-            float dev = 0.05f + this.ReturnStack(core);
+            float dev = 0.075f + this.ReturnStack(core);
 
             DamageRange *= UnityEngine.Random.Range(1- dev, 1+ dev);
             FireRateRange *= UnityEngine.Random.Range(1- dev, 1+ dev);
@@ -135,7 +139,7 @@ namespace ModularMod
             ReloadRange *= UnityEngine.Random.Range(1- dev, 1+ dev);
         }
 
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             if (UnityEngine.Random.value < this.ReturnStack(modulePrinterCore) / 100)
             {
@@ -513,13 +517,17 @@ namespace ModularMod
             public void Update()
             {
                 ela += BraveTime.DeltaTime;
-                if (ela > 1)
+                if (ela > Duration)
                 {
                     this.aiActor.sprite.renderer.material = mat;
                     this.aiActor.LocalTimeScale = lts;
-                    Destroy(this, 2);
+                    Destroy(this, DestroyTimer);
                 }
             }
+
+            public float Duration = 1;
+            public float DestroyTimer = 2;
+
         }
 
 

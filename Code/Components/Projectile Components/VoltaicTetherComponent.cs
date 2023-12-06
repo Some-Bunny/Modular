@@ -176,6 +176,7 @@ namespace ModularMod
         private HashSet<AIActor> m_damagedEnemies_AOE = new HashSet<AIActor>();
 
 
+
         public GameObject ReturnLongestDistance(float h)
         {
             List<float> distances = new List<float>();
@@ -183,7 +184,7 @@ namespace ModularMod
             for (int i = ExtantTethers.Count - 1; i > -1; i--)
             {
                 var entry = ExtantTethers.ElementAt(i);
-                if (entry.Key && entry.Value)
+                if (entry.Key != null && entry.Value != null)
                 {
                     float d = Vector2.Distance(entry.Key.transform.PositionVector2(), entry.Value.transform.PositionVector2());
                     if (!distances_V.ContainsKey(d))
@@ -194,6 +195,8 @@ namespace ModularMod
                 }
             }
             distances.Sort();    
+            if (distances == null | distances.Count() == 0) { return null; }
+
             return h > distances.Last() ? null : distances_V[distances.Last()];
         }
 

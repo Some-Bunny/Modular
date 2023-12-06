@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Flak Shot",
             Description = "Better Than 1",
-            LongDescription = "Reduces Damage by 20%. Projectiles split into 2(+1 per stack) weaker projectiles that inherit all of the parent projectiles effects. (Split Projectile Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reduces Damage by 30%. Projectiles split into 2 weaker projectiles that inherit all of the parent projectiles effects. (Split Projectile Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("flakshot_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,8 +29,11 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Flak Shot" + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces Damage by 20%. Projectiles split into 2 ("+StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex)+")\nweaker projectiles that inherit all of the\nparent projectiles effects.\n("+StaticColorHexes.AddColorToLabelString("+Split Projectile Damage", StaticColorHexes.Light_Orange_Hex)+")";
-            h.OverrideScrapCost = 6;
+            h.LabelDescription = "Reduces Damage by 30%. Projectiles split into 2\nweaker projectiles that inherit all of the\nparent projectiles effects.\n("+StaticColorHexes.AddColorToLabelString("+Split Projectile Damage", StaticColorHexes.Light_Orange_Hex)+")";
+
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
+            h.OverrideScrapCost = 5;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -44,17 +47,18 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
+            if (p.gameObject.GetComponent<ProjectileSplitController>() != null) { return; }
             if (UnityEngine.Random.value > 0.07f) { return; }
             int stack = 1;
-            p.baseData.damage *= 1 - (1 - (1 / (1 + 0.20f)));
+            p.baseData.damage *= 0.7f;
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
-            split.dmgMultAfterSplit = 0.2f + (0.075f * stack);
-            split.speedMultAfterSplit = 0.7f + (0.025f * stack);
-            split.amtToSplitTo = 1 + stack;
+            split.dmgMultAfterSplit = 0.2f + (0.15f * stack);
+            split.speedMultAfterSplit = 0.7f + (0.1f * stack);
+            split.amtToSplitTo = 2;
             split.SplitsOnDestroy = true;
             split.isPurelyRandomizedSplitAngle = true;
             split.removeComponentAfterUse = true;
-            split.sizeMultAfterSplit = 0.66f;
+            split.sizeMultAfterSplit = 0.75f;
             split.DestroysProjectileOnSplit = false;
             split.DoesSplitPostProcess = true;
 
@@ -68,18 +72,19 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
+            if (p.gameObject.GetComponent<ProjectileSplitController>() != null) { return; }
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 - (1 - (1 / (1 + 0.20f)));
+            p.baseData.damage *= 0.7f;
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
-            split.dmgMultAfterSplit = 0.2f + (0.075f * stack);
-            split.speedMultAfterSplit = 0.7f + (0.025f * stack);
-            split.amtToSplitTo = 1 + stack;
+            split.dmgMultAfterSplit = 0.2f + (0.15f * stack);
+            split.speedMultAfterSplit = 0.7f + (0.1f * stack);
+            split.amtToSplitTo =2;
             split.SplitsOnDestroy = true;
             split.isPurelyRandomizedSplitAngle = true;
             split.removeComponentAfterUse = true;
-            split.sizeMultAfterSplit = 0.66f;
+            split.sizeMultAfterSplit = 0.75f;
             split.DestroysProjectileOnSplit = false;
             split.DoesSplitPostProcess = true;
         }

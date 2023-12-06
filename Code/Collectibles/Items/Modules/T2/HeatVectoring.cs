@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Heat Vectoring",
             Description = "Knock 'Em Down",
-            LongDescription = "Grants 10% (+10% per stack) movement speed. Dodgerolling releases 3 (+2 per stack) projectiles in the direction you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 10% (+10% per stack) movement speed. Dodgerolling releases 5 (+3 per stack) projectiles in the direction opposite of where you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("heatvectoring_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,9 +28,15 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("heatvectoring_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Heat Vectoring " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ") movement speed.\nDodgerolling releases 3 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") projectiles in the direction you're moving.\nProjectiles gain all projectile-based effects.\nEffect recharges after 6 seconds.";
+            h.LabelDescription = "Grants 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ") movement speed.\nDodgerolling releases 5 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") projectiles in the direction\nopposite of where you're moving.\nProjectiles gain all projectile-based effects.\nEffect recharges after 6 seconds.";
             h.AdditionalWeightMultiplier = 0.7f;
             h.EnergyConsumption = 1;
+
+
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -45,7 +51,7 @@ namespace ModularMod
             FakePrefab.MakeFakePrefab(projectile.gameObject);
             DontDestroyOnLoad(projectile.gameObject);
 
-            projectile.baseData.damage = 12f;
+            projectile.baseData.damage = 18f;
             projectile.shouldRotate = true;
             projectile.baseData.range = 1000f;
             projectile.baseData.speed = 35;
@@ -102,18 +108,16 @@ namespace ModularMod
             {
                 AkSoundEngine.PostEvent("Play_ENM_Grip_Master_Eject_01", player.gameObject);
                 int stacc = this.ReturnStack(core);
-                int amount = 1 + (stacc * 2);
+                int amount = 1 + (stacc * 4);
                 int Backwards = (amount / 2) - amount;
 
                 var vfx = player.PlayEffectOnActor((PickupObjectDatabase.GetById(370) as Gun).muzzleFlashEffects.effects[0].effects[0].effect, new Vector3(1, 0.375f));
                 vfx.transform.localRotation = Quaternion.Euler(0, 0, direction.ToAngle() + 180);
                 vfx.transform.localScale = Vector3.one * 0.6f;
                 Destroy(vfx, 1);
-
                 for (int i = Backwards +1; i < (amount / 2) +1   ; i++)
                 {
-
-                    GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(proj.gameObject, player.sprite.WorldCenter, Quaternion.Euler(0f, 0f, direction.ToAngle() + (15 * i)), true);
+                    GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(proj.gameObject, player.sprite.WorldCenter, Quaternion.Euler(0f, 0f, (direction.ToAngle() + (15 * i)) + 180), true);
                     Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
                     if (component != null)
                     {

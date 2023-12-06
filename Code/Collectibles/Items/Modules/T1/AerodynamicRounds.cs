@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Aerodynamic Carvings",
             Description = "Whizz Up",
-            LongDescription = "Increases Damage by\n15% (+15% per stack) and increases projectile speed by 30% (+30% per stack) " + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n10% (+10% per stack) and increases projectile speed by 30% (+30% per stack) " + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aerdynamic_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,10 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Aerodynamic Carvings" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 15% (" + StaticColorHexes.AddColorToLabelString("+15%", StaticColorHexes.Light_Orange_Hex) + ")\nand player bullet speed by 30% (" + StaticColorHexes.AddColorToLabelString("+30%", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Increases Damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ")\nand player bullet speed by 30% (" + StaticColorHexes.AddColorToLabelString("+30%", StaticColorHexes.Light_Orange_Hex) + ")";
+            
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -44,7 +47,7 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.15f) { return; }
             int stack = 1;
-            p.baseData.damage *= 1 + (0.15f * stack);
+            p.baseData.damage *= 1 + (0.1f * stack);
             p.baseData.speed *= 1 + (0.3f * stack);
             p.UpdateSpeed();
         }
@@ -57,10 +60,10 @@ namespace ModularMod
         {
             modulePrinter.OnPostProcessProjectile -= PPP;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.15f * stack);
+            p.baseData.damage *= 1 + (0.1f * stack);
             p.baseData.speed *= 1 + (0.3f * stack);
             p.UpdateSpeed();
         }

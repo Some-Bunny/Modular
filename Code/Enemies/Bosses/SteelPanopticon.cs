@@ -32,7 +32,18 @@ namespace ModularMod
             this.behaviorSpeculator.enabled = false;
             this.specRigidbody.enabled = true;
             this.aiActor.IgnoreForRoomClear = true;
+            GlobalMessageRadio.RegisterObjectToRadio(this.aiActor.gameObject, new List<string>() { "SwitchFlipped" }, RecievedMessage);
         }
+
+        public void RecievedMessage(GameObject Obj, string Message)
+        {
+            isActualFight = true;
+            this.aiActor.healthHaver.AllDamageMultiplier = 3.33f;
+            this.aiActor.healthHaver.minimumHealth = 30;
+            this.aiActor.gameObject.GetComponent<SteelPanopticon.SteelPanopticonController>().isFullFight = true;
+        }
+
+        public bool isActualFight = false;
 
         public void DoDestroy()
         {
@@ -77,6 +88,7 @@ namespace ModularMod
             GameManager.Instance.PreventPausing = false;
             this.aiActor.gameObject.GetComponent<GenericIntroDoer>().enabled = true;
             this.aiActor.gameObject.GetComponent<GenericIntroDoer>().TriggerSequence(GameManager.Instance.BestActivePlayer);
+
             this.aiActor.gameObject.GetComponent<GenericIntroDoer>().OnIntroFinished += OnIntroFinished;
             this.aiActor.IsGone = false;
             yield break;
@@ -90,8 +102,17 @@ namespace ModularMod
         public IEnumerator TriggerFakeOut()
         {
             float e = 0;
-            while (e < 22) { e += BraveTime.DeltaTime; yield return null; }
-
+            if (isActualFight == false)
+            {
+                while (e < 22) { e += BraveTime.DeltaTime; yield return null; }
+            }
+            else
+            {
+                while (this.aiActor.healthHaver.currentHealth > this.aiActor.healthHaver.minimumHealth)
+                {
+                    yield return null;
+                }
+            }
 
             var EntrancePosition = this.aiActor.sprite.WorldCenter + new Vector2(0, 20);
 
@@ -843,6 +864,10 @@ namespace ModularMod
                 Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(companion.spriteAnimator, "intro", new Dictionary<int, string> {
                     {18, "Play_BOSS_RatMech_Roar_01" }
                 });
+                Tk2dSpriteAnimatorUtility.AddEventTriggersToAnimation(companion.spriteAnimator, "intro", new Dictionary<int, string> {
+                    {12, "Trigger" }
+                });
+                
 
                 Material mat2 = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
                 mat2.mainTexture = companion.aiActor.sprite.renderer.material.mainTexture;
@@ -975,6 +1000,7 @@ namespace ModularMod
 
         public class SteelPanopticonController : BraveBehaviour
         {
+            public bool isFullFight = false;
             private void Start()
             {
                 this.aiActor.transform.position += new Vector3(-0.0625f, 0.25f);
@@ -983,8 +1009,16 @@ namespace ModularMod
                 };
                 this.aiActor.parentRoom.Entered += ParentRoom_Entered;
             }
+            private void AnimationEventTriggered(tk2dSpriteAnimator animator, tk2dSpriteAnimationClip clip, int frameIdx)
+            {
 
+                if (clip.GetFrame(frameIdx).eventInfo.Contains("Trigger"))
+                {
 
+                }
+            }
+
+                    
             private void ParentRoom_Entered(PlayerController p)
             {
                 this.aiActor.ParentRoom.BecomeTerrifyingDarkRoom(0.01f, 0.1f, 0.1f, null);
@@ -1064,10 +1098,12 @@ namespace ModularMod
             {
                 GameManager.Instance.Dungeon.PreventPlayerLightInDarkTerrifyingRooms = true;
                 SteelPanopticonController dragunController = base.BulletBank.GetComponent<SteelPanopticonController>();
+                bool isFullFight = base.BulletBank.GetComponent<SteelPanopticonController>().isFullFight;
+
                 dragunController.aiActor.ParentRoom.BecomeTerrifyingDarkRoom(0.5f, 0.1f, 1f, "Play_ENM_darken_world_01");
                 yield return base.Wait(30);
                 dragunController.SpotlightPos = base.BulletBank.aiActor.transform.position + new Vector3(4f, 1f);
-                dragunController.SpotlightSpeed = 10f * PlayerStats.GetTotalEnemyProjectileSpeedMultiplier();
+                dragunController.SpotlightSpeed = (isFullFight == true ? 12 : 10) * PlayerStats.GetTotalEnemyProjectileSpeedMultiplier();
                 dragunController.SpotlightSmoothTime = 0.5f;
                 dragunController.SpotlightVelocity = Vector2.zero;
                 dragunController.SpotlightRadius = 3f;
@@ -1076,8 +1112,9 @@ namespace ModularMod
                 base.PostWwiseEvent("Play_BOSS_RatMech_Target_01", null);
                 base.PostWwiseEvent("Play_BOSS_RatMech_Target_01", null);
 
+
                 base.StartTask(this.UpdateSpotlightShrink());
-                while (base.Tick < 600)
+                while (base.Tick < (isFullFight == true ? 750 : 600))
                 {
                     float dist = Vector2.Distance(this.BulletManager.PlayerPosition(), dragunController.SpotlightPos);
                     dragunController.SpotlightSpeed = Mathf.Lerp(6f, 14f, Mathf.InverseLerp(3f, 10f, dist));
@@ -1227,6 +1264,8 @@ namespace ModularMod
         {
             public override IEnumerator Top()
             {
+                bool isFullFight = base.BulletBank.GetComponent<SteelPanopticonController>().isFullFight;
+
                 base.PostWwiseEvent("Play_BOSS_RatMech_Shutter_01", null);
                 yield return base.Wait(45);
                 for (int i = 0; i < 8; i++)
@@ -1234,7 +1273,7 @@ namespace ModularMod
                     base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(UnityEngine.Random.Range(-1f, 1f), 1.5f)), new Direction(RandomAngle(), DirectionType.Aim, -1f), new Speed(10, SpeedType.Absolute), new The_Eye.Rocket());
                     yield return base.Wait(7.5f);
                 }
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < (isFullFight == true ? 20 : 12); i++)
                 {
                     base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 1.5f)), new Direction(30 * i, DirectionType.Aim, -1f), new Speed(10, SpeedType.Absolute), new SpeedChangingBullet("burst", 3, 120));
                 }
@@ -1251,14 +1290,16 @@ namespace ModularMod
 
             public override IEnumerator Top()
             {
-                for (int i = 0; i < 3; i++)
+                bool isFullFight = base.BulletBank.GetComponent<SteelPanopticonController>().isFullFight;
+
+                for (int i = 0; i < (isFullFight == true ? 4 : 3); i++)
                 {
                     base.PostWwiseEvent("Play_BOSS_RatMech_Target_01", null);
                     this.StartTask(DoCast());
                     for (int g = 0; g < 3; g++)
                     {
                         base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f)), new Direction(RandomAngle(), DirectionType.Aim, -1f), new Speed(1, SpeedType.Absolute), new The_Eye.Rocket());
-                        yield return base.Wait(30);
+                        yield return base.Wait((isFullFight == true ? 35 : 30));
                     }
                 }
                 yield break;
@@ -1369,8 +1410,10 @@ namespace ModularMod
         {
             public override IEnumerator Top()
             {
+                bool isFullFight = base.BulletBank.GetComponent<SteelPanopticonController>().isFullFight;
 
-                for (int e = 0; e < 5; e++)
+
+                for (int e = 0; e < (isFullFight == true ? 7 : 5); e++)
                 {
                     base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f)), new Direction(0, DirectionType.Aim, -1f), new Speed(1, SpeedType.Absolute), new The_Eye.Rocket());
                     base.PostWwiseEvent("Play_BOSS_RatMech_Eye_01", null);
@@ -1378,8 +1421,8 @@ namespace ModularMod
                     {
                         for (int i = -3; i < 4; i++)
                         {
-                            base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f)), new Direction((6.5f * i) + (90 * t) + (45 * e), DirectionType.Aim, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("directedfire", 15, 120));
-                            base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f)), new Direction((6.5f * i) + (90 * t) + (45 * e), DirectionType.Aim, -1f), new Speed(1.5f, SpeedType.Absolute), new SpeedChangingBullet("directedfire", 15, 120));
+                            base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f)), new Direction((6.5f * i) + (90 * t) + (45 * e), DirectionType.Aim, -1f), new Speed(1, SpeedType.Absolute), new SpeedChangingBullet("directedfire", (isFullFight == true ? 12 : 15), 120));
+                            base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f)), new Direction((6.5f * i) + (90 * t) + (45 * e), DirectionType.Aim, -1f), new Speed(1.5f, SpeedType.Absolute), new SpeedChangingBullet("directedfire", (isFullFight == true ? 12 : 15), 120));
                             //base.Fire(Offset.OverridePosition(this.BulletBank.aiActor.sprite.WorldTopCenter - new Vector2(0, 3.5f)), new Direction((5 * i) + (90 * t) + (45 * e), DirectionType.Aim, -1f), new Speed(2, SpeedType.Absolute), new SpeedChangingBullet("directedfire", 15, 120));
                         }
                     }

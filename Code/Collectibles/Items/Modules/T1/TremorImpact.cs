@@ -31,16 +31,20 @@ namespace ModularMod
             h.LabelName = "Tremor Impact " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.85f;
             h.LabelDescription = "Hitting enemies deals 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") of the damage dealt\nto enemies near the hurt enemy.";
+
+            h.AddModuleTag(BaseModuleTags.BASIC);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
-
+            hitEffect = (PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
-
+        public static GameObject hitEffect;
         public static int ID;
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -77,8 +81,12 @@ namespace ModularMod
                             }
                             if (flag)
                             {
-                                ai.PlayEffectOnActor((PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect, new Vector3(0, 0));
+                                ai.PlayEffectOnActor(hitEffect, new Vector3(0, 0));
                                 ai.healthHaver.ApplyDamage(noTarget == ai ? damage / 3 : damage, position, "AoE");
+                                if (ai.knockbackDoer != null && !ai.healthHaver.IsBoss)
+                                {
+                                    ai.knockbackDoer.ApplyKnockback(position - ai.transform.PositionVector2(), 5);
+                                }
                             }
                         }
                     }

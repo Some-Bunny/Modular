@@ -3,12 +3,14 @@ using Alexandria.ItemAPI;
 using Alexandria.Misc;
 using Dungeonator;
 using JuneLib.Items;
+using ModularMod.Code.Components.Misc_Components;
 using ModularMod.Code.Hooks;
 using MonoMod.RuntimeDetour;
 using SaveAPI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -59,33 +61,6 @@ namespace ModularMod
             ScrapVFX = VFX;
             Sparkticle = Module.ModularAssetBundle.LoadAsset<GameObject>("Spark Particle System");
 
-            Up_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonUp"), "Up_B_UI_INV");
-            Down_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonDown"), "Down_B_UI_INV");
-            Left_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonLeft"), "Left_B_UI_INV"); 
-            Right_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRight"), "Right_B_UI_INV");     
-            Close_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Cancel"), "Close_B_UI_INV");
-
-            Googly_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("GooglyMoogly"), "GooglyMoogly_B_UI_INV");
-            Power_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Power"), "Power_B_UI_INV");
-
-
-            UpBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonUpBright"), "UpBright_B_UI_INV");
-            DownBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonDownBright"), "DownBright_B_UI_INV");
-            LeftBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonLeftBright"), "LeftBright_B_UI_INV");
-            RightBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("ButtonRightBright"), "RightBright_B_UI_INV");
-            CloseBright_Button_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("CanceBrightl"), "CloseBright_B_UI_INV");
-
-            Clock_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Clock"), "Clock_B_UI_INV");
-
-            Googly_Bright_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("GooglyMooglyBright"), "GooglyMooglyBright_B_UI_INV");
-
-            T1BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_1"), "T1B_B_UI_INV");
-            T2BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_2"), "T2B_B_UI_INV");
-            T3BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_3"), "T3B_B_UI_INV");
-            T4BS = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("tier_label_4"), "T4B_B_UI_INV");
-
-            Info_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Info"), "Info_B_UI_INV");
-            Info_Bright_UI_String = AtlasEditors.AddUITextImage(Module.ModularAssetBundle.LoadAsset<Texture2D>("Info_Hover"), "Info_B_UI_INV");
 
             ID = pickup.PickupObjectId;
 
@@ -102,7 +77,7 @@ namespace ModularMod
             if (active.PickupObjectId == Scrapper.ID)
             {
                 active.Pickup(player);          
-                (active as Scrapper).SetMode(Mode.COMPUTER);        
+                (active as Scrapper).SetMode("COMPUTER");        
             }
 
         }
@@ -137,100 +112,6 @@ namespace ModularMod
 
         public static int ID;
 
-        public static string Up_Button_UI_String;
-        public static string Down_Button_UI_String;
-        public static string Left_Button_UI_String;
-        public static string Right_Button_UI_String;
-        public static string Close_Button_UI_String;
-
-        public static string Googly_UI_String;
-        public static string Power_UI_String;
-
-        public static string UpBright_Button_UI_String;
-        public static string DownBright_Button_UI_String;
-        public static string LeftBright_Button_UI_String;
-        public static string RightBright_Button_UI_String;
-        public static string CloseBright_Button_UI_String;
-
-        public static string Googly_Bright_UI_String;
-
-        public static string Clock_UI_String;
-
-        public static string Info_UI_String;
-        public static string Info_Bright_UI_String;
-
-
-        public static string T1BS;
-        public static string T2BS;
-        public static string T3BS;
-        public static string T4BS;
-
-
-        public static string ReturnButtonString(ButtonUI moduleTier)
-        {
-            switch (moduleTier)
-            {
-                case ButtonUI.UP:
-                    return "[sprite \"" + Up_Button_UI_String + "\"]";
-                case ButtonUI.DOWN:
-                    return "[sprite \"" + Down_Button_UI_String + "\"]";
-                case ButtonUI.LEFT:
-                    return "[sprite \"" + Left_Button_UI_String + "\"]";
-                case ButtonUI.RIGHT:
-                    return "[sprite \"" + Right_Button_UI_String + "\"]";
-                case ButtonUI.CLOSE:
-                    return "[sprite \"" + Close_Button_UI_String + "\"]";
-                case ButtonUI.GOOGLY:
-                    return "[sprite \"" + Googly_UI_String + "\"]";
-                case ButtonUI.POWER:
-                    return "[sprite \"" + "Power_B_UI_INV" + "\"]";
-                case ButtonUI.CLOCK:
-                    return "[sprite \"" + Clock_UI_String + "\"]";
-                case ButtonUI.INFO:
-                    return "[sprite \"" + Info_UI_String + "\"]";
-                default: return "|[sprite \"" + Close_Button_UI_String + "\"]"; ;
-            }
-        }
-        public static string ReturnButtonStringBright(ButtonUIBright moduleTier)
-        {
-            switch (moduleTier)
-            {
-                case ButtonUIBright.UP_BRIGHT:
-                    return "[sprite \"" + UpBright_Button_UI_String + "\"]";
-                case ButtonUIBright.DOWN_BRIGHT:
-                    return "[sprite \"" + DownBright_Button_UI_String + "\"]";
-                case ButtonUIBright.LEFT_BRIGHT:
-                    return "[sprite \"" + LeftBright_Button_UI_String + "\"]";
-                case ButtonUIBright.RIGHT_BRIGHT:
-                    return "[sprite \"" + RightBright_Button_UI_String + "\"]";
-                case ButtonUIBright.CLOSE_BRIGHT:
-                    return "[sprite \"" + CloseBright_Button_UI_String + "\"]";
-                case ButtonUIBright.GOOGLY_BRIGHT:
-                    return "[sprite \"" + Googly_UI_String + "\"]";
-                case ButtonUIBright.T1B:
-                    return "[sprite \"" + T1BS + "\"]";
-                case ButtonUIBright.T2B:
-                    return "[sprite \"" + T2BS + "\"]";
-                case ButtonUIBright.T3B:
-                    return "[sprite \"" + T3BS + "\"]";
-                case ButtonUIBright.T4B:
-                    return "[sprite \"" + T4BS + "\"]";
-                case ButtonUIBright.INFO_BRIGHT:
-                    return "[sprite \"" + Info_Bright_UI_String + "\"]";
-                default: return "[sprite \"" + Close_Button_UI_String + "\"]"; ;
-            }
-        }
-
-        public enum ButtonUI
-        {
-            UP, DOWN, LEFT, RIGHT, CLOSE, GOOGLY, POWER, CLOCK, INFO
-        }
-        public enum ButtonUIBright
-        {
-            UP_BRIGHT, DOWN_BRIGHT, LEFT_BRIGHT, RIGHT_BRIGHT, CLOSE_BRIGHT, GOOGLY_BRIGHT,
-            T1B, T2B, T3B, T4B, INFO_BRIGHT
-        }
-
         public static GameObject ScrapVFX;
         public static GameObject Sparkticle;
 
@@ -238,13 +119,19 @@ namespace ModularMod
         public static int ReturnPickupScrapValue(PickupObject obj)
         {
             int c = -1;
-            if (obj is IounStoneOrbitalItem) {c = 2; }
+            if (obj == null) { return c; }
+
             if (obj is HealthPickup) { c = (int)((obj as HealthPickup).healAmount * 2) + (obj as HealthPickup).armorAmount; }
             if (obj is AmmoPickup)  { c = Amo((obj as AmmoPickup).mode);}
             if (obj is KeyBulletPickup) { c = 1 + (obj as KeyBulletPickup).numberKeyBullets + ((obj as KeyBulletPickup).IsRatKey ? 5 : 0); }
             if (obj is SilencerItem) { c = 2; }
             if (obj is PassiveItem) { c = (obj as PassiveItem).Owner ? -1 : ReturnAmountBasedOnTier(obj.quality); }
             if (obj is PlayerItem) { c = (obj as PlayerItem).LastOwner  ? -1 : ReturnAmountBasedOnTier(obj.quality); }
+            if (obj.PickupObjectId == 565) { c = 1; }
+            if (obj.PickupObjectId == 127) { c = 1; }
+            if (obj.PickupObjectId == 148) { c = 1; }
+            if (obj.PickupObjectId == 641) { c = 5; }
+
             if (OverrideCustomScrapCheck != null) 
             {
                 c = OverrideCustomScrapCheck(obj, c);
@@ -267,8 +154,6 @@ namespace ModularMod
         public static Func<PickupObject, int, int> OverrideCustomScrapCheck;
 
 
-
-
         public override void Start()
         {
 
@@ -278,6 +163,8 @@ namespace ModularMod
         {
             switch(itemQuality)
             {
+                case ItemQuality.COMMON:
+                    return 1;
                 case ItemQuality.D:
                     return 1;
                 case ItemQuality.C:
@@ -299,18 +186,44 @@ namespace ModularMod
             if (p.CurrentItem != this) { return; }
             SwitchMode();
         }
-
         public override void Update()
         {
             if (base.LastOwner != null && Inited == false)
             {
                 Inited = true;
-                SetMode(Mode.COMPUTER);
+                SetMode("COMPUTER");
                 base.LastOwner.OnReloadPressed += ReloadPressed;
+                base.LastOwner.OnNewFloorLoaded += ONFE;
+                ONFE(base.LastOwner);
                 base.LastOwner.startingActiveItemIds.Add(this.PickupObjectId);
             }
             base.Update();
         }
+
+        private IEnumerator Wait()
+        {
+            yield return null;
+            if (GameManager.Instance.Dungeon.data.Entrance.hierarchyParent == null) { yield break; }
+            gunberMunchers = new List<GunberMuncherController>();
+
+            GunberMuncherController[] muncher = GameManager.Instance.Dungeon.data.Entrance.hierarchyParent.parent.GetComponentsInChildren<GunberMuncherController>(true);
+            if (muncher != null && muncher.Length > 0)
+            {
+                foreach (GunberMuncherController shope in muncher)
+                {
+                    gunberMunchers.Add(shope);
+                }
+            }
+            yield break;
+        }
+
+
+        public void ONFE(PlayerController playerController)
+        {
+            playerController.StartCoroutine(Wait());
+        }
+
+        public List<GunberMuncherController> gunberMunchers;
 
         public override void OnPreDrop(PlayerController user)
         {
@@ -325,40 +238,221 @@ namespace ModularMod
         public void SwitchMode()
         {
             AkSoundEngine.PostEvent("Play_OBJ_metacoin_collect_01", base.gameObject);
-            if (currentMode == Mode.SCRAP)
+            Mode++;
+            if (Mode == currentModes.Count())
             {
-                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("computer_core"));
-                currentMode = Mode.COMPUTER;
+                Mode = 0;
             }
-            else
-            {
-                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("directive_scrap"));
-                currentMode = Mode.SCRAP;
-            }
+            var ActiveMode = currentModes[Mode];
+            currentMode = ActiveMode.Mode_Name;
+            this.sprite.SetSprite(ActiveMode.spriteCollection.GetSpriteIdByName(ActiveMode.Sprite_Name));
         }
-        public void SetMode(Mode mode)
+        public void SetMode(string mode)
         {
-            currentMode = mode;
-            if (currentMode == Mode.SCRAP)
+            foreach (var entry in currentModes)
             {
-                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("directive_scrap"));
-            }
-            else
-            {
-                this.sprite.SetSprite(StaticCollections.Item_Collection.GetSpriteIdByName("computer_core"));
+                if (mode == entry.Mode_Name)
+                {
+                    Mode = currentModes.FindIndex(self => self.Mode_Name == entry.Mode_Name);
+                    currentMode = entry.Mode_Name;
+                    this.sprite.SetSprite(entry.spriteCollection.GetSpriteIdByName(entry.Sprite_Name));
+                }
             }
         }
 
-
-
-        public Mode currentMode = Mode.SCRAP;
-
-        public enum Mode
+        public void AddMode(ActiveItemMode mode)
         {
-            SCRAP,
-            COMPUTER
+            var m = currentModes.Where(self => self.Mode_Name == mode.Mode_Name);
+            if (m.Count() > 0) { return; }
+            currentModes.Add(mode);
         }
 
+        public void RemoveMode(ActiveItemMode mode)
+        {
+            var m = currentModes.Where(self => self.Mode_Name == mode.Mode_Name);
+            if (m.Count() == 0) { return; }
+            if (mode.Removable == false) { return; }
+            currentModes.Remove(mode);
+            if (currentMode == mode.Mode_Name) { SwitchMode(); }
+
+        }
+
+
+        private int Mode = 0;
+
+        public string currentMode = "SCRAP";
+        public struct ActiveItemMode
+        {
+            public tk2dSpriteCollectionData spriteCollection;
+            public string Sprite_Name;
+            public string Mode_Name;
+            public bool Removable;
+            public Func<PlayerController, Scrapper, bool> CanBeUsed;
+            public Action<PlayerController, Scrapper> OnUsed;
+        }
+
+        public List<ActiveItemMode> currentModes = new List<ActiveItemMode>()
+        {
+            new ActiveItemMode()
+            {
+                Mode_Name = "COMPUTER",
+                spriteCollection = StaticCollections.Item_Collection,
+                Sprite_Name = "computer_core",
+                Removable = false,
+                CanBeUsed = ComputerCanBeUsed,
+                OnUsed = DoComputerUse,
+            },
+            new ActiveItemMode()
+            {
+                Mode_Name = "SCRAP",
+                spriteCollection = StaticCollections.Item_Collection,
+                Sprite_Name = "directive_scrap",
+                Removable = false,
+                CanBeUsed = ScrapCanBeUsed,
+                OnUsed = DoEffectScrap,
+            },
+        };
+        public static bool ScrapCanBeUsed(PlayerController user, Scrapper scrapper)
+        {
+            
+
+            for (int i = allPickups.Count - 1; i > -1; i--)
+            {
+                PickupObject pickup = allPickups[i];
+                if (pickup == null) { allPickups.RemoveAt(i); }
+                else
+                {
+                    float sqrMagnitude = (user.CenterPosition - pickup.transform.position.XY()).sqrMagnitude;
+                    if (sqrMagnitude <= 25f)
+                    {
+                        if (Mathf.Sqrt(sqrMagnitude) < 2f)
+                        {
+                            int scrap = ReturnPickupScrapValue(pickup);
+                            if (scrap > 0)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            List<DebrisObject> allDebris = StaticReferenceManager.AllDebris;
+            if (allDebris != null)
+            {
+                for (int e = 0; e < allDebris.Count; e++)
+                {
+                    DebrisObject debrisObject = allDebris[e];
+                    float sqrMagnitude = (user.CenterPosition - debrisObject.transform.position.XY()).sqrMagnitude;
+                    if (debrisObject && debrisObject.IsPickupObject && sqrMagnitude <= 25f && Mathf.Sqrt(sqrMagnitude) < 2f)
+                    {
+                        int scrap = ReturnPickupScrapValue(debrisObject.GetComponent<PickupObject>());
+                        if (scrap > 0)
+                        {
+
+                            if (!allPickups.Contains(debrisObject.GetComponent<PickupObject>())) { allPickups.Add(debrisObject.GetComponent<PickupObject>()); }
+                            return true;
+                        }
+                        Gun g  = debrisObject.GetComponentInChildren<Gun>();
+                        if (g != null)
+                        {
+                            int scrapGun = ReturnPickupScrapValue(g);
+                            if (scrapGun > 0)
+                            {
+                                if (!allPickups.Contains(g)) { allPickups.Add(g); }
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i = scrapper.gunberMunchers.Count - 1; i > -1; i--)
+            {
+                GunberMuncherController shope = scrapper.gunberMunchers[i];
+                if (Vector2.Distance(shope.sprite.WorldCenter, user.sprite.WorldCenter) < 3)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+       
+
+        public static bool ComputerCanBeUsed(PlayerController user, Scrapper scrapper)
+        {
+            return user.IsInCombat == true ? false : true;
+        }
+
+        public static void DoEffectScrap(PlayerController user, Scrapper scrapper)
+        {
+            IPlayerInteractable lastInteractable = user.GetLastInteractable();
+            if (lastInteractable != null)
+            {
+                if (lastInteractable is HeartDispenser)
+                {
+                    HeartDispenser exists = lastInteractable as HeartDispenser;
+                    if (exists && HeartDispenser.CurrentHalfHeartsStored > 0)
+                    {
+                        if (HeartDispenser.CurrentHalfHeartsStored > 1)
+                        {
+                            HeartDispenser.CurrentHalfHeartsStored -= 2;
+                        }
+                        else
+                        {
+                            HeartDispenser.CurrentHalfHeartsStored--;
+                        }
+                        return;
+                    }
+                }
+            }
+
+            for (int i = allPickups.Count - 1; i > -1; i--)
+            {
+                PickupObject pickup = allPickups[i];
+                if (pickup == null) { allPickups.RemoveAt(i); }
+                else
+                {
+
+                    float sqrMagnitude = (user.CenterPosition - pickup.transform.position.XY()).sqrMagnitude;
+                    if (sqrMagnitude <= 25f)
+                    {
+                        if (Mathf.Sqrt(sqrMagnitude) < 2f)
+                        {
+                            int scrap = ReturnPickupScrapValue(pickup);
+                            if (scrap > 0)
+                            {
+                                if (OnAnythingScrapped != null) { OnAnythingScrapped(pickup); }
+                                scrapper.DoSpawnVFX(pickup.sprite, scrap);
+                            }
+                        }
+                    }
+                }
+            }
+            for (int i = scrapper.gunberMunchers.Count - 1; i > -1; i--)
+            {
+                GunberMuncherController shope  = scrapper.gunberMunchers[i];
+                if (Vector2.Distance(shope.sprite.WorldCenter, user.sprite.WorldCenter) < 3)
+                {
+
+                    var silliness = shope.gameObject.GetOrAddComponent<GunMuncherGoSilly>();
+                    silliness.scrapper = scrapper;
+                    silliness.muncherController = shope;
+                    silliness.DoJump();
+                }
+            }
+
+            
+        }
+        public static void DoComputerUse(PlayerController user, Scrapper scrapper)
+        {
+            if (scrapper.extant_Inventory_Controller != null)
+            {
+                scrapper.extant_Inventory_Controller.ObliterateUI();
+                scrapper.extant_Inventory_Controller = null;
+            }
+            scrapper.extant_Inventory_Controller = ScriptableObject.CreateInstance<ModuleInventoryController>();
+            scrapper.extant_Inventory_Controller.DoQuickStart(user);
+        }
 
 
         public override bool CanBeUsed(PlayerController user)
@@ -369,76 +463,14 @@ namespace ModularMod
             }
             else
             {
-                if (currentMode == Mode.SCRAP)
+                if(currentModes[Mode].CanBeUsed != null)
                 {
-                    for (int i = allPickups.Count - 1; i > -1; i--)
-                    {
-                        PickupObject pickup = allPickups[i];
-                        if (pickup == null) { allPickups.RemoveAt(i); } else 
-                        {
-                            float sqrMagnitude = (user.CenterPosition - pickup.transform.position.XY()).sqrMagnitude;
-                            if (sqrMagnitude <= 25f)
-                            {
-                                if (Mathf.Sqrt(sqrMagnitude) < 2f)
-                                {
-                                    int scrap = ReturnPickupScrapValue(pickup);
-                                    if (scrap > 0)
-                                    {
-                                        return true;
-                                    }
-                                }
-                            }                         
-                        }
-                    }
-
-                    List<DebrisObject> allDebris = StaticReferenceManager.AllDebris;
-                    
-                    if (allDebris != null)
-                    {
-                        for (int e = 0; e < allDebris.Count; e++)
-                        {
-                            DebrisObject debrisObject = allDebris[e];
-                            if (debrisObject && debrisObject.IsPickupObject)
-                            {
-
-                                float sqrMagnitude = (user.CenterPosition - debrisObject.transform.position.XY()).sqrMagnitude;
-                                if (sqrMagnitude <= 25f)
-                                {
-                                    if (Mathf.Sqrt(sqrMagnitude) < 2f)
-                                    {
-                                        int scrap = ReturnPickupScrapValue(debrisObject.GetComponent<PickupObject>());
-                                        if (scrap > 0)
-                                        {
-                                            
-                                            if (!allPickups.Contains(debrisObject.GetComponent<PickupObject>())) { allPickups.Add(debrisObject.GetComponent<PickupObject>()); }
-                                            return true;
-                                        }
-                                        foreach (Component component in debrisObject.GetComponentsInChildren<Component>())
-                                        {
-                                            if (component is Gun)
-                                            {
-                                                Gun peepee = (component as Gun);
-                                                int scrapGun = ReturnPickupScrapValue(peepee);
-                                                if (scrapGun > 0)
-                                                {
-
-                                                    if (!allPickups.Contains(peepee)) { allPickups.Add(peepee); }
-                                                    return false;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }           
-                            }
-                        }
-                    }
-                   
+                    return currentModes[Mode].CanBeUsed(user, this);
                 }
                 else
                 {
-                    return user.IsInCombat == true ? false : true;
+                    return true;
                 }
-                return false;
             }
         }
 
@@ -491,13 +523,12 @@ namespace ModularMod
                     float f = BraveUtility.RandomAngle();
                     for (int e = 0; e < ScrapCount; e++)
                     {
-                        var thing = LootEngine.SpawnItem(PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject, Tk2dAnimator.sprite.WorldTopCenter - new Vector2(0.125f, 0.375f), Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, ScrapCount, e), 1), ScrapCount > 1 ? 2 : 0, true, true);
+                        var thing = LootEngine.SpawnItem(PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject, Tk2dAnimator.sprite.WorldTopCenter - new Vector2(0.125f, 0.375f), Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, ScrapCount, e), 1), ScrapCount > 1 ? 1.25f : 0, true, true);
                         thing.gameObject.SetActive(true);
                     }
                 }
             };
         }
-
         public IEnumerator MoveScrap(GameObject spriteObject, float duration, Vector2 newPosition, float scaleOld = 1, float scaleNew = 1, bool Destroyed = false)
         {
             Vector2 oldPosition = spriteObject.transform.PositionVector2();
@@ -519,61 +550,23 @@ namespace ModularMod
         public static Action<PickupObject> OnAnythingScrapped;
         public override void DoEffect(PlayerController user)
         {
-            if (currentMode == Mode.SCRAP)
+            if (currentModes[Mode].OnUsed != null)
             {
-                IPlayerInteractable lastInteractable = user.GetLastInteractable();
-                if (lastInteractable != null)
-                {
-                    if (lastInteractable is HeartDispenser)
-                    {
-                        HeartDispenser exists = lastInteractable as HeartDispenser;
-                        if (exists && HeartDispenser.CurrentHalfHeartsStored > 0)
-                        {
-                            if (HeartDispenser.CurrentHalfHeartsStored > 1)
-                            {
-                                HeartDispenser.CurrentHalfHeartsStored -= 2;
-                            }
-                            else
-                            {
-                                HeartDispenser.CurrentHalfHeartsStored--;
-                            }
-                            return;
-                        }
-                    }
-                }
-
-                for (int i = allPickups.Count - 1; i > -1; i--)
-                {
-                    PickupObject pickup = allPickups[i];
-                    if (pickup == null) { allPickups.RemoveAt(i); }
-                    else
-                    {
-
-                        float sqrMagnitude = (user.CenterPosition - pickup.transform.position.XY()).sqrMagnitude;
-                        if (sqrMagnitude <= 25f)
-                        {
-                            if (Mathf.Sqrt(sqrMagnitude) < 2f)
-                            {
-                                int scrap = ReturnPickupScrapValue(pickup);
-                                if (scrap > 0)
-                                {
-                                    if (OnAnythingScrapped != null) { OnAnythingScrapped(pickup); }
-                                    DoSpawnVFX(pickup.sprite, scrap);
-                                }
-                            }
-                        }
-                    }          
-                }
+                currentModes[Mode].OnUsed(user, this);
             }
             else
             {
-                if (extant_Inventory_Controller != null)
-                {
-                    extant_Inventory_Controller.ObliterateUI();
-                    extant_Inventory_Controller = null;
-                }
-                extant_Inventory_Controller = ScriptableObject.CreateInstance<ModuleInventoryController>();
-                extant_Inventory_Controller.DoQuickStart(user);
+                //Debug.LogWarning("SOMEONE FORGOT TO MAKE THEIR ACTIVE MODE USABLE, YA DANGUS!");
+            }
+
+            /*
+            if (currentMode == "SCRAP")
+            {
+                
+            }
+            else
+            {
+
                 /*
                 if (extant_craft_button != null) { Destroy(extant_craft_button.gameObject); }
                 if (extant_Inventory_button != null) { Destroy(extant_Inventory_button.gameObject); }
@@ -634,22 +627,23 @@ namespace ModularMod
                     label.Invalidate();
                 };
                 */
-                //CLOSE
-                /*
-                extant_close_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, -0.5f), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
-                extant_close_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
-                {
-                    if (extant_Inventory_button) { extant_Inventory_button.Inv(); }
-                    if (extant_craft_button) { extant_craft_button.Inv(); }
-                    if (extant_close_button) { extant_close_button.Inv(); }
-                };  
-                extant_close_button.MouseHover = (label, boolean) =>
-                {
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
-                    label.Invalidate();
-                };
-                */
-            }
+            //CLOSE
+            /*
+            extant_close_button = Toolbox.GenerateText(user.transform, new Vector2(1.5f, -0.5f), 0.66f, Scrapper.ReturnButtonString(Scrapper.ButtonUI.CLOSE), cl);
+            extant_close_button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
+            {
+                if (extant_Inventory_button) { extant_Inventory_button.Inv(); }
+                if (extant_craft_button) { extant_craft_button.Inv(); }
+                if (extant_close_button) { extant_close_button.Inv(); }
+            };  
+            extant_close_button.MouseHover = (label, boolean) =>
+            {
+                label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(155, 155, 155, 155);
+                label.Invalidate();
+            };
+            */
+            //}
+
         }
 
 
@@ -662,7 +656,6 @@ namespace ModularMod
 
         public ModuleInventoryController extant_Inventory_Controller;
         public ModuleCrafingController extant_Crafting_Controller;
-
     }
 }
 

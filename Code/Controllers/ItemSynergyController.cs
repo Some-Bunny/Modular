@@ -15,6 +15,7 @@ using MonoMod.RuntimeDetour;
 using System.Reflection;
 using DaikonForge.Tween;
 using System.ComponentModel;
+using static tk2dSpriteCollectionDefinition;
 
 namespace ModularMod
 {
@@ -29,13 +30,131 @@ namespace ModularMod
             new Hook(typeof(SprenOrbitalItem).GetMethod("HandleTransformationDuration", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("HandleTransformationDurationHook"));
             new Hook(typeof(SprenOrbitalItem).GetMethod("DetransformSpren", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("DetransformSprenHook"));
 
+            new Hook(typeof(TripleTapEffect).GetMethod("HandleProjectileDestruction", BindingFlags.Instance | BindingFlags.NonPublic), typeof(ItemSynergyController).GetMethod("YurkeyModularHook"));
+
             ChooseModuleController.AdditionalOptionsModifier += ReturnAdditionalOptions;
             ChooseModuleController.ModifyOmegaModuleChance += OmegaChance;
             ChooseModuleController.OnModuleSelectGunDestroyed += OGEE;
+            //ChooseModuleController.CarrierModifier += CarrierModifier;
+
             Scrapper.OnAnythingScrapped += OGEE_2;
 
         }
 
+        public static void YurkeyModularHook(Action<TripleTapEffect, Projectile> orig, TripleTapEffect self, Projectile source)
+        {
+            if (self.m_player.PlayerHasCore() != null)
+            {
+                if (source.PlayerProjectileSourceGameTimeslice == -1f)
+                {
+                    return;
+                }
+                if (!self.m_slicesFired.ContainsKey(source.PlayerProjectileSourceGameTimeslice))
+                {
+                    return;
+                }
+                if (self.m_player && source)
+                {
+                    if (source.HasImpactedEnemy)
+                    {
+                        self.m_slicesFired.Remove(source.PlayerProjectileSourceGameTimeslice);
+                        if (self.m_player.HasActiveBonusSynergy(CustomSynergyType.GET_IT_ITS_BOWLING, false))
+                        {
+                            self.m_shotCounter = Mathf.Min(self.RequiredSequentialShots, self.m_shotCounter + source.NumberHealthHaversHit);
+                        }
+                        else
+                        {
+                            self.m_shotCounter++;
+                        }
+                        if (self.m_shotCounter >= self.RequiredSequentialShots)
+                        {
+                            self.m_shotCounter -= self.RequiredSequentialShots;
+                            self.m_player.PlayerHasCore().NextShotCrit = true;
+                        }
+                    }
+                    else
+                    {
+                        self.m_slicesFired[source.PlayerProjectileSourceGameTimeslice] = self.m_slicesFired[source.PlayerProjectileSourceGameTimeslice] - 1;
+                        if (self.m_slicesFired[source.PlayerProjectileSourceGameTimeslice] == 0)
+                        {
+                            self.m_shotCounter = 0;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                orig(self, source);
+            }
+        }
+
+
+
+        public static List<ChooseModuleController.ModuleUICarrier> CarrierModifier(List<ChooseModuleController.ModuleUICarrier> moduleUICarriers, ChooseModuleController chooseModuleController)
+        {
+            if (chooseModuleController.g.PickupObjectId == 90)
+            {
+                moduleUICarriers.Add(new ChooseModuleController.ModuleUICarrier() 
+                {
+                    defaultModule = PickupObjectDatabase.GetById(BeholsterEye.ID).GetComponent<DefaultModule>(),
+                    controller = chooseModuleController,
+                    isUsingAlternate = chooseModuleController.isAlt
+                });
+                moduleUICarriers.Shuffle();
+            }
+            if (chooseModuleController.g.PickupObjectId == 27)
+            {
+                moduleUICarriers.Add(new ChooseModuleController.ModuleUICarrier()
+                {
+                    defaultModule = PickupObjectDatabase.GetById(DuckHunter.ID).GetComponent<DefaultModule>(),
+                    controller = chooseModuleController,
+                    isUsingAlternate = chooseModuleController.isAlt
+                });
+                moduleUICarriers.Shuffle();
+            }
+            if (chooseModuleController.g.PickupObjectId == 577)
+            {
+                moduleUICarriers.Add(new ChooseModuleController.ModuleUICarrier()
+                {
+                    defaultModule = PickupObjectDatabase.GetById(CarpalTunnel.ID).GetComponent<DefaultModule>(),
+                    controller = chooseModuleController,
+                    isUsingAlternate = chooseModuleController.isAlt
+                });
+                moduleUICarriers.Shuffle();
+            }
+            if (chooseModuleController.g.PickupObjectId == 748)
+            {
+                moduleUICarriers.Add(new ChooseModuleController.ModuleUICarrier()
+                {
+                    defaultModule = PickupObjectDatabase.GetById(BrilliantSun.ID).GetComponent<DefaultModule>(),
+                    controller = chooseModuleController,
+                    isUsingAlternate = chooseModuleController.isAlt
+                });
+                moduleUICarriers.Shuffle();
+            }
+            if (chooseModuleController.g.PickupObjectId == 198)
+            {
+                moduleUICarriers.Add(new ChooseModuleController.ModuleUICarrier()
+                {
+                    defaultModule = PickupObjectDatabase.GetById(WillingSpirit.ID).GetComponent<DefaultModule>(),
+                    controller = chooseModuleController,
+                    isUsingAlternate = chooseModuleController.isAlt
+                });
+                moduleUICarriers.Shuffle();
+            }
+            if (chooseModuleController.g.PickupObjectId == 149)
+            {
+                moduleUICarriers.Add(new ChooseModuleController.ModuleUICarrier()
+                {
+                    defaultModule = PickupObjectDatabase.GetById(MusicBox.ID).GetComponent<DefaultModule>(),
+                    controller = chooseModuleController,
+                    isUsingAlternate = chooseModuleController.isAlt
+                });
+                moduleUICarriers.Shuffle();
+            }
+            return moduleUICarriers;    
+        }
+        
         public static void OGEE(Gun g)
         {
             if (g.PickupObjectId == 514)
@@ -52,7 +171,6 @@ namespace ModularMod
                     UnityEngine.Object.Destroy(o, 0.7f);
                 }
                 var q = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(449) as TeleporterPrototypeItem).TelefragVFXPrefab, g.sprite.WorldCenter, Quaternion.identity);
-
             }
             if (g.PickupObjectId == 520 | g.PickupObjectId == 337)
             {
@@ -70,6 +188,10 @@ namespace ModularMod
                 {
                     LootEngine.SpawnItem(PickupObjectDatabase.GetById(67).gameObject, g.sprite.WorldTopCenter, Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(f, 3, i), 1), 2, true, true);
                 }
+            }
+            if (g.PickupObjectId == 626)
+            {
+                LootEngine.SpawnItem(PickupObjectDatabase.GetById(BlockOfCheese.CheeseID).gameObject, g.sprite.WorldTopCenter,Vector2.zero, 2, true, true);
             }
         }
         public static void OGEE_2(PickupObject g)

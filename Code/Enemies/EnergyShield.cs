@@ -401,6 +401,8 @@ namespace ModularMod
                     this.StartCoroutine(WAIT());
                 }
 
+
+
                 bool clear = ShouldCountForRoomProgress();
                 if (STOP == true) { return; }
                 this.aiActor.IgnoreForRoomClear = clear;
@@ -429,7 +431,7 @@ namespace ModularMod
                                 ZZap.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("end");
                             }
                             ZZap = UnityEngine.Object.Instantiate(EnergyShield.VFX_Object_Electric, this.sprite.WorldBottomLeft - new Vector2(0.5f, 0.125f), Quaternion.identity);
-                            ZZap.transform.parent = enemy.transform;
+                            ZZap.transform.parent = this.transform;
                         }
                     }
                 }

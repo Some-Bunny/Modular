@@ -86,8 +86,6 @@ namespace ModularMod
 
         public static Dungeon GetOrLoadByNameHook(Func<string, Dungeon> orig, string name)
         {
-
-
             if (!GameManager.Instance.customFloors.Contains(PastDefinition))
             {
                 GameManager.Instance.customFloors.Add(PastDefinition);

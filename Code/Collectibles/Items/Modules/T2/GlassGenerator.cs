@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Glass Generator",
             Description = "See The Use",
-            LongDescription = "Grants 2 Glass Guon Stones. Picking up any Module gives 2 (+2 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone (+More Fire Rate per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 2 Glass Guon Stones. Picking up any Module gives 2 (+2 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,10 +29,17 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Glass Generator " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 2 Glass Guon Stones.\nWhilte active, picking up any Module\ngives 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") Glass Guon Stones.\nVery slightly increases rate of fire per Glass Guon Stone\n("+ StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Grants 2 Glass Guon Stones.\nWhilte active, picking up any Module\ngives 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") Glass Guon Stones.\nSlightly increases rate of fire per Glass Guon Stone.";
             h.EnergyConsumption = 1;
-            h.AddToGlobalStorage();
+            h.AppearsInRainbowMode = false;
+            h.AppearsFromBlessedModeRoll = false;
+
+            h.AddModuleTag(BaseModuleTags.GENERATION);
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AdditionalWeightMultiplier = 0.8f;
+
+            h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -75,7 +82,7 @@ namespace ModularMod
 
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            return f - (f - (f / (1 + 0.05f * Multiplier(player, modulePrinter))));
+            return f - (f - (f / (1 + 0.0625f * Multiplier(player, modulePrinter))));
         }
 
         public int Multiplier(PlayerController player, ModulePrinterCore modulePrinter)
@@ -88,7 +95,6 @@ namespace ModularMod
                     dM++;
                 }
             }
-            dM *= this.ReturnStack(modulePrinter);
             return dM;
         }
 

@@ -38,13 +38,19 @@ namespace ModularMod
             h.LabelName = "Tank Carapace " + h.ReturnTierLabel();
             h.EnergyConsumption = 2;
             h.LabelDescription = "Grants a damage and fire rate boost (" + StaticColorHexes.AddColorToLabelString("+Damage and Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")\nthe longer you have been standing still.\nWhile standing still, gain up to 8 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") defensive orbitals.\n" +StaticColorHexes.AddColorToLabelString("Lose all bonuses and orbitals when you start moving again.", StaticColorHexes.Red_Color_Hex);
+
+            h.AddModuleTag(BaseModuleTags.DEFENSIVE);
+            h.AddModuleTag(BaseModuleTags.UNIQUE);
+
+            h.OverrideScrapCost = 10;
+            h.AdditionalWeightMultiplier = 0.7f;
+
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.AdditionalWeightMultiplier = 0.8f;
+
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
-            h.OverrideScrapCost = 12;
             ID = h.PickupObjectId;
 
 
@@ -113,7 +119,7 @@ namespace ModularMod
         public void OnUpdate(ModulePrinterCore printer, PlayerController player)
         {
             int stack = this.ReturnStack(printer);
-            c += printer.isStandingStill() ? BraveTime.DeltaTime : -(BraveTime.DeltaTime * 2);
+            c += printer.isStandingStill() ? BraveTime.DeltaTime : -(BraveTime.DeltaTime * 4);
             if (c < 0 && printer.isStandingStill()) { c = 0; }
             if (c > 0 && !printer.isStandingStill()) { c = 0; }
 
@@ -156,9 +162,9 @@ namespace ModularMod
         {
             return f / Multiplier;
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + (Multiplier / 5);
+            p.baseData.damage *= 1 + (Multiplier / 8);
             p.baseData.speed *= 1 + (Multiplier / 5);
             p.baseData.force *= Multiplier;
             p.UpdateSpeed();
@@ -188,9 +194,12 @@ namespace ModularMod
 
         public void Start()
         {
-            var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect, this.sprite.WorldCenter, Quaternion.identity);
-            obj.transform.parent = this.transform;
-            Destroy(obj, 2);
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                var obj = UnityEngine.Object.Instantiate((PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect, this.sprite.WorldCenter, Quaternion.identity);
+                obj.transform.parent = this.transform;
+                Destroy(obj, 2);
+            }
         }
 
         public float Cooldown = 1;
@@ -207,11 +216,13 @@ namespace ModularMod
                     {
                         if (Vector2.Distance(enemy.transform.PositionVector2(), this.transform.PositionVector2()) < 2)
                         {
-                            GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-                            GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, sprite.WorldCenter, Quaternion.identity);
-                            blankObj.transform.localScale = Vector3.one * 0.3f;
-
-                            Destroy(blankObj, 2f);
+                            if (ConfigManager.DoVisualEffect == true)
+                            {
+                                GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+                                GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, sprite.WorldCenter, Quaternion.identity);
+                                blankObj.transform.localScale = Vector3.one * 0.2f;
+                                Destroy(blankObj, 2f);
+                            }
                             Cooldown = 5;
                             Exploder.DoRadialPush(sprite.WorldCenter, 40 * Stack, 2);
                             Exploder.DoRadialKnockback(sprite.WorldCenter, 40 * Stack, 2);

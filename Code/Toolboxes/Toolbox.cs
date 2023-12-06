@@ -11,8 +11,11 @@ using Alexandria.ItemAPI;
 using Alexandria.PrefabAPI;
 using Dungeonator;
 using FullInspector;
+using HarmonyLib;
+using HutongGames.PlayMaker.Actions;
 using Planetside;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using Random = System.Random;
 
 namespace ModularMod
@@ -20,6 +23,198 @@ namespace ModularMod
     public static class Toolbox
     {
 
+        public static float NearestCardinalWallAngle(this Vector2 pos, float minDistance, float maxDistance = 200)
+        {
+            Dictionary<float, float> f1 = new Dictionary<float, float>();
+            List<float> f = new List<float>();
+
+            Func<SpeculativeRigidbody, bool> rigidbodyExcluder = (SpeculativeRigidbody otherRigidbody) => otherRigidbody.minorBreakable && !otherRigidbody.minorBreakable.stopsBullets;
+            int rayMask2 = CollisionMask.LayerToMask(CollisionLayer.HighObstacle, CollisionLayer.BulletBlocker, CollisionLayer.PlayerHitBox, CollisionLayer.BulletBreakable);
+            for (int i = 0; i < 4; i++)
+            {
+                RaycastResult hit;
+                if (PhysicsEngine.Instance.Raycast(
+                pos + BraveMathCollege.DegreesToVector(i * 90, minDistance), BraveMathCollege.DegreesToVector(i * 90), maxDistance, out hit,
+                    false, true, rayMask2, null, false, rigidbodyExcluder))
+                {
+                    f1.Add(hit.Distance, i * 90);
+                    f.Add(hit.Distance);
+                }
+                else
+                {
+
+                }
+                RaycastResult.Pool.Free(ref hit);
+                
+            }
+            f.Sort();
+            float g;
+            f1.TryGetValue(f[0], out g);
+            return g;//f[0];
+        }
+
+        public static Vector3 AxisRound(this Vector3 vector, Transform relativeTo = null)
+        {
+            if (relativeTo)
+            {
+                vector = relativeTo.InverseTransformDirection(vector);
+            }
+            int largestIndex = 0;
+            for (int i = 1; i < 3; i++)
+            {
+                largestIndex = Mathf.Abs(i == 1 ? vector.x : vector.y) > Mathf.Abs(vector[largestIndex]) ? i : largestIndex;
+            }
+            float newLargest = vector[largestIndex] > 0 ? 1 : -1;
+            vector = Vector3.zero;
+            vector[largestIndex] = newLargest;
+            if (relativeTo)
+            {
+                vector = relativeTo.TransformDirection(vector);
+            }
+            return vector;
+        }
+
+        //Thank you Pretzel, very cool!
+        //Like actually :), this is cool
+        public static Vector2 ToNearestWall(this Vector2 pos, out Vector2 normal, float angle, float minDistance = 1)
+        {
+            RaycastResult hit;
+            Vector2 contact;
+            if (PhysicsEngine.Instance.Raycast(
+              pos + BraveMathCollege.DegreesToVector(angle, minDistance), BraveMathCollege.DegreesToVector(angle), 200, out hit,
+              collideWithRigidbodies: false))
+            {
+                contact = hit.Contact;
+                normal = hit.Normal;
+            }
+            else
+            {
+                contact = pos + BraveMathCollege.DegreesToVector(angle, minDistance);
+                normal = Vector2.zero;
+            }
+            RaycastResult.Pool.Free(ref hit);
+            return contact;
+        }
+
+        public static void ApplyStat(PlayerController player, PlayerStats.StatType statType, float amountToApply, StatModifier.ModifyMethod modifyMethod)
+        {
+            player.stats.RecalculateStats(player, false, false);
+            StatModifier statModifier = new StatModifier()
+            {
+                statToBoost = statType,
+                amount = amountToApply,
+                modifyType = modifyMethod
+            };
+            player.ownerlessStatModifiers.Add(statModifier);
+            player.stats.RecalculateStats(player, false, false);
+        }
+        public static DebrisObject GenerateDebrisObject(string sprite, tk2dSpriteCollectionData data, bool debrisObjectsCanRotate = true, float LifeSpanMin = 0.33f, float LifeSpanMax = 2f, float AngularVelocity = 540, float AngularVelocityVariance = 180f, tk2dSprite shadowSprite = null, float Mass = 1, string AudioEventName = null, GameObject BounceVFX = null, int DebrisBounceCount = 0, bool DoesGoopOnRest = false, GoopDefinition GoopType = null, float GoopRadius = 1f, bool usesWorldShader = true)
+        {
+            GameObject debrisObject = new GameObject(sprite);
+            FakePrefab.MarkAsFakePrefab(debrisObject);
+            UnityEngine.Object.DontDestroyOnLoad(debrisObject);
+            tk2dSprite tk2dsprite = debrisObject.GetOrAddComponent<tk2dSprite>();
+            tk2dsprite.collection = data;
+            tk2dsprite.SetSprite(data.GetSpriteIdByName(sprite));
+
+            DebrisObject DebrisObj = debrisObject.AddComponent<DebrisObject>();
+
+            DebrisObj.canRotate = debrisObjectsCanRotate;
+            DebrisObj.lifespanMin = LifeSpanMin;
+            DebrisObj.lifespanMax = LifeSpanMax;
+            DebrisObj.bounceCount = DebrisBounceCount;
+            DebrisObj.angularVelocity = AngularVelocity;
+            DebrisObj.angularVelocityVariance = AngularVelocityVariance;
+            if (AudioEventName != null) { DebrisObj.audioEventName = AudioEventName; }
+            if (BounceVFX != null) { DebrisObj.optionalBounceVFX = BounceVFX; }
+            DebrisObj.sprite = tk2dsprite;
+            DebrisObj.DoesGoopOnRest = DoesGoopOnRest;
+            if (GoopType != null) { DebrisObj.AssignedGoop = GoopType; } else if (GoopType == null && DebrisObj.DoesGoopOnRest == true) { DebrisObj.DoesGoopOnRest = false; }
+            DebrisObj.GoopRadius = GoopRadius;
+            if (shadowSprite != null) { DebrisObj.shadowSprite = shadowSprite; }
+            DebrisObj.inertialMass = Mass;
+            if (usesWorldShader == true)
+            {
+                //DebrisObj.sprite.renderer.material.shader = worldShader;
+                //DebrisObj.sprite.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
+            }
+            return DebrisObj;
+        }
+
+        public static AdvancedSynergyEntry CopySynergy(string NameKey)
+        {
+            AdvancedSynergyEntry copyEntry = null;
+            foreach (AdvancedSynergyEntry entry in GameManager.Instance.SynergyManager.synergies)
+            {
+                if (entry.NameKey == NameKey)
+                {
+                    copyEntry = new AdvancedSynergyEntry();
+                    copyEntry.ActivationStatus = entry.ActivationStatus;
+                    copyEntry.ActiveWhenGunUnequipped = entry.ActiveWhenGunUnequipped;
+                    copyEntry.RequiresAtLeastOneGunAndOneItem = entry.RequiresAtLeastOneGunAndOneItem;
+                    copyEntry.bonusSynergies = entry.bonusSynergies;
+                    copyEntry.IgnoreLichEyeBullets = entry.IgnoreLichEyeBullets;
+                    copyEntry.MandatoryGunIDs = entry.MandatoryGunIDs;
+                    copyEntry.MandatoryItemIDs = entry.MandatoryItemIDs;
+                    copyEntry.NameKey = entry.NameKey;
+                    copyEntry.NumberObjectsRequired = entry.NumberObjectsRequired;
+                    copyEntry.OptionalGunIDs = entry.OptionalGunIDs;
+                    copyEntry.OptionalItemIDs = entry.OptionalItemIDs;
+                    copyEntry.statModifiers = entry.statModifiers;
+                    copyEntry.SuppressVFX = entry.SuppressVFX;
+                }
+                /*
+                Debug.Log("======================");
+
+                Debug.Log(entry.NameKey +" : ");
+                Debug.Log(entry.ActivationStatus + " : ");
+                Debug.Log(entry.NumberObjectsRequired + " : ");
+
+                Debug.Log("\nMandatory Guns:\n=====");
+
+                foreach (var e in entry.MandatoryGunIDs)
+                {
+                    Debug.Log("    "+e);
+                }
+                Debug.Log("\nMandatory Items:\n=====");
+
+                foreach (var e in entry.MandatoryItemIDs)
+                {
+                    Debug.Log("    " + e);
+                }
+                Debug.Log("\nOptional Guns:\n=====");
+
+                foreach (var e in entry.OptionalGunIDs)
+                {
+                    Debug.Log("    " + e);
+                }
+                Debug.Log("\nOptional Items:\n=====");
+                foreach (var e in entry.OptionalItemIDs)
+                {
+                    Debug.Log("    " + e);
+                }
+                */
+            }
+            return copyEntry;
+        }
+
+
+        public static void DoMagicSparkles(int amount, Vector2 position, float direction, float MinMult = 1, float MaxMult = 3, float DevMinus = 0, float DevPlus = 0, GlobalSparksDoer.SparksType sparks = GlobalSparksDoer.SparksType.FLOATY_CHAFF)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Vector2 push = Toolbox.GetUnitOnCircle(direction + UnityEngine.Random.Range(DevMinus, DevPlus), 1f);
+                GlobalSparksDoer.DoSingleParticle(position, push * UnityEngine.Random.Range(MinMult, MaxMult), null, 2, null, sparks);
+            }
+        }
+        public static void DoMagicSparkles(int amount, float lifetime, Vector2 position, Vector2 direction, float MinMult = 1, float MaxMult = 3, float DevMinus = 0, float DevPlus = 0, GlobalSparksDoer.SparksType sparks = GlobalSparksDoer.SparksType.FLOATY_CHAFF)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Vector2 push = direction + Toolbox.GetUnitOnCircle(direction.ToAngle()+ UnityEngine.Random.Range(DevMinus, DevPlus), 1f);
+                GlobalSparksDoer.DoSingleParticle(position, push * UnityEngine.Random.Range(MinMult, MaxMult), null, lifetime, null, sparks);
+            }
+        }
         public static void ModifyVolley(ProjectileVolleyData volleyToModify, PlayerController player, int DuplicatesOfEachModule = 1, float DuplicateAngleOffset = 3, float DuplicateAngleBaseOffset = 0, float EachModuleOffsetAngle = 3, int DuplicatesOfBaseModule = 0, ProjectileModule moduleToAdd = null, int frameDelay = 0)
         {
 
@@ -291,6 +486,29 @@ namespace ModularMod
             // return the vector info
             return _returnVector;
         }
+        public static Vector3 GetUnitOnCircleVec3(float angleDegrees, float radius)
+        {
+
+            // initialize calculation variables
+            float _x = 0;
+            float _y = 0;
+            float angleRadians = 0;
+            Vector3 _returnVector;
+
+            // convert degrees to radians
+            angleRadians = angleDegrees * Mathf.PI / 180.0f;
+
+            // get the 2D dimensional coordinates
+            _x = radius * Mathf.Cos(angleRadians);
+            _y = radius * Mathf.Sin(angleRadians);
+
+            // derive the 2D vector
+            _returnVector = new Vector3(_x, _y);
+
+            // return the vector info
+            return _returnVector;
+        }
+
 
         public const int ResolutionIBuiltOffOf_X = 1600;
         public const int ResolutionIBuiltOffOf_Y = 1024;
@@ -377,7 +595,7 @@ namespace ModularMod
             self.BraveLight = braveLight;         
         }
 
-        public static void NotifyCustom(string header, string text, int spriteID, tk2dSpriteCollectionData CollectionData, UINotificationController.NotificationColor color = UINotificationController.NotificationColor.SILVER, bool forceSingleLine = false)
+        public static void NotifyCustom(string header, string text, int spriteID, tk2dSpriteCollectionData CollectionData, UINotificationController.NotificationColor color = UINotificationController.NotificationColor.GOLD, bool forceSingleLine = false)
         {
             GameUIRoot.Instance.notificationController.DoCustomNotification(header, text, CollectionData, spriteID, color, false, forceSingleLine);
         }
@@ -397,11 +615,12 @@ namespace ModularMod
         }
 
 
-        public static float PercentageOfClipLeft(this Gun g)
+        public static float PercentageOfClipLeft(this Gun g, int modify = 0)
         {
             //:sadcat:
             float q = g.ClipShotsRemaining;
             float r = g.ClipCapacity;
+            r += modify;
             float t = q / r;
             return t;
         }
@@ -630,7 +849,7 @@ namespace ModularMod
             Delegate result = null;
             if (self != null)
             {
-                FieldInfo t = self.GetType().GetField(eventName, BindingFlags.Public | BindingFlags.Instance);
+                FieldInfo t = self.GetType().GetField(eventName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance);
                 if (t != null)
                 {
                     object val = t.GetValue(self);
@@ -642,6 +861,23 @@ namespace ModularMod
             }
             return result;
         }
+
+        public static T GetEventDelegate<T>(this object self, string eventName) where T : Delegate
+        {
+            return self.GetEventDelegate(eventName) as T;
+        }
+
+        public static void RaiseEvent(this object self, string eventName, params object[] args)
+        {
+            self.GetEventDelegate<Delegate>(eventName)?.DynamicInvoke(args);
+        }
+
+        public static object RaiseEventWithReturn(this object self, string eventName, params object[] args)
+        {
+            return self.GetEventDelegate<Delegate>(eventName)?.DynamicInvoke(args);
+        }
+
+
         public static object InvokeNotOverride(this MethodInfo methodInfo,
     object targetObject, params object[] arguments)
         {
