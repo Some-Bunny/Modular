@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Refunded Components",
             Description = "Exchange Rate",
-            LongDescription = "Missed shots are refunded back into your clip. Gain a 33% (+33% per stack) boost to damage when you miss, up to 15 misses.\nLanding a hit will use all stored damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Missed shots are refunded back into your clip. Gain a 25% boost to damage when you miss, up to 10 (+10 per stack) misses.\nLanding a hit will use all stored damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Refunded Components" + h.ReturnTierLabel();
-            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") boost to damage when you miss, up to 15 misses.\nLanding a hit will use all stored damage.";
+            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 25% boost to damage when you miss, up to 10 " + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + " misses.\nLanding a hit will use all stored damage.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
@@ -70,12 +70,17 @@ namespace ModularMod
             modulePrinter.OnPreEnemyHit += OPEH;
         }
 
+        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
+        {
+            MissCap = 10 * this.ReturnStack(modulePrinter);
+        }
+
         public void OPEH(ModulePrinterCore modulePrinter, PlayerController player, AIActor enemy, Projectile p)
         {
             if (Misses == 0) { return; }
             var vfx = player.PlayEffectOnActor(HitOrMissVFX, new Vector3(0, 2));
             vfx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("vfx_hit");
-            float mult = 1 + ((0.33f * this.ReturnStack(modulePrinter)*Misses));
+            float mult = 1 + ((0.25f *Misses));
             p.baseData.damage *= mult;
             Misses = 0;
             AkSoundEngine.PostEvent("Play_OBJ_box_uncover_01", player.gameObject);
@@ -90,12 +95,14 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.OnPreEnemyHit -= OPEH;
         }
+        public int MissCap = 10;
+
         private void HandleProjectileDestruction(Projectile source)
         {
             if (source && source.PossibleSourceGun && !source.HasImpactedEnemy)
             {
                 source.PossibleSourceGun.MoveBulletsIntoClip(1);
-                if (Misses < 15)
+                if (Misses < MissCap)
                 {
                     AkSoundEngine.PostEvent("Play_OBJ_compass_point_01", source.PossibleSourceGun.CurrentOwner.gameObject);
 

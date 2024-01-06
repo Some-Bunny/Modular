@@ -194,7 +194,7 @@ namespace ModularMod
                     {
                         GameObject shard = UnityEngine.Object.Instantiate<GameObject>(BraveUtility.RandomElement<GameObject>(GlassShards), debrisObject.transform.position, Quaternion.identity);
                         shard.GetComponent<DebrisObject>().Trigger(Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.5f, 4 + stack)), 1);
-                        shard.GetComponent<GlassShardBehavior>().Damage += stack / 3;
+                        shard.GetComponent<GlassShardBehavior>().Damage += stack * 0.5f;
                     }
                 };
                 yield return new WaitForSeconds(user.CurrentGun.reloadTime / stack);

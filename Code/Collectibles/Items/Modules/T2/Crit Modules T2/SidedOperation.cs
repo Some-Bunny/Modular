@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class SidedOperation : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(SidedOperation))
@@ -102,5 +103,6 @@ namespace ModularMod
             modulePrinter.OnCritProjectileDestroyed -= Crit;
         }
     }
+    */
 }
 

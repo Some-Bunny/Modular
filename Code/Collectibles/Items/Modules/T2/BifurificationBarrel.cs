@@ -85,7 +85,7 @@ namespace ModularMod
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {
-            Toolbox.ModifyVolley(obj, Stored_Core.Owner, 1, 54, 3, 3, 0, null, 1);
+            Toolbox.ModifyVolley(obj, Stored_Core.Owner, 1, 60, 3, 3, 0, null, 1);
         }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {

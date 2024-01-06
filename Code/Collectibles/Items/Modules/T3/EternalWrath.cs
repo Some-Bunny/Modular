@@ -69,11 +69,11 @@ namespace ModularMod
             player.CurrentInputState = PlayerInputState.AllInput;
             player.spriteAnimator.enabled = true;
 
-            Toolbox.ApplyStat(player, PlayerStats.StatType.Damage, .15f, StatModifier.ModifyMethod.ADDITIVE);
+            Toolbox.ApplyStat(player, PlayerStats.StatType.Damage, .125f, StatModifier.ModifyMethod.ADDITIVE);
             Toolbox.ApplyStat(player, PlayerStats.StatType.Accuracy, .90f, StatModifier.ModifyMethod.MULTIPLICATIVE);
-            Toolbox.ApplyStat(player, PlayerStats.StatType.RateOfFire, .125f, StatModifier.ModifyMethod.ADDITIVE);
+            Toolbox.ApplyStat(player, PlayerStats.StatType.RateOfFire, .1f, StatModifier.ModifyMethod.ADDITIVE);
             Toolbox.ApplyStat(player, PlayerStats.StatType.ProjectileSpeed, .1f, StatModifier.ModifyMethod.ADDITIVE);
-            Toolbox.ApplyStat(player, PlayerStats.StatType.KnockbackMultiplier, 1.3f, StatModifier.ModifyMethod.MULTIPLICATIVE);
+            Toolbox.ApplyStat(player, PlayerStats.StatType.KnockbackMultiplier, 1.2f, StatModifier.ModifyMethod.MULTIPLICATIVE);
 
             Pixelator.Instance.DoFinalNonFadedLayer = true;
             player.CurrentInputState = PlayerInputState.NoInput;

@@ -22,6 +22,11 @@ namespace ModularMod
 {
     public static class Toolbox
     {
+        public static float SubdivideRange(float startValue, float endValue, int numDivisions, int i, bool offset = false)
+        {
+            return Mathf.Lerp(startValue, endValue, ((float)i + ((!offset) ? 0f : 0.5f)) / (float)(numDivisions - 1));
+        }
+
 
         public static float NearestCardinalWallAngle(this Vector2 pos, float minDistance, float maxDistance = 200)
         {

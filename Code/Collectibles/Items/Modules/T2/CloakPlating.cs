@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Cloak Plating",
             Description = "+60%",
-            LongDescription = "Entering combat cloaks the player for 5 (+2.5 per stack) seconds. Uncloaking forcefully grants a 4x (+2 per stack) damage multiplier that degrades fast. Grants a 30% movement speed buff while cloaked." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Entering combat cloaks the player for 6 (+3 per stack) seconds. Uncloaking forcefully grants a 4x (+2 per stack) damage multiplier that degrades fast. Grants a 30% movement speed buff while cloaked." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module"),
             Quality = ItemQuality.SPECIAL,

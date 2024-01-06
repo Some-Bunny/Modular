@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bubbleblast_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Bubble Blast " + h.ReturnTierLabel();
-            h.LabelDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment.\nReloading boosts all projectiles greatly\nand increases their damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment.\nReloading boosts all projectiles greatly\nand increases their damage by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -67,7 +67,7 @@ namespace ModularMod
                 var thing = activeBubbles[i];
                 if (thing != null)
                 {
-                    thing.DamageBoost = 1 + (0.33f * this.ReturnStack(modulePrinterCore));
+                    thing.DamageBoost = 1 + (0.2f * this.ReturnStack(modulePrinterCore));
                     thing.DoBoost();
                 }
                 activeBubbles.RemoveAt(i);

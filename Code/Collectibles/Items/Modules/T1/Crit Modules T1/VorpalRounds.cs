@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class VorpalRounds : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(VorpalRounds))
@@ -69,5 +70,6 @@ namespace ModularMod
             modulePrinter.CritContexts.Remove(this.CritContext);
         }
     }
+    */
 }
 

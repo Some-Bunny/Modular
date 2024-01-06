@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class LuckyShot : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(LuckyShot))
@@ -95,5 +96,6 @@ namespace ModularMod
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
     }
+    */
 }
 

@@ -14,6 +14,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class PinpointStrike : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(PinpointStrike))
@@ -187,5 +188,6 @@ namespace ModularMod
             modulePrinter.OnModularProjectileDestroyed -= ProjectileDestroy;
         }
     }
+    */
 }
 

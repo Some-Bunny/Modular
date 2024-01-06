@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "The Marksman",
             Description = "Version First",
-            LongDescription = "Hitting an enemy grants a 10% damage boost, up to 10 (+5 per stack) consecutive hits. Missing resets the damage bonus." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Hitting an enemy grants a 3.3% damage boost, up to 20 (+10 per stack) consecutive hits. Missing resets the damage bonus." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("marksman_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("marksman_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "The Marksman " + h.ReturnTierLabel();
-            h.LabelDescription = "Hitting an enemy grants a 10% damage boost,\nup to 10 (" + StaticColorHexes.AddColorToLabelString("+5", StaticColorHexes.Light_Orange_Hex) + ") consecutive hits.\nMissing resets the damage bonus.";
+            h.LabelDescription = "Hitting an enemy grants a 3.3% damage boost,\nup to 20 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") consecutive hits.\nMissing resets the damage bonus.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
@@ -72,7 +72,7 @@ namespace ModularMod
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {
-            HitCap = (5 * this.ReturnStack(modulePrinter)) + 5;
+            HitCap = (10 * this.ReturnStack(modulePrinter)) + 10;
         }
 
         public void OPEH(ModulePrinterCore modulePrinter, PlayerController player, AIActor enemy, Projectile p)
@@ -86,7 +86,7 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + (0.1f * Hits);
+            p.baseData.damage *= 1 + (0.033f * Hits);
             p.OnDestruction += this.HandleProjectileDestruction;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("gravecooling_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Phantasm Boost " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal an additional 33% ("+ StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through\ninternal walls and pierce various debris.";
+            h.LabelDescription = "Deal an additional 33% ("+ StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through\ninternal walls and pierce various debris.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
@@ -125,7 +125,7 @@ namespace ModularMod
         public float ProcessReloadTime(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + (0.20f * stack) * Kills)));
+            return f - (f - (f / (1 + (0.15f * stack) * Kills)));
         }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
         {
@@ -134,7 +134,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.BlackPhantomDamageMultiplier *= 1f + (0.5f * stack);
+            p.BlackPhantomDamageMultiplier *= 1f + (0.33f * stack);
             p.CurseSparks = true;
             p.PenetratesInternalWalls = true;
             p.pierceMinorBreakables = true;

@@ -62,7 +62,7 @@ namespace ModularMod
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += (stack + 1);
             p.baseData.range *= 6;
-            p.baseData.speed *= 0.7f;
+            p.baseData.speed *= 0.6f;
             p.UpdateSpeed();
 
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
@@ -72,7 +72,7 @@ namespace ModularMod
             yes.dashColor = new Color(0f, 0.3f, 1f, 1f);
 
             HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
-            HomingMod.AngularVelocity = 480 + (stack * 120);
+            HomingMod.AngularVelocity = 360 + (stack * 120);
             HomingMod.HomingRadius = 10 + (stack * 3.33f);
         }
 
@@ -85,14 +85,14 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 0.35f;
+            p.baseData.damage *= 0.2f;
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-            aaaa.damageMultOnPierce *= 1.075f;
+            aaaa.damageMultOnPierce *= 1.05f;
             aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack*5);
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += (stack + 1);
             p.baseData.range *= 6;
-            p.baseData.speed *= 0.7f;
+            p.baseData.speed *= 0.6f;
             p.UpdateSpeed();
 
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
@@ -102,7 +102,7 @@ namespace ModularMod
             yes.dashColor = new Color(0f, 0.3f, 1f, 1f);
 
             HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
-            HomingMod.AngularVelocity = 480 + (stack * 120);
+            HomingMod.AngularVelocity = 360 + (stack * 120);
             HomingMod.HomingRadius = 10 + (stack * 3.33f);
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

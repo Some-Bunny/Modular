@@ -13,6 +13,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class FocusedRetaliation : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(FocusedRetaliation))
@@ -155,5 +156,6 @@ namespace ModularMod
             }
         }
     }
+    */
 }
 

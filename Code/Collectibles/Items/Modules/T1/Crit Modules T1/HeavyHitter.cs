@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class HeavyHitter : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(HeavyHitter))
@@ -74,5 +75,6 @@ namespace ModularMod
             modulePrinter.CritContexts.Remove(this.CritContext);
         }
     }
+    */
 }
 

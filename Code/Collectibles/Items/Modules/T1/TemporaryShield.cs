@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Temporary Shield",
             Description = "Block It",
-            LongDescription = "Prevents 2 (+1 per stack) instances of damage per floor. Blocking damage activates on-hit effects. Increases the probability of certain modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Prevents 1 (+1 per stack) instances of damage per floor. Blocking damage activates on-hit effects. Increases the probability of certain modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tempshield_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.6f;
             h.LabelName = "Temporary Shield" + h.ReturnTierLabel();
-            h.LabelDescription = "Prevents 2 ("+ StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex)+") instances of damage per floor.\nBlocking damage activates on-hit effects.\n"+StaticColorHexes.AddColorToLabelString("Increases the probability of certain modules appearing.", StaticColorHexes.Pink_Hex);
+            h.LabelDescription = "Prevents 1 ("+ StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex)+") instances of damage per floor.\nBlocking damage activates on-hit effects.\n"+StaticColorHexes.AddColorToLabelString("Increases the probability of certain modules appearing.", StaticColorHexes.Pink_Hex);
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.RETALIATION);
@@ -133,7 +133,7 @@ namespace ModularMod
 
         public void ONFS(ModulePrinterCore core, PlayerController p)
         {
-            Blocks = this.ReturnStack(core) + 1;
+            Blocks = this.ReturnStack(core);
             if (Inst == null)
             {
                 Inst = p.PlayEffectOnActor(ShieldVFX, new Vector3(0, -2f));
@@ -141,7 +141,7 @@ namespace ModularMod
             }
         }
 
-        public int Blocks = 2;
+        public int Blocks = 1;
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {

@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Overclocked Magazines",
             Description = "BRRAP",
-            LongDescription = "Multiplies Rate Of Fire and Clip Size by 2.5 (+1 per stack). Greatly increases spread and reduces damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Multiplies Rate Of Fire and Clip Size by 2.5x (+1 per stack). Greatly increases spread and reduces damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("overclockedmagazine_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("overclockedmagazine_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Overclocked Magazines " + h.ReturnTierLabel();
-            h.LabelDescription = "Multiplies Rate Of Fire and Clip Size by 2.5 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nGreatly increases spread and reduces damage.";
+            h.LabelDescription = "Multiplies Rate Of Fire and Clip Size by 2.5x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nGreatly increases spread and reduces damage.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 

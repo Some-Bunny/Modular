@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Tremor Impact",
             Description = "Shockwave",
-            LongDescription = "Hitting enemies deals 33% (+33% per stack) of the damage dealt to nearby enemies" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Hitting enemies deals 25% (+25% per stack) of the damage dealt to nearby enemies" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tremor_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Tremor Impact " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.85f;
-            h.LabelDescription = "Hitting enemies deals 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") of the damage dealt\nto enemies near the hurt enemy.";
+            h.LabelDescription = "Hitting enemies deals 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") of the damage dealt\nto enemies near the hurt enemy.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -57,7 +57,7 @@ namespace ModularMod
         public void OnEnemyDamaged(ModulePrinterCore modulePrinterCore, PlayerController player, AIActor enemy, float damage)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            float trueDmg = Mathf.Max(damage * (0.33f * stack), 1);
+            float trueDmg = Mathf.Max(damage * (0.25f * stack), 0.5f);
             this.ApplyActionToNearbyEnemies(enemy.sprite.WorldCenter, 3.5f + (0.5f * stack), enemy.GetAbsoluteParentRoom(), trueDmg, enemy);
         }
         public void ApplyActionToNearbyEnemies(Vector2 position, float radius, RoomHandler room, float damage, AIActor noTarget)

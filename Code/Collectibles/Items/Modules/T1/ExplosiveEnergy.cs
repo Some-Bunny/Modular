@@ -14,8 +14,8 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(ExplosiveEnergy))
         {
             Name = "Explosive Energy",
-            Description = "Hit Harder, Differently",
-            LongDescription = "Increases knockback force by 2x (+1 per stack), boss damage by 25% (+25% per stack), and grants a small chance to stun enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            Description = "Burstin' makes me feel good",
+            LongDescription = "Projectiles explode up to 3 (+1 per stack) times after travelling a certain distance. Projectiles self-destruct after finishing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("glitteringsparks_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -44,8 +44,8 @@ namespace ModularMod
             {
                 breakSecretWalls = false,
                 comprehensiveDelay = 0,
-                damage = 4,
-                damageRadius = 3f,
+                damage = 5,
+                damageRadius = 2.5f,
                 damageToPlayer = 0,
                 debrisForce = 50,
                 doDamage = true,
@@ -56,7 +56,7 @@ namespace ModularMod
                 doStickyFriction = false,
                 effect = (PickupObjectDatabase.GetById(593) as Gun).DefaultModule.projectiles[0].GetComponent<ExplosiveModifier>().explosionData.effect,
                 explosionDelay = 0,
-                force = 20,
+                force = 10,
                 forcePreventSecretWallDamage = false,
                 forceUseThisRadius = true,
                 freezeEffect = null,
@@ -81,12 +81,12 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.02f) { return; }
             int stack = 1;
             TravelledDistanceComponent travelledDistanceComponent = p.gameObject.AddComponent<TravelledDistanceComponent>();
-            travelledDistanceComponent.DistanceToTravel = 3 + stack;
+            travelledDistanceComponent.DistanceToTravel = (stack * 4f) + 2f;
             travelledDistanceComponent.TriggerAmount = 3;
             travelledDistanceComponent.OnTravelledDistance += (proj, h1, h4) =>
             {
                 Exploder.Explode(h1, ExplosionData, Vector2.zero, null, true);
-                if (h4 == 3 + stack)
+                if (h4 == 2 + stack)
                 {
                     p.DieInAir();
                 }
@@ -105,15 +105,14 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             TravelledDistanceComponent travelledDistanceComponent = p.gameObject.AddComponent<TravelledDistanceComponent>();
-            travelledDistanceComponent.DistanceToTravel = (stack*3) + 3;
-            travelledDistanceComponent.TriggerAmount = 3;
+            travelledDistanceComponent.DistanceToTravel = (stack* 4f) + 2f;
+            travelledDistanceComponent.TriggerAmount = 2 + stack;
             travelledDistanceComponent.OnTravelledDistance += (proj, h1, h4) =>
             {
                 Exploder.Explode(h1, ExplosionData, Vector2.zero, null, true);
                 if (h4 == 2 + stack)
                 {
-                    p.DieInAir();
-                    
+                    p.DieInAir();                 
                 }
             };
         }

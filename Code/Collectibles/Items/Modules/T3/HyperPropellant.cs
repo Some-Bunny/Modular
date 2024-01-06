@@ -117,7 +117,7 @@ namespace ModularMod
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.5f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowTimeDelay = 0.05f;
             yes.dashColor = new Color(0.9f, 0.6f, 0f, 1f);
 
             var uhfa = p.gameObject.AddComponent<HyperPropellantController>();
@@ -158,7 +158,7 @@ namespace ModularMod
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.5f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowTimeDelay = 0.05f;
             yes.dashColor = new Color(0.9f, 0.6f, 0f, 1f);
 
             var uhfa = p.gameObject.AddComponent<HyperPropellantController>();
@@ -212,7 +212,6 @@ namespace ModularMod
                 HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
                 ignite.transform.position = vector3;
                 ignite.DamagePerSecond = DPS;
-                //ignite.Enable(100);
                 ignite.radius = Radius;
                 ignite.StartCoroutine(ignite.ReduceToZero());
                 lastStoredPosition = self.sprite.WorldCenter;
@@ -248,9 +247,14 @@ namespace ModularMod
                 if (asdf > 0.3f)
                 {
                     asdf = 0;
-                    if (UnityEngine.Random.value < ConfigManager.ImportantVFXMultiplier)
+                    if (UnityEngine.Random.value * ConfigManager.ImportantVFXMultiplier < 0.5f)
                     {
                         GlobalSparksDoer.DoSingleParticle(this.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1f, math)), Vector2.up, null, 3, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
+                    }
+
+                    if ((UnityEngine.Random.value / 4) * ConfigManager.ImportantVFXMultiplier < 0.3f)
+                    {
+                        GlobalSparksDoer.DoSingleParticle(this.transform.PositionVector2() + Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.1f, math)), Vector2.up, null, 1, null, GlobalSparksDoer.SparksType.STRAIGHT_UP_FIRE);
                     }
                 }
                 this.UpdateRadius(math);

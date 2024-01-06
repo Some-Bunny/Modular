@@ -144,7 +144,7 @@ namespace ModularMod
             {
                 if (currentRisk > 1)
                 {
-                    currentRisk -= (0.33f * BraveTime.DeltaTime);
+                    currentRisk -= (0.4f * BraveTime.DeltaTime);
                 }
                 return;
             }
@@ -163,7 +163,7 @@ namespace ModularMod
             {
                 if (BuildupCount >= 2)
                 {
-                    BuildupCount -= (BraveTime.DeltaTime * 0.66f);
+                    BuildupCount -= (BraveTime.DeltaTime * 0.75f);
                 }
             }
 
@@ -290,19 +290,20 @@ namespace ModularMod
 
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            float q = currentRisk;
+            float q = Mathf.Min(currentRisk, RiskCap);
             if (q > RiskCap) { q = RiskCap; }
             return f / q;
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + (Mathf.Min(currentRisk, RiskCap) / 5);
+            p.baseData.damage *= 1 + (Mathf.Min(currentRisk, RiskCap) / 3);
         }
      
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {
             TrueRiskCap = 2f + (0.5f * this.ReturnStack(modulePrinter));
+            RiskCap = 1.375f + (0.125f * this.ReturnStack(modulePrinter));
 
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

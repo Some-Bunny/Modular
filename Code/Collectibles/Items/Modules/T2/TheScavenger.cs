@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "The Scavenger",
             Description = "Recycling",
-            LongDescription = "Grants 1 additional scrap when scrapping items or pickups. Grants 1 (+1 per stack) shots to your clip and +5% movement speed and 5% (+5% per stack) damage per Scrap." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 1 additional scrap when scrapping items or pickups. Grants 5% (+5% per stack) damage and +2.5% movement speed per Scrap." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("scavenger_t2_module"),
             Quality = ItemQuality.SPECIAL,

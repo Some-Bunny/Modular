@@ -51,13 +51,13 @@ namespace ModularMod
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += 10;
             p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-            p.AdditionalScaleMultiplier *= 2;
+            p.AdditionalScaleMultiplier *= 1.5f;
 
             p.baseData.speed *= 0.25f;
             p.UpdateSpeed();
             var well = p.gameObject.AddComponent<EnemyGravityWell>();
             well.self = p;
-            well.gravitationalForceActors = 125;
+            well.gravitationalForceActors = 100;
             well.damageRadius = 2;
             well.Stack = 1;
 
@@ -101,19 +101,19 @@ namespace ModularMod
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += 10;
             p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
-            p.AdditionalScaleMultiplier *= 2;
+            p.AdditionalScaleMultiplier *= 1.5f;
 
             p.baseData.speed *= 0.25f;
             p.UpdateSpeed();
             var well = p.gameObject.AddComponent<EnemyGravityWell>();
             well.self = p;
-            well.gravitationalForceActors = 125 * this.ReturnStack(modulePrinterCore);
-            well.damageRadius = 2 * this.ReturnStack(modulePrinterCore);
+            well.gravitationalForceActors = 100 * this.ReturnStack(modulePrinterCore);
+            well.damageRadius = 2 + this.ReturnStack(modulePrinterCore);
             well.Stack = this.ReturnStack(modulePrinterCore);
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
-            yes.shadowLifetime = 0.4f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowLifetime = 0.75f;
+            yes.shadowTimeDelay = 0.1f;
             yes.dashColor = new Color(1f, 0.1f, 0.5f, 1f);
 
             HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
@@ -263,7 +263,7 @@ namespace ModularMod
                     }
                     if (BraveMathCollege.DistToRectangle(self.specRigidbody.UnitCenter, other.UnitBottomLeft, other.UnitDimensions) < this.damageRadius)
                     {
-                        other.healthHaver.ApplyDamage(((self.baseData.damage * 0.25f) * BraveTime.DeltaTime)* Stack, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
+                        other.healthHaver.ApplyDamage(((self.baseData.damage * 0.2f) * BraveTime.DeltaTime)* Stack, a.normalized, string.Empty, CoreDamageTypes.None, DamageCategory.DamageOverTime, false, null, false);
                     }
                     if (other.healthHaver.IsBoss)
                     {

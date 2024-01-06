@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Iterated Design",
             Description = "Simply Better",
-            LongDescription = "Simply grants a good boost to most stats. (+Even Higher Stats per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Grants a good boost to some stats. (+Increased Stats per stack). Grants benefits unique to your current gun. (+Higher Benefits per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("iterateddesign_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -34,7 +34,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("iterateddesign_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Iterated Design " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants a good boost to some stats. (" + StaticColorHexes.AddColorToLabelString("+Even Higher Stats", StaticColorHexes.Light_Orange_Hex) + ").\nGrants benefits unique to your current gun. ("+StaticColorHexes.AddColorToLabelString("More Improvements")+")";
+            h.LabelDescription = "Grants a good boost to some stats. (" + StaticColorHexes.AddColorToLabelString("+Increased Stats", StaticColorHexes.Light_Orange_Hex) + ").\nGrants benefits unique to your current gun. ("+StaticColorHexes.AddColorToLabelString("+Higher Benefits")+").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.EnergyConsumption = 2;
@@ -61,12 +61,14 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
             printer.OnPostProcessProjectile += PPP;
+            /*
             this.CritContext = new CriticalHitComponent.CritContext()
             {
                 CritChanceCalc = CritCalc,
                 CritDamageCalc = CritDamageCalc,
             };
             printer.CritContexts.Add(this.CritContext);
+            */
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
@@ -128,7 +130,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.15f * stack);
+            p.baseData.damage *= 1 + (0.125f * stack);
             p.baseData.speed *= 1 + (0.15f * stack);
             p.baseData.force *= 2 * stack;
             p.baseData.range *= 2 * stack;
@@ -144,7 +146,7 @@ namespace ModularMod
             p.SpeedApplyChance *= 1 + (0.3f * stack);
             p.StunApplyChance *= 1 + (0.3f * stack);
 
-            p.BlackPhantomDamageMultiplier *= 1 + (0.15f * stack);
+            p.BlackPhantomDamageMultiplier *= 1 + (0.125f * stack);
 
             p.UpdateSpeed();
             if (SpecialProcessGunSpecific != null)
@@ -155,7 +157,7 @@ namespace ModularMod
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            modulePrinter.CritContexts.Remove(this.CritContext);
+            //modulePrinter.CritContexts.Remove(this.CritContext);
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }

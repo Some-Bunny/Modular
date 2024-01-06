@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Mirrored Software",
             Description = "I'm You, Two",
-            LongDescription = "Acts as 2 (+2 per stack) copies of a random active module. Switches at every combat encounter.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Acts as 2 (+2 per stack) copies of a random active module. Switches on every floor.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mirrored_t2_module"),
             Quality = ItemQuality.SPECIAL,

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Heat Vectoring",
             Description = "Knock 'Em Down",
-            LongDescription = "Grants 10% (+10% per stack) movement speed. Dodgerolling releases 5 (+3 per stack) projectiles in the direction opposite of where you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 10% (+5% per stack) movement speed. Dodgerolling releases 5 (+3 per stack) projectiles in the direction opposite of where you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("heatvectoring_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("heatvectoring_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Heat Vectoring " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ") movement speed.\nDodgerolling releases 5 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") projectiles in the direction\nopposite of where you're moving.\nProjectiles gain all projectile-based effects.\nEffect recharges after 6 seconds.";
+            h.LabelDescription = "Grants 10% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") movement speed.\nDodgerolling releases 5 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") projectiles in the direction\nopposite of where you're moving.\nProjectiles gain all projectile-based effects.\nEffect recharges after 6 seconds.";
             h.AdditionalWeightMultiplier = 0.7f;
             h.EnergyConsumption = 1;
 
@@ -150,7 +150,7 @@ namespace ModularMod
 
         public Vector2 ModifySpeed(Vector2 currentVelocity, ModulePrinterCore core, PlayerController player)
         {
-            return currentVelocity *= 1 + (this.ReturnStack(core) / 10);
+            return currentVelocity *= 1 +  0.05f + (this.ReturnStack(core) / 20);
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Lightning Nets",
             Description = "Nicola Would Be Proud",
-            LongDescription = "Player projectiles are now tethered with electricity (+Tether range and damage)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Player projectiles are now tethered with electricity (+Tether range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("voltaicrounds_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("voltaicrounds_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Lightning Nets " + h.ReturnTierLabel();
-            h.LabelDescription = "Player Projectiles are now tethered with electricity\n(" + StaticColorHexes.AddColorToLabelString("+Tether range and Damage", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Player Projectiles are now tethered with electricity\n(" + StaticColorHexes.AddColorToLabelString("+Tether range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -53,8 +53,8 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.15f) { return; }
             int stack = 1;
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
-            chain.Damage = p.baseData.damage * 1.2f;
-            chain.Range = 4.5f + (4.5f * stack);
+            chain.Damage = Mathf.Max(0.5f, p.baseData.damage / 2.5f);
+            chain.Range = 3.5f + (2.5f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
             p.baseData.range += 5;
@@ -75,12 +75,12 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
-            chain.Damage = p.baseData.damage;
-            chain.Range = 4.5f + (4.5f * stack);
+            chain.Damage = Mathf.Max(0.5f, p.baseData.damage / 2.5f);
+            chain.Range = 3.5f + (2.5f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
             p.baseData.range += 5;
-
+            p.baseData.speed *= 0.8f;
         }
 
         public static List<ElectricChainProjectile> allactiveTetherProjectiles = new List<ElectricChainProjectile>();

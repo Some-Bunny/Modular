@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Radar Scanner",
             Description = "Sonar",
-            LongDescription = "Secret Rooms are revealed if you are near them. While powered, all secret rooms contain 2 (+2 per stack) extra pickups." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Secret Rooms are revealed if you are near them. While powered, all secret rooms contain 2 (+2 per stack) extra pickups, starting from the next floor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("radarscanner_tier1_module"),
             Quality = ItemQuality.SPECIAL,

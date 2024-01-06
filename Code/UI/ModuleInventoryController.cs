@@ -570,7 +570,7 @@ namespace ModularMod
             string s = StaticColorHexes.White_Hex;
             bool p = Core.ReturnPowerConsumptionOfNextStack(localChecker.module, ReturnStackAdd(localChecker)) <= Core.ReturnTotalPower();//ReturnStackAdd(localChecker);
             if (p == true) s = StaticColorHexes.Green_Hex;
-            else if (p == false) s = StaticColorHexes.Red_Color_Hex;
+            if (p == false) s = StaticColorHexes.Red_Color_Hex;
             return s;
         }
 
@@ -665,7 +665,7 @@ namespace ModularMod
                         string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
                         
 
-                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(false)+ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
+                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(true)+ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
                             "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
 
                         string T = module.LabelName + PowerLabels;
@@ -698,7 +698,7 @@ namespace ModularMod
                         {
                             Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
 
-                            string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString(), StaticColorHexes.Orange_Hex);
+                            string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(true).ToString(), StaticColorHexes.Orange_Hex);
                             string a2 = StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? ReturnHexStringBasedOnPower(pain) : StaticColorHexes.Orange_Hex);
 
                             string b1 = Core.ReturnPowerConsumption(module).ToString();
@@ -858,7 +858,7 @@ namespace ModularMod
 
                         string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
 
-                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
+                        string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(true) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
                             "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
                         string T = module.LabelName + PowerLabels;
                         string TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
@@ -891,7 +891,7 @@ namespace ModularMod
                         {
                             Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
 
-                            string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(false).ToString(), StaticColorHexes.Orange_Hex);
+                            string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(true).ToString(), StaticColorHexes.Orange_Hex);
                             string a2 = StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? ReturnHexStringBasedOnPower(pain) : StaticColorHexes.Orange_Hex);
 
                             string b1 = Core.ReturnPowerConsumption(module).ToString();
@@ -1120,7 +1120,7 @@ namespace ModularMod
                 InfoPage = 0;
                 AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.CHECKED_ALL_ADVICE, true);
             }
-            return UnityEngine.Random.value < 0.05f && AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.CHECKED_ALL_ADVICE) == true ? BraveUtility.RandomElement<string>(SpecialAdvice) : Advice[InfoPage];
+            return UnityEngine.Random.value < 0.15f && AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.CHECKED_ALL_ADVICE) == true ? BraveUtility.RandomElement<string>(SpecialAdvice) : Advice[InfoPage];
         }
 
 

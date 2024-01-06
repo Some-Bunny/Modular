@@ -71,7 +71,7 @@ namespace ModularMod
 
             Vector2 startLocation = player.sprite.WorldCenter +Toolbox.GetUnitOnCircle(g.CurrentAngle, (1f + (0.25f * stack)) + 1f);
 
-            Vector2 endLocation = startLocation + Toolbox.GetUnitOnCircle(g.CurrentAngle, (5.5f + (stack * 4f)) * a);
+            Vector2 endLocation = startLocation + Toolbox.GetUnitOnCircle(g.CurrentAngle, (5f + (stack * 3.5f)) * a);
 
             DeadlyDeadlyGoopManager.GetGoopManagerForGoopType(Alexandria.Misc.GoopUtility.FireDef).TimedAddGoopLine(startLocation, endLocation, 1f + (0.33f * stack), 0.35f);
             player.StartCoroutine(BurningWitness(player.CurrentRoom, startLocation, endLocation, 1f + (0.25f * stack), 0.35f));
@@ -104,7 +104,7 @@ namespace ModularMod
         {
             if (enemy) 
             {
-                enemy.healthHaver.ApplyDamage(2f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
+                enemy.healthHaver.ApplyDamage(1.5f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
                 enemy.ApplyEffect(DebuffStatics.hotLeadEffect);
             }
         }

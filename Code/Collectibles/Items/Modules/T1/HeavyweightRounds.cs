@@ -48,8 +48,8 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.1f) { return; }
             int stack = 1;
-            p.baseData.damage *= 1 + (0.33f * stack);
-            p.AdditionalScaleMultiplier *= 1 + (0.25f * stack);
+            p.baseData.damage *= 1.33f;
+            p.AdditionalScaleMultiplier *= 1.25f;
             p.baseData.speed *= 1 - (1 - (1 / (1 + 0.5f * stack)));
             p.UpdateSpeed();
         }
@@ -66,7 +66,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.5f * stack);
+            p.baseData.damage *= 1 + (0.33f * stack);
             p.AdditionalScaleMultiplier *= 1 + (0.25f * stack);
             p.baseData.speed *= 1 - (1 - (1 / (1 + 0.5f * stack)));
             p.UpdateSpeed();

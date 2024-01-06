@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "One Shot",
             Description = "Uno Mas",
-            LongDescription = "Adds 1 (+1 per stack) shots to your clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Adds a flat 1 (+1 per stack) shots to your clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("oneshot_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.66f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "One Shot " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") shots to your clip.";
+            h.LabelDescription = "Adds a flat 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nshots to your clip.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

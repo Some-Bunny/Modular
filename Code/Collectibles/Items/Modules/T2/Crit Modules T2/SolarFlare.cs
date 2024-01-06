@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class SolarFlare : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(SolarFlare))
@@ -105,5 +106,6 @@ namespace ModularMod
             }
         }
     }
+    */
 }
 

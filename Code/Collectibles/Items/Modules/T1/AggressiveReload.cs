@@ -79,7 +79,7 @@ namespace ModularMod
                 {
                     if (proj.GetComponent<BasicBeamController>() == null)
                     {
-                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 5 * a && proj.Owner != null && proj.Owner as AIActor)
+                        if (Vector2.Distance(proj.sprite ? proj.sprite.WorldCenter : proj.transform.PositionVector2(), player.sprite.WorldCenter) < 4 * a && proj.Owner != null && proj.Owner as AIActor)
                         {
                             FistReflectBullet(proj, player.gameActor, proj.baseData.speed *= 2f, (proj.sprite.WorldCenter - player.transform.PositionVector2()).ToAngle(), 1f, proj.IsBlackBullet ? (5 + proj.baseData.speed)*2 : 5 + proj.baseData.speed, 0f);
                         }
@@ -124,11 +124,7 @@ namespace ModularMod
             {
                 p.Speed = minReflectedBulletSpeed;
             }
-            if (p.baseData.damage < ProjectileData.FixedFallbackDamageToEnemies)
-            {
-                p.baseData.damage = ProjectileData.FixedFallbackDamageToEnemies;
-            }
-            p.baseData.damage = damageModifier;
+            p.baseData.damage = 3.5f;
             p.UpdateCollisionMask();
             p.ResetDistance();
             p.Reflected();

@@ -41,7 +41,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(383) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 5f;
+            gun.reloadTime = 3.5f;
             gun.DefaultModule.cooldownTime = .5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
@@ -80,7 +80,7 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 30f;
+            projectile.baseData.damage = 17.5f;
             projectile.baseData.speed = 50f;
 
             projectile.shouldRotate = true;
@@ -138,11 +138,11 @@ namespace ModularMod
 
             gun.activeReloadData = new ActiveReloadData()
             {
-                reloadSpeedMultiplier = 1.075f,
-                damageMultiply = 1.05f,
+                reloadSpeedMultiplier = 1.05f,
+                damageMultiply = 1.035f,
                 ActiveReloadIncrementsTier = true,
                 ActiveReloadStacks = true,
-                MaxTier = 20
+                MaxTier = 50
             };
             gun.m_canAttemptActiveReload = true;
             gun.LocalActiveReload = true;

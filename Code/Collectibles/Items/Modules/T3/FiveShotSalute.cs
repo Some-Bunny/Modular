@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Five-Shot Salute",
             Description = "One For Each Finger",
-            LongDescription = "Reduces Rate Of Fire and Damage by 30%. Shoot 5 (+2 per stack) times the projectiles." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Reduces Rate Of Fire and Damage by 35%. Shoot 5 (+2 per stack) times the projectiles." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Five-Shot Salute " + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces Rate Of Fire and Damage by 30%.\nShoot 5 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") times the projectiles.";
+            h.LabelDescription = "Reduces Rate Of Fire and Damage by 35%.\nShoot 5 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") times the projectiles.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -64,11 +64,11 @@ namespace ModularMod
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 1.3f;
+            return f * 1.35f;
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 0.7f;
+            p.baseData.damage *= 0.65f;
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {

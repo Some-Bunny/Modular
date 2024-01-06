@@ -92,10 +92,10 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
-            projectile.baseData.speed = 10f;
-            projectile.baseData.damage = 2f;
+            projectile.baseData.speed = 7f;
+            projectile.baseData.damage = 3f;
             projectile.shouldRotate = false;
-            projectile.baseData.force = 0;
+            projectile.baseData.force = 3;
             projectile.collidesWithProjectiles = true;
             projectile.projectileHitHealth = 5;
             projectile.baseData.UsesCustomAccelerationCurve = true;
@@ -152,10 +152,10 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectileBig.sprite.renderer.material = mat2;
-            projectileBig.baseData.speed = 12f;
-            projectileBig.baseData.damage = 5f;
+            projectileBig.baseData.speed = 10f;
+            projectileBig.baseData.damage = 6f;
             projectileBig.shouldRotate = false;
-            projectileBig.baseData.force = 0;
+            projectileBig.baseData.force = 5;
             projectileBig.collidesWithProjectiles = true;
             //projectileBig.collidesOnlyWithPlayerProjectiles
             projectileBig.projectileHitHealth = 15;

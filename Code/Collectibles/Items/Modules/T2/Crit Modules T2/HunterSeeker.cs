@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    /*
     public class HunterSeeker : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(HunterSeeker))
@@ -139,5 +140,6 @@ namespace ModularMod
             }
         }
     }
+    */
 }
 

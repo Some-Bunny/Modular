@@ -160,7 +160,7 @@ namespace ModularMod
 
         public float ProcessStats(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f / Multiplier;
+            return f / (Multiplier);
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {

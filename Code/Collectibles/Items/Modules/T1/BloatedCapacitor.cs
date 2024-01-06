@@ -16,8 +16,8 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(BloatedCapacitor))
         {
             Name = "Overcharged Capacitor",
-            Description = "One Better",
-            LongDescription = "Improves projectiles by exactly +1 (+1 per stack) damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            Description = "Too Much To Handle",
+            LongDescription = "Clearing enough rooms breaks this module and gramts a Power Cell. Reduces stats significantly, take double damage, and cannot be deactivated." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bloatedcapacitor_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,7 +27,7 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bloatedcapacitor_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.5f;
+            h.AdditionalWeightMultiplier = 0.35f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Overcharged Capacitor " + h.ReturnTierLabel();
             h.LabelDescription = "Clearing enough rooms breaks this module and grants a Power Cell.\n"+StaticColorHexes.AddColorToLabelString("Reduces stats significantly, take double damage,\nand cannot be deactivated", StaticColorHexes.Red_Color_Hex) +".";
@@ -94,8 +94,8 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.speed *= 0.75f;
-            p.baseData.damage *= 0.75f;
+            p.baseData.speed *= 0.8f;
+            p.baseData.damage *= 0.8f;
 
         }
 

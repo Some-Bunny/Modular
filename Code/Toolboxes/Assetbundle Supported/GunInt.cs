@@ -32,24 +32,21 @@ namespace ModularMod
 
         private static List<tk2dSpriteDefinition> GunSpriteDefs = new List<tk2dSpriteDefinition>();
 
-        private static void AddSpritesToCollection(tk2dSpriteCollectionData collection)
-        {
-            tk2dSpriteDefinition[] spriteDefinitions = collection.spriteDefinitions;
-            tk2dSpriteDefinition[] array = spriteDefinitions.Concat(GunSpriteDefs.ToArray()).ToArray<tk2dSpriteDefinition>();
-            
-            collection.spriteDefinitions = array;
-            for (int i = 0; i < collection.spriteDefinitions.Length; i++)
-            {
-                collection.spriteNameLookupDict[collection.spriteDefinitions[i].name] = i;
-            }
-        }
+
 
 
         public static void FinalizeSprites()
         {
-            AddSpritesToCollection(ammonomiconCollection);
-        }
+            tk2dSpriteDefinition[] spriteDefinitions = ammonomiconCollection.spriteDefinitions;
+            tk2dSpriteDefinition[] array = spriteDefinitions.Concat(GunSpriteDefs.ToArray()).ToArray<tk2dSpriteDefinition>();
 
+            ammonomiconCollection.spriteDefinitions = array;
+            for (int i = 0; i < ammonomiconCollection.spriteDefinitions.Length; i++)
+            {
+                ammonomiconCollection.spriteNameLookupDict[ammonomiconCollection.spriteDefinitions[i].name] = i;
+
+            }
+        }
         public static tk2dSpriteCollectionData ammonomiconCollection = AmmonomiconController.ForceInstance.EncounterIconCollection;
     }
 }

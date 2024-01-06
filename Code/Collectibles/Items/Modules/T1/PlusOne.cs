@@ -68,7 +68,9 @@ namespace ModularMod
         {
             yield return null;
             int stack = overrideStack ?? this.ReturnStack(modulePrinterCore);
-            p.baseData.damage += stack;
+            float f_1 = p.baseData.damage * 1 + (0.5f * stack);
+            float f_2 = p.baseData.damage + stack;
+            p.baseData.damage = Mathf.Min(f_1, f_2);
             yield break;
         }
 

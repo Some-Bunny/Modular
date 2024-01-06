@@ -27,6 +27,7 @@ namespace ModularMod
         public static void PostInit(PickupObject v)
         {
             var h = (v as DefaultModule);
+
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Chaotic Transportation " + h.ReturnTierLabel();

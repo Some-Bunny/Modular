@@ -50,7 +50,7 @@ namespace ModularMod
             FakePrefab.MakeFakePrefab(projectile.gameObject);
             DontDestroyOnLoad(projectile.gameObject);
 
-            projectile.baseData.damage = 7f;
+            projectile.baseData.damage = 10f;
             projectile.shouldRotate = false;
             projectile.baseData.range = 1000f;
             projectile.baseData.speed = 8;

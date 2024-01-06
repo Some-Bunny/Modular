@@ -65,7 +65,7 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.075f) { return; }
             int stack = 1;
             p.AppliesPoison = true;
-            p.PoisonApplyChance = 0.2f * stack;
+            p.PoisonApplyChance = 0.1f * stack;
             p.healthEffect = DebuffStatics.irradiatedLeadEffect;
             p.OnDestruction += (obj) =>
             {

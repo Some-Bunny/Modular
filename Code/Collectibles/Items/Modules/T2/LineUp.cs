@@ -43,8 +43,25 @@ namespace ModularMod
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             PierceImpact = (PickupObjectDatabase.GetById(545) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect;
             ID = h.PickupObjectId;
+            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
         }
         public static int ID;
+
+        public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
+        {
+            if (UnityEngine.Random.value > 0.04f) { return; }
+            int stack = 1;
+            p.baseData.damage *= 1 - (1 - (1 / (1 + 0.15f * stack)));
+
+            var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
+            aaaa.damageMultOnPierce = 1 + (0.5f * stack);
+            aaaa.AmountOfPiercesBeforeFalloff = 2 + stack;
+            aaaa.OnPierce += OP;
+            p.baseData.range += 3;
+
+            PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
+            bounceProjModifier.penetration += stack * 2;
+        }
         public static GameObject PierceImpact;
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

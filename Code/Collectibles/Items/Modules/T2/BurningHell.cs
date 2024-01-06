@@ -166,7 +166,7 @@ namespace ModularMod
         {
             if (aI)
             {
-                aI.healthHaver.ApplyDamage((2f * this.Stack()) * BraveTime.DeltaTime, Vector2.zero, "Hellfire", CoreDamageTypes.Fire, DamageCategory.DamageOverTime);
+                aI.healthHaver.ApplyDamage((1.25f * this.Stack()) * BraveTime.DeltaTime, Vector2.zero, "Hellfire", CoreDamageTypes.Fire, DamageCategory.DamageOverTime);
                 if (UnityEngine.Random.value < 0.025f)
                 {
                     aI.gameActor.ApplyEffect(DebuffStatics.hotLeadEffect);

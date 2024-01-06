@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Emergency Response",
             Description = "Fight Up",
-            LongDescription = "Taking damage grants a 2x damage up and 2x fire rate up that slowly degrades over 15 (+7.5 per stack) seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Taking damage grants a double damage, doubled fire rate and halved reload time that degrades over 15 (+7.5 per stack) seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("emergencymod_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.75f;
             h.LabelName = "Emergency Response" + h.ReturnTierLabel();
-            h.LabelDescription = "Taking damage grants a double damage\nand double fire rate boost\nthat degrades over 15 (" + StaticColorHexes.AddColorToLabelString("+7.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.LabelDescription = "Taking damage grants double damage,\ndoubled fire rate and halved reload time\nthat degrades over 15 (" + StaticColorHexes.AddColorToLabelString("+7.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
             
             h.AddModuleTag(BaseModuleTags.RETALIATION);
 
@@ -78,6 +78,7 @@ namespace ModularMod
             {
                 FireRate_Process = ProcessFireRate,
                 ChargeSpeed_Process = ProcessFireRate,
+                Reload_Process = ProcessFireRate
             };
             modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
         }

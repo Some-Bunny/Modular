@@ -168,7 +168,7 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
                 otherRigidbody.projectile.UpdateSpeed();
                 otherRigidbody.projectile.baseData.force = 0;
 
-                otherRigidbody.projectile.baseData.damage = otherRigidbody.projectile.IsBlackBullet ? 5f : 2.5f;
+                otherRigidbody.projectile.baseData.damage = otherRigidbody.projectile.IsBlackBullet ? 4f : 2f;
 
 
                 otherRigidbody.projectile.UpdateCollisionMask();
@@ -181,7 +181,7 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
                 }
 
                 PierceProjModifier pierceProjModifier1 = otherRigidbody.projectile.gameObject.GetOrAddComponent<PierceProjModifier>();
-                pierceProjModifier1.penetration = 10;
+                pierceProjModifier1.penetration = 5;
                 otherRigidbody.projectile.gameObject.AddComponent<MaintainDamageOnPierce>();
 
                 if (this.projectile.Owner is PlayerController)

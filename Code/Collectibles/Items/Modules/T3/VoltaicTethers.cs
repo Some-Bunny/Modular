@@ -58,12 +58,12 @@ namespace ModularMod
             p.pierceMinorBreakables = true;
             int stack = 1;
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 10 * stack;
-            tethers.PylonRange = 5 * stack;
-            tethers.PlayerRange = 10 * stack;
+            tethers.DPS = 12f * stack;
+            tethers.PylonRange = 7.5f * stack;
+            tethers.PlayerRange = 12.5f * stack;
 
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
-            bounceProjModifier.penetration += 2;
+            bounceProjModifier.penetration += 5;
 
             var mod = p.gameObject.GetOrAddComponent<StickyProjectileModifier>();
             mod.stickyContexts.Add(new StickyProjectileModifier.StickyContext() { CanStickToTerrain = true });
@@ -111,12 +111,12 @@ namespace ModularMod
             p.pierceMinorBreakables = true;
             int stack = this.ReturnStack(modulePrinterCore);
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 13.5f * stack;
+            tethers.DPS = 12f * stack;
             tethers.PylonRange = 7.5f * stack;
             tethers.PlayerRange = 12.5f * stack;
 
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
-            bounceProjModifier.penetration += 2;
+            bounceProjModifier.penetration += 5;
         }
 
         public void H(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)

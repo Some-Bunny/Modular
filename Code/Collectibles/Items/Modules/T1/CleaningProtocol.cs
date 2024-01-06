@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Cleaning Protocol",
             Description = "BRUSH",
-            LongDescription = "Deal 75% (+75% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 25% (+25% per stack) extra damage from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal 60% (+30% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 20% (+20% per stack) extra damage from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Cleaning Protocol " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 75% (" + StaticColorHexes.AddColorToLabelString("+75%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.";
+            h.LabelDescription = "Deal 60% (" + StaticColorHexes.AddColorToLabelString("+30%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.";
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 
@@ -55,7 +55,7 @@ namespace ModularMod
                     if (currentHealth > num)
                     {
                         float damage = o.projectile.baseData.damage;
-                        o.projectile.baseData.damage *= 1.75f;
+                        o.projectile.baseData.damage *= 1.6f;
                         GameManager.Instance.StartCoroutine(this.ChangeProjectileDamage(o.projectile, damage));
                         AkSoundEngine.PostEvent("Play_OBJ_cauldron_splash_01", o.gameObject);
                         th.aiActor.PlayEffectOnActor((PickupObjectDatabase.GetById(404) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect, new Vector2(0, 0));
@@ -81,13 +81,13 @@ namespace ModularMod
                     if (enemy.CanTargetPlayers && !enemyC.Contains(enemy))
                     {
                         enemyC.Add(enemy);
-                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Fire, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Electric, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Ice, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Magic, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Poison, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Void, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Water, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Fire, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Electric, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Ice, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Magic, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Poison, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Void, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                        enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Water, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
                     }
                 }
             }
@@ -98,13 +98,13 @@ namespace ModularMod
             if (enemy.CanTargetPlayers && !enemyC.Contains(enemy))
             {
                 enemyC.Add(enemy);
-                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Fire, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core))});
-                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Electric, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Ice, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Magic, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Poison, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Void, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
-                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Water, damageMultiplier = 1 + (0.25f + this.ReturnStack(Stored_Core)) });
+                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Fire, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core))});
+                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Electric, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Ice, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Magic, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Poison, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Void, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
+                enemy.healthHaver.damageTypeModifiers.Add(new DamageTypeModifier() { damageType = CoreDamageTypes.Water, damageMultiplier = 1 + (0.2f + this.ReturnStack(Stored_Core)) });
             }
         }
 
@@ -129,7 +129,8 @@ namespace ModularMod
                     if (currentHealth > num)
                     {
                         float damage = o.projectile.baseData.damage;
-                        o.projectile.baseData.damage *= 1f + (1f * this.ReturnStack(modulePrinterCore));
+
+                        o.projectile.baseData.damage *= 1f + (0.3f +  (0.3f *this.ReturnStack(modulePrinterCore)));
                         GameManager.Instance.StartCoroutine(this.ChangeProjectileDamage(o.projectile, damage));
                         AkSoundEngine.PostEvent("Play_OBJ_cauldron_splash_01", o.gameObject);
                         th.aiActor.PlayEffectOnActor((PickupObjectDatabase.GetById(404) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect, new Vector2(0, 0));
