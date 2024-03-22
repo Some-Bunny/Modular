@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Overcharged Capacitor",
             Description = "Too Much To Handle",
-            LongDescription = "Clearing enough rooms breaks this module and gramts a Power Cell. Reduces stats significantly, take double damage, and cannot be deactivated." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Clearing enough rooms breaks this module and grants a Power Cell. Reduces stats significantly, take double damage, and cannot be deactivated." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bloatedcapacitor_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,7 +27,7 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bloatedcapacitor_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.35f;
+            h.AdditionalWeightMultiplier = 0.2f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Overcharged Capacitor " + h.ReturnTierLabel();
             h.LabelDescription = "Clearing enough rooms breaks this module and grants a Power Cell.\n"+StaticColorHexes.AddColorToLabelString("Reduces stats significantly, take double damage,\nand cannot be deactivated", StaticColorHexes.Red_Color_Hex) +".";

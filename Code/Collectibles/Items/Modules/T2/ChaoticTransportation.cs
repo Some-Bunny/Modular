@@ -12,6 +12,7 @@ using UnityEngine;
 
 namespace ModularMod
 {
+    
     public class ChaoticTransportation : DefaultModule
     {
         public static ItemTemplate template = new ItemTemplate(typeof(ChaoticTransportation))
@@ -100,6 +101,7 @@ namespace ModularMod
             return f - (f - (f / (1 + (0.20f * stack))));
         }
     }
+    
 
     public class Transport : MonoBehaviour
     {

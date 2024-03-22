@@ -7,6 +7,7 @@ Shader "tk2d/BlendVertexColor"
 {
 	Properties 
 	{
+		[PerRenderData]
 		_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
 	}
 	

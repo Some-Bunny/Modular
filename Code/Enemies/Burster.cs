@@ -419,10 +419,6 @@ namespace ModularMod
 
         public float ramMultiplier = 3f;
 
-        public float minPlayerDist = 5f;
-
-        public float maxPlayerDist = 12f;
-
         private float? m_centerX;
         private float? m_centerY;
 

@@ -107,6 +107,7 @@ namespace ModularMod
                     self.ToggleHandRenderers(true, "petting");
                     self.m_pettingTarget = null;
                 }
+                /*
                 if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Direct3D9)
                 {
                     self.dx9counter += GameManager.INVARIANT_DELTA_TIME;
@@ -140,6 +141,7 @@ namespace ModularMod
                         }
                     }
                 }
+                */
                 if (self.healthHaver.IsDead && !self.IsGhost)
                 {
                     return;
