@@ -121,7 +121,6 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
                 Projectile projectile = other.projectile;
                 if (projectile)
                 {
-                    projectile.collidesWithPlayer = false;
                     if (other.GetComponent<BlackHoleDoer>() != null)
                     {
                         return false;
@@ -141,41 +140,41 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
                     g = this.gravitationalForce;
                 }
 
-                Vector2 frameAccelerationForRigidbody = this.GetFrameAccelerationForRigidbody(other.UnitCenter, Mathf.Sqrt(num), g);
-                float d = Mathf.Clamp(BraveTime.DeltaTime, 0f, 0.02f);
-                Vector2 b = frameAccelerationForRigidbody * d;
-                Vector2 vector = velocity + b;
-                if (BraveTime.DeltaTime > 0.02f)
+                if (projectile.Owner is PlayerController)
                 {
-                    vector *= 0.02f / BraveTime.DeltaTime;
-                }
-                other.Velocity = vector;
-                if (projectile != null)
-                {
-                    projectile.collidesWithPlayer = false;
-                    if (projectile.IsBulletScript)
+                    Vector2 frameAccelerationForRigidbody = this.GetFrameAccelerationForRigidbody(other.UnitCenter, Mathf.Sqrt(num), g);
+                    float d = Mathf.Clamp(BraveTime.DeltaTime, 0f, 0.02f);
+                    Vector2 b = frameAccelerationForRigidbody * d;
+                    Vector2 vector = velocity + b;
+                    if (BraveTime.DeltaTime > 0.02f)
                     {
-                        projectile.RemoveBulletScriptControl();
+                        vector *= 0.02f / BraveTime.DeltaTime;
                     }
-                    if (vector != Vector2.zero)
+                    other.Velocity = vector;
+                    if (projectile != null)
                     {
-                        projectile.Direction = vector.normalized;
-                        projectile.Speed = Mathf.Max(CheckModule() ? 10 : 13f, vector.magnitude);
-                        other.Velocity = projectile.Direction * projectile.Speed;
-                        if (projectile.shouldRotate && (vector.x != 0f || vector.y != 0f))
+
+                        if (vector != Vector2.zero)
                         {
-                            float num2 = BraveMathCollege.Atan2Degrees(projectile.Direction);
-                            if (!float.IsNaN(num2) && !float.IsInfinity(num2))
+                            projectile.Direction = vector.normalized;
+                            projectile.Speed = Mathf.Max(CheckModule() ? 10 : 13f, vector.magnitude);
+                            other.Velocity = projectile.Direction * projectile.Speed;
+                            if (projectile.shouldRotate && (vector.x != 0f || vector.y != 0f))
                             {
-                                Quaternion rotation = Quaternion.Euler(0f, 0f, num2);
-                                if (!float.IsNaN(rotation.x) && !float.IsNaN(rotation.y))
+                                float num2 = BraveMathCollege.Atan2Degrees(projectile.Direction);
+                                if (!float.IsNaN(num2) && !float.IsInfinity(num2))
                                 {
-                                    projectile.transform.rotation = rotation;
+                                    Quaternion rotation = Quaternion.Euler(0f, 0f, num2);
+                                    if (!float.IsNaN(rotation.x) && !float.IsNaN(rotation.y))
+                                    {
+                                        projectile.transform.rotation = rotation;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+               
                 return true;
             }
             return false;

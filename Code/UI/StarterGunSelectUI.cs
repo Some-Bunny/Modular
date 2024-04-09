@@ -29,7 +29,7 @@ namespace ModularMod
         {
             public override bool IsUnlocked()
             {
-                var list = StarterGunSelectUIController.UI_Frame.GetComponent<StarterGunSelectUIController>().ButtonControllers_Layers.Where(self => self.IsUnlocked() == true);
+                var list = StarterGunSelectUIController.UI_Frame.GetComponent<StarterGunSelectUIController>().ButtonControllers_Layers.Where(self => self.IsUnlockedWeapon() == true);
                 if (list.Count() > 0)
                 {
                     return true;
@@ -39,7 +39,7 @@ namespace ModularMod
 
             public override int ReturnGun(ModulePrinterCore c)
             {
-                var list = StarterGunSelectUIController.UI_Frame.GetComponent<StarterGunSelectUIController>().ButtonControllers_Layers.Where(self => self.IsUnlocked() == true);
+                var list = StarterGunSelectUIController.UI_Frame.GetComponent<StarterGunSelectUIController>().ButtonControllers_Layers.Where(self => self.IsUnlockedWeapon() == true);
                 if (list.Count() > 0)
                 {
                     return BraveUtility.RandomElement(list.ToList()).ReturnGun(c);
@@ -93,6 +93,19 @@ namespace ModularMod
 
             public virtual bool IsUnlocked()
             {
+                if (OverrideUnlock != null) { return OverrideUnlock(); }
+
+                if (FlagToCheck != CustomDungeonFlags.NOLLA)
+                {
+                    return SaveAPIManager.GetFlag(FlagToCheck);
+                }
+                return true;
+            }
+
+            public bool IsFiller = false;
+            public virtual bool IsUnlockedWeapon()
+            {
+                if (IsFiller == true) { return false; }
                 if (OverrideUnlock != null) { return OverrideUnlock(); }
 
                 if (FlagToCheck != CustomDungeonFlags.NOLLA)
@@ -1134,8 +1147,8 @@ namespace ModularMod
         {
             for (int i = 0; i < amount; i++)
             {
-                StarterGunSelectUIController.GenerateNewGunButton(dfAtlas, defaultFont, gunSelectUIController,
-              "IDKButton_" + i.ToString()
+                var newObj = StarterGunSelectUIController.GenerateNewGunButton(dfAtlas, defaultFont, gunSelectUIController,
+                "IDKButton_" + i.ToString()
               , "ui_button_idk_gun" //asset name default
               , "ui_button_idk_gun_highlighted" //asset name highlighted
               , "ui_button_idk_gun_pressed" //asset name pressed
@@ -1155,11 +1168,12 @@ namespace ModularMod
               , "ui_button_idk_gun_pressed_alt" //asset name pressed alt
               , "name_label_empty_alt"  //Label Name Asset Name Alt
               , StaticColorHexes.AddColorToLabelString("Error!", StaticColorHexes.Orange_Hex)+"\n\nThere seems to be no gun found here.\nPlease stand by until new guns arrive.\nThank you for your patience,\n"+StaticColorHexes.AddColorToLabelString("Hegemony Mechanics", StaticColorHexes.Green_Hex) +".", null, true); //Unlock Description
+                newObj.GetComponent<UpgradeUISelectButtonController>().IsFiller = true;
             }
            
         }
 
-        public static void GenerateNewGunButton(dfAtlas dfAtlas, dfFontBase defaultFont, StarterGunSelectUIController self, string Button_Name, string asset_name_default, string asset_name_highlighted, string asset_name_pressed, CustomDungeonFlags unlock, int GunId,
+        public static GameObject GenerateNewGunButton(dfAtlas dfAtlas, dfFontBase defaultFont, StarterGunSelectUIController self, string Button_Name, string asset_name_default, string asset_name_highlighted, string asset_name_pressed, CustomDungeonFlags unlock, int GunId,
             string Basic_Description = "",
             string Damage_Description = null,
             string Reload_Description = null,
@@ -1238,7 +1252,7 @@ namespace ModularMod
             Default_Gun_Button.hoverSprite = asset_name_highlighted;
             Default_Gun_Button.focusSprite = asset_name_highlighted;
             Default_Gun_Button.pressedSprite = asset_name_pressed;
-
+            return Default_Gun_Button_object;
             //Default_Gun_Button.RelativePosition = new Vector3(4, 0);
         }
 

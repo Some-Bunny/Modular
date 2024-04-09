@@ -644,20 +644,23 @@ namespace ModularMod
             {
                 c += AdditionalPowerMods(this);
             }
-            foreach (PassiveItem item in this.Owner.passiveItems)
+            if (this.Owner != null && this.Owner.passiveItems != null)
             {
-                if (item.gameObject)
+                foreach (PassiveItem item in this.Owner.passiveItems)
                 {
-                    if (item is BasicStatPickup mastery)
+                    if (item.gameObject)
                     {
-                        if (mastery.IsMasteryToken == true)
+                        if (item is BasicStatPickup mastery)
                         {
-                            c++;
+                            if (mastery.IsMasteryToken == true)
+                            {
+                                c++;
+                            }
                         }
-                    }
-                    if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
-                    {
-                        c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
+                        if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
+                        {
+                            c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
+                        }
                     }
                 }
             }

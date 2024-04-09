@@ -129,6 +129,9 @@ namespace ModularMod
             if (GameStatsManager.Instance.IsInSession == false) { return false; }
             if (GameManager.Instance.Dungeon == null) { return false; }
             if (GameManager.Instance.AllPlayers.Count() == 0) { return false; }
+            if (AdvancedGameStatsManager.Instance == null | AdvancedGameStatsManager.Instance.IsInSession == false) { return false; }
+
+            if (AdvancedGameStatsManager.Instance.m_sessionStats == null || AdvancedGameStatsManager.Instance.m_savedSessionStats == null) { return false; }
 
             if (AdvancedGameStatsManager.Instance.GetSessionStatValue(CustomTrackedStats.ENCOUNTERS_OF_PREDEFINED) > 0) { return false; }
             if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.BEAT_LICH_AS_MODULAR) == false) { return false; }

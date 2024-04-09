@@ -645,7 +645,7 @@ namespace SaveAPI
         [fsProperty]
         public Dictionary<PlayableCharacters, AdvancedGameStats> m_characterStats;
         public AdvancedGameStats m_sessionStats;
-        private AdvancedGameStats m_savedSessionStats;
+        public AdvancedGameStats m_savedSessionStats;
         private PlayableCharacters m_sessionCharacter;
         private int m_numCharacters;
         [fsIgnore]
