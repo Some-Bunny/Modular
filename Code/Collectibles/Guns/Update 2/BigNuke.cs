@@ -95,9 +95,10 @@ namespace ModularMod
             projectile.baseData.damage = 60f;
             projectile.shouldRotate = true;
 
-            projectile.gameObject.AddComponent<KineticBomb>();
+            var kinetic = projectile.gameObject.AddComponent<KineticBomb>();
             var explosive = projectile.gameObject.AddComponent<ExplosiveModifier>();
             explosive.explosionData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.genericLargeExplosion);
+            kinetic.exploder = explosive;
             explosive.explosionData.damage = 45;
             explosive.explosionData.damageToPlayer = 0;
             explosive.explosionData.damageRadius = 7;
@@ -144,6 +145,7 @@ namespace ModularMod
     public class KineticBomb : MonoBehaviour
     {
         private Projectile projectile;
+        public ExplosiveModifier exploder;
         public void Start()
         {
             projectile = this.GetComponent<Projectile>();
@@ -154,7 +156,11 @@ namespace ModularMod
         }
         private void Projectile_OnDestruction(Projectile obj)
         {
-            if (obj.GetComponent<ProjectileSplitController.SplitProjectileTag>() != null) { return; }
+            if (obj.GetComponent<ProjectileSplitController.SplitProjectileTag>() != null) 
+            {
+                exploder.explosionData.damage = 5;
+                return;
+            }
             Exploder.DoRadialPush(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialKnockback(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialMinorBreakableBreak(obj.sprite.WorldCenter, 8);

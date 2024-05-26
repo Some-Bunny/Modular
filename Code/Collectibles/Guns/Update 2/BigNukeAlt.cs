@@ -96,9 +96,12 @@ namespace ModularMod
             projectile.baseData.damage = 60f;
             projectile.shouldRotate = true;
 
-            projectile.gameObject.AddComponent<KineticBomb>();
+
+            var kinetic = projectile.gameObject.AddComponent<KineticBomb>();
             var explosive = projectile.gameObject.AddComponent<ExplosiveModifier>();
             explosive.explosionData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.genericLargeExplosion);
+            kinetic.exploder = explosive;
+
             explosive.explosionData.damage = 45;
             explosive.explosionData.damageToPlayer = 0;
             explosive.explosionData.damageRadius = 7;
