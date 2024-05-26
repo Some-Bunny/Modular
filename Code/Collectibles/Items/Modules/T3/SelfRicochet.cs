@@ -61,7 +61,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.03f) { return; }
+            if (UnityEngine.Random.value > 0.01f) { return; }
             p.gameObject.AddComponent<RicoShot>();
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += (20 * this.ReturnStack(modulePrinterCore));

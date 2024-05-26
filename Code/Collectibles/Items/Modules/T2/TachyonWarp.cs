@@ -68,7 +68,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.05f) { return; }
+            if (UnityEngine.Random.value > 0.02f) { return; }
             int stack = 1;
             Exploder.DoRadialPush(player.sprite.WorldCenter, 50 * stack, 5);
             Exploder.DoRadialKnockback(player.sprite.WorldCenter, 50 * stack, 5);

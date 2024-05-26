@@ -49,7 +49,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.3f) { return; }
+            if (UnityEngine.Random.value > 0.1f) { return; }
             p.baseData.damage *= 1 + ((player.carriedConsumables.Currency / 200));
         }
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -70,6 +70,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 1 + ((float)player.carriedConsumables.Currency / 200)*(float)this.ReturnStack(modulePrinterCore);
+            
         }
     } 
 }

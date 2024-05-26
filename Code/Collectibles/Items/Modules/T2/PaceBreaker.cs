@@ -34,7 +34,6 @@ namespace ModularMod
             h.EnergyConsumption = 1;
             h.AppearsFromBlessedModeRoll = false;
 
-
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AdditionalWeightMultiplier = 0.65f;

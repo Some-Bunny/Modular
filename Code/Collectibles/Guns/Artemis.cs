@@ -65,11 +65,11 @@ namespace ModularMod
 
                 Projectile projectile = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(88) as Gun).DefaultModule.projectiles[0]);
                 projectile.gameObject.SetActive(false);
-                projectile.baseData.damage = 4f;
+                projectile.baseData.damage = 5f;
                 projectile.shouldRotate = true;
                 projectile.baseData.range = 19f;
                 projectile.baseData.speed = 40;
-                projectile.baseData.force = 25;
+                projectile.baseData.force = 30;
 
                 projectile.AnimateProjectileBundle("longshotalt_idle", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "longshotalt_idle",
                 new List<IntVector2>() { new IntVector2(14, 5), new IntVector2(14, 5) },
@@ -96,7 +96,7 @@ namespace ModularMod
                 ProjectileModule.ChargeProjectile item2 = new ProjectileModule.ChargeProjectile
                 {
                     Projectile = projectile,
-                    ChargeTime = 0f
+                    ChargeTime = 0.35f
                 };
                 projectileModule.chargeProjectiles = new List<ProjectileModule.ChargeProjectile>() { item2 };
                 gun.DefaultModule.chargeProjectiles.Add(item2);
@@ -162,7 +162,7 @@ namespace ModularMod
 
         public float ProcessClipSize(float clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            float q = clip * elapsed;
+            float q = clip * GetElapsed;
             return q;
         }
 
@@ -177,6 +177,16 @@ namespace ModularMod
             }
             return false;
         }
+
+        public float GetElapsed
+        {
+            get
+            {
+                if (0 > elapsed) { return 0; }
+                return elapsed;
+            }
+        }
+
         public override void Update()
         {
             base.Update();
@@ -190,9 +200,9 @@ namespace ModularMod
                         float charge = player.stats.GetStatValue(PlayerStats.StatType.ChargeAmountMultiplier);
                         if (this.elapsed <= 1)
                         {
-                            this.elapsed += (BraveTime.DeltaTime * (charge / ReturnControl().GetChargeSpeed(1))) / (CheckModule() == true ? 1.5f : 2.5f);
+                            this.elapsed += (BraveTime.DeltaTime * (charge / ReturnControl().GetChargeSpeed(1))) / (CheckModule() == true ? 1.125f : 2f);
                         }
-                        if (VFXActive != true)
+                        if (VFXActive != true && GetElapsed > 0)
                         {
                             VFXActive = true;
                             for (int i = 0; i < 5; i++)
@@ -233,34 +243,37 @@ namespace ModularMod
                             }
                         }
                         float Accuracy = player.stats.GetStatValue(PlayerStats.StatType.Accuracy) * 15;
-                        for (int i = -2; i < 3; i++)
+                        if (Chargerreticles.Count > 0)
                         {
-                            GameObject obj = Chargerreticles[i + 2];
-                            if (obj != null)
+                            for (int i = -2; i < 3; i++)
                             {
-                                tk2dTiledSprite component2 = obj.GetComponent<tk2dTiledSprite>();
+                                GameObject obj = Chargerreticles[i + 2];
+                                if (obj != null)
+                                {
+                                    tk2dTiledSprite component2 = obj.GetComponent<tk2dTiledSprite>();
 
-                                float a = ReturnControl().GetAccuracy(45);
+                                    float a = ReturnControl().GetAccuracy(45);
 
-                                float AddaAngle = (elapsed * (a * i));
-                                float ix = obj.transform.localRotation.eulerAngles.x + player.CurrentGun.barrelOffset.transform.localRotation.eulerAngles.x;
-                                float wai = obj.transform.localRotation.eulerAngles.y + player.CurrentGun.barrelOffset.transform.localRotation.eulerAngles.y;
-                                float zee = obj.transform.localRotation.z + player.CurrentGun.transform.eulerAngles.z;
+                                    float AddaAngle = (GetElapsed * (a * i));
+                                    float ix = obj.transform.localRotation.eulerAngles.x + player.CurrentGun.barrelOffset.transform.localRotation.eulerAngles.x;
+                                    float wai = obj.transform.localRotation.eulerAngles.y + player.CurrentGun.barrelOffset.transform.localRotation.eulerAngles.y;
+                                    float zee = obj.transform.localRotation.z + player.CurrentGun.transform.eulerAngles.z;
 
-
-                                obj.transform.localRotation = Quaternion.Euler(ix, wai, zee + AddaAngle + 3600);
-                                obj.transform.position = this.gun.barrelOffset.transform.position;
-                                component2.transform.position.WithZ(component2.transform.position.z + 99999);
-                                component2.UpdateZDepth();
-                                component2.HeightOffGround = -2;
+                                    obj.transform.localRotation = Quaternion.Euler(ix, wai, zee + AddaAngle + 3600);
+                                    obj.transform.position = this.gun.barrelOffset.transform.position;
+                                    component2.transform.position.WithZ(component2.transform.position.z + 99999);
+                                    component2.UpdateZDepth();
+                                    component2.HeightOffGround = -2;
+                                }
                             }
                         }
+
                         foreach (ProjectileModule projectileModule in this.gun.Volley.projectiles)
                         {
                             Projectile proj = projectileModule.GetCurrentProjectile();
                             if (proj != null)
                             {
-                                proj.baseData.damage = (5.25f - (elapsed * 4));
+                                proj.baseData.damage = (9 - (GetElapsed * 5.5f));
                             }
 
                         }
@@ -268,7 +281,7 @@ namespace ModularMod
 
                     else
                     {
-                        elapsed = 0;
+                        elapsed = -0.35f;
                         VFXActive = false;
                         CleanupReticles();
                     }
@@ -280,7 +293,7 @@ namespace ModularMod
             }
             else
             {
-                elapsed = 0;
+                elapsed = -0.35f;
                 CleanupReticles();
             }
 

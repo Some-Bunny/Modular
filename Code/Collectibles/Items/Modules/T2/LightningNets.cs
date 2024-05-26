@@ -50,7 +50,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.15f) { return; }
+            if (UnityEngine.Random.value > 0.12f) { return; }
             int stack = 1;
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
             chain.Damage = Mathf.Max(0.5f, p.baseData.damage / 2.5f);

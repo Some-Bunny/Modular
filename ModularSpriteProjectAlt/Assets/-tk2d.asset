@@ -325,6 +325,8 @@ MonoBehaviour:
     - glitteringsparks_tier1_module_alt
     - bloatedcapacitor_tier1_module
     - bloatedcapacitor_tier1_module_alt
+    - bubbleup_tier1_module
+    - bubbleup_tier1_module_alt
     spriteTextureGUIDs:
     - a5ec6dd2ae0b5b34a9a3ef4f08592a6b
     - 8984dd2463ff83d418f9f2d3dfd2975d
@@ -400,6 +402,8 @@ MonoBehaviour:
     - 29af9a6df1ec7c7488e372849f3e4359
     - 5e48a27b0d4fe7b4cbe733416edf2db1
     - f92a382755ee8c545a1a3103e999d7c6
+    - 282b646c021e78b498bfb52fe2d85147
+    - 1a77c177768c81a46927cc3949f31c4d
     spriteTextureTimeStamps:
     - 1674414954.18848
     - 1674414983.82697
@@ -475,6 +479,8 @@ MonoBehaviour:
     - 1699120347.65336
     - 1699131268.46858
     - 1699131279.28458
+    - 1716739462.60964
+    - 1716739512.7389
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -5314,6 +5320,14 @@ MonoBehaviour:
     - turretblockalt_place_006
     - turretblockalt_place_007
     - turretblockalt_place_008
+    - Bubble_003
+    - Bubble_008
+    - Bubble_006
+    - Bubble_007
+    - Bubble_002
+    - Bubble_001
+    - Bubble_004
+    - Bubble_005
     spriteTextureGUIDs:
     - 3638df8e5120f754695fa63b29e96e58
     - c389a9ceabc50f241908f1b6a9591ccc
@@ -5548,6 +5562,14 @@ MonoBehaviour:
     - 7fc670c850dc453439403078c6615ef4
     - fbc269f636cd7d8419fe17c1d65cd89c
     - 44b2b98914235cd47b48d0f306cc71ca
+    - 49184df372a0b704a905f74d812549bb
+    - b437a3c60bde77c429419eb2c22656d9
+    - 90e1a792e63e8a34fa98513d7ad9870d
+    - b8067ca20938625499956a553cb822c5
+    - e53bf335c47feed429fd73028f8dc782
+    - 33dc085e499786d42a9c24e97a40c690
+    - 01013edd5feeb13458755ff98a09208b
+    - 3b6835c1014229944a9268a388189cdb
     spriteTextureTimeStamps:
     - 1679785614.87981
     - 1679785610.71181
@@ -5782,6 +5804,14 @@ MonoBehaviour:
     - 1699310156.3849
     - 1699310156.3889
     - 1699310156.3909
+    - 1716757189.44488
+    - 1716757189.45788
+    - 1716757189.45287
+    - 1716757189.45488
+    - 1716757189.44291
+    - 1716757189.43938
+    - 1716757189.44887
+    - 1716757189.45087
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

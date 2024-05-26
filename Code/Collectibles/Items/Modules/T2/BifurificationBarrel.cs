@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Bifurcated Barrel",
             Description = "Two-For-One",
-            LongDescription = "Increases rate of fire by 20% (+20% hyperbolically per stack), clip size by 20% (+20% per stack), but makes you fire in a V-formation.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Increases rate of fire by 15% (+15% hyperbolically per stack), clip size by 20% (+20% per stack), but makes you fire in a V-formation, and slightly reduces damage.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bifurificationbarrel_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bifurificationbarrel_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Bifurcated Barrel " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases rate of fire by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nclip size by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + "),\nbut makes you fire in a V-formation.";
+            h.LabelDescription = "Increases rate of fire by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nclip size by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + "),\nbut makes you fire in a V-formation,\nand slightly reduces damage.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.OverrideScrapCost = 10;
@@ -72,6 +72,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.speed *= 1.15f;
+            p.baseData.damage *= 0.7f;
             p.UpdateSpeed();
         }
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
@@ -81,7 +82,7 @@ namespace ModularMod
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.2f * stack)));
+            return f - (f - (f / (1 + 0.15f * stack)));
         }
         private void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
         {

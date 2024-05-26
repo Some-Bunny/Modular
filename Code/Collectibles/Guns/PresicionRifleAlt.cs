@@ -75,10 +75,11 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
             projectile.pierceMinorBreakables = true;
 
-            projectile.baseData.damage = 25f;
+            projectile.baseData.damage = 28f;
             projectile.shouldRotate = true;
-            projectile.baseData.speed = 75;
+            projectile.baseData.speed = 80;
             projectile.baseData.range *= 10;
+            projectile.baseData.force *= 2.5f;
 
             ImprovedAfterImage yes = projectile.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;

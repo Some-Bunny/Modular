@@ -47,7 +47,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.01f) { return; }
+            if (UnityEngine.Random.value > 0.005f) { return; }
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             bounceProjModifier.penetration += 10;
             p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();

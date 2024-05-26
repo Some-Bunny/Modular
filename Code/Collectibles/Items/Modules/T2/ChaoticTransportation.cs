@@ -51,7 +51,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.02f) { return; }
+            if (UnityEngine.Random.value > 0.01f) { return; }
             var t = p.gameObject.GetOrAddComponent<Transport>();
             p.gameObject.GetOrAddComponent<BounceProjModifier>().numberOfBounces += 1;
             t.AmountOfTeleports = 1;

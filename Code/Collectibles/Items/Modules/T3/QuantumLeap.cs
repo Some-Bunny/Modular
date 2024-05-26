@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Quantum Leap",
             Description = "Particles In The Universe",
-            LongDescription = "Doubles reload time and clip size. Projectules fired are put into Stasis. Upon reloading an empty clip, enter a Cloak that removes all of your projectiles from Stasis, gaining homing, damage and bouncing. (+Bouncing, Damage and Homing strength per stack). Exiting your cloak puts all of your projectiles back into Stasis." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Doubles reload time and clip size. Projectules fired are put into Stasis. Upon reloading an empty clip, enter a Cloak that removes all of your projectiles from Stasis, gaining slight homing, damage and bouncing. (+Bouncing and Damage per stack). Exiting your cloak puts all of your projectiles back into Stasis." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("quantumleap_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("quantumleap_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Quantum Leap " + h.ReturnTierLabel();
-            h.LabelDescription = "Doubles reload time and clip size.\nProjectiles fired are put into "+StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex)+". Upon reloading an empty clip,\nenter a Cloak that removes all of your projectiles from "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ",\ngaining homing, damage and bouncing. ("+ StaticColorHexes.AddColorToLabelString("+Bouncing, Damage and Homing Strength", StaticColorHexes.Light_Orange_Hex) + ")\nExiting your cloak puts all of your projectiles back into "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ".";
+            h.LabelDescription = "Doubles reload time and clip size.\nProjectiles fired are put into "+StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex)+". Upon reloading an empty clip,\nenter a Cloak that removes all of your projectiles from "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ",\ngaining slight homing, damage and bouncing. ("+ StaticColorHexes.AddColorToLabelString("+Bouncing and Damage", StaticColorHexes.Light_Orange_Hex) + ")\nExiting your cloak puts all of your projectiles back into "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ".";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
@@ -175,11 +175,11 @@ namespace ModularMod
                 self.baseData.speed = savedSpeed;
                 self.baseData.range += 10;
                 self.UpdateSpeed();
-                var vec = Alexandria.Misc.ProjectileUtility.GetVectorToNearestEnemy(self);
-                self.SendInDirection(vec != Vector2.zero ? vec : Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), 1), true, true);
+                //var vec = Alexandria.Misc.ProjectileUtility.GetVectorToNearestEnemy(self);
+                //self.SendInDirection(vec != Vector2.zero ? vec : Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), 1), true, true);
                 var homing = self.gameObject.GetOrAddComponent<HomingModifier>();
-                homing.AngularVelocity += 120 * Stack;
-                homing.HomingRadius += 3 * Stack;
+                homing.AngularVelocity += 30 + (Stack*15);
+                homing.HomingRadius += 4 + Stack;
                 isInStasis = false;
 
 
@@ -190,7 +190,7 @@ namespace ModularMod
                 PierceProjModifier pierce = self.gameObject.GetOrAddComponent<PierceProjModifier>();
                 pierce.penetration += Stack;
 
-                self.baseData.damage *= 1 + (0.35f * Stack);
+                self.baseData.damage *= 1 + (0.3f * Stack);
             }
 
 

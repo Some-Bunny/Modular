@@ -45,7 +45,7 @@ namespace ModularMod
         public static int ID;
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.15f) { return; }
+            if (UnityEngine.Random.value > 0.1f) { return; }
             p.baseData.damage *= 1 + ((0.05f) * player.healthHaver.Armor);
 
         }

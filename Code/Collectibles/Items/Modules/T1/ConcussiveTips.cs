@@ -46,11 +46,11 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.15f) { return; }
+            if (UnityEngine.Random.value > 0.05f) { return; }
             int stack = 1;
             p.BossDamageMultiplier *= 1 + (0.25f * stack);
             p.baseData.force *= 1 + stack;
-            p.StunApplyChance = 1 - (1 / (1 + 0.045f * stack));
+            p.StunApplyChance = 1 - (1 / (1 + 0.03f * stack));
             p.AppliesStun = true;
             p.AppliedStunDuration = 1.25f * stack;
         }
@@ -68,7 +68,7 @@ namespace ModularMod
             int stack = this.ReturnStack(modulePrinterCore);
             p.BossDamageMultiplier *=  1 + (0.25f * stack);
             p.baseData.force *= 1 + stack;
-            p.StunApplyChance = 1 - (1 / (1 + 0.045f * stack));
+            p.StunApplyChance = 1 - (1 / (1 + 0.03f * stack));
             p.AppliesStun = true;
             p.AppliedStunDuration = 1.25f *stack;
         }

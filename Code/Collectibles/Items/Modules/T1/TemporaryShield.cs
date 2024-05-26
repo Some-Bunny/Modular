@@ -126,7 +126,7 @@ namespace ModularMod
 
         public float ModuleWeight(DefaultModule module, float f)
         {
-            if (module.ContainsTag(BaseModuleTags.RETALIATION) || module.ContainsTag(BaseModuleTags.DEFENSIVE)) { return f *= 1.5f; }
+            if (module.ContainsTag(BaseModuleTags.RETALIATION) || module.ContainsTag(BaseModuleTags.DEFENSIVE)) { return f *= 1.3f; }
             return f;
         }
 

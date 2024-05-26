@@ -1,5 +1,6 @@
 ﻿using Alexandria.ItemAPI;
 using JuneLib.Items;
+using MonoMod.RuntimeDetour.Platforms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,6 +51,7 @@ namespace ModularMod
             DoSelect(modulePrinter, player);
             modulePrinter.OnNewFloorStarted += ONFS;
             modulePrinter.OnAnyModulePowered += OAMP;
+            modulePrinter.OnAnyModuleUnpowered += OAMP;
         }
 
         public void OAMP(ModulePrinterCore modulePrinter, DefaultModule player, int i)
@@ -68,40 +70,94 @@ namespace ModularMod
                     int Count = c.First().Second;
                     c.First().Second = this.ReturnStack(modulePrinter) * 2;
                     containerSelected.defaultModule.OnAnyPickup(modulePrinter, modulePrinter.ModularGunController, player, false);
-                    AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
-                    VFXStorage.DoFancyFlashOfModules((this.ReturnStack(modulePrinter) * 2) - Count, modulePrinter.Owner, containerSelected.defaultModule);
+
+                    if ((Count < c.First().Second))
+                    {
+                        AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
+                        VFXStorage.DoFancyFlashOfModules((this.ReturnStack(modulePrinter) * 2) - Count, modulePrinter.Owner, containerSelected.defaultModule);
+                    }
+                    else if ((Count > c.First().Second))
+                    {
+                        VFXStorage.DoFancyDestroyOfModules(Count - (this.ReturnStack(modulePrinter) * 2), modulePrinter.Owner, containerSelected.defaultModule);
+                    }
                 }
             }
         }
+
+
+
+
+
 
         public void ONFS(ModulePrinterCore modulePrinter, PlayerController player)
         {
             ORC(modulePrinter, player);
             containerSelected = null;
+            cachedContainerSelected = null;
             DoSelect(modulePrinter, player);
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             ORC(modulePrinter, player);
+            containerSelected = null;
             modulePrinter.OnNewFloorStarted -= ONFS;
+            modulePrinter.OnAnyModulePowered -= OAMP;
+            modulePrinter.OnAnyModuleUnpowered -= OAMP;
         }
 
         public ModulePrinterCore.ModuleContainer containerSelected = null;
-       
+        private ModulePrinterCore.ModuleContainer cachedContainerSelected = null;
+
+
+
         public void DoSelect(ModulePrinterCore printer, PlayerController player)
         {
-            if (containerSelected != null) 
+            if (containerSelected != null)
             {
-                if (containerSelected.FakeCount.Where(self => self.First == "Mirror").Count() == 0)
-                {
-                    containerSelected.FakeCount.Add(new Tuple<string, int>("Mirror", this.ReturnStack(printer) * 2));
-                    containerSelected.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
-                    AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
-                    VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer) * 2, printer.Owner, containerSelected.defaultModule);
-                }
-                return; 
+                OnAnyPickup(printer, null, player, false);
+                return;
             }
+
+                /*
+                if (containerSelected != null) 
+                {
+                    var c = containerSelected.FakeCount.Where(self => self.First == "Mirror");
+                    if (c.Count() > 0)
+                    {
+                        //DoVFXLogic(printer, player);
+                        int Count = c.First().Second;
+                        c.First().Second = this.ReturnStack(printer) * 2;
+                        containerSelected.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
+                        Debug.Log($"Diff: {Count}| {this.ReturnStack(printer) * 2}");
+
+                        /*
+                        if ((Count < c.First().Second))
+                        {
+                            AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
+                            VFXStorage.DoFancyFlashOfModules((this.ReturnStack(printer) * 2) - Count, printer.Owner, containerSelected.defaultModule);
+                        }
+                        else if ((Count > c.First().Second))
+                        {
+                            VFXStorage.DoFancyDestroyOfModules(Count - (this.ReturnStack(printer) * 2), printer.Owner, containerSelected.defaultModule);
+                        }   
+
+                    }
+                    return; 
+                }
+                */
+            if (cachedContainerSelected != null)
+            {
+                containerSelected = cachedContainerSelected;
+                var t = new Tuple<string, int>("Mirror", this.ReturnStack(printer) * 2);
+                containerSelected.FakeCount.Add(t);
+                containerSelected.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
+
+                //AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
+                //VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer) * 2, printer.Owner, containerSelected.defaultModule);
+                return;
+            }
+
             int rolls = 5;
             bool found = false;
             while (found == false && rolls > 0)
@@ -116,14 +172,15 @@ namespace ModularMod
                         found = !found;
 
                         containerSelected = c;
-                                     
+                        cachedContainerSelected = c;
+
                         c.FakeCount.Add(new Tuple<string, int>("Mirror", this.ReturnStack(printer) * 2));
                         c.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
 
+                        //Debug.Log($"InitAct: {this.ReturnStack(printer) * 2}");
 
                         AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Active_01", player.gameObject);
                         VFXStorage.DoFancyFlashOfModules(this.ReturnStack(printer) * 2, printer.Owner, c.defaultModule);
-                        
                     }
                     else
                     {
@@ -138,19 +195,22 @@ namespace ModularMod
         }
 
 
-
-
         public void ORC(ModulePrinterCore printer, PlayerController player)
         {
             if (containerSelected == null) { return; }
+
             for (int i = 0; i < containerSelected.FakeCount.Count; i++)
             {
+
                 var faker = containerSelected.FakeCount[i];
                 if (faker.First == "Mirror")
                 {
+                    int t = containerSelected.FakeCount[i].Second;
+                    VFXStorage.DoFancyDestroyOfModules(t, printer.Owner, containerSelected.defaultModule);
+                    
                     containerSelected.FakeCount.Remove(containerSelected.FakeCount[i]);
                     containerSelected.defaultModule.OnAnyPickup(printer, printer.ModularGunController, player, false);
-                    VFXStorage.DoFancyDestroyOfModules(this.ReturnStack(printer) * 2, printer.Owner, containerSelected.defaultModule);
+                    break;
                 }
             }
         }

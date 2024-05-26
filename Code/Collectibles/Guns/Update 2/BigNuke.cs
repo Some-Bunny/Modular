@@ -154,6 +154,7 @@ namespace ModularMod
         }
         private void Projectile_OnDestruction(Projectile obj)
         {
+            if (obj.GetComponent<ProjectileSplitController.SplitProjectileTag>() != null) { return; }
             Exploder.DoRadialPush(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialKnockback(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialMinorBreakableBreak(obj.sprite.WorldCenter, 8);

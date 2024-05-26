@@ -101,7 +101,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.015f) { return; }
+            if (UnityEngine.Random.value > 0.005f) { return; }
             int stack = 1;
             p.baseData.damage *= 0.625f + stack;
             p.baseData.speed *= 2.5f + (0.5f * stack);

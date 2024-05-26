@@ -22,9 +22,9 @@ namespace ModularMod
         }
 
 
-        public static DefaultModule ReturnSelectedModule(int tier)
+        public static DefaultModule ReturnSelectedModule(PickupObject.ItemQuality itemQuality = PickupObject.ItemQuality.B)
         {
-            var mod = GlobalModuleStorage.SelectTable(PickupObject.ItemQuality.B);
+            var mod = GlobalModuleStorage.SelectTable(itemQuality);
             return mod.ModularSelectByWeight(false, Func).GetComponent<DefaultModule>();
         }
 
@@ -65,12 +65,46 @@ namespace ModularMod
                 self.PlayEffectOnActor(ResourceCache.Acquire("Global VFX/VFX_MagicFavor_Change") as GameObject, new Vector3(0f, -1f, 0f), true, false, false);
                 var core = self.PlayerHasCore();
                 core.RemoveTemporaryModules("BLESSED_MODE", true);
-                int amount = UnityEngine.Random.Range(1, 2);
+                int amount = UnityEngine.Random.value < 0.3f ? 2 : 1;
                 amount += FloorMultiplier(GameManager.Instance.Dungeon);
                 for (int i = 1; i < amount + 1; i++)
                 {
                     int tier = UnityEngine.Random.Range(1, 11);
-                    core.GiveTemporaryModule(ReturnSelectedModule(tier), "BLESSED_MODE", i, true);
+                    PickupObject.ItemQuality itemQuality = PickupObject.ItemQuality.B;
+                    switch (tier)
+                    {
+                        case 1:
+                            itemQuality = PickupObject.ItemQuality.D;
+                            break;
+                        case 2:
+                            itemQuality = PickupObject.ItemQuality.D;
+                            break;
+                        case 3:
+                            itemQuality = PickupObject.ItemQuality.D;
+                            break;
+                        case 4:
+                            itemQuality = PickupObject.ItemQuality.C;
+                            break;
+                        case 5:
+                            itemQuality = PickupObject.ItemQuality.C;
+                            break;
+                        case 6:
+                            itemQuality = PickupObject.ItemQuality.B;
+                            break;
+                        case 7:
+                            itemQuality = PickupObject.ItemQuality.B;
+                            break;
+                        case 8:
+                            itemQuality = PickupObject.ItemQuality.A;
+                            break;
+                        case 9:
+                            itemQuality = PickupObject.ItemQuality.A;
+                            break;
+                        case 10:
+                            itemQuality = PickupObject.ItemQuality.S;
+                            break;
+                    }
+                    core.GiveTemporaryModule(ReturnSelectedModule(itemQuality), "BLESSED_MODE", UnityEngine.Random.Range(1, amount + 1), true);
                 }
             }
             else

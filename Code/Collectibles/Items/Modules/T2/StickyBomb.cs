@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Sticky Bomb",
             Description = "KA-BLEWY",
-            LongDescription = "Increases Accuracy by 20% (+20% hyperbolically per stack), projectiles now leave sticky bombs on enemies that\nexplode after 5 (-15% hyperbolically per stack) seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Increases Accuracy by 20% (+20% hyperbolically per stack), projectiles now leave sticky bombs on enemies that\nexplode after 10 (-25% hyperbolically per stack) seconds. (+Sticky Bomb Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("stickybombs_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("stickybombs_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Sticky Bomb " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Accuracy by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nprojectiles now leave sticky bombs on enemies that\nexplode after 5 ("+ StaticColorHexes.AddColorToLabelString("-15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.LabelDescription = "Increases Accuracy by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nprojectiles now leave sticky bombs on enemies that\nexplode after 10 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.\n(" + StaticColorHexes.AddColorToLabelString("+Sticky Bomb Damage", StaticColorHexes.Light_Orange_Hex) + ")";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
@@ -47,14 +47,16 @@ namespace ModularMod
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
             Data = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
-            Data.damage = 5;
+            Data.damage = 8;
+
         }
+
         public static ExplosionData Data;
         public static int ID;
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.04f) { return; }
+            if (UnityEngine.Random.value > 0.02f) { return; }
             p.baseData.speed *= 2f;
             p.pierceMinorBreakables = true;
             p.UpdateSpeed();
@@ -69,7 +71,7 @@ namespace ModularMod
 
         public void H_S(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)
         {
-            comp.StartCoroutine(DoTimer(stick, 4 - (4 - (4 / (1 + (0.15f * 1))))));
+            comp.StartCoroutine(DoTimer(stick, 12.5f - (12.5f - (12.5f / (1 + (0.25f * 1))))));
         }
 
         public static tk2dSpriteAnimation mineAnimation;
@@ -104,7 +106,7 @@ namespace ModularMod
 
         public void H(GameObject stick, StickyProjectileModifier comp, tk2dBaseSprite sprite, PlayerController p)
         {
-            comp.StartCoroutine(DoTimer(stick, 4 - (4 - (4 / (1 + (0.15f * this.Stack()))))));
+            comp.StartCoroutine(DoTimer(stick, 12.5f - (12.5f - (12.5f / (1 + (0.25f * this.Stack()))))));
         }
 
         public IEnumerator DoTimer(GameObject sticky, float DetTime = 5)
@@ -135,16 +137,23 @@ namespace ModularMod
 
         public void H2(GameObject stick, StickyProjectileModifier comp, PlayerController p)
         {
-            Exploder.Explode(stick.transform.position, Data, Vector2.zero);
+            int stack = 1;
+            if (Stored_Core != null)
+            {
+                stack = this.Stack();
+            }
+            var d = StaticExplosionDatas.CopyFields(Data);
+            d.damage = 6 + (2 * stack);
+            Exploder.Explode(stick.transform.position, d, Vector2.zero);
+
+
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (modularGunController.statMods.Contains(this.gunStatModifier)) 
-            {
-                modularGunController.statMods.Remove(this.gunStatModifier);
-            }
+
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
+            modulePrinter.stickyContexts.Remove(this.stickyContext);
 
             modulePrinter.OnProjectileStickAction -= H;
             modulePrinter.OnStickyDestroyAction -= H2;

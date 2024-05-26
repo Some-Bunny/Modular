@@ -85,14 +85,14 @@ namespace ModularMod
             switch (tier)
             {
                 case DefaultModule.ModuleTier.Tier_1:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00025f); }
-                    return 0.0001f;
-                case DefaultModule.ModuleTier.Tier_2:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00075f); }
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.0005f); }
                     return 0.0005f;
+                case DefaultModule.ModuleTier.Tier_2:
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.000875f); }
+                    return 0.000875f;
                 case DefaultModule.ModuleTier.Tier_3:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00125f); }
-                    return 0.00075f;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.001125f); }
+                    return 0.001125f;
                 default: return 0;
             }
         }

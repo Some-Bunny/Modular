@@ -75,10 +75,51 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
-            projectile.baseData.speed = 50f;
+            projectile.baseData.speed = 30f;
             projectile.baseData.damage = 3f;
             projectile.shouldRotate = false;
             projectile.baseData.force *= 10;
+
+
+            ///===========================================================================
+            ///===========================================================================
+            ///===========================================================================
+
+            Projectile projectileMed = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);
+            projectileMed.gameObject.SetActive(false);
+            FakePrefab.MarkAsFakePrefab(projectileMed.gameObject);
+            UnityEngine.Object.DontDestroyOnLoad(projectileMed);
+            gun.DefaultModule.projectiles[0] = projectileMed;
+            projectileMed.SetProjectileCollisionRight("defaultarmcannonalt_projectile_burst_001", StaticCollections.Projectile_Collection, 11, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
+            projectileMed.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
+            projectileMed.enemyImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
+            projectileMed.hitEffects.tileMapHorizontal = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projectileMed.hitEffects.tileMapVertical = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projectileMed.hitEffects.enemy = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projectileMed.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            Material mat_1 = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
+            mat_1.mainTexture = projectileMed.sprite.renderer.material.mainTexture;
+            mat_1.SetColor("_EmissiveColor", new Color32(255, 255, 255, 255));
+            mat_1.SetFloat("_EmissiveColorPower", 100);
+            mat_1.SetFloat("_EmissivePower", 100);
+            projectileMed.sprite.renderer.material = mat_1;
+            projectileMed.baseData.speed = 40f;
+            projectileMed.baseData.damage = 16f;
+            projectileMed.shouldRotate = true;
+            projectileMed.baseData.force *= 4;
+
+            ImprovedAfterImage aaaa = projectileMed.gameObject.AddComponent<ImprovedAfterImage>();
+            aaaa.spawnShadows = true;
+            aaaa.shadowLifetime = 0.25f;
+            aaaa.shadowTimeDelay = 0.1f;
+            aaaa.dashColor = new Color(0f, 1f, 0.1f, 1f);
+
+            PierceProjModifier bounceProjModifier = projectileMed.gameObject.GetOrAddComponent<PierceProjModifier>();
+            bounceProjModifier.penetration = 1;
+
+            ///===========================================================================
+            ///===========================================================================
+            ///===========================================================================
 
             Projectile LargeBullet = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(56) as Gun).DefaultModule.projectiles[0]);
             LargeBullet.gameObject.SetActive(false);
@@ -146,7 +187,7 @@ namespace ModularMod
             ImprovedAfterImage yes = LargeBullet.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.4f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowTimeDelay = 0.04f;
             yes.dashColor = new Color(0f, 1f, 0.1f, 1f);
 
             ProjectileModule.ChargeProjectile item2 = new ProjectileModule.ChargeProjectile
@@ -155,16 +196,23 @@ namespace ModularMod
                 ChargeTime = 0f,
                 AmmoCost = 1,
             };
+            ProjectileModule.ChargeProjectile med = new ProjectileModule.ChargeProjectile
+            {
+                Projectile = LargeBullet,
+                ChargeTime = 1.25f,
+                AmmoCost = 2,
+            };
             ProjectileModule.ChargeProjectile item3 = new ProjectileModule.ChargeProjectile
             {
                 Projectile = LargeBullet,
-                ChargeTime = 2,
+                ChargeTime = 2.5f,
                 AmmoCost = 2,
             };
 
             gun.DefaultModule.chargeProjectiles = new List<ProjectileModule.ChargeProjectile>
             {
                 item2,
+                med,
                 item3,
             };
 

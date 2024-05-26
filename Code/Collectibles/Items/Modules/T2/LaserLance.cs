@@ -87,7 +87,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.05f) { return; }
+            if (UnityEngine.Random.value > 0.01f) { return; }
             int stack = 1;
             p.baseData.speed *= 0.5f;
             p.UpdateSpeed();
@@ -95,15 +95,24 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (p.baseData.damage * (Dmg * 2.7f) * 1 + (0.5f * stack)) / 10f;
+            component3.baseData.damage = ((5f + (stack*5))+(p.baseData.damage / 5)) + (p.baseData.damage * (Dmg));//(p.baseData.damage * (Dmg) * 1 + (0.5f * stack)) / 10f;
             component3.AdditionalScaleMultiplier *= 0.5f;
             component3.baseData.range *= stack;
 
             var point = p.gameObject.AddComponent<BeamPointer>();
             point.self = p;
             point.beam = beamController3;
-            BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += 2;
+
+            var t = p.gameObject.GetComponent<BounceProjModifier>();
+            if (t == null)
+            {
+                BounceProjModifier bounceProjModifier = p.gameObject.AddComponent<BounceProjModifier>();
+                bounceProjModifier.numberOfBounces = 1;
+            }
+            else
+            {
+                t.numberOfBounces += 1;
+            }
 
             var mod = p.gameObject.GetOrAddComponent<StickyProjectileModifier>();
             mod.stickyContexts.Add(new StickyProjectileModifier.StickyContext() { CanStickToTerrain = false, CanStickEnemies = false });
@@ -148,7 +157,7 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (p.baseData.damage * (Dmg * 4f) * 1 + (0.5f * stack)) / 10f;
+            component3.baseData.damage = ((5f + (stack * 5)) + (p.baseData.damage / 5)) + (p.baseData.damage * (Dmg));//(p.baseData.damage * (Dmg * 4f) * 1 + (0.5f * stack)) / 10f;
             component3.AdditionalScaleMultiplier *= 0.5f;
             component3.baseData.range *= stack;
 
@@ -156,8 +165,16 @@ namespace ModularMod
             point.self = p;
             point.Object = p.gameObject;
             point.beam = beamController3;
-            BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += 1;
+            var t = p.gameObject.GetComponent<BounceProjModifier>();
+            if (t == null)
+            {
+                BounceProjModifier bounceProjModifier = p.gameObject.AddComponent<BounceProjModifier>();
+                bounceProjModifier.numberOfBounces = 1;
+            }
+            else
+            {
+                t.numberOfBounces += 1;
+            }
         }
     }
 

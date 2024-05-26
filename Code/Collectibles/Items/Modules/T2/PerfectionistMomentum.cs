@@ -60,9 +60,9 @@ namespace ModularMod
             MomentumPlusObject = VFX;
             ID = h.PickupObjectId;
         }
+        public static GameObject MomentumPlusObject;
         public static int ID;
 
-        public static GameObject MomentumPlusObject;
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {

@@ -1091,7 +1091,7 @@ namespace ModularMod
                 if (base.aiActor.healthHaver.GetCurrentHealth() == base.aiActor.healthHaver.minimumHealth && Phase2 != true)
                 {
                     this.aiActor.behaviorSpeculator.LocalTimeScale *= 1.0125f;
-                    TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wq}DON'T RELENT!{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+                    TextBoxManager.ShowTextBox(this.transform.position + new Vector3(1.25f, 2.5f, 0f), this.transform, 3f, "{wq}KEEP FIGHTING.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
                     Phase2 = true;
                     this.aiActor.healthHaver.minimumHealth = 1;
                     AlterAttackProbability("You_Cant_Escape!", 0);

@@ -50,7 +50,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.03f) { return; }
+            if (UnityEngine.Random.value > 0.01f) { return; }
             p.baseData.speed *= 1.66f;
             p.pierceMinorBreakables = true;
             p.UpdateSpeed();

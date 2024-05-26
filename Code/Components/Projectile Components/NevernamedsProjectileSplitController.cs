@@ -11,6 +11,9 @@ namespace ModularMod
 {
     public class ProjectileSplitController : MonoBehaviour
     {
+
+        public class SplitProjectileTag : MonoBehaviour { }
+
         public ProjectileSplitController()
         {
             distanceTillSplit = 7.5f;
@@ -63,6 +66,7 @@ namespace ModularMod
                     Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
                     if (component != null)
                     {
+                        component.gameObject.AddComponent<SplitProjectileTag>();
                         component.Owner = parentOwner;
                         component.Shooter = parentOwner.specRigidbody;
                         component.baseData.damage *= dmgMultAfterSplit;

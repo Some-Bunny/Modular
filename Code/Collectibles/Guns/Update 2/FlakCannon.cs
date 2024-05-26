@@ -162,7 +162,7 @@ namespace ModularMod
             projectile.gameObject.SetActive(false);
             FakePrefab.MarkAsFakePrefab(projectile.gameObject);
             UnityEngine.Object.DontDestroyOnLoad(projectile);
-            projectile.SetProjectileCollisionRight(spriteName, StaticCollections.Projectile_Collection, size.x * 6, size.y* 6, false, tk2dBaseSprite.Anchor.MiddleCenter);
+            projectile.SetProjectileCollisionRight(spriteName, StaticCollections.Projectile_Collection, size.x * 2, size.y* 2, false, tk2dBaseSprite.Anchor.MiddleCenter);
 
             Material mat = new Material(StaticShaders.Default_Shader);
             mat.mainTexture = projectile.sprite.renderer.material.mainTexture;

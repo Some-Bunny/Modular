@@ -81,7 +81,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.1f) { return; }
+            if (UnityEngine.Random.value > 0.03f) { return; }
             p.specRigidbody.OnPreRigidbodyCollision += OPC;
             p.baseData.UsesCustomAccelerationCurve = true;
             p.baseData.AccelerationCurve = curve;

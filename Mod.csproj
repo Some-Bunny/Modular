@@ -79,6 +79,7 @@
     <Compile Include="Code\Collectibles\Items\Modules\T2\Crit Modules T2\FocusedRetaliation.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\ChaoticTransportation.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\Crit Modules T2\SolarFlare.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T1\BubbleUp.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\EternalWrath.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\IteratedDesign.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T4\CarpalNightmare.cs" />

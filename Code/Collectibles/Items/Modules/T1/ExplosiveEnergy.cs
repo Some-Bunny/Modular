@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Explosive Energy",
             Description = "Burstin' makes me feel good",
-            LongDescription = "Projectiles explode up to 3 (+1 per stack) times after travelling a certain distance. Projectiles self-destruct after finishing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Projectiles explode up to 3 (+1 per stack) times after travelling a certain distance. Projectiles self-destruct after finishing all stocked explosions." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("glitteringsparks_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,7 +27,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("glitteringsparks_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Explosive Energy " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles explode up to 3 ("+StaticColorHexes.AddColorToLabelString("+1")+") times after\ntravelling a certain distance. Projectiles self-destruct after finishing.";
+            h.LabelDescription = "Projectiles explode up to 3 ("+StaticColorHexes.AddColorToLabelString("+1")+ ")\ntimes after travelling a certain distance.\nProjectiles self-destruct after\nfinishing all stocked explosions.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -70,7 +70,6 @@ namespace ModularMod
 
                 ignoreList = new List<SpeculativeRigidbody>(),
                 overrideRangeIndicatorEffect = null,
-
             };
         }
         public static ExplosionData ExplosionData;
@@ -78,10 +77,10 @@ namespace ModularMod
         public static GameObject specialEffect;
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.02f) { return; }
+            if (UnityEngine.Random.value > 0.01f) { return; }
             int stack = 1;
             TravelledDistanceComponent travelledDistanceComponent = p.gameObject.AddComponent<TravelledDistanceComponent>();
-            travelledDistanceComponent.DistanceToTravel = (stack * 4f) + 2f;
+            travelledDistanceComponent.DistanceToTravel = (stack * 4.5f) + 2.25f;
             travelledDistanceComponent.TriggerAmount = 3;
             travelledDistanceComponent.OnTravelledDistance += (proj, h1, h4) =>
             {
@@ -105,7 +104,7 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             TravelledDistanceComponent travelledDistanceComponent = p.gameObject.AddComponent<TravelledDistanceComponent>();
-            travelledDistanceComponent.DistanceToTravel = (stack* 4f) + 2f;
+            travelledDistanceComponent.DistanceToTravel = (stack * 4.5f) + 2.25f;
             travelledDistanceComponent.TriggerAmount = 2 + stack;
             travelledDistanceComponent.OnTravelledDistance += (proj, h1, h4) =>
             {

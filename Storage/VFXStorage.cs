@@ -1,4 +1,5 @@
 ﻿using Alexandria.ItemAPI;
+using Alexandria.Misc;
 using Brave.BulletScript;
 using Gungeon;
 using System;
@@ -36,8 +37,6 @@ namespace ModularMod
             }
             HealingSparklesVFX = (GameObject)ResourceCache.Acquire("Global VFX/VFX_Healing_Sparkles_001");
             FriendlyElectricLinkVFX = (PickupObjectDatabase.GetById(298) as ComplexProjectileModifier).ChainLightningVFX;
-
-
 
             var machoBrace = PickupObjectDatabase.GetById(665) as MachoBraceItem;
             MachoBraceDustupVFX = machoBrace.DustUpVFX;
@@ -157,7 +156,6 @@ namespace ModularMod
                     }
                 }
             }
-
             MourningStarLaser = FakePrefab.Clone((PickupObjectDatabase.GetById(515) as Gun).DefaultModule.projectiles[0].bleedEffect.vfxExplosion);
             var mourningStarComp = MourningStarLaser.AddComponent<MourningStarVFXController>();
             var hODC = MourningStarLaser.GetComponent<HammerOfDawnController>();
@@ -170,7 +168,6 @@ namespace ModularMod
             mourningStarComp.CapEndAnimation = hODC.CapEndAnimation;
             mourningStarComp.InitialImpactVFX = hODC.InitialImpactVFX;
             UnityEngine.Object.Destroy(hODC);
-
             SpiratTeleportVFX = EnemyDatabase.GetOrLoadByGuid("56fb939a434140308b8f257f0f447829").bulletBank.GetBullet("rogue").BulletObject.GetComponent<TeleportProjModifier>().teleportVfx;
         }
         public static VFXPool SpiratTeleportVFX;
@@ -274,15 +271,30 @@ namespace ModularMod
 
             Dictionary<tk2dBaseSprite, Vector2> sprites = new Dictionary<tk2dBaseSprite, Vector2>();
 
+            if (playerPos == null)
+            {
+                Debug.Log($"{playerPos} somehow null?");
 
+                E_C.Remove(effectContainer);
+                if (E_C.Count() > 0)
+                {
+                    GameManager.Instance.StartCoroutine(DoFlashyVFX());
+                    yield break;
+                }
+                isDoingFlashyVFX = false;
+                yield break;
+            }
 
+            bool isEven = effectContainer.Amount.isEven();
+
+            float div = isEven ? (85f / effectContainer.Amount) : 0;
             for (int i = 0; i < effectContainer.Amount; i++)
             {
                 var VFX_Object = UnityEngine.Object.Instantiate(VFX_SpriteAppear, playerPos.sprite.WorldCenter, Quaternion.identity).GetComponent<tk2dBaseSprite>();
                 VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.collection, GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.spriteId);
                 var light = VFX_Object.GetComponent<AdditionalBraveLight>();
                 light.LightColor = Color.white;//properties.BraveLight.LightColor;
-                sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle(Toolbox.SubdivideRange(-85, 85, effectContainer.Amount, i, true), 3f));
+                sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle((Toolbox.SubdivideRange(-85, 85, effectContainer.Amount, i, true) - div) + 90, 3.5f));
             }
 
             bool b = false;
@@ -334,12 +346,27 @@ namespace ModularMod
             isDoingFlashyVFX_Destroy = true;
             EffectContainer effectContainer = DE_C.Last();
 
-
             PlayerController playerPos = effectContainer.player;
-
             Dictionary<tk2dBaseSprite, Vector2> sprites = new Dictionary<tk2dBaseSprite, Vector2>();
             
-            
+            if (playerPos == null)
+            {
+                Debug.Log($"{playerPos} somehow null?");
+
+                DE_C.Remove(effectContainer);
+                if (DE_C.Count() > 0)
+                {
+                    GameManager.Instance.StartCoroutine(DoFlashyVFX_Destroy());
+                    yield break;
+                }
+                isDoingFlashyVFX_Destroy = false;
+                yield break;
+            }
+            bool isEven = effectContainer.Amount.isEven();
+
+
+
+            float div = isEven ? (85f / (float)effectContainer.Amount) : 0;
 
             for (int i = 0; i < effectContainer.Amount; i++)
             {
@@ -347,7 +374,7 @@ namespace ModularMod
                 VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.collection, GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.spriteId);
                 var light = VFX_Object.GetComponent<AdditionalBraveLight>();
                 light.LightColor = Color.white;//properties.BraveLight.LightColor;
-                sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle(Toolbox.SubdivideRange(-85, 85, effectContainer.Amount, i, true) + 180, 3f));
+                sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle(((Toolbox.SubdivideRange(-85f, 85f, effectContainer.Amount, i, true) + 180f) - div) + 90, 3.5f));
             }
 
             bool b = false;
@@ -384,11 +411,12 @@ namespace ModularMod
             {
                 UnityEngine.Object.Destroy(sprites.Last().Key.gameObject);
             }
+            sprites.Clear();
             if (DE_C.Count() > 0)
             {
                 yield break;
             }
-                isDoingFlashyVFX_Destroy = false;
+            isDoingFlashyVFX_Destroy = false;
             yield break;
         }
 

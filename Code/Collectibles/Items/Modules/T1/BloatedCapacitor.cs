@@ -32,12 +32,14 @@ namespace ModularMod
             h.LabelName = "Overcharged Capacitor " + h.ReturnTierLabel();
             h.LabelDescription = "Clearing enough rooms breaks this module and grants a Power Cell.\n"+StaticColorHexes.AddColorToLabelString("Reduces stats significantly, take double damage,\nand cannot be deactivated", StaticColorHexes.Red_Color_Hex) +".";
             h.IsUncraftable = true;
+            h.AppearsInRainbowMode = false;
+            h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
-            h.AddColorLight(Color.cyan);
+            h.AddColorLight(Color.red);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
             ID = h.PickupObjectId;
@@ -74,7 +76,7 @@ namespace ModularMod
 
         public Vector2 ModifySpeed(Vector2 currentVelocity, ModulePrinterCore core, PlayerController player)
         {
-            return currentVelocity *= 0.85f;
+            return currentVelocity *= 0.90f;
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

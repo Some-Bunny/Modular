@@ -48,7 +48,7 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (p.gameObject.GetComponent<ProjectileSplitController>() != null) { return; }
-            if (UnityEngine.Random.value > 0.07f) { return; }
+            if (UnityEngine.Random.value > 0.03f) { return; }
             int stack = 1;
             p.baseData.damage *= 0.7f;
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
@@ -80,7 +80,7 @@ namespace ModularMod
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
             split.dmgMultAfterSplit = 0.2f + (0.15f * stack);
             split.speedMultAfterSplit = 0.7f + (0.1f * stack);
-            split.amtToSplitTo =2;
+            split.amtToSplitTo = 2;
             split.SplitsOnDestroy = true;
             split.isPurelyRandomizedSplitAngle = true;
             split.removeComponentAfterUse = true;

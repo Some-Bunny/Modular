@@ -334,9 +334,13 @@ namespace ModularMod
         public float MovingForSeconds = 0;
         public float StillForSeconds = 0;
 
+
+        public int CurrentItems = -1;
+
         public override void Update()
         {
             base.Update();
+            if (base.Owner == null) { return; }
             if (isStandingStill())
             { StillForSeconds += BraveTime.DeltaTime; if (MovingForSeconds > 0) { MovingForSeconds = 0; } }
             else { MovingForSeconds += BraveTime.DeltaTime; if (StillForSeconds > 0) { StillForSeconds = 0; } }
@@ -351,14 +355,21 @@ namespace ModularMod
             LastPower_Tick = ReturnPowerConsumption();
             LastTotal_Tick = ReturnTotalPower();
 
-            if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == false && Owner.HasPickupID(469) == true && Owner.HasPickupID(471) && Owner.HasPickupID(468) && Owner.HasPickupID(470) && Owner.HasPickupID(467))
+            if (CurrentItems != this.Owner.passiveItems.Count)
             {
-                if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == false)
+                CurrentItems = this.Owner.passiveItems.Count;
+                if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == false && Owner.HasPickupID(469) == true && Owner.HasPickupID(471) && Owner.HasPickupID(468) && Owner.HasPickupID(470) && Owner.HasPickupID(467))
                 {
-                    Toolbox.NotifyCustom("You Unlocked:", "Shrapnel Launcher", StaticCollections.Gun_Collection.GetSpriteIdByName("flakcannon_idle_001"), StaticCollections.Gun_Collection);
+                    if (AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == false)
+                    {
+                        Toolbox.NotifyCustom("You Unlocked:", "Shrapnel Launcher", StaticCollections.Gun_Collection.GetSpriteIdByName("flakcannon_idle_001"), StaticCollections.Gun_Collection);
+                    }
+                    AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, true);
                 }
-                AdvancedGameStatsManager.Instance.SetFlag(CustomDungeonFlags.LEAD_GOD_AS_MODULAR, true);
             }
+
+
+
 
             if (LastPower_Tick > LastTotal_Tick && OverridePower == false)
             {
@@ -501,7 +512,7 @@ namespace ModularMod
         }
         public void DoChanceBulletProc(Projectile p, float f)
         {
-            if (UnityEngine.Random.value < 0.3f)
+            if (UnityEngine.Random.value < 0.125f)
             {
                 var bounce = p.gameObject.GetOrAddComponent<BounceProjModifier>();
                 bounce.ExplodeOnEnemyBounce = UnityEngine.Random.value < 0.1f ? true : false;
@@ -510,7 +521,7 @@ namespace ModularMod
                 bounce.bouncesTrackEnemies = UnityEngine.Random.value < 0.2f ? true : false;
                 bounce.bounceTrackRadius += UnityEngine.Random.Range(1f, 25f);
             }
-            if (UnityEngine.Random.value < 0.3f)
+            if (UnityEngine.Random.value < 0.125f)
             {
                 var pierce = p.gameObject.GetOrAddComponent<PierceProjModifier>();
                 pierce.penetration += UnityEngine.Random.Range(1, 5);
@@ -520,7 +531,7 @@ namespace ModularMod
                     pierceMain.damageMultOnPierce *= UnityEngine.Random.Range(1.01f, 1.5f);
                 }
             }
-            if (UnityEngine.Random.value < 0.15f)
+            if (UnityEngine.Random.value < 0.05f)
             {
                 var homing = p.gameObject.GetOrAddComponent<HomingModifier>();
                 homing.AngularVelocity += UnityEngine.Random.Range(60f, 1080f);
@@ -548,7 +559,7 @@ namespace ModularMod
             p.charmEffect = DebuffStatics.charmingRoundsEffect;
 
             p.CanTransmogrify = true;
-            p.ChanceToTransmogrify = 0.005f;
+            p.ChanceToTransmogrify = 0.00333f;
 
             p.AdjustPlayerProjectileTint(new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f)), 10);
             if (ModifyForChanceBullets != null) { ModifyForChanceBullets(this, p, f, Owner); }
@@ -648,7 +659,7 @@ namespace ModularMod
             {
                 foreach (PassiveItem item in this.Owner.passiveItems)
                 {
-                    if (item.gameObject)
+                    if (item != null)
                     {
                         if (item is BasicStatPickup mastery)
                         {
@@ -657,7 +668,7 @@ namespace ModularMod
                                 c++;
                             }
                         }
-                        if (item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
+                        if (item.gameObject != null && item.gameObject.GetComponent<AdditionalItemEnergyComponent>() != null)
                         {
                             c += item.gameObject.GetComponent<AdditionalItemEnergyComponent>().AdditionalEnergy;
                         }

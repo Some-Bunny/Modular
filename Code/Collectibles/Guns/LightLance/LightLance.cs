@@ -292,7 +292,7 @@ namespace ModularMod
                 SpawnManager.PoolManager.Remove(p.transform);
                 float previousSpeed = p.baseData.speed;
 
-                p.baseData.damage = 2.5f + (p.baseData.speed * 0.66f);
+                p.baseData.damage = 2f + (p.baseData.speed * 0.5f);
                 if (isIterated == true)
                 {
                     p.baseData.damage *= 1.2f;

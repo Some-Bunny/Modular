@@ -104,7 +104,7 @@ namespace ModularMod
         {
             if (enemy) 
             {
-                enemy.healthHaver.ApplyDamage(1.5f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
+                enemy.healthHaver.ApplyDamage(1.2f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
                 enemy.ApplyEffect(DebuffStatics.hotLeadEffect);
             }
         }

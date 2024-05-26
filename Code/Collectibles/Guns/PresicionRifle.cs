@@ -75,10 +75,11 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 25f;
+            projectile.baseData.damage = 28f;
             projectile.shouldRotate = true;
-            projectile.baseData.speed = 75;
+            projectile.baseData.speed = 80;
             projectile.baseData.range *= 10;
+            projectile.baseData.force *= 2.5f;
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("RIFLERIFLERIFLE", StaticCollections.Clip_Ammo_Atlas, "rifle_1", "rifle_2");
 

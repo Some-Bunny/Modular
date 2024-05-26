@@ -70,7 +70,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.2f) { return; }
+            if (UnityEngine.Random.value > 0.1f) { return; }
             p.PenetratesInternalWalls = true;
             p.pierceMinorBreakables = true;
             p.Awake();

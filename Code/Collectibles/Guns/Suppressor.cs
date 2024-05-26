@@ -41,7 +41,7 @@ namespace ModularMod
 
 
             gun.reloadTime = 3f;
-            gun.DefaultModule.cooldownTime = 0.833f;
+            gun.DefaultModule.cooldownTime = 0.8f;
             gun.DefaultModule.numberOfShotsInClip = 100;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 4.5f;
@@ -76,8 +76,8 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
 
             projectile.baseData.speed *= 1.5f;
-            projectile.baseData.damage = 2.75f;
-            projectile.baseData.force *= 0.5f;
+            projectile.baseData.damage = 3.75f;
+            projectile.baseData.force *= 0.6f;
             projectile.shouldRotate = true;
             gun.gunClass = GunClass.NONE;
 

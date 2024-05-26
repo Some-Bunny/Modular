@@ -44,7 +44,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.1f) { return; }
+            if (UnityEngine.Random.value > 0.05f) { return; }
             p.specRigidbody.OnPreRigidbodyCollision = (o, t, th, fr) =>
             {
                 if (th != null && th.healthHaver != null)
