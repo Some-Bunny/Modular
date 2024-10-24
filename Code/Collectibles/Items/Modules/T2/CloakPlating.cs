@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Cloak Plating",
             Description = "+60%",
-            LongDescription = "Entering combat cloaks the player for 6 (+3 per stack) seconds. Uncloaking forcefully grants a 4x (+2 per stack) damage multiplier that degrades fast. Grants a 30% movement speed buff while cloaked." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Entering combat cloaks the player for 6 (+3 per stack) seconds. Uncloaking forcefully (by attacking or rolling) grants a 4x (+2 per stack) damage multiplier that quickly degrades. Grants a 30% movement speed buff while cloaked." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,8 +30,8 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Cloak Plating " + h.ReturnTierLabel();
-            h.LabelDescription = "Entering combat cloaks the player for 6 ("+ StaticColorHexes.AddColorToLabelString("+3", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking grants a\n" +
-                "4x (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that degrades fast.\nGrants a 30% movement speed buff while cloaked.";
+            h.LabelDescription = "Entering combat cloaks the player for 6 ("+ StaticColorHexes.AddColorToLabelString("+3", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking (by attacking or rolling) grants a\n" +
+                "4x (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that quickly degrades.\nGrants a 30% movement speed buff while cloaked.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);

@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Batters Revenge",
             Description = "The Best Weapon",
-            LongDescription = "Reduces reload time by 20% (+20% per stack hyperbolically) When reloading, toss out 1 (+1) baseballs that can be shot to pitch them. Damage scales with the projectile that hit it. (+Higher Damage Scaling per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reduces reload time by 20% (+20% per stack hyperbolically) When reloading, toss out 1 (+1) baseballs that can be shot to pitch them. Damage scales with the projectile that hit it. (+Higher Damage Scaling per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("battersrevenge_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.75f;
             h.LabelName = "Batters Revenge " + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces reload time by 20% ("+ StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nWhen reloading, toss out 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") baseballs that can be shot\nto pitch them. Damage scales with the projectile that hit it.\n(" + StaticColorHexes.AddColorToLabelString("+Higher Damage Scaling", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Reduces reload time by 20% ("+ StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nWhen reloading, toss out 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") baseballs that can be shot\nto pitch them. Damage scales with the projectile that hit it.\n(" + StaticColorHexes.AddColorToLabelString("+Higher Damage Scaling", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 

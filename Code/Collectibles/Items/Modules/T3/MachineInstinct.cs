@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Machine Instinct",
             Description = "Perfect Machine",
-            LongDescription = "Being in proximity of projectiles and enemies increases Risk, which increases both Rate Of Fire and Damage. (+Higher Risk Capacity per stack). Building up enough Risk allows you to negate one instance of damage, providing you with 1 second of invulnerability. Ability recharges after 5 (-20% hyperbolically per stack) seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Being in proximity of projectiles and enemies increases Risk, which increases both Rate Of Fire and Damage. (+Higher Risk Capacity per stack). Building up enough Risk allows you to negate one instance of damage, providing you with 2.5 second of invulnerability. Ability recharges after 15 (-20% hyperbolically per stack) seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("machineinstinct_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("machineinstinct_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Machine Instinct " + h.ReturnTierLabel();
-            h.LabelDescription = "Being in proximity of projectiles and enemies increases "+ StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases both Rate Of Fire and Damage.  (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 10 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.LabelDescription = "Being in proximity of projectiles and enemies increases "+ StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases both Rate Of Fire and Damage. (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 15 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
             h.EnergyConsumption = 2;
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
@@ -112,7 +112,7 @@ namespace ModularMod
 
             h.IsVulnerable = true;
             f = 0;
-            while (f < 10 - (10 - (10 / (1 + 0.20f * this.ReturnStack(Stored_Core)))))
+            while (f < 15 - (15 - (15 / (1 + 0.20f * this.ReturnStack(Stored_Core)))))
             {
                 f += BraveTime.DeltaTime;
                 yield return null;

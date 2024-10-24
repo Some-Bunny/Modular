@@ -29,7 +29,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.66f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "One Shot " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds a flat 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nshots to your clip.";
+            h.LabelDescription = "Adds a flat 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") shots to your clip.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

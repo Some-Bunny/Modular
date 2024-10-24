@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Glass Generator",
             Description = "See The Use",
-            LongDescription = "Grants 2 Glass Guon Stones. Picking up any Module gives 2 (+2 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 2 Glass Guon Stones. While active, picking up any Module gives 2 (+1 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Glass Generator " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 2 Glass Guon Stones.\nWhilte active, picking up any Module\ngives 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") Glass Guon Stones.\nSlightly increases rate of fire per Glass Guon Stone.";
+            h.LabelDescription = "Grants 2 Glass Guon Stones.\nWhile active, picking up any Module\ngives 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Glass Guon Stones.\nSlightly increases rate of fire per Glass Guon Stone.";
             h.EnergyConsumption = 1;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
@@ -100,7 +100,7 @@ namespace ModularMod
 
         public void OAMO(ModulePrinterCore modulePrinterCore, PlayerController player, DefaultModule defaultModule)
         {
-            int amountToGive = this.ReturnStack(modulePrinterCore) * 2;
+            int amountToGive = this.ReturnStack(modulePrinterCore) + 1;
             for (int i = 0; i < amountToGive; i++)
             {
                 GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(565).gameObject, Vector3.zero, Quaternion.identity);

@@ -30,7 +30,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.625f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Monetary Value " + h.ReturnTierLabel();
-            h.LabelDescription = "Gain 0.5% damage (" + StaticColorHexes.AddColorToLabelString("+0.5%", StaticColorHexes.Light_Orange_Hex) + ") for each casing you have.\nYour held casings are multiplied by 1.2x every floor.";
+            h.LabelDescription = "Gain 0.5% (" + StaticColorHexes.AddColorToLabelString("+0.5%", StaticColorHexes.Light_Orange_Hex) + ") damage for each casing you have.\nYour held casings are multiplied by 1.2x every floor.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.GENERATION);

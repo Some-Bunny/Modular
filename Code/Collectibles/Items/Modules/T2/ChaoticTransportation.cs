@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Chaotic Transportation",
             Description = "Where Am I?",
-            LongDescription = "Adds 1 (+1 Bounces). Increases Rate Of Fire by 20% (+20% per stack hyperbolically). Projectiles will randomly teleport to anywhere in the room 1 (+1) time." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 1 (+1 per stack) Bounces. Increases fire rate by 20% (+20% per stack hyperbolically). Projectiles will randomly teleport to anywhere in the room 1 (+1) time/s." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -32,7 +32,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Chaotic Transportation " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") Bounces.\nIncreases Rate Of Fire by 20% ("+StaticColorHexes.AddColorToLabelString("+20% hyperbolically")+").\nProjectiles can randomly teleport to anywhere in the room 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") time.";
+            h.LabelDescription = "Adds 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") Bounces.\nIncreases fire rate by 20% ("+StaticColorHexes.AddColorToLabelString("+20% hyperbolically")+").\nProjectiles can randomly teleport to anywhere in the room 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") time/s.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 

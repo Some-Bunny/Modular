@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Larger Clips",
             Description = "Fit More",
-            LongDescription = "Increases Clip Capacity by\n33% (+33% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Clip Capacity by\n33% (+33% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("largerclip_tier1_module"),
             Quality = ItemQuality.SPECIAL,

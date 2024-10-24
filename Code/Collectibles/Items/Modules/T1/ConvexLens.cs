@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Calibrated Lens",
             Description = "Distance Is Power",
-            LongDescription = "Deal 33% (+33% per stack) more damage to enemies further away from you." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal 33% (+33% per stack) more damage to enemies far away from you." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("calibratedlens_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.66f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Calibrated Lens " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage\nto enemies further away from you.";
+            h.LabelDescription = "Deal 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage\nto enemies far away from you.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

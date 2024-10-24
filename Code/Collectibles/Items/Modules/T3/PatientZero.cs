@@ -22,7 +22,7 @@ namespace ModularMod
         {
             Name = "Patient Zero",
             Description = "Infected!",
-            LongDescription = "Chance to poison enemies on hit, and to spawn poison pools on projectile destruction. (+Poison Chance And Pool Radius per stack). Hurting enemies can spread debuffs to other nearby enemies, breaking their resistances. Slain enemies cause an outbreak, greatly reducing resistances and cuasing panic. (+Virality and Severity per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Chance to poison enemies on hit, and to spawn poison pools on projectile impact. (+Poison Chance And Pool Radius per stack). Hurting enemies can spread debuffs to other nearby enemies, breaking their resistances. Slain enemies cause an outbreak, greatly reducing resistances and cuasing panic. (+Virality and Severity per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("pandemic_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -35,7 +35,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("pandemic_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Patient Zero " + h.ReturnTierLabel();
-            h.LabelDescription = "Chance to poison enemies on hit, and to spawn\npoison pools on projectile destruction.\n(" + StaticColorHexes.AddColorToLabelString("+Poison Chance And Pool Radius", StaticColorHexes.Light_Orange_Hex) + ").\nHurting enemies can spread debuffs to other\nnearby enemies, breaking their resistances.\nSlain enemies cause an outbreak,\ngreatly reducing resistances and causing panic.\n(" + StaticColorHexes.AddColorToLabelString("+Virality and Severity", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Chance to poison enemies on hit, and to spawn\npoison pools on projectile impact.\n(" + StaticColorHexes.AddColorToLabelString("+Poison Chance And Pool Radius", StaticColorHexes.Light_Orange_Hex) + ").\nHurting enemies can spread debuffs to other\nnearby enemies, breaking their resistances.\nSlain enemies cause an outbreak,\ngreatly reducing resistances and causing panic.\n(" + StaticColorHexes.AddColorToLabelString("+Virality and Severity", StaticColorHexes.Light_Orange_Hex) + ").";
             h.EnergyConsumption = 2;
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);

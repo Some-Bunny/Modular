@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Counter Productivity",
             Description = "Exchange Rate",
-            LongDescription = "Divides Clip Size and Reload Time by 2 (+1 per stack). Slightly increases fire rate. (+Extra fire rate per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Divides Clip Size and Reload Time by 2 (+1 per stack). Slightly increases fire rate. (+More fire rate per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("counerproduction_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Counter Productivity " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.75f;
-            h.LabelDescription = "Divides Clip Size and Reload Time by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nSlightly increases fire rate  (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Divides Clip Size and Reload Time by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nSlightly increases fire rate  (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

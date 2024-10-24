@@ -22,7 +22,7 @@ namespace ModularMod
         {
             Name = "Voltaic Tethers",
             Description = "Loaded",
-            LongDescription = "Massively decreases Accuracy, and doubles Reload Time. Projectiles will stick to walls and tether electricity to players and other nearby tether nodes. (+Tether Range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Massively decreases accuracy, and doubles reload time. Projectiles will stick to walls and tether electricity to players and other nearby tether nodes. (+Tether Range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("voltaictethers_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -34,7 +34,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("voltaictethers_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Voltaic Tethers " + h.ReturnTierLabel();
-            h.LabelDescription = "Massively decreases Accuracy, and doubles Reload Time.\nProjectiles will stick to walls and tether\nelectricity to players and other nearby tether nodes.\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Massively decreases accuracy, and doubles reload time.\nProjectiles will stick to walls and tether\nelectricity to players and other nearby tether nodes.\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.STICKY);
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);

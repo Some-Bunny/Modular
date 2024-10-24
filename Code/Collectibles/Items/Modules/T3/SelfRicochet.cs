@@ -35,7 +35,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("ultraricochet_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Ultra Ricochet " + h.ReturnTierLabel();
-            h.LabelDescription = "Doubles player projectile speed.\nPlayer Projectiles bounce off walls, enemies and each other\nwith force (" + StaticColorHexes.AddColorToLabelString("+Extra Force", StaticColorHexes.Light_Orange_Hex) + "). Increases rate of fire (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand increases spread.\nBounces increase damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Doubles player projectile speed.\nPlayer Projectiles bounce off walls, enemies and each other\nwith force (" + StaticColorHexes.AddColorToLabelString("+Extra Force", StaticColorHexes.Light_Orange_Hex) + "). Increases fire rate (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand increases spread.\nBounces increase damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ").";
             h.SetTag("modular_module");
 
             h.AddModuleTag(BaseModuleTags.BASIC);

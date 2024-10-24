@@ -153,13 +153,6 @@ namespace ModularMod
                 Inst.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("shield_break");
             }
         }
-        public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
-        {
-            int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.15f * stack);
-            p.baseData.speed *= 1 + (0.3f * stack);
-            p.UpdateSpeed();
-        }
     }
 }
 

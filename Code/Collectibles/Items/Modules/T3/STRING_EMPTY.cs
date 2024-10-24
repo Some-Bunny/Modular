@@ -36,7 +36,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("error_mod_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "String.EMPTY " +StaticColorHexes.AddColorToLabelString("sprite Tier_3_Label", StaticColorHexes.Blue_Color_Hex);
-            h.LabelDescription = "[Primary_Description_Placeholder]\n[secondaryEffect_Placeholder]\n"+StaticColorHexes.AddColorToLabelString("NullReferenceException: (999+)\nObject not set to an instance of an object.\nDefaultModule.ReturnTeritaryEffectText()\nTileBreaker.ReturnDescriptionLabel()", StaticColorHexes.Red_Color_Hex);
+            h.LabelDescription = "[#TILEBREAKERPRIMARYDESC]\n[#TILEBREAKERSECONDARYDESC]\n" + StaticColorHexes.AddColorToLabelString("NullReferenceException: (999+)\nObject not set to an instance of an object.\nDefaultModule.ReturnTeritaryEffectText()\nTileBreaker.ReturnDescriptionLabel()", StaticColorHexes.Red_Color_Hex);
             h.SetTag("modular_module");
             h.AddColorLight(Color.white);
             h.AdditionalWeightMultiplier = 0.15f;

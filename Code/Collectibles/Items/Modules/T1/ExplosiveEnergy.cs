@@ -27,7 +27,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("glitteringsparks_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Explosive Energy " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles explode up to 3 ("+StaticColorHexes.AddColorToLabelString("+1")+ ")\ntimes after travelling a certain distance.\nProjectiles self-destruct after\nfinishing all stocked explosions.";
+            h.LabelDescription = "Projectiles explode up to 3 ("+StaticColorHexes.AddColorToLabelString("+1")+ ")\ntimes after travelling a certain distance.\nProjectiles self-destruct after finishing all stocked explosions.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

@@ -62,11 +62,11 @@ namespace ModularMod
 
         public DefaultModule SelectModule(GenericLootTable table)
         {
-            var mod = table.ModularSelectByWeight().GetComponent<DefaultModule>();
+            var mod = table.ModularSelectByWeight(false, null, modulesUsing).GetComponent<DefaultModule>();
 
             if (UnityEngine.Random.value < ReturnT4Chance(mod.Tier, g.quality))
             {
-                if (UnityEngine.Random.value < 0.00005f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                if (UnityEngine.Random.value < 0.0005f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
                 return mod;
             }
 
@@ -117,7 +117,6 @@ namespace ModularMod
             {
                 AmountOfChoices = ChoicesAmountModifier(AmountOfChoices);
             }
-
             g = this.GetComponent<Gun>();
             var obj = g.gameObject.GetComponent<ShittyVFXAttacher>();
             if (obj)
@@ -125,6 +124,7 @@ namespace ModularMod
                 Destroy(obj);
             }
             AkSoundEngine.PostEvent("Play_OBJ_paydaydrill_start_01", g.gameObject);
+            modulesUsing = new List<DefaultModule>();
 
             var light = g.gameObject.GetOrAddComponent<AdditionalBraveLight>();
             light.LightColor = TierColor();
@@ -148,13 +148,15 @@ namespace ModularMod
             List<ModuleUICarrier> carriersToSpawn = new List<ModuleUICarrier>();
             for (int i = 0; i < Count; i++)
             {
+                var module = SelectModule(tableToUse);
                 carriersToSpawn.Add(new ModuleUICarrier()
                 {
                     controller = this,
-                    defaultModule = SelectModule(tableToUse),
+                    defaultModule = module,
                     //EndPosition = Toolbox.GetUnitOnCircle(Toolbox.SubdivideCircle(Vector2.up.ToAngle() + (Arc * -1), Count, i), radius), //, Count, i) , 2f),   
                     isUsingAlternate = isAlt
                 });
+                modulesUsing.Add(module);
             }
             if (CarrierModifier != null) { carriersToSpawn = CarrierModifier(carriersToSpawn, this); }
             Count = carriersToSpawn.Count();
@@ -180,7 +182,7 @@ namespace ModularMod
 
             g.StartCoroutine(LerpLight(g));
         }
-
+        private List<DefaultModule> modulesUsing;
         public void Update()
         {
             if (isBeingDestroyed == true) { return; }

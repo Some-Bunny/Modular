@@ -371,10 +371,15 @@ namespace ModularMod
             for (int i = 0; i < effectContainer.Amount; i++)
             {
                 var VFX_Object = UnityEngine.Object.Instantiate(VFX_SpriteAppear, playerPos.sprite.WorldCenter, Quaternion.identity).GetComponent<tk2dBaseSprite>();
-                VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.collection, GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.spriteId);
-                var light = VFX_Object.GetComponent<AdditionalBraveLight>();
-                light.LightColor = Color.white;//properties.BraveLight.LightColor;
-                sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle(((Toolbox.SubdivideRange(-85f, 85f, effectContainer.Amount, i, true) + 180f) - div) + 90, 3.5f));
+
+                var mod = GlobalModuleStorage.ReturnModule(effectContainer.defaultModule);
+                if (mod != null && VFX_Object != null)
+                {
+                    VFX_Object.SetSprite(mod.sprite.collection, mod.sprite.spriteId);
+                    var light = VFX_Object.GetComponent<AdditionalBraveLight>();
+                    light.LightColor = Color.white;//properties.BraveLight.LightColor;
+                    sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle(((Toolbox.SubdivideRange(-85f, 85f, effectContainer.Amount, i, true) + 180f) - div) + 90, 3.5f));
+                }
             }
 
             bool b = false;

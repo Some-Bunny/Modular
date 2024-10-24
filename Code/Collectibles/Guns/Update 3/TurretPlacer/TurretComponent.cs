@@ -144,7 +144,13 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
 
         public void OnDestroy()
         {
-            Owner.CurrentRoom.OnEnemiesCleared -= RoomCleared;
+            if (Owner != null)
+            {
+                if (Owner.CurrentRoom != null)
+                {
+                    Owner.CurrentRoom.OnEnemiesCleared -= RoomCleared;
+                }
+            }
             if (turrets.Contains(this)) { turrets.Remove(this); }
             if (LaserSightInst != null)
             {

@@ -34,7 +34,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.3.7";
+        public const string VERSION = "1.3.8";
         public const string TEXT_COLOR = "#79eaff";
 
         public static AssetBundle ModularAssetBundle;

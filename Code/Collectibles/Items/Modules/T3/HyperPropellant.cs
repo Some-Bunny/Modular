@@ -22,7 +22,7 @@ namespace ModularMod
         {
             Name = "Hyper Propellant",
             Description = "FWOOMP",
-            LongDescription = "Greatly reduces fire rate, clip size and increases reload time. Projectiles ignite the air around them (+Larger Ignition Area per stack), travel at very high speeds, and hit with massive force. (+Speed, Force And Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Greatly reduces fire rate, clip size and increases reload time. Projectiles ignite the air around them (+Larger Ignition Area per stack), travel at very high speeds, and hit like a truck. (+Speed, Force And Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("hyperpropellant_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -35,7 +35,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("hyperpropellant_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Hyper Propellant " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly reduces fire rate, clip size and increases reload time.\nProjectiles ignite the air around them (" + StaticColorHexes.AddColorToLabelString("+Larger Ignition Area", StaticColorHexes.Light_Orange_Hex) + "),\ntravel at very high speeds, and hit with massive force.\n(" + StaticColorHexes.AddColorToLabelString("+Speed, Force And Damage", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Greatly reduces fire rate, clip size and increases reload time.\nProjectiles ignite the air around them (" + StaticColorHexes.AddColorToLabelString("+Larger Ignition Area", StaticColorHexes.Light_Orange_Hex) + "),\ntravel at very high speeds, and hit like a truck.\n(" + StaticColorHexes.AddColorToLabelString("+Speed, Force And Damage", StaticColorHexes.Light_Orange_Hex) + ")";
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

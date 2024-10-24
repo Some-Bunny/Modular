@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Minelayer System",
             Description = "Fortification Expert",
-            LongDescription = "Projectile damage reduced by 75%. Increases Rate Of Fire by 25% and massively reduces spread. On destruction, projectiles now leave proximity mines that take 3 (-33% hyperbolically per stack) seconds to prime, and take 1 (-25% hyperbolically per stack) second to detonate. (+Explosion Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Projectile damage reduced by 75%. Increases fire rate by 25% and massively reduces spread. Projectiles now leave proximity mines on impact that take 3 (-33% hyperbolically per stack) seconds to prime, and take 1 (-25% hyperbolically per stack) second to detonate. (+Explosion Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Minelayer System " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectile damage reduced by 75%.\nIncreases Rate Of Fire by 25% and massively reduces spread.\nOn destruction, projectiles now leave proximity mines that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") second to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
+            h.LabelDescription = "Projectile damage reduced by 75%.\nIncreases fire rate by 25% and massively reduces spread.\nProjectiles now leave proximity mines on impact that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") second to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

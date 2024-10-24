@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Bubble Blast",
             Description = "Bubbles!",
-            LongDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 20% (+20% per stack hyperbolically). Projectiles will slow to a crawl after a moment. Reloading boosts all projectiles greatly and increases their damage by 33% (+33% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Slightly decreases Accuracy\nand increases fire rate by 20% (+20% per stack hyperbolically). Projectiles will slow to a crawl after a moment. Reloading speeds up all projectiles and increases their damage by 33% (+33% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bubbleblast_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bubbleblast_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Bubble Blast " + h.ReturnTierLabel();
-            h.LabelDescription = "Decreases Accuracy slightly\nand increases Rate Of Fire by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment.\nReloading boosts all projectiles greatly\nand increases their damage by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Slightly decreases Accuracy, and increases fire rate by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles will slow to a crawl after a moment.\nReloading speeds up all projectiles\nand increases their damage by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

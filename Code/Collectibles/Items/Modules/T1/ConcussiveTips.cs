@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Concussive Tips",
             Description = "Hit Harder, Differently",
-            LongDescription = "Increases knockback force by 2x (+1 per stack), boss damage by 25% (+25% per stack), and grants a small chance to stun enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases knockback Force by 100% (+100% per stack), Boss damage by 25% (+25% per stack), and adds a small chance to stun enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("conc_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,7 +27,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("conc_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Concussive Tips " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Knockback force by 2x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + "),\nBoss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.";
+            h.LabelDescription = "Increases Knockback Force by 100% (" + StaticColorHexes.AddColorToLabelString("+100%", StaticColorHexes.Light_Orange_Hex) + "),\nBoss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

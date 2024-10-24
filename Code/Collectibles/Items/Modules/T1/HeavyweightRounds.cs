@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Heavyweight Rounds",
             Description = "Plonk",
-            LongDescription = "Increases Damage by 33% (+33%), and bullet scale by 25% (+25%) but reduces player bullet speed by 50% (+50% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by 33% (+33%), and bullet size by 25% (+25%) but reduces player bullet speed by 50% (+50% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("heavyrounds_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Heavyweight Rounds" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + "),\nand bullet scale by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nbut reduces player bullet speed by 50% (" + StaticColorHexes.AddColorToLabelString("+50% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Increases Damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + "),\nand bullet size by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nbut reduces player bullet speed by 50% (" + StaticColorHexes.AddColorToLabelString("+50% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

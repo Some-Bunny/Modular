@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Hellfire Launcher",
             Description = "Love The Smell",
-            LongDescription = "Grants Fire Immunity. Reloading creates a line of fire in the direction you are aiming. The trail will initially hurt enemies directly when created. (+Range, Damage and Radius per stack) Scales with amount of shots left in the clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants Fire Immunity. Reloading creates a line of fire in the direction you are aiming. The trail will initially hurt enemies directly when created. (+Range, Damage and Radius per stack). Length scales with amount of shots left in the clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hellfire_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hellfire_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Hellfire Launcher " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants Fire Immunity.\nReloading creates a line of fire in the direction you are aiming.\nThe trail will initially hurt enemies directly when created.\n(" + StaticColorHexes.AddColorToLabelString("+Range, Damage and Radius", StaticColorHexes.Light_Orange_Hex) + ").\nScales with amount of shots left in the clip.";
+            h.LabelDescription = "Grants Fire Immunity.\nReloading creates a line of fire in the direction you are aiming.\nThe trail will initially hurt enemies directly when created.\n(" + StaticColorHexes.AddColorToLabelString("+Range, Damage and Radius", StaticColorHexes.Light_Orange_Hex) + ").\nLength scales with amount of shots left in the clip.";
             h.AdditionalWeightMultiplier = 0.9f;
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);

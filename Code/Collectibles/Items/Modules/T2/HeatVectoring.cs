@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Heat Vectoring",
             Description = "Knock 'Em Down",
-            LongDescription = "Grants 10% (+5% per stack) movement speed. Dodgerolling releases 5 (+3 per stack) projectiles in the direction opposite of where you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 10% (+5% per stack) movement speed. Dodgerolling releases 5 (+4 per stack) projectiles in the direction opposite of where you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("heatvectoring_t2_module"),
             Quality = ItemQuality.SPECIAL,

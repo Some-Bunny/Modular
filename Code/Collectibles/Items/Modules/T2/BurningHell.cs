@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Burning Hell",
             Description = "Exchange Rate",
-            LongDescription = "Halves Clip size and Rate Of Fire. Projectiles will stick to terrain and enemies and create an area that hurts and burns enemies. (+Burning Radius And Damage per stack.)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Halves fire rate and increases accuracy. Projectiles will stick to terrain and enemies and create an area that hurts and burns enemies. (+Burning Radius And Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("burninghell_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("burninghell_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Burning Hell " + h.ReturnTierLabel();
-            h.LabelDescription = "Halves Rate Of Fire and increases accuracy.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage.", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Halves fire rate and increases accuracy.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);

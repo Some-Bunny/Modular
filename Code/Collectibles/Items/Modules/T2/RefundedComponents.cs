@@ -82,8 +82,13 @@ namespace ModularMod
             vfx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("vfx_hit");
             float mult = 1 + ((0.25f *Misses));
             p.baseData.damage *= mult;
-            Misses = 0;
+            this.Invoke("SetDelay", 0.05f);
             AkSoundEngine.PostEvent("Play_OBJ_box_uncover_01", player.gameObject);
+        }
+
+        public void SetDelay()
+        {
+            Misses = 0;
         }
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)

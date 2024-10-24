@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Liquid Metal",
             Description = "Pierce Up",
-            LongDescription = "Adds 1 (+1 per stack) Pierce, but reduces projectile speed by 20% (-20% per stack hyperbolically) " + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Adds 1 (+1 per stack) Pierce, but reduces projectile speed by 20% (-20% per stack hyperbolically)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("liquidmetal_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.9f;
             h.LabelName = "Liquid Metal" + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")Pierce \nbut reduces projectile speed by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Adds 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")Pierce\nbut reduces projectile speed by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

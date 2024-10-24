@@ -570,18 +570,23 @@ namespace ModularMod
         public static Func<DefaultModule, bool> AlterModuleIsSelected;
         public static Func<DefaultModule, float, float> AlterModuleWeight;
 
-        public static GameObject ModularSelectByWeight(this GenericLootTable table, bool useSeedRandom = false, Func<DefaultModule, bool> CustomProcess = null)
+        public static GameObject ModularSelectByWeight(this GenericLootTable table, bool useSeedRandom = false, Func<DefaultModule, bool> CustomProcess = null, List<DefaultModule> excludedList = null)
         {
             int num = -1;
 
+            if (excludedList == null) { excludedList = new List<DefaultModule>(); }
             List<WeightedGameObject> list = new List<WeightedGameObject>();
             float num2 = 0f;
             float MultWeight = 1f;
             float MultWeightInt = 1f;
 
-            for (int i = 0; i < table.defaultItemDrops.elements.Count; i++)
+            var genericCollection = new WeightedGameObjectCollection();
+            genericCollection.elements = table.defaultItemDrops.elements;
+            genericCollection.elements.Shuffle();
+
+            for (int i = 0; i < genericCollection.elements.Count; i++)
             {
-                WeightedGameObject weightedGameObject = table.defaultItemDrops.elements[i];
+                WeightedGameObject weightedGameObject = genericCollection.elements[i];
                 bool flag = true;
                 
 
@@ -590,6 +595,11 @@ namespace ModularMod
                     var module = weightedGameObject.gameObject.GetComponent<DefaultModule>();
                     if (module != null)
                     {
+                        if (excludedList.Contains(module))
+                        {
+                            continue;
+                        }
+
                         flag = module.IsAvailable();
                         MultWeight = module.ProcessedWeightMultiplier();
                         MultWeightInt = module.ProcessedWeightAdditional();
@@ -598,6 +608,7 @@ namespace ModularMod
                         {
                             MultWeight = AlterModuleWeight(module, MultWeight);
                         }
+
 
 
                         if (CustomProcess != null)
@@ -627,12 +638,12 @@ namespace ModularMod
                 num4 += (list[k].weight + ((module != null ? module.ProcessedWeightAdditional() : 0))) * (module != null ? module.ProcessedWeightMultiplier() : 1);
                 if (num4 > num3)
                 {
-                    num = table.defaultItemDrops.elements.IndexOf(list[k]);
+                    num = genericCollection.elements.IndexOf(list[k]);
                     return list[k].gameObject;
                 }
             }
 
-            num = table.defaultItemDrops.elements.IndexOf(list[list.Count - 1]);
+            num = genericCollection.elements.IndexOf(list[list.Count - 1]);
             return list[list.Count - 1].gameObject;
         }
 

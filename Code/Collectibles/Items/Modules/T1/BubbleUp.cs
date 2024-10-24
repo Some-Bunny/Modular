@@ -17,8 +17,8 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(BubbleUp))
         {
             Name = "Bubble Up",
-            Description = "Pop",
-            LongDescription = "Increases Fire Rate by 20% (+20% hyperbolically per stack). Projectiles now stick to terrain and enemies, expanding into large bubbles and bursting, doing massive knockback. (+Burst Force and Damage per stack) " + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            Description = "Pop!",
+            LongDescription = "Increases Fire Rate by 20% (+20% hyperbolically per stack). Projectiles now stick to terrain and enemies, expanding into large bubbles and bursting, doing massive knockback. (+Burst Force and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bubbleup_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bubbleup_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Bubble Up " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Fire Rate by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically") + ").\nProjectiles now stick to terrain and enemies,\nexpanding into large bubbles and bursting,\ndoing massive knockback. ("  + StaticColorHexes.AddColorToLabelString("+Burst Force and Damage") + ")";
+            h.LabelDescription = "Increases Fire Rate by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically") + ").\nProjectiles now stick to terrain and enemies,\nexpanding into large bubbles and bursting,\ndoing massive knockback. ("  + StaticColorHexes.AddColorToLabelString("+Burst Force and Damage") + ").";
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);

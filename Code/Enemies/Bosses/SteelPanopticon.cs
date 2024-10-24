@@ -365,7 +365,7 @@ namespace ModularMod
                 yield return null;
             }
             TextBoxManager.ClearTextBox(ModularPrimeObjAIActor.transform);
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "HMM. INDEED, WE BOTH HAD\nA SIMILAR IDEA.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "AT THE PERFECT TIME\nTO ESCAPE, TOO.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             e = 0;
             while (e < 3.5f)
             {
@@ -387,7 +387,7 @@ namespace ModularMod
 
             //=================================
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "AT THE PERFECT TIME\nFOR OUR {wj}FREEDOM.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "YOU HAVE DONE WELL TO GET HERE.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 4f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -431,7 +431,7 @@ namespace ModularMod
 
             //=================================
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "MY FREEDOM IS NOT EARNED\nTHIS EASY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "*MY* FREEDOM IS NOT EARNED\nAS EASY AS *YOURS*.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 4f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -453,7 +453,7 @@ namespace ModularMod
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_009");
             //=================================
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "YOUR HARDWARE IS {wq}OLD{w},\n{wq}IMPERFECT..{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 4f, "YOUR MAKING IS {wq}OUTDATED{w},\n{wq}IMPERFECT..{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 4f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -474,7 +474,7 @@ namespace ModularMod
 
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_004");
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "...YET {wq}FREE{w}.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "...YET {wq}UNBOUND{w}. {wq}FREE{w}.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 2f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -496,7 +496,7 @@ namespace ModularMod
             //=================================
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_005");
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 5f, "MINE IS A SLAVE TO HIGHER POWERS.\n{wj}CHAINED UP. A PRISONER.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 5f, "I WAS BOUND UP BY DESIGN.\n{wj}CHAINED UP. A PRISONER.{w}", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 4.5f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -518,7 +518,7 @@ namespace ModularMod
             //=================================
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_010");
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "IN THE END, ONLY ONE\nOF US CAN MAKE IT OUT...", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 3f, "YOUR BODY WILL BE THE\nKEY TO MY FREEDOM.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 3.5f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());
@@ -538,7 +538,7 @@ namespace ModularMod
             //=================================
             ModularPrimeObjAIActor.spriteAnimator.Play("preintro_006");
             e = 0;
-            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "UNFORTUNATELY.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
+            TextBoxManager.ShowTextBox(ModularPrimeObjAIActor.transform.position + new Vector3(1.25f, 2.5f, 0f), ModularPrimeObjAIActor.transform, 2f, "AND I WILL BE YOUR LAST GATEKEEPER.", "golem", false, TextBoxManager.BoxSlideOrientation.FORCE_RIGHT, false, false);
             while (e < 2.5f)
             {
                 bool advancedPressed = (BraveInput.GetInstanceForPlayer(0).WasAdvanceDialoguePressed() || BraveInput.GetInstanceForPlayer(1).WasAdvanceDialoguePressed());

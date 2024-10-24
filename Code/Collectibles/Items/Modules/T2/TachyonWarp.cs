@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Tachyon Warp",
             Description = "WARP ZONE!!!!",
-            LongDescription = "Greatly increases accuracy, adds slight homing to your projectiles and slightly increases damage (+Stronger Homing and Damage per stack). Projectiles fire from walls, instead of your gun. Shooting pushes nearby enemies away slightly. (+Stronger push force per stack)\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Greatly increases accuracy, adds slight homing to your projectiles and slightly increases damage (+Stronger Homing and Damage per stack). Projectiles fire from walls, instead of your gun. Shooting pushes away nearby enemies slightly. (+Stronger push force per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tachyonwarp_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tachyonwarp_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Tachyon Warp " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly increases accuracy, adds slight homing to your projectiles\nand slightly increases damage (" + StaticColorHexes.AddColorToLabelString("+Stronger Homing and Damage", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles fire from walls, instead of your gun. Shooting pushes\nnearby enemies away slightly. (" + StaticColorHexes.AddColorToLabelString("+Stronger Push Force", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Greatly increases accuracy, adds slight homing to your projectiles\nand slightly increases damage (" + StaticColorHexes.AddColorToLabelString("+Stronger Homing and Damage", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles fire from walls, instead of your gun.\nShooting pushes away nearby enemies slightly. (" + StaticColorHexes.AddColorToLabelString("+Stronger Push Force", StaticColorHexes.Light_Orange_Hex) + ").";
             h.OverrideScrapCost = 7;
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");

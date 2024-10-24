@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Supply Drop",
             Description = "Free Loot!",
-            LongDescription = "Grants 2 Keys and 4 Scrap and 20 Casings on pickup. Air drops 1 (+1 per stack) random pickup every floor. Passively reduces the chance of better modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Grants 2 Keys, 4 Scrap and 20 Casings on pickup. Air drops 1 (+1 per stack) random pickup every floor. Passively reduces the chance of better modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("supplydrop_tier1_module"),
             Quality = ItemQuality.SPECIAL,

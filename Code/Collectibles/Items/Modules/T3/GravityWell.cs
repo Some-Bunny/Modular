@@ -14,7 +14,7 @@ namespace ModularMod
         {
             Name = "Gravity Well",
             Description = "The Void",
-            LongDescription = "Greatly reduces Rate Of Fire. Projectiles gain massive piercing, and greatly reduced speed. Enemies are magnetically pulled towards your projectiles, and are hurt in their proximity.(+Stronger Gravity And Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Greatly reduces Rate Of Fire. Projectiles gain piercing and greatly reduced speed. Enemies are magnetically pulled towards your projectiles, and are hurt in their proximity.(+Stronger Gravity And Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("gravitywell_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -26,7 +26,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("gravitywell_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Gravity Well " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly reduces Rate Of Fire.\nProjectiles gain massive piercing, and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Greatly reduces Rate Of Fire.\nProjectiles gain piercing and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
 
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
