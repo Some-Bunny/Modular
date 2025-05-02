@@ -69,6 +69,8 @@ namespace ModularMod
             bounceProjModifier.numberOfBounces = 1;
             PierceProjModifier pierceProjModifier = projectile.gameObject.GetOrAddComponent<PierceProjModifier>();
             pierceProjModifier.penetration = 3;
+            pierceProjModifier.preventPenetrationOfActors = false;
+
 
             FakePrefab.MakeFakePrefab(projectile.gameObject);
             DontDestroyOnLoad(projectile);
@@ -76,6 +78,7 @@ namespace ModularMod
             beamComp.boneType = BasicBeamController.BeamBoneType.Straight;
             beamComp.interpolateStretchedBones = false;
             beamComp.ContinueBeamArtToWall = true;
+            beamComp.penetration = 3;
 
             LanceBeam = beamComp.projectile;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;

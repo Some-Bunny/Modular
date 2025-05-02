@@ -54,7 +54,7 @@ namespace ModularMod
             projectile.shouldRotate = false;
             projectile.baseData.range = 1000f;
             projectile.baseData.speed = 8;
-            projectile.baseData.force = 25;
+            projectile.baseData.force = 50;
             projectile.baseData.UsesCustomAccelerationCurve = true;
             projectile.baseData.AccelerationCurve = AnimationCurve.Linear(0.1f, 0.7f, 1, 0);
             projectile.collidesWithProjectiles = true;

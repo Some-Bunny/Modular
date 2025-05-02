@@ -3547,6 +3547,13 @@ MonoBehaviour:
     - fosucVFX_002
     - fosucVFX_001
     - fosucVFX_007
+    - deathCross_001
+    - deathCross_007
+    - deathCross_004
+    - deathCross_005
+    - deathCross_006
+    - deathCross_002
+    - deathCross_003
     spriteTextureGUIDs:
     - 0d8586071a928fb4c920466116729c30
     - 1cf028702d6d57440bbc887fbde8087b
@@ -4003,6 +4010,13 @@ MonoBehaviour:
     - 1af9549223bf1a74081b98d3c0c08a78
     - 82b6a4a8755777e44837dc32ece6fa0b
     - dbd99ebbad44da640a0fdc0848bf6c1b
+    - 55e0430d6bec35b43a1f91d8cc98710e
+    - 24894f9ce3b3a084ebefc18c11df079c
+    - f6bf48deccafdad45a0bfad6d2201b49
+    - 7a7a18a7ae99e0c4cbcfc5f23eeec7bc
+    - 102b3a53269645341a78a70ed29a9ca0
+    - 37e64aef2fd5cca4cb20372887786f06
+    - ae19134d2bafc6a489d2d8cbed9799ee
     spriteTextureTimeStamps:
     - 1674763113.28595
     - 1674763113.29594
@@ -4459,6 +4473,13 @@ MonoBehaviour:
     - 1698264053.01902
     - 1698264053.01735
     - 1698264053.03404
+    - 1733346718.28711
+    - 1733346718.30213
+    - 1733346718.29512
+    - 1733346718.29712
+    - 1733346718.30013
+    - 1733346718.29012
+    - 1733346718.29312
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4537,6 +4558,10 @@ MonoBehaviour:
     - focusedretaliation_t2_module
     - chaotictransportation_t2_module_alt
     - chaotictransportation_t2_module
+    - cryogenicvents_t2_module_alt
+    - cryogenicvents_t2_module
+    - warhorn_t2_module_alt
+    - warhorn_t2_module
     spriteTextureGUIDs:
     - bbd2c1745dbb9144bae6499d8e6be2f6
     - 85671afff06206842b88bd16bfb8c70f
@@ -4608,6 +4633,10 @@ MonoBehaviour:
     - 6db754f55b45ac94c8a703865a2e8d4a
     - bbcabeac67fc4a841b345f76227e12df
     - 9ef106219967ebd4d884a8e83c5e5b83
+    - b2f9e9199c5c6c64ea48dcfe1abd2fda
+    - 701ee9755193b4044bcd92c6c9fa5ef6
+    - 85088e1f570003240aa3f6489d12f80a
+    - d4a1212d91304a446817b763d0dcc755
     spriteTextureTimeStamps:
     - 1674916655.51335
     - 1674916696.08715
@@ -4679,6 +4708,10 @@ MonoBehaviour:
     - 1698190143.48184
     - 1699121016.96537
     - 1699121001.11735
+    - 1733251992.94377
+    - 1733251980.9438
+    - 1733368452.6047
+    - 1733368441.16534
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4721,6 +4754,10 @@ MonoBehaviour:
     - eternalwrath_t3_module
     - iterateddesign_t3_module
     - iterateddesign_t3_module_alt
+    - powereternal_t3_module
+    - powereternal_t3_module_alt
+    - deathtrigger_t3_module
+    - deathtrigger_t3_module_alt
     spriteTextureGUIDs:
     - 62af1667c163bff44ba57da198f4ca3e
     - 30e16c74359c8b74cbf7d5287293528d
@@ -4756,6 +4793,10 @@ MonoBehaviour:
     - 3c22e275547fb124cabfd5a44b8afa44
     - e32345a0bb371324788efeb2c2818a5a
     - d58f73ba9cc94b14f9c22426b66dc840
+    - a142e04ccb10d2f4cb472821ab073f25
+    - 315e7acc8a7e7054c94e1dccdc2ce67c
+    - 95cd1b1721ee4b241a6de687fa0192a6
+    - ac199a61fc766514598d6bf0d077445a
     spriteTextureTimeStamps:
     - 1683987422.60661
     - 1683987440.71811
@@ -4791,6 +4832,10 @@ MonoBehaviour:
     - 1698752398.90427
     - 1698752625.00135
     - 1698752637.79348
+    - 1733238698.35645
+    - 1733238735.5632
+    - 1733331388.21724
+    - 1733331402.62521
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -8545,13 +8590,13 @@ MonoBehaviour:
     - 1680900863.04546
     - 1680900863.04646
     - 1680900863.04947
-    - 1680898961.44486
-    - 1680898961.44787
-    - 1680898961.44973
-    - 1680898961.45284
-    - 1680898961.45385
-    - 1680898961.45545
-    - 1680898961.45787
+    - 1733250568.69097
+    - 1733250568.69297
+    - 1733250568.69497
+    - 1733250568.69697
+    - 1733250568.69897
+    - 1733250568.69997
+    - 1733250568.70198
     - 1681262652.54229
     - 1681262652.54473
     - 1681262652.52928

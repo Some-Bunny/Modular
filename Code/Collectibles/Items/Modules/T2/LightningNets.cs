@@ -76,7 +76,7 @@ namespace ModularMod
             int stack = this.ReturnStack(modulePrinterCore);
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
             chain.Damage = Mathf.Max(0.5f, p.baseData.damage / 2.5f);
-            chain.Range = 3.5f + (2.5f * stack);
+            chain.Range = 4f + (4f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
             p.baseData.range += 5;
@@ -93,7 +93,7 @@ namespace ModularMod
         }
 
         private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
-        private float Tick = 0.33f;
+        private float Tick = 0.333f;
         private float Elapsed = 0;
 
 
@@ -208,9 +208,14 @@ namespace ModularMod
             m_extantLink.dimensions = new Vector2((float)num2, m_extantLink.dimensions.y);
             m_extantLink.transform.rotation = Quaternion.Euler(0f, 0f, num);
             m_extantLink.UpdateZDepth();
-            this.ApplyLinearDamage(unitCenter, unitCenter2);
-            this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 1.5f, Hit);
-            this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
+
+            if (Damages)
+            {
+                Elapsed = 0;
+                this.ApplyLinearDamage(unitCenter, unitCenter2);
+                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 1.5f, Hit);
+                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
+            }
         }
         public void Hit(AIActor aIActor, float f)
         {
@@ -218,7 +223,7 @@ namespace ModularMod
             {
                 if (aIActor.State == AIActor.ActorState.Normal && aIActor.CanTargetPlayers == true && aIActor.CanTargetEnemies == false)
                 {
-                    aIActor.healthHaver.ApplyDamage(Damage / 3, aIActor.transform.PositionVector2(), "Zap");
+                    aIActor.healthHaver.ApplyDamage(Damage * 0.333f, aIActor.transform.PositionVector2(), "Zap");
                     GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aIActor, m_damagedEnemies_AOE));
                 }
             }

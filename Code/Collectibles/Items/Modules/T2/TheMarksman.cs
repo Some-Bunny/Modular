@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("marksman_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "The Marksman " + h.ReturnTierLabel();
-            h.LabelDescription = "Hitting an enemy grants a 3.3% damage boost,\nup to 20 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") consecutive hits.\nMissing resets the damage bonus.";
+            h.LabelDescription = "Hitting an enemy grants a 5% damage boost,\nup to 20 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") consecutive hits.\nMissing resets the damage bonus.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
@@ -86,7 +86,10 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + (0.033f * Hits);
+            p.baseData.damage *= 1 + (0.05f * Hits);
+            p.baseData.force *= 1 + (0.05f * Hits);
+            p.baseData.speed *= 1 + (0.0125f * Hits);
+            p.UpdateSpeed();
             p.OnDestruction += this.HandleProjectileDestruction;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

@@ -132,9 +132,10 @@ namespace ModularMod
             }
             ProcessNearbyProjectiles(player);
             ProcessNearbyEnemies(player);
-            if (UnityEngine.Random.value < (currentRisk - 1))
+            if (UnityEngine.Random.value < ((currentRisk - 1) * 0.5f))
             {
-                DoFlameParticles(player.sprite); }
+                DoFlameParticles(player.sprite);
+            }
 
             if (CanDecrement(player) == false)
             {
@@ -179,7 +180,9 @@ namespace ModularMod
         {
             if (GameManager.Instance.IsPaused == true) { return; }
 
-            if (UnityEngine.Random.value > Mathf.Max(0.1f, ConfigManager.ImportantVFXMultiplier))
+
+
+            if (UnityEngine.Random.value < Mathf.Max(0.1f, Mathf.Min(1, ConfigManager.ImportantVFXMultiplier)))
             if (targetSprite)
             {
                 Vector3 vector = targetSprite.WorldBottomLeft.ToVector3ZisY(zOffset);

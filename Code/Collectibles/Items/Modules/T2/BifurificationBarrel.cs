@@ -73,6 +73,7 @@ namespace ModularMod
         {
             p.baseData.speed *= 1.15f;
             p.baseData.damage *= 0.7f;
+            p.baseData.force *= 0.7f;
             p.UpdateSpeed();
         }
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)

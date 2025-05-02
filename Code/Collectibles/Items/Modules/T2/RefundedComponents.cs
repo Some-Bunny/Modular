@@ -56,6 +56,7 @@ namespace ModularMod
             tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("hit_dat_004"));
             var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
 
+
             tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("RefundAnimation").GetComponent<tk2dSpriteAnimation>();
             HitOrMissVFX = VFX;
 
@@ -78,18 +79,39 @@ namespace ModularMod
         public void OPEH(ModulePrinterCore modulePrinter, PlayerController player, AIActor enemy, Projectile p)
         {
             if (Misses == 0) { return; }
-            var vfx = player.PlayEffectOnActor(HitOrMissVFX, new Vector3(0, 2));
-            vfx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("vfx_hit");
-            float mult = 1 + ((0.25f *Misses));
-            p.baseData.damage *= mult;
-            this.Invoke("SetDelay", 0.05f);
-            AkSoundEngine.PostEvent("Play_OBJ_box_uncover_01", player.gameObject);
+            if (player != null)
+            {
+                var vfx = player.SmarterPlayEffectOnActor(HitOrMissVFX, new Vector3(0, 2));
+               
+                if (vfx != null)
+                {
+                    vfx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("vfx_hit");
+                }
+                AkSoundEngine.PostEvent("Play_OBJ_box_uncover_01", player.gameObject);
+            }
+            if (p != null)
+            {
+                float mult = 1 + ((0.25f * Misses));
+                float mult_ = 1 + ((0.5f * Misses));
+
+                p.baseData.damage *= mult;
+                p.baseData.force *= mult_;
+                if (coroutine == null)
+                {
+                    coroutine = GameManager.Instance.StartCoroutine(DoWait());
+                }
+            }
+        }
+        private Coroutine coroutine; 
+        public IEnumerator DoWait()
+        {
+            yield return new WaitForSeconds(0.075f);
+            Misses = 0;
+            coroutine = null;
+            yield break;
         }
 
-        public void SetDelay()
-        {
-            Misses = 0;
-        }
+
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
@@ -111,7 +133,7 @@ namespace ModularMod
                 {
                     AkSoundEngine.PostEvent("Play_OBJ_compass_point_01", source.PossibleSourceGun.CurrentOwner.gameObject);
 
-                    var vfx = source.PossibleSourceGun.CurrentOwner.PlayEffectOnActor(HitOrMissVFX, new Vector3(0, 2));
+                    var vfx = source.PossibleSourceGun.CurrentOwner.SmarterPlayEffectOnActor(HitOrMissVFX, new Vector3(0, 2));
                     vfx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("vfx_miss");
                     Misses++;
                 }

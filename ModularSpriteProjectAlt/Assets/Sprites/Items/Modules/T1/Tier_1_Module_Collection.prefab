@@ -4526,7 +4526,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 282b646c021e78b498bfb52fe2d85147, type: 3}
     materialId: 0
-    anchor: 4
+    anchor: 6
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -4570,7 +4570,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -4586,7 +4586,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1, z: 1}
     texture: {fileID: 2800000, guid: 1a77c177768c81a46927cc3949f31c4d, type: 3}
     materialId: 0
-    anchor: 4
+    anchor: 6
     anchorX: 0
     anchorY: 0
     overrideMesh: {fileID: 0}
@@ -4630,7 +4630,7 @@ MonoBehaviour:
     regionW: 0
     regionH: 0
     regionId: 0
-    colliderType: 0
+    colliderType: 1
     colliderData: []
     boxColliderMin: {x: 0, y: 0}
     boxColliderMax: {x: 0, y: 0}
@@ -4663,7 +4663,7 @@ MonoBehaviour:
   globalTextureRescale: 1
   attachPointTestSprites: []
   pixelPerfectPointSampled: 0
-  filterMode: 1
+  filterMode: 0
   wrapMode: 1
   userDefinedTextureSettings: 0
   mipmapEnabled: 0

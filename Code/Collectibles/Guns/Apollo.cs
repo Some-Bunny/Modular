@@ -95,7 +95,7 @@ namespace ModularMod
                 ProjectileModule.ChargeProjectile item2 = new ProjectileModule.ChargeProjectile
                 {
                     Projectile = projectile,
-                    ChargeTime = 0.35f
+                    ChargeTime = 0.125f
                 };
                 projectileModule.chargeProjectiles = new List<ProjectileModule.ChargeProjectile>() { item2 };
                 gun.DefaultModule.chargeProjectiles.Add(item2);
@@ -282,14 +282,14 @@ namespace ModularMod
                             Projectile proj = projectileModule.GetCurrentProjectile();
                             if (proj != null)
                             {
-                                proj.baseData.damage = ((GetElapsed * 6) + 3.5f);
+                                proj.baseData.damage = ((GetElapsed * 5) + 2);
                             }
                         }
                         
                     }
                     else
                     {
-                        elapsed = -0.35f;
+                        elapsed = -0.125f;
                         VFXActive = false;
                         CleanupReticles();
                     }
@@ -301,7 +301,7 @@ namespace ModularMod
             }
             else
             {
-                elapsed = -0.35f;
+                elapsed = -0.125f;
                 CleanupReticles();
             }
 

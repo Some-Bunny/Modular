@@ -17,8 +17,8 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(PaceBreaker))
         {
             Name = "Pace Breaker",
-            Description = "See The Use",
-            LongDescription = "Adds a new mode to your starting active item. Using an active item now releases an electromagnetic pulse who's strength scales off of how long the active item takes to charge. (+More Power per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            Description = "Heartbeat",
+            LongDescription = "Taking damage grants charge to your active items. Adds a new mode to your starter active item. Using an active item now releases an electromagnetic pulse who's strength scales off of how long the active item takes to charge. (+More Power per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("pacebreaker_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("pacebreaker_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Pace Breaker " + h.ReturnTierLabel();
-            h.LabelDescription =  StaticColorHexes.AddColorToLabelString("Adds a new mode to your starting active item", StaticColorHexes.Lime_Green_Hex) +".\nUsing an active item now releases an electromagnetic pulse\nwho's strength scales off of how long the active item takes to charge.\n("+StaticColorHexes.AddColorToLabelString("More Power", StaticColorHexes.Light_Orange_Hex)+").";
+            h.LabelDescription =  StaticColorHexes.AddColorToLabelString("Taking damage grants charge to your active items.\nAdds a new mode to your starter active item", StaticColorHexes.Lime_Green_Hex) +".\nUsing an active item now releases an electromagnetic pulse\nwho's strength scales off of how long the active item takes to charge.\n("+StaticColorHexes.AddColorToLabelString("+More Power", StaticColorHexes.Light_Orange_Hex)+").";
             h.EnergyConsumption = 1;
             h.AppearsFromBlessedModeRoll = false;
 
@@ -77,6 +77,7 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            
             foreach (var item in player.activeItems)
             {
                 if (item is Scrapper scrapper)
@@ -84,11 +85,14 @@ namespace ModularMod
                     scrapper.AddMode(PulseMode);
                 }
             }
+            
+            modulePrinter.OnDamaged += OnTakenDamage;
             player.OnUsedPlayerItem += this.DoEffect;
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+            
             foreach (var item in player.activeItems)
             {
                 if (item is Scrapper scrapper)
@@ -96,7 +100,35 @@ namespace ModularMod
                     scrapper.RemoveMode(PulseMode);
                 }
             }
+            
+            modulePrinter.OnDamaged -= OnTakenDamage;
             player.OnUsedPlayerItem -= this.DoEffect;
+        }
+
+        public void OnTakenDamage(ModulePrinterCore modulePrinterCore, PlayerController pLayer)
+        {
+
+            AkSoundEngine.PostEvent("Play_OBJ_chestwarp_use_01", pLayer.gameObject);
+            if (ConfigManager.DoVisualEffect == true)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    GameObject breakVFX = UnityEngine.Object.Instantiate<GameObject>((PickupObjectDatabase.GetById(156) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapVertical.effects[0].effects[0].effect, pLayer.sprite.WorldCenter + new Vector2(UnityEngine.Random.Range(1.25f, -1.25f), UnityEngine.Random.Range(0.625f, -0.625f)), Quaternion.identity);
+                    tk2dBaseSprite component = breakVFX.GetComponent<tk2dBaseSprite>();
+                    component.PlaceAtPositionByAnchor(pLayer.sprite.WorldCenter + new Vector2(UnityEngine.Random.Range(1.25f, -1.25f), UnityEngine.Random.Range(0.625f, -1.25f)), tk2dBaseSprite.Anchor.MiddleCenter);
+                    component.HeightOffGround = 35f;
+                    component.UpdateZDepth();
+                    Destroy(breakVFX, 3);
+                }
+            }
+            foreach (PlayerItem playerItem in pLayer.activeItems)
+            {
+                if (playerItem != null)
+                {
+                    playerItem.remainingDamageCooldown -= Mathf.Max(playerItem.damageCooldown * 0.33f, 500 + (250 * this.ReturnStack(Stored_Core)));
+                    playerItem.remainingTimeCooldown -= Mathf.Min(playerItem.remainingTimeCooldown + 0.1f, Mathf.Max(playerItem.timeCooldown * 0.75f, 90));
+                }
+            }
         }
         private void DoEffect(PlayerController usingPlayer, PlayerItem usedItem)
         {

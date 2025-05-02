@@ -184,7 +184,7 @@ namespace ModularMod
                         debrisObject.sprite.UpdateZDepth();
                     }
                 }
-                gameObject2.GetComponent<ThrownGoopItem>().goopRadius = 1.5f + (stack / 2);
+                gameObject2.GetComponent<ThrownGoopItem>().goopRadius = 2.25f + (stack / 2);
                 debrisObject.IsAccurateDebris = true;
                 debrisObject.Priority = EphemeralObject.EphemeralPriority.Critical;
                 debrisObject.bounceCount = 0;

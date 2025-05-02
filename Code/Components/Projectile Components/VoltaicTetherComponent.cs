@@ -24,11 +24,12 @@ namespace ModularMod
             sprite = this.GetComponentInChildren<tk2dBaseSprite>();
             AllTethers.Add(this);
         }
-
+        private float Tick = 0.333f;
+        private float Elapsed = 0;
 
         public void Update()
         {
-            //Elapsed += BraveTime.DeltaTime;
+            Elapsed += BraveTime.DeltaTime;
             if (this.gameObject != null)
             {
                 List<VoltaicTetherComponent> activeObjects = VoltaicTetherComponent.AllTethers;
@@ -61,7 +62,7 @@ namespace ModularMod
                 }
                 if (this.gameObject && si.Value != null && si.Key != null)
                 {
-                    UpdateLink(this.gameObject, si.Value.GetComponent<tk2dTiledSprite>(), si.Key);//, Elapsed > Tick ? true : false);
+                    UpdateLink(this.gameObject, si.Value.GetComponent<tk2dTiledSprite>(), si.Key, Elapsed > Tick ? true : false);
                 }
             }
         }
@@ -112,7 +113,7 @@ namespace ModularMod
                 }
             }
         }
-        private void UpdateLink(GameObject target, tk2dTiledSprite m_extantLink, GameObject actor)//, bool Damages)
+        private void UpdateLink(GameObject target, tk2dTiledSprite m_extantLink, GameObject actor, bool Damages)
         {
             Vector2 unitCenter = actor.GetComponent<PlayerController>() != null ? actor.GetComponent<PlayerController>().sprite.WorldBottomCenter : actor.GetComponentInChildren<tk2dBaseSprite>().sprite.WorldBottomCenter;
 
@@ -124,10 +125,13 @@ namespace ModularMod
             m_extantLink.dimensions = new Vector2((float)num2, m_extantLink.dimensions.y);
             m_extantLink.transform.rotation = Quaternion.Euler(0f, 0f, num);
             m_extantLink.UpdateZDepth();
-            this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 2f, Hit);
-            this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 2f, Hit);
-
-            this.ApplyLinearDamage(unitCenter, unitCenter2);
+            if (Damages)
+            {
+                Elapsed = 0;
+                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 2f, Hit);
+                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 2f, Hit);
+                this.ApplyLinearDamage(unitCenter, unitCenter2);
+            }
         }
 
         public void Hit(AIActor aIActor, float f)

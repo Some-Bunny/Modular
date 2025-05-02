@@ -85,7 +85,7 @@ namespace ModularMod
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("burstingmakesmefeelgood", StaticCollections.Clip_Ammo_Atlas, "burster_1", "burster_2");
 
-            projectile.baseData.damage = 5.5f;
+            projectile.baseData.damage = 6f;
             gun.gunClass = GunClass.NONE;
 
             gun.AddGlowShaderToGun(new Color32(121, 234, 255, 255), 10, 10);

@@ -44,7 +44,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(41) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 4f;
+            gun.reloadTime = 2.5f;
             gun.DefaultModule.cooldownTime = .2f;
             gun.DefaultModule.numberOfShotsInClip = 8;
             gun.SetBaseMaxAmmo(250);
@@ -145,7 +145,7 @@ namespace ModularMod
             mat1.SetFloat("_EmissivePower", 100);
             LargeBullet.sprite.renderer.material = mat;
             LargeBullet.baseData.speed = 50;
-            LargeBullet.baseData.damage = 20f;
+            LargeBullet.baseData.damage = 27f;
             LargeBullet.shouldRotate = true;
             LargeBullet.AdditionalScaleMultiplier *= 1.33f;
             LargeBullet.pierceMinorBreakables = true;
@@ -199,13 +199,13 @@ namespace ModularMod
             ProjectileModule.ChargeProjectile med = new ProjectileModule.ChargeProjectile
             {
                 Projectile = LargeBullet,
-                ChargeTime = 1.25f,
+                ChargeTime = 1f,
                 AmmoCost = 2,
             };
             ProjectileModule.ChargeProjectile item3 = new ProjectileModule.ChargeProjectile
             {
                 Projectile = LargeBullet,
-                ChargeTime = 2.5f,
+                ChargeTime = 2f,
                 AmmoCost = 2,
             };
 

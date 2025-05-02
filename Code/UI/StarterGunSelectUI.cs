@@ -14,6 +14,7 @@ using static UnityEngine.ParticleSystem;
 using UnityEngine.Networking;
 using static ModularMod.StarterGunSelectUIController.UpgradeUISelectButtonController;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace ModularMod
 {
@@ -199,14 +200,23 @@ namespace ModularMod
         }
 
 
-        
+        private static void ApplyCanvasScaler(GameObject gameObject)
+        {
+            var scaler = gameObject.AddComponent<DFScaleFixer>();
+            scaler.m_manager  = GameUIRoot.Instance.Manager;
 
+            //scaler.m_manager = UnityEngine.Object.Instantiate(SaveTools.LoadAssetFromAnywhere<GameObject>("UI Root").GetComponent<GameUIRoot>().Manager);
+            //scaler.referenceResolution = new Vector2(1600, 1024);
+            //scaler.scaleFactor = 1f;
+            //scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+            //scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            //canvasScalers.Add( scaler );
+        }
+
+        private static List<CanvasScaler> canvasScalers = new List<CanvasScaler>();
 
         public static void Init()
         {
-
-
-
             dfFontBase defaultFont = StaticCollections.ModularFont;//SaveTools.LoadAssetFromAnywhere<GameObject>("UI Root").GetComponent<GameUIRoot>().Manager.DefaultFont;
 
             /*
@@ -272,14 +282,46 @@ namespace ModularMod
 
             StarterGunSelectUIController.UI_Frame = PrefabBuilder.BuildObject("Frame_Modular_UI");
             StarterGunSelectUIController.UI_Frame.layer = 24;
+            //ETGModConsole.Log(1);
 
             var storage = UI_Frame.AddComponent<AltSkinStringStorage>();
             storage.df_label_string = "ui_template_bg_alt";
+            //ETGModConsole.Log(2);
+
+            //StarterGunSelectUIController.UI_Frame.transform.parent = GameUIRoot.Instance.transform;
+            //ETGModConsole.Log(3);
 
 
+
+            /*
+var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>();
+            manager.fixedWidth = 1600;
+            manager.fixedHeight = 1024;
+            manager.guiCamera = GameUIRoot.Instance.Manager.guiCamera;
+            manager.renderCamera = Camera.main;
+            
+
+            var manager_Input = StarterGunSelectUIController.UI_Frame.AddComponent<dfInputManager>();
+            manager_Input.UseMouse = true;
+            manager_Input.mouseHandler = GameUIRoot.Instance.Manager.inputManager.mouseHandler;
+
+            manager.inputManager = manager_Input;
+            manager_Input.guiManager = manager;
+            manager_Input.renderCamera = Camera.main;
+
+            manager_Input.adapter = GameUIRoot.Instance.Manager.inputManager.adapter;
+            */
+
+            //ApplyCanvasScaler(StarterGunSelectUIController.UI_Frame.gameObject);
+
+
+//            ETGModConsole.Log(4);
 
 
             dfPanel dfPanel = StarterGunSelectUIController.UI_Frame.AddComponent<dfPanel>();
+            dfPanel.cachedManager = GameUIRoot.Instance.Manager;
+            //ETGModConsole.Log(5);
+
             dfPanel.anchorStyle = dfAnchorStyle.All;
             dfPanel.isEnabled = false;
             dfPanel.isVisible = true;
@@ -322,7 +364,7 @@ namespace ModularMod
             dfPanel.gameObject.SetActive(true);
 
 
-            float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+            float mult = 1f;// GameManager.Options.SmallUIEnabled == true ? 1 : 2;
 
             StarterGunSelectUIController gunSelectUIController = StarterGunSelectUIController.UI_Frame.AddComponent<StarterGunSelectUIController>();
 
@@ -336,6 +378,8 @@ namespace ModularMod
             //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_close_pressed_alt"), "UI_Button_Close_Pressed_Alt");
 
             GameObject closeButton_object = PrefabBuilder.BuildObject("CloseButton");
+            //ApplyCanvasScaler(closeButton_object);
+
             closeButton_object.layer = 24;
             closeButton_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
             dfButton closeButton = closeButton_object.CreateBlankDfButton(new Vector2(160f / mult, 160f/ mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left , new dfAnchorMargins
@@ -374,6 +418,8 @@ namespace ModularMod
                 //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_default_gun_pressed_alt"), "Default_Gun_Icon_Pressed_Alt");
 
                 GameObject Default_Gun_Button_object = PrefabBuilder.BuildObject("Default_Gun_Button");
+                //ApplyCanvasScaler(Default_Gun_Button_object);
+
                 //Default_Gun_Button_object.layer = 24;
                 Default_Gun_Button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
                 dfButton Default_Gun_Button = Default_Gun_Button_object.CreateBlankDfButton(new Vector2(160 / mult, 160 / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
@@ -923,6 +969,8 @@ namespace ModularMod
                 defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("ui_button_accept_highlight_alt"), "Mod_Accept_Highlight_Alt");
                 */
                 GameObject accept_Button_object = PrefabBuilder.BuildObject("AcceptButton");
+                //ApplyCanvasScaler(accept_Button_object);
+
                 //accept_Button_object.layer = 24;
                 accept_Button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
                 dfButton acceptButton_df = accept_Button_object.CreateBlankDfButton(new Vector2(640f / mult, 160f / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
@@ -965,6 +1013,8 @@ namespace ModularMod
                 */
 
                 GameObject left_button_object = PrefabBuilder.BuildObject("Left_Page_Button");
+                //ApplyCanvasScaler(left_button_object);
+
                 //left_button_object.layer = 24;
                 left_button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
                 dfButton left_button = left_button_object.CreateBlankDfButton(new Vector2(80 / mult, 80f / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
@@ -1006,6 +1056,8 @@ namespace ModularMod
                 defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("right_button_pressed_alt"), "Right_Button_Pressed_Alt");
                 */
                 GameObject right_button_object = PrefabBuilder.BuildObject("Right_Page_Button");
+                //ApplyCanvasScaler(right_button_object);
+
                 //right_button_object.layer = 24;
                 right_button_object.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
                 dfButton right_button = right_button_object.CreateBlankDfButton(new Vector2(80 / mult, 80f / mult), dfAnchorStyle.Bottom | dfAnchorStyle.Left, new dfAnchorMargins
@@ -1045,6 +1097,7 @@ namespace ModularMod
             StatDescriptionLabel.ShadowColor = new Color32(1, 1, 1, 255);
             StatDescriptionLabel.textScale = 2.9f * (0.95f / mult);
             StatDescriptionLabel.gameObject.SetActive(false);
+            //ApplyCanvasScaler(StatDescriptionLabel.gameObject);
 
             StatDescriptionLabel.layout = new dfControl.AnchorLayout(dfAnchorStyle.Bottom | dfAnchorStyle.Left)
             {
@@ -1081,6 +1134,7 @@ namespace ModularMod
             NameDescriptionLabel.shadowOffset = new Vector2(1, -0.5f);
             NameDescriptionLabel.ShadowColor = new Color32(1, 1, 1, 255);
             NameDescriptionLabel.gameObject.SetActive(false);
+            //ApplyCanvasScaler(NameDescriptionLabel.gameObject);
 
             NameDescriptionLabel.layout = new dfControl.AnchorLayout(dfAnchorStyle.Bottom | dfAnchorStyle.Left)
             {
@@ -1105,6 +1159,8 @@ namespace ModularMod
 
 
             var name_display_Object = PrefabBuilder.BuildObject("Name_display_Panel");
+            //ApplyCanvasScaler(name_display_Object.gameObject);
+
             //name_display_Object.layer = 24;
 
 
@@ -1189,9 +1245,11 @@ namespace ModularMod
              string Label_Name_Asset_Name_Alt = "name_label_WIP_alt", string UnlockDescription = "Blah Blah Blah", Func<bool> OverrideUnlock = null, bool overrideCanBeSelected = false
             )
         {
-            float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+            float mult = 1f;//GameManager.Options.SmallUIEnabled == true ? 1 : 2;
 
             GameObject Default_Gun_Button_object = PrefabBuilder.BuildObject(Button_Name+"_Object");
+            //ApplyCanvasScaler(Default_Gun_Button_object);
+
             //Default_Gun_Button_object.layer = 24;
             Default_Gun_Button_object.gameObject.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
 
@@ -1274,6 +1332,8 @@ namespace ModularMod
             float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
 
             GameObject Default_Gun_Button_object = PrefabBuilder.BuildObject(Button_Name + "_Object");
+            //ApplyCanvasScaler(Default_Gun_Button_object);
+
             //Default_Gun_Button_object.layer = 24;
             Default_Gun_Button_object.gameObject.transform.parent = StarterGunSelectUIController.UI_Frame.transform;
 
@@ -1489,6 +1549,25 @@ namespace ModularMod
                 }
             }
             UpdatePanels();
+
+            /*
+            var manager = StarterGunSelectUIController.UI_Frame.GetComponent<dfGUIManager>();
+            manager.fixedWidth = 1600;
+            manager.fixedHeight = 1024;
+            manager.guiCamera = GameUIRoot.Instance.Manager.guiCamera;
+            manager.renderCamera = Camera.main;
+
+            var manager_Input = StarterGunSelectUIController.UI_Frame.GetComponent<dfInputManager>();
+            manager_Input.UseMouse = true;
+            manager_Input.mouseHandler = GameUIRoot.Instance.Manager.inputManager.mouseHandler;
+
+            manager.inputManager = manager_Input;
+            manager_Input.guiManager = manager;
+            manager_Input.renderCamera = Camera.main;
+            manager_Input.adapter = GameUIRoot.Instance.Manager.inputManager.adapter;
+            */
+
+
             CursorPatch.DisplayCursorOnController = true;
             CanBeUsed = true;
             this.Accept_Button.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)

@@ -12,8 +12,41 @@ using UnityEngine;
 
 namespace ModularMod
 {
-    public class VFXStorage
+    public static class VFXStorage
     {
+        public static GameObject SmarterPlayEffectOnActor(this GameActor actor, GameObject effect, Vector3 offset, bool ignorePool = true, bool attached = true, bool alreadyMiddleCenter = false, bool useHitbox = false)
+        {
+            GameObject gameObject = SpawnManager.SpawnVFX(effect, ignorePool);
+            tk2dBaseSprite component = gameObject.GetComponent<tk2dBaseSprite>();
+            Vector3 a = (!useHitbox || !actor.specRigidbody || actor.specRigidbody.HitboxPixelCollider == null) ? actor.sprite.WorldCenter.ToVector3ZUp(0f) : actor.specRigidbody.HitboxPixelCollider.UnitCenter.ToVector3ZUp(0f);
+            if (!alreadyMiddleCenter)
+            {
+                component.PlaceAtPositionByAnchor(a + offset, tk2dBaseSprite.Anchor.MiddleCenter);
+            }
+            else
+            {
+                component.transform.position = a + offset;
+            }
+            if (attached)
+            {
+                gameObject.transform.parent = actor.transform;
+                component.HeightOffGround = 0.2f;
+                actor.sprite.AttachRenderer(component);
+                if (actor is PlayerController)
+                {
+                    SmartOverheadVFXController component2 = gameObject.GetComponent<SmartOverheadVFXController>();
+                    if (component2 != null)
+                    {
+                        component2.Initialize(actor as PlayerController, offset);
+                    }
+                }
+            }
+            if (!alreadyMiddleCenter)
+            {
+                gameObject.transform.localPosition = gameObject.transform.localPosition.QuantizeFloor(0.0625f);
+            }
+            return gameObject;
+        }
         public static void AssignVFX()
         {
             RadialRing = (GameObject)ResourceCache.Acquire("Global VFX/HeatIndicator");

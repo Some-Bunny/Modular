@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Confidence Drive",
             Description = "Self Boost",
-            LongDescription = "Grants 1 Coolness. While held, bosses no longer drop guns. Breaks when removed.\n\nI've got this.",
+            LongDescription = "Grants 2 Coolness. While held, bosses no longer drop guns. Breaks when removed.\n\nI've got this.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("confidence_drive"),
             Quality = ItemQuality.D,
@@ -29,7 +29,7 @@ namespace ModularMod
         {
             v.CustomCost = 10;
             
-            v.AddPassiveStatModifier(PlayerStats.StatType.Coolness, 1, StatModifier.ModifyMethod.ADDITIVE);
+            v.AddPassiveStatModifier(PlayerStats.StatType.Coolness, 2, StatModifier.ModifyMethod.ADDITIVE);
             v.SetupUnlockOnCustomFlag(SaveAPI.CustomDungeonFlags.BEAT_DRAGUN_AS_MODULAR, true);
             ConfidenceCoreID = v.PickupObjectId;
             AdditionalShopItemController.ShopItemContexts.Add(new AdditionalShopItemController.AdditionalShopItemContext()

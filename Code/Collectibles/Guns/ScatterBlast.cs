@@ -58,7 +58,7 @@ namespace ModularMod
                 projectileModule.shootStyle = ProjectileModule.ShootStyle.SemiAutomatic;
                 projectileModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
                 projectileModule.cooldownTime = 1f;
-                projectileModule.angleVariance = 33;
+                projectileModule.angleVariance = 28;
                 projectileModule.numberOfShotsInClip = 8;
                 Projectile projectile = UnityEngine.Object.Instantiate<Projectile>(gun.DefaultModule.projectiles[0]);
                 projectile.gameObject.SetActive(false);

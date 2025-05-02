@@ -77,7 +77,7 @@ namespace ModularMod
             projectileSlashingBehaviour.slashParameters.enemyKnockbackForce = 30;
             projectileSlashingBehaviour.slashParameters.doVFX = true;
             projectileSlashingBehaviour.slashParameters.doHitVFX = true;
-            projectileSlashingBehaviour.slashParameters.slashRange = 4f;
+            projectileSlashingBehaviour.slashParameters.slashRange = 3.75f;
             projectileSlashingBehaviour.slashParameters.slashDegrees = 150;
             projectileSlashingBehaviour.slashParameters.soundEvent = "Play_WPN_beam_slash_01";
             projectileSlashingBehaviour.SlashDamageUsesBaseProjectileDamage = false;
@@ -163,7 +163,7 @@ namespace ModularMod
             {
                 Projectile = projectile,
                 OverrideShootAnimation = "lightlancealt_altfire",
-                ChargeTime = 0.7f,
+                ChargeTime = 1,
                 AmmoCost = 2,
                 UsedProperties = ProjectileModule.ChargeProjectileProperties.shootAnim | ProjectileModule.ChargeProjectileProperties.additionalWwiseEvent,
                 AdditionalWwiseEvent = "Play_BOSS_agunim_orb_01"
@@ -177,9 +177,8 @@ namespace ModularMod
 
 
             tk2dSpriteAnimationClip fireClip2 = gun.spriteAnimator.GetClipByName("lightlancealt_fire");
-            float[] offsetsX2 = new float[] { 0f, 0f, 0f, 0f, 0f, 0f, 0f, //HERE
-                0f, -0.75f, -1f, -0.5f, 0f, 0f, 0f, };
-            float[] offsetsY2 = new float[] { 0f, 0.125f, 0.25f, 0.3125f, 0.3125f, 0.375f, 0.375f, -1.75f, -1.625f, -1.5f, -1.25f, -1.125f, -0.75f, -0.25f };
+            float[] offsetsX2 = new float[] { 0f, 0f, 0f, 0f, 0f, 0f, 0f, -0.75f, -0.75f, -1f, -0.5f, -0.25f, 0f, 0f, 0f, };
+            float[] offsetsY2 = new float[] { 0f, 0.125f, 0.25f, 0.375f, -0.75f, -0.75f, -0.75f, -0.6875f, -0.6875f, -0.5625f, -0.5625f, -0.4375f, -0.375f, -0.25f, -0.125f };
             for (int i = 0; i < offsetsX2.Length && i < offsetsY2.Length && i < fireClip2.frames.Length; i++)
             {
                 int id = fireClip2.frames[i].spriteId;
@@ -191,6 +190,39 @@ namespace ModularMod
                 fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position2.y += offsetsY2[i];
                 fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position3.x += offsetsX2[i];
                 fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position3.y += offsetsY2[i];
+            }
+
+            tk2dSpriteAnimationClip chargeClip = gun.spriteAnimator.GetClipByName("lightlancealt_charge");
+            offsetsX2 = new float[] { 0f, 0f, 0f, 0f, 0f, 0f, 0f };
+            offsetsY2 = new float[] { 0f, 0f, 0.125f, 0.25f, 0.25f, 0.375f, 0.5f };
+            for (int i = 0; i < offsetsX2.Length && i < offsetsY2.Length && i < fireClip2.frames.Length; i++)
+            {
+                int id = fireClip2.frames[i].spriteId;
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position0.x += offsetsX2[i];
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position0.y += offsetsY2[i];
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position1.x += offsetsX2[i];
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position1.y += offsetsY2[i];
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position2.x += offsetsX2[i];
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position2.y += offsetsY2[i];
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position3.x += offsetsX2[i];
+                fireClip2.frames[i].spriteCollection.spriteDefinitions[id].position3.y += offsetsY2[i];
+            }
+
+
+            tk2dSpriteAnimationClip reloadClip = gun.spriteAnimator.GetClipByName("lightlancealt_reload");
+            offsetsX2 = new float[] { 0f, 0f, 0f, 0f, 0f, 0f, 0f };
+            offsetsY2 = new float[] { 0f, -0.25f, -0.5f, -0.5f, -0.5f, 0, };
+            for (int i = 0; i < offsetsX2.Length && i < offsetsY2.Length && i < reloadClip.frames.Length; i++)
+            {
+                int id = reloadClip.frames[i].spriteId;
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position0.x += offsetsX2[i];
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position0.y += offsetsY2[i];
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position1.x += offsetsX2[i];
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position1.y += offsetsY2[i];
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position2.x += offsetsX2[i];
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position2.y += offsetsY2[i];
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position3.x += offsetsX2[i];
+                reloadClip.frames[i].spriteCollection.spriteDefinitions[id].position3.y += offsetsY2[i];
             }
 
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(125) as Gun).gunSwitchGroup;
@@ -279,7 +311,7 @@ namespace ModularMod
                 SpawnManager.PoolManager.Remove(p.transform);
                 float previousSpeed = p.baseData.speed;
 
-                p.baseData.damage = 2f + (p.baseData.speed * 0.5f);
+                p.baseData.damage = 1.25f + (p.baseData.speed * 0.3f);
 
                 p.baseData.speed *= 2;
                 p.UpdateSpeed();

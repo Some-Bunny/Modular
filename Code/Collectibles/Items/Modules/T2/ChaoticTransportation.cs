@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Chaotic Transportation",
             Description = "Where Am I?",
-            LongDescription = "Adds 1 (+1 per stack) Bounces. Increases fire rate by 20% (+20% per stack hyperbolically). Projectiles will randomly teleport to anywhere in the room 1 (+1) time/s." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 1 (+1 per stack) Bounces. Increases fire rate by 20% (+20% per stack hyperbolically). Projectiles will randomly teleport to anywhere in the room 3 (+3) times." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -32,7 +32,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Chaotic Transportation " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") Bounces.\nIncreases fire rate by 20% ("+StaticColorHexes.AddColorToLabelString("+20% hyperbolically")+").\nProjectiles can randomly teleport to anywhere in the room 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") time/s.";
+            h.LabelDescription = "Adds 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") Bounces.\nIncreases fire rate by 20% ("+StaticColorHexes.AddColorToLabelString("+20% hyperbolically")+").\nProjectiles can randomly teleport to anywhere in the room 3 ("+StaticColorHexes.AddColorToLabelString("+3")+") times.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
@@ -51,10 +51,10 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.01f) { return; }
+            if (UnityEngine.Random.value > 0.005f) { return; }
             var t = p.gameObject.GetOrAddComponent<Transport>();
             p.gameObject.GetOrAddComponent<BounceProjModifier>().numberOfBounces += 1;
-            t.AmountOfTeleports = 1;
+            t.AmountOfTeleports = 3;
             p.baseData.speed *= 1.1f;
             p.UpdateSpeed();
         }
@@ -75,7 +75,7 @@ namespace ModularMod
         {
             var t = p.gameObject.GetOrAddComponent<Transport>();
             p.gameObject.GetOrAddComponent<BounceProjModifier>().numberOfBounces += this.ReturnStack(modulePrinterCore);
-            t.AmountOfTeleports = this.ReturnStack(modulePrinterCore);
+            t.AmountOfTeleports = 3 * this.ReturnStack(modulePrinterCore);
             p.baseData.speed *= 1.1f;
             p.UpdateSpeed();
         }
@@ -123,16 +123,17 @@ namespace ModularMod
             }
             AmountOfTeleports--;
             E = 0;
-            newRNG = UnityEngine.Random.value * 1.15f;
+            newRNG = UnityEngine.Random.value + 0.15f;
             VFXStorage.SpiratTeleportVFX.SpawnAtPosition(this.transform.position);
 
             var P = this.transform.position.GetAbsoluteRoom().GetRandomAvailableCellDumb().ToCenterVector3(0);
             VFXStorage.SpiratTeleportVFX.SpawnAtPosition(P);
 
+
             self.transform.position = P;
             self.specRigidbody.Reinitialize();
             self.Direction = self.GetVectorToNearestEnemy() - self.transform.PositionVector2();
-            
+            self.ResetDistance();
         }
 
         public int AmountOfTeleports  = 1;

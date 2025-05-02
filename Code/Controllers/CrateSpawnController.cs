@@ -146,6 +146,13 @@ namespace ModularMod
             if (Manager.GetFlag(SaveAPI.CustomDungeonFlags.BEAT_RAT_AS_MODULAR) == true) { return true; }
             if (Manager.GetFlag(SaveAPI.CustomDungeonFlags.LEAD_GOD_AS_MODULAR) == true) { return true; }
             if (Manager.GetFlag(SaveAPI.CustomDungeonFlags.BOSS_RUSH_AS_MODULAR) == true) { return true; }
+
+            if (Manager.GetFlag(SaveAPI.CustomDungeonFlags.BLESSED_MODE) == true) { return true; }
+            if (Manager.GetFlag(SaveAPI.CustomDungeonFlags.CHALLENGEMODE_DRAGUN) == true) { return true; }
+            if (Manager.GetFlag(SaveAPI.CustomDungeonFlags.CHALLENGEMODE_LICH) == true) { return true; }
+            if (Manager.GetFlag(SaveAPI.CustomDungeonFlags.BEAT_ADVANCED_DRAGUN_AS_MODULAR) == true) { return true; }
+
+
             return false;
         }
 

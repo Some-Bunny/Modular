@@ -72,7 +72,12 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + (0.05f * GlobalConsumableStorage.GetConsumableOfName("Scrap") * this.ReturnStack(modulePrinterCore));
+            float maths = 1 + (0.05f * GlobalConsumableStorage.GetConsumableOfName("Scrap") * this.ReturnStack(modulePrinterCore));
+            float maths_ = 1 + (0.0125f * GlobalConsumableStorage.GetConsumableOfName("Scrap") * this.ReturnStack(modulePrinterCore));
+
+            p.baseData.damage *= maths;
+            p.baseData.force *= maths_;
+            p.RuntimeUpdateScale(maths_);
         }
 
         public Vector2 MovementMod(Vector2 currentVel, ModulePrinterCore core, PlayerController p)

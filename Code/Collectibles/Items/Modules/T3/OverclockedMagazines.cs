@@ -79,6 +79,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 0.66f;
+            p.baseData.force *= 0.66f;
             p.baseData.speed *= 2;
             p.UpdateSpeed();
         }

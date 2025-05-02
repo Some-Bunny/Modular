@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Aggressive Reload",
             Description = "Air Force",
-            LongDescription = "Reloading harms, pushes and stuns enemies near you. Effectiveness scales on how empty the clip is. (Damage and force is increased per stack). Can deflect enemy bullets, with good timing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reloading harms, burns and pushes and stuns enemies near you. Effectiveness scales on how empty the clip is. (Damage and force is increased per stack). Can deflect enemy bullets, with good timing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aggressivereload_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Aggressive Reload " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.9f;
-            h.LabelDescription = "Reloading harms, pushes and stuns enemies near you.\nEffectiveness scales on how empty the clip is. (" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ").\nCan deflect enemy bullets, with good timing.";
+            h.LabelDescription = "Reloading harms, pushes, burns and stuns enemies near you.\nEffectiveness scales on how empty the clip is. (" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ").\nCan deflect enemy bullets, with good timing.";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -157,6 +157,7 @@ namespace ModularMod
                                 if (aI.behaviorSpeculator.ImmuneToStun == false) { aI.behaviorSpeculator.Stun((1.5f + (Mult / 2)) * m); }
                             }
                             aI.healthHaver.ApplyDamage((25f * Mult)*m, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
+                            aI.ApplyEffect(DebuffStatics.hotLeadEffect);
                         }
                     }
                 }

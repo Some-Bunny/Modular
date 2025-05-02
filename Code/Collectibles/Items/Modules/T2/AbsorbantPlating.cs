@@ -45,7 +45,6 @@ namespace ModularMod
             h.Offset_LabelName = new Vector2(0.25f, 1.875f);
             h.OverrideScrapCost = 7;
             h.EnergyConsumption = 1;
-            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
             ID = h.PickupObjectId;
             new Hook(typeof(PlayerController).GetMethod("IncreaseFire", BindingFlags.Instance | BindingFlags.Public), typeof(AbsorbantPlating).GetMethod("IncreaseFireHook"));
@@ -54,7 +53,6 @@ namespace ModularMod
         }
         public static void IncreaseFireHook(Action<PlayerController, float> orig, PlayerController self, float amount)
         {
-            //amount = Mathf.Min(amount, BraveTime.DeltaTime * 0.2f);
             if (GlobalModuleStorage.PlayerHasModule(self, ID) != null)
             {
                 var container = GlobalModuleStorage.PlayerHasModule(self, ID);
@@ -81,7 +79,6 @@ namespace ModularMod
                 FireRate_Process = ProcessFireRate,
                 ChargeSpeed_Process = ProcessFireRate,
                 Accuracy_Process = ProcessFireRate,
-
             };
             modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
             modulePrinter.OnPostProcessProjectile += PPP;
@@ -104,15 +101,16 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            if (p.statusEffectsToApply == null)
-                {p.statusEffectsToApply = new List<GameActorEffect>(); }
+            if (p.statusEffectsToApply == null){p.statusEffectsToApply = new List<GameActorEffect>(); }
             if (player.IsOnFire == true)
             {
                 p.statusEffectsToApply.Add(DebuffStatics.hotLeadEffect);
+                p.AdjustPlayerProjectileTint(Color.red, 2);
             }
             if (player.CurrentPoisonMeterValue > 0)
             {
                 p.statusEffectsToApply.Add(DebuffStatics.irradiatedLeadEffect);
+                p.AdjustPlayerProjectileTint(Color.green, 2);
             }
         }
         

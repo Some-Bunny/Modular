@@ -97,7 +97,7 @@ namespace ModularMod
 
 
             projectile.baseData.speed *= 1f;
-            projectile.baseData.damage = 25f;
+            projectile.baseData.damage = 30f;
             projectile.shouldRotate = false;
 
             Material mat = new Material(StaticShaders.Default_Shader);
@@ -179,7 +179,7 @@ namespace ModularMod
 
             projectile.baseData.damage = damage;
             projectile.baseData.range = (4 + (speed * 1.5f/ damage)) * .75f;
-            projectile.baseData.speed = speed * 3f;
+            projectile.baseData.speed = speed * 1.25f;
             return projectile;
         }
 

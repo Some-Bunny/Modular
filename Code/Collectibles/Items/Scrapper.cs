@@ -79,7 +79,6 @@ namespace ModularMod
                 active.Pickup(player);          
                 (active as Scrapper).SetMode("COMPUTER");        
             }
-
         }
         public override void Pickup(PlayerController player)
         {

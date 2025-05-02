@@ -231,8 +231,6 @@ namespace ModularMod
             }
             return true;
         }
-
-        // Token: 0x06007034 RID: 28724 RVA: 0x002C7BC8 File Offset: 0x002C5DC8
         private bool AdjustRigidbodyVelocity(SpeculativeRigidbody other)
         {
             Vector2 a = other.UnitCenter - self.specRigidbody.UnitCenter;
@@ -310,19 +308,6 @@ namespace ModularMod
             return false;
         }
 
-        public void OuterLimitsProcessEnemy(AIActor a, float b)
-        {
-            if (a && a.IsNormalEnemy && a.healthHaver && !a.IsGone)
-            {
-                /*
-                a.healthHaver.ApplyDamage(100f, Vector2.zero, "projectile", CoreDamageTypes.None, DamageCategory.Normal, false, null, false);
-                if (this.OuterLimitsDamageVFX != null)
-                {
-                    a.PlayEffectOnActor(this.OuterLimitsDamageVFX, Vector3.zero, false, true, false);
-                }
-                */
-            }
-        }
     }
 
 }

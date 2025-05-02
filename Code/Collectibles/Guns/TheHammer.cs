@@ -45,7 +45,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(383) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 3.5f;
+            gun.reloadTime = 4f;
             gun.DefaultModule.cooldownTime = .5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
@@ -83,7 +83,7 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 17.5f;
+            projectile.baseData.damage = 10f;
             projectile.baseData.speed = 50f;
             projectile.pierceMinorBreakables = true;
 
@@ -135,11 +135,13 @@ namespace ModularMod
             gun.activeReloadData = new ActiveReloadData()
             {
                 reloadSpeedMultiplier = 1.05f,
-                damageMultiply = 1.035f,
+                damageMultiply = 1.025f,
                 ActiveReloadIncrementsTier = true,
                 ActiveReloadStacks = true,
-                MaxTier = 50
+                MaxTier = 50,
+                
             };
+
             gun.m_canAttemptActiveReload = true;
             gun.LocalActiveReload = true;
             c.activeReloadEnabled = true;
@@ -163,13 +165,19 @@ namespace ModularMod
             GameObject VFX = new GameObject("VFX");
             FakePrefab.DontDestroyOnLoad(VFX);
             FakePrefab.MarkAsFakePrefab(VFX);
+            VFX.SetActive(false);
             var tk2d = VFX.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.VFX_Collection;
             tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("hammerstrike_006"));
             var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
 
             tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("HammerStrikeAnimation").GetComponent<tk2dSpriteAnimation>();
+            tk2dAnim.defaultClipId = tk2dAnim.GetClipIdByName("hammerstrike");
+            tk2dAnim.playAutomatically = true;
 
+            var k = tk2dAnim.gameObject.AddComponent<SpriteAnimatorKiller>();
+            k.animator = tk2dAnim;
+            k.fadeTime = 0.8f;
 
             tk2d.usesOverrideMaterial = true;
             tk2d.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
@@ -181,11 +189,8 @@ namespace ModularMod
             {
                 {5, "Play_OBJ_spears_clank_01"},
             });
-            Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(tk2dAnim, "hammerstrikealt", new Dictionary<int, string>()
-            {
-                {5, "Play_OBJ_spears_clank_01"},
-            });
             StrikeVFX = VFX;
+            gun.activeReloadSuccessEffects = new VFXPool() { type = VFXPoolType.Single, effects = new VFXComplex[] { new VFXComplex() { effects = new VFXObject[] { new VFXObject() { effect = StrikeVFX } } } } };
 
 
             HammerData = new ExplosionData()
@@ -259,10 +264,9 @@ namespace ModularMod
 
         public override void OnActiveReloadSuccess(MultiActiveReload reload)
         {
-            base.OnActiveReloadSuccess(reload);
             var fx = base.gun.CurrentOwner.PlayEffectOnActor(StrikeVFX, new Vector3(0, 1.25f));
             fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("hammerstrike");
-
+            base.OnActiveReloadSuccess(reload);
         }
 
         public override void OnActiveReloadFailure(MultiActiveReload reload)

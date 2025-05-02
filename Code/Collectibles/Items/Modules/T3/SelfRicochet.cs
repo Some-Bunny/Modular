@@ -49,14 +49,15 @@ namespace ModularMod
             h.AddToGlobalStorage();
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 
+
+            
+            ID = h.PickupObjectId;
             ricoChetData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
             ricoChetData.damageToPlayer = 0;
             ricoChetData.damage = 2.5f;
-            
-            ID = h.PickupObjectId;
         }
-        public static int ID;
         public static ExplosionData ricoChetData;
+        public static int ID;
 
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
@@ -151,7 +152,8 @@ namespace ModularMod
             this.projectile = base.GetComponent<Projectile>();
             this.projectile.specRigidbody.OnPreRigidbodyCollision += PissAndShit;
             this.projectile.OnHitEnemy += HandleProjectileHitEnemy;
-
+            Can = false;
+            this.Invoke("C", 1);
         }
 
         private void Update()

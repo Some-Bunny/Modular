@@ -76,12 +76,16 @@
     <Compile Include="Code\Collectibles\Items\Modules\T1\BloatedCapacitor.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\ExplosiveEnergy.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\SupplyDrop.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\WarHorn.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\Crit Modules T2\FocusedRetaliation.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\ChaoticTransportation.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\Crit Modules T2\SolarFlare.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\BubbleUp.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\CryogenicVenting.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\EternalWrath.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\IteratedDesign.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T3\PowerEternal.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T3\DeathTrigger.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T4\CarpalNightmare.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\Unique\MusicBox.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\Unique\WillingSpirit.cs" />
@@ -264,6 +268,7 @@
     <Compile Include="Code\Toolboxes\Assetbundle Supported\ProjectileToolbox.cs" />
     <Compile Include="Code\Toolboxes\Components.cs" />
     <Compile Include="Code\Toolboxes\CustomSlashDoer.cs" />
+    <Compile Include="Code\Toolboxes\DebuffStuff.cs" />
     <Compile Include="Code\Toolboxes\LightningController.cs" />
     <Compile Include="Code\Toolboxes\StringsManager.cs" />
     <Compile Include="Code\UI\ChooseModuleController.cs" />

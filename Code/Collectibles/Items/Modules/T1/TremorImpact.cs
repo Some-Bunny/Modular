@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Tremor Impact",
             Description = "Shockwave",
-            LongDescription = "Hitting enemies deals 25% (+25% per stack) of the damage dealt to nearby enemies" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Hitting enemies deals 25% (+25% per stack) of the damage dealt to nearby enemies. Slain enemies detonate. (+Explosion Power per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tremor_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,8 +29,8 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tremor_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Tremor Impact " + h.ReturnTierLabel();
-            h.AdditionalWeightMultiplier = 0.85f;
-            h.LabelDescription = "Hitting enemies deals 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") of the damage dealt\nto enemies near the hurt enemy.";
+            h.AdditionalWeightMultiplier = 0.9f;
+            h.LabelDescription = "Hitting enemies deals 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") of the damage dealt\nto enemies near the hurt enemy.\nSlain enemies detonate." + "("+StaticColorHexes.AddColorToLabelString("+Explosion Power", StaticColorHexes.Light_Orange_Hex) + ")";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -43,17 +43,37 @@ namespace ModularMod
             hitEffect = (PickupObjectDatabase.GetById(504) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects[0].effects[0].effect;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
+
+            tremorHit = StaticExplosionDatas.CopyFields((PickupObjectDatabase.GetById(601) as Gun).DefaultModule.projectiles[0].GetComponent<ExplosiveModifier>().explosionData);
+            tremorHit.damageToPlayer = 0;
+            tremorHit.damage = 15;
+            tremorHit.force = 50;
         }
+
+
+        public static ExplosionData tremorHit;
+
+
         public static GameObject hitEffect;
         public static int ID;
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnDamagedEnemy += OnEnemyDamaged;
+            modulePrinter.OnKilledEnemy += OKE;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnDamagedEnemy -= OnEnemyDamaged;
+            modulePrinter.OnKilledEnemy -= OKE;
         }
+
+        public void OKE(ModulePrinterCore modulePrinter, PlayerController playerController, AIActor aIActor)
+        {
+            tremorHit.damage = 15 * this.ReturnStack(modulePrinter);
+            tremorHit.force = 40 * this.ReturnStack(modulePrinter);
+            Exploder.Explode(aIActor.sprite.WorldCenter, tremorHit, aIActor.sprite.WorldCenter, null, true);
+        }
+
         public void OnEnemyDamaged(ModulePrinterCore modulePrinterCore, PlayerController player, AIActor enemy, float damage)
         {
             int stack = this.ReturnStack(modulePrinterCore);
@@ -73,19 +93,22 @@ namespace ModularMod
 
                         if (ai)
                         {
-                            bool flag = radius < 0f;
-                            Vector2 vector = room.activeEnemies[i].CenterPosition - position;
-                            if (!flag)
+                            if (ai != noTarget)
                             {
-                                flag = (vector.sqrMagnitude < num);
-                            }
-                            if (flag)
-                            {
-                                ai.PlayEffectOnActor(hitEffect, new Vector3(0, 0));
-                                ai.healthHaver.ApplyDamage(noTarget == ai ? damage / 3 : damage, position, "AoE");
-                                if (ai.knockbackDoer != null && !ai.healthHaver.IsBoss)
+                                bool flag = radius < 0f;
+                                Vector2 vector = room.activeEnemies[i].CenterPosition - position;
+                                if (!flag)
                                 {
-                                    ai.knockbackDoer.ApplyKnockback(position - ai.transform.PositionVector2(), 5);
+                                    flag = (vector.sqrMagnitude < num);
+                                }
+                                if (flag)
+                                {
+                                    ai.PlayEffectOnActor(hitEffect, new Vector3(0, 0));
+                                    ai.healthHaver.ApplyDamage(noTarget == ai ? damage / 3 : damage, position, "AoE");
+                                    if (ai.knockbackDoer != null && !ai.healthHaver.IsBoss)
+                                    {
+                                        ai.knockbackDoer.ApplyKnockback(position - ai.transform.PositionVector2(), 5);
+                                    }
                                 }
                             }
                         }

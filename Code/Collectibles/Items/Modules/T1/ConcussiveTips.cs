@@ -33,6 +33,7 @@ namespace ModularMod
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.25f, -1f);
             h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.AdditionalWeightMultiplier = 0.8f;
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 

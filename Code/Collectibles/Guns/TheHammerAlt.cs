@@ -6,6 +6,7 @@ using System;
 using ModularMod;
 using System.Linq;
 using System.Collections.Generic;
+using Alexandria.Misc;
 
 namespace ModularMod
 {
@@ -41,7 +42,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(383) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 3.5f;
+            gun.reloadTime = 4f;
             gun.DefaultModule.cooldownTime = .5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
@@ -80,7 +81,7 @@ namespace ModularMod
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
 
-            projectile.baseData.damage = 17.5f;
+            projectile.baseData.damage = 10f;
             projectile.baseData.speed = 50f;
 
             projectile.shouldRotate = true;
@@ -139,7 +140,7 @@ namespace ModularMod
             gun.activeReloadData = new ActiveReloadData()
             {
                 reloadSpeedMultiplier = 1.05f,
-                damageMultiply = 1.035f,
+                damageMultiply = 1.025f,
                 ActiveReloadIncrementsTier = true,
                 ActiveReloadStacks = true,
                 MaxTier = 50
@@ -148,6 +149,37 @@ namespace ModularMod
             gun.LocalActiveReload = true;
             c.activeReloadEnabled = true;
             c.canAttemptActiveReload = true;
+
+
+            GameObject VFX = new GameObject("VFX");
+            FakePrefab.DontDestroyOnLoad(VFX);
+            FakePrefab.MarkAsFakePrefab(VFX);
+            VFX.SetActive(false);
+            var tk2d = VFX.AddComponent<tk2dSprite>();
+            tk2d.Collection = StaticCollections.VFX_Collection;
+            tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("hammerstrike_006"));
+            var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
+
+            tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("HammerStrikeAnimation").GetComponent<tk2dSpriteAnimation>();
+            tk2dAnim.defaultClipId = tk2dAnim.GetClipIdByName("hammerstrikealt");
+            tk2dAnim.playAutomatically = true;
+            var k = tk2dAnim.gameObject.AddComponent<SpriteAnimatorKiller>();
+            k.animator = tk2dAnim;
+            k.fadeTime = 0.8f;
+
+            tk2d.usesOverrideMaterial = true;
+            tk2d.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
+            tk2d.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
+            tk2d.renderer.material.SetFloat("_EmissivePower", 10);
+            tk2d.renderer.material.SetFloat("_EmissiveColorPower", 10);
+            Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(tk2dAnim, "hammerstrikealt", new Dictionary<int, string>()
+            {
+                {5, "Play_OBJ_spears_clank_01"},
+            });
+            StrikeVFX = VFX;
+
+            gun.activeReloadSuccessEffects = new VFXPool() { type = VFXPoolType.Single, effects = new VFXComplex[] { new VFXComplex() { effects = new VFXObject[] { new VFXObject() { effect = StrikeVFX } } } } };
+
             /*
             behavior.activeReloadEnabled = true;
             behavior.canAttemptActiveReload = true;
@@ -166,6 +198,7 @@ namespace ModularMod
             IteratedDesign.SpecialProcessGunSpecific += c.Process;
 
         }
+        public static GameObject StrikeVFX;
 
         public void Process(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
         {
