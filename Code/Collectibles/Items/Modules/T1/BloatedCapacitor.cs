@@ -66,13 +66,16 @@ namespace ModularMod
             };
             modulePrinter.VoluntaryMovement_Modifier += ModifySpeed;
             modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
-            modulePrinter.OnDamaged += OnDamaged;
+            player.LostArmor += OnDamaged;
+            //player.healthHaver.ModifyDamage += ModifyIncomingDamage;
+
         }
 
-        public void OnDamaged(ModulePrinterCore modulePrinterCore, PlayerController playerController)
+        public void OnDamaged()
         {
-            playerController.healthHaver.Armor--;
+            this.Stored_Core.Owner.healthHaver.Armor--;
         }
+
 
         public Vector2 ModifySpeed(Vector2 currentVelocity, ModulePrinterCore core, PlayerController player)
         {
@@ -85,7 +88,8 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.VoluntaryMovement_Modifier -= ModifySpeed;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
-            modulePrinter.OnDamaged -= OnDamaged;
+            //modulePrinter.OnDamaged -= OnDamaged;
+            player.LostArmor -= OnDamaged;
 
         }
 

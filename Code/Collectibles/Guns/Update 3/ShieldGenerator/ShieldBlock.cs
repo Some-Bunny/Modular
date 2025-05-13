@@ -13,11 +13,11 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
     public class ShieldEater : MonoBehaviour
     {
         private Projectile projectile;
+        public int Damage = 3;
         public void Start()
         {
             this.projectile = base.GetComponent<Projectile>();
             this.projectile.baseData.force = 0;
-
 
         }
     }
@@ -101,7 +101,9 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
 
                     this.e1 = 0;
 
-                    shieldBlock.projectile.baseData.damage += 1;
+                    shieldBlock.projectile.baseData.damage += 0.5f;
+                    shieldBlock.projectile.baseData.damage *= 1.05f;
+
                     shieldBlock.projectile.baseData.speed *= 1.3f;
                     shieldBlock.projectile.UpdateSpeed();
                     shieldBlock.projectile.ResetDistance();
@@ -146,7 +148,7 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
                     this.projectile.DieInAir();
                     return;
                 }
-                this.projectile.projectileHitHealth -= isCube == true ? 3 : 1;
+                this.projectile.projectileHitHealth -= isCube == true ? shield.Damage : 1;
                 otherRigidbody.projectile.RemoveBulletScriptControl();
                 otherRigidbody.projectile.allowSelfShooting = false;
 
@@ -154,6 +156,18 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
                 if (otherRigidbody.projectile.Owner && otherRigidbody.projectile.Owner.specRigidbody)
                 {
                     otherRigidbody.projectile.specRigidbody.DeregisterSpecificCollisionException(otherRigidbody.projectile.Owner.specRigidbody);
+                }
+
+                if (isCube)
+                {
+                    foreach (var entry in ProjectilesPositions)
+                    {
+                        if (entry.Key != null)
+                        {
+                            entry.Key.specRigidbody.RegisterSpecificCollisionException(otherRigidbody.projectile.specRigidbody);
+                        }
+                    }
+                    otherRigidbody.projectile.specRigidbody.RegisterSpecificCollisionException(this.projectile.specRigidbody);
                 }
 
                 otherRigidbody.projectile.Owner = this.projectile.Owner;

@@ -158,6 +158,7 @@ namespace ModularMod
 
         private void Update()
         {
+            if (this.projectile == null) { return; }
             this.projectile.collidesOnlyWithPlayerProjectiles = true;
             this.projectile.collidesWithProjectiles = true;
             this.projectile.UpdateCollisionMask();

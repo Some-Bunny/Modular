@@ -39,16 +39,17 @@ namespace ModularMod.Past.Prefabs.Objects
             //obj.CreateFastBody(new IntVector2(32, 53), new IntVector2(32, 8));
 
             AddChild("Left_Door_Body" ,new Vector2(0, 0.5f), obj);
-            AddChild("Right_Door_Body", new Vector2(2, 0.5f), obj);
+            var o = AddChild("Right_Door_Body", new Vector2(2, 0.5f), obj);
 
             var controller = tk2d.gameObject.AddComponent<QuickInterractableController>();
             Module.Strings.Core.Set("#MDLR_BIGFUCKOFFDOOR", "Sealed tight. Maybe there's a way to open it somewhere...");
             controller.Interact_String = "#MDLR_BIGFUCKOFFDOOR";
-
+            controller.UsesTransformDist = true;
+            controller.ReachMult = 2.25f;
 
             var talkPoint = PrefabBuilder.BuildObject("Talkpoint");
-            talkPoint.transform.parent = obj.transform;
-            talkPoint.transform.localPosition += new Vector3(4, 0);
+            talkPoint.transform.parent = tk2d.gameObject.transform;
+            talkPoint.transform.localPosition = new Vector3(2, 0);
             controller.talkPoint = talkPoint.transform;
             obj.CreateFastBody(new IntVector2(0, 0), new IntVector2(0, 0));
 
@@ -59,13 +60,14 @@ namespace ModularMod.Past.Prefabs.Objects
 
 
 
-        public static void AddChild(string name ,Vector2 Offset, GameObject parent)
+        public static GameObject AddChild(string name ,Vector2 Offset, GameObject parent)
         {
             GameObject obj = PrefabBuilder.BuildObject(name);
             obj.transform.parent = parent.transform;
             obj.transform.localPosition = Offset;
             obj.SetLayerRecursively(LayerMask.NameToLayer("FG_Critical"));
             obj.CreateFastBody(new IntVector2(32, 53), new IntVector2(0, 0));
+            return obj;
         }
 
         public class BigDoorBehavior : MonoBehaviour

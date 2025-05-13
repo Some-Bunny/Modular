@@ -21,6 +21,7 @@ namespace ModularMod
         public void Update()
         {
             if (TriggerAmount == 0) { return; }
+            if (projectile == null) {  return; } 
             DistTick += (int)Vector2.Distance(projectile.sprite.WorldCenter, lastStoredPosition) / DistanceToTravel;
             for (int i = 0; i < DistTick; i++)
             {

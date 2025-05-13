@@ -59,9 +59,9 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(21) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 4.5f;
-            gun.DefaultModule.cooldownTime = .35f;
-            gun.DefaultModule.numberOfShotsInClip = 6;
+            gun.reloadTime = 4f;
+            gun.DefaultModule.cooldownTime = .25f;
+            gun.DefaultModule.numberOfShotsInClip = 12;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 6f;
 
@@ -194,7 +194,46 @@ namespace ModularMod
 
 
 
+            Projectile projTinyCube = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(57) as Gun).DefaultModule.projectiles[0]);
+            projTinyCube.gameObject.SetActive(false);
+            FakePrefab.MarkAsFakePrefab(projTinyCube.gameObject);
+            UnityEngine.Object.DontDestroyOnLoad(projTinyCube);
+            projTinyCube.SetProjectileCollisionRight("defaultarmcannonalt_projectile_001", StaticCollections.Projectile_Collection, 4, 4, false, tk2dBaseSprite.Anchor.LowerCenter);
+            projTinyCube.objectImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
+            projTinyCube.enemyImpactEventName = (PickupObjectDatabase.GetById(334) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
+            projTinyCube.hitEffects.tileMapHorizontal = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projTinyCube.hitEffects.tileMapVertical = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projTinyCube.hitEffects.enemy = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            projTinyCube.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            mat = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
+            mat.mainTexture = projTinyCube.sprite.renderer.material.mainTexture;
+            mat.SetColor("_EmissiveColor", new Color32(255, 255, 255, 255));
+            mat.SetFloat("_EmissiveColorPower", 100);
+            mat.SetFloat("_EmissivePower", 100);
+            projTinyCube.sprite.renderer.material = mat;
+            projTinyCube.baseData.speed = 15f;
+            projTinyCube.baseData.damage = 3.25f;
+            projTinyCube.baseData.range = 125f;
 
+            projTinyCube.shouldRotate = false;
+            projTinyCube.baseData.force *= 0.25f;
+
+            projTinyCube.gameObject.AddComponent<BeamCollisionEvent>();
+            projTinyCube.gameObject.AddComponent<MaintainDamageOnPierce>();
+
+            projTinyCube.collidesWithProjectiles = true;
+            var s_e = projTinyCube.gameObject.AddComponent<ShieldEater>();
+            s_e.Damage = 1;
+            projTinyCube.baseData.UsesCustomAccelerationCurve = true;
+            projTinyCube.baseData.AccelerationCurve = AnimationCurve.EaseInOut(0, 1, 1, 0.1f);
+
+
+            ProjectileModule.ChargeProjectile item1 = new ProjectileModule.ChargeProjectile
+            {
+                Projectile = projTinyCube,
+                ChargeTime = 0,
+                AmmoCost = 1,
+            };
             ProjectileModule.ChargeProjectile item2 = new ProjectileModule.ChargeProjectile
             {
                 Projectile = projectile,
@@ -209,6 +248,7 @@ namespace ModularMod
             };
             gun.DefaultModule.chargeProjectiles = new List<ProjectileModule.ChargeProjectile>
             {
+                item1,
                 item2,
                 item3,
             };

@@ -31,12 +31,12 @@ namespace ModularMod.Past.Prefabs.Objects
             obj.AddComponent<Fuck_You_Youre_No_Longer_Perpendicular>();
             var switche= obj.AddComponent<SwitchController>();
 
-            Module.Strings.Core.Set("#MDLR_SWITCH_DEF", "The override power switch to the main Shipyard.");
-            Module.Strings.Core.Set("#MDLR_SWITCH_ACC", StaticColorHexes.AddColorToLabelString("Flip it.", StaticColorHexes.Green_Hex));
-            Module.Strings.Core.Set("#MDLR_SWITCH_CAN", StaticColorHexes.AddColorToLabelString("Leave it.", StaticColorHexes.Red_Color_Hex));
-            switche.acceptOptionKey = "#MDLR_SWITCH_ACC";
-            switche.displayTextKey = "#MDLR_SWITCH_DEF";
-            switche.declineOptionKey = "#MDLR_SWITCH_CAN";
+            Module.Strings.Core.Set("#MDLR_BIG_SWITCH_DEF", "The override power switch to the main Shipyard.");
+            Module.Strings.Core.Set("#MDLR_BIG_SWITCH_ACC", StaticColorHexes.AddColorToLabelString("<Flip it.>", StaticColorHexes.Green_Hex));
+            Module.Strings.Core.Set("#MDLR_BIG_SWITCH_CAN", StaticColorHexes.AddColorToLabelString("<Leave it.>", StaticColorHexes.Red_Color_Hex));
+            switche.displayTextKey = "#MDLR_BIG_SWITCH_DEF";
+            switche.acceptOptionKey = "#MDLR_BIG_SWITCH_ACC";
+            switche.declineOptionKey = "#MDLR_BIG_SWITCH_CAN";
             switche.talkPoint = obj.transform;
 
             obj.CreateFastBody(new IntVector2(60, 16), new IntVector2(2, -2));

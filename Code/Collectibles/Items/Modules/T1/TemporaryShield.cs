@@ -93,7 +93,6 @@ namespace ModularMod
                     dodge2.DynamicInvoke(new object[] { source.m_player });
                 }
                 Blocks--;
-
                 if (Inst != null && Blocks == 0)
                 {
                     Inst.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("shield_break");

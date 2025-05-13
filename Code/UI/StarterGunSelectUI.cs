@@ -714,7 +714,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
                   , StaticColorHexes.AddColorToLabelString("Very Low", StaticColorHexes.Red_Color_Hex) //Clipsize Secription
                   , StaticColorHexes.AddColorToLabelString("Below Average", StaticColorHexes.Light_Orange_Hex)//Fire rate Secription
                   , StaticColorHexes.AddColorToLabelString("Fast", StaticColorHexes.Light_Green_Hex) //Shot Speed Secription
-                  , "Get into rhythm."  //Additional Notes, keep at one line
+                  , "Try avoid tunnel visioning your reloads."  //Additional Notes, keep at one line
                   , "name_label_hammer" //Label Name Asset Name
                   , TheHammerAlt.ID //alt gun ID
                   , "ui_button_hammer_gun_alt" //asset name default alt
@@ -758,7 +758,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
                 , StaticColorHexes.AddColorToLabelString("High", StaticColorHexes.Green_Hex) //Clipsize Secription
                 , StaticColorHexes.AddColorToLabelString("Lower Than Average", StaticColorHexes.Light_Orange_Hex)//Fire rate Secription
                 , StaticColorHexes.AddColorToLabelString("Very Fast", StaticColorHexes.Green_Hex) //Shot Speed Secription
-                , "Group Up enemies for best results."  //Additional Notes, keep at one line
+                , "Group up enemies for best results."  //Additional Notes, keep at one line
                 , "name_label_gravgun" //Label Name Asset Name
                 , GravityPulsarAlt.ID //alt gun ID
                 , "ui_button_grav_gun_alt" //asset name default alt
@@ -825,7 +825,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
                 , StaticColorHexes.AddColorToLabelString("*EXTREMELY Small*", StaticColorHexes.Red_Color_Hex) //Clipsize Secription
                 , StaticColorHexes.AddColorToLabelString("Very Slow", StaticColorHexes.Red_Color_Hex)//Fire rate Secription
                 , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Orange_Hex) //Shot Speed Secription
-                , "Massive Power Drain, has -2 starting" + SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.POWER)  //Additional Notes, keep at one line
+                , "Massive Power Drain, has -2 starting " + SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.POWER)  //Additional Notes, keep at one line
                 , "name_label_nuke" //Label Name Asset Name
                 , BigNukeAlt.GunID //alt gun ID
                 , "ui_button_nuke_gun_alt" //asset name default alt
@@ -864,13 +864,13 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
             , "ui_button_shieldgen_gun_pressed" //asset name pressed
             , CustomDungeonFlags.BLESSED_MODE //Unlock flag, Set itt to NOLLA for no unlock condition
             , ShieldGenerator.GunID //Gun ID
-            , "Charge up to create barriers that\ncapture and hold bullets." //Default description
+            , "Charge up to create barriers that\ncapture bullets. Can be tap fired." //Default description
             , StaticColorHexes.AddColorToLabelString("Average", StaticColorHexes.Light_Green_Hex)  //Damage Secription
             , StaticColorHexes.AddColorToLabelString("Very Slow", StaticColorHexes.Red_Color_Hex)//Reload Secription
             , StaticColorHexes.AddColorToLabelString("Low", StaticColorHexes.Orange_Hex) //Clipsize Secription
             , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Orange_Hex)//Fire rate Secription
             , StaticColorHexes.AddColorToLabelString("Slow", StaticColorHexes.Orange_Hex) //Shot Speed Secription
-            , "Barriers can react with each other."  //Additional Notes, keep at one line
+            , "Barriers can stick to each other."  //Additional Notes, keep at one line
             , "name_label_shieldgen" //Label Name Asset Name
             , ShieldGeneratorAlt.GunID //alt gun ID
             , "ui_button_shieldgen_gun_alt" //asset name default alt
@@ -892,7 +892,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
             , StaticColorHexes.AddColorToLabelString("Average (Turret)", StaticColorHexes.Light_Green_Hex) + " | " + StaticColorHexes.AddColorToLabelString("Single Shot", StaticColorHexes.Red_Color_Hex) //Clipsize Secription
             , StaticColorHexes.AddColorToLabelString("Fast (Turret)", StaticColorHexes.Green_Hex) + " | " + StaticColorHexes.AddColorToLabelString("Very Slow", StaticColorHexes.Red_Color_Hex) //Fire rate Secription
             , StaticColorHexes.AddColorToLabelString("Average (Turret)", StaticColorHexes.Light_Green_Hex) + " | " + StaticColorHexes.AddColorToLabelString("Very Fast", StaticColorHexes.Green_Hex)  //Shot Speed Secription
-            , "Max of 3 Active Turrets."  //Additional Notes, keep at one line
+            , "Start with 3 max active Turrets."  //Additional Notes, keep at one line
             , "name_label_turret" //Label Name Asset Name
             , FortifierAlt.GunID //alt gun ID
             , "ui_button_turret_gun_alt" //asset name default alt

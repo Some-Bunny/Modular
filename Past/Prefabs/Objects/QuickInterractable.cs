@@ -17,7 +17,7 @@ namespace ModularMod
         public Transform talkPoint;
         public bool DebugReach = false;
         public bool UsesTransformDist = false;
-
+        public float ReachMult = 1;
         public void Start()
         {
         }
@@ -42,7 +42,7 @@ namespace ModularMod
         {
             if (UsesTransformDist)
             {
-                return Vector2.Distance(point, talkPoint.PositionVector2()) / 1.5f * (DebugReach == true ? 15 : 1);
+                return Vector2.Distance(point, talkPoint.PositionVector2()) / 1.5f * (DebugReach == true ? 15 : 1) * ReachMult;
             }
             if (base.sprite == null)
             {

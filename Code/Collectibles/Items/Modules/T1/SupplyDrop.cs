@@ -56,7 +56,7 @@ namespace ModularMod
             bool t = module.Tier == ModuleTier.Tier_2 || module.Tier == ModuleTier.Tier_3;
             if (GlobalModuleStorage.PlayerHasThisModule(ID) == true && t == true)
             {
-                return f *= 0.8f;
+                return f *= 0.85f;
             }
             return f;
         }

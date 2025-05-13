@@ -100,7 +100,7 @@ namespace ModularMod
         }
         public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
         {
-            if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null)
+            if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null && Stored_Core != null)
             {
                 float damage = mR.projectile.baseData.damage;
                 float damageMult = (mR.projectile.baseData.speed / 1000) * (0.5f + (0.5f *this.ReturnStack(Stored_Core)));

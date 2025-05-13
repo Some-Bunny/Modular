@@ -81,7 +81,7 @@ namespace ModularMod
             beamComp.penetration = 3;
 
             LanceBeam = beamComp.projectile;
-            ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
+            ModulePrinterCore.ModifyForChanceBulletsOneFrameDelay += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
         public static int ID;
@@ -125,7 +125,7 @@ namespace ModularMod
 
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            modulePrinter.OnPostProcessProjectile += PPP;
+            modulePrinter.OnPostProcessProjectileOneFrameDelay += PPP;
             modulePrinter.OnProjectileStickAction += OPSA;
             modulePrinter.OnProjectileStickToWallAction += OPSAT;
 
@@ -147,7 +147,7 @@ namespace ModularMod
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            modulePrinter.OnPostProcessProjectile -= PPP;
+            modulePrinter.OnPostProcessProjectileOneFrameDelay -= PPP;
             modulePrinter.OnProjectileStickAction -= OPSA;
             modulePrinter.OnProjectileStickToWallAction -= OPSAT;
         }
