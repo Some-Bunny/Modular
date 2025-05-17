@@ -42,8 +42,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             ID = h.PickupObjectId;
         }
         public static int ID;
@@ -82,7 +82,7 @@ namespace ModularMod
 
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            return f - (f - (f / (1 + 0.05f * Multiplier(player, modulePrinter))));
+            return f - (f - (f / (1 + 0.0555f * Multiplier(player, modulePrinter))));
         }
 
         public int Multiplier(PlayerController player, ModulePrinterCore modulePrinter)

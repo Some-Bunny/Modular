@@ -31,15 +31,15 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Refunded Components" + h.ReturnTierLabel();
-            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 25% boost to damage when you miss, up to 10 " + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + " misses.\nLanding a hit will use all stored damage.";
+            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 33% boost to damage when you miss, up to 10 " + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + " misses.\nLanding a hit will use all stored damage.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
             GameObject VFX = new GameObject("HitOrMiss_VFX");
@@ -91,7 +91,7 @@ namespace ModularMod
             }
             if (p != null)
             {
-                float mult = 1 + ((0.25f * Misses));
+                float mult = 1 + ((0.33f * Misses));
                 float mult_ = 1 + ((0.5f * Misses));
 
                 p.baseData.damage *= mult;

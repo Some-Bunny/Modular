@@ -47,8 +47,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             ID = h.PickupObjectId;
             PoisonPoof = (PickupObjectDatabase.GetById(28) as Gun).DefaultModule.finalVolley.projectiles[0].projectiles[2].hitEffects.enemy.effects[0].effects[0].effect;
             fleeData = new FleePlayerData();
@@ -65,7 +65,7 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.075f) { return; }
             int stack = 1;
             p.AppliesPoison = true;
-            p.PoisonApplyChance = 0.1f * stack;
+            p.PoisonApplyChance = 0.125f * stack;
             p.healthEffect = DebuffStatics.irradiatedLeadEffect;
             p.OnDestruction += (obj) =>
             {
@@ -226,7 +226,7 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.AppliesPoison = true;
-            p.PoisonApplyChance = 0.1f * stack;
+            p.PoisonApplyChance = 0.125f * stack;
             p.healthEffect = DebuffStatics.irradiatedLeadEffect;
             p.OnDestruction += (obj) =>
             {

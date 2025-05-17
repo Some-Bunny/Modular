@@ -239,7 +239,7 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
 
 
         private int currentClip = 10;
-        private float currentAttackCooldown = 0.25f;
+        private float currentAttackCooldown = 0.333f;
         private float currentReload = 0;
 
         public void ResetClip()
@@ -262,21 +262,21 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
         {
             get
             {
-                return gunController.GetRateOfFire(0.25f);
+                return gunController.GetRateOfFire(0.333f);
             }
         }
         public int Clip
         {
             get
             {
-                return (int)(gunController.GetClipSize(10) * Owner.stats.GetStatValue(PlayerStats.StatType.AdditionalClipCapacityMultiplier));
+                return (int)(gunController.GetClipSize(12) * Owner.stats.GetStatValue(PlayerStats.StatType.AdditionalClipCapacityMultiplier));
             }
         }
         public float Accuracy
         {
             get
             {
-                return gunController.GetAccuracy(11.5f) * Owner.stats.GetStatValue(PlayerStats.StatType.Accuracy);
+                return gunController.GetAccuracy(13f) * Owner.stats.GetStatValue(PlayerStats.StatType.Accuracy);
             }
         }
         public float Reload

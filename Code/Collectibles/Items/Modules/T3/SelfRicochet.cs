@@ -42,8 +42,8 @@ namespace ModularMod
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
 
             h.AddColorLight(Color.yellow);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             h.OverrideScrapCost = 10;
             h.EnergyConsumption = 2;
             h.AddToGlobalStorage();

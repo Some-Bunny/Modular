@@ -37,7 +37,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("deathtrigger_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Death Trigger " + h.ReturnTierLabel();
-            h.LabelDescription = $"{StaticColorHexes.AddColorToLabelString("Enemies have a chance to activate 'On Kill Enemy' effects when hit", StaticColorHexes.Green_Hex)}. ({StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex)})\nRecharges after 5 seconds.\nSlain enemies fire 4 damaging lines of energy in a + formation. ({StaticColorHexes.AddColorToLabelString("+Increased Damage", StaticColorHexes.Light_Orange_Hex)})";
+            h.LabelDescription = $"{StaticColorHexes.AddColorToLabelString("Enemies have a chance to activate 'On Kill Enemy' effects when hit", StaticColorHexes.Green_Hex)}.\n({StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex)}) Recharges after 5 seconds.\nSlain enemies fire 4 damaging lines of energy in a + formation.\n({StaticColorHexes.AddColorToLabelString("+Increased Damage", StaticColorHexes.Light_Orange_Hex)})";
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -48,8 +48,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             ID = h.PickupObjectId;
 
             deathtriggerMarl = new GameActorDecorationEffect();
@@ -162,14 +162,15 @@ namespace ModularMod
 
         public void OKE(ModulePrinterCore printer, PlayerController player, AIActor enemy)
         {
+            var g = (PickupObjectDatabase.GetById(153) as Gun).DefaultModule.projectiles[0].gameObject;
             AkSoundEngine.PostEvent("Play_WPN_Vorpal_Shot_Critical_01", enemy.gameObject);
             for (int i = 0; i < 4; i++)
             {
-                GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile((PickupObjectDatabase.GetById(153) as Gun).DefaultModule.projectiles[0].gameObject, enemy.sprite.WorldCenter, Quaternion.Euler(0f, 0f, (90 * i)), true);
+                GameObject spawnedBulletOBJ = SpawnManager.SpawnProjectile(g, enemy.sprite.WorldCenter, Quaternion.Euler(0f, 0f, (90 * i)), true);
                 Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
                 if (component != null)
                 {
-                    component.baseData.damage = 2.5f + (2.5f * this.ReturnStack(printer));
+                    component.baseData.damage = 3.33f + (3.33f * this.ReturnStack(printer));
                     component.Owner = player;
                     component.Shooter = player.specRigidbody;
                     player.DoPostProcessProjectile(component);              

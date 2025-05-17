@@ -30,11 +30,11 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bubbleup_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Bubble Up " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Fire Rate by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically") + ").\nProjectiles now stick to terrain and enemies,\nexpanding into large bubbles and bursting,\ndoing massive knockback. ("  + StaticColorHexes.AddColorToLabelString("+Burst Force and Damage") + ").";
+            h.LabelDescription = "Increases Fire Rate by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically") + ").\nProjectiles now stick to terrain and enemies,\nexpanding into large bubbles and bursting,\ndoing massive knockback. ("  + StaticColorHexes.AddColorToLabelString("+Burst Force and Damage") + ").";
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
 
             h.AddModuleTag(BaseModuleTags.STICKY);
 
@@ -152,16 +152,15 @@ namespace ModularMod
                 stack = this.Stack();
             }
             var d = StaticExplosionDatas.CopyFields(Data);
-            d.damage = stack;
-            d.force = 150 * stack;
+            d.damage = 4f * stack;
+            d.force = 90 * stack;
             d.ignoreList = new List<SpeculativeRigidbody>() { p.specRigidbody };
             Exploder.Explode(stick.transform.position, d, Vector2.zero);
-            AkSoundEngine.PostEvent("Play_BOSS_Rat_Cheese_Burst_01", stick.gameObject);
             AkSoundEngine.PostEvent("Play_BOSS_Rat_Cheese_Burst_01", stick.gameObject);
 
             GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
             GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, stick.transform.position, Quaternion.identity);
-            blankObj.transform.localScale = Vector3.one * 0.35f;
+            blankObj.transform.localScale = Vector3.one * 0.3f;
             Destroy(blankObj, 2f);
         }
 
@@ -181,7 +180,7 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.speed *= 0.8f;
+            p.baseData.speed *= 0.7f;
             p.baseData.force *= 0.5f;
             p.UpdateSpeed();
         }
@@ -189,7 +188,7 @@ namespace ModularMod
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinter);
-            return f - (f - (f / (1 + (0.20f * stack))));
+            return f - (f - (f / (1 + (0.25f * stack))));
         }
     }
 }

@@ -28,15 +28,15 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Cleaning Protocol " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 60% (" + StaticColorHexes.AddColorToLabelString("+30%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.";
+            h.LabelDescription = "Deal 66% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.";
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
@@ -44,7 +44,7 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.05f) { return; }
+            if (UnityEngine.Random.value > 0.03f) { return; }
             p.specRigidbody.OnPreRigidbodyCollision = (o, t, th, fr) =>
             {
                 if (th != null && th.healthHaver != null)
@@ -55,7 +55,7 @@ namespace ModularMod
                     if (currentHealth > num)
                     {
                         float damage = o.projectile.baseData.damage;
-                        o.projectile.baseData.damage *= 1.6f;
+                        o.projectile.baseData.damage *= 1.66f;
                         GameManager.Instance.StartCoroutine(this.ChangeProjectileDamage(o.projectile, damage));
                         AkSoundEngine.PostEvent("Play_OBJ_cauldron_splash_01", o.gameObject);
                         th.aiActor.PlayEffectOnActor((PickupObjectDatabase.GetById(404) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect, new Vector2(0, 0));
@@ -130,7 +130,7 @@ namespace ModularMod
                     {
                         float damage = o.projectile.baseData.damage;
 
-                        o.projectile.baseData.damage *= 1f + (0.3f +  (0.3f *this.ReturnStack(modulePrinterCore)));
+                        o.projectile.baseData.damage *= 1f + (0.33f +  (0.33f *this.ReturnStack(modulePrinterCore)));
                         GameManager.Instance.StartCoroutine(this.ChangeProjectileDamage(o.projectile, damage));
                         AkSoundEngine.PostEvent("Play_OBJ_cauldron_splash_01", o.gameObject);
                         th.aiActor.PlayEffectOnActor((PickupObjectDatabase.GetById(404) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect, new Vector2(0, 0));

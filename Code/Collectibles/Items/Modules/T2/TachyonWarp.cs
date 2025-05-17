@@ -30,13 +30,13 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tachyonwarp_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Tachyon Warp " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly increases accuracy, adds slight homing to your projectiles\nand slightly increases damage (" + StaticColorHexes.AddColorToLabelString("+Stronger Homing and Damage", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles fire from walls, instead of your gun.\nShooting pushes away nearby enemies slightly. (" + StaticColorHexes.AddColorToLabelString("+Stronger Push Force", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Greatly increases accuracy, adds slight homing to your projectiles\nand increases damage (" + StaticColorHexes.AddColorToLabelString("+Stronger Homing and Damage", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles fire from walls, instead of your gun.\nShooting pushes away nearby enemies slightly. (" + StaticColorHexes.AddColorToLabelString("+Stronger Push Force", StaticColorHexes.Light_Orange_Hex) + ").";
             h.OverrideScrapCost = 7;
             h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.IsUncraftable = true;
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -83,7 +83,7 @@ namespace ModularMod
             p.m_distanceElapsed = 0f;
             p.LastPosition = p.transform.position;
             greenImpact.SpawnAtPosition(vector.ToVector3ZisY(0f), 0f, null, null, null, null, false, null, null, false);
-            p.baseData.range += 5;
+            p.baseData.range += 11;
             p.baseData.speed *= 1.5f;
             p.baseData.force *= 0.33f;
             p.UpdateSpeed();
@@ -91,7 +91,7 @@ namespace ModularMod
             homing.AngularVelocity += 60 * stack;
             homing.HomingRadius += 5 * stack;
             p.pierceMinorBreakables = true;
-            p.baseData.damage *= 1 + (0.15f * stack);
+            p.baseData.damage *= 1 + (0.2f * stack);
 
             p.IgnoreTileCollisionsFor(4f / p.baseData.speed);
             p.UpdateCollisionMask();
@@ -133,7 +133,7 @@ namespace ModularMod
             p.m_distanceElapsed = 0f;
             p.LastPosition = p.transform.position;
             greenImpact.SpawnAtPosition(vector.ToVector3ZisY(0f), 0f, null, null, null, null, false, null, null, false);
-            p.baseData.range += 5;
+            p.baseData.range += 11;
             p.baseData.speed *= 1.25f;
             p.baseData.force *= 0.33f;
             p.UpdateSpeed();
@@ -141,7 +141,7 @@ namespace ModularMod
             homing.AngularVelocity += 60 * stack;
             homing.HomingRadius += 5 * stack;
             p.pierceMinorBreakables = true;
-            p.baseData.damage *= 1 + (0.15f * stack);
+            p.baseData.damage *= 1 + (0.2f * stack);
 
             p.IgnoreTileCollisionsFor(4f / p.baseData.speed);
             p.UpdateCollisionMask();

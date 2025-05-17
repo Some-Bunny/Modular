@@ -40,8 +40,8 @@ namespace ModularMod
             h.SetTag("modular_module");
             h.AddColorLight(Color.white);
             h.AdditionalWeightMultiplier = 0.15f;
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             h.IsUncraftable = true;
             h.powerConsumptionData.OverridePowerDescriptionLabel = "Uses DefaultModule.PowerConsumption(ModuleQuality.Tier_3, -1)\n(" + StaticColorHexes.AddColorToLabelString("DefaultModule.AdditionalStackPowerConsumption(ModuleQuality.Tier_3, -1)", StaticColorHexes.Orange_Hex) + ")";
             h.EnergyConsumption = 0;

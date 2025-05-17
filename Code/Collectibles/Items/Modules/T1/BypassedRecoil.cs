@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Disabled Dampeners",
             Description = "Recoil Up",
-            LongDescription = "Increases Rate Of Fire by\n30% (+30% per stack hyperbolically), and reduces reload time by 15% (+15% per stack hyperbolically) but disables recoil dampeners." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Rate Of Fire by\n33% (+33% per stack hyperbolically), and reduces reload time by 20% (+20% per stack hyperbolically) but disables recoil dampeners." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("nodampener_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Disabled Dampeners " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.7f;
-            h.LabelDescription = "Increases Rate Of Fire by 30% (" + StaticColorHexes.AddColorToLabelString("+30% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
+            h.LabelDescription = "Increases Rate Of Fire by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -37,8 +37,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.OverrideScrapCost = 3;
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
@@ -70,12 +70,12 @@ namespace ModularMod
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.3f * stack)));
+            return f - (f - (f / (1 + 0.333f * stack)));
         }
         public float ProcessReloadTime(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.15f * stack)));
+            return f - (f - (f / (1 + 0.2f * stack)));
         }
 
 
@@ -85,6 +85,7 @@ namespace ModularMod
             player.knockbackDoer.ApplyKnockback(Toolbox.GetUnitOnCircle(player.CurrentGun.CurrentAngle - 180, 1), (20 * stack) * (1 + (p.baseData.damage / 60)));
             p.baseData.speed *= 1 + (0.2f * stack);
             p.baseData.force *= 1 + (0.2f * stack);
+            p.UpdateSpeed();
         }
     }
 }

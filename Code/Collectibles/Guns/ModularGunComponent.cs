@@ -1,11 +1,17 @@
 ﻿
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Dungeonator;
+using HarmonyLib;
 using UnityEngine;
+using static Alexandria.DungeonAPI.SpecialComponents;
 using static Alexandria.ItemAPI.ItemBuilder;
+using Alexandria.Misc;
 using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
+using static UnityEngine.UI.GridLayoutGroup;
+using Brave.BulletScript;
 
 namespace ModularMod 
 {
@@ -19,7 +25,6 @@ namespace ModularMod
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> Accuracy_Process;
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> ChargeSpeed_Process;
         public Func<float, ModulePrinterCore, ModularGunController, PlayerController, float> AngleFromAim_Process;
-
         public Func<int, int, ModulePrinterCore, ModularGunController, PlayerController, int> FinaleClipSize_Process;
 
         public Func<int, int, ModulePrinterCore, ModularGunController, PlayerController, int> BurstAmount_Process;
@@ -28,8 +33,69 @@ namespace ModularMod
 
     }
 
-    public class ModularGunController : MonoBehaviour 
+    [HarmonyPatch(typeof(Gun), nameof(Gun.Update))]
+    public class GunPanic
     {
+        static void Postfix(Gun __instance)
+        {
+            if (__instance.m_owner != null)
+            {
+                if (__instance.m_owner is PlayerController player && player.PlayerHasCore() != null && player.CurrentStoneGunTimer > 0 && GameManager.Instance.IsPaused == false)
+                {
+                    Vector3 vector = __instance.sprite.WorldBottomLeft.ToVector3ZisY(0);
+                    Vector3 vector2 = __instance.sprite.WorldTopRight.ToVector3ZisY(0);
+                    float num = (vector2.y - vector.y) * (vector2.x - vector.x);
+                    float num2 = 15f * num;
+                    int num4 = Mathf.CeilToInt(Mathf.Max(1f, num2 * BraveTime.DeltaTime)); ;
+                    Vector3 direction = Toolbox.GetUnitOnCircleVec3(BraveUtility.RandomAngle(), 1);
+                    float magnitudeVariance = 0.7f;
+                    float? startLifetime = new float?(UnityEngine.Random.Range(0.8f, 1.4f));
+                    GlobalSparksDoer.DoRandomParticleBurst(num4, vector, vector2, direction, 0, magnitudeVariance, 0.333f, startLifetime, Color.gray, GlobalSparksDoer.SparksType.DARK_MAGICKS);
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(GameUIRoot), nameof(GameUIRoot.UpdateGunDataInternal))]
+    public class NopeOutVisibility
+    {
+        public const string ERROR = "[color #ff0000][ERROR]: WEAPON JAM[/color]";
+        static void Postfix(GameUIRoot __instance, PlayerController targetPlayer, GunInventory inventory, int inventoryShift, GameUIAmmoController targetAmmoController, int labelTarget)
+        {
+            bool isModularStoned = (targetPlayer.PlayerHasCore() != null && targetPlayer.CurrentStoneGunTimer > 0);
+            if (isModularStoned == false) { return; }
+
+
+            __instance.m_gunNameVisibilityTimers[labelTarget] -= __instance.m_deltaTime;
+            if (__instance.m_gunNameVisibilityTimers[labelTarget] > 1f)
+            {
+                __instance.gunNameLabels[labelTarget].IsVisible = true;
+                __instance.gunNameLabels[labelTarget].Opacity = 1f;
+                __instance.gunNameLabels[labelTarget].Text = $"{NopeOutVisibility.ERROR}\n" + __instance.gunNameLabels[labelTarget].Text;
+
+            }
+            else if (__instance.m_gunNameVisibilityTimers[labelTarget] > 0f)
+            {
+                __instance.gunNameLabels[labelTarget].IsVisible = true;
+                __instance.gunNameLabels[labelTarget].Opacity = __instance.m_gunNameVisibilityTimers[labelTarget];
+                __instance.gunNameLabels[labelTarget].Text = $"{NopeOutVisibility.ERROR}\n" + $"{__instance.gunNameLabels[labelTarget].Text}";
+
+            }
+            else
+            {
+                __instance.gunNameLabels[labelTarget].IsVisible = true;
+                __instance.gunNameLabels[labelTarget].Opacity = 1;
+                __instance.gunNameLabels[labelTarget].Text = $"{NopeOutVisibility.ERROR}";
+            }
+        }
+    }
+
+
+
+    public class ModularGunController : MonoBehaviour
+    {
+
+
 
         public class ModuleStatStorage
         {
@@ -445,7 +511,7 @@ namespace ModularMod
         }
 
 
-
+        private bool isStoned = false;
 
         private void Update()
         {
@@ -453,6 +519,23 @@ namespace ModularMod
             {
                 GunUpdate(PrinterSelf, Player, gun);
             }
+            
+            if (Player)
+            {
+                if (Player.CurrentStoneGunTimer > 0)
+                {
+                    if (isStoned == false)
+                    {
+                        isStoned = true;
+                        AkSoundEngine.PostEvent("Play_BOSS_mineflayer_trigger_01", Player.gameObject);
+                    }
+                }
+                else if (isStoned == true)
+                {
+
+                }
+            }
+            
             if (gun.alternateVolley)
             {
                 if (gun.alternateVolley.projectiles != null | gun.alternateVolley.projectiles.Count > 0)
@@ -560,11 +643,9 @@ namespace ModularMod
 
             ProcessStats();
         }
+
+
         private int storedCount = 0;
         private int storedCountBase = 0;
-
-
-
-
     }
 }

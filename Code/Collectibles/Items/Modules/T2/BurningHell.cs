@@ -33,8 +33,8 @@ namespace ModularMod
             h.LabelDescription = "Halves fire rate and increases accuracy.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.EnergyConsumption = 2;
 
             h.AddModuleTag(BaseModuleTags.STICKY);
@@ -51,7 +51,7 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.01f) { return; }
-            p.baseData.speed *= 1.66f;
+            p.baseData.speed *= 1.5f;
             p.pierceMinorBreakables = true;
             p.UpdateSpeed();
 

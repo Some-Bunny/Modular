@@ -38,8 +38,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.OverrideScrapCost = 3;
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;

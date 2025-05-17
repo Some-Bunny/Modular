@@ -33,7 +33,7 @@ namespace ModularMod
             h.LabelName = "Uncontrolled Blast " + h.ReturnTierLabel();
             h.LabelDescription = "Massively boosts clip size and fire rate (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + "),\nbut reduces damage and gives " + StaticColorHexes.AddColorToLabelString("virtually uncontrollable spread", StaticColorHexes.Red_Color_Hex) + ".\n(" + StaticColorHexes.AddColorToLabelString("+Even More Spread", StaticColorHexes.Light_Orange_Hex) + ")";
             h.OverrideScrapCost = 7;
-            h.AdditionalWeightMultiplier = 0.15f;
+            h.AdditionalWeightMultiplier = 0.125f;
             h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -43,8 +43,8 @@ namespace ModularMod
             h.SetTag("modular_module");
             h.IsSpecialModule = true;
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             ID = h.PickupObjectId;
         }
         public static int ID;
@@ -73,13 +73,13 @@ namespace ModularMod
         }
         public int ProcessClipSize(int f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return (int)(f * 2f);
+            return (int)(f * 2.25f);
         }
 
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return (f + 20) * (4.5f * stack);
+            return (f + 20) * (5f * stack);
         }
 
 

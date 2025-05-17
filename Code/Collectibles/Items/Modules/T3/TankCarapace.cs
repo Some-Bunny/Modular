@@ -37,7 +37,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Tank Carapace " + h.ReturnTierLabel();
             h.EnergyConsumption = 2;
-            h.LabelDescription = "Grants a damage and fire rate boost (" + StaticColorHexes.AddColorToLabelString("+Damage and Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")\nthe longer you have been standing still.\nWhile standing still, gain up to 8 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") defensive orbitals.\n" +StaticColorHexes.AddColorToLabelString("Lose all bonuses and orbitals when you start moving again.", StaticColorHexes.Red_Color_Hex);
+            h.LabelDescription = "Grants a damage and fire rate boost (" + StaticColorHexes.AddColorToLabelString("+Damage and Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")\nthe longer you have been standing still.\nWhile standing still, gain up to 4 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") defensive orbitals.\n" +StaticColorHexes.AddColorToLabelString("Lose all bonuses and orbitals when you start moving again.", StaticColorHexes.Red_Color_Hex);
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -49,8 +49,8 @@ namespace ModularMod
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
 
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             ID = h.PickupObjectId;
 
 
@@ -73,9 +73,9 @@ namespace ModularMod
             var orbital = Guon.AddComponent<PlayerOrbital>();
             orbital.motionStyle = PlayerOrbital.OrbitalMotionStyle.ORBIT_PLAYER_ALWAYS;
             orbital.shouldRotate = false;
-            orbital.orbitRadius = 2.7f;
+            orbital.orbitRadius = 3.2f;
             orbital.SetOrbitalTier(0);
-            orbital.orbitDegreesPerSecond = 240;
+            orbital.orbitDegreesPerSecond = 90;
             orbital.perfectOrbitalFactor = 100f;
 
             tk2d.usesOverrideMaterial = true;
@@ -119,12 +119,12 @@ namespace ModularMod
         public void OnUpdate(ModulePrinterCore printer, PlayerController player)
         {
             int stack = this.ReturnStack(printer);
-            c += printer.isStandingStill() ? BraveTime.DeltaTime : -(BraveTime.DeltaTime * 4);
+            c += printer.isStandingStill() ? BraveTime.DeltaTime * 1.75f : -(BraveTime.DeltaTime * 4);
             if (c < 0 && printer.isStandingStill()) { c = 0; }
             if (c > 0 && !printer.isStandingStill()) { c = 0; }
 
             Multiplier = Mathf.Max(1, Mathf.Min(1.5f + (0.5f * stack), 1 + ((c / 4) * stack)));
-            if (c > 0.8f && Orbital_Count.Count < 4 + (4 * stack))
+            if (c > 0.8f && Orbital_Count.Count < (4 * stack))
             {
                 c = 0;
                 float r = Orbital_Count.Count > 7 ? Mathf.Ceil(Orbital_Count.Count / 8) * 1.4f : 0;
@@ -142,7 +142,7 @@ namespace ModularMod
                     guon.GetComponent<PlayerOrbital>().Initialize(player);
                 }
             }
-            else if (c < -0.3f && Orbital_Count.Count > 0)
+            else if (c < -0.2f && Orbital_Count.Count > 0)
             {
                 c = 0;
                 AkSoundEngine.PostEvent("Play_OBJ_drum_break_01", player.gameObject);
@@ -160,12 +160,12 @@ namespace ModularMod
 
         public float ProcessStats(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f / (Multiplier);
+            return f / (Multiplier * 1.125f);
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + (Multiplier / 8);
-            p.baseData.speed *= 1 + (Multiplier / 5);
+            p.baseData.damage *= 1 + (Multiplier * 0.166f);
+            p.baseData.speed *= 1 + (Multiplier * 0.25f);
             p.baseData.force *= Multiplier;
             p.UpdateSpeed();
         }
@@ -224,9 +224,9 @@ namespace ModularMod
                                 Destroy(blankObj, 2f);
                             }
                             Cooldown = 5;
-                            Exploder.DoRadialPush(sprite.WorldCenter, 40 * Stack, 2);
-                            Exploder.DoRadialKnockback(sprite.WorldCenter, 40 * Stack, 2);
-                            Exploder.DoRadialMinorBreakableBreak(sprite.WorldCenter, 2);
+                            Exploder.DoRadialPush(sprite.WorldCenter, 80 * Stack, 2);
+                            Exploder.DoRadialKnockback(sprite.WorldCenter, 80 * Stack, 2);
+                            //Exploder.DoRadialMinorBreakableBreak(sprite.WorldCenter, 2);
                             ApplyActionToNearbyEnemies(sprite.WorldCenter, 3, this.transform.position.GetAbsoluteRoom(), (float)(Stack / 6) );
                         }
                     }
@@ -268,7 +268,7 @@ namespace ModularMod
                         }
                         if (flag)
                         {
-                            aI.healthHaver.ApplyDamage(4f * m, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
+                            aI.healthHaver.ApplyDamage(5f * m, aI.transform.PositionVector2(), "Vent", CoreDamageTypes.Fire);
                         }
                     }
                 }

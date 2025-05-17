@@ -28,7 +28,7 @@ namespace ModularMod
         {
             Name = "Module Computer Core",
             Description = "Game Making",
-            LongDescription = "Allows you to open an interface, letting you see and power your modules.\n\nPressing reload on a full clip switches modes, the other which allows for the scrapping of Items and Pickups into Scrap. Scrap can be repurposed into upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
+            LongDescription = "Allows you to open an interface, letting you see and power your modules.\n\nHolding the 'Reload' button switches modes, the other which allows for the scrapping of Items and Pickups into Scrap. Scrap can be repurposed into upgrades.\n\nIn a perfect world, this device would break down waste materials on construction sites, and turn them into suitable materials for printing useful tools. But this is not a perfect world.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("computer_core"),
             Quality = ItemQuality.SPECIAL,         
@@ -69,8 +69,26 @@ namespace ModularMod
             new Hook(typeof(AmmoPickup).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Ammo"));
             new Hook(typeof(SilencerItem).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Scrapper).GetMethod("Start_Blank"));
             Actions.OnActiveItemDropped += OnThisActiveDropped;
-        }
 
+            GameObject ReloadHoldEffect_ = new GameObject("SwitchModeTuah");
+            FakePrefab.DontDestroyOnLoad(ReloadHoldEffect_);
+            FakePrefab.MarkAsFakePrefab(ReloadHoldEffect_);
+            var tk2d_ = ReloadHoldEffect_.AddComponent<tk2dSprite>();
+            tk2d_.Collection = StaticCollections.VFX_Collection;
+            tk2d_.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("modularswitchmode_007"));
+            var tk2dAnim_ = ReloadHoldEffect_.AddComponent<tk2dSpriteAnimator>();
+
+            tk2dAnim_.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("GenericVFXAnimation").GetComponent<tk2dSpriteAnimation>();
+
+            tk2d_.usesOverrideMaterial = true;
+            tk2d_.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
+            tk2d_.renderer.material.EnableKeyword("BRIGHTNESS_CLAMP_ON");
+            tk2d_.renderer.material.SetFloat("_EmissivePower", 4);
+            tk2d_.renderer.material.SetFloat("_EmissiveColorPower", 4);
+
+            ReloadHoldEffect = ReloadHoldEffect_;
+        }
+        public static GameObject ReloadHoldEffect;
 
         public static void OnThisActiveDropped(PlayerItem active, PlayerController player)
         {
@@ -185,16 +203,52 @@ namespace ModularMod
             if (p.CurrentItem != this) { return; }
             SwitchMode();
         }
+        private GameObject EffectInst;
+        private float TimerToSwitch = 0;
+
         public override void Update()
         {
-            if (base.LastOwner != null && Inited == false)
+            if (base.LastOwner != null)
             {
-                Inited = true;
-                SetMode("COMPUTER");
-                base.LastOwner.OnReloadPressed += ReloadPressed;
-                base.LastOwner.OnNewFloorLoaded += ONFE;
-                ONFE(base.LastOwner);
-                base.LastOwner.startingActiveItemIds.Add(this.PickupObjectId);
+                if (Inited == false)
+                {
+                    Inited = true;
+                    SetMode("COMPUTER");
+                    //base.LastOwner.OnReloadPressed += ReloadPressed;
+                    base.LastOwner.OnNewFloorLoaded += ONFE;
+                    ONFE(base.LastOwner);
+                    base.LastOwner.startingActiveItemIds.Add(this.PickupObjectId);
+                }
+                bool wasPressed = LastOwner.m_activeActions.ReloadAction.State;
+                if (wasPressed && LastOwner.CurrentItem == this)
+                {
+                    if (EffectInst == null && TimerToSwitch > 0.25f)
+                    {
+                        EffectInst = LastOwner.PlayEffectOnActor(ReloadHoldEffect, new Vector3(0, 0.75f));
+                        EffectInst.gameObject.layer = 22;
+                        EffectInst.GetComponent<tk2dSpriteAnimator>().Play(this.LastOwner.IsUsingAlternateCostume ? "moduleswitchmodealt" : "moduleswitchmode");
+
+                    }
+                    TimerToSwitch += Time.deltaTime;
+                    if (TimerToSwitch >= 1.25f)
+                    {
+                        Destroy(EffectInst);
+                        EffectInst = null;
+
+                        if (LastOwner.CurrentItem != this) { return; }
+                        SwitchMode();
+                        TimerToSwitch = 0;
+                    }
+                }
+                else
+                {
+                    TimerToSwitch = 0;
+                    Destroy(EffectInst);
+                    EffectInst = null;
+                }
+
+
+
             }
             base.Update();
         }
@@ -227,7 +281,7 @@ namespace ModularMod
         public override void OnPreDrop(PlayerController user)
         {
             Inited = false;
-            base.LastOwner.OnReloadPressed -= ReloadPressed;
+            //base.LastOwner.OnReloadPressed -= ReloadPressed;
             base.LastOwner = null;
             base.OnPreDrop(user);
         }
@@ -329,7 +383,17 @@ namespace ModularMod
                             int scrap = ReturnPickupScrapValue(pickup);
                             if (scrap > 0)
                             {
-                                return true;
+                                if (pickup is PassiveItem passive)
+                                {
+                                    if (passive.Owner == null)
+                                    {
+                                        return true;
+                                    }
+                                }
+                                else
+                                {
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -355,7 +419,7 @@ namespace ModularMod
                         if (g != null)
                         {
                             int scrapGun = ReturnPickupScrapValue(g);
-                            if (scrapGun > 0)
+                            if (scrapGun > 0 && g.CurrentOwner == null)
                             {
                                 if (!allPickups.Contains(g)) { allPickups.Add(g); }
                                 return false;
@@ -420,8 +484,19 @@ namespace ModularMod
                             int scrap = ReturnPickupScrapValue(pickup);
                             if (scrap > 0)
                             {
-                                if (OnAnythingScrapped != null) { OnAnythingScrapped(pickup); }
-                                scrapper.DoSpawnVFX(pickup.sprite, scrap);
+                                if (pickup is PassiveItem passive)
+                                {
+                                    if (passive.Owner == null)
+                                    {
+                                        if (OnAnythingScrapped != null) { OnAnythingScrapped(pickup); }
+                                        scrapper.DoSpawnVFX(pickup.sprite, scrap);
+                                    }
+                                }
+                                else
+                                {
+                                    if (OnAnythingScrapped != null) { OnAnythingScrapped(pickup); }
+                                    scrapper.DoSpawnVFX(pickup.sprite, scrap);
+                                }
                             }
                         }
                     }

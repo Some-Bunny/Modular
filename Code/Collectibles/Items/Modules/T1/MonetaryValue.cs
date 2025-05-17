@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Monetary Value",
             Description = "Investment",
-            LongDescription = "Gain 0.5% (+0.5% per stack) damage for each casing you have. Your held casings are multiplied by 1.2x every floor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Gain 0.33% (+0.33% per stack) damage for each casing you have. Your held casings are multiplied by 1.2x every floor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("moneyvalue_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.625f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Monetary Value " + h.ReturnTierLabel();
-            h.LabelDescription = "Gain 0.5% (" + StaticColorHexes.AddColorToLabelString("+0.5%", StaticColorHexes.Light_Orange_Hex) + ") damage for each casing you have.\nYour held casings are multiplied by 1.2x every floor.";
+            h.LabelDescription = "Gain 0.33% (" + StaticColorHexes.AddColorToLabelString("+0.33%", StaticColorHexes.Light_Orange_Hex) + ") damage for each casing you have.\nYour held casings are multiplied by 1.2x every floor.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.GENERATION);
@@ -38,8 +38,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.OverrideScrapCost = 7;
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
@@ -69,7 +69,7 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 1 + ((float)player.carriedConsumables.Currency / 200)*(float)this.ReturnStack(modulePrinterCore);
+            p.baseData.damage *= 1 + ((float)player.carriedConsumables.Currency / 300)*(float)this.ReturnStack(modulePrinterCore);
             
         }
     } 

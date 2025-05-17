@@ -41,8 +41,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
 
@@ -70,12 +70,11 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (UnityEngine.Random.value > 0.1f) { return; }
+            if (UnityEngine.Random.value > 0.05f) { return; }
             p.PenetratesInternalWalls = true;
             p.pierceMinorBreakables = true;
-            p.Awake();
-            int stack = 1;
-            p.BlackPhantomDamageMultiplier *= 1f + (0.33f * stack);
+            p.UpdateCollisionMask();
+            p.BlackPhantomDamageMultiplier *= 1.33f;
             p.CurseSparks = true;
         }
 
@@ -138,7 +137,8 @@ namespace ModularMod
             p.CurseSparks = true;
             p.PenetratesInternalWalls = true;
             p.pierceMinorBreakables = true;
-            p.Awake();
+            p.UpdateCollisionMask();
+            //p.Awake();
         }
         public int Kills = 0;
     }

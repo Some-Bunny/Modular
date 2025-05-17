@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Line Up",
             Description = "Knock 'Em Down",
-            LongDescription = "Adds 2 Pierces, Reduce Damage by 15% (-15% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.5x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 2 Pierces, Reduce Damage by 20% (-20% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.5x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("lineup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("lineup_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Line Up " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 Pierce, Reduce Damage by 15% (" + StaticColorHexes.AddColorToLabelString("-15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
+            h.LabelDescription = "Adds 1 Pierce, Reduce Damage by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
                 StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.5x (" +
                 StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ").";
 
@@ -38,8 +38,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             PierceImpact = (PickupObjectDatabase.GetById(545) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect;
             ID = h.PickupObjectId;
@@ -51,7 +51,7 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.03f) { return; }
             int stack = 1;
-            p.baseData.damage *= 1 - (1 - (1 / (1 + 0.15f * stack)));
+            p.baseData.damage *= 1 - (1 - (1 / (1 + 0.2f * stack)));
 
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
             aaaa.damageMultOnPierce = 1 + (0.5f * stack);

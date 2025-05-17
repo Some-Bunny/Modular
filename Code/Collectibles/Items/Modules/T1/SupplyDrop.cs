@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Supply Drop",
             Description = "Free Loot!",
-            LongDescription = "Grants 2 Keys, 4 Scrap and 20 Casings on pickup. Air drops 1 (+1 per stack) random pickup every floor. Passively reduces the chance of better modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup. Air drops 1 (+1 per stack) random pickup every floor. Passively reduces the chance of better modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("supplydrop_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,14 +28,14 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.5f;
             h.LabelName = "Supply Drop " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 2 Keys, 4 Scrap and 20 Casings on pickup.\nAir drops 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") random pickup every floor.\n" +StaticColorHexes.AddColorToLabelString("Passively reduces the chance of better modules appearing", StaticColorHexes.Pink_Hex) + ".";
+            h.LabelDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup.\nAir drops 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") random pickup every floor.\n" +StaticColorHexes.AddColorToLabelString("Passively reduces the chance of better modules appearing", StaticColorHexes.Pink_Hex) + ".";
             h.EnergyConsumption = 1f;
             h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.GENERATION);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
-            h.OverrideScrapCost = 6;
+            h.OverrideScrapCost = 8;
             h.IsUncraftable = true;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
@@ -43,8 +43,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
 
 
             ID = h.PickupObjectId;

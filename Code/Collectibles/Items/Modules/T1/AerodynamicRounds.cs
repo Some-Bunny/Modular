@@ -28,15 +28,17 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Aerodynamic Carvings" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 10% (" + StaticColorHexes.AddColorToLabelString("+10%", StaticColorHexes.Light_Orange_Hex) + ")\nand player projectile speed by 30% (" + StaticColorHexes.AddColorToLabelString("+30%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Increases Damage by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) + ")\nand player projectile speed by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
             
             h.AddModuleTag(BaseModuleTags.BASIC);
             
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
+
+
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
@@ -46,8 +48,8 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.15f) { return; }
-            p.baseData.damage *= 1.1f;
-            p.baseData.speed *= 1.3f;
+            p.baseData.damage *= 1.125f;
+            p.baseData.speed *= 1.33f;
             p.UpdateSpeed();
         }
 
@@ -62,8 +64,8 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.1f * stack);
-            p.baseData.speed *= 1 + (0.3f * stack);
+            p.baseData.damage *= 1 + (0.125f * stack);
+            p.baseData.speed *= 1 + (0.333f * stack);
             p.UpdateSpeed();
         }
     }

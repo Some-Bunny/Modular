@@ -31,15 +31,15 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("improvedsights_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Improved Sights " + h.ReturnTierLabel();
-            h.LabelDescription = "Improves Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nIncreases shotspeed by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Improves Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nIncreases shotspeed by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ID = h.PickupObjectId;
         }
@@ -70,7 +70,7 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.speed *= 1 + (0.25f * this.ReturnStack(modulePrinterCore));
+            p.baseData.speed *= 1 + (0.33f * this.ReturnStack(modulePrinterCore));
             p.UpdateSpeed();
         }
 

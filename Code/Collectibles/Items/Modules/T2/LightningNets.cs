@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Lightning Nets",
             Description = "Nicola Would Be Proud",
-            LongDescription = "Your projectiles are now tethered with electricity (+Tether range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Your projectiles are now tethered with electricity (+Tether Range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("voltaicrounds_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("voltaicrounds_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Lightning Nets " + h.ReturnTierLabel();
-            h.LabelDescription = "Your projectiles are now tethered with electricity\n(" + StaticColorHexes.AddColorToLabelString("+Tether range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Your projectiles are now tethered with electricity\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -38,10 +38,10 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
-            
+
             ID = h.PickupObjectId;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 

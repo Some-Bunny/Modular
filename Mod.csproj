@@ -358,7 +358,7 @@
     </Reference>
     <Reference Include="Alexandria, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ETG\profiles\Default\BepInEx\plugins\Alexandria-Alexandria\plugins\Alexandria.dll</HintPath>
+      <HintPath>D:\r2modmanLocal\ETG\profiles\Agony\BepInEx\plugins\Alexandria-Alexandria\Alexandria.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EtG.GameLibs.2.1.9.1\lib\net35\Assembly-CSharp.dll</HintPath>

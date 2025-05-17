@@ -33,8 +33,8 @@ namespace ModularMod
             h.AddColorLight(Color.green);
             h.OverrideScrapCost = 10;
             h.AdditionalWeightMultiplier = 0.75f;
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.IsUncraftable = true;
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

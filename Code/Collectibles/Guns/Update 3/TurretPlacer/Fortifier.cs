@@ -42,8 +42,8 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(156) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 6.5f;
-            gun.DefaultModule.cooldownTime = 5;
+            gun.reloadTime = 4.5f;
+            gun.DefaultModule.cooldownTime = 4;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 0f;
@@ -80,7 +80,7 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
 
             projectile.baseData.speed = 45;
-            projectile.baseData.damage = 15f;
+            projectile.baseData.damage = 25f;
             projectile.shouldRotate = false;
             projectile.baseData.range = 100000;
 
@@ -97,8 +97,8 @@ namespace ModularMod
             turretProjectile.hitEffects.tileMapVertical = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             turretProjectile.hitEffects.enemy = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             turretProjectile.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(223) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
-            turretProjectile.baseData.damage = 10;
-            turretProjectile.baseData.speed = 35;
+            turretProjectile.baseData.damage = 8;
+            turretProjectile.baseData.speed = 30;
             turretProjectile.baseData.range = 10000;
             turretProjectile.shouldRotate = true;
 

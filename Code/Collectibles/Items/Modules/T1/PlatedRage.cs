@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Plated Rage",
             Description = "Armored Core",
-            LongDescription = "Increases Damage by\n5% (+5% per stack) for each piece of armor held." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n3.33% (+3.33% per stack) for each piece of armor held." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("platedrage_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("platedrage_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Plated Rage " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 5% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ")\nfor each piece of armor held.";
+            h.LabelDescription = "Increases Damage by 3.33% (" + StaticColorHexes.AddColorToLabelString("+3.33%", StaticColorHexes.Light_Orange_Hex) + ")\nfor each piece of armor held.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
@@ -36,8 +36,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
@@ -46,7 +46,7 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.1f) { return; }
-            p.baseData.damage *= 1 + ((0.05f) * player.healthHaver.Armor);
+            p.baseData.damage *= 1 + ((0.0333f) * player.healthHaver.Armor);
 
         }
 
@@ -61,7 +61,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + ((0.05f * stack) * player.healthHaver.Armor);
+            p.baseData.damage *= 1 + ((0.0333f * stack) * player.healthHaver.Armor);
         }
     }
 }

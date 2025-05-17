@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Minelayer System " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectile damage reduced by 75%.\nIncreases fire rate by 25% and massively reduces spread.\nProjectiles now leave proximity mines on impact that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") second to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
+            h.LabelDescription = "Projectile damage reduced by 70%.\nIncreases fire rate by 33% and massively reduces spread.\nProjectiles now leave proximity mines on impact that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") second to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -41,8 +41,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             Mine = BuildPrefab();
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
 
@@ -163,7 +163,7 @@ namespace ModularMod
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f * 0.75f;
+            return f * 0.66f;
         }
 
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
@@ -179,7 +179,7 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.damage *= 0.25f;
+            p.baseData.damage *= 0.3f;
             p.baseData.force *= 1.5f;
 
             p.OnDestruction += (ONJ) =>
@@ -219,7 +219,6 @@ namespace ModularMod
             }
             DebrisObject orAddComponent = mine.GetComponent<DebrisObject>();
             if (orAddComponent) { Destroy(orAddComponent); }
-            AkSoundEngine.PostEvent("Play_BOSS_mineflayer_trigger_01", mine.gameObject);
             AkSoundEngine.PostEvent("Play_BOSS_mineflayer_trigger_01", mine.gameObject);
 
             mine.Force_Disarm = false;

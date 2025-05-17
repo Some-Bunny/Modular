@@ -30,14 +30,14 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("redirectsystem_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Redirect System " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Clip Size by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").\nDecreases reload time by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nAll shots will turn to face the same angle as the last fired shot.";
+            h.LabelDescription = "Increases Clip Size by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").\nDecreases reload time by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nAll shots will turn to face the same angle as the last fired shot.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.OverrideScrapCost = 7;
             h.EnergyConsumption = 1;
             h.AddToGlobalStorage();
@@ -62,8 +62,9 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.gameObject.GetOrAddComponent<RedirectComp>();
-            p.baseData.speed *= 0.7f;
+            var a = p.gameObject.GetOrAddComponent<RedirectComp>();
+            a.StartUp(p, player.CurrentGun);
+            p.baseData.speed *= 0.6f;
             p.UpdateSpeed();
         }
 
@@ -87,18 +88,18 @@ namespace ModularMod
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinter);
-            return f - (f - (f / (1 + (0.20f * stack))));
+            return f - (f - (f / (1 + (0.25f * stack))));
         }
     }
 
     public class RedirectComp : MonoBehaviour
     {
-        private void Start() 
-        { 
-            self = this.GetComponent<Projectile>(); 
+        public void StartUp(Projectile projectile, Gun gun) 
+        {
+            self = projectile;
             foreach (var entry in RedirectSystem.allActiveComps)
             {
-                entry.Redirect(self.m_currentDirection.ToAngle());
+                entry.Redirect(gun.CurrentAngle);
             }
             self.StartCoroutine(Delay());
         }

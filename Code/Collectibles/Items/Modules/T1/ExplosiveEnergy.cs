@@ -31,8 +31,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 
@@ -108,6 +108,7 @@ namespace ModularMod
             travelledDistanceComponent.TriggerAmount = 2 + stack;
             travelledDistanceComponent.OnTravelledDistance += (proj, h1, h4) =>
             {
+                ExplosionData.damage = (proj.baseData.damage * 0.5f) + 2.5f;
                 Exploder.Explode(h1, ExplosionData, Vector2.zero, null, true);
                 if (h4 == 2 + stack)
                 {

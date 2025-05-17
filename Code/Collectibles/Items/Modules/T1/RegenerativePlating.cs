@@ -1,6 +1,7 @@
 ﻿using Alexandria.ItemAPI;
 using JuneLib.Items;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace ModularMod
         {
             Name = "Regenerative Plating",
             Description = "Time Heals All",
-            LongDescription = "Entering a new floor restores 1 (+1 per stack) Armor. Scrapping pickups / items restores 1 Armor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Entering a new floor restores 1 (+1 per stack) Armor. SScrapping pickups / items has a chance to restore 1 Armor. (+Increased Armor Chance per stack) " + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("selfcare_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,15 +29,15 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Regenerative Plating " + h.ReturnTierLabel();
-            h.LabelDescription = "Entering a new floor restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.\nScrapping pickups / items restores 1 Armor.";
+            h.LabelDescription = "Entering a new floor restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.\nScrapping pickups / items has a chance to restore 1 Armor.\n("+ StaticColorHexes.AddColorToLabelString("+Increased Armor Chance", StaticColorHexes.Light_Orange_Hex) + ")";
 
             h.AddModuleTag(BaseModuleTags.GENERATION);
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.OverrideScrapCost = 6;
 
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
@@ -62,9 +63,12 @@ namespace ModularMod
         }
         public void OnScrap(int ScrapCount, ModulePrinterCore core, PlayerController player, Scrapper scrapper)
         {
-            player.PlayEffectOnActor(VFXStorage.HealingSparklesVFX, new Vector3(0, 0));
-            AkSoundEngine.PostEvent("Play_OBJ_heart_heal_01", player.gameObject);
-            player.healthHaver.Armor += 1;
+            if (UnityEngine.Random.value < (1 - (1 / (1 + 0.15f * this.ReturnStack(core)))))
+            {
+                player.PlayEffectOnActor(VFXStorage.HealingSparklesVFX, new Vector3(0, 0));
+                AkSoundEngine.PostEvent("Play_OBJ_heart_heal_01", player.gameObject);
+                player.healthHaver.Armor += 1;
+            }
         }
     }
 }

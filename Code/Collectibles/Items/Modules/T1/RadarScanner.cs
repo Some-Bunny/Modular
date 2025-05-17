@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Radar Scanner",
             Description = "Sonar",
-            LongDescription = "Secret Rooms are revealed if you are near them. While powered, all secret rooms contain 2 (+2 per stack) extra pickups, starting from the next floor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Secret Rooms are revealed if you are near them. While powered, all secret rooms contain 2 (+1 per stack) extra pickups, starting from the next floor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("radarscanner_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.85f;
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Radar Scanner " + h.ReturnTierLabel();
-            h.LabelDescription = "Secret Rooms are revealed if you are near them.\nWhile powered, all secret rooms contain\n2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") extra pickups\nstarting from the next floor.";
+            h.LabelDescription = "Secret Rooms are revealed if you are near them.\nWhile powered, all secret rooms contain\n2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") extra pickups\nstarting from the next floor.";
             h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.GENERATION);
@@ -40,8 +40,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.OverrideScrapCost = 8;
             ID = h.PickupObjectId;
         }
@@ -95,7 +95,7 @@ namespace ModularMod
                 {
                     if (roomHandler.area.PrototypeRoomCategory == PrototypeDungeonRoom.RoomCategory.SECRET)
                     {
-                        for (int q = 0; q < Stack() * 2; q++)
+                        for (int q = 0; q < 1 + Stack(); q++)
                         {
                             var pickup = LootEngine.SpawnItem(GameManager.Instance.RewardManager.CurrentRewardData.SingleItemRewardTable.SelectByWeight(false), roomHandler.GetBestRewardLocation(new IntVector2(1, 1), RoomHandler.RewardLocationStyle.Original).ToCenterVector3(0), Vector2.zero, 0);
                             pickup.GetComponent<PickupObject>().IgnoredByRat = true;

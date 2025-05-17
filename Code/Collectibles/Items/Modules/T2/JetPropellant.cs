@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("jetpropellant_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Jet Propellant " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles start slow, but accelerate to\nhigh speeds after a second.\nProjectiles now deal 10% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
+            h.LabelDescription = "Projectiles start slow, but accelerate to\nhigh speeds after a second.\nProjectiles now deal 11% (" + StaticColorHexes.AddColorToLabelString("+5.5%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -37,8 +37,8 @@ namespace ModularMod
             h.AdditionalWeightMultiplier = 0.85f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             var RPGParticlesvar = (PickupObjectDatabase.GetById(39) as Gun).DefaultModule.projectiles[0].transform.Find("VFX_Rocket_Exhaust_Fire").gameObject;
 
@@ -103,7 +103,7 @@ namespace ModularMod
             if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null && Stored_Core != null)
             {
                 float damage = mR.projectile.baseData.damage;
-                float damageMult = (mR.projectile.baseData.speed / 1000) * (0.5f + (0.5f *this.ReturnStack(Stored_Core)));
+                float damageMult = (mR.projectile.baseData.speed / 900) * (0.5f + (0.5f *this.ReturnStack(Stored_Core)));
                 mR.projectile.baseData.damage *= 1 + damageMult;
                 mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage));
             }

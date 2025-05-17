@@ -38,13 +38,13 @@ namespace ModularMod
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.85f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             h.OverrideScrapCost = 15;
             ID = h.PickupObjectId;
         }
@@ -178,7 +178,7 @@ namespace ModularMod
                 //var vec = Alexandria.Misc.ProjectileUtility.GetVectorToNearestEnemy(self);
                 //self.SendInDirection(vec != Vector2.zero ? vec : Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), 1), true, true);
                 var homing = self.gameObject.GetOrAddComponent<HomingModifier>();
-                homing.AngularVelocity += 30 + (Stack*15);
+                homing.AngularVelocity += 45 + (Stack*22.5f);
                 homing.HomingRadius += 4 + Stack;
                 isInStasis = false;
 
@@ -190,7 +190,7 @@ namespace ModularMod
                 PierceProjModifier pierce = self.gameObject.GetOrAddComponent<PierceProjModifier>();
                 pierce.penetration += Stack;
 
-                self.baseData.damage *= 1 + (0.3f * Stack);
+                self.baseData.damage *= 1 + (0.333f * Stack);
             }
 
 

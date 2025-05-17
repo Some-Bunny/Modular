@@ -10,11 +10,12 @@ namespace ModularMod
         {
             AssetBundle result = null;
             {
-                if (File.Exists(Module.FilePathFolder + "/" + name))
+                string platformAssetName = name + GetPlatformBundleExtension();
+                if (File.Exists(Module.FilePathFolder + "/" + platformAssetName))
                 {
                     try
                     {
-                        result = AssetBundle.LoadFromFile(Path.Combine(Module.FilePathFolder, name));
+                        result = AssetBundle.LoadFromFile(Path.Combine(Module.FilePathFolder, platformAssetName));
                         if (logs == true)
                         {
                             global::ETGModConsole.Log("Successfully loaded assetbundle!", false);
@@ -32,6 +33,15 @@ namespace ModularMod
                 }
             }
             return result;
+        }
+
+        private static string GetPlatformBundleExtension()
+        {
+            if (Application.platform == RuntimePlatform.LinuxPlayer)
+                return "-linux";
+            if (Application.platform == RuntimePlatform.OSXPlayer)
+                return "-macos";
+            return "-windows";
         }
     }
 }

@@ -37,8 +37,8 @@ namespace ModularMod
 
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.EnergyConsumption = 1;
             h.AddToGlobalStorage();
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
@@ -104,7 +104,7 @@ namespace ModularMod
         {
             if (enemy) 
             {
-                enemy.healthHaver.ApplyDamage(1.2f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
+                enemy.healthHaver.ApplyDamage(1.5f * this.ReturnStack(Stored_Core), Vector2.zero ,"HeatVent");
                 enemy.ApplyEffect(DebuffStatics.hotLeadEffect);
             }
         }

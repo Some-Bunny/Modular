@@ -40,14 +40,15 @@ namespace ModularMod
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
-            h.AdditionalWeightMultiplier = 0.75f;
+            h.AdditionalWeightMultiplier = 0.7f;
             h.EnergyConsumption = 5;
+            h.IsUncraftable = true;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             ID = h.PickupObjectId;
         }
         public static int ID;
@@ -65,7 +66,7 @@ namespace ModularMod
 
         public void OKE(ModulePrinterCore printer, PlayerController player, AIActor enemy)
         {
-            if (UnityEngine.Random.value < 0.005f + (this.ReturnStack(printer) * 0.005f))
+            if (UnityEngine.Random.value < 0.004f + (this.ReturnStack(printer) * 0.004f))
             {
                 GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(PowerCell.PowerCellID).gameObject, Vector3.zero, Quaternion.identity);
                 PickupObject component3 = gameObject.GetComponent<PickupObject>();

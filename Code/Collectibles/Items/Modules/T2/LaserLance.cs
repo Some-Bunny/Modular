@@ -38,8 +38,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
             Projectile projectile = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(86) as Gun).DefaultModule.projectiles[0]);
@@ -91,16 +91,15 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.01f) { return; }
-            int stack = 1;
             p.baseData.speed *= 0.5f;
             p.UpdateSpeed();
 
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = ((5f + (stack*5))+(p.baseData.damage / 5)) + (p.baseData.damage * (Dmg));//(p.baseData.damage * (Dmg) * 1 + (0.5f * stack)) / 10f;
+            component3.baseData.damage = (5)+(p.baseData.damage * 1.25f);
             component3.AdditionalScaleMultiplier *= 0.5f;
-            component3.baseData.range *= stack;
+            component3.baseData.range *= 2;
 
             var point = p.gameObject.AddComponent<BeamPointer>();
             point.self = p;
@@ -160,9 +159,10 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = ((5f + (stack * 5)) + (p.baseData.damage / 5)) + (p.baseData.damage * (Dmg));//(p.baseData.damage * (Dmg * 4f) * 1 + (0.5f * stack)) / 10f;
+            component3.baseData.damage = (3 * stack) + p.baseData.damage  * (1 + (0.33f * stack));
+            Debug.Log((3 * stack) + p.baseData.damage * (1 + (0.33f * stack)));
             component3.AdditionalScaleMultiplier *= 0.5f;
-            component3.baseData.range *= stack;
+            component3.baseData.range *= 1 + (stack * 0.5f);
 
             var point = p.gameObject.AddComponent<BeamPointer>();
             point.self = p;

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Flak Shot",
             Description = "Better Than 1",
-            LongDescription = "Reduces Damage by 30%. Projectiles split into 2 weaker projectiles that inherit all of the parent projectiles effects. (Split Projectile Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reduces Damage by 40%. Projectiles split into 2 weaker projectiles that inherit all of the parent projectiles effects. (Split Projectile Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("flakshot_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Flak Shot" + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces Damage by 30%. Projectiles split into 2\nweaker projectiles that inherit all of the\nparent projectiles effects.\n("+StaticColorHexes.AddColorToLabelString("+Split Projectile Damage", StaticColorHexes.Light_Orange_Hex)+")";
+            h.LabelDescription = "Reduces Damage by 40%. Projectiles split into 2\nweaker projectiles that inherit all of the\nparent projectiles effects.\n("+StaticColorHexes.AddColorToLabelString("+Split Projectile Damage", StaticColorHexes.Light_Orange_Hex)+")";
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 
@@ -37,8 +37,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
@@ -50,7 +50,7 @@ namespace ModularMod
             if (p.gameObject.GetComponent<ProjectileSplitController>() != null) { return; }
             if (UnityEngine.Random.value > 0.03f) { return; }
             int stack = 1;
-            p.baseData.damage *= 0.7f;
+            p.baseData.damage *= 0.6f;
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
             split.dmgMultAfterSplit = 0.2f + (0.15f * stack);
             split.speedMultAfterSplit = 0.7f + (0.1f * stack);

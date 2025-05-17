@@ -30,11 +30,11 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("stickybombs_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Sticky Bomb " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Accuracy by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nprojectiles now leave sticky bombs on enemies that\nexplode after 10 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.\n(" + StaticColorHexes.AddColorToLabelString("+Sticky Bomb Damage", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Increases Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nprojectiles now leave sticky bombs on enemies that\nexplode after 10 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.\n(" + StaticColorHexes.AddColorToLabelString("+Sticky Bomb Damage", StaticColorHexes.Light_Orange_Hex) + ")";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
 
             h.AddModuleTag(BaseModuleTags.STICKY);
 
@@ -167,7 +167,7 @@ namespace ModularMod
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinter);
-            return f - (f - (f / (1 + (0.20f * stack))));
+            return f - (f - (f / (1 + (0.333f * stack))));
         }
     }
 }

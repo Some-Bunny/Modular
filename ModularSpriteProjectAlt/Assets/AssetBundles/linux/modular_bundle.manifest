@@ -1,0 +1,425 @@
+ManifestFileVersion: 0
+CRC: 203303744
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b02ddcaa542be7fa7295e930ffe97582
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1f96190daf68d1b18659c9d264a41037
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f514313262e3d141ad017b60809752a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ecaffc43a5d2b1d47858e3fb687e7271, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b03b1445062e71c4ca60f92cbd330aff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f9f659c90c0e4834b9249664c8d0e6a4, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Sprites/Guns/ModularGunCollection Data/modulargun material.mat
+- Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_pressed.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_023.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_025.png
+- Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_alt.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_002.png
+- Assets/Sprites/UI/ui_button_3.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_021.png
+- Assets/Sprites/UI/Accept Button/ui_button_accept_highlight.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_017.png
+- Assets/Sprites/VFX/Animations/WarningVFXAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_002.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_001.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_002.png
+- Assets/Sprites/UI/ComputerCore/tier_label_2_d.png
+- Assets/Sprites/VFX/Animations/CoolioAnimation.prefab
+- Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_alt.png
+- Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_highlighted_alt.png
+- Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_pressed.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_025.png
+- Assets/Sprites/Items/Modules/Unique/UniqueModuleCollection Data/UniqueModuleCollection.prefab
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_016.png
+- Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_highlighted.png
+- Assets/Sprites/VFX/Animations/DeathsplosionAnimation.prefab
+- Assets/Sprites/VFX/Animations/RefundAnimation.prefab
+- Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_highlighted_alt.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed_alt.png
+- Assets/Sprites/UI/ComputerCore/Power.png
+- Assets/Sprites/Guns/ModularGunAnimation.prefab
+- Assets/Sprites/UI/Name Label/Names/name_label_QuadBurster.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_023.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_017.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_008.png
+- Assets/Sprites/UI/ComputerCore/tier_label_3_d.png
+- Assets/Sprites/VFX/Animations/BatteryAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_008.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_020.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_016.png
+- Assets/Sprites/Objects/DecorativeObjects/DoorZappy/ZappyDoorAnimation.prefab
+- Assets/Sprites/Enemies/ModularEnemyCollection Data/mdlrenemy material.mat
+- Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_029.png
+- Assets/Sprites/Projectiles/Beams/ModularBeamCollection Data/ModularBeamCollection.prefab
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_016.png
+- Assets/Sprites/UI/ComputerCore/Clock.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_027.png
+- Assets/Sprites/Enemies/Slapper/SlapperAnimation.prefab
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_press_alt.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_008.png
+- Assets/Sprites/Objects/Crate/CrateAnimation.prefab
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_defualtcannon_alt.png
+- Assets/Sprites/UI/CloseButton/ui_button_close_highlighted.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_010.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_009.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_010.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_007.png
+- Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun_highlighted.png
+- Assets/Sprites/UI/ComputerCore/tier_label_unique.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_024.png
+- Assets/Sprites/VFX/Animations/ModularPrimeVFXAnimation.prefab
+- Assets/Sprites/UI/ComputerCore/tier_label_4.png
+- Assets/Sprites/UI/ui_button_1.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_018.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_021.png
+- Assets/Sprites/Characters/Modular/Modular_Collection Data/modular material.mat
+- Assets/Sprites/Items/Modules/Items And Pickups/gear.png
+- Assets/Sprites/Projectiles/Beams/ModularBeamCollection Data/beam material.mat
+- Assets/Sprites/UI/ComputerCore/GooglyMooglyBright.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_002.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_025.png
+- Assets/Sprites/Items/Modules/T1/Tier_1_Module_Collection Data/t1_module material.mat
+- Assets/Sprites/VFX/Animations/RedWarnAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_003.png
+- Assets/Sprites/UI/ComputerCore/tier_label_3.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_024.png
+- Assets/Sprites/Characters/ModularAlt/Modular_Alt_Animation.prefab
+- Assets/Sprites/UI/Page Turn Buttons/left_button_inactive.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_005.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_inactive_alt.png
+- Assets/Sprites/UI/Name Label/Names/name_label_scattercannon.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_026.png
+- Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/t2_module material.mat
+- Assets/Sprites/VFX/Animations/SynergyAnimation.prefab
+- Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun.png
+- Assets/Sprites/UI/Name Label/name_label_empty.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_015.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_017.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_026.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_015.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_030.png
+- Assets/Sprites/Characters/modular_Tex_Icon.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_017.png
+- Assets/Sprites/UI/Name Label/Alt/name_label_locked_alt.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_024.png
+- Assets/Sprites/Objects/DecorativeObjects/LaserTurret/LaserTurretAnimation.prefab
+- Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_pressed_alt.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_029.png
+- Assets/Sprites/Characters/win_pic_001.png
+- Assets/Sprites/Particles/CritParticle.prefab
+- Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_alt.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_019.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_018.png
+- Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_highlighted.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_015.png
+- Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_002.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_011.png
+- Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun_alt.png
+- Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_highlighted.png
+- Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_pressed.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_014.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_012.png
+- Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_highlighted_alt.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_008.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_006.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_027.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_009.png
+- Assets/Sprites/UI/LockedButton/ui_button_locked_pressed.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_005.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_028.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_023.png
+- Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_pressed_alt.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_005.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_007.png
+- Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun_pressed_alt.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_007.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_active.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_001.png
+- Assets/Sprites/Items/Modules/Module_T3_Collection Data/t3_module material.mat
+- Assets/Sprites/Objects/DecorativeObjects/Spaceship/SpaceshipAnimation.prefab
+- Assets/Sprites/VFX/Animations/MomentumPlusAnimation.prefab
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_peashooter_alt.png
+- Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_highlighted_alt.png
+- Assets/Sprites/Items/Modules/Items And Pickups/ModuleItemCollection Data/ModuleItemCollection.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_020.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_027.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_022.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_026.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_020.png
+- Assets/Sprites/Objects/DecorativeObjects/PastDecorCollection Data/PastDecorCollection.prefab
+- Assets/Sprites/Items/Modules/T4/ModuleTier4Collection Data/modulrt4 material.mat
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_029.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_pressed_alt.png
+- Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_alt.png
+- Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun_highlighted.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_active_alt.png
+- Assets/Sprites/Characters/Modular/Modular_Collection Data/Modular_Collection.prefab
+- Assets/Sprites/Objects/Crate/CrateCollection Data/CrateCollection.prefab
+- Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_pressed.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_highlighted.png
+- Assets/Sprites/Enemies/Bosses/PANOPTICON/PanopticonAnimation.prefab
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_alt.png
+- Assets/Sprites/UI/ModularUIAtlas.png
+- Assets/Sprites/Textures/nebula_reducednoise.png
+- Assets/Sprites/UI/ModularUIAtlas.mat
+- Assets/Sprites/UI/Accept Button/ui_button_accept_active.png
+- Assets/Sprites/VFX/Animations/PowerUpAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_013.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_028.png
+- Assets/Sprites/VFX/Animations/TetherAnimation.prefab
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_alt.png
+- Assets/Sprites/Projectiles/Projectiles/ModularProjectileAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_017.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_011.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_012.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_007.png
+- Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_pressed_alt.png
+- Assets/Sprites/UI/Guns/Scattercannon/ui_button_scattercannon_gun.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_021.png
+- Assets/Particles/Spooky Smoke/Spooky Smoke.prefab
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_003.png
+- Assets/Sprites/VFX/Animations/MinelayerAnimation.prefab
+- Assets/Sprites/UI/CloseButton/ui_button_close_highlighted_alt.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_009.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_005.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_003.png
+- Assets/Sprites/Enemies/Bosses/ModularBossCollection Data/modularboss material.mat
+- Assets/Sprites/Enemies/Mecha/MechaAnimation.prefab
+- Assets/Sprites/UI/Accept Button/ui_button_accept_active_press.png
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_WIP_alt.png
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_suppressor_alt.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_020.png
+- Assets/Sprites/UI/ComputerCore/Info.png
+- Assets/Sprites/Experimental Tileset/ExperimentalTilesetCollection Data/experimentaltileset
+  material.mat
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_027.png
+- Assets/Sprites/UI/LockedButton/Alt/ui_button_locked_pressed_alt.png
+- Assets/Sprites/UI/CloseButton/ui_button_close.png
+- Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_pressed_alt.png
+- Assets/Sprites/Enemies/Tower/NopticonAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_010.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_020.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_022.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_023.png
+- Assets/Sprites/UI/ComputerCore/tier_label_4_d.png
+- Assets/Sprites/UI/Accept Button/ui_button_accept_active_1.png
+- Assets/Sprites/VFX/ModularVFXCollection Data/modular_vfx material.mat
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_011.png
+- Assets/Sprites/Past Tileset 2/PastTileset2Collection Data/tileset2 material.mat
+- Assets/Sprites/UI/ComputerCore/ButtonUp.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_025.png
+- Assets/Sprites/UI/ComputerCore/tier_label_2.png
+- Assets/Sprites/Enemies/LaserDiode/LaserDiodeAnimation.prefab
+- Assets/Sprites/Enemies/Tower/TowerNodeAnimation.prefab
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_inactive_alt.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_010.png
+- Assets/Sprites/Objects/DecorativeObjects/PastDecorCollection Data/decor material.mat
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_026.png
+- Assets/Sprites/Enemies/ModularEnemyCollection Data/ModularEnemyCollection.prefab
+- Assets/Sprites/UI/ComputerCore/ButtonRight.png
+- Assets/Sprites/Items/Modules/Module_T3_Collection Data/Module_T3_Collection.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_028.png
+- Assets/Sprites/Enemies/Bosses/modularprime_bosscard.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_highlighted_alt.png
+- Assets/Sprites/Objects/DecorativeObjects/MetalDoor/BigDoorAnimation.prefab
+- Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_highlighted.png
+- Assets/Sprites/Enemies/EnergyShield/EnergyShieldAnimation.prefab
+- Assets/Sprites/UI/Page Turn Buttons/left_button_pressed.png
+- Assets/Sprites/Guns/ModularGunCollection Data/ModularGunCollection.prefab
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_024.png
+- Assets/Particles/Sparks/Spark Particle System.prefab
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_charger_alt.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_012.png
+- Assets/Sprites/UI/ComputerCore/tier_label_1_d.png
+- Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_alt.png
+- Assets/Sprites/Enemies/Bosses/steelPanopticonsheet.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_016.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_014.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_013.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_006.png
+- Assets/Particles/Smoke/SmokeParticle.prefab
+- Assets/Sprites/UI/Font/ShootPeopUltra-16.prefab
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_018.png
+- Assets/Sprites/UI/CloseButton/ui_button_close_pressed_alt.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_003.png
+- Assets/Sprites/Items/Modules/T2/Tier_2_Module_Collection Data/Tier_2_Module_Collection.prefab
+- Assets/Sprites/UI/Name Label/Names/name_label_defualtcannon.png
+- Assets/Sprites/Projectiles/Projectiles/ModularProjectileCollection Data/modularprojectile
+  material.mat
+- Assets/Sprites/UI/Name Label/name_label_locked.png
+- Assets/Sprites/Items/Modules/Items And Pickups/ModuleItemCollection Data/moduleitem
+  material.mat
+- Assets/Sprites/VFX/Animations/MarksmanAnimation.prefab
+- Assets/Sprites/Enemies/Bosses/panopticon_bosscard_001.png
+- Assets/Sprites/Experimental Tileset/ExperimentalTilesetCollection Data/ExperimentalTilesetCollection.prefab
+- Assets/Sprites/UI/ComputerCore/Cancel.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_019.png
+- Assets/Sprites/UI/ComputerCore/ButtonDown.png
+- Assets/Sprites/VFX/Animations/SuperChargeAnimation.prefab
+- Assets/Sprites/UI/ComputerCore/ButtonRightBright.png
+- Assets/Sprites/UI/CloseButton/ui_button_close_alt.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_004.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_004.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_011.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_006.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_pressed_alt.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_013.png
+- Assets/Sprites/Objects/Crate/CrateCollection Data/crate material.mat
+- Assets/Sprites/UI/Page Turn Buttons/Alt/right_button_highlighted_alt.png
+- Assets/Sprites/UI/ComputerCore/ButtonLeftBright.png
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_scattercannon_alt.png
+- Assets/Sprites/UI/Name Label/Names/name_label_minigun.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_013.png
+- Assets/Sprites/Enemies/Node/NodeEnemyAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_006.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_016.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_028.png
+- Assets/Sprites/UI/ui_button_2.png
+- Assets/Sprites/VFX/Animations/GunBuildAndWhatNotAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_022.png
+- Assets/Sprites/Objects/DecorativeObjects/MovingTileAnimation.prefab
+- Assets/Sprites/Past Tileset 2/PastTileset2Collection Data/PastTileset2Collection.prefab
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_pressed.png
+- Assets/Sprites/UI/Name Label/Alt/name_label_empty_alt.png
+- Assets/Sprites/Enemies/Burster/BursterBaddieAnimation.prefab
+- Assets/Sprites/VFX/Animations/PoisonVialAnimation.prefab
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun_highlighted_alt.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_022.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_023.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_019.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_010.png
+- Assets/Sprites/Enemies/Bosses/Modular Prime/ModularPrimeAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_012.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_021.png
+- Assets/Sprites/Items/Modules/Items And Pickups/Animations/ScrapAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_005.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_001.png
+- Assets/Sprites/UI/ComputerCore/tier_label_unique_d.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_029.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_008.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_003.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_029.png
+- Assets/Sprites/UI/ui_button_doublehalf_pressed.png
+- Assets/Sprites/UI/ui_button_doublehalf.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_009.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_inactive.png
+- Assets/Sprites/PastTileset/PastTilesetCollection Data/PastTilesetCollection.prefab
+- Assets/Sprites/UI/Guns/QuadBurster/ui_button_quadburster_gun_highlighted_alt.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_009.png
+- Assets/Sprites/UI/Page Turn Buttons/Alt/left_button_active_alt.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_025.png
+- Assets/Sprites/UI/ui_button_doublehalf_highlighted.png
+- Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_alt.png
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_QuadBurster_alt.png
+- Assets/Sprites/UI/ComputerCore/GooglyMoogly.png
+- Assets/Sprites/UI/Page Turn Buttons/right_button_pressed.png
+- Assets/Sprites/UI/Name Label/Names/name_label_peashooter.png
+- Assets/Sprites/Characters/ModularAlt/Modular_Alt_Collection Data/Modular_Alt_Collection.prefab
+- Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_pressed_alt.png
+- Assets/Sprites/UI/ComputerCore/CanceBrightl.png
+- Assets/Sprites/VFX/Animations/GenericVFXAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_004.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_026.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_011.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_004.png
+- Assets/Sprites/Items/Modules/T4/ModuleTier4Collection Data/ModuleTier4Collection.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_019.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_028.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_014.png
+- Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun_highlighted_alt.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_022.png
+- Assets/Sprites/VFX/ModularVFXCollection Data/ModularVFXCollection.prefab
+- Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_pressed.png
+- Assets/Sprites/Items/Modules/T1/Tier_1_Module_Collection Data/Tier_1_Module_Collection.prefab
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_014.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_019.png
+- Assets/Sprites/UI/ComputerCore/ButtonLeft.png
+- Assets/Sprites/Items/Modules/Unique/UniqueModuleCollection Data/unique module material.mat
+- Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun_pressed.png
+- Assets/Sprites/Enemies/Bosses/mdlPrimesheet.png
+- Assets/Sprites/UI/Guns/PrecisionRifle/ui_button_precisionrifle_gun_highlighted_alt.png
+- Assets/Sprites/VFX/Animations/HammerStrikeAnimation.prefab
+- Assets/Sprites/PastTileset/PastTilesetCollection Data/pasttileset material.mat
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_013.png
+- Assets/Sprites/Characters/ModularAlt/Modular_Alt_Collection Data/modular_alt material.mat
+- Assets/Sprites/Projectiles/Projectiles/ModularProjectileCollection Data/ModularProjectileCollection.prefab
+- Assets/Sprites/UI/Guns/PeaShooter/ui_button_peashooter_gun.png
+- Assets/Sprites/UI/LockedButton/ui_button_locked_highlighted.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_015.png
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_021.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_004.png
+- Assets/Sprites/UI/LockedButton/ui_button_locked.png
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_highlight_alt.png
+- Assets/Sprites/VFX/Animations/NodeChargeAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_006.png
+- Assets/Sprites/UI/ComputerCore/ButtonDownBright.png
+- Assets/Sprites/UI/ComputerCore/tier_label_1.png
+- Assets/Sprites/Objects/DecorativeObjects/Engine/EngineAnimation.prefab
+- Assets/Sprites/UI/Name Label/Names/name_label_PrecisionRifle.png
+- Assets/Sprites/VFX/Animations/SwindlerVFXAnimation.prefab
+- Assets/Sprites/UI/Name Label/Names/Alt/name_label_PrecisionRifle_alt.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_018.png
+- Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun_highlighted.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_015.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_007.png
+- Assets/Sprites/UI/Name Label/Names/name_label_energycharger.png
+- Assets/Sprites/Enemies/Bosses/ModularBossCollection Data/ModularBossCollection.prefab
+- Assets/Sprites/Items/Modules/Items And Pickups/Animations/CrafterAnimation.prefab
+- Assets/Sprites/Enemies/Sentry/SentryAnimation.prefab
+- Assets/Sprites/VFX/Animations/ScrapperAnimation.prefab
+- Assets/Sprites/Enemies/BigDrone/BigDroneAnimation.prefab
+- Assets/Sprites/UI/ComputerCore/Info_Hover.png
+- Assets/Sprites/UI/Page Turn Buttons/left_button_active.png
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_024.png
+- Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_001.png
+- Assets/Sprites/UI/ui_template_bg_alt.png
+- Assets/Sprites/Characters/Modular/ModularSpriteAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/White/lync_icon_027.png
+- Assets/Sprites/UI/ui_template_bg.png
+- Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_014.png
+- Assets/Sprites/UI/GunClip/ModularGunClip_Atlas.prefab
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_018.png
+- Assets/Sprites/UI/Accept Button/Alt/ui_button_accept_active_1_alt.png
+- Assets/Sprites/Objects/DecorativeObjects/ElevatorAnimationAnimation.prefab
+- Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_001.png
+- Assets/Sprites/Characters/modular_bosscard_001.png
+- Assets/Sprites/UI/ComputerCore/ButtonUpBright.png
+- Assets/Sprites/UI/Guns/Default Cannon/ui_button_default_gun.png
+- Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_012.png
+- Assets/Sprites/UI/CloseButton/ui_button_close_pressed.png
+- Assets/Sprites/UI/ModularUIAtlas.prefab
+- Assets/Sprites/UI/Page Turn Buttons/left_button_highlighted.png
+- Assets/Sprites/Projectiles/Beams/ModularBeamAnimation.prefab
+Dependencies: []

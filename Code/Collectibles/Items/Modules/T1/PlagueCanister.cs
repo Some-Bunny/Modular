@@ -68,8 +68,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.75f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
 
@@ -194,7 +194,7 @@ namespace ModularMod
                     {
                         GameObject shard = UnityEngine.Object.Instantiate<GameObject>(BraveUtility.RandomElement<GameObject>(GlassShards), debrisObject.transform.position, Quaternion.identity);
                         shard.GetComponent<DebrisObject>().Trigger(Toolbox.GetUnitOnCircle(BraveUtility.RandomAngle(), UnityEngine.Random.Range(0.5f, 4 + stack)), 1);
-                        shard.GetComponent<GlassShardBehavior>().Damage += stack * 0.5f;
+                        shard.GetComponent<GlassShardBehavior>().Damage += stack * 1.25f;
                     }
                 };
                 yield return new WaitForSeconds(user.CurrentGun.reloadTime / stack);

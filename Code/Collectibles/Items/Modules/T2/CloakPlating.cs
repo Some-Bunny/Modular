@@ -34,8 +34,8 @@ namespace ModularMod
                 "4x (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that quickly degrades.\nGrants a 30% movement speed buff while cloaked.";
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.EnergyConsumption = 1;
             h.AdditionalWeightMultiplier = 0.8f;
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);

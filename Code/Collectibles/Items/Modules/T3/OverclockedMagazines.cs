@@ -40,8 +40,8 @@ namespace ModularMod
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
-            h.Offset_LabelDescription = new Vector2(0.25f, -1.125f);
-            h.Offset_LabelName = new Vector2(0.25f, 1.875f);
+            h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
+            h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             h.OverrideScrapCost = 15;
 
             ID = h.PickupObjectId;
@@ -80,7 +80,7 @@ namespace ModularMod
         {
             p.baseData.damage *= 0.66f;
             p.baseData.force *= 0.66f;
-            p.baseData.speed *= 2;
+            p.baseData.speed *= 1.7f;
             p.UpdateSpeed();
         }
 
@@ -93,6 +93,7 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modularGunController.RevertMuzzleFlash();
+            modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             player.stats.RecalculateStats(player);
         }
