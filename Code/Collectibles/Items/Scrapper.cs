@@ -232,8 +232,11 @@ namespace ModularMod
                     TimerToSwitch += Time.deltaTime;
                     if (TimerToSwitch >= 1.25f)
                     {
-                        Destroy(EffectInst);
-                        EffectInst = null;
+                        if (EffectInst != null)
+                        {
+                            Destroy(EffectInst);
+                            EffectInst = null;
+                        }
 
                         if (LastOwner.CurrentItem != this) { return; }
                         SwitchMode();
@@ -242,13 +245,13 @@ namespace ModularMod
                 }
                 else
                 {
+                    if (EffectInst != null)
+                    {
+                        Destroy(EffectInst);
+                        EffectInst = null;
+                    }
                     TimerToSwitch = 0;
-                    Destroy(EffectInst);
-                    EffectInst = null;
                 }
-
-
-
             }
             base.Update();
         }

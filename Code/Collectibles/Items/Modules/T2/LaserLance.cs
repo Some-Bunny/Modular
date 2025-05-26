@@ -61,7 +61,7 @@ namespace ModularMod
             emission.EmissivePower = 20;
             emission.EmissiveColorPower = 20;
             projectile.baseData.damage = 26;
-            projectile.baseData.range = 2f;
+            projectile.baseData.range = 1.7f;
             projectile.baseData.speed = 10;
             projectile.baseData.force = 0;
 
@@ -97,9 +97,9 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (5)+(p.baseData.damage * 1.25f);
+            component3.baseData.damage = 3+(p.baseData.damage * 1.5f);
             component3.AdditionalScaleMultiplier *= 0.5f;
-            component3.baseData.range *= 2;
+            component3.baseData.range *= 1.5f;
 
             var point = p.gameObject.AddComponent<BeamPointer>();
             point.self = p;
@@ -159,8 +159,7 @@ namespace ModularMod
             BeamController beamController3 = BeamToolbox.FreeFireBeamFromAnywhere(LanceBeam, player, p.gameObject, p.gameObject.transform.PositionVector2(), false, p.angularVelocity, 100);
             Projectile component3 = beamController3.GetComponent<Projectile>();
             float Dmg = p.baseData.damage * player.stats.GetStatValue(PlayerStats.StatType.Damage);
-            component3.baseData.damage = (3 * stack) + p.baseData.damage  * (1 + (0.33f * stack));
-            Debug.Log((3 * stack) + p.baseData.damage * (1 + (0.33f * stack)));
+            component3.baseData.damage = (3 * stack) + p.baseData.damage  * (1f + (0.5f * stack));
             component3.AdditionalScaleMultiplier *= 0.5f;
             component3.baseData.range *= 1 + (stack * 0.5f);
 

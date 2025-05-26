@@ -233,6 +233,7 @@ namespace ModularMod
                 proj.BulletScriptSettings = new BulletScriptSettings() { preventPooling = true };
                 FuckYou = proj.gameObject;
                 companion.aiActor.bulletBank.Bullets.Add(sentryEntry);
+                StaticReferenceManager.AllHealthHavers.Remove(companion.healthHaver);
 
                 DebrisObject tatter1 = GenerateDebrisObjectBundle(StaticCollections.Enemy_Collection, "sentry_debris_001", true, 0.33f, 3, 240, 180, null, 0.4f, null, null, 0);
                 DebrisObject tatter2 = GenerateDebrisObjectBundle(StaticCollections.Enemy_Collection, "sentry_debris_002", true, 0.33f, 3, 240, 180, null, 0.4f, null, null, 0);

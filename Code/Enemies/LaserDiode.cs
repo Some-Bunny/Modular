@@ -347,6 +347,8 @@ namespace ModularMod
                 companion.encounterTrackable.journalData.PrimaryDisplayName = "#LASERDIODE_NAME";
                 companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
                 companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
+                StaticReferenceManager.AllHealthHavers.Remove(companion.healthHaver);
+
             }
         }
 

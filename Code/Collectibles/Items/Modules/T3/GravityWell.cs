@@ -198,6 +198,11 @@ namespace ModularMod
 
         private bool AdjustDebrisVelocity(DebrisObject debris)
         {
+            if (debris == null)
+            {
+                return false;
+            }
+
             if (debris.IsPickupObject)
             {
                 return false;
@@ -206,7 +211,12 @@ namespace ModularMod
             {
                 return false;
             }
-            Vector2 a = debris.sprite.WorldCenter - self.specRigidbody.UnitCenter;
+            if (self == null)
+            {
+                return false;
+            }
+
+            Vector2 a = debris.sprite.WorldCenter - (self.specRigidbody != null ? self.specRigidbody.UnitCenter : new Vector2(self.transform.position.x, self.transform.position.y));
             float num = Vector2.SqrMagnitude(a);
             if (num >= this.m_radiusSquared)
             {
@@ -233,25 +243,34 @@ namespace ModularMod
         }
         private bool AdjustRigidbodyVelocity(SpeculativeRigidbody other)
         {
-            Vector2 a = other.UnitCenter - self.specRigidbody.UnitCenter;
+            if (self == null)
+            {
+                return false;
+            }
+            if (other == null)
+            {
+                return false;
+            }
+
+            Vector2 a = other.UnitCenter - (self.specRigidbody != null ? self.specRigidbody.UnitCenter : new Vector2(self.transform.position.x, self.transform.position.y));
             float num = Vector2.SqrMagnitude(a);
             if (num < this.m_radiusSquared)
             {
                 float g = this.gravitationalForce;
                 Vector2 velocity = other.Velocity;
                 Projectile projectile = other.projectile;
-                if (projectile)
+                if (projectile != null)
                 {
                     return false;
                 }
                 else
                 {
-                    if (!other.aiActor)
+                    if (other.aiActor == null)
                     {
                         return false;
                     }
                     g = this.gravitationalForceActors;
-                    if (!other.aiActor.enabled)
+                    if (other.aiActor.enabled == false)
                     {
                         return false;
                     }

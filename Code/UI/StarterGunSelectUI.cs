@@ -364,7 +364,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
             dfPanel.gameObject.SetActive(true);
 
 
-            float mult = 1f;// GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+            float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
 
             StarterGunSelectUIController gunSelectUIController = StarterGunSelectUIController.UI_Frame.AddComponent<StarterGunSelectUIController>();
 
@@ -477,7 +477,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
 
             //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("name_label_peashooter"), "Modular_Name_Label_PeaShooter");
             //defaultAtlas.AddNewItemToAtlas(Bundle.LoadAsset<Texture2D>("name_label_peashooter_alt"), "Modular_Name_Label_PeaShooter_Alt");
-
+            #region Gun Initialization
             StarterGunSelectUIController.GenerateNewGunButton(defaultAtlas, defaultFont, gunSelectUIController,
                    "PeaShooter_Button"
                    , "ui_button_peashooter_gun" //asset name default
@@ -954,7 +954,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
                 
             }
             */
-
+            #endregion
 
             {
                 /*
@@ -1245,7 +1245,7 @@ var manager = StarterGunSelectUIController.UI_Frame.AddComponent<dfGUIManager>()
              string Label_Name_Asset_Name_Alt = "name_label_WIP_alt", string UnlockDescription = "Blah Blah Blah", Func<bool> OverrideUnlock = null, bool overrideCanBeSelected = false
             )
         {
-            float mult = 1f;//GameManager.Options.SmallUIEnabled == true ? 1 : 2;
+            float mult = GameManager.Options.SmallUIEnabled == true ? 1 : 2;
 
             GameObject Default_Gun_Button_object = PrefabBuilder.BuildObject(Button_Name+"_Object");
             //ApplyCanvasScaler(Default_Gun_Button_object);

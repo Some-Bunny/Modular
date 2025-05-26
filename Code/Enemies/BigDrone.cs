@@ -472,6 +472,7 @@ namespace ModularMod
                 companion.encounterTrackable.journalData.PrimaryDisplayName = "#BIGDRONE_NAME";
                 companion.encounterTrackable.journalData.NotificationPanelDescription = "#MODULARPRIME_SD";
                 companion.encounterTrackable.journalData.AmmonomiconFullEntry = "#MODULARPRIME_LD";
+                StaticReferenceManager.AllHealthHavers.Remove(companion.healthHaver);
 
             }
         }

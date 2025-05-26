@@ -1,0 +1,59 @@
+Event	ID	Name			Wwise Object Path	Notes
+	355926716	Play_Alarm_BeepBeep			\Default Work Unit\Play_Alarm_BeepBeep	
+	536518992	Play_TurretShot			\Default Work Unit\Play_TurretShot	
+	556212125	Play_Radar_Ping			\Default Work Unit\Play_Radar_Ping	
+	581983239	Play_SentryRailgun			\Default Work Unit\Play_SentryRailgun	
+	651064442	Stop_Alarm_BeepBeep			\Default Work Unit\Stop_Alarm_BeepBeep	
+	901986554	Stop_MachineNoises			\Default Work Unit\Stop_MachineNoises	
+	926081599	Stop_ChoirOfTheSilentMachine			\Default Work Unit\Stop_ChoirOfTheSilentMachine	
+	934712290	Play_ModulePowerUp			\Default Work Unit\Play_ModulePowerUp	
+	1139125904	Play_The_Bag			\Default Work Unit\Play_The_Bag	
+	1399522290	Play_Elevator_Alarm			\Default Work Unit\Play_Elevator_Alarm	
+	1401838332	Stop_Elevator_Alarm			\Default Work Unit\Stop_Elevator_Alarm	
+	1982298089	Play_ClickIntoPlace			\Default Work Unit\Play_ClickIntoPlace	
+	2045932581	Play_Glitch_Y			\Default Work Unit\Play_Glitch_Y	
+	2263619860	Play_TurretBeep			\Default Work Unit\Play_TurretBeep	
+	2496100048	Play_ToySqueak			\Default Work Unit\Play_ToySqueak	
+	3124522193	Play_Suffering			\Default Work Unit\Play_Suffering	
+	3641368652	Play_CriticalHit			\Default Work Unit\Play_CriticalHit	
+	3710642321	Play_ChoirOfTheSilentMachine			\Default Work Unit\Play_ChoirOfTheSilentMachine	
+	3896382888	Play_MachineNoises			\Default Work Unit\Play_MachineNoises	
+	4077747310	Play_ModularHornofWar			\Default Work Unit\Play_ModularHornofWar	
+	4104534834	Play_cloak			\Default Work Unit\Play_cloak	
+	4131577121	Play_DragunGrenade			\Default Work Unit\Play_DragunGrenade	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2714767868	VOL_MUS			\Default Work Unit\VOL_MUS	
+	3273357900	VOL_SFX			\Default Work Unit\VOL_SFX	
+
+Effect plug-ins	ID	Name	Type				Notes
+	424353719	Wwise Flanger (Custom)	Wwise Flanger			
+	787452601	Wwise Guitar Distortion (Custom)	Wwise Guitar Distortion			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	83188575	MachineNoises	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\MachineNoises_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\MachineNoises		271710
+	153348740	GunShotTurret	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\GunShotTurret_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\TurretShot\GunShotTurret		8214
+	167988315	glitch_6	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\glitch_6_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Glitch_Y\glitch_6		5404
+	180906736	SentryRailgun	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\SentryRailgun_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\SentryRailgun		29738
+	186084220	glitch_5	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\glitch_5_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Glitch_Y\glitch_5		34105
+	218248068	ChoirOfTheSilentMachine	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\ChoirOfTheSilentMachine_AD29F36A.wem		\Actor-Mixer Hierarchy\Default Work Unit\ChoirOfTheSilentMachine		831372
+	331441542	Alarm_BeepBeep	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\Alarm_BeepBeep_AD29F36A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Alarm_BeepBeep		22473
+	340376154	Pain_3	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\Pain_3_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Suffering\Pain_3		7556
+	394222194	The_Bag	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\The_Bag_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\The_Bag		8872
+	409197757	Crit	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\Crit_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\CriticalHit\Crit		4773
+	409514232	Pain_2	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\Pain_2_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Suffering\Pain_2		8774
+	464687602	DragunGrenade	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\DragunGrenade_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\DragunGrenade		23784
+	471034156	ClickIntoPlace	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\ClickIntoPlace_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\ClickIntoPlace		3591
+	532071829	cloak	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\cloak_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\cloak		92005
+	559786619	ModularHornofWar	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\HornofWar_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\ModularHornofWar		48249
+	775111408	Elevator_Alarm	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\Elevator_Alarm_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Elevator_Alarm		136546
+	794094648	Radar_Ping	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\Radar_Ping_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Radar_Ping		44307
+	823186435	ToySqueak	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\ToySqueak_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\ToySqueak		19365
+	833997387	Pain_1	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\Pain_1_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Suffering\Pain_1		13941
+	836412818	TurretBeep	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\TurretBeep_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\TurretBeep		1657
+	845493670	glitch_3	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\glitch_3_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Glitch_Y\glitch_3		66732
+	893751421	glitch_2	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\glitch_2_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Glitch_Y\glitch_2		101142
+	915298817	ModulePowerUp	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\ModulePowerUp_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\ModulePowerUp		9333
+	951255223	glitch_4	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\glitch_4_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Glitch_Y\glitch_4		85643
+	975108854	glitch_1	C:\Users\maxvo\Documents\WwiseProjects\Modular_Soundbank\.cache\Windows\SFX\glitch_1_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Glitch_Y\glitch_1		57349
+

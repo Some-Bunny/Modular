@@ -954,7 +954,7 @@ namespace ModularMod
                 EnemyDatabase.GetEntry("mdlr:modular_prime_1").ForcedPositionInAmmonomicon = 910;
                 EnemyDatabase.GetEntry("mdlr:modular_prime_1").isInBossTab = true;
                 EnemyDatabase.GetEntry("mdlr:modular_prime_1").isNormalEnemy = true;
-
+                StaticReferenceManager.AllHealthHavers.Remove(companion.healthHaver);
                 //EnemyDatabase.GetOrLoadByGuid("9189f46c47564ed588b9108965f975c9").bulletBank.GetBullet("burst")
             }
 

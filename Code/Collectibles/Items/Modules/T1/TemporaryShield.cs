@@ -78,6 +78,10 @@ namespace ModularMod
             {
                 return;
             }
+            if (args.ModifiedDamage <= 0f)
+            {
+                return;
+            }
             if (Blocks > 0)
             {
                 AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Trigger_01", source.gameObject);

@@ -132,7 +132,6 @@ namespace ModularMod
             };
         }
 
-
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
         {
             player.stats.RecalculateStats(player);
@@ -153,7 +152,7 @@ namespace ModularMod
             this.projectile.specRigidbody.OnPreRigidbodyCollision += PissAndShit;
             this.projectile.OnHitEnemy += HandleProjectileHitEnemy;
             Can = false;
-            this.Invoke("C", 1);
+            this.Invoke("C", 0.1f);
         }
 
         private void Update()
@@ -166,29 +165,33 @@ namespace ModularMod
 
         private void PissAndShit(SpeculativeRigidbody myBody, PixelCollider myCollider, SpeculativeRigidbody otherBody, PixelCollider otherCollider)
         {
-            if (otherBody && otherBody.projectile && myBody.projectile && Can == true)
+            if (otherBody && otherBody.projectile && myBody.projectile)
             {
-                Can = false;
-                this.Invoke("C", 1);
                 PhysicsEngine.SkipCollision = true;
-                myBody.RegisterTemporaryCollisionException(otherBody, 0.1f);
-                otherBody.projectile.hitEffects.HandleEnemyImpact(otherBody.projectile.sprite.WorldCenter, otherBody.transform.localEulerAngles.z, otherBody.transform, Vector2.zero, myBody.projectile.LastVelocity, true);
-                myBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
-                otherBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
-
-                if (ConfigManager.DoVisualEffect == true)
+                if (Can == true)
                 {
-                    GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+                    Can = false;
+                    this.Invoke("C", 0.1f);
+                    myBody.RegisterTemporaryCollisionException(otherBody, 0.15f);
+                    otherBody.projectile.hitEffects.HandleEnemyImpact(otherBody.projectile.sprite.WorldCenter, otherBody.transform.localEulerAngles.z, otherBody.transform, Vector2.zero, myBody.projectile.LastVelocity, true);
+                    myBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
+                    otherBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
 
-                    GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, myBody.projectile.sprite.WorldCenter, Quaternion.identity);
-                    blankObj.transform.localScale = Vector3.one * 0.35f;
-                    Destroy(blankObj, 2f);
-                }
-                Exploder.DoRadialPush(myBody.projectile.sprite.WorldCenter, 25, 3);
-                Exploder.DoRadialKnockback(myBody.projectile.sprite.WorldCenter, 25, 3);
-                Exploder.DoRadialMinorBreakableBreak(myBody.projectile.sprite.WorldCenter, 3);
-                Exploder.Explode(myBody.projectile.sprite.WorldCenter, SelfRicochet.ricoChetData, myBody.projectile.sprite.WorldCenter, null, true);
+                    if (ConfigManager.DoVisualEffect == true)
+                    {
+                        GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+
+                        GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, myBody.projectile.sprite.WorldCenter, Quaternion.identity);
+                        blankObj.transform.localScale = Vector3.one * 0.35f;
+                        Destroy(blankObj, 2f);
+                    }
+                    Exploder.DoRadialPush(myBody.projectile.sprite.WorldCenter, 25, 3);
+                    Exploder.DoRadialKnockback(myBody.projectile.sprite.WorldCenter, 25, 3);
+                    Exploder.DoRadialMinorBreakableBreak(myBody.projectile.sprite.WorldCenter, 3);
+                    Exploder.Explode(myBody.projectile.sprite.WorldCenter, SelfRicochet.ricoChetData, myBody.projectile.sprite.WorldCenter, null, true);
+                }         
             }
+
         }
 
         private bool Can = true;

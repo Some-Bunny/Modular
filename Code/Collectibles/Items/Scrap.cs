@@ -43,9 +43,21 @@ namespace ModularMod
                 ManualOffsetX = 0,
                 ManualOffsetY = 0
             };
+            PixelCollider item_2 = new PixelCollider
+            {
+                IsTrigger = false,
+                ManualWidth = 4,
+                ManualHeight = 4,
+                ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual,
+                CollisionLayer = CollisionLayer.Projectile,
+                ManualOffsetX = 4,
+                ManualOffsetY = 4
+            };
+
             speculativeRigidbody.PixelColliders = new List<PixelCollider>
             {
-                item
+                item,
+                item_2
             };
 
             var tk2dAnim = v.gameObject.AddComponent<tk2dSpriteAnimator>();

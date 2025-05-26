@@ -603,8 +603,9 @@ namespace ModularMod
                 bs.OverrideStartingFacingDirection = behaviorSpeculator.OverrideStartingFacingDirection;
                 bs.StartingFacingDirection = behaviorSpeculator.StartingFacingDirection;
                 bs.SkipTimingDifferentiator = behaviorSpeculator.SkipTimingDifferentiator;
+                StaticReferenceManager.AllHealthHavers.Remove(companion.healthHaver);
 
-                
+
                 Material mat2 = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
                 mat2.mainTexture = companion.aiActor.sprite.renderer.material.mainTexture;
                 mat2.SetColor("_EmissiveColor", new Color32(255, 215, 205, 255));
