@@ -39,10 +39,12 @@ namespace ModularMod
                 ManualWidth = 12,
                 ManualHeight = 12,
                 ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual,
-                CollisionLayer = CollisionLayer.PlayerBlocker,
+                CollisionLayer = CollisionLayer.Pickup,
                 ManualOffsetX = 0,
-                ManualOffsetY = 0
+                ManualOffsetY = 0,
+                IsTileCollider = true,
             };
+            /*
             PixelCollider item_2 = new PixelCollider
             {
                 IsTrigger = false,
@@ -51,13 +53,15 @@ namespace ModularMod
                 ColliderGenerationMode = PixelCollider.PixelColliderGeneration.Manual,
                 CollisionLayer = CollisionLayer.Projectile,
                 ManualOffsetX = 4,
-                ManualOffsetY = 4
-            };
+                ManualOffsetY = 4,
 
+
+            };
+            */
             speculativeRigidbody.PixelColliders = new List<PixelCollider>
             {
                 item,
-                item_2
+                //item_2
             };
 
             var tk2dAnim = v.gameObject.AddComponent<tk2dSpriteAnimator>();
@@ -148,8 +152,8 @@ namespace ModularMod
             {
                 base.spriteAnimator.SetFrame(Mathf.FloorToInt(Time.time * base.spriteAnimator.DefaultClip.fps % (float)base.spriteAnimator.DefaultClip.frames.Length));
             }
-            var gf = this.GetComponent<SquishyBounceWiggler>();
-            if (gf) { Destroy(gf); }
+            //var gf = this.GetComponent<SquishyBounceWiggler>();
+            //if (gf) { Destroy(gf); }
         }
 
         private bool m_hasBeenPickedUp;

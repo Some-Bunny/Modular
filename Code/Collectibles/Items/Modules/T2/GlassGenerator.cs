@@ -82,7 +82,7 @@ namespace ModularMod
 
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            return f - (f - (f / (1 + 0.0555f * Multiplier(player, modulePrinter))));
+            return f - (f - (f / (1 + 0.05f * Multiplier(player, modulePrinter))));
         }
 
         public int Multiplier(PlayerController player, ModulePrinterCore modulePrinter)

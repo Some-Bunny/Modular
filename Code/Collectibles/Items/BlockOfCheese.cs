@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Block Of Cheese",
             Description = "Smells Great!",
-            LongDescription = "A chunk of finely aged cheese.\n\nYou can't eat it, unfortunately.",
+            LongDescription = "A chunk of finely aged cheese.\n\nYou can't eat it.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("cheese"),
             Quality = ItemQuality.EXCLUDED,

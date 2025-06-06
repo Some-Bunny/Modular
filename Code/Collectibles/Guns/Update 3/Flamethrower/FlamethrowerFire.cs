@@ -19,7 +19,7 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
             this.projectile.UpdateSpeed();
             this.projectile.GetComponent<BounceProjModifier>().OnBounceContext += Bounce;
             this.projectile.OnHitEnemy += OHE;
-            this.projectile.BossDamageMultiplier *= 1.2f; 
+            this.projectile.BossDamageMultiplier *= 1.25f; 
         }
 
         public void OHE(Projectile p, SpeculativeRigidbody body, bool b)

@@ -37,7 +37,7 @@ namespace ModularMod
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AddModuleTag(BaseModuleTags.GENERATION);
-            h.AdditionalWeightMultiplier = 0.75f;
+            h.AdditionalWeightMultiplier = 0.625f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

@@ -165,7 +165,7 @@ namespace ModularMod
             tk2dAnim.playAutomatically = true;
             var k = tk2dAnim.gameObject.AddComponent<SpriteAnimatorKiller>();
             k.animator = tk2dAnim;
-            k.fadeTime = 0.8f;
+            k.fadeTime = 0.6f;
 
             tk2d.usesOverrideMaterial = true;
             tk2d.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");

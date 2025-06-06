@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/DFGUI/Examples/Containers/ScrollPanel.unity
+- path: Assets/Scene.unity
   isLoaded: 1
   isActive: 1

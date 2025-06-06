@@ -41,7 +41,7 @@ namespace ModularMod
 
 
             gun.reloadTime = 3.75f;
-            gun.DefaultModule.cooldownTime = 1.5f;
+            gun.DefaultModule.cooldownTime = 1.333f;
             gun.DefaultModule.numberOfShotsInClip = 4;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 1;

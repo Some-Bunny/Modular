@@ -5,6 +5,7 @@ using Alexandria.ItemAPI;
 using System;
 using ModularMod;
 using System.Linq;
+using System.Collections;
 
 namespace ModularMod
 {
@@ -94,7 +95,67 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+            IteratedDesign.SpecialProcessGunSpecific += c.ProcessShot;
         }
+
+
+        public static VFXPool Impact = (PickupObjectDatabase.GetById(539) as Gun).DefaultModule.projectiles[0].hitEffects.enemy;
+        public static string ImpactSFX = (PickupObjectDatabase.GetById(539) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
+
+        public void ProcessShot(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
+            p.AppliesStun = true;
+            p.StunApplyChance = 0.02f;
+            p.AppliedStunDuration = 2.25f;
+
+
+
+            p.TreatedAsNonProjectileForChallenge = true;
+            p.specRigidbody.OnPreRigidbodyCollision += OPC;
+        }
+
+        public void OPC(SpeculativeRigidbody mR, PixelCollider mP, SpeculativeRigidbody oR, PixelCollider oP)
+        {
+            if (oR.aiActor != null && oR.healthHaver != null && mR.projectile != null)
+            {
+                if (oR.aiActor.behaviorSpeculator && oR.aiActor.behaviorSpeculator.IsStunned)
+                {
+                    float damage = mR.projectile.baseData.damage;
+                    float force = mR.projectile.baseData.force;
+                    mR.projectile.baseData.damage *= 1.5f + ((float)IteratedDesign.PlayerHasIteratedDesign(Toolbox.GetModular()) * 0.5f);
+                    mR.projectile.baseData.force *= 1.5f + ((float)IteratedDesign.PlayerHasIteratedDesign(Toolbox.GetModular()) * 0.5f);
+                    mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage, force));
+                }
+            }
+        }
+
+        public IEnumerator FrameDelay(Projectile p, float DmG, float forec)
+        {
+            VFXPool Ef = p.hitEffects.enemy;
+            VFXPool Ef_ = p.hitEffects.deathEnemy;
+
+            string hit = p.enemyImpactEventName;
+
+            p.hitEffects.enemy = Impact;
+            p.hitEffects.deathEnemy = Impact;
+
+            p.enemyImpactEventName = ImpactSFX;
+
+            yield return null;
+            if (p)
+            {
+                p.baseData.damage = DmG;
+                p.hitEffects.enemy = Ef;
+                p.hitEffects.deathEnemy = Ef_;
+                p.enemyImpactEventName = hit;
+                p.baseData.damage = DmG;
+                p.baseData.force = forec;
+            }
+        }
+
+
+
 
         public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {

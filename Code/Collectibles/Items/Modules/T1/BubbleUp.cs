@@ -153,7 +153,7 @@ namespace ModularMod
             }
             var d = StaticExplosionDatas.CopyFields(Data);
             d.damage = 4f * stack;
-            d.force = 90 * stack;
+            d.force = 75 * stack;
             d.ignoreList = new List<SpeculativeRigidbody>() { p.specRigidbody };
             Exploder.Explode(stick.transform.position, d, Vector2.zero);
             AkSoundEngine.PostEvent("Play_BOSS_Rat_Cheese_Burst_01", stick.gameObject);

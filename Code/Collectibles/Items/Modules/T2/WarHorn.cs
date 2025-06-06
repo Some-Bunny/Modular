@@ -38,7 +38,7 @@ namespace ModularMod
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 
-            h.AdditionalWeightMultiplier = 0.6f;
+            h.AdditionalWeightMultiplier = 0.7f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);

@@ -108,7 +108,7 @@ namespace ModularMod
             travelledDistanceComponent.TriggerAmount = 2 + stack;
             travelledDistanceComponent.OnTravelledDistance += (proj, h1, h4) =>
             {
-                ExplosionData.damage = (proj.baseData.damage * 0.5f) + 2.5f;
+                ExplosionData.damage = (proj.baseData.damage * 0.1f) + 3f;
                 Exploder.Explode(h1, ExplosionData, Vector2.zero, null, true);
                 if (h4 == 2 + stack)
                 {

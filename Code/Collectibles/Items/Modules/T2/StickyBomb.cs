@@ -143,7 +143,7 @@ namespace ModularMod
                 stack = this.Stack();
             }
             var d = StaticExplosionDatas.CopyFields(Data);
-            d.damage = 6 + (2 * stack);
+            d.damage = 7.5f + (5 * stack);
             Exploder.Explode(stick.transform.position, d, Vector2.zero);
 
 
@@ -162,8 +162,8 @@ namespace ModularMod
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
         {
-        }
 
+        }
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinter);

@@ -108,19 +108,21 @@ namespace ModularMod
         private void Start() 
         { 
             self = this.GetComponent<Projectile>();
-            newRNG = UnityEngine.Random.value;
+            newRNG = UnityEngine.Random.value + 0.25f;
         }
 
         public float E = 0;
         public float newRNG;
         public void Update()
         {
+            if (self == null) { return; }
             if (AmountOfTeleports == 0) { return; }
             if (E < newRNG)
             {
                 E += BraveTime.DeltaTime;
                 return;
             }
+
             AmountOfTeleports--;
             E = 0;
             newRNG = UnityEngine.Random.value + 0.15f;

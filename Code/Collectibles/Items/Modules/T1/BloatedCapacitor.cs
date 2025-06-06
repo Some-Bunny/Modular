@@ -48,7 +48,7 @@ namespace ModularMod
 
         public override void OnAnyEverObtainedNonActivation(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
-            if (RandomRoomsToGo == 0) { RandomRoomsToGo = UnityEngine.Random.Range(10, 20); }
+            if (RandomRoomsToGo == 0) { RandomRoomsToGo = UnityEngine.Random.Range(10, 21); }
         }
 
         public int RandomRoomsToGo = 0;
@@ -59,7 +59,7 @@ namespace ModularMod
             modulePrinter.OnPostProcessProjectile += PPP;
             this.gunStatModifier = new ModuleGunStatModifier()
             {
-                Name = "Glass Gen Church",
+                Name = "owie :(",
                 FireRate_Process = PFR,
                 ChargeSpeed_Process = PFR,
                 Reload_Process = PFR,
@@ -114,7 +114,7 @@ namespace ModularMod
         public void OnRoomCleared(ModulePrinterCore modulePrinter, PlayerController player, RoomHandler room)
         {
             RandomRoomsToGo--;
-            if (RandomRoomsToGo == 0)
+            if (RandomRoomsToGo <= 0)
             {
                 modulePrinter.RemoveModule(this, 1);
                 GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(PickupObjectDatabase.GetById(PowerCell.PowerCellID).gameObject, Vector3.zero, Quaternion.identity);
@@ -124,7 +124,7 @@ namespace ModularMod
                     component3.CanBeDropped = false;
                     component3.Pickup(player);
                 }
-                RandomRoomsToGo = UnityEngine.Random.Range(10, 20);
+                RandomRoomsToGo = UnityEngine.Random.Range(10, 17);
                 AkSoundEngine.PostEvent("Play_BOSS_FuseBomb_Death_01", player.gameObject);
                 if (ConfigManager.DoVisualEffect == true)
                 {

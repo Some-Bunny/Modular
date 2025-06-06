@@ -61,6 +61,7 @@ namespace ModularMod
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
             printer.OnPostProcessProjectile += PPP;
+
             /*
             this.CritContext = new CriticalHitComponent.CritContext()
             {
@@ -80,6 +81,13 @@ namespace ModularMod
             };
             printer.ProcessGunStatModifier(this.gunStatModifier);
         }
+
+        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
+        {
+            SpecialProcessPickup?.Invoke(modulePrinter, this.Stack(modulePrinter), player);
+            base.OnAnyPickup(modulePrinter, modularGunController, player, IsTruePickup);
+        }
+
         public float CritCalc(float baseChance)
         {
             return baseChance;
@@ -130,23 +138,32 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 + (0.125f * stack);
-            p.baseData.speed *= 1 + (0.15f * stack);
-            p.baseData.force *= 2 * stack;
-            p.baseData.range *= 2 * stack;
 
-            p.AppliedStunDuration *= 1 + (0.3f * stack);
 
-            p.BleedApplyChance *= 1 + (0.3f * stack);
-            p.CharmApplyChance *= 1 + (0.3f * stack);
-            p.CheeseApplyChance *= 1 + (0.3f * stack);
-            p.FireApplyChance *= 1 + (0.3f * stack);
-            p.FreezeApplyChance *= 1 + (0.3f * stack);
-            p.PoisonApplyChance *= 1 + (0.3f * stack);
-            p.SpeedApplyChance *= 1 + (0.3f * stack);
-            p.StunApplyChance *= 1 + (0.3f * stack);
+            float m = 1 + (0.3f * stack);
+            float m_ = 1 + (0.125f * stack);
+            float m__ = 1 + (0.25f * stack);
 
-            p.BlackPhantomDamageMultiplier *= 1 + (0.125f * stack);
+            p.baseData.damage *= m_;
+            p.baseData.speed *= m_;
+            p.BlackPhantomDamageMultiplier *= m_;
+
+
+            p.baseData.force *= m__;
+            p.baseData.range *= m__;
+
+
+            p.AppliedStunDuration *= m;
+
+            p.BleedApplyChance *= m;
+            p.CharmApplyChance *= m;
+            p.CheeseApplyChance *= m;
+            p.FireApplyChance *= m;
+            p.FreezeApplyChance *= m;
+            p.PoisonApplyChance *= m;
+            p.SpeedApplyChance *=m;
+            p.StunApplyChance *= m;
+
 
             p.UpdateSpeed();
             if (SpecialProcessGunSpecific != null)
@@ -162,6 +179,8 @@ namespace ModularMod
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
         }
         public static Action<ModulePrinterCore, Projectile, int, PlayerController> SpecialProcessGunSpecific;
+        public static Action<ModulePrinterCore, int, PlayerController> SpecialProcessPickup;
+
     }
 }
 

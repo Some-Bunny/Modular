@@ -86,7 +86,7 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             projectile.sprite.renderer.material = mat;
             projectile.baseData.speed = 18.5f;
-            projectile.baseData.damage = 0.7f;
+            projectile.baseData.damage = 0.45f;
             projectile.baseData.force = 2.2f;
 
             projectile.AppliesFire = true;

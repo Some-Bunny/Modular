@@ -43,7 +43,7 @@ namespace ModularMod
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
-            h.OverrideScrapCost = 7;
+            h.OverrideScrapCost = 6;
             h.EnergyConsumption = 1;
 
             ID = h.PickupObjectId;

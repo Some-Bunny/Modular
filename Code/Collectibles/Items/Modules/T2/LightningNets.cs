@@ -44,7 +44,6 @@ namespace ModularMod
 
             ID = h.PickupObjectId;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
-
         }
         public static int ID;
 
@@ -53,12 +52,12 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.12f) { return; }
             int stack = 1;
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
-            chain.Damage = Mathf.Max(0.5f, p.baseData.damage / 2.5f);
-            chain.Range = 3.5f + (2.5f * stack);
+            chain.Damage = Mathf.Max(0.5f, p.baseData.damage * 0.4f);
+            chain.Range = 2f + (3f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
-            p.baseData.range += 5;
-            p.baseData.speed *= 0.8f;
+            p.baseData.range += 6.5f;
+            p.baseData.speed *= 0.75f;
             p.UpdateSpeed();
         }
 
@@ -75,12 +74,13 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             var chain = p.gameObject.AddComponent<ElectricChainProjectile>();
-            chain.Damage = Mathf.Max(0.5f, p.baseData.damage / 2.5f);
-            chain.Range = 4f + (4f * stack);
+            chain.Damage = Mathf.Max(0.5f, p.baseData.damage * 0.4f);
+            chain.Range = 2f + (3f * stack);
             chain.player = player;
             chain.projectile = p.gameObject;
-            p.baseData.range += 5;
-            p.baseData.speed *= 0.8f;
+            p.baseData.range += 6.5f;
+            p.baseData.speed *= 0.75f;
+            p.UpdateSpeed();
         }
 
         public static List<ElectricChainProjectile> allactiveTetherProjectiles = new List<ElectricChainProjectile>();
@@ -95,6 +95,7 @@ namespace ModularMod
         private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
         private float Tick = 0.333f;
         private float Elapsed = 0;
+        private float Elapsed_ForceKill = 0;
 
 
         public void Update()
@@ -135,6 +136,14 @@ namespace ModularMod
                             }
                         }
                     }
+                }
+            }
+            else
+            {
+                Elapsed_ForceKill += BraveTime.DeltaTime;
+                if (Elapsed_ForceKill >= 30)
+                {
+                    Destroy(this);
                 }
             }
             foreach (var si in ExtantTethers)

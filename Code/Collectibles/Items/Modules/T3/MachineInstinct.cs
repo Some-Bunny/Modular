@@ -38,7 +38,7 @@ namespace ModularMod
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.RETALIATION);
-            h.OverrideScrapCost = 10;
+            h.OverrideScrapCost = 12;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

@@ -83,9 +83,8 @@ namespace ModularMod
             projectile.hitEffects.enemy = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             projectile.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
             projectile.hitEffects.alwaysUseMidair = false;// Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
-
-            projectile.objectImpactEventName = (PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
-            projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(169) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
+            projectile.objectImpactEventName = (PickupObjectDatabase.GetById(156) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
+            projectile.enemyImpactEventName = (PickupObjectDatabase.GetById(156) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
 
             PierceProjModifier spook = projectile.gameObject.GetOrAddComponent<PierceProjModifier>();
             spook.penetration = 20;
@@ -112,8 +111,8 @@ namespace ModularMod
             projectile.gameObject.AddComponent<GravityPulsarLargeProjectile>();
             ImprovedAfterImage yes = projectile.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
-            yes.shadowLifetime = 0.1875f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowLifetime = 0.45f;
+            yes.shadowTimeDelay = 0.025f;
             yes.dashColor = new Color(1.1f, 0.5f, 1.1f, 1f);
 
 
@@ -189,13 +188,21 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+            IteratedDesign.SpecialProcessGunSpecificClip += c.ProcessClipSpecial;
+
         }
 
         public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
-            return f / (1 + (stack / 4));
+            return f / (1 + (stack / 3.5f));
         }
+        public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return (int)(f * 1.333f);
+        }
+
         public void Start()
         {
             var thing = this.gun.GetComponent<ModularGunController>();
@@ -222,8 +229,14 @@ namespace ModularMod
 
         public int ProcessClipSize(int currentFinales, int clipSize, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
+            return gun.DefaultModule.GetModNumberOfShotsInClip(player) - 1;// clipSize - (CheckModule() == true ? 2 : 1);
+        }
+        /*
+        public int ProcessClipSize(int currentFinales, int clipSize, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
+        {
             return clipSize - (CheckModule() == true ? 2 : 1);
         }
+        */
         public static int ID;
     }
 }

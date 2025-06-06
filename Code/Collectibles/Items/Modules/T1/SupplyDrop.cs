@@ -26,7 +26,7 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("supplydrop_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.5f;
+            h.AdditionalWeightMultiplier = 0.45f;
             h.LabelName = "Supply Drop " + h.ReturnTierLabel();
             h.LabelDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup.\nAir drops 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") random pickup every floor.\n" +StaticColorHexes.AddColorToLabelString("Passively reduces the chance of better modules appearing", StaticColorHexes.Pink_Hex) + ".";
             h.EnergyConsumption = 1f;
@@ -35,7 +35,7 @@ namespace ModularMod
             h.AddModuleTag(BaseModuleTags.GENERATION);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
-            h.OverrideScrapCost = 8;
+            h.OverrideScrapCost = 12;
             h.IsUncraftable = true;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;

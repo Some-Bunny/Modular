@@ -76,7 +76,7 @@ namespace ModularMod
         {
             if (p.gameObject.GetComponent<ProjectileSplitController>() != null) { return; }
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 0.7f;
+            p.baseData.damage *= 0.6f;
             var split = p.gameObject.AddComponent<ProjectileSplitController>();
             split.dmgMultAfterSplit = 0.2f + (0.15f * stack);
             split.speedMultAfterSplit = 0.7f + (0.1f * stack);

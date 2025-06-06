@@ -22,12 +22,12 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
             if (this.projectile != null)
             {
                 AkSoundEngine.PostEvent("Play_WPN_blackhole_loop_01", base.gameObject);
-                Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f * ConfigManager.DistortionWaveMultiplier, 0.2f * ConfigManager.DistortionWaveMultiplier, 20, 0.5f);
+                Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 3f * ConfigManager.DistortionWaveMultiplier, 0.1f * ConfigManager.DistortionWaveMultiplier, 30, 0.5f);
 
                 this.m_distortMaterial = new Material(ShaderCache.Acquire("Brave/Internal/DistortionRadius"));
                 this.m_distortMaterial.SetFloat("_Strength", 0f);
                 this.m_distortMaterial.SetFloat("_TimePulse", 0.2f);
-                this.m_distortMaterial.SetFloat("_RadiusFactor", 0.5f);
+                this.m_distortMaterial.SetFloat("_RadiusFactor", 0.15f);
                 this.m_distortMaterial.SetVector("_WaveCenter", this.GetCenterPointInScreenUV(projectile.sprite.WorldCenter));
                 Pixelator.Instance.RegisterAdditionalRenderPass(this.m_distortMaterial);
                 var stick =  this.gameObject.GetComponent<StickyProjectileModifier>();
@@ -35,17 +35,19 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
                 {
                     stick.OnPreStick += OPS;
                 }
+                if (Player != null && IteratedDesign.PlayerHasIteratedDesign(Player) > 0)
+                {
+                    gravitationalForce *= 0.75f;
+                    radius *= 2;
+                    isIterated = true;
+                    this.projectile.baseData.speed *= 0.5f;
+                    this.projectile.UpdateSpeed();
+                }
             }
         }
+        private bool isIterated = false;
 
-        public bool CheckModule()
-        {
-            if (GlobalModuleStorage.PlayerHasActiveModule(Player, IteratedDesign.ID))
-            {
-                return true;
-            }
-            return false;
-        }
+
 
 
         public void OPS(GameObject proj, PlayerController player)
@@ -73,7 +75,7 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
         public void OnDestroy()
         {
             AkSoundEngine.PostEvent("Stop_WPN_blackhole_loop_01", base.gameObject);
-            Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 5f * ConfigManager.DistortionWaveMultiplier, 0.2f * ConfigManager.DistortionWaveMultiplier, 20, 0.5f);
+            Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 2f * ConfigManager.DistortionWaveMultiplier, 0.1f * ConfigManager.DistortionWaveMultiplier, 40, 0.3f);
 
             if (Pixelator.Instance != null && this.m_distortMaterial != null)
             {
@@ -81,9 +83,32 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
             }
         }
         public float e = 0;
+        public float e_ = 0;
+
+        bool isOomfing = false;
+
         public void Update()
         {
-            if (e < 1) { e += BraveTime.DeltaTime; this.m_distortMaterial.SetFloat("_Strength", 4 * e);            }
+            if (e < 1) { e += BraveTime.DeltaTime; this.m_distortMaterial.SetFloat("_Strength", -755 * e);    }
+            if (isIterated)
+            {
+                e_ += BraveTime.DeltaTime;
+                if (e_ > 2.75f)
+                {
+                    e_ = -0.25f;
+                    if (isOomfing == false)
+                    {
+                        AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Trigger_01", this.gameObject);
+                        Exploder.DoDistortionWave(projectile.sprite.WorldCenter, 0.5f * ConfigManager.DistortionWaveMultiplier, 0.25f * ConfigManager.DistortionWaveMultiplier, 50, 0.5f);
+                        isOomfing = true;
+                    }
+                }
+                else
+                {
+                    isOomfing = false;
+                }
+            }
+
             if (this.projectile != null)
             {
                 if (this.m_distortMaterial != null)
@@ -157,7 +182,7 @@ namespace ModularMod.Code.Collectibles.Guns.Gravity_Pulsar
                         if (vector != Vector2.zero)
                         {
                             projectile.Direction = vector.normalized;
-                            projectile.Speed = Mathf.Max(CheckModule() ? 10 : 13f, vector.magnitude);
+                            projectile.Speed = isIterated ? e_ < 0 ? vector.magnitude * 1 + (370f * Time.deltaTime) : vector.magnitude * 1 - (60f * Time.deltaTime) : Mathf.Max(13,  vector.magnitude);
                             other.Velocity = projectile.Direction * projectile.Speed;
                             if (projectile.shouldRotate && (vector.x != 0f || vector.y != 0f))
                             {

@@ -22,6 +22,19 @@ namespace ModularMod
 {
     public static class Toolbox
     {
+
+        public static PlayerController GetModular()
+        {
+            foreach (var entry in GameManager.Instance.AllPlayers)
+            {
+                if (entry.PlayerHasCore() != null)
+                {
+                    return entry;
+                }
+            }
+            return  GameManager.Instance.PrimaryPlayer;
+        }
+
         public static float SubdivideRange(float startValue, float endValue, int numDivisions, int i, bool offset = false)
         {
             return Mathf.Lerp(startValue, endValue, ((float)i + ((!offset) ? 0f : 0.5f)) / (float)(numDivisions - 1));
