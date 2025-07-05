@@ -106,7 +106,7 @@ namespace ModularMod
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
             p.baseData.force *= 1 + stack;
-            var pierce = p.gameObject.GetComponent<PierceProjModifier>();
+            var pierce = p.gameObject.GetOrAddComponent<PierceProjModifier>();
             pierce.penetration += 2;
         }
 

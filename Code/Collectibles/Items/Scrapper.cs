@@ -497,6 +497,10 @@ namespace ModularMod
                                 }
                                 else
                                 {
+                                    if (pickup is Gun)
+                                    {
+                                        Destroy(pickup.GetComponentInParent<DebrisObject>());
+                                    }
                                     if (OnAnythingScrapped != null) { OnAnythingScrapped(pickup); }
                                     scrapper.DoSpawnVFX(pickup.sprite, scrap);
                                 }

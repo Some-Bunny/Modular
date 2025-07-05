@@ -72,6 +72,24 @@ namespace ModularMod
 
         public static GenericLootTable SelectTable(PickupObject.ItemQuality itemQuality)
         {
+            if (GameStatsManager.Instance.IsRainbowRun)
+            {
+                switch (itemQuality)
+                {
+                    case PickupObject.ItemQuality.D:
+                        return B_Tier_Table;
+                    case PickupObject.ItemQuality.C:
+                        return A_Tier_Table;
+                    case PickupObject.ItemQuality.B:
+                        return S_Tier_Table;
+                    case PickupObject.ItemQuality.A:
+                        return S_Tier_Table;
+                    case PickupObject.ItemQuality.S:
+                        return S_Tier_Table;
+                    default:
+                        return Fallback_Table;
+                }
+            }
             switch (itemQuality)
             {
                 case PickupObject.ItemQuality.D:

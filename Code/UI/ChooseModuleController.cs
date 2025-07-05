@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using static Alexandria.DungeonAPI.SpecialComponents;
 
 namespace ModularMod
 {
@@ -66,7 +67,8 @@ namespace ModularMod
 
             if (UnityEngine.Random.value < ReturnT4Chance(mod.Tier, g.quality))
             {
-                if (UnityEngine.Random.value < 0.0005f) { AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject); return GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega); }
+                AkSoundEngine.PostEvent("Play_BOSS_queenship_emerge_01", g.gameObject);
+                mod = GlobalModuleStorage.ReturnRandomModule(DefaultModule.ModuleTier.Tier_Omega);
                 return mod;
             }
 
@@ -85,14 +87,14 @@ namespace ModularMod
             switch (tier)
             {
                 case DefaultModule.ModuleTier.Tier_1:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.0005f); }
-                    return 0.0005f;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.001f); }
+                    return 0.001f;
                 case DefaultModule.ModuleTier.Tier_2:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.000875f); }
-                    return 0.000875f;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00175f); }
+                    return 0.00175f;
                 case DefaultModule.ModuleTier.Tier_3:
-                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.001125f); }
-                    return 0.001125f;
+                    if (ModifyOmegaModuleChance != null) { return ModifyOmegaModuleChance(quality, tier, 0.00225f); }
+                    return 0.00225f;
                 default: return 0;
             }
         }
@@ -107,6 +109,10 @@ namespace ModularMod
             if (g.quality == PickupObject.ItemQuality.S)
             {
                 Count += 2;
+            }
+            if (GameStatsManager.Instance.IsRainbowRun)
+            {
+                Count++;
             }
         }
 
@@ -310,6 +316,10 @@ namespace ModularMod
             light.LightColor = TierColor();
             g.sprite.renderer.material.shader = StaticShaders.Displacer_Beast_Shader;
             g.sprite.renderer.material.SetTexture("_MainTex", g.sprite.renderer.material.mainTexture);
+            if (g.GetComponentInParent<DebrisObject>() != null)
+            {
+                Destroy(g.GetComponentInParent<DebrisObject>());
+            }
             float elapsed = 0f;
             while (elapsed < 0.5f)
             {

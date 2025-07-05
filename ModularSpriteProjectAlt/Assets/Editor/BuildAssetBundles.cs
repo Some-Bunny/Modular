@@ -7,7 +7,7 @@ using System.Collections;
 
 public class BuildAssetBundles
 {
-
+    
     [MenuItem("Assets/Build AssetBundles (Windows)")]
     static void B_W()
     {

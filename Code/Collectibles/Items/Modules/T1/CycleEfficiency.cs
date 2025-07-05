@@ -79,8 +79,13 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
+            if (this == null) { return; }
+            if (modulePrinterCore == null) { return; }
+            if (player == null) { return; }
+            if (player.CurrentGun == null) { return; }
+
             int stack = this.ReturnStack(modulePrinterCore);    
-            GlobalSparksDoer.DoSingleParticle(p.sprite.WorldCenter, Toolbox.GetUnitOnCircle(player.CurrentGun.CurrentAngle + UnityEngine.Random.Range(165, 195), 3 + (1f * stack)), null, 2, null, GlobalSparksDoer.SparksType.FLOATY_CHAFF);
+            GlobalSparksDoer.DoSingleParticle(p.SafeCenter, Toolbox.GetUnitOnCircle(player.CurrentGun.CurrentAngle + UnityEngine.Random.Range(165, 195), 3 + (1f * stack)), null, 2, null, GlobalSparksDoer.SparksType.FLOATY_CHAFF);
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
