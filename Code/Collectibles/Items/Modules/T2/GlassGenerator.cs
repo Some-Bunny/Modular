@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Glass Generator",
             Description = "See The Use",
-            LongDescription = "Grants 2 Glass Guon Stones. While active, picking up any Module gives 2 (+1 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 2 Glass Guon Stones. While active, picking up any Module gives 2 (+1 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module"),
             Quality = ItemQuality.SPECIAL,

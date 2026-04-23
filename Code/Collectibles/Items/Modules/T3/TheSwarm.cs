@@ -22,7 +22,7 @@ namespace ModularMod
         {
             Name = "The Swarm",
             Description = "Devourer",
-            LongDescription = "Massively reduces damage. Projectiles gain massively increased lifetime, piercing and homing. (+Bounces, Pierces and stronger Homing per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Greatly reduces damage. Projectiles gain massively increased lifetime, piercing and homing. (+Bounces, Pierces and stronger Homing per stack)",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -35,7 +35,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "The Swarm " + h.ReturnTierLabel();
-            h.LabelDescription = "Massively reduces damage.\nProjectiles gain massively increased lifetime,\npiercing and homing. (" + StaticColorHexes.AddColorToLabelString("+Bounces, Pierces and stronger Homing", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Greatly reduces damage.\nProjectiles gain massively increased lifetime,\npiercing and homing. (" + StaticColorHexes.AddColorToLabelString("+Bounces, Pierces and stronger Homing", StaticColorHexes.Light_Orange_Hex) + ")";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
@@ -55,7 +55,7 @@ namespace ModularMod
         {
             if (UnityEngine.Random.value > 0.01f) { return; }
             int stack = 1;
-            p.baseData.damage *= 0.2f;
+            p.baseData.damage *= 0.25f;
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
             aaaa.damageMultOnPierce *= 1.05f;
             aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack * 5);

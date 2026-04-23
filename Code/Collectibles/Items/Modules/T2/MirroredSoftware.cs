@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Mirrored Software",
             Description = "I'm You, Two",
-            LongDescription = "Acts as 2 (+2 per stack) copies of a random active module. Switches on every floor.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Acts as 2 (+2 per stack) copies of a random active module. Switches on every floor.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mirrored_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mirrored_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Mirrored Software " + h.ReturnTierLabel();
-            h.LabelDescription = "Acts as 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") copies of\na random active module.\nSwitches on every floor.";
+            h.LabelDescription = "Acts as 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") copies of\na random "+ StaticColorHexes.AddColorToLabelString("active", StaticColorHexes.Light_Green_Hex) + " module.\nSwitches on every floor.";
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AddModuleTag(BaseModuleTags.GENERATION);

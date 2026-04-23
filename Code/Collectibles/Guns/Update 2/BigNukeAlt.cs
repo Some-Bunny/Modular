@@ -45,7 +45,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(39) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 8f;
+            gun.reloadTime = 6.5f;
             gun.DefaultModule.cooldownTime = 5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
@@ -81,9 +81,9 @@ namespace ModularMod
             yes.shadowTimeDelay = 0.01f;
             yes.dashColor = new Color(0f, 1f, 0f, 1f);
 
-            var homing = projectile.gameObject.GetOrAddComponent<HomingModifier>();
-            homing.AngularVelocity = 60;
-            homing.HomingRadius = 20;
+            //var homing = projectile.gameObject.GetOrAddComponent<HomingModifier>();
+            //homing.AngularVelocity = 60;
+            //homing.HomingRadius = 20;
 
 
             Material mat = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
@@ -92,7 +92,10 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
-            projectile.baseData.speed *= 0.35f;
+            projectile.baseData.speed = 70f;
+            projectile.baseData.UsesCustomAccelerationCurve = true;
+            projectile.baseData.AccelerationCurve = AnimationCurve.Linear(0, 0.3f, 1, 1);
+            projectile.baseData.CustomAccelerationCurveDuration = 2f;
             projectile.baseData.damage = 60f;
             projectile.shouldRotate = true;
 

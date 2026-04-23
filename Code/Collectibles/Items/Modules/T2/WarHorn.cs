@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "War Horn",
             Description = "Trumpet",
-            LongDescription = "Gain a dramatic entrance every combat room. (+Extended Drama per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Gain a dramatic entrance every combat room. (+Extended Drama per stack).",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("warhorn_t2_module"),
             Quality = ItemQuality.SPECIAL,

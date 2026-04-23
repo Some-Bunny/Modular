@@ -410,20 +410,41 @@ namespace ModularMod
         public static void HandlePickupCurseParticlesHook(Action<PickupObject> orig, PickupObject self)
         {
             orig(self);
-            foreach (var player in GameManager.Instance.AllPlayers)
+            
+            if (self != null)
             {
-                if (player.PlayerHasCore() != null && self.gameObject.GetComponent<ShittyVFXAttacher>() == null && self.gameObject.GetComponent<ChooseModuleController>() == null && ItemSynergyController.ModularSynergy.isSynergyItem(self.PickupObjectId) == true)
+                var attacher = self.gameObject.GetComponent<ShittyVFXAttacher>();
+                var cmc = self.gameObject.GetComponent<ChooseModuleController>();
+
+                if (attacher != null) { return; }
+
+                if (GameManager.Instance != null && GameManager.Instance.AllPlayers != null)
                 {
-                    var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
-                    p.gameObj = VFXStorage.VFX__Synergy;
-                    p.wasUsingAltCostume = player.IsUsingAlternateCostume;
+
+                    foreach (var player in GameManager.Instance.AllPlayers)
+                    {
+                        if (player != null)
+                        {
+                            var core = player.PlayerHasCore();
+                            if (core != null && attacher == null && cmc == null && ItemSynergyController.ModularSynergy.isSynergyItem(self.PickupObjectId) == true)
+                            {
+                                var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
+                                p.gameObj = VFXStorage.VFX__Synergy;
+                                p.wasUsingAltCostume = player.IsUsingAlternateCostume;
+                            }
+                            else if (self is Gun && core != null && attacher == null && cmc == null)
+                            {
+                                var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
+                                p.gameObj = VFXStorage.VFX_Modulable;
+                                p.wasUsingAltCostume = player.IsUsingAlternateCostume;
+
+                            }
+                        }
+                        
+                    }
                 }
-                else if (self is Gun && player.PlayerHasCore() != null && self.gameObject.GetComponent<ShittyVFXAttacher>() == null && self.gameObject.GetComponent<ChooseModuleController>() == null)
-                {
-                    var p = self.gameObject.AddComponent<ShittyVFXAttacher>();
-                    p.wasUsingAltCostume = player.IsUsingAlternateCostume;
-                }
-            }          
+            }    
+            
         }
     }
 }

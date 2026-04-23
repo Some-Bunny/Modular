@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Phantasm Boost",
             Description = "Cold As The Grave",
-            LongDescription = "Deal an additional 33% (+33% per stack) damage to Jammed enemies. Reload 15% (+15% hyperbolically per stack) faster after every kill. Kill count resets AFTER reloading. Projectiles will now be able to travel through internal walls and pierce various debris." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal an additional 33% (+33% per stack) damage to Jammed enemies. Reload 15% (+15% hyperbolically per stack) faster after every kill. Kill count resets AFTER reloading. Projectiles will now be able to travel through internal walls and pierce various debris.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("gravecooling_tier1_module"),
             Quality = ItemQuality.SPECIAL,

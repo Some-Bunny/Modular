@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Concussive Tips",
             Description = "Hit Harder, Differently",
-            LongDescription = "Increases knockback Force by 100% (+100% per stack), Boss damage by 25% (+25% per stack), and adds a small chance to stun enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases knockback Force by 100% (+100% per stack), Boss damage by 25% (+25% per stack), and adds a small chance to stun enemies.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("conc_tier1_module"),
             Quality = ItemQuality.SPECIAL,

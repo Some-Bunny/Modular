@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Quantum Leap",
             Description = "Particles In The Universe",
-            LongDescription = "Doubles reload time and clip size. Projectules fired are put into Stasis. Upon reloading an empty clip, enter a Cloak that removes all of your projectiles from Stasis, gaining slight homing, damage and bouncing. (+Bouncing and Damage per stack). Exiting your cloak puts all of your projectiles back into Stasis." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Doubles reload time and clip size. Projectiles fired are put into Stasis. Upon reloading, enter a Cloak that removes all of your projectiles from Stasis, gaining slight homing, damage and bouncing. (+Bouncing and Damage per stack). Exiting your cloak puts all of your projectiles back into Stasis.",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("quantumleap_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("quantumleap_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Quantum Leap " + h.ReturnTierLabel();
-            h.LabelDescription = "Doubles reload time and clip size.\nProjectiles fired are put into "+StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex)+". Upon reloading an empty clip,\nenter a Cloak that removes all of your projectiles from "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ",\ngaining slight homing, damage and bouncing. ("+ StaticColorHexes.AddColorToLabelString("+Bouncing and Damage", StaticColorHexes.Light_Orange_Hex) + ")\nExiting your cloak puts all of your projectiles back into "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ".";
+            h.LabelDescription = "Doubles reload time and clip size.\nProjectiles fired are put into "+StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex)+". Upon reloading, enter a Cloak that removes all of your projectiles\nfrom "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ",\ngaining slight homing, damage and bouncing. ("+ StaticColorHexes.AddColorToLabelString("+Bouncing and Damage", StaticColorHexes.Light_Orange_Hex) + ")\nExiting your cloak puts all of your projectiles back into "+ StaticColorHexes.AddColorToLabelString("Stasis", StaticColorHexes.Blue_Color_Hex) + ".";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);

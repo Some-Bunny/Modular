@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Cleaning Protocol",
             Description = "BRUSH",
-            LongDescription = "Deal 60% (+30% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 20% (+20% per stack) extra damage from various effects.\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal 66% (+33% per stack) more damage to enemies above 90% HP.\nAll enemies take an additional 20% (+20% per stack) extra damage from various effects.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module"),
             Quality = ItemQuality.SPECIAL,

@@ -2143,3 +2143,143 @@ MonoBehaviour:
     wrapMode: 2
     minFidgetDuration: 1
     maxFidgetDuration: 2
+  - name: missileUp
+    frames:
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 479
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 476
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 476
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 476
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 477
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 479
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    - spriteCollection: {fileID: 114044653504635242, guid: b2e6f57de8c15494d8b6a441148401bf,
+        type: 2}
+      spriteId: 478
+      invulnerableFrame: 0
+      groundedFrame: 1
+      requiresOffscreenUpdate: 0
+      eventAudio: 
+      eventVfx: 
+      eventStopVfx: 
+      eventLerpEmissive: 0
+      eventLerpEmissiveTime: 0.5
+      eventLerpEmissivePower: 30
+      forceMaterialUpdate: 0
+      finishedSpawning: 0
+      triggerEvent: 0
+      eventInfo: 
+      eventInt: 0
+      eventFloat: 0
+      eventOutline: 0
+    fps: 12
+    loopStart: 0
+    wrapMode: 2
+    minFidgetDuration: 1
+    maxFidgetDuration: 2

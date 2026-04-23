@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Explosive Energy",
             Description = "Burstin' makes me feel good",
-            LongDescription = "Projectiles explode up to 3 (+1 per stack) times after travelling a certain distance. Projectiles self-destruct after finishing all stocked explosions." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Projectiles explode up to 3 (+1 per stack) times after travelling a certain distance. Projectiles self-destruct after finishing all stocked explosions.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("glitteringsparks_tier1_module"),
             Quality = ItemQuality.SPECIAL,

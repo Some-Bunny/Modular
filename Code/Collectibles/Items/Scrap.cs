@@ -152,8 +152,7 @@ namespace ModularMod
             {
                 base.spriteAnimator.SetFrame(Mathf.FloorToInt(Time.time * base.spriteAnimator.DefaultClip.fps % (float)base.spriteAnimator.DefaultClip.frames.Length));
             }
-            //var gf = this.GetComponent<SquishyBounceWiggler>();
-            //if (gf) { Destroy(gf); }
+            
         }
 
         private bool m_hasBeenPickedUp;

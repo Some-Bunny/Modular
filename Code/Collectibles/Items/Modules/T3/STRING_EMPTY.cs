@@ -24,7 +24,7 @@ namespace ModularMod
         {
             Name = "STRING_EMPTY",
             Description = "TODO",
-            LongDescription = "//Note: FIX THIS DAMN THING" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "//TODO: ADD DESCRIPTION",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("error_mod_t3_module"),
             Quality = ItemQuality.SPECIAL,

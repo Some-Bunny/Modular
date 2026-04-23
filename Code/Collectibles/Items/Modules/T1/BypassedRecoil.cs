@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Disabled Dampeners",
             Description = "Recoil Up",
-            LongDescription = "Increases Rate Of Fire by\n33% (+33% per stack hyperbolically), and reduces reload time by 20% (+20% per stack hyperbolically) but disables recoil dampeners." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Rate Of Fire by\n66% (+66% per stack hyperbolically), and reduces reload time by 25% (+25% per stack hyperbolically) but disables recoil dampeners.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("nodampener_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Disabled Dampeners " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.7f;
-            h.LabelDescription = "Increases Rate Of Fire by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
+            h.LabelDescription = "Increases Rate Of Fire by 66% (" + StaticColorHexes.AddColorToLabelString("+66% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces reload time by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\nbut disables your weapons recoil dampener.";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -70,12 +70,12 @@ namespace ModularMod
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.333f * stack)));
+            return f - (f - (f / (1 + 0.666f * stack)));
         }
         public float ProcessReloadTime(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f - (f - (f / (1 + 0.2f * stack)));
+            return f - (f - (f / (1 + 0.25f * stack)));
         }
 
 

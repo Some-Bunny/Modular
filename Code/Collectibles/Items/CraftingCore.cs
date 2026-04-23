@@ -45,6 +45,7 @@ namespace ModularMod
             active.UsesNumberOfUsesBeforeCooldown = true;
             active.SetupUnlockOnCustomFlag(CustomDungeonFlags.PAST, true);
             CraftingCoreID = pickup.PickupObjectId;
+            active.passiveStatModifiers = new StatModifier[] { };
 
             GameObject roomIcon = new GameObject("Room Icon");
             FakePrefab.DontDestroyOnLoad(roomIcon);

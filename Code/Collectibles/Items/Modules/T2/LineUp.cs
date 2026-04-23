@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Line Up",
             Description = "Knock 'Em Down",
-            LongDescription = "Adds 2 Pierces, Reduce Damage by 20% (-20% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.5x (+0.5x per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 2 Pierces, reduce damage by 25% (-25% per stack hyperbolically) But each enemy pierced increases projectile damage by 1.5x (+0.5x per stack)",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("lineup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("lineup_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Line Up " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 Pierce, Reduce Damage by 20% (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
+            h.LabelDescription = "Adds 1 Pierce, reduce damage by 25% (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
                 StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.5x (" +
                 StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ").";
 
@@ -75,7 +75,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            p.baseData.damage *= 1 - (1 - (1 / (1 + 0.15f * stack)));
+            p.baseData.damage *= 1 - (1 - (1 / (1 + 0.25f * stack)));
 
             var aaaa = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
             aaaa.damageMultOnPierce = 1 + (0.5f * stack);

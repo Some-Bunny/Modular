@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Avarice Cart",
             Description = "MONEY",
-            LongDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup. Enemies have a 6% chance of dropping a casing when killed (+6% per stack hyperbolically).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup. Enemies have a 6% chance of dropping a casing when killed (+6% per stack hyperbolically).",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("avarice_t2_module"),
             Quality = ItemQuality.SPECIAL,

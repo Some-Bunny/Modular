@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Improved Sights",
             Description = "X Marks The Spot",
-            LongDescription = "Improves Accuracy by 33% (+33% hyperbolically per stack). Increases shotspeed by 25% (+25% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Improves Accuracy by 33% (+33% hyperbolically per stack). Increases shotspeed by 33% (+33% per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("improvedsights_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -70,7 +70,10 @@ namespace ModularMod
 
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.baseData.speed *= 1 + (0.33f * this.ReturnStack(modulePrinterCore));
+            float t = 1 + (0.33f * this.ReturnStack(modulePrinterCore));
+            p.baseData.speed *= t;
+            p.baseData.force *= t;
+
             p.UpdateSpeed();
         }
 

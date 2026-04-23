@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Burning Hell",
             Description = "Exchange Rate",
-            LongDescription = "Halves fire rate and increases accuracy. Projectiles will stick to terrain and enemies and create an area that hurts and burns enemies. (+Burning Radius And Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Halves fire rate and increases accuracy. Projectiles will stick to terrain and enemies and create an area that hurts and burns enemies. (+Burning Radius And Damage per stack).",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("burninghell_t2_module"),
             Quality = ItemQuality.SPECIAL,

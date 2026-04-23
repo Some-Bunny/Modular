@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Refunded Components",
             Description = "Exchange Rate",
-            LongDescription = "Missed shots are refunded back into your clip. Gain a 25% boost to damage when you miss, up to 10 (+10 per stack) misses.\nLanding a hit will use all stored damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Missed shots are refunded back into your clip. Gain a 33% boost to damage when you miss, up to 10 (+10 per stack) misses.\nLanding a hit will use all stored damage.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Refunded Components" + h.ReturnTierLabel();
-            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 33% boost to damage when you miss, up to 10 " + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + " misses.\nLanding a hit will use all stored damage.";
+            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 33% boost to damage when you miss, up to 10 " + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + " boosts.\nLanding a hit will use all stored damage.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 

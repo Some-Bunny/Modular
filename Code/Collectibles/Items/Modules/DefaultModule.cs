@@ -7,12 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static ModularMod.ChooseModuleController;
+using static ModularMod.ModulePrinterCore;
 using static StringTableManager;
 
 namespace ModularMod
 {
     public class DefaultModule : PickupObject, IPlayerInteractable
     {
+
+
+        public override void MidGameSerialize(List<object> data)
+        {
+
+        }
+        public override void MidGameDeserialize(List<object> data)
+        {
+
+        }
+
         public static void DoQuickSetup()
         {
             GameObject gameObject = (GameObject)UnityEngine.Object.Instantiate(BraveResources.Load("DefaultLabelPanel", ".prefab"));
@@ -83,7 +95,7 @@ namespace ModularMod
 
             label.m_defaultAssignedFont = label.font;
             label.m_cachedPadding = label.padding;
-            dfLabel.m_cachedScaleTileScale = 30;
+            //dfLabel.m_cachedScaleTileScale = 30;
 
 
 
@@ -316,6 +328,8 @@ namespace ModularMod
 
         public override void Pickup(PlayerController player)
         {
+            DoPickup(player, false);
+            /*
             for(int c = 0; c < player.passiveItems.Count; c++)
             {
                 var entry = player.passiveItems[c];
@@ -335,7 +349,36 @@ namespace ModularMod
             AkSoundEngine.PostEvent("Play_ClickIntoPlace", player.gameObject);
             Toolbox.NotifyCustom("Added Module:", this.LabelName, this.sprite.spriteId, this.sprite.collection, UINotificationController.NotificationColor.PURPLE);
             UnityEngine.Object.Destroy(base.gameObject);
+            */
         }
+
+
+        public void DoPickup(PlayerController player, bool isSilent)
+        {
+            for (int c = 0; c < player.passiveItems.Count; c++)
+            {
+                var entry = player.passiveItems[c];
+                if (entry is ModulePrinterCore printerCore)
+                {
+                    printerCore.UpdateModularGunController();
+                    bool isFirst = printerCore.AddModule(this, player, isSilent);
+                    if (isFirst == true)
+                    {
+                        GameStatsManager.Instance.HandleEncounteredObject(this.encounterTrackable);
+                        OnFirstEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
+                    }
+                    OnAnyEverObtainedNonActivation(printerCore, printerCore.ModularGunController, player);
+                }
+            }
+            this.GetRidOfMinimapIcon();
+            if (!isSilent)
+            {
+                AkSoundEngine.PostEvent("Play_ClickIntoPlace", player.gameObject);
+                Toolbox.NotifyCustom("Added Module:", this.LabelName, this.sprite.spriteId, this.sprite.collection, UINotificationController.NotificationColor.PURPLE);
+            }
+            UnityEngine.Object.Destroy(base.gameObject);
+        }
+
 
         public int? OverrideScrapCost;
         public bool IsUncraftable = false;
@@ -851,5 +894,11 @@ namespace ModularMod
             if (CurrentDisplayTier == 4) { CurrentDisplayTier = 0; }
             return CurrentDisplayTier;
         }
+
+
+
+
+
+
     }
 }

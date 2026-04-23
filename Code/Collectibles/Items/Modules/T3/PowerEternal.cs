@@ -22,7 +22,7 @@ namespace ModularMod
         {
             Name = "Power Eternal",
             Description = "Must Be Sated",
-            LongDescription = "Small chance to gain a Power Cell upon slaying an enemy. (+Higher Chance per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Small chance to gain a Power Cell upon slaying an enemy. (+Higher Chance per stack). Once enabled, cannot be disabled.",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("powereternal_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -35,7 +35,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("powereternal_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Power Eternal " + h.ReturnTierLabel();
-            h.LabelDescription = "Small chance to gain a Power Cell upon slaying an enemy.\n(" + StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Small chance to gain a Power Cell upon slaying an enemy.\n(" + StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex) + ").\n" +StaticColorHexes.AddColorToLabelString("Once enabled, cannot be disabled.", StaticColorHexes.Dark_Red_Hex);
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -63,7 +63,10 @@ namespace ModularMod
         {
             modulePrinter.OnKilledEnemy -= OKE;
         }
-
+        public override bool CanBeDisabled(ModulePrinterCore modulePrinter, ModularGunController modularGunController)
+        {
+            return false;
+        }
         public void OKE(ModulePrinterCore printer, PlayerController player, AIActor enemy)
         {
             if (UnityEngine.Random.value < 0.004f + (this.ReturnStack(printer) * 0.004f))

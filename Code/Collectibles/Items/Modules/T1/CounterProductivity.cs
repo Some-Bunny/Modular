@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Counter Productivity",
             Description = "Exchange Rate",
-            LongDescription = "Divides Clip Size and Reload Time by 2 (+1 per stack). Slightly increases fire rate. (+More fire rate per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Divides Clip Size and Reload Time by 2 (+1 per stack). Slightly increases fire rate. (+More fire rate per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("counerproduction_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -82,7 +82,7 @@ namespace ModularMod
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinter);
-            return f - (f - (f / (1 + (0.2f * stack))));
+            return f - (f - (f / (1 + (0.125f * stack))));
         }
     }
 }

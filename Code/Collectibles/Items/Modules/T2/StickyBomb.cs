@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Sticky Bomb",
             Description = "KA-BLEWY",
-            LongDescription = "Increases Accuracy by 20% (+20% hyperbolically per stack), projectiles now leave sticky bombs on enemies that\nexplode after 10 (-25% hyperbolically per stack) seconds. (+Sticky Bomb Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Increases Accuracy by 33% (+33% hyperbolically per stack), projectiles now leave sticky bombs on enemies that\nexplode after 10 (-25% hyperbolically per stack) seconds. (+Sticky Bomb Damage per stack)",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("stickybombs_t2_module"),
             Quality = ItemQuality.SPECIAL,

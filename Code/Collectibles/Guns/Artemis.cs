@@ -105,7 +105,7 @@ namespace ModularMod
 
             gun.gunSwitchGroup = "Railgun";
 
-            gun.reloadTime = 4f;
+            gun.reloadTime = 3.2f;
             gun.SetBaseMaxAmmo(250);
 
 

@@ -22,7 +22,7 @@ namespace ModularMod
         {
             Name = "Patient Zero",
             Description = "Infected!",
-            LongDescription = "Chance to poison enemies on hit, and to spawn poison pools on projectile impact. (+Poison Chance And Pool Radius per stack). Hurting enemies can spread debuffs to other nearby enemies, breaking their resistances. Slain enemies cause an outbreak, greatly reducing resistances and cuasing panic. (+Virality and Severity per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Chance to poison enemies on hit, and to spawn poison pools on projectile impact. (+Poison Chance And Pool Radius per stack). Hurting enemies can spread debuffs to other nearby enemies, breaking their resistances. Slain enemies cause an outbreak, greatly reducing resistances and causing panic. (+Virality and Severity per stack).",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("pandemic_t3_module"),
             Quality = ItemQuality.SPECIAL,

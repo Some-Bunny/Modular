@@ -6,6 +6,7 @@ using System;
 using ModularMod;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace ModularMod
 {
@@ -44,7 +45,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(39) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 8f;
+            gun.reloadTime = 6.5f;
             gun.DefaultModule.cooldownTime = 5f;
             gun.DefaultModule.numberOfShotsInClip = 1;
             gun.SetBaseMaxAmmo(250);
@@ -80,9 +81,9 @@ namespace ModularMod
             yes.shadowTimeDelay = 0.01f;
             yes.dashColor = new Color(0f, 1f, 1f, 1f);
 
-            var homing = projectile.gameObject.GetOrAddComponent<HomingModifier>();
-            homing.AngularVelocity = 60;
-            homing.HomingRadius = 20;
+            //var homing = projectile.gameObject.GetOrAddComponent<HomingModifier>();
+            //homing.AngularVelocity = 60;
+            //homing.HomingRadius = 20;
 
 
             Material mat = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
@@ -91,7 +92,12 @@ namespace ModularMod
             mat.SetFloat("_EmissiveColorPower", 100);
             mat.SetFloat("_EmissivePower", 100);
             projectile.sprite.renderer.material = mat;
-            projectile.baseData.speed *= 0.35f;
+            projectile.baseData.speed = 70f;
+            projectile.baseData.UsesCustomAccelerationCurve = true;
+            projectile.baseData.AccelerationCurve = AnimationCurve.Linear(0, 0.3f, 1, 1);
+            projectile.baseData.CustomAccelerationCurveDuration = 2f;
+
+
             projectile.baseData.damage = 60f;
             projectile.shouldRotate = true;
 
@@ -136,7 +142,7 @@ namespace ModularMod
         public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return f; }
-            return f / (1 + (stack / 3));
+            return f / (1 + (stack / 5));
         }
         public static int GunID;
     }
@@ -161,10 +167,47 @@ namespace ModularMod
                 exploder.explosionData.damage = 5;
                 return;
             }
+            var player = obj.Owner as PlayerController;
+            if (player != null)
+            {
+                if (GlobalModuleStorage.PlayerHasActiveModule(player, IteratedDesign.ID))
+                {
+                    var p = (PickupObjectDatabase.GetById(player.IsUsingAlternateCostume ? DefaultArmCannonAlt.ID : DefaultArmCannon.ID) as Gun).DefaultModule.projectiles[0];
+                    float t = BraveUtility.RandomAngle();
+                    float div = 360f / 16;
+                    for (int i = 0; i < 16; i++)
+                    {
+                        var PP = SpawnManager.SpawnProjectile(p.gameObject, obj.sprite.WorldBottomCenter, Quaternion.Euler(0, 0, t + (div * i))).GetComponent<Projectile>();
+                        if (PP)
+                        {
+                            PP.baseData.damage = 6.25f;
+                            PP.Owner = player;
+                            PP.Shooter = player.specRigidbody;
+                            PP.baseData.speed = 35;
+                            PP.UpdateSpeed();
+                            var _ = PP.gameObject.AddComponent<PierceProjModifier>();
+                            _.penetratesBreakables = true;
+                            _.penetration = 1;
+                            player.DoPostProcessProjectile(PP);
+
+                            ImprovedAfterImage yes = PP.gameObject.AddComponent<ImprovedAfterImage>();
+                            yes.spawnShadows = true;
+                            yes.shadowLifetime = 0.4f;
+                            yes.shadowTimeDelay = 0.05f;
+                            yes.dashColor = player.IsUsingAlternateCostume ?  Color.green : new Color(0f, 1f, 1f, 1f);
+
+                        }
+                    }
+
+                }
+
+            }
+
+
             Exploder.DoRadialPush(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialKnockback(obj.sprite.WorldCenter, 200, 8);
             Exploder.DoRadialMinorBreakableBreak(obj.sprite.WorldCenter, 8);
-            Exploder.DoDistortionWave(obj.sprite.WorldCenter, 20 * ConfigManager.DistortionWaveMultiplier, 0.15f * ConfigManager.DistortionWaveMultiplier, 8, 0.5f);
+            Exploder.DoDistortionWave(obj.sprite.WorldCenter, 5 * ConfigManager.DistortionWaveMultiplier, 0.15f * ConfigManager.DistortionWaveMultiplier, 8, 0.33f);
             AkSoundEngine.PostEvent("Play_OBJ_nuke_blast_01", obj.gameObject);
         }
     }

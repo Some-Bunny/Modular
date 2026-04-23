@@ -73,19 +73,25 @@
     <Compile Include="Code\Collectibles\Guns\Update 2\FlakCannon.cs" />
     <Compile Include="Code\Collectibles\Guns\Update 3\Flamethrower\FlamethrowerFire.cs" />
     <Compile Include="Code\Collectibles\Items\Effects\Marked.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T1\MicroMissiles.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\BloatedCapacitor.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T1\ConcussionGuillotine.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\ExplosiveEnergy.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\SupplyDrop.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\MomentumNullifier.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\MissileSalvo.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\WarHorn.cs" />
-    <Compile Include="Code\Collectibles\Items\Modules\T2\Crit Modules T2\FocusedRetaliation.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\FocusedRetaliation.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\ChaoticTransportation.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\Crit Modules T2\SolarFlare.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\BubbleUp.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\CryogenicVenting.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\EternalWrath.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T3\JackHammer.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\IteratedDesign.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\PowerEternal.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T3\DeathTrigger.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T3\DisintegrationLoop.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T4\CarpalNightmare.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\Unique\MusicBox.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\Unique\WillingSpirit.cs" />
@@ -93,7 +99,7 @@
     <Compile Include="Code\Collectibles\Items\Modules\Unique\BrilliantSun.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\Unique\DuckHunter.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\Unique\BeholsterEye.cs" />
-    <Compile Include="Code\Collectibles\Items\Modules\T1\Crit Modules T1\HeavyHitter.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T1\HeavyHitter.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\Crit Modules T1\VorpalRounds.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\TemporaryShield.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T1\FlakShot.cs" />
@@ -137,6 +143,7 @@
     <Compile Include="Code\Components\VFX Components\ExpandReticleRiserEffect.cs" />
     <Compile Include="Code\Components\VFX Components\VFXAttacher.cs" />
     <Compile Include="Code\Controllers\AdditionalShopItemController.cs" />
+    <Compile Include="Code\Controllers\ItemIDs.cs" />
     <Compile Include="Code\Controllers\ItemSynergyController.cs" />
     <Compile Include="Code\Controllers\CrateSpawnController.cs" />
     <Compile Include="Code\Controllers\ExpandMusicAPI.cs" />
@@ -215,7 +222,7 @@
     <Compile Include="Code\Collectibles\Items\Modules\T2\AbsorbantPlating.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\BubbleBlast.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\LaserLance.cs" />
-    <Compile Include="Code\Collectibles\Items\Modules\T2\Crit Modules T2\HunterSeeker.cs" />
+    <Compile Include="Code\Collectibles\Items\Modules\T2\HunterSeeker.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\BurningHell.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\StickyBomb.cs" />
     <Compile Include="Code\Collectibles\Items\Modules\T2\TheMarksman.cs" />
@@ -271,6 +278,7 @@
     <Compile Include="Code\Toolboxes\DebuffStuff.cs" />
     <Compile Include="Code\Toolboxes\LightningController.cs" />
     <Compile Include="Code\Toolboxes\StringsManager.cs" />
+    <Compile Include="Code\UI\AmmonomiconSetup.cs" />
     <Compile Include="Code\UI\ChooseModuleController.cs" />
     <Compile Include="Code\UI\ConsoleMagic.cs" />
     <Compile Include="Code\Hooks\Patches\BeamCollisionGarbage.cs" />
@@ -359,6 +367,9 @@
     <Reference Include="Alexandria, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\r2modmanLocal\ETG\profiles\Agony\BepInEx\plugins\Alexandria-Alexandria\Alexandria.dll</HintPath>
+    </Reference>
+    <Reference Include="AmmonomiconAPI">
+      <HintPath>D:\r2modmanLocal\ETG\profiles\Agony\BepInEx\plugins\AmmonomiconAPI\plugins\AmmonomiconAPI.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EtG.GameLibs.2.1.9.1\lib\net35\Assembly-CSharp.dll</HintPath>

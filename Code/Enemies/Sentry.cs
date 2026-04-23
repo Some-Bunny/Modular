@@ -516,7 +516,7 @@ namespace ModularMod
 
                         Vector2 predictedPosition = BraveMathCollege.GetPredictedPosition(this.BulletManager.PlayerPosition(), this.BulletManager.PlayerVelocity(), this.BulletBank.GetComponent<tk2dBaseSprite>().WorldCenter, 90f);
                         float CentreAngle = (predictedPosition - this.Position).ToAngle();
-                        f = CentreAngle;
+                        //f = CentreAngle;
                         tiledsprite.transform.localRotation = Quaternion.Euler(0f, 0f, CentreAngle);
                         float num9 = 0;
 

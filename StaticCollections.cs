@@ -128,7 +128,16 @@ namespace ModularMod
 
             //Generic_VFX_Animation
             Generic_VFX_Animation = Module.ModularAssetBundle.LoadAsset<GameObject>("GenericVFXAnimation").GetComponent<tk2dSpriteAnimation>();
+
+
+
+            GameObject ammonomicon = Module.ModularAssetBundle.LoadAsset<GameObject>("Ammonomicon");
+            UnityEngine.Object.DontDestroyOnLoad(ammonomicon);
+            AmmonomiconUIAtlas = ammonomicon.GetComponent<dfAtlas>();
+            AmmonomiconUIAtlas.Material = Module.ModularAssetBundle.LoadAsset<Material>("AmmonomiconMat");
         }
+        public static dfAtlas AmmonomiconUIAtlas;
+
         public static tk2dSpriteAnimation Generic_VFX_Animation;
 
         public static tk2dSpriteCollectionData DoFastSetup(AssetBundle bundle, string CollectionName, string MaterialName)

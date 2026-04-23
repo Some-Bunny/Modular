@@ -23,7 +23,7 @@ namespace ModularMod
         {
             Name = "Ultra Ricochet",
             Description = "Stylish",
-            LongDescription = "Doubles player projectile speed. Player Projectiles bounce off walls, enemies and each other, with force (+Extra Force per stack). Increases rate of fire (+25% hyperbolically per stack) and increases spread. Bounces increase damage by 10% (+10% per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Doubles player projectile speed. Player Projectiles bounce off walls, enemies and each other, with force (+Extra Force per stack). Increases rate of fire (+25% hyperbolically per stack) and increases spread. Bounces increase damage by 10% (+10% per stack)",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("ultraricochet_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -54,7 +54,7 @@ namespace ModularMod
             ID = h.PickupObjectId;
             ricoChetData = StaticExplosionDatas.CopyFields(StaticExplosionDatas.explosiveRoundsExplosion);
             ricoChetData.damageToPlayer = 0;
-            ricoChetData.damage = 2.5f;
+            ricoChetData.damage = 5f;
         }
         public static ExplosionData ricoChetData;
         public static int ID;
@@ -63,27 +63,16 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.01f) { return; }
-            p.gameObject.AddComponent<RicoShot>();
+            var rico = p.gameObject.AddComponent<RicoShot>();
+            rico.projectile = p;
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
             bounceProjModifier.numberOfBounces += (20 * this.ReturnStack(modulePrinterCore));
             bounceProjModifier.bouncesTrackEnemies = true;
             bounceProjModifier.bounceTrackRadius = 5;
             bounceProjModifier.TrackEnemyChance = 1f;
             bounceProjModifier.damageMultiplierOnBounce = 1 + (0.1f);
-            bounceProjModifier.OnBounce += () =>
-            {
-                if (ConfigManager.DoVisualEffect == true)
-                {
-                    GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-                    GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
-                    blankObj.transform.localScale = Vector3.one * 0.35f;
-                    Destroy(blankObj, 2f);
-                }
-                Exploder.DoRadialPush(p.sprite.WorldCenter, 25, 3);
-                Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25, 3);
-                Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
-                Exploder.Explode(p.projectile.sprite.WorldCenter, ricoChetData, p.projectile.sprite.WorldCenter, null, true);
-            };
+            rico.projModifier = bounceProjModifier;
+
         }
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
@@ -107,29 +96,21 @@ namespace ModularMod
         }
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
-            p.gameObject.AddComponent<RicoShot>();
+            var rico = p.gameObject.AddComponent<RicoShot>();
             p.baseData.speed *= 2;
             p.UpdateSpeed();
+            rico.projectile = p;
+
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += (20 * this.ReturnStack(modulePrinterCore));
+            bounceProjModifier.numberOfBounces += 15 + (5 * this.ReturnStack(modulePrinterCore));
             bounceProjModifier.bouncesTrackEnemies = true;
             bounceProjModifier.bounceTrackRadius = 5;
             bounceProjModifier.TrackEnemyChance = 1f;
             bounceProjModifier.damageMultiplierOnBounce = 1 + (0.1f * this.ReturnStack(modulePrinterCore));
-            bounceProjModifier.OnBounce += () =>
-            {
-                if (ConfigManager.DoVisualEffect == true)
-                {
-                    GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-                    GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, p.sprite.WorldCenter, Quaternion.identity);
-                    blankObj.transform.localScale = Vector3.one * 0.35f;
-                    Destroy(blankObj, 2f);
-                }
-                Exploder.DoRadialPush(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
-                Exploder.DoRadialKnockback(p.sprite.WorldCenter, 25 * this.ReturnStack(modulePrinterCore), 3);
-                Exploder.DoRadialMinorBreakableBreak(p.sprite.WorldCenter, 3);
-                Exploder.Explode(p.projectile.sprite.WorldCenter, ricoChetData, p.projectile.sprite.WorldCenter, null, true);
-            };
+
+            rico.projModifier = bounceProjModifier;
+
+
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
@@ -146,13 +127,48 @@ namespace ModularMod
 
     internal class RicoShot : MonoBehaviour
     {
-        private void Awake()
+        public BounceProjModifier projModifier;
+        public int Stack = 1;
+        private void Start()
         {
-            this.projectile = base.GetComponent<Projectile>();
             this.projectile.specRigidbody.OnPreRigidbodyCollision += PissAndShit;
             this.projectile.OnHitEnemy += HandleProjectileHitEnemy;
+            Can2 = false;
+            this.Invoke("C2", 0.1f);
             Can = false;
-            this.Invoke("C", 0.1f);
+            this.Invoke("C", 0.2f);
+
+            projModifier.OnBounce += () =>
+            {
+                if (Can2)
+                {
+                    Can2 = false;
+                
+                    this.Invoke("C2", 0.05f);
+                    if (ConfigManager.DoVisualEffect == true)
+                    {
+                        GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+                        GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, projectile.sprite.WorldCenter, Quaternion.identity);
+                        blankObj.transform.localScale = Vector3.one * 0.35f;
+                        Destroy(blankObj, 2f);
+                    }
+                    Exploder.DoRadialPush(this.projectile.sprite.WorldCenter, 25 * Stack, 3);
+                    Exploder.DoRadialKnockback(this.projectile.sprite.WorldCenter, 25 * Stack, 3);
+                    Exploder.DoRadialMinorBreakableBreak(this.projectile.sprite.WorldCenter, 3);
+
+                    var _ = SelfRicochet.ricoChetData;
+                    _.ignoreList = new List<SpeculativeRigidbody>()
+                    {
+
+                    };
+                    foreach (var Player in GameManager.Instance.AllPlayers)
+                    {
+                        _.ignoreList.Add(Player.specRigidbody);
+                    }
+                    Exploder.Explode(projectile.sprite.WorldCenter, SelfRicochet.ricoChetData, Vector2.zero, null, true);
+                }
+            };
+
         }
 
         private void Update()
@@ -171,8 +187,8 @@ namespace ModularMod
                 if (Can == true)
                 {
                     Can = false;
-                    this.Invoke("C", 0.1f);
-                    myBody.RegisterTemporaryCollisionException(otherBody, 0.15f);
+                    this.Invoke("C", 0.2f);
+                    myBody.RegisterTemporaryCollisionException(otherBody, 0.333f);
                     otherBody.projectile.hitEffects.HandleEnemyImpact(otherBody.projectile.sprite.WorldCenter, otherBody.transform.localEulerAngles.z, otherBody.transform, Vector2.zero, myBody.projectile.LastVelocity, true);
                     myBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
                     otherBody.projectile.SendInDirection(UnityEngine.Random.insideUnitCircle, false, true);
@@ -180,7 +196,6 @@ namespace ModularMod
                     if (ConfigManager.DoVisualEffect == true)
                     {
                         GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-
                         GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, myBody.projectile.sprite.WorldCenter, Quaternion.identity);
                         blankObj.transform.localScale = Vector3.one * 0.35f;
                         Destroy(blankObj, 2f);
@@ -188,6 +203,16 @@ namespace ModularMod
                     Exploder.DoRadialPush(myBody.projectile.sprite.WorldCenter, 25, 3);
                     Exploder.DoRadialKnockback(myBody.projectile.sprite.WorldCenter, 25, 3);
                     Exploder.DoRadialMinorBreakableBreak(myBody.projectile.sprite.WorldCenter, 3);
+
+                    var _ = SelfRicochet.ricoChetData;
+                    _.ignoreList = new List<SpeculativeRigidbody>()
+                    {
+
+                    };
+                    foreach (var Player in GameManager.Instance.AllPlayers)
+                    {
+                        _.ignoreList.Add(Player.specRigidbody);
+                    }
                     Exploder.Explode(myBody.projectile.sprite.WorldCenter, SelfRicochet.ricoChetData, myBody.projectile.sprite.WorldCenter, null, true);
                 }         
             }
@@ -195,57 +220,69 @@ namespace ModularMod
         }
 
         private bool Can = true;
+        private bool Can2 = true;
+
         public void C()
         {
             Can = true;
         }
-
+        public void C2()
+        {
+            Can2 = true;
+        }
 
         private void HandleProjectileHitEnemy(Projectile obj, SpeculativeRigidbody enemy, bool killed)
         {
-            PierceProjModifier orAddComponent = obj.gameObject.GetOrAddComponent<PierceProjModifier>();
-            orAddComponent.penetratesBreakables = true;
-            orAddComponent.penetration++;
+            if (Can2)
+            {
+                Can2 = false;
+                this.Invoke("C", 0.2f);
+                PierceProjModifier orAddComponent = obj.gameObject.GetOrAddComponent<PierceProjModifier>();
+                orAddComponent.penetratesBreakables = true;
+                orAddComponent.penetration++;
 
-            Vector2 dirVec = UnityEngine.Random.insideUnitCircle;
-            float num = this.ChanceToSeekEnemyOnBounce;
-            Gun possibleSourceGun = obj.PossibleSourceGun;
-            if (this.NormalizeAcrossFireRate && possibleSourceGun)
-            {
-                float num2 = 1f / possibleSourceGun.DefaultModule.cooldownTime;
-                if (possibleSourceGun.Volley != null && possibleSourceGun.Volley.UsesShotgunStyleVelocityRandomizer)
+                Vector2 dirVec = UnityEngine.Random.insideUnitCircle;
+                float num = this.ChanceToSeekEnemyOnBounce;
+                Gun possibleSourceGun = obj.PossibleSourceGun;
+                if (this.NormalizeAcrossFireRate && possibleSourceGun)
                 {
-                    num2 *= (float)Mathf.Max(1, possibleSourceGun.Volley.projectiles.Count);
+                    float num2 = 1f / possibleSourceGun.DefaultModule.cooldownTime;
+                    if (possibleSourceGun.Volley != null && possibleSourceGun.Volley.UsesShotgunStyleVelocityRandomizer)
+                    {
+                        num2 *= (float)Mathf.Max(1, possibleSourceGun.Volley.projectiles.Count);
+                    }
+                    num = Mathf.Clamp01(this.ActivationsPerSecond / num2);
+                    num = Mathf.Max(this.MinActivationChance, num);
                 }
-                num = Mathf.Clamp01(this.ActivationsPerSecond / num2);
-                num = Mathf.Max(this.MinActivationChance, num);
-            }
-            if (UnityEngine.Random.value < num && enemy.aiActor)
-            {
-                Func<AIActor, bool> isValid = (AIActor a) => a && a.HasBeenEngaged && a.healthHaver && a.healthHaver.IsVulnerable;
-                AIActor closestToPosition = BraveUtility.GetClosestToPosition<AIActor>(enemy.aiActor.ParentRoom.GetActiveEnemies(RoomHandler.ActiveEnemyType.All), enemy.UnitCenter, isValid, new AIActor[]
+                if (UnityEngine.Random.value < num && enemy.aiActor)
                 {
+                    Func<AIActor, bool> isValid = (AIActor a) => a && a.HasBeenEngaged && a.healthHaver && a.healthHaver.IsVulnerable;
+                    AIActor closestToPosition = BraveUtility.GetClosestToPosition<AIActor>(enemy.aiActor.ParentRoom.GetActiveEnemies(RoomHandler.ActiveEnemyType.All), enemy.UnitCenter, isValid, new AIActor[]
+                    {
                         enemy.aiActor
-                });
-                if (closestToPosition)
-                {
-                    dirVec = closestToPosition.CenterPosition - obj.transform.position.XY();
+                    });
+                    if (closestToPosition)
+                    {
+                        dirVec = closestToPosition.CenterPosition - obj.transform.position.XY();
+                    }
                 }
+                if (ConfigManager.DoVisualEffect == true)
+                {
+
+                    GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
+
+                    GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, obj.projectile.sprite.WorldCenter, Quaternion.identity);
+                    blankObj.transform.localScale = Vector3.one * 0.5f;
+                    Destroy(blankObj, 2f);
+                }
+
+                Exploder.DoRadialPush(obj.projectile.sprite.WorldCenter, 25, 3);
+                Exploder.DoRadialKnockback(obj.projectile.sprite.WorldCenter, 25, 3);
+                Exploder.DoRadialMinorBreakableBreak(obj.projectile.sprite.WorldCenter, 3);
+                obj.SendInDirection(dirVec, false, true);
             }
-            if (ConfigManager.DoVisualEffect == true)
-            {
 
-                GameObject silencerVFX = (GameObject)ResourceCache.Acquire("Global VFX/BlankVFX_Ghost");
-
-                GameObject blankObj = GameObject.Instantiate(silencerVFX.gameObject, obj.projectile.sprite.WorldCenter, Quaternion.identity);
-                blankObj.transform.localScale = Vector3.one * 0.5f;
-                Destroy(blankObj, 2f);
-            }
-
-            Exploder.DoRadialPush(obj.projectile.sprite.WorldCenter, 25, 3);
-            Exploder.DoRadialKnockback(obj.projectile.sprite.WorldCenter, 25, 3);
-            Exploder.DoRadialMinorBreakableBreak(obj.projectile.sprite.WorldCenter, 3);
-            obj.SendInDirection(dirVec, false, true);
+            
         }
 
         public float ChanceToSeekEnemyOnBounce = 1;
@@ -255,7 +292,7 @@ namespace ModularMod
         public float ActivationsPerSecond = 1000;
 
         public float MinActivationChance = 1;
-        private Projectile projectile;
+        public Projectile projectile;
     }
 }
 

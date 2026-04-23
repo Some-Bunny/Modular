@@ -11,6 +11,7 @@ using static DirectionalAnimation;
 using UnityEngine;
 using Newtonsoft.Json;
 using FullInspector;
+using static AIAnimator;
 
 namespace ModularMod
 {
@@ -604,7 +605,8 @@ namespace ModularMod
             prefab.GetOrAddComponent<BraveBehaviour>().sprite = sprite;
             sprite.SetUpSpeculativeRigidbody(hitboxOffset, hitBoxSize).CollideWithOthers = true;
             prefab.AddComponent<tk2dSpriteAnimator>();
-            prefab.AddComponent<AIAnimator>();
+            AIAnimator aiAnimator = prefab.AddComponent<AIAnimator>();
+            aiAnimator.OtherVFX = new List<NamedVFXPool>(0);
             prefab.GetOrAddComponent<ObjectVisibilityManager>();
 
 

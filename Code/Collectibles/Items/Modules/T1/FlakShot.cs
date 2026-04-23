@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Flak Shot",
             Description = "Better Than 1",
-            LongDescription = "Reduces Damage by 40%. Projectiles split into 2 weaker projectiles that inherit all of the parent projectiles effects. (Split Projectile Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reduces Damage by 40%. Projectiles split into 2 weaker projectiles that inherit all of the parent projectiles effects. (Split Projectile Damage per stack)",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("flakshot_tier1_module"),
             Quality = ItemQuality.SPECIAL,

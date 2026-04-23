@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Iterated Design",
             Description = "Simply Better",
-            LongDescription = "Grants a boost to some stats. (+Increased Stats per stack). Grants benefits unique to your current gun. (+Better Benefits per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Grants a boost to some stats. (+Increased Stats per stack). Grants benefits unique to your current gun. (+Better Benefits per stack).",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("iterateddesign_t3_module"),
             Quality = ItemQuality.SPECIAL,

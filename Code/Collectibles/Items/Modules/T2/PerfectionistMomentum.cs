@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Perfectionist Momentum",
             Description = "Keeping It Up",
-            LongDescription = "Grants a 5% Fire rate and Damage upgrade for every room cleared without taking damage, capped at 10 (+10 per stack) rooms cleared.\nBonuses reset when you take damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants a 5% Fire rate and Damage boost for every room cleared without taking damage, capped at 10 (+10 per stack) boosts. Damage and Fire Rate boosts reset when you take damage.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("perfectmomentum_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("perfectmomentum_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Perfectionist Momentum " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants a 5% Fire Rate and Damage upgrade for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") rooms cleared.\n"+ StaticColorHexes.AddColorToLabelString("Bonuses reset when you take damage.", StaticColorHexes.Dark_Red_Hex);
+            h.LabelDescription = "Grants a 5% Fire Rate and Damage boost for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") boosts.\n"+ StaticColorHexes.AddColorToLabelString("Damage and Fire Rate boosts reset when you take damage.", StaticColorHexes.Dark_Red_Hex);
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AdditionalWeightMultiplier = 0.8f;
@@ -125,6 +125,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 1 + (0.05f * RoomPerfectCount);
+            p.baseData.force *= 1 + (0.0333f * RoomPerfectCount);
         }
     }
 }

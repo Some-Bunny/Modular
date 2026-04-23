@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Regenerative Plating",
             Description = "Time Heals All",
-            LongDescription = "Entering a new floor restores 1 (+1 per stack) Armor. SScrapping pickups / items has a chance to restore 1 Armor. (+Increased Armor Chance per stack) " + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Entering a new floor restores 1 (+1 per stack) Armor. Scrapping pickups / items has a chance to restore 1 Armor. (+Increased Armor Chance per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("selfcare_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -29,7 +29,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
             h.LabelName = "Regenerative Plating " + h.ReturnTierLabel();
-            h.LabelDescription = "Entering a new floor restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.\nScrapping pickups / items has a chance to restore 1 Armor.\n("+ StaticColorHexes.AddColorToLabelString("+Increased Armor Chance", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.LabelDescription = "Entering a new floor restores 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Armor.\nScrapping pickups / items has a chance to restore 1 Armor \n("+ StaticColorHexes.AddColorToLabelString("+Increased Armor Chance", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.GENERATION);
 

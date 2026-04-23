@@ -24,10 +24,11 @@ namespace ModularMod
         };
         public static void PostInit(PickupObject v)
         {
-
             CheeseID = v.PickupObjectId;
             v.CanBeDropped = true;
             v.CustomCost = 40;
+            (v as PassiveItem).passiveStatModifiers = new StatModifier[] { };
+
             var entry = CustomSynergies.Add("Resourcefuller Indeed", new List<string>() 
             {
                 "mdl:block_of_cheese",

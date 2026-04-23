@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Cycle Efficiency",
             Description = "In And Out",
-            LongDescription = "Reloading is 15% (+15% per stack hyperbolically) faster, and and increases rate of fire by 15% (+15% per stack hyperbolically)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases rate of fire and reload speed by 15% (+15% per stack hyperbolically).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cycleup_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -31,7 +31,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cycleup_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.LabelName = "Cycle Efficiency " + h.ReturnTierLabel();
-            h.LabelDescription = "Reloading is 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster\nand increases rate of fire by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Increases rate of fire and reload speed by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

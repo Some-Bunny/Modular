@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Table Kinetics",
             Description = "Table-tic Railgun",
-            LongDescription = "Enemies spawn tables when killed, and chance to spawn a table upon reloading. Projectiles will now pierce tables, and get a 25% (+25% per stack) damage and speed boost. Piercing a table makes all other unflipped tables in the room do a shockwave (+Shockwave Damage).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Enemies spawn tables when killed, and chance to spawn a table upon reloading. Projectiles will now pierce tables, and get a 25% (+25% per stack) damage and speed boost. Piercing a table makes all other unflipped tables emit a shockwave (+Shockwave Damage).",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tablekinetics_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tablekinetics_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Table Kinetics " + h.ReturnTierLabel();
-            h.LabelDescription = "Enemies spawn tables when killed,\nand chance to spawn a table upon reloading.\nProjectiles will now pierce tables,\nand get a 25% ("+ StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") damage and speed boost.\nPiercing a table makes all other unflipped tables\nin the room do a shockwave ("+ StaticColorHexes.AddColorToLabelString("+Shockwave Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Enemies spawn tables when killed,\nand chance to spawn a table upon reloading.\nProjectiles will now pierce tables,\nand get a 25% ("+ StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") damage and speed boost.\nPiercing a table makes all other unflipped tables\n emit a shockwave (" + StaticColorHexes.AddColorToLabelString("+Shockwave Damage", StaticColorHexes.Light_Orange_Hex) + ").";
             h.AdditionalWeightMultiplier = 0.75f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

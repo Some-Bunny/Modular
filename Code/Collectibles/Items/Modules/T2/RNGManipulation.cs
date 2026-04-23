@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "RNG Manipulation",
             Description = "Just Really Lucky",
-            LongDescription = "Grants vastly improved and more common room drops (+Loot chance and better loot drop odds per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants vastly improved and more common room drops (+Loot chance and better loot drop odds per stack).",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("rngmanipulation_t2_module"),
             Quality = ItemQuality.EXCLUDED,
@@ -92,7 +92,7 @@ namespace ModularMod
         }
         public void OnDetermineContents(RoomHandler room, Alexandria.RoomRewardAPI.ValidRoomRewardContents validRoomReward, float f)
         {
-            validRoomReward.additionalRewardChance -= (float)((0.05f * Stack()));
+            validRoomReward.additionalRewardChance -= (float)((0.04f * Stack()));
             validRoomReward.overrideItemPool.AddRange(ReturnThing());
         }
 

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Lightning Nets",
             Description = "Nicola Would Be Proud",
-            LongDescription = "Your projectiles are now tethered with electricity (+Tether Range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Your projectiles are now tethered with electricity (+Tether Range and Damage per stack).",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("voltaicrounds_t2_module"),
             Quality = ItemQuality.SPECIAL,

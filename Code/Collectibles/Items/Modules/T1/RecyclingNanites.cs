@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Recycling Nanites",
             Description = "Repurposed for something better",
-            LongDescription = "While enabled, taking damage increases damage by\n+7.5% (+7.5% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "While enabled, taking damage increases damage by\n+7.5% (+7.5% per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("recycler_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -67,7 +67,23 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             p.baseData.damage *= 1 + ((0.075f * stack) * DamageTaken);
+            p.baseData.force *= 1 + (0.0333f * DamageTaken);
+
         }
+
+        public override void MidGameSerialize(List<object> data)
+        {
+            base.MidGameSerialize(data);
+            data.Add(DamageTaken);
+            //Debug.Log($"b {DamageTaken}");
+        }
+        public override void MidGameDeserialize(List<object> data)
+        {
+            base.MidGameSerialize(data);
+            DamageTaken = (int)data[0];
+            //Debug.Log($"a {DamageTaken}");
+        }
+
     } 
 }
 

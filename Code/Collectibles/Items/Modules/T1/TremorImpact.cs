@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Tremor Impact",
             Description = "Shockwave",
-            LongDescription = "Hitting enemies deals 25% (+25% per stack) of the damage dealt to nearby enemies. Slain enemies detonate. (+Explosion Power per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Hitting enemies deals 25% (+25% per stack) of the damage dealt to nearby enemies. Slain enemies detonate. (+Explosion Power per stack)",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tremor_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -71,6 +71,7 @@ namespace ModularMod
         {
             tremorHit.damage = 15 * this.ReturnStack(modulePrinter);
             tremorHit.force = 40 * this.ReturnStack(modulePrinter);
+
             Exploder.Explode(aIActor.sprite.WorldCenter, tremorHit, aIActor.sprite.WorldCenter, null, true);
         }
 

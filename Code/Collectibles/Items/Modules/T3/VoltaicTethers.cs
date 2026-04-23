@@ -22,7 +22,7 @@ namespace ModularMod
         {
             Name = "Voltaic Tethers",
             Description = "Loaded",
-            LongDescription = "Massively decreases accuracy, and doubles reload time. Projectiles will stick to walls and tether electricity to players and other nearby tether nodes. (+Tether Range and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Massively decreases accuracy, and doubles reload time. Projectiles will stick to walls and tether electricity to players and other nearby tether nodes. (+Tether Range and Damage per stack).",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("voltaictethers_t3_module"),
             Quality = ItemQuality.SPECIAL,

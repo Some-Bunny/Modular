@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 203303744
+CRC: 243975274
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b02ddcaa542be7fa7295e930ffe97582
+    Hash: e9f8fbdc595e8f3625dbf8a8fb421284
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1f96190daf68d1b18659c9d264a41037
@@ -124,6 +124,7 @@ Assets:
 - Assets/Sprites/UI/Guns/Charger/ui_button_charger_gun.png
 - Assets/Sprites/UI/Name Label/name_label_empty.png
 - Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_015.png
+- Assets/Sprites/UI/AmmonomiconAPI/AmmonomiconMat.mat
 - Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_017.png
 - Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_026.png
 - Assets/Sprites/UI/Lynceus icons/White/lync_icon_015.png
@@ -353,6 +354,7 @@ Assets:
 - Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_004.png
 - Assets/Sprites/UI/Lynceus icons/Red/lync_icon_red_026.png
 - Assets/Sprites/UI/Lynceus icons/Green/lync_icon_green_011.png
+- Assets/Sprites/UI/AmmonomiconAPI/Ammonomicon.prefab
 - Assets/Sprites/UI/Lynceus icons/Blue/lync_icon_blue_004.png
 - Assets/Sprites/Items/Modules/T4/ModuleTier4Collection Data/ModuleTier4Collection.prefab
 - Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_019.png

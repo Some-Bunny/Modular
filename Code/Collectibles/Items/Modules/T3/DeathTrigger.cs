@@ -24,7 +24,7 @@ namespace ModularMod
         {
             Name = "Death Trigger",
             Description = "Death Cheats",
-            LongDescription = "Enemies have a chance to activate 'On Kill Enemy' effects when hit. (+Increased Chance per stack). \nRecharges after 5 seconds.\nSlain enemies fire 4 damaging lines of energy in a + formation. (+Increased Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Enemies have a chance to activate 'On Kill Enemy' effects when hit. (+Increased Chance per stack). \nRecharges after 5 seconds.\nSlain enemies fire 4 damaging lines of energy in a + formation. (+Increased Damage per stack)",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("deathtrigger_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -81,7 +81,7 @@ namespace ModularMod
             DeathCrossVFX = VFX;
 
         }
-        private static GameObject DeathCrossVFX;
+        public static GameObject DeathCrossVFX;
         public static GameActorDecorationEffect deathtriggerMarl;
 
         public static int ID;
@@ -125,13 +125,7 @@ namespace ModularMod
                         GlobalSparksDoer.DoRandomParticleBurst(1, p, p, new Vector2(-1, -1) * i, 12, 0.5f, 0.1f, 3, new Color(3, 0, 2.1f), GlobalSparksDoer.SparksType.DARK_MAGICKS);
 
                     }
-                    /*
-                    Delegate dodge = enemy.healthHaver.GetEventDelegate("OnPreDeath");
-                    if (dodge != null)
-                    {
-                        dodge.DynamicInvoke(new object[] { Vector2.zero });
-                    }
-                    */
+ 
 
                     Delegate OKE = player.GetEventDelegate("OnKilledEnemy");
                     if (OKE != null)
@@ -170,7 +164,7 @@ namespace ModularMod
                 Projectile component = spawnedBulletOBJ.GetComponent<Projectile>();
                 if (component != null)
                 {
-                    component.baseData.damage = 3.33f + (3.33f * this.ReturnStack(printer));
+                    component.baseData.damage = 5f + (5f * this.ReturnStack(printer));
                     component.Owner = player;
                     component.Shooter = player.specRigidbody;
                     player.DoPostProcessProjectile(component);              

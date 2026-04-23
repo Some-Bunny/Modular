@@ -43,24 +43,10 @@ namespace ModularMod
         {
            // HunterSeeker.lockedEnemies.Add(actor as AIActor);
             base.OnEffectApplied(actor, effectData, partialAmount);
-            actor.healthHaver.AllDamageMultiplier += M;
-            actor.healthHaver.OnDeath += (obj1) =>
-            {
-                //if (HunterSeeker.lockedEnemies.Contains(actor as AIActor))
-                {
-                    //HunterSeeker.lockedEnemies.Remove(actor as AIActor);
-                }
-            };
         }
-
-        public float M = 0.15f;
-
 
         public override void OnEffectRemoved(GameActor actor, RuntimeGameActorEffectData effectData)
         {
-            //HunterSeeker.lockedEnemies.Remove(actor as AIActor);
-
-            actor.healthHaver.AllDamageMultiplier -= M;
             base.OnEffectRemoved(actor, effectData);
             actor.healthHaver.OnPreDeath -= effectData.OnActorPreDeath;
         }

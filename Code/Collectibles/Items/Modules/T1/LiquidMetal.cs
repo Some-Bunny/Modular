@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Liquid Metal",
             Description = "Pierce Up",
-            LongDescription = "Adds 1 (+1 per stack) Pierce, but reduces projectile speed by 20% (-20% per stack hyperbolically)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Adds 1 (+1 per stack) Pierce but reduces projectile speed by 20% (-20% per stack hyperbolically).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("liquidmetal_tier1_module"),
             Quality = ItemQuality.SPECIAL,

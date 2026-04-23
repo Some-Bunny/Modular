@@ -327,6 +327,10 @@ MonoBehaviour:
     - bloatedcapacitor_tier1_module_alt
     - bubbleup_tier1_module
     - bubbleup_tier1_module_alt
+    - concussionguillotine_tier1_alt_module
+    - concussionguillotine_tier1_module
+    - micromissiles_tier1_alt_module
+    - micromissiles_tier1_module
     spriteTextureGUIDs:
     - a5ec6dd2ae0b5b34a9a3ef4f08592a6b
     - 8984dd2463ff83d418f9f2d3dfd2975d
@@ -404,6 +408,10 @@ MonoBehaviour:
     - f92a382755ee8c545a1a3103e999d7c6
     - 282b646c021e78b498bfb52fe2d85147
     - 1a77c177768c81a46927cc3949f31c4d
+    - 4b1ac38b3852dae44903da70a5d887d7
+    - 5d5bd200f4564984db30f7c6cd03f257
+    - 9cb59ede10a0d5644ba3a786c0a365ae
+    - b86403dacb0b600429d1c8541965a022
     spriteTextureTimeStamps:
     - 1674414954.18848
     - 1674414983.82697
@@ -481,6 +489,10 @@ MonoBehaviour:
     - 1699131279.28458
     - 1716739462.60964
     - 1716739512.7389
+    - 1776819407.18574
+    - 1776819379.43742
+    - 1776959038.92876
+    - 1776959009.30268
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -3568,6 +3580,10 @@ MonoBehaviour:
     - modularswitchmode_002
     - modularswitchmode_alt_001
     - modularswitchmode_alt_002
+    - missileup_001
+    - missileup_002
+    - missileup_004
+    - missileup_003
     spriteTextureGUIDs:
     - 0d8586071a928fb4c920466116729c30
     - 1cf028702d6d57440bbc887fbde8087b
@@ -4045,6 +4061,10 @@ MonoBehaviour:
     - 883e10b34a24e014184d0c01bea1a10f
     - e3d8d32c806f92349b09ef6f0859d5df
     - 5536161d9b947614b85494f91791ca06
+    - 174d4e854c45a16469f6d859a5b71e2a
+    - dbfb632fcc891d847a8fcba0b840c28a
+    - 652778de27e52144f82b6974fe713862
+    - 61944f1a29ab94a478bd81582a561c04
     spriteTextureTimeStamps:
     - 1674763113.28595
     - 1674763113.29594
@@ -4230,22 +4250,22 @@ MonoBehaviour:
     - 1683567559.70022
     - 1683567559.70608
     - 1683594476.23659
-    - 1683594536.5546
-    - 1683594536.5506
-    - 1683594536.54759
+    - 1776960395.74486
+    - 1776960395.73986
+    - 1776960395.73786
     - 1683597143.30188
     - 1683594802.18843
-    - 1683594536.5536
-    - 1683594536.5516
+    - 1776960395.74386
+    - 1776960395.74086
     - 1683597143.30988
-    - 1683594536.5586
-    - 1683594536.5566
+    - 1776960395.74786
+    - 1776960395.74686
     - 1683594802.19143
     - 1683594476.23346
     - 1683594802.18742
     - 1683597143.30488
     - 1683597143.30788
-    - 1683594536.5596
+    - 1776960395.74987
     - 1683599701.73184
     - 1683599701.73385
     - 1683599701.72694
@@ -4522,6 +4542,10 @@ MonoBehaviour:
     - 1747410150.44962
     - 1747410189.42011
     - 1747410189.42311
+    - 1776960287.24229
+    - 1776960287.24529
+    - 1776960287.2503
+    - 1776960287.2473
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4604,6 +4628,10 @@ MonoBehaviour:
     - cryogenicvents_t2_module
     - warhorn_t2_module_alt
     - warhorn_t2_module
+    - momentumnullifier_t2_alt_module
+    - momentumnullifier_t2_module
+    - missilesalvo_t2_alt_module
+    - missilesalvo_t2_module
     spriteTextureGUIDs:
     - bbd2c1745dbb9144bae6499d8e6be2f6
     - 85671afff06206842b88bd16bfb8c70f
@@ -4679,6 +4707,10 @@ MonoBehaviour:
     - 701ee9755193b4044bcd92c6c9fa5ef6
     - 85088e1f570003240aa3f6489d12f80a
     - d4a1212d91304a446817b763d0dcc755
+    - b1ecafc795220a9409ed662f7aad18c8
+    - bf87697b1723ab7408799665dd052317
+    - 1f2248c310123a242b91af23bc548ac6
+    - 7804ab97db3e0064eb336065ec66aa14
     spriteTextureTimeStamps:
     - 1674916655.51335
     - 1674916696.08715
@@ -4754,6 +4786,10 @@ MonoBehaviour:
     - 1733251980.9438
     - 1733368452.6047
     - 1733368441.16534
+    - 1776812710.80211
+    - 1776812673.51467
+    - 1776810903.46196
+    - 1776810907.21395
     managedSpriteCollection: 0
     loadable: 0
     assetName: 
@@ -4800,6 +4836,10 @@ MonoBehaviour:
     - powereternal_t3_module_alt
     - deathtrigger_t3_module
     - deathtrigger_t3_module_alt
+    - disintegrationloop_t3_module
+    - disintegrationloop_t3_alt_module
+    - jackhammer_t3_alt_module
+    - jackhammer_t3_module
     spriteTextureGUIDs:
     - 62af1667c163bff44ba57da198f4ca3e
     - 30e16c74359c8b74cbf7d5287293528d
@@ -4839,19 +4879,23 @@ MonoBehaviour:
     - 315e7acc8a7e7054c94e1dccdc2ce67c
     - 95cd1b1721ee4b241a6de687fa0192a6
     - ac199a61fc766514598d6bf0d077445a
+    - 81ab2deefb057a141889c7eeb0df00a6
+    - 78011a3019b3e814680148205bfe1518
+    - 72cad3dad87630840a12cf73f5c58ac6
+    - b4fa3dd9c4e912c4bb44708e982e3fbf
     spriteTextureTimeStamps:
-    - 1683987422.60661
-    - 1683987440.71811
+    - 1776870999.89951
+    - 1776871012.98561
     - 1686172382.17966
     - 1686172397.1799
     - 1686172238.1636
     - 1686172252.91603
     - 1678493064.40447
     - 1678493059.06082
-    - 1682772893.19305
-    - 1682772899.89891
-    - 1686172109.47549
-    - 1686172126.04458
+    - 1776871036.22404
+    - 1776871051.90591
+    - 1776870888.26636
+    - 1776870932.07176
     - 1678898421.19518
     - 1678898435.9346
     - 1686172174.37985
@@ -4860,8 +4904,8 @@ MonoBehaviour:
     - 1698261582.43106
     - 1681042763.78652
     - 1681042749.55702
-    - 1681049083.21953
-    - 1681049071.52362
+    - 1776870439.26272
+    - 1776870424.16092
     - 1688248055.38297
     - 1688248078.51458
     - 1688745275.26365
@@ -4874,10 +4918,14 @@ MonoBehaviour:
     - 1698752398.90427
     - 1698752625.00135
     - 1698752637.79348
-    - 1733238698.35645
-    - 1733238735.5632
+    - 1776870348.7907
+    - 1776870331.9918
     - 1733331388.21724
     - 1733331402.62521
+    - 1776870787.47434
+    - 1776870824.80408
+    - 1776969620.15117
+    - 1776969556.17253
     managedSpriteCollection: 0
     loadable: 0
     assetName: 

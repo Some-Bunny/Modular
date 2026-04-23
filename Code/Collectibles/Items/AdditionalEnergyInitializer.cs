@@ -69,9 +69,9 @@ namespace ModularMod
                 var fx = player.PlayEffectOnActor(PowerUpVFX, new Vector3(0, 1.25f));
                 fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("power_up");
             }
-            if (self.gameObject.GetComponent<BasicStatPickup>() != null && player.HasPassiveItem(ModulePrinterCore.ModulePrinterCoreID))
+            if (self is BasicStatPickup basicStat && player.HasPassiveItem(ModulePrinterCore.ModulePrinterCoreID))
             {
-                if (self.gameObject.GetComponent<BasicStatPickup>().IsMasteryToken == true)
+                if (basicStat.IsMasteryToken == true)
                 {
                     var fx = player.PlayEffectOnActor(PowerUpVFX, new Vector3(0, 1.25f));
                     fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("power_up");

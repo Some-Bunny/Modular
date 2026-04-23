@@ -42,6 +42,7 @@ namespace ModularMod
             pickup.AddPassiveStatModifier(PlayerStats.StatType.AdditionalItemCapacity, 1);
             pickup.CanBeDropped = false;
             (pickup as PlayerItem).m_baseSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("computer_core");
+            (pickup as PlayerItem).passiveStatModifiers = new StatModifier[] { };
             GameObject VFX = new GameObject("Scrapper_VFX");
             FakePrefab.DontDestroyOnLoad(VFX);
             FakePrefab.MarkAsFakePrefab(VFX);
@@ -219,39 +220,45 @@ namespace ModularMod
                     ONFE(base.LastOwner);
                     base.LastOwner.startingActiveItemIds.Add(this.PickupObjectId);
                 }
-                bool wasPressed = LastOwner.m_activeActions.ReloadAction.State;
-                if (wasPressed && LastOwner.CurrentItem == this)
-                {
-                    if (EffectInst == null && TimerToSwitch > 0.25f)
-                    {
-                        EffectInst = LastOwner.PlayEffectOnActor(ReloadHoldEffect, new Vector3(0, 0.75f));
-                        EffectInst.gameObject.layer = 22;
-                        EffectInst.GetComponent<tk2dSpriteAnimator>().Play(this.LastOwner.IsUsingAlternateCostume ? "moduleswitchmodealt" : "moduleswitchmode");
 
+                if (LastOwner.m_activeActions != null)
+                {
+                    bool wasPressed = LastOwner.m_activeActions.ReloadAction.State;
+                    if (wasPressed && LastOwner.CurrentItem == this)
+                    {
+                        if (EffectInst == null && TimerToSwitch > 0.25f)
+                        {
+                            EffectInst = LastOwner.PlayEffectOnActor(ReloadHoldEffect, new Vector3(0, 0.75f));
+                            EffectInst.gameObject.layer = 22;
+                            EffectInst.GetComponent<tk2dSpriteAnimator>().Play(this.LastOwner.IsUsingAlternateCostume ? "moduleswitchmodealt" : "moduleswitchmode");
+
+                        }
+                        TimerToSwitch += Time.deltaTime;
+                        if (TimerToSwitch >= 1.25f)
+                        {
+                            if (EffectInst != null)
+                            {
+                                Destroy(EffectInst);
+                                EffectInst = null;
+                            }
+
+                            if (LastOwner.CurrentItem != this) { return; }
+                            SwitchMode();
+                            TimerToSwitch = 0;
+                        }
                     }
-                    TimerToSwitch += Time.deltaTime;
-                    if (TimerToSwitch >= 1.25f)
+                    else
                     {
                         if (EffectInst != null)
                         {
                             Destroy(EffectInst);
                             EffectInst = null;
                         }
-
-                        if (LastOwner.CurrentItem != this) { return; }
-                        SwitchMode();
                         TimerToSwitch = 0;
                     }
                 }
-                else
-                {
-                    if (EffectInst != null)
-                    {
-                        Destroy(EffectInst);
-                        EffectInst = null;
-                    }
-                    TimerToSwitch = 0;
-                }
+
+                
             }
             base.Update();
         }

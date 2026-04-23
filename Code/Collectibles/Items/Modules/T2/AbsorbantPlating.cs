@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Absorbant Plating",
             Description = "Spongy",
-            LongDescription = "Fire and Poison takes 3 (+1 per stack) times longer to damage you.\nGain a 75% (+75% per stack) fire rate and accuracy boost when standing on any goop. Being poisoned or on fire makes projectiles inflict poison or fire." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Fire and Poison takes 3 (+1 per stack) times longer to damage you.\nGain a 75% (+75% per stack) fire rate and accuracy boost when standing on any goop. Being poisoned or on fire makes projectiles inflict poison or fire.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("absorbantplate_t2_module"),
             Quality = ItemQuality.SPECIAL,

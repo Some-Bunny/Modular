@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Emergency Response",
             Description = "Fight Up",
-            LongDescription = "Taking damage grants a double damage, fire rate and halved reload time that degrades over 15 (+7.5 per stack) seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Taking damage grants double damage, fire rate and halved reload time that degrades over 15 (+7.5 per stack) seconds.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("emergencymod_tier1_module"),
             Quality = ItemQuality.SPECIAL,

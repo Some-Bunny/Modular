@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Plus One",
             Description = "One Better",
-            LongDescription = "Improves projectiles by exactly +1 (+1 per stack) damage." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Improves projectiles by exactly +1 (+1 per stack) damage.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plusone_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -68,9 +68,8 @@ namespace ModularMod
         {
             yield return null;
             int stack = overrideStack ?? this.ReturnStack(modulePrinterCore);
-            float f_1 = p.baseData.damage * 1 + (0.5f * stack);
-            float f_2 = p.baseData.damage + stack;
-            p.baseData.damage = Mathf.Min(f_1, f_2);
+            p.baseData.damage += stack;
+            p.baseData.force += 1;
             yield break;
         }
 

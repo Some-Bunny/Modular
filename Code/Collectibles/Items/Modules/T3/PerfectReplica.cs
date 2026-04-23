@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Perfect Replica",
             Description = "A Bit Broken",
-            LongDescription = "Acts as 1 (+1 per stack) of every module currently active." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Acts as 1 (+1 per stack) of every module currently active.",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("perfectclone_t3_module"),
             Quality = ItemQuality.SPECIAL,

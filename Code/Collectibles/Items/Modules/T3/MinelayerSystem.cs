@@ -1,4 +1,5 @@
 ﻿using Alexandria.ItemAPI;
+using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using JuneLib.Items;
 using System;
@@ -21,7 +22,7 @@ namespace ModularMod
         {
             Name = "Minelayer System",
             Description = "Fortification Expert",
-            LongDescription = "Projectile damage reduced by 75%. Increases fire rate by 25% and massively reduces spread. Projectiles now leave proximity mines on impact that take 3 (-33% hyperbolically per stack) seconds to prime, and take 1 (-25% hyperbolically per stack) second to detonate. (+Explosion Damage per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Projectile damage reduced by 70%. Increases fire rate by 33% and massively reduces spread. Projectiles now leave proximity mines on impact that take 3 (-33% hyperbolically per stack) seconds to prime, and take 1 second (-25% hyperbolically per stack) to detonate. (+Explosion Damage per stack)",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +34,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Minelayer System " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectile damage reduced by 70%.\nIncreases fire rate by 33% and massively reduces spread.\nProjectiles now leave proximity mines on impact that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") second to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
+            h.LabelDescription = "Projectile damage reduced by 70%.\nIncreases fire rate by 33% and massively reduces spread.\nProjectiles now leave proximity mines on impact that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 second ("+StaticColorHexes.AddColorToLabelString("-25% hyperbolically") + ") to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -132,7 +133,7 @@ namespace ModularMod
                 detectRadius = 2.25f,
                 explosionDelay = 1f,
                 usesCustomExplosionDelay = false,
-                customExplosionDelay = 1f,
+                customExplosionDelay = 0.5f,
                 explodeAnimName = "boom",
                 idleAnimName = "start",
                 MovesTowardEnemies = false,
@@ -161,6 +162,18 @@ namespace ModularMod
             };
             modulePrinter.ProcessGunStatModifier(this.gunStatModifier);
         }
+        /*
+        public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
+        {
+            float d1 = 3.5f;
+            float d2 = 3.5f;
+
+            d1 *= (3.5f - (3.5f / (1 + 0.33f * (Stack()))));
+            d2 /= (0.67f + 0.33f * (Stack()));
+
+            Debug.Log($"{d1} | {Stack()} | {d2}");
+        }
+        */
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             return f * 0.66f;
@@ -206,9 +219,14 @@ namespace ModularMod
         }
         public IEnumerator ArmTime(CustomProximityMine mine, float? armTime)
         {
-            mine.explosionDelay = 1.25f - (1.25f - (1.25f / (1 + 0.25f * (armTime ?? Stack()))));
-            float d1 = 3.5f;
-            d1 *= (3.5f - (3.5f / (1 + 0.33f * (armTime ?? Stack()))));
+            float d1 = 3f;
+            d1 /= (0.67f + 0.33f * (armTime ?? Stack()));
+            float d2 = 1;
+            d2 /= (0.75f + 0.25f * (armTime ?? Stack()));
+
+
+            mine.explosionDelay = d2;
+
 
 
             float e = 0;

@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Five-Shot Salute",
             Description = "One For Each Finger",
-            LongDescription = "Reduces Rate Of Fire and Damage by 35%. Shoot 5 (+2 per stack) times the projectiles." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Reduces Rate Of Fire and Damage by 35%. Shoot 5 (+2 per stack) times the projectiles." ,
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module"),
             Quality = ItemQuality.SPECIAL,

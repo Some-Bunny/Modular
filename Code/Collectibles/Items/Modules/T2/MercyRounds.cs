@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Mercy Rounds",
             Description = "Hits The Sick Harder",
-            LongDescription = "Deal an additional 40% (+40% per stack) more damage to enemies for each buff or debuff they have. Enemies directly slain by you spread their debuffs to nearby enemies." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Deal an additional 40% (+40% per stack) more damage to enemies for each buff or debuff they have. Enemies directly slain by you spread their debuffs to nearby enemies.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module"),
             Quality = ItemQuality.SPECIAL,

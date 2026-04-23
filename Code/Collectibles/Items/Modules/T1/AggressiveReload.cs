@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Aggressive Reload",
             Description = "Air Force",
-            LongDescription = "Reloading harms, burns and pushes and stuns enemies near you. Effectiveness scales on how empty the clip is. (Damage and force is increased per stack). Can deflect enemy bullets, with good timing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reloading harms, burns and pushes and stuns enemies near you. Effectiveness scales on how empty the clip is. (Damage and force is increased per stack). Can deflect enemy bullets, with good timing.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aggressivereload_tier1_module"),
             Quality = ItemQuality.SPECIAL,

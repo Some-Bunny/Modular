@@ -23,7 +23,7 @@ namespace ModularMod
         {
             Name = "Eternal Wrath",
             Description = "Strong Spirit",
-            LongDescription = "Cheat Death Once (+1 Revive). Cheating death grants permanent stat boosts. Module is destroyed after cheating death." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_3),
+            LongDescription = "Cheat Death Once (+1 Revive). Cheating death grants permanent stat boosts. Module is destroyed after cheating death.",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("eternalwrath_t3_module"),
             Quality = ItemQuality.SPECIAL,

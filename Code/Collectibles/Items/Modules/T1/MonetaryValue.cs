@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Monetary Value",
             Description = "Investment",
-            LongDescription = "Gain 0.33% (+0.33% per stack) damage for each casing you have. Your held casings are multiplied by 1.2x every floor." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Gain 0.33% (+0.33% per stack) damage for each casing you have. Your held casings are multiplied by 1.2x every floor.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("moneyvalue_tier1_module"),
             Quality = ItemQuality.SPECIAL,

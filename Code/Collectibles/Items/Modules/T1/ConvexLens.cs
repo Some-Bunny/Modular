@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Calibrated Lens",
             Description = "Distance Is Power",
-            LongDescription = "Deal 33% (+33% per stack) more damage to enemies far away from you." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Deal 33% (+33% per stack) more damage to enemies far away from you.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("calibratedlens_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -97,7 +97,6 @@ namespace ModularMod
                 ring.GetComponent<MeshRenderer>().material.SetFloat("_PxWidth", 0.002f);
                 ring.transform.position = player.sprite.WorldCenter.ToVector3ZUp(100);          
                 ring.StartCoroutine(DoRingLerp(ring, 0, 8.5f));
-                //ring.gameObject.SetLayerRecursively(LayerMask.NameToLayer("Unpixelated"));
             }
             if (player.CurrentRoom != null)
             {nearbyEnemies = ApplyActionToNearbyEnemies(player.sprite.WorldCenter, 7.5f, player.CurrentRoom);}

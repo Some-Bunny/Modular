@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Overcharged Capacitor",
             Description = "Too Much To Handle",
-            LongDescription = "Clearing enough rooms breaks this module and grants a Power Cell. Reduces stats significantly, take double damage, and cannot be deactivated." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Clearing enough rooms breaks this module and grants a Power Cell. Reduces stats significantly, take double damage, and cannot be deactivated.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bloatedcapacitor_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -77,9 +77,9 @@ namespace ModularMod
         }
 
 
-        public Vector2 ModifySpeed(Vector2 currentVelocity, ModulePrinterCore core, PlayerController player)
+        public float ModifySpeed(Vector2 currentVelocity, ModulePrinterCore core, PlayerController player)
         {
-            return currentVelocity *= 0.90f;
+            return -0.10f;
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
@@ -132,6 +132,20 @@ namespace ModularMod
                 }
             }
         }
+
+        public override void MidGameSerialize(List<object> data)
+        {
+            base.MidGameSerialize(data);
+            data.Add(RandomRoomsToGo);
+        }
+        public override void MidGameDeserialize(List<object> data)
+        {
+            base.MidGameSerialize(data);
+            RandomRoomsToGo = (int)data[0];
+        }
     } 
+
+
+
 }
 

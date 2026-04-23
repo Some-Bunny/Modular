@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "One Shot",
             Description = "Uno Mas",
-            LongDescription = "Adds a flat 1 (+1 per stack) shots to your clip." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Adds a flat 1 (+1 per stack) shots to your clip.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("oneshot_tier1_module"),
             Quality = ItemQuality.SPECIAL,

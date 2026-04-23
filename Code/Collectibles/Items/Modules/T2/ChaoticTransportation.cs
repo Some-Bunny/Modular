@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Chaotic Transportation",
             Description = "Where Am I?",
-            LongDescription = "Adds 1 (+1 per stack) Bounces. Increases fire rate by 20% (+20% per stack hyperbolically). Projectiles will randomly teleport to anywhere in the room 3 (+3) times." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Adds 1 (+1 per stack) Bounces. Increases fire rate by 25% (+25% per stack hyperbolically). Projectiles will randomly teleport to anywhere in the room 3 (+3) times." ,
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -32,7 +32,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Chaotic Transportation " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") Bounces.\nIncreases fire rate by 20% ("+StaticColorHexes.AddColorToLabelString("+20% hyperbolically")+").\nProjectiles can randomly teleport to anywhere in the room 3 ("+StaticColorHexes.AddColorToLabelString("+3")+") times.";
+            h.LabelDescription = "Adds 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") Bounces.\nIncreases fire rate by 25% ("+StaticColorHexes.AddColorToLabelString("+25% hyperbolically")+").\nProjectiles can randomly teleport to anywhere in the room 3 ("+StaticColorHexes.AddColorToLabelString("+3")+") times.";
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
@@ -98,7 +98,7 @@ namespace ModularMod
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinter);
-            return f - (f - (f / (1 + (0.20f * stack))));
+            return f - (f - (f / (1 + (0.25f * stack))));
         }
     }
     

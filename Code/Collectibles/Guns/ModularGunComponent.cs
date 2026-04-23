@@ -69,6 +69,8 @@ namespace ModularMod
             __instance.m_gunNameVisibilityTimers[labelTarget] -= __instance.m_deltaTime;
             if (__instance.m_gunNameVisibilityTimers[labelTarget] > 1f)
             {
+                __instance.gunNameLabels[labelTarget].colorizeSymbols = true;
+
                 __instance.gunNameLabels[labelTarget].IsVisible = true;
                 __instance.gunNameLabels[labelTarget].Opacity = 1f;
                 __instance.gunNameLabels[labelTarget].Text = $"{NopeOutVisibility.ERROR}\n" + __instance.gunNameLabels[labelTarget].Text;
@@ -76,6 +78,7 @@ namespace ModularMod
             }
             else if (__instance.m_gunNameVisibilityTimers[labelTarget] > 0f)
             {
+                __instance.gunNameLabels[labelTarget].colorizeSymbols = true;
                 __instance.gunNameLabels[labelTarget].IsVisible = true;
                 __instance.gunNameLabels[labelTarget].Opacity = __instance.m_gunNameVisibilityTimers[labelTarget];
                 __instance.gunNameLabels[labelTarget].Text = $"{NopeOutVisibility.ERROR}\n" + $"{__instance.gunNameLabels[labelTarget].Text}";
@@ -83,6 +86,7 @@ namespace ModularMod
             }
             else
             {
+                __instance.gunNameLabels[labelTarget].colorizeSymbols = true;
                 __instance.gunNameLabels[labelTarget].IsVisible = true;
                 __instance.gunNameLabels[labelTarget].Opacity = 1;
                 __instance.gunNameLabels[labelTarget].Text = $"{NopeOutVisibility.ERROR}";
@@ -134,10 +138,10 @@ namespace ModularMod
         private ProjectileVolleyData storedVolley;
         public List<ModuleGunStatModifier> statMods = new List<ModuleGunStatModifier>();
 
-        private void Awake()
-        {
 
-        }
+
+
+
 
 
 
@@ -163,6 +167,8 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, Gun> OnReload;
         public Action<ModulePrinterCore, PlayerController, Gun> GunUpdate;
         public Action<ModulePrinterCore, PlayerController, Gun> OnGunFired;
+
+        private bool isInited = false;
 
         public void Start()
         {
@@ -213,11 +219,15 @@ namespace ModularMod
                         PrinterSelf = printerCore;
                     }
                 }
-                gun.OnPreFireProjectileModifier += OnPreFireMod;
-                gun.OnPostFired += OnPostFired;
-                gun.OnReloadPressed += OnReloadPressed;
+                if (!isInited)
+                {
+                    gun.OnPreFireProjectileModifier += OnPreFireMod;
+                    gun.OnPostFired += OnPostFired;
+                    gun.OnReloadPressed += OnReloadPressed;
+                }
                 DefaultSwitchGroup = gun.gunSwitchGroup;
             }
+            isInited = true;
         }
 
 
@@ -234,6 +244,7 @@ namespace ModularMod
             {
                 OnGunFired(PrinterSelf, player, gun);
             }
+            //PrinterSelf.OPFMG(this);
         }
 
         public void ChangeMuzzleFlash(VFXPool newMuzzle)
@@ -335,6 +346,19 @@ namespace ModularMod
             return Mathf.Max(num, 1);
         }
 
+        private float _CurrentFireRateMult;
+        private float _CurrentClipSizeMult;
+        private float _CurrentReloadTimeMult;
+
+        public float GetFireRateMult()
+        {
+            return _CurrentFireRateMult;
+        }
+        public float GetReloadTimeMult()
+        {
+            return _CurrentReloadTimeMult;
+        }
+
         public void ProcessStats()
         {
             if (gun == null) { return; }
@@ -347,58 +371,7 @@ namespace ModularMod
                 if (entry.Reload_Process != null) { r = entry.Reload_Process(r, PrinterSelf, this, Player); }
             }
             this.gun.reloadTime = r;
-
-            /*
-            int c = GetModNumberOfShotsInClip(Player);
-            float f = Base_Fire_Rate;
-            float q = Base_Accuracy;
-            float gg = Base_AngleFromAim;
-            int finales = Base_Finale_Clip_Size;
-            //ETGModConsole.Log("Base RoF: " + f);
-            //ETGModConsole.Log("Base Rel: " + r);
-            //ETGModConsole.Log("Base Clip: " + c);
-            //ETGModConsole.Log("======");
-            //This code fucking sucks...
-            foreach (var entry in statMods)
-            {
-                //ETGModConsole.Log("Premod RoF: " + f);
-                //ETGModConsole.Log("Premod Rel: " + r);
-                //ETGModConsole.Log("Premod Clip: " + c);
-
-                if (entry.FireRate_Process != null)  { f = entry.FireRate_Process(f, PrinterSelf, this, Player);}
-                if (entry.ClipSize_Process != null) {c = entry.ClipSize_Process(c, PrinterSelf, this, Player);}
-                if (entry.Reload_Process != null)  {r = entry.Reload_Process(r, PrinterSelf, this, Player); }
-                if (entry.Accuracy_Process != null) { q = entry.Accuracy_Process(q, PrinterSelf, this, Player); }
-
-                if (entry.AngleFromAim_Process != null) { gg = entry.AngleFromAim_Process(gg, PrinterSelf, this, Player); }
-            }
-            */
-            /*
-            foreach (var entry in statMods)
-            {
-                if (entry.Post_Calculation_ClipSize_Process != null) { c = entry.Post_Calculation_ClipSize_Process(c, PrinterSelf, this, Player); }
-            }
-
-            foreach (var entry in statMods)
-            {
-                if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, c, PrinterSelf, this, Player); }
-            }
-            */
-            //ETGModConsole.Log("Processed RoF: " + f);
-            //ETGModConsole.Log("Processed Rel: " + r);
-            //ETGModConsole.Log("Processed Clip: " + c);
-            //ETGModConsole.Log("======");
-            /*
-            this.gun.DefaultModule.cooldownTime = f;
-            this.gun.DefaultModule.angleVariance = q;
-            this.gun.reloadTime = r;
-            this.gun.DefaultModule.numberOfShotsInClip = c;
-            this.gun.DefaultModule.numberOfFinalProjectiles = finales;
-
-            this.gun.DefaultModule.angleFromAim = gg;
-            */
-
-
+            _CurrentReloadTimeMult = r / Base_Reload_Time;
 
             foreach (var cont in Default_Module_And_Stats)
             {
@@ -445,6 +418,9 @@ namespace ModularMod
                 cont.Key.angleFromAim = AngleFromAim;
                 cont.Key.numberOfShotsInClip = ClipSize;
                 cont.Key.numberOfFinalProjectiles = finales;
+
+                _CurrentFireRateMult = BaseFireRate / cont.Value.Rate_Of_Fire;
+                _CurrentClipSizeMult = ClipSize / cont.Value.Clip_Size;
 
             }
 
@@ -529,10 +505,6 @@ namespace ModularMod
                         isStoned = true;
                         AkSoundEngine.PostEvent("Play_BOSS_mineflayer_trigger_01", Player.gameObject);
                     }
-                }
-                else if (isStoned == true)
-                {
-
                 }
             }
             
@@ -640,7 +612,6 @@ namespace ModularMod
                     }
                 }
             }
-
             ProcessStats();
         }
 

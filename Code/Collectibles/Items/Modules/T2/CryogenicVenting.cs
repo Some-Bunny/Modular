@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Cryogenic Venting",
             Description = "Heart Of Cold",
-            LongDescription = "Passively freeze enemies near you. (+Freeze Power and Radius per stack).\nFrozen enemies shatter into cold when killed. (+Cold Strength per stack)\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Passively freeze enemies near you. (+Freeze Power and Radius per stack).\nFrozen enemies shatter into freezing projectiles when killed. (+Cold Strength per stack)",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cryogenicvents_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -30,7 +30,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cryogenicvents_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
             h.LabelName = "Cryogenic Venting " + h.ReturnTierLabel();
-            h.LabelDescription = $"Passively freeze enemies near you. ({StaticColorHexes.AddColorToLabelString("+Freeze Power and Radius", StaticColorHexes.Light_Orange_Hex)}).\nFrozen enemies shatter into bursts of cold when killed. ({StaticColorHexes.AddColorToLabelString("+Cold Strength", StaticColorHexes.Light_Orange_Hex)})";
+            h.LabelDescription = $"Passively freeze enemies near you. ({StaticColorHexes.AddColorToLabelString("+Freeze Power and Radius", StaticColorHexes.Light_Orange_Hex)}).\nFrozen enemies shatter into freezing projectiles when killed. ({StaticColorHexes.AddColorToLabelString("+Cold Strength", StaticColorHexes.Light_Orange_Hex)})";
             h.EnergyConsumption = 2;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
@@ -156,14 +156,14 @@ namespace ModularMod
             {
                 if (enemy && Vector2.Distance(enemy.sprite.WorldCenter, player.sprite.WorldCenter) < range)
                 {
-                    enemy.ApplyEffect(DebuffStatics.frostBulletsEffect, (1.25f + (1.25f * this.ReturnStack(modulePrinter))) * Time.deltaTime);
+                    enemy.ApplyEffect(DebuffStatics.frostBulletsEffect, (25f + (2f * this.ReturnStack(modulePrinter))) * Time.deltaTime);
                 }
             }
         }
 
         public float ReturnRange(ModulePrinterCore core)
         {
-            return 2.5f + (this.ReturnStack(core));
+            return 3f + (this.ReturnStack(core));
         }
     }
 }

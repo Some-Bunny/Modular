@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using System.Collections;
+using Dungeonator;
 
 namespace ModularMod.Code.Collectibles.Guns.Update_3
 { 
@@ -158,6 +159,53 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
             }
         }
 
+        public Vector3 GetPointTowards()
+        {
+            if (!BraveInput.GetInstanceForPlayer(Owner.PlayerIDX).IsKeyboardAndMouse(false))
+            {
+                if (AIActor == null)
+                {
+                    AIActor = GetSimplifiedNewTarget();
+                    if (AIActor == null)
+                    {
+                        return Direction;
+                    }
+                    return this.transform.position - AIActor.transform.position;
+                }
+                return this.transform.position - AIActor.transform.position;
+            }
+            else
+            {
+                BraveInput instanceForPlayer = BraveInput.GetInstanceForPlayer(Owner.PlayerIDX);
+                return  Owner.unadjustedAimPoint - this.transform.position;
+            }
+        }
+
+        private AIActor AIActor;
+
+        private AIActor GetSimplifiedNewTarget()
+        {
+            List<AIActor> enmL = new List<AIActor>();
+            (Owner as PlayerController).CurrentRoom?.GetActiveEnemies(RoomHandler.ActiveEnemyType.All, ref enmL);
+            if (enmL == null) { return null; }
+            if (enmL.Count == 0) { return null; }
+            enmL.RemoveAll(self => self.State != AIActor.ActorState.Normal);
+            enmL.RemoveAll(self => self.specRigidbody == null);
+            enmL = enmL.OrderByDescending(self => self.healthHaver.currentHealth).ToList();
+            if (enmL.Count == 0) { return null; }
+            enmL.RemoveAll(self => self.healthHaver.IsDead);
+            enmL.RemoveAll(self => self.healthHaver.vulnerable == false);
+            enmL.RemoveAll(self => self.spriteAnimator.QueryInvulnerabilityFrame() == true);
+            if (enmL.Count == 0) { return null; }
+            AIActor t = null;
+            if (enmL.Count == 1)
+            {
+                return enmL[0];
+            }
+            return t;
+        }
+
+
         public void Update()
         {
             if (Reloads == 0) { Destroy(this.gameObject); }
@@ -170,7 +218,16 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
                 float num9 = 0;
                 int rayMask2 = CollisionMask.LayerToMask(CollisionLayer.HighObstacle, CollisionLayer.BulletBlocker, CollisionLayer.EnemyHitBox, CollisionLayer.BulletBreakable, CollisionLayer.EnemyCollider);
                 RaycastResult raycastResult2;
-                if (PhysicsEngine.Instance.Raycast(Animator.sprite.WorldCenter + Direction, Direction, 1000, out raycastResult2, true, true, rayMask2, null, false, rigidbodyExcluder, null))
+
+                var _Direction = Direction;
+                if (GlobalModuleStorage.PlayerHasActiveModule(Owner, IteratedDesign.ID))
+                {
+                    _Direction = Vector2.MoveTowards(_Direction, GetPointTowards().normalized, 0.1f * BraveTime.DeltaTime);
+                }
+                Direction = _Direction;
+
+
+                if (PhysicsEngine.Instance.Raycast(Animator.sprite.WorldCenter + Direction.normalized, Direction, 1000, out raycastResult2, true, true, rayMask2, null, false, rigidbodyExcluder, null))
                 {
                     num9 = raycastResult2.Distance;
                     if (raycastResult2.OtherPixelCollider != null)
@@ -211,6 +268,7 @@ namespace ModularMod.Code.Collectibles.Guns.Update_3
                     }
                 }
                 RaycastResult.Pool.Free(ref raycastResult2);
+                LaserSightInst.transform.rotation = Quaternion.Euler(0,0, Toolbox.ToAngle(Direction));
                 LaserSightInst.dimensions = new Vector2(num9 * 16, 1f);
             }
             LaserSightInst.transform.position = Animator.sprite.WorldCenter + Direction;

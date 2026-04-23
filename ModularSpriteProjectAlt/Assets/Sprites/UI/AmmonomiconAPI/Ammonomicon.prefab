@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1607321064712738}
+  m_IsPrefabParent: 1
+--- !u!1 &1607321064712738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4473508561445056}
+  - component: {fileID: 114620293606147680}
+  m_Layer: 0
+  m_Name: Ammonomicon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4473508561445056
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607321064712738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114620293606147680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607321064712738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f514313262e3d141ad017b60809752a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: fb372ac3ddb5a994c931059e3d229c5b, type: 2}
+  items:
+  - name: bookmark_mdl_001
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.75
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: e4f982682a82cec49b9e64740bdc4de0
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_002
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.1875
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: 3a9ace9d39aeeb24e9ba9d324d68eb55
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_003
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.375
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: a7d66ff50904b65458a5e5652bad7589
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_004
+    region:
+      serializedVersion: 2
+      x: 0.1171875
+      y: 0
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: 8168dca63da8c7b438d29ae4ed43d471
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_hover_001
+    region:
+      serializedVersion: 2
+      x: 0.1171875
+      y: 0.375
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: 699a34b9929947b478e5785d8519adf4
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_select_001
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: bf21265289e173d4dab036609dc495ae
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_select_002
+    region:
+      serializedVersion: 2
+      x: 0.1171875
+      y: 0.5625
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: 640e89086b5c6d74e9995182386255c6
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_select_003
+    region:
+      serializedVersion: 2
+      x: 0
+      y: 0.5625
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: b69ce0981be1b6947b743fc221625361
+    deleted: 0
+    texture: {fileID: 0}
+  - name: bookmark_mdl_select_hover_001
+    region:
+      serializedVersion: 2
+      x: 0.1171875
+      y: 0.1875
+      width: 0.109375
+      height: 0.171875
+    border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    rotated: 0
+    sizeInPixels: {x: 28, y: 22}
+    textureGUID: 50bc7243133b037458df8ccbe40f9b64
+    deleted: 0
+    texture: {fileID: 0}
+  generator: 0
+  imageFileGUID: 
+  dataFileGUID: 

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Heat Vectoring",
             Description = "Knock 'Em Down",
-            LongDescription = "Grants 10% (+5% per stack) movement speed. Dodgerolling releases 5 (+4 per stack) projectiles in the direction opposite of where you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Grants 10% (+5% per stack) movement speed. Dodgerolling releases 5 (+4 per stack) projectiles in the direction opposite of where you're moving. Projectiles gain all projectile-based effects. Effect recharges after 6 seconds.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("heatvectoring_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -148,13 +148,14 @@ namespace ModularMod
             yield break;
         }
 
-        public Vector2 ModifySpeed(Vector2 currentVelocity, ModulePrinterCore core, PlayerController player)
+        public float ModifySpeed(Vector2 currentVelocity, ModulePrinterCore core, PlayerController player)
         {
-            return currentVelocity *= 1 +  0.05f + (this.ReturnStack(core) / 20);
+            return 0.05f + (0.05f * (this.ReturnStack(core)));
         }
 
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
+
             modulePrinter.VoluntaryMovement_Modifier -= ModifySpeed;
             modulePrinter.RollStarted -= RollStarted;
         }

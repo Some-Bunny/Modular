@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Aerodynamic Carvings",
             Description = "Whizz Up",
-            LongDescription = "Increases Damage by\n10% (+10% per stack) and player projectile speed by 30% (+30% per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n12.5% (+12.5% per stack) and player projectile speed by 33% (+33% per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aerdynamic_tier1_module"),
             Quality = ItemQuality.SPECIAL,

@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Laser Lance",
             Description = "Pointy",
-            LongDescription = "Reduces projectile speed by 50%. Projectiles will now fire out short-range, damaging beams that point in the direction the projectile is moving.. (+Beam Damage And Range per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Reduces projectile speed by 50%. Projectiles will now fire out short-range, damaging beams that point in the direction the projectile is moving. (+Beam Damage And Range per stack)",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("laserlance_t2_module"),
             Quality = ItemQuality.SPECIAL,

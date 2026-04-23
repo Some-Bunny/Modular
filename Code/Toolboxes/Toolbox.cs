@@ -22,7 +22,10 @@ namespace ModularMod
 {
     public static class Toolbox
     {
-
+        public static float ToAngle(Vector2 v)
+        {
+            return Mathf.Atan2(v.y, v.x) * 57.29578f;
+        }
         public static PlayerController GetModular()
         {
             foreach (var entry in GameManager.Instance.AllPlayers)
@@ -896,8 +899,7 @@ namespace ModularMod
         }
 
 
-        public static object InvokeNotOverride(this MethodInfo methodInfo,
-    object targetObject, params object[] arguments)
+        public static object InvokeNotOverride(this MethodInfo methodInfo, object targetObject, params object[] arguments)
         {
             var parameters = methodInfo.GetParameters();
 

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Cloak Plating",
             Description = "+60%",
-            LongDescription = "Entering combat cloaks the player for 6 (+3 per stack) seconds. Uncloaking forcefully (by attacking or rolling) grants a 4x (+2 per stack) damage multiplier that quickly degrades. Grants a 30% movement speed buff while cloaked." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Entering combat cloaks the player for 6 (+3 per stack) seconds. Uncloaking forcefully (by attacking or rolling) grants a 4x (+2 per stack) damage multiplier that quickly degrades. Grants a 30% movement speed buff while cloaked.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -74,9 +74,9 @@ namespace ModularMod
 
         }
 
-        public Vector2 MovementMod(Vector2 currentVel, ModulePrinterCore core, PlayerController p)
+        public float MovementMod(Vector2 currentVel, ModulePrinterCore core, PlayerController p)
         {
-            return currentVel *= 1 + (0.3f * (core.cloakDoer.currentState == CloakDoer.Cloak_State.Active ? 1 : 0));
+            return (0.3f * (core.cloakDoer.currentState == CloakDoer.Cloak_State.Active ? 1 : 0));
         }
 
         public float DamageMax = 5;
@@ -112,6 +112,7 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= Mult;
+            p.baseData.force *= Mult;
             p.AdditionalScaleMultiplier *= Mathf.Min(Mult, 2.5f);
         }
     }

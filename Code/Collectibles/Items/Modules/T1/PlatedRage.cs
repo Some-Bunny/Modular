@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Plated Rage",
             Description = "Armored Core",
-            LongDescription = "Increases Damage by\n3.33% (+3.33% per stack) for each piece of armor held." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by\n3.33% (+3.33% per stack) for each piece of armor held.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("platedrage_tier1_module"),
             Quality = ItemQuality.SPECIAL,

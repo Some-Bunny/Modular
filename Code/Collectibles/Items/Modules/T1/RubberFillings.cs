@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Rubber Fillings",
             Description = "Ricochet Up",
-            LongDescription = "Adds 2 Bounce to player projectiles (+2 per stack), but divides knockback force by 2 (+1 per stack ) and reduces accuracy by 15% (+15% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Adds 1 Bounce to player projectiles (+1 per stack), but divides knockback force by 2 (+1 per stack ) and reduces accuracy by 15% (+15% hyperbolically per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("rubbercase_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -32,7 +32,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.85f;
             h.LabelName = "Rubber Fillings" + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 2 Bounces (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ")\nbut divides knockback force by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces accuracy by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.LabelDescription = "Adds 1 Bounce (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nbut divides knockback force by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ")\nand reduces accuracy by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
@@ -52,7 +52,7 @@ namespace ModularMod
             if (UnityEngine.Random.value > 0.05f) { return; }
 
             BounceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += 2;
+            bounceProjModifier.numberOfBounces += 1;
             p.baseData.force /= 2;
             p.objectImpactEventName = SFX;
 
@@ -84,7 +84,7 @@ namespace ModularMod
         {
             int stack = this.ReturnStack(modulePrinterCore);
             BounceProjModifier bounceProjModifier =  p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounceProjModifier.numberOfBounces += stack * 2;
+            bounceProjModifier.numberOfBounces += stack;
             p.baseData.force /= stack + 1;
             p.objectImpactEventName = SFX;        
         }

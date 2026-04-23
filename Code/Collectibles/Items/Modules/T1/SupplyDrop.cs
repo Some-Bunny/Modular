@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Supply Drop",
             Description = "Free Loot!",
-            LongDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup. Air drops 1 (+1 per stack) random pickup every floor. Passively reduces the chance of better modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup. Air drops 1 (+1 per stack) random pickup every floor.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("supplydrop_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,7 +28,7 @@ namespace ModularMod
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.45f;
             h.LabelName = "Supply Drop " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup.\nAir drops 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") random pickup every floor.\n" +StaticColorHexes.AddColorToLabelString("Passively reduces the chance of better modules appearing", StaticColorHexes.Pink_Hex) + ".";
+            h.LabelDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup.\nAir drops 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") random pickup every floor.";
             h.EnergyConsumption = 1f;
             h.AppearsFromBlessedModeRoll = false;
 
@@ -48,9 +48,10 @@ namespace ModularMod
 
 
             ID = h.PickupObjectId;
-            GlobalModuleStorage.AlterModuleWeight += ModuleWeight;
+            //GlobalModuleStorage.AlterModuleWeight += ModuleWeight;
         }
         public static int ID;
+        /*
         public static float ModuleWeight(DefaultModule module, float f)
         {
             bool t = module.Tier == ModuleTier.Tier_2 || module.Tier == ModuleTier.Tier_3;
@@ -60,7 +61,7 @@ namespace ModularMod
             }
             return f;
         }
-
+        */
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             modulePrinter.OnNewFloorStarted += ONFS;

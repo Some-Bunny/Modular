@@ -44,7 +44,7 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(89) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 3.75f;
+            gun.reloadTime = 3f;
             gun.DefaultModule.cooldownTime = .833f;
             gun.DefaultModule.numberOfShotsInClip = 16;
             gun.SetBaseMaxAmmo(250);

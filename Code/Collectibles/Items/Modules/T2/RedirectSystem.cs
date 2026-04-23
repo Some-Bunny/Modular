@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Redirect System",
             Description = "Exchange Rate",
-            LongDescription = "Increases Clip Size by 33% (+33% per stack). Decreases reload time by 20% (+20% hyperbolically) All shots will turn to face the same angle as the last fired shot." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Increases Clip Size by 33% (+33% per stack). Decreases reload time by 25% (+25% hyperbolically) All shots will turn to face the same angle as the last fired shot.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("redirectsystem_t2_module"),
             Quality = ItemQuality.SPECIAL,

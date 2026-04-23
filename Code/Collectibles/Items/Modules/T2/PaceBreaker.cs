@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Pace Breaker",
             Description = "Heartbeat",
-            LongDescription = "Taking damage grants charge to your active items. Adds a new mode to your starter active item. Using an active item now releases an electromagnetic pulse who's strength scales off of how long the active item takes to charge. (+More Power per stack).\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_2),
+            LongDescription = "Taking damage grants charge to your active items. Adds a new mode to your starter active item. Using an active item now releases an electromagnetic pulse who's strength scales off of how long the active item takes to charge. (+More Power per stack).",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("pacebreaker_t2_module"),
             Quality = ItemQuality.SPECIAL,

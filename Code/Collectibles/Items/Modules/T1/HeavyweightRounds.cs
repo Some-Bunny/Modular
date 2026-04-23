@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Heavyweight Rounds",
             Description = "Plonk",
-            LongDescription = "Increases Damage by 33% (+33%), and bullet size by 25% (+25%) but reduces player bullet speed by 50% (+50% hyperbolically per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Damage by 33% (+33%) and bullet size by 25% (+25%) but reduces player bullet speed by 50% (+50% hyperbolically per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("heavyrounds_tier1_module"),
             Quality = ItemQuality.SPECIAL,

@@ -24,6 +24,7 @@ using static MonoMod.Cil.RuntimeILReferenceBag.FastDelegateInvokers;
 using ModularMod.Code.Controllers;
 using BepInEx.Configuration;
 using ModularMod.Code.Components.Projectile_Components;
+using ModularMod.Code.UI;
 
 
 namespace ModularMod
@@ -34,7 +35,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.3.15";
+        public const string VERSION = "1.3.16";
         public const string TEXT_COLOR = "#79eaff";
 
         public static AssetBundle ModularAssetBundle;
@@ -44,7 +45,7 @@ namespace ModularMod
         public static AdvancedStringDB Strings;
 
         private static bool SoundTest = false;
-        public static bool Debug_Mode = false;
+        public static bool Debug_Mode = true;
         private static bool DialogueTest = false;
 
         public void Start(){ ETGModMainBehaviour.WaitForGameManagerStart(GMStart); }
@@ -88,6 +89,7 @@ namespace ModularMod
 
 
             //==== Setup Static Stuff ====//
+            AmmonomiconSetup.Initialize();
             LightningController.Init();
             VFXStorage.AssignVFX();
             StaticTextures.InitTextures();
@@ -306,11 +308,10 @@ namespace ModularMod
             {
                 ETGModConsole.Commands.GetGroup("mdl").AddUnit("cratetoggle", Crate);
                 ETGModConsole.Commands.GetGroup("mdl").AddUnit("locktoggle", ToggleLocks);
-
-
-                ETGModConsole.Commands.GetGroup("mdl").AddUnit("lock_all", Lock);
-                ETGModConsole.Commands.GetGroup("mdl").AddUnit("unlock_all", Unlock);
             }
+
+            ETGModConsole.Commands.GetGroup("mdl").AddUnit("lock_all", Lock);
+            ETGModConsole.Commands.GetGroup("mdl").AddUnit("unlock_all", Unlock);
 
 
             if (this.OnFrameDelay != null) 
@@ -390,6 +391,7 @@ namespace ModularMod
 
             SaveAPIManager.SetFlag(CustomDungeonFlags.CHALLENGEMODE_DRAGUN, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.BLESSED_MODE, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.CHALLENGEMODE_LICH, b);
 
             ETGModConsole.Log("Unlocks are now set to : " +b);
         }
@@ -413,6 +415,7 @@ namespace ModularMod
 
             SaveAPIManager.SetFlag(CustomDungeonFlags.CHALLENGEMODE_DRAGUN, b);
             SaveAPIManager.SetFlag(CustomDungeonFlags.BLESSED_MODE, b);
+            SaveAPIManager.SetFlag(CustomDungeonFlags.CHALLENGEMODE_LICH, b);
 
             ETGModConsole.Log("Unlocks are now set to : " + b);
         }

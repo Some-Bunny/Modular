@@ -28,12 +28,10 @@ namespace ModularMod
             base.Pickup(player);
         }
 
-        public override void Update()
-        {
-        }
-
         public static void PostInit(PickupObject v)
         {
+            (v as PassiveItem).passiveStatModifiers = new StatModifier[] { };
+
             v.CanBeDropped = false;
             v.gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;
             PowerCellID = v.PickupObjectId;

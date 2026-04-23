@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Uncontrolled Blast",
             Description = "Spray And Pray",
-            LongDescription = "Massively boosts clip size and fire rate (+More Fire Rate per stack),but reduces damage and gives virtually uncontrollable spread. (+Even More Spread per stack)" + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Massively boosts clip size and fire rate (+More Fire Rate per stack),but reduces damage and gives virtually uncontrollable spread. (+Even More Spread per stack)",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("uncontrolledblast_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -87,6 +87,7 @@ namespace ModularMod
         {
             p.baseData.damage *= 0.8f;
             p.baseData.speed *= 2;
+            p.baseData.force *= 2;
             p.UpdateSpeed();
         }
 

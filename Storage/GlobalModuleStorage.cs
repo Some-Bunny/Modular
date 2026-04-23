@@ -172,7 +172,8 @@ namespace ModularMod
                 case DefaultModule.ModuleTier.Tier_Omega:
                     all_Tier_Omega_Modules.Add(module);
                     break;
-            }              
+            }
+            module.quality = PickupObject.ItemQuality.EXCLUDED;
         }
 
         public static DefaultModule ReturnModule(DefaultModule mod)
@@ -430,6 +431,10 @@ namespace ModularMod
         }
         public static int PlayerActiveModuleCount(this PlayerController player, int ModuleID)
         {
+            if (player.passiveItems == null)
+            {
+                return 0;
+            }
             for (int c = 0; c < player.passiveItems.Count; c++)
             {
                 var entry = player.passiveItems[c];
@@ -450,6 +455,11 @@ namespace ModularMod
 
         public static ModulePrinterCore PlayerHasCore(this PlayerController player)
         {
+            if (player.passiveItems == null)
+            {
+                return null;
+            }
+
             for (int c = 0; c < player.passiveItems.Count; c++)
             {
                 var entry = player.passiveItems[c];
@@ -463,6 +473,10 @@ namespace ModularMod
 
         public static Scrapper PlayerHasComputerCore(this PlayerController player)
         {
+            if (player.passiveItems == null)
+            {
+                return null;
+            }
             for (int c = 0; c < player.activeItems.Count; c++)
             {
                 var entry = player.activeItems[c];
@@ -665,6 +679,16 @@ namespace ModularMod
             return list[list.Count - 1].gameObject;
         }
 
+
+        public static DefaultModule ReturnModule(int ID)
+        {
+            foreach (var entry in allModules)
+            {
+                if (entry.PickupObjectId == ID)
+                { return entry; }
+            }
+            return allModules[0];
+        }
 
     }
 }

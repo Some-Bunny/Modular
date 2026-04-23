@@ -41,8 +41,8 @@ namespace ModularMod
             gun.gunSwitchGroup = (PickupObjectDatabase.GetById(57) as Gun).gunSwitchGroup;
 
 
-            gun.reloadTime = 1.5f;
-            gun.DefaultModule.cooldownTime = .25f;
+            gun.reloadTime = 1.2f;
+            gun.DefaultModule.cooldownTime = .3f;
             gun.DefaultModule.numberOfShotsInClip = 10;
             gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 2f;
@@ -74,7 +74,7 @@ namespace ModularMod
             projectile.sprite.renderer.material = mat;
 
             projectile.baseData.speed *= 1.5f;
-            projectile.baseData.damage = 4.5f;
+            projectile.baseData.damage = 4f;
             projectile.shouldRotate = false;
             gun.gunClass = GunClass.NONE;
 

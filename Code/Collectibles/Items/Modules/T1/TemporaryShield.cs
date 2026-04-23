@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Temporary Shield",
             Description = "Block It",
-            LongDescription = "Prevents 1 (+1 per stack) instances of damage per floor. Blocking damage activates on-hit effects. Increases the probability of certain modules appearing." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Prevents 1 (+1 per stack) instances of damage per floor. Blocking damage activates on-hit effects. Increases the probability of certain modules appearing.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tempshield_tier1_module"),
             Quality = ItemQuality.SPECIAL,

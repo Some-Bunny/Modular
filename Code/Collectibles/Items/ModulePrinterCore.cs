@@ -15,6 +15,7 @@ using MonoMod.RuntimeDetour;
 using Planetside;
 using SaveAPI;
 using UnityEngine;
+using static Alexandria.DungeonAPI.SpecialComponents;
 using static Alexandria.Misc.CustomActions;
 
 namespace ModularMod
@@ -38,7 +39,16 @@ namespace ModularMod
             item.UsesCustomCost = true;
             item.CustomCost = 25;
             item.CanBeDropped = false;
-
+            item.passiveStatModifiers = new StatModifier[] 
+            {
+                new StatModifier()
+                {
+                    amount = 1,
+                    ignoredForSaveData = false,
+                    statToBoost = PlayerStats.StatType.AdditionalItemCapacity,
+                    modifyType = StatModifier.ModifyMethod.ADDITIVE
+                }
+            };
             ModulePrinterCore.ModulePrinterCoreID = item.PickupObjectId;
             EncounterDatabase.GetEntry(item.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
 
@@ -128,9 +138,6 @@ namespace ModularMod
             player.MovementModifiers += MovementMod;
             player.OnTriedToInitiateAttack += OnAttemptedAttack;
 
-            player.startingGunIds = new List<int>();
-            player.startingGunIds.Add(player.CurrentGun.GetComponent<ModularGunController>().isAlt ? DefaultArmCannonAlt.ID : DefaultArmCannon.ID);
-
 
 
             cloakDoer = ScriptableObject.CreateInstance<CloakDoer>();
@@ -146,7 +153,22 @@ namespace ModularMod
                     processedRooms.Add(roomHandler);
                 }
             }
+            this.StartCoroutine(DoGunWait());
         }
+
+        private IEnumerator DoGunWait()
+        {
+            while (Owner.CurrentGun == null)
+            {
+                yield return null;
+            }
+
+            Owner.startingGunIds = new List<int>();
+            Owner.startingGunIds.Add(Owner.CurrentGun.GetComponent<ModularGunController>().isAlt ? DefaultArmCannonAlt.ID : DefaultArmCannon.ID);
+            Owner.CurrentGun.GetComponent<ModularGunController>().PrinterSelf = this;
+            yield break;
+        }
+
 
 
 
@@ -178,7 +200,7 @@ namespace ModularMod
             player.OnTableFlipCompleted -= OnTableFlipCompletely;
             player.MovementModifiers -= MovementMod;
             player.OnTriedToInitiateAttack -= OnAttemptedAttack;
-
+            
             return base.Drop(player);
 
             //player.OnNewFloorLoaded += NewFloorLoaded;
@@ -214,8 +236,29 @@ namespace ModularMod
 
         public void MovementMod(ref Vector2 voluntaryVel, ref Vector2 involuntaryVel)
         {
-            if (VoluntaryMovement_Modifier != null) { voluntaryVel = VoluntaryMovement_Modifier(voluntaryVel, this, Owner); }
-            if (InVoluntaryMovement_Modifier != null) { involuntaryVel = InVoluntaryMovement_Modifier(involuntaryVel, this, Owner); }
+            if (VoluntaryMovement_Modifier != null)
+            {
+                float M = 1;
+                var _ = VoluntaryMovement_Modifier.GetInvocationList();
+                foreach (var entry in _)
+                {
+                    M += (float)entry?.DynamicInvoke(voluntaryVel, this, Owner);
+                }
+                voluntaryVel *= M;
+            }
+            if (InVoluntaryMovement_Modifier != null)
+            {
+                float M = 1;
+                var _ = InVoluntaryMovement_Modifier.GetInvocationList();
+                foreach (var entry in _)
+                {
+                    M += (float)entry?.DynamicInvoke(involuntaryVel, this, Owner);
+                }
+                involuntaryVel *= M;
+            }
+
+            //if (VoluntaryMovement_Modifier != null) { voluntaryVel = VoluntaryMovement_Modifier(voluntaryVel, this, Owner); }
+            //if (InVoluntaryMovement_Modifier != null) { involuntaryVel = InVoluntaryMovement_Modifier(involuntaryVel, this, Owner); }
         }
 
         public void OnTableFlipCompletely(FlippableCover table)
@@ -486,7 +529,6 @@ namespace ModularMod
             }
             p.OnDestruction += this.HandleProjectileDestruction;
         }
-
         private void HandleProjectileDestruction(Projectile source)
         {
             if (source && OnModularProjectileDestroyed != null)
@@ -495,7 +537,6 @@ namespace ModularMod
             }
         }
         public Action<ModulePrinterCore, Projectile, bool> OnModularProjectileDestroyed;
-
         public IEnumerator FrameDelay(Projectile p, ModulePrinterCore modulePrinterCore, float f, bool IsCrit)
         {
             yield return null;
@@ -625,18 +666,17 @@ namespace ModularMod
         public Action<ModulePrinterCore, PlayerController, FlippableCover> TableFlipCompleted;
         public Func<ModulePrinterCore, PlayerController, bool> OnAboutToFallContext;
         public Action<ModulePrinterCore, PlayerController> AttemptedToAttack;
-
         public Func<int, ModulePrinterCore, PlayerController, Scrapper, int> ModifyScrapContext;
         public Action<int, ModulePrinterCore, PlayerController, Scrapper> OnScrapped;
-
         public Action<ModulePrinterCore, PlayerController, CraftingCore, List<DefaultModule>> OnCraftedItem;
-        public Func<Vector2, ModulePrinterCore, PlayerController, Vector2> VoluntaryMovement_Modifier;
-        public Func<Vector2, ModulePrinterCore, PlayerController, Vector2> InVoluntaryMovement_Modifier;
-
+        public Func<Vector2, ModulePrinterCore, PlayerController, float> VoluntaryMovement_Modifier;
+        public Func<Vector2, ModulePrinterCore, PlayerController, float> InVoluntaryMovement_Modifier;
         public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerEnteredAnyRoom;
         public Action<ModulePrinterCore, PlayerController, RoomHandler> PlayerExitedAnyRoom;
-
         public Action<ModulePrinterCore, Projectile, float, PlayerController, bool> OnPostProcessProjectileOneFrameDelay;
+        //public Action<ModulePrinterCore,  ModularGunController, PlayerController> OnPostFiredModularGun;
+
+      
 
 
         public float StartingPower = 5;
@@ -844,8 +884,7 @@ namespace ModularMod
             }
         }
         public void PowerModule(DefaultModule self, int Amount_To_Add = 1)
-        {
-            
+        {         
             for (int i = 0; i < ModuleContainers.Count; i++)
             {
                 if (ModuleContainers[i] != null)
@@ -883,9 +922,9 @@ namespace ModularMod
         public ModularGunController ModularGunController;
         public static int ModulePrinterCoreID;
         //Code related to module stacking and tracking
-        public bool AddModule(DefaultModule self, PlayerController player)
+        public bool AddModule(DefaultModule self, PlayerController player, bool DisableOnAnyModuleObtained = false)
         {
-            if (OnAnyModuleObtained != null)
+            if (OnAnyModuleObtained != null && DisableOnAnyModuleObtained == false)
             {
                 OnAnyModuleObtained(this, player, self);
             }
@@ -1043,7 +1082,6 @@ namespace ModularMod
             }
             return 0;
         }
-
         public void RemoveModule(int ID, int Amount_To_Remove = 1)
         {
             for (int i = 0; i < ModuleContainers.Count; i++)
@@ -1329,6 +1367,25 @@ namespace ModularMod
                 if (t.Count() > 0) { return t.First(); }
                 return null;
             }
+
+            public int ReturnTemporaryCounts()
+            {
+                int c = 0;
+                foreach (var entry in TemporaryCount)
+                {
+                    c += entry.Second;
+                }
+                return c;
+            }
+            public int ReturnFakeCounts()
+            {
+                int c = 0;
+                foreach (var entry in FakeCount)
+                {
+                    c += entry.Second;
+                }
+                return c;
+            }
             public bool isPurelyFake
             {
                 get
@@ -1344,6 +1401,85 @@ namespace ModularMod
         }
         public CloakDoer cloakDoer;
         public List<ModuleContainer> ModuleContainers = new List<ModuleContainer>();
+
+
+        public override void MidGameSerialize(List<object> data)
+        {
+            base.MidGameSerialize(data);    
+            foreach (var entry in ModuleContainers)
+            {
+                List<object> moduleSerializatiom = new List<object> { };
+                entry.defaultModule.MidGameSerialize(moduleSerializatiom);
+                int Count = moduleSerializatiom.Count;
+                data.Add(Count);
+                data.Add(entry.ID);
+                data.Add(entry.Count);
+                data.Add(entry.ActiveCount);
+                for (int i = 0; i < moduleSerializatiom.Count; i++)
+                {
+                    data.Add(moduleSerializatiom[i]);
+                }
+            }
+            data.Add(GlobalConsumableStorage.ReturnConsumableAmount("Scrap"));
+
+
+        }
+        public override void MidGameDeserialize(List<object> data)
+        {
+            base.MidGameDeserialize(data);
+            // Debug.Log($"Decerealizing...");
+
+            List<DeserializationHelper> deserializationHelpers = new List<DeserializationHelper>();
+
+            int currentDataSpot = 0;
+            //ETGModConsole.Log($"out: {data.Count}");
+
+
+            while (currentDataSpot < data.Count - 1)
+            {
+                var newHelper = new DeserializationHelper();
+                var forIntExtraData = (int)data[currentDataSpot]; currentDataSpot++;
+                newHelper.ModuleID = (int)data[currentDataSpot]; currentDataSpot++;
+                newHelper.ModuleCount = (int)data[currentDataSpot]; currentDataSpot++;
+                newHelper.ModulePoweredCount = (int)data[currentDataSpot]; currentDataSpot++;
+                newHelper.OtherData = new List<object>();
+                for (int i = 0; i < forIntExtraData; i++)
+                {
+                    newHelper.OtherData.Add(data[currentDataSpot]);
+                    currentDataSpot++;
+                }
+                deserializationHelpers.Add(newHelper);
+            }
+            this.StartCoroutine(DoDelayForSerialization(deserializationHelpers));
+            //ETGModConsole.Log($"out: curData {currentDataSpot}");
+            GlobalConsumableStorage.AddConsumableAmount("Scrap", (int)data[currentDataSpot]);
+
+        }
+
+        public IEnumerator DoDelayForSerialization(List<DeserializationHelper> deserializationHelpers)
+        {
+            yield return null;
+            foreach (var entry in deserializationHelpers)
+            {
+                for (int i = 0; i < entry.ModuleCount; i++)
+                {
+                    var mod = Instantiate(GlobalModuleStorage.ReturnModule(entry.ModuleID));
+                    mod.DoPickup(Owner, true);
+                }
+                var d = ModuleContainers.Where(x => x.defaultModule.PickupObjectId == entry.ModuleID).First();
+                this.PowerModule(d.defaultModule, entry.ModulePoweredCount);
+                d.defaultModule.MidGameDeserialize(entry.OtherData);
+            }
+            yield break;
+        }
+
+
+        public class DeserializationHelper
+        {
+            public int ModuleID, ModuleCount, ModulePoweredCount;
+            public List<object> OtherData;
+        }
+
     }
 
     public class CloakDoer : ScriptableObject

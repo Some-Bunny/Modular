@@ -45,7 +45,7 @@ namespace ModularMod
         {
             Name = "Plague Canister",
             Description = "Yah Yeet!",
-            LongDescription = "Reloading has a chance to launch 1 (+1 per stack) poison canister that breaks into a pool of poison and glass shards. (+Glass Shards and Goop Radius per stack). Chance increases the emptier your clip is." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Reloading has a chance to launch 1 (+1 per stack) poison canister that breaks into a pool of poison and glass shards. (+Glass Shards and Goop Radius per stack). Chance increases the emptier your clip is, up to 100% when empty." ,
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plaguecanister_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -59,7 +59,7 @@ namespace ModularMod
             h.LabelName = "Plague Canister " + h.ReturnTierLabel();
             h.AdditionalWeightMultiplier = 0.85f;
 
-            h.LabelDescription = "Reloading has a chance to launch 1 ("+StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) +") poison canisters\nthat breaks into a pool of poison and glass shards.\n(" + StaticColorHexes.AddColorToLabelString("+Glass Shards and Goop Radius", StaticColorHexes.Light_Orange_Hex) + ").\nChance increases the emptier your clip is.";
+            h.LabelDescription = "Reloading has a chance to launch 1 ("+StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) +") poison canisters\nthat breaks into a pool of poison and glass shards.\n(" + StaticColorHexes.AddColorToLabelString("+Glass Shards and Goop Radius", StaticColorHexes.Light_Orange_Hex) + ").\nChance increases the emptier your clip is, up to 100% when empty.";
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);

@@ -18,7 +18,7 @@ namespace ModularMod
         {
             Name = "Bubble Up",
             Description = "Pop!",
-            LongDescription = "Increases Fire Rate by 20% (+20% hyperbolically per stack). Projectiles now stick to terrain and enemies, expanding into large bubbles and bursting, doing massive knockback. (+Burst Force and Damage per stack)." + "\n\n" + "Tier:\n" + DefaultModule.ReturnTierLabel(DefaultModule.ModuleTier.Tier_1),
+            LongDescription = "Increases Fire Rate by 25% (+25% hyperbolically per stack). Projectiles now stick to terrain and enemies, expanding into large bubbles and bursting, doing massive knockback. (+Burst Force and Damage per stack).",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bubbleup_tier1_module"),
             Quality = ItemQuality.SPECIAL,
