@@ -55,7 +55,7 @@ namespace ModularMod
             chain.Damage = Mathf.Max(0.5f, p.baseData.damage * 0.4f);
             chain.Range = 2f + (3f * stack);
             chain.player = player;
-            chain.projectile = p.gameObject;
+            //chain.projectile = p.gameObject;
             p.baseData.range += 6.5f;
             p.baseData.speed *= 0.75f;
             p.UpdateSpeed();
@@ -77,7 +77,7 @@ namespace ModularMod
             chain.Damage = Mathf.Max(0.5f, p.baseData.damage * 0.4f);
             chain.Range = 2f + (3f * stack);
             chain.player = player;
-            chain.projectile = p.gameObject;
+            //chain.projectile = p.gameObject;
             p.baseData.range += 6.5f;
             p.baseData.speed *= 0.75f;
             p.UpdateSpeed();
@@ -85,14 +85,14 @@ namespace ModularMod
 
         public static List<ElectricChainProjectile> allactiveTetherProjectiles = new List<ElectricChainProjectile>();
     }
-    public class ElectricChainProjectile : MonoBehaviour
+    public class ElectricChainProjectile : BraveBehaviour
     {
         public void Start()
         {
             LightningNets.allactiveTetherProjectiles.Add(this);
         }
 
-        private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
+        private Dictionary<tk2dBaseSprite, tk2dTiledSprite> ExtantTethers = new Dictionary<tk2dBaseSprite, tk2dTiledSprite>();
         private float Tick = 0.333f;
         private float Elapsed = 0;
         private float Elapsed_ForceKill = 0;
@@ -100,7 +100,7 @@ namespace ModularMod
 
         public void Update()
         {
-            Elapsed += BraveTime.DeltaTime;
+            //Elapsed += BraveTime.DeltaTime;
             if (this.projectile != null)
             {
                 List<ElectricChainProjectile> activeProjectiles = LightningNets.allactiveTetherProjectiles;
@@ -108,33 +108,41 @@ namespace ModularMod
                 {
                     foreach (ElectricChainProjectile ai in activeProjectiles)
                     {
-                        if (ExtantTethers.Count > 2)
+
+                        if (ai != null)
                         {
-                            var thing = ReturnLongestDistance(Range);
-                            if (thing != null)
+                            if (ExtantTethers.Count > 3)
                             {
-                                ExtantTethers.Remove(ExtantTethers.KeyByValue(thing));
-                                SpawnManager.Despawn(thing);
+                                var thing = ReturnLongestDistance(Range);
+                                if (thing != null)
+                                {
+                                    ExtantTethers.Remove(ExtantTethers.KeyByValue(thing));
+                                    SpawnManager.Despawn(thing.gameObject);
+                                }
+                            }
+                            var dist = Vector2.Distance(ai.gameObject.transform.PositionVector2(), this.sprite.WorldCenter);
+                            if (this.ExtantTethers.Count < 4 && dist <= Range && ai != this.projectile)
+                            {
+                                if (!ExtantTethers.ContainsKey(ai.sprite) && !ai.ExtantTethers.ContainsKey(ai.sprite))
+                                {
+                                    tk2dTiledSprite obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>();
+                                    ExtantTethers.Add(ai.sprite, obj);
+                                }
+                            }
+                            else if (dist > Range)
+                            {
+                                if (ExtantTethers.ContainsKey(ai.sprite))
+                                {
+                                    tk2dTiledSprite obj;
+                                    ExtantTethers.TryGetValue(ai.sprite, out obj);
+                                    SpawnManager.Despawn(obj.gameObject);
+                                    ExtantTethers.Remove(ai.sprite);
+                                }
                             }
                         }
-                        if (ai != null && this.ExtantTethers.Count < 3 && Vector2.Distance(ai.gameObject.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) < Range && ai.gameObject.GetComponent<ElectricChainProjectile>() != null && ai != this.projectile)
-                        {
-                            if (!ExtantTethers.ContainsKey(ai.gameObject) && !ai.gameObject.GetComponent<ElectricChainProjectile>().ExtantTethers.ContainsKey(ai.gameObject))
-                            {
-                                GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
-                                ExtantTethers.Add(ai.gameObject, obj);
-                            }
-                        }
-                        if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.projectile.GetComponentInChildren<tk2dBaseSprite>().WorldCenter) > Range)
-                        {
-                            if (ExtantTethers.ContainsKey(ai.gameObject))
-                            {
-                                GameObject obj;
-                                ExtantTethers.TryGetValue(ai.gameObject, out obj);
-                                SpawnManager.Despawn(obj);
-                                ExtantTethers.Remove(ai.gameObject);
-                            }
-                        }
+
+
+                        
                     }
                 }
             }
@@ -150,7 +158,7 @@ namespace ModularMod
             {
                 if (this.projectile && si.Value != null && si.Key != null)
                 {
-                    UpdateLink(this.projectile, si.Value.GetComponent<tk2dTiledSprite>(), si.Key, Elapsed > Tick ? true : false);
+                    UpdateLink(this.sprite, si.Value, si.Key, true);
                 }
                 if (si.Key != null && si.Value != null && this.projectile == null)
                 {
@@ -167,10 +175,10 @@ namespace ModularMod
             }
         }
 
-        public GameObject ReturnLongestDistance(float h)
+        public tk2dTiledSprite ReturnLongestDistance(float h)
         {
             List<float> distances = new List<float>();
-            Dictionary<float, GameObject> distances_V = new Dictionary<float, GameObject>();
+            Dictionary<float, tk2dTiledSprite> distances_V = new Dictionary<float, tk2dTiledSprite>();
             for (int i = ExtantTethers.Count - 1; i > -1; i--)
             {
                 var entry = ExtantTethers.ElementAt(i);
@@ -190,8 +198,9 @@ namespace ModularMod
             return h > distances.Last() ? null : distances_V[distances.Last()];
         }
 
-        public void OnDestroy()
+        public override void OnDestroy()
         {
+            base.OnDestroy();
             foreach (var si in ExtantTethers)
             {
                 if (si.Value != null)
@@ -206,24 +215,24 @@ namespace ModularMod
             }
         }
 
-        private void UpdateLink(GameObject target, tk2dTiledSprite m_extantLink, GameObject actor, bool Damages)
+        private void UpdateLink(tk2dBaseSprite target, tk2dTiledSprite m_extantLink, tk2dBaseSprite actor, bool Damages)
         {
-            Vector2 unitCenter = actor.GetComponentInChildren<tk2dSprite>().WorldCenter;
-            Vector2 unitCenter2 = target.GetComponentInChildren<tk2dSprite>().WorldCenter;
+            Vector2 unitCenter = actor.WorldCenter;
+            Vector2 unitCenter2 = target.WorldCenter;
             m_extantLink.transform.position = unitCenter;
             Vector2 vector = unitCenter2 - unitCenter;
             float num = BraveMathCollege.Atan2Degrees(vector.normalized);
-            int num2 = Mathf.RoundToInt(vector.magnitude / 0.0625f);
+            int num2 = Mathf.RoundToInt(vector.magnitude * 16);
             m_extantLink.dimensions = new Vector2((float)num2, m_extantLink.dimensions.y);
             m_extantLink.transform.rotation = Quaternion.Euler(0f, 0f, num);
             m_extantLink.UpdateZDepth();
 
             if (Damages)
             {
-                Elapsed = 0;
+                //Elapsed = 0;
                 this.ApplyLinearDamage(unitCenter, unitCenter2);
                 this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 1.5f, Hit);
-                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
+                //this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
             }
         }
         public void Hit(AIActor aIActor, float f)
@@ -232,7 +241,7 @@ namespace ModularMod
             {
                 if (aIActor.State == AIActor.ActorState.Normal && aIActor.CanTargetPlayers == true && aIActor.CanTargetEnemies == false)
                 {
-                    aIActor.healthHaver.ApplyDamage(Damage * 0.333f, aIActor.transform.PositionVector2(), "Zap");
+                    aIActor.healthHaver.ApplyDamage(Damage * 0.5f, aIActor.transform.PositionVector2(), "Zap");
                     GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aIActor, m_damagedEnemies_AOE));
                 }
             }
@@ -280,7 +289,7 @@ namespace ModularMod
         public float Range = 3.5f;
         public float Damage;
         public PlayerController player;
-        public GameObject projectile;
+        //public GameObject projectile;
     }
 }
 

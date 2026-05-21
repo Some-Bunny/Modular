@@ -384,6 +384,7 @@ namespace ModularMod.Code.UI
 
             public override bool ShouldBeActive()
             {
+                /*
                 if (GameManager.Instance.AllPlayers == null)
                 {
                     return true;
@@ -395,7 +396,8 @@ namespace ModularMod.Code.UI
                         return true;
                     }
                 }
-                return false;
+                */
+                return true;
             }
             public override void OnPageOpenedRight(AmmonomiconPageRenderer rightPage)
             {

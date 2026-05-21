@@ -25,7 +25,7 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(DisintegrationLoop))
         {
             Name = "Disintegration Loop",
-            Description = "Obliteration",
+            Description = "Obliterated",
             LongDescription = "Kills grant targeted orbital strikes, up to 25 cached strikes. Cached strikes are automatically used in combat one by one. Strike timings scale with player stats and ignore damage caps. (+Increased Strike Damage And Speed per stack)",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("disintegrationloop_t3_module"),

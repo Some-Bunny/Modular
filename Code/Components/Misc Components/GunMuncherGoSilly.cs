@@ -19,7 +19,7 @@ namespace ModularMod.Code.Components.Misc_Components
 
         public void Start()
         {
-            UnityEngine.Random.Range(1, 5);
+            Jumps = UnityEngine.Random.Range(1, 5);
         }
 
         public void DoJump()

@@ -19,7 +19,7 @@ namespace ModularMod
         {
             Name = "Predefined Drive",
             Description = "Certain Fate",
-            LongDescription = "While held, vastly reduces the choices when selecting modules, but grants 2 of a selected module.\n\nI've got this.",
+            LongDescription = "While held, vastly reduces the choices when selecting modules, but grants 2 of a selected module.\n\nFocus.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("halfchoices_drive"),
             Quality = ItemQuality.SPECIAL,

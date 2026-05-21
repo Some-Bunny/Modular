@@ -62,6 +62,8 @@ namespace ModularMod
                 }
                 yield return null;
             }
+            Pixelator.Instance.fade = active ? 0.3f : 1;
+            mainCameraController.SetZoomScaleImmediate(active ? 1.8f : 1);
             if (active == false)
             {
                 GameManager.Instance.MainCameraController.SetManualControl(false, true);

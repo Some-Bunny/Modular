@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Perfect Replica",
             Description = "A Bit Broken",
-            LongDescription = "Acts as 1 (+1 per stack) of every module currently active.",
+            LongDescription = "Acts as 1 (+1 per stack) of every active module.",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("perfectclone_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -33,7 +33,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("perfectclone_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Perfect Replica" + h.ReturnTierLabel();
-            h.LabelDescription = "Acts as 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") of every module currently active.";
+            h.LabelDescription = "Acts as 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") of every " +StaticColorHexes.AddColorToLabelString("active", StaticColorHexes.Light_Blue_Color_Hex) + " module.";
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AddModuleTag(BaseModuleTags.GENERATION);

@@ -84,6 +84,7 @@ namespace ModularMod
         }
         public void OnRoomClearItemDrop(DebrisObject debrisObject, RoomHandler room)
         {
+            //Debug.Log("Clear!");
             AkSoundEngine.PostEvent("Play_OBJ_dice_bless_01", debrisObject.gameObject);
             if (ConfigManager.DoVisualEffect == true)
             {
@@ -92,8 +93,19 @@ namespace ModularMod
         }
         public void OnDetermineContents(RoomHandler room, Alexandria.RoomRewardAPI.ValidRoomRewardContents validRoomReward, float f)
         {
-            validRoomReward.additionalRewardChance -= (float)((0.04f * Stack()));
-            validRoomReward.overrideItemPool.AddRange(ReturnThing());
+            //Debug.Log("Reward!");
+            foreach (var entry in GameManager.Instance.AllPlayers)
+            {
+                var c = entry.PlayerHasCore();
+                if (c != null)
+                {
+                    if (c.ReturnStack(this.LabelName) > 0)
+                    {
+                        validRoomReward.additionalRewardChance -= (float)((0.04f * Stack()));
+                        validRoomReward.overrideItemPool.AddRange(ReturnThing());
+                    }
+                }
+            }
         }
 
         public List<Tuple<float, int>> ReturnThing()

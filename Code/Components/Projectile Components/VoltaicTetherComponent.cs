@@ -16,7 +16,7 @@ namespace ModularMod
 
         public float PlayerRange = 12.5f;
         public float PylonRange = 10f;
-        private Dictionary<GameObject, GameObject> ExtantTethers = new Dictionary<GameObject, GameObject>();
+        private Dictionary<tk2dBaseSprite, tk2dTiledSprite> ExtantTethers = new Dictionary<tk2dBaseSprite, tk2dTiledSprite>();
         public float DPS = 3f;
         public tk2dBaseSprite sprite;
         public void Start()
@@ -24,12 +24,10 @@ namespace ModularMod
             sprite = this.GetComponentInChildren<tk2dBaseSprite>();
             AllTethers.Add(this);
         }
-        private float Tick = 0.333f;
-        private float Elapsed = 0;
+
 
         public void Update()
         {
-            Elapsed += BraveTime.DeltaTime;
             if (this.gameObject != null)
             {
                 List<VoltaicTetherComponent> activeObjects = VoltaicTetherComponent.AllTethers;
@@ -37,12 +35,12 @@ namespace ModularMod
                 {
                     foreach (VoltaicTetherComponent ai in activeObjects)
                     {
-                        ProcessGameObject(ai.gameObject, PylonRange, true);
+                        ProcessGameObject(ai, ai.sprite, PylonRange, true);
                     }
                 }
                 foreach (PlayerController p in GameManager.Instance.AllPlayers)
                 {
-                    ProcessGameObject(p.gameObject, PlayerRange);
+                    ProcessGameObject(null, p.sprite, PlayerRange);
                 }
 
             }
@@ -62,86 +60,90 @@ namespace ModularMod
                 }
                 if (this.gameObject && si.Value != null && si.Key != null)
                 {
-                    UpdateLink(this.gameObject, si.Value.GetComponent<tk2dTiledSprite>(), si.Key, Elapsed > Tick ? true : false);
+                    UpdateLink(this.sprite, si.Value, si.Key ,  true);
                 }
             }
         }
 
-        public void ProcessGameObject(GameObject ai, float Distance = 35, bool isTether = false)
+        public void ProcessGameObject(VoltaicTetherComponent voltaicTetherComponent, tk2dBaseSprite ai, float Distance = 35, bool isTether = false)
         {
-            if (ExtantTethers.Count > 2)
+            if (ExtantTethers.Count > 3)
             {
                 var thing = ReturnLongestDistance(Distance);
                 if (thing != null)
                 {
-                    GameObject obj_Clear;
+                    tk2dTiledSprite obj_Clear;
                     ExtantTethers.TryGetValue(thing, out obj_Clear);
-                    SpawnManager.Despawn(obj_Clear);
+                    SpawnManager.Despawn(obj_Clear.gameObject);
                     ExtantTethers.Remove(thing);
                 }
             }
-            if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) < Distance && ai != this.gameObject && ExtantTethers.Count < 3)
-            {
-                if (!ExtantTethers.ContainsKey(ai))
-                {
-                    if (isTether == true)
-                    {
-                        if(!ai.GetComponent<VoltaicTetherComponent>().ExtantTethers.ContainsKey(ai))
-                        {
-                           
-                            GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
-                            ExtantTethers.Add(ai, obj);
-                        }                     
-                    }
-                    else
-                    {
 
-                        GameObject obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>().gameObject;
-                        ExtantTethers.Add(ai, obj);
+            if (!ExtantTethers.ContainsKey(ai))
+            {
+                if (ai != null && Vector2.Distance(ai.sprite.WorldCenter, this.sprite.WorldTopCenter) <= Distance && ai != this.gameObject && ExtantTethers.Count < 4)
+                {
+                    {
+                        if (isTether == true)
+                        {
+                            if (!voltaicTetherComponent.ExtantTethers.ContainsKey(ai))
+                            {
+
+                                tk2dTiledSprite obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>();
+                                ExtantTethers.Add(ai, obj);
+                            }
+                        }
+                        else
+                        {
+
+                            tk2dTiledSprite obj = SpawnManager.SpawnVFX(VFXStorage.FriendlyElectricLinkVFX, false).GetComponent<tk2dTiledSprite>();
+                            ExtantTethers.Add(ai, obj);
+                        }
                     }
                 }
             }
-           
-            if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) > Distance)
+            else
             {
-                if (ExtantTethers.ContainsKey(ai))
+
+                if (ai != null && Vector2.Distance(ai.transform.PositionVector2(), this.sprite.WorldTopCenter) > Distance)
                 {
-                    GameObject obj;
-                    ExtantTethers.TryGetValue(ai, out obj);
-                    SpawnManager.Despawn(obj);
-                    ExtantTethers.Remove(ai);
+                    {
+                        tk2dTiledSprite obj;
+                        ExtantTethers.TryGetValue(ai, out obj);
+                        SpawnManager.Despawn(obj.gameObject);
+                        ExtantTethers.Remove(ai);
+                    }
+
                 }
             }
         }
-        private void UpdateLink(GameObject target, tk2dTiledSprite m_extantLink, GameObject actor, bool Damages)
+        private void UpdateLink(tk2dBaseSprite target, tk2dTiledSprite m_extantLink, tk2dBaseSprite actor, bool Damages)
         {
-            Vector2 unitCenter = actor.GetComponent<PlayerController>() != null ? actor.GetComponent<PlayerController>().sprite.WorldBottomCenter : actor.GetComponentInChildren<tk2dBaseSprite>().sprite.WorldBottomCenter;
+            Vector2 unitCenter = actor.sprite.WorldCenter;
 
             Vector2 unitCenter2 = target.transform.PositionVector2();
             m_extantLink.transform.position = unitCenter;
             Vector2 vector = unitCenter2 - unitCenter;
             float num = BraveMathCollege.Atan2Degrees(vector.normalized);   
-            int num2 = Mathf.RoundToInt(vector.magnitude / 0.0625f);
+            int num2 = Mathf.RoundToInt(vector.magnitude * 16);
             m_extantLink.dimensions = new Vector2((float)num2, m_extantLink.dimensions.y);
             m_extantLink.transform.rotation = Quaternion.Euler(0f, 0f, num);
             m_extantLink.UpdateZDepth();
             if (Damages)
             {
-                Elapsed = 0;
                 this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 2f, Hit);
-                this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 2f, Hit);
+                //this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 2f, Hit);
                 this.ApplyLinearDamage(unitCenter, unitCenter2);
             }
         }
 
         public void Hit(AIActor aIActor, float f)
         {
-
             if (!this.m_damagedEnemies_AOE.Contains(aIActor) )
             {
                 if (aIActor.State == AIActor.ActorState.Normal && aIActor.CanTargetPlayers == true && aIActor.CanTargetEnemies == false) 
                 {
-                    aIActor.healthHaver.ApplyDamage(DPS / 5, aIActor.transform.PositionVector2(), "Zap");
+                    aIActor.healthHaver.ApplyDamage(DPS * 0.25f, aIActor.transform.PositionVector2(), "Zap");
                     GameManager.Instance.StartCoroutine(this.HandleDamageCooldown(aIActor, m_damagedEnemies_AOE));
                 }
             }
@@ -181,16 +183,16 @@ namespace ModularMod
 
 
 
-        public GameObject ReturnLongestDistance(float h)
+        public tk2dBaseSprite ReturnLongestDistance(float h)
         {
             List<float> distances = new List<float>();
-            Dictionary<float, GameObject> distances_V = new Dictionary<float, GameObject>();
+            Dictionary<float, tk2dBaseSprite> distances_V = new Dictionary<float, tk2dBaseSprite>();
             for (int i = ExtantTethers.Count - 1; i > -1; i--)
             {
                 var entry = ExtantTethers.ElementAt(i);
                 if (entry.Key != null && entry.Value != null)
                 {
-                    float d = Vector2.Distance(entry.Key.transform.PositionVector2(), entry.Value.transform.PositionVector2());
+                    float d = Vector2.Distance(entry.Key.sprite.WorldCenter, entry.Value.transform.PositionVector2());
                     if (!distances_V.ContainsKey(d))
                     {
                         distances_V.Add(d, entry.Key);

@@ -58,7 +58,7 @@ namespace ModularMod
             p.pierceMinorBreakables = true;
             int stack = 1;
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 12f * stack;
+            tethers.DPS = 8f * stack;
             tethers.PylonRange = 7.5f * stack;
             tethers.PlayerRange = 12.5f * stack;
 
@@ -111,7 +111,7 @@ namespace ModularMod
             p.pierceMinorBreakables = true;
             int stack = this.ReturnStack(modulePrinterCore);
             var tethers = p.gameObject.AddComponent<VoltaicTetherComponent>();
-            tethers.DPS = 12f * stack;
+            tethers.DPS = 8f * stack;
             tethers.PylonRange = 7.5f * stack;
             tethers.PlayerRange = 12.5f * stack;
 

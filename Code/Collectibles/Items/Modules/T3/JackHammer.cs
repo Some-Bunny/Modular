@@ -21,8 +21,8 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(JackHammer))
         {
             Name = "Jack Hammer",
-            Description = "One For Each Finger",
-            LongDescription = "Reduces Rate Of Fire and Damage by 35%. Shoot 5 (+2 per stack) times the projectiles." ,
+            Description = "Hitstop",
+            LongDescription = "Disables Contact Damage. Deal contact damage that scales with your velocity. Holding Reload for 0.5 seconds charges up a superpowered dodgeroll with increased damage and creates projectiles on impact, but temporarily disables your weapon. Super roll recharges after 7.5 seconds. (+Contact Damage and Projectiles Created per stack)" ,
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("jackhammer_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -34,7 +34,7 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("jackhammer_t3_alt_module");
             h.Tier = ModuleTier.Tier_3;
             h.LabelName = "Jack Hammer " + h.ReturnTierLabel();
-            h.LabelDescription = $"{StaticColorHexes.AddColorToLabelString("Disables contact damage", StaticColorHexes.Light_Green_Hex)}.\nDeal contact damage that scales with your velocity. Holding reload for 0.5 seconds\ncharges up a superpowered dodgeroll\nwith increased damage and creates projectiles on impact,\nbut temporarily disables your weapon.\nSuper roll recharges after 7.5 seconds.\n({StaticColorHexes.AddColorToLabelString("+Contact Damage And Projectiles Created")})";
+            h.LabelDescription = $"{StaticColorHexes.AddColorToLabelString("Disables Contact Damage", StaticColorHexes.Light_Green_Hex)}.\nDeal contact damage that scales with your velocity. Holding reload for 0.5 seconds\ncharges up a superpowered dodgeroll\nwith increased damage and creates projectiles on impact,\nbut temporarily disables your weapon.\nSuper roll recharges after 7.5 seconds.\n({StaticColorHexes.AddColorToLabelString("+Contact Damage And Projectiles Created")})";
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
