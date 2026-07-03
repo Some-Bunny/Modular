@@ -21,7 +21,7 @@ namespace ModularMod
         {
             Name = "Overclocked Magazines",
             Description = "BRRAP",
-            LongDescription = "Multiplies Rate Of Fire and Clip Size by 2.5x (+1 per stack). Greatly reduces spread and damage.",
+            LongDescription = "Multiplies Rate Of Fire and Clip Size by 2.5x (+1.25x per stack). Greatly reduces spread and damage.",
             ManualSpriteCollection = StaticCollections.Module_T3_Collection,
             ManualSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("overclockedmagazine_t3_module"),
             Quality = ItemQuality.SPECIAL,
@@ -32,8 +32,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("overclockedmagazine_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Overclocked Magazines " + h.ReturnTierLabel();
-            h.LabelDescription = "Multiplies Rate Of Fire and Clip Size by 2.5x (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nGreatly reduces spread and damage.";
+            h.SetName("Overclocked Magazines " + h.ReturnTierLabel());
+            h.SetDescription("Multiplies Rate Of Fire and Clip Size by 2.5x (" + StaticColorHexes.AddColorToLabelString("+1.25x", StaticColorHexes.Light_Orange_Hex) + ").\nGreatly reduces spread and damage.");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 
@@ -66,11 +66,11 @@ namespace ModularMod
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return f / (1.5f + (this.ReturnStack(modulePrinterCore)));
+            return f / (1.25f + (1.25f * this.ReturnStack(modulePrinterCore)));
         }
         public int ProcessClipSize(int f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return (int)(f * (1.5f + (this.ReturnStack(modulePrinterCore))));
+            return (int)(f * (1.25f + (1.25f * this.ReturnStack(modulePrinterCore))));
         }
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
@@ -79,8 +79,8 @@ namespace ModularMod
         public void PPP(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player, bool IsCrit)
         {
             p.baseData.damage *= 0.66f;
-            p.baseData.force *= 0.66f;
-            p.baseData.speed *= 1.7f;
+            p.baseData.force *= 0.5f;
+            p.baseData.speed *= 1.75f;
             p.UpdateSpeed();
         }
 

@@ -27,8 +27,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("momentumnullifier_t2_alt_module");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Momentum Nullifier " + h.ReturnTierLabel();
-            h.LabelDescription = $"Converts 33% ({StaticColorHexes.AddColorToLabelString("+33%")}) of your projectiles force into damage and chance to stun.\nNullifies all projectile knockback after.";
+            h.SetName("Momentum Nullifier " + h.ReturnTierLabel());
+            h.SetDescription($"Converts 33% ({StaticColorHexes.AddColorToLabelString("+33%")}) of your projectiles force into damage and chance to stun.\nNullifies all projectile knockback after.");
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

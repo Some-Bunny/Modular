@@ -27,9 +27,12 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aggressivereload_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Aggressive Reload " + h.ReturnTierLabel();
-            h.AdditionalWeightMultiplier = 0.9f;
-            h.LabelDescription = "Reloading harms, pushes, burns and stuns enemies near you.\nEffectiveness scales on how empty the clip is. (" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ").\nCan deflect enemy bullets, with good timing.";
+            
+            h.SetName("Aggressive Reload " + h.ReturnTierLabel());
+            h.SetDescription("Reloading harms, pushes, burns and stuns enemies near you.\nEffectiveness scales on how empty the clip is. (" + StaticColorHexes.AddColorToLabelString("+Damage and Force", StaticColorHexes.Light_Orange_Hex) + ").\nCan deflect enemy bullets, with good timing.");
+
+
+            h.AdditionalWeightMultiplier = 0.85f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

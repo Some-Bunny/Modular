@@ -27,8 +27,8 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("aerdynamic_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
-            h.LabelName = "Aerodynamic Carvings" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) + ")\nand player projectile speed by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Aerodynamic Carvings" + h.ReturnTierLabel());
+            h.SetDescription("Increases Damage by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) + ")\nand player projectile speed by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").");
             
             h.AddModuleTag(BaseModuleTags.BASIC);
             

@@ -35,11 +35,11 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("error_mod_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "String.EMPTY " +StaticColorHexes.AddColorToLabelString("sprite Tier_3_Label", StaticColorHexes.Blue_Color_Hex);
-            h.LabelDescription = "[#TILEBREAKERPRIMARYDESC]\n[#TILEBREAKERSECONDARYDESC]\n" + StaticColorHexes.AddColorToLabelString("NullReferenceException: (999+)\nObject not set to an instance of an object.\nDefaultModule.ReturnTeritaryEffectText()\nTileBreaker.ReturnDescriptionLabel()", StaticColorHexes.Red_Color_Hex);
+            h.SetName("String.EMPTY " + StaticColorHexes.AddColorToLabelString("sprite Tier_3_Label", StaticColorHexes.Blue_Color_Hex));
+            h.SetDescription("[#TILEBREAKERPRIMARYDESC]\n[#TILEBREAKERSECONDARYDESC]\n" + StaticColorHexes.AddColorToLabelString("NullReferenceException: (999+)\nObject not set to an instance of an object.\nDefaultModule.ReturnTeritaryEffectText()\nTileBreaker.ReturnDescriptionLabel()", StaticColorHexes.Red_Color_Hex));
             h.SetTag("modular_module");
             h.AddColorLight(Color.white);
-            h.AdditionalWeightMultiplier = 0.15f;
+            h.AdditionalWeightMultiplier = 0.175f;
             h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
             h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
             h.IsUncraftable = true;
@@ -191,7 +191,7 @@ namespace ModularMod
                 for (int i = core.ModuleContainers.Count - 1; i > -1; i--)
                 {
                     var moduleContainer = core.ModuleContainers[i];
-                    var shitfuck = core.ModuleContainers.Where(self => self.LabelName != this.LabelName && self.Count > 0);
+                    var shitfuck = core.ModuleContainers.Where(self => self.LabelName != this.UnmodifiedLabelName && self.Count > 0);
                     if (shitfuck.Count() > 0)
                     {
                         var mod = BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(shitfuck.ToList()).defaultModule;

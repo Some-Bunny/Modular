@@ -34,8 +34,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "The Swarm " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly reduces damage.\nProjectiles gain massively increased lifetime,\npiercing and homing. (" + StaticColorHexes.AddColorToLabelString("+Bounces, Pierces and stronger Homing", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.SetName("The Swarm " + h.ReturnTierLabel());
+            h.SetDescription("Greatly reduces damage.\nProjectiles gain massively increased lifetime,\npiercing and homing. (" + StaticColorHexes.AddColorToLabelString("+Bounces, Pierces and stronger Homing", StaticColorHexes.Light_Orange_Hex) + ")");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
@@ -60,15 +60,15 @@ namespace ModularMod
             aaaa.damageMultOnPierce *= 1.05f;
             aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack * 5);
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
-            bounceProjModifier.penetration += (stack + 1);
+            bounceProjModifier.penetration += (stack + 3);
             p.baseData.range *= 6;
             p.baseData.speed *= 0.6f;
             p.UpdateSpeed();
 
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
-            yes.shadowLifetime = 0.4f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowLifetime = 0.333f;
+            yes.shadowTimeDelay = 0.0333f;
             yes.dashColor = new Color(0f, 0.3f, 1f, 1f);
 
             HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
@@ -90,15 +90,15 @@ namespace ModularMod
             aaaa.damageMultOnPierce *= 1.05f;
             aaaa.AmountOfPiercesBeforeFalloff = 10 + (stack*5);
             PierceProjModifier bounceProjModifier = p.gameObject.GetOrAddComponent<PierceProjModifier>();
-            bounceProjModifier.penetration += (stack + 1);
+            bounceProjModifier.penetration += (stack + 3);
             p.baseData.range *= 6;
             p.baseData.speed *= 0.6f;
             p.UpdateSpeed();
 
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
-            yes.shadowLifetime = 0.4f;
-            yes.shadowTimeDelay = 0.01f;
+            yes.shadowLifetime = 0.333f;
+            yes.shadowTimeDelay = 0.0333f;
             yes.dashColor = new Color(0f, 0.3f, 1f, 1f);
 
             HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();

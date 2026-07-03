@@ -27,10 +27,10 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("moneyvalue_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.625f;
+            h.AdditionalWeightMultiplier = 0.6f;
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Monetary Value " + h.ReturnTierLabel();
-            h.LabelDescription = "Gain 0.33% (" + StaticColorHexes.AddColorToLabelString("+0.33%", StaticColorHexes.Light_Orange_Hex) + ") damage for each casing you have.\nYour held casings are multiplied by 1.2x every floor.";
+            h.SetName("Monetary Value " + h.ReturnTierLabel());
+            h.SetDescription("Gain 0.33% (" + StaticColorHexes.AddColorToLabelString("+0.33%", StaticColorHexes.Light_Orange_Hex) + ") damage for each casing you have.\nYour held casings are multiplied by 1.2x every floor.");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.GENERATION);
@@ -50,7 +50,7 @@ namespace ModularMod
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
             if (UnityEngine.Random.value > 0.1f) { return; }
-            p.baseData.damage *= 1 + ((player.carriedConsumables.Currency / 200));
+            p.baseData.damage *= 1 + ((player.carriedConsumables.Currency / 300));
         }
         public override void OnFirstPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {

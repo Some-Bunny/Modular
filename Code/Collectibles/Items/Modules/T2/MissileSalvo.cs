@@ -27,9 +27,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("missilesalvo_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Missile Salvo " + h.ReturnTierLabel();
-            h.LabelDescription = $"20% ({StaticColorHexes.AddColorToLabelString("+20%")}) chance to fire a missile when firing your gun.\nChances above 100% are rolled multiple times.";
-
+            h.SetName("Missile Salvo " + h.ReturnTierLabel());
+            h.SetDescription($"20% ({StaticColorHexes.AddColorToLabelString("+20%")}) chance to fire a missile when firing your gun.\nChances above 100% are rolled multiple times.");
+            h.AdditionalWeightMultiplier = 0.85f;
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 

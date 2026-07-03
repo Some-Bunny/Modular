@@ -32,6 +32,10 @@ namespace ModularMod
             {
                 prefab = EnemyBuilder.BuildPrefabBundle("Big Drone", guid, StaticCollections.Enemy_Collection, "superdrone_idle_001", new IntVector2(0, 0), new IntVector2(8, 9), false, true);
                 var companion = prefab.AddComponent<MechaBehavior>();
+                companion.aiActor.SetTag("PSOG:OuroborousEliteBlacklist");
+                companion.aiActor.SetTag("PSOG:OuroborousSkullsBlacklist");
+
+
                 companion.aiActor.knockbackDoer.weight = 150;
                 companion.aiActor.MovementSpeed = 2f;
                 companion.aiActor.healthHaver.PreventAllDamage = false;

@@ -22,17 +22,17 @@ namespace ModularMod
             Quality = ItemQuality.SPECIAL,
             PostInitAction = PostInit
         };
-        public static void PostInit(PickupObject v)
+        public static void PostInit(PickupObject v) 
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("bifurificationbarrel_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Bifurcated Barrel " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases rate of fire by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nclip size by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + "), slightly reduces damage,\nbut makes you fire in a V-formation";
+            h.SetName("Bifurcated Barrel " + h.ReturnTierLabel());
+            h.SetDescription("Increases rate of fire by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nclip size by 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + "), slightly reduces damage,\nbut makes you fire in a V-formation");
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.OverrideScrapCost = 10;
-            h.AdditionalWeightMultiplier = 0.75f;
+            h.AdditionalWeightMultiplier = 0.66f;
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.IsUncraftable = true;
@@ -78,7 +78,7 @@ namespace ModularMod
         }
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return clip + ((modularGunController.Base_Clip_Size / 5) * modulePrinterCore.ReturnStack(this.LabelName));
+            return clip + ((modularGunController.Base_Clip_Size / 5) * modulePrinterCore.ReturnStack(this.UnmodifiedLabelName));
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {

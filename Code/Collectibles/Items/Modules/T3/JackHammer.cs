@@ -33,8 +33,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("jackhammer_t3_alt_module");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Jack Hammer " + h.ReturnTierLabel();
-            h.LabelDescription = $"{StaticColorHexes.AddColorToLabelString("Disables Contact Damage", StaticColorHexes.Light_Green_Hex)}.\nDeal contact damage that scales with your velocity. Holding reload for 0.5 seconds\ncharges up a superpowered dodgeroll\nwith increased damage and creates projectiles on impact,\nbut temporarily disables your weapon.\nSuper roll recharges after 7.5 seconds.\n({StaticColorHexes.AddColorToLabelString("+Contact Damage And Projectiles Created")})";
+            h.SetName("Jack Hammer " + h.ReturnTierLabel());
+            h.SetDescription($"{StaticColorHexes.AddColorToLabelString("Disables Contact Damage", StaticColorHexes.Light_Green_Hex)}.\nDeal contact damage that scales with your velocity. Holding reload for 0.5 seconds\ncharges up a superpowered dodgeroll\nwith increased damage and creates projectiles on impact,\nbut temporarily disables your weapon.\nSuper roll recharges after 7.5 seconds.\n({StaticColorHexes.AddColorToLabelString("+Contact Damage And Projectiles Created")})");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
@@ -125,6 +125,9 @@ namespace ModularMod
             AkSoundEngine.PostEvent("Play_OBJ_metalskin_end_01", Stored_Core.Owner.gameObject);
         }
 
+        public static GameObject HitEffect = (GameObject)BraveResources.Load("Global VFX/VFX_DodgeRollHit", ".prefab");
+        private float HitCooldown = 0;
+        private SpeculativeRigidbody LastHitBody = null;
 
         private void HandleRigidbodyCollision(CollisionData rigidbodyCollision)
         {
@@ -141,7 +144,16 @@ namespace ModularMod
                     float damage = Stored_Core.Owner.Velocity.magnitude * (2f + stack) * (ForceNotCooldown  ? 2.25f : 1);
 
                     Vector2 v = BraveMathCollege.ClosestPointOnRectangle(Stored_Core.Owner.specRigidbody.GetUnitCenter(ColliderType.HitBox), rigidbodyCollision.OtherRigidbody.UnitBottomLeft, rigidbodyCollision.OtherRigidbody.UnitDimensions);
-                    SpawnManager.SpawnVFX((GameObject)BraveResources.Load("Global VFX/VFX_DodgeRollHit", ".prefab"), v, Quaternion.identity, true);
+                    if (HitCooldown <= 0 || LastHitBody != rigidbodyCollision.OtherRigidbody)
+                    {
+                        LastHitBody = rigidbodyCollision.OtherRigidbody;
+                        HitCooldown = 0.3f;
+                        SpawnManager.SpawnVFX(HitEffect, v, Quaternion.identity, true);
+                    }
+
+                    
+                    
+                    
                     if (rigidbodyCollision.OtherRigidbody.aiActor)
                     {
                         AkSoundEngine.PostEvent("Play_ITM_Crisis_Stone_Impact_01", Stored_Core.Owner.gameObject);

@@ -34,8 +34,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             //h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_Omega;
-            h.LabelName = "ETERNAL WRAP " + h.ReturnTierLabel();
-            h.LabelDescription = "PROJECTILES WRAP AROUND ROOMS\nAND GAIN STRENGTH WHEN THEY DO.\n(" + StaticColorHexes.AddColorToLabelString("+MORE WRAP AROUNDS AND DAMAGE", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.SetName("ETERNAL WRAP " + h.ReturnTierLabel());
+            h.SetDescription("PROJECTILES WRAP AROUND ROOMS\nAND GAIN STRENGTH WHEN THEY DO.\n(" + StaticColorHexes.AddColorToLabelString("+MORE WRAP AROUNDS AND DAMAGE", StaticColorHexes.Light_Orange_Hex) + ")");
             h.powerConsumptionData = new PowerConsumptionData()
             {
                 FirstStack = 0,

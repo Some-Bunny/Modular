@@ -26,17 +26,18 @@ namespace ModularMod
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("absorbantplate_t2_module"),
             Quality = ItemQuality.SPECIAL,
             PostInitAction = PostInit
-        };
+        };  
         public static void PostInit(PickupObject v)
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("absorbantplate_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Absorbant Plating" + h.ReturnTierLabel();
-            h.LabelDescription = "Fire and Poison take 3 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") times longer do damage you.\nGain a 75% (" + StaticColorHexes.AddColorToLabelString("+75% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") fire rate and accuracy boost\nwhen standing on any goop.\nBeing poisoned or on fire makes projectiles inflict poison or fire.";
+            h.SetName("Absorbant Plating" + h.ReturnTierLabel());
+            h.SetDescription("Fire and Poison take 3 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") times longer do damage you.\nGain a 75% (" + StaticColorHexes.AddColorToLabelString("+75% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") fire rate and accuracy boost\nwhen standing on any goop.\nBeing poisoned or on fire makes projectiles inflict poison or fire.");
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
+            h.AdditionalWeightMultiplier = 0.7f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

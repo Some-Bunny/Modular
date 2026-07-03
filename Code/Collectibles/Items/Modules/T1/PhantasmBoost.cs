@@ -30,14 +30,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("gravecooling_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Phantasm Boost " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal an additional 33% ("+ StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through\ninternal walls and pierce various debris.";
-
+            h.SetName("Phantasm Boost " + h.ReturnTierLabel());
+            h.SetDescription("Deal an additional 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to Jammed enemies.\nReload 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") faster after every kill.\nBonus resets AFTER reloading.\nProjectiles will now be able to travel through\ninternal walls and pierce various debris.");
+                
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 
-            h.AdditionalWeightMultiplier = 0.66f;
+            h.AdditionalWeightMultiplier = 0.7f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

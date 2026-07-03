@@ -16,7 +16,7 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(ConcussionGuillotine))
         {
             Name = "Concussion Guillotine",
-            Description = "Recoil Up",
+            Description = "Execute Up",
             LongDescription = "Deal 3x (+1.5x per stack) damage to stunned enemies, and launch them with massive force when slain.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("concussionguillotine_tier1_module"),
@@ -28,9 +28,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("concussionguillotine_tier1_alt_module");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Concussion Guillotine " + h.ReturnTierLabel();
+            h.SetName("Concussion Guillotine " + h.ReturnTierLabel());
             h.AdditionalWeightMultiplier = 0.65f;
-            h.LabelDescription = $"Deal 3x ({StaticColorHexes.AddColorToLabelString("+1.5x")}) damage to stunned enemies,\nand launch them with massive force when slain.";
+            h.SetDescription($"Deal 3x ({StaticColorHexes.AddColorToLabelString("+1.5x")}) damage to stunned enemies,\nand launch them with massive force when slain.");
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

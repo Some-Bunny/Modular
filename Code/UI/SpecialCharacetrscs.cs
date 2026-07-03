@@ -66,7 +66,7 @@ namespace ModularMod
 
             InitSpecialCharacterContainer(SpecialCharacters.CLOSE, "Cancel", "CanceBrightl");
 
-            InitSpecialCharacterContainer(SpecialCharacters.POWER, "Power");
+            InitSpecialCharacterContainer(SpecialCharacters.POWER, "Power", "PowerAlt");
 
             InitSpecialCharacterContainer(SpecialCharacters.GOOGLY, "GooglyMoogly", "GooglyMooglyBright");
 

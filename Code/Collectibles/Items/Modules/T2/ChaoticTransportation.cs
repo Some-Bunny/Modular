@@ -31,10 +31,11 @@ namespace ModularMod
 
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("chaotictransportation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Chaotic Transportation " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") Bounces.\nIncreases fire rate by 25% ("+StaticColorHexes.AddColorToLabelString("+25% hyperbolically")+").\nProjectiles can randomly teleport to anywhere in the room 3 ("+StaticColorHexes.AddColorToLabelString("+3")+") times.";
+            h.SetName("Chaotic Transportation " + h.ReturnTierLabel());
+            h.SetDescription("Adds 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") Bounces.\nIncreases fire rate by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically") + ").\nProjectiles can randomly teleport to anywhere in the room 3 (" + StaticColorHexes.AddColorToLabelString("+3") + ") times.");
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+            h.AdditionalWeightMultiplier = 0.8f;
 
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
@@ -92,7 +93,7 @@ namespace ModularMod
 
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return clip + ((modularGunController.Base_Clip_Size / 3) * modulePrinterCore.ReturnStack(this.LabelName));
+            return clip + ((modularGunController.Base_Clip_Size / 3) * modulePrinterCore.ReturnStack(this.UnmodifiedLabelName));
         }
 
         public float PFR(float f, ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)

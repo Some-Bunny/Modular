@@ -204,7 +204,7 @@ namespace ModularMod
                 T1_Select.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T1, true) : R_C(SpecialCharactersController.SpecialCharacters.T1);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 T1_Select.label.MouseEnter += (o1, o2) =>
@@ -224,7 +224,7 @@ namespace ModularMod
                 T2_Select.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T2, true) : R_C(SpecialCharactersController.SpecialCharacters.T2);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 T2_Select.label.MouseEnter += (o1, o2) =>
@@ -244,7 +244,7 @@ namespace ModularMod
                 T3_Select.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T3, true) : DefaultModule.ReturnTierLabel(ModuleTier.Tier_3);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 T3_Select.label.MouseEnter += (o1, o2) =>
@@ -267,7 +267,7 @@ namespace ModularMod
                 CloseLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.CLOSE, true) : R_C(SpecialCharactersController.SpecialCharacters.CLOSE);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 CloseLabel.label.MouseEnter += (o1, o2) =>
@@ -318,12 +318,12 @@ namespace ModularMod
                     if (ListEntry > 0)
                     {
                         label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.UP, true) : R_C(SpecialCharactersController.SpecialCharacters.UP);
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                         label.Invalidate();
                     }
                     else
                     {
-                        label.color = new Color32(200, 200, 200, 200);
+                        label.color = new Color32(210, 210, 210, 240);
                         label.Invalidate();
                     }
                 };
@@ -344,7 +344,7 @@ namespace ModularMod
                 pageReturnLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.LEFT, true) : R_C(SpecialCharactersController.SpecialCharacters.LEFT);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 pageReturnLabel.label.MouseEnter += (o1, o2) =>
@@ -372,12 +372,12 @@ namespace ModularMod
                     if (ReturnPagesCount(quickAndMessyPages) > ListEntry)
                     {
                         label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.DOWN, true) : R_C(SpecialCharactersController.SpecialCharacters.DOWN);
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                         label.Invalidate();
                     }
                     else
                     {
-                        label.color = new Color32(200, 200, 200, 200);
+                        label.color = new Color32(210, 210, 210, 240);
                         label.Invalidate();
                     }
                 };
@@ -429,7 +429,7 @@ namespace ModularMod
             {
                 if (ListEntry == page.Page)
                 {
-                    string T = page.module.LabelName + " (" + scrapLabel + " " + ModuleCost(page.module).ToString() + ")";
+                    string T = page.module.UnmodifiedLabelName + " (" + scrapLabel + " " + ModuleCost(page.module).ToString() + ")";
                     bool encountered = GameStatsManager.m_instance.m_encounteredTrackables.ContainsKey(page.module.encounterTrackable.EncounterGuid);
                     if (encountered == false) { T = StaticColorHexes.AddColorToLabelString("[UNDISCOVERED]", StaticColorHexes.Light_Orange_Hex); }
 
@@ -442,7 +442,7 @@ namespace ModularMod
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                            extantLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, -1.75f - (0.5f * c)) + AdditionalOffset, 0.66f, page.module.LabelDescription, cl, true, 4);
+                            extantLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, -1.75f - (0.5f * c)) + AdditionalOffset, 0.66f, page.module.UnmodifiedLabelName, cl, true, 4);
                             if (craftLabel) { Destroy(craftLabel.gameObject); }
                             craftLabel = Toolbox.GenerateText(player.transform, new Vector2(2.5f, 1f) + AdditionalOffset, 0.66f, StaticColorHexes.AddColorToLabelString("CRAFT", StaticColorHexes.Light_Green_Hex) + "( " + scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-" + ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) + " )", cl, true, Scale);
                             craftLabel.MouseHover = (label, boolean) =>
@@ -450,7 +450,7 @@ namespace ModularMod
                                 if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
                                 {
                                     label.text = StaticColorHexes.AddColorToLabelString("CRAFT", boolean == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex) + "( " + scrapLabel + " " + StaticColorHexes.AddColorToLabelString("-" + ModuleCost(page.module).ToString(), StaticColorHexes.Red_Color_Hex) + " )";
-                                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                                     label.Invalidate();
                                 }
                             };
@@ -472,7 +472,7 @@ namespace ModularMod
                                 if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
                                 {
                                     AkSoundEngine.PostEvent("Play_OBJ_metronome_jingle_01", player.gameObject);
-                                    Toolbox.NotifyCustom("Crafted Module:", page.module.LabelName, page.module.sprite.spriteId, page.module.sprite.collection, UINotificationController.NotificationColor.PURPLE);
+                                    Toolbox.NotifyCustom("Crafted Module:", page.module.UnmodifiedLabelName, page.module.sprite.spriteId, page.module.sprite.collection, UINotificationController.NotificationColor.PURPLE);
                                     GlobalConsumableStorage.RemoveConsumableAmount("Scrap", ModuleCost(page.module));
                                     
                                     Queue.Add(page.module);
@@ -490,19 +490,19 @@ namespace ModularMod
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
-                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                             label.Invalidate();
                         };
                         Button.OnUpdate = (label) =>
                         {
                             if (ModuleCost(Button.StoredModuleInfo) <= GetScrapCount(player))
                             {//Button
-                                label.text = StaticColorHexes.AddColorToLabelString(Button.StoredModuleInfo.LabelName, Button.IsMouseHovering() == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex) + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Green_Hex) + ")";
+                                label.text = StaticColorHexes.AddColorToLabelString(Button.StoredModuleInfo.UnmodifiedLabelName, Button.IsMouseHovering() == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex) + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Green_Hex) + ")";
                                 label.Invalidate();
                             }
                             else
                             {
-                                label.text = StaticColorHexes.AddColorToLabelString(Button.StoredModuleInfo.LabelName, Button.IsMouseHovering() == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex) + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Red_Color_Hex) + ")";
+                                label.text = StaticColorHexes.AddColorToLabelString(Button.StoredModuleInfo.UnmodifiedLabelName, Button.IsMouseHovering() == true ? StaticColorHexes.Light_Orange_Hex : StaticColorHexes.White_Hex) + " (" + scrapLabel + " " + StaticColorHexes.AddColorToLabelString(ModuleCost(Button.StoredModuleInfo).ToString(), StaticColorHexes.Red_Color_Hex) + ")";
                                 label.Invalidate();
                             }
                         };

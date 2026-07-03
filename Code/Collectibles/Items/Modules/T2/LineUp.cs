@@ -27,14 +27,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("lineup_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Line Up " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 1 Pierce, reduce damage by 25% (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
+            h.SetName("Line Up " + h.ReturnTierLabel());
+            h.SetDescription("Adds 1 Pierce, reduce damage by 25% (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
                 StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each enemy pierced increases\nprojectile damage by 1.5x (" +
-                StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ").";
+                StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
-
+            h.AdditionalWeightMultiplier = 0.95f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

@@ -32,10 +32,10 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("machineinstinct_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Machine Instinct " + h.ReturnTierLabel();
-            h.LabelDescription = "Being in proximity of projectiles and enemies increases "+ StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases Rate Of Fire and Damage. (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 15 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.SetName("Machine Instinct " + h.ReturnTierLabel());
+            h.SetDescription("Being in proximity of projectiles and enemies increases " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + ",\nwhich increases Rate Of Fire and Damage. (" + StaticColorHexes.AddColorToLabelString("+Higher Risk Capacity", StaticColorHexes.Light_Orange_Hex) + ").\nBuilding up enough " + StaticColorHexes.AddColorToLabelString("Risk", StaticColorHexes.Lime_Green_Hex) + " allows you to negate\none instance of damage, providing you with 2.5 seconds of invulnerability.\nAbility recharges after 15 (" + StaticColorHexes.AddColorToLabelString("-20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.");
             h.EnergyConsumption = 2;
-
+            h.AdditionalWeightMultiplier = 0.5f;
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.RETALIATION);
             h.OverrideScrapCost = 12;

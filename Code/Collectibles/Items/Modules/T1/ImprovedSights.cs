@@ -30,9 +30,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("improvedsights_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Improved Sights " + h.ReturnTierLabel();
-            h.LabelDescription = "Improves Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nIncreases shotspeed by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
-
+            h.SetName("Improved Sights " + h.ReturnTierLabel());
+            h.SetDescription("Improves Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nIncreases shotspeed by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").");
+            h.AdditionalWeightMultiplier = 0.8f;
             h.AddModuleTag(BaseModuleTags.BASIC);
 
             h.AddToGlobalStorage();

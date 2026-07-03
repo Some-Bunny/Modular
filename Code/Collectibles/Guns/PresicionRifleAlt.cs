@@ -107,21 +107,40 @@ namespace ModularMod
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
             IteratedDesign.SpecialProcessGunSpecificAccuracy += c.ProcessAccuracySpecial;
+            IteratedDesign.SpecialProcessGunSpecificClip += c.ProcessClipSpecial;
 
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Massively boosts damage, and double damage\nevery time it pierces. Grealy reduces clip size.";
+                }
+                return text;
+            };
         }
 
         public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
             p.baseData.speed *= 1 + (0.5f * stack);
+            p.baseData.damage *= 2 + stack;
+            p.RuntimeUpdateScale(2);
             p.Update();
             p.baseData.range *= 2;
+
+            MaintainDamageOnPierce bounceProjModifier = p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
+            bounceProjModifier.damageMultOnPierce = 2f;
         }
 
         public float ProcessAccuracySpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
-            return f / (1 + (stack / 3));
+            return f * 0.2f;
+        }
+        public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return Mathf.RoundToInt(f * 0.2f);
         }
         public static int ID;
     }

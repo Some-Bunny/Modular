@@ -25,8 +25,8 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.Tier = ModuleTier.Unique;
-            h.LabelName = "Beholsters Eye " + h.ReturnTierLabel();
-            h.LabelDescription = "On reloading your gun,\nspawns 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") beadie.";
+            h.SetName("Beholsters Eye " + h.ReturnTierLabel());
+            h.SetDescription("On reloading your gun,\nspawns 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") beadie.");
             h.IsSpecialModule = true;   
             
             h.SetTag("modular_module");

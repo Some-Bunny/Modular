@@ -67,7 +67,7 @@ namespace ModularMod
             {
                 if (player.HasPickupID(ConfidenceCoreID))
                 {
-                    int c = 10;
+                    int c = 100;
                     while (obj is Gun && c > 0)
                     {
                         c--;

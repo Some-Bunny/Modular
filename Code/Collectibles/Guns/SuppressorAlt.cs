@@ -99,7 +99,14 @@ namespace ModularMod
             GunID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificClip += c.ProcessClipSpecial;
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
-
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Increases rate of fire.\nTriples clip size.";
+                }
+                return text;
+            };
         }
 
         public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
@@ -110,7 +117,7 @@ namespace ModularMod
         public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return f; }
-            return f + ((f / 2) * stack);
+            return f + (3 * stack);
         }
         public static int GunID;
     }

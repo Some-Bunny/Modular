@@ -268,6 +268,14 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Increased energy block health.\nIncreased damage.";
+                }
+                return text;
+            };
         }
         public static int GunID;
     }

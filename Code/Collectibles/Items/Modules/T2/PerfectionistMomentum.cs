@@ -29,8 +29,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("perfectmomentum_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Perfectionist Momentum " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants a 5% Fire Rate and Damage boost for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") boosts.\n"+ StaticColorHexes.AddColorToLabelString("Damage and Fire Rate boosts reset when you take damage.", StaticColorHexes.Dark_Red_Hex);
+            h.SetName("Perfectionist Momentum " + h.ReturnTierLabel());
+            h.SetDescription("Grants a 5% Fire Rate and Damage boost for\nevery room cleared without taking damage,\ncapped at 10 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") boosts.\n" + StaticColorHexes.AddColorToLabelString("Damage and Fire Rate boosts reset when you take damage.", StaticColorHexes.Dark_Red_Hex));
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AdditionalWeightMultiplier = 0.8f;
@@ -127,6 +127,18 @@ namespace ModularMod
             p.baseData.damage *= 1 + (0.05f * RoomPerfectCount);
             p.baseData.force *= 1 + (0.0333f * RoomPerfectCount);
         }
+
+        public override void MidGameSerialize(List<object> data)
+        {
+            base.MidGameSerialize(data);
+            data.Add(RoomPerfectCount);
+        }
+        public override void MidGameDeserialize(List<object> data)
+        {
+            base.MidGameSerialize(data);
+            RoomPerfectCount = (int)data[0];
+        }
+
     }
 }
 

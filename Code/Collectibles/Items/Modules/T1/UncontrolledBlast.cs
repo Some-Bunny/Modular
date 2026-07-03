@@ -30,10 +30,10 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("uncontrolledblast_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Uncontrolled Blast " + h.ReturnTierLabel();
-            h.LabelDescription = "Massively boosts clip size and fire rate (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + "),\nbut reduces damage and gives " + StaticColorHexes.AddColorToLabelString("virtually uncontrollable spread", StaticColorHexes.Red_Color_Hex) + ".\n(" + StaticColorHexes.AddColorToLabelString("+Even More Spread", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.SetName("Uncontrolled Blast " + h.ReturnTierLabel());
+            h.SetDescription("Massively boosts clip size and fire rate (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + "),\nbut reduces damage and gives " + StaticColorHexes.AddColorToLabelString("virtually uncontrollable spread", StaticColorHexes.Red_Color_Hex) + ".\n(" + StaticColorHexes.AddColorToLabelString("+Even More Spread", StaticColorHexes.Light_Orange_Hex) + ")");
             h.OverrideScrapCost = 7;
-            h.AdditionalWeightMultiplier = 0.125f;
+            h.AdditionalWeightMultiplier = 0.2f;
             h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

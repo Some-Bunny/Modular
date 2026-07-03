@@ -33,8 +33,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("iterateddesign_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Iterated Design " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants a boost to some stats. (" + StaticColorHexes.AddColorToLabelString("+Increased Stats", StaticColorHexes.Light_Orange_Hex) + ").\nGrants benefits unique to your current gun. ("+StaticColorHexes.AddColorToLabelString("+Better Benefits")+").";
+            h.SetName("Iterated Design " + h.ReturnTierLabel());
+            h.SetDescription("Grants a boost to some stats. (" + StaticColorHexes.AddColorToLabelString("+Increased Stats", StaticColorHexes.Light_Orange_Hex) + ").\nGrants benefits unique to your current gun. (" + StaticColorHexes.AddColorToLabelString("+Better Benefits") + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.EnergyConsumption = 2;
@@ -57,6 +57,23 @@ namespace ModularMod
             }
             return 0;
         }
+        public static Func<string, int, string> OverrideAdditionalDescription;
+        public override string GetModifiedLabelDescription(string UnmoddedDescription)
+        {
+            var modular = Toolbox.GetModular();
+            if (modular != null)
+            {
+                if (OverrideAdditionalDescription != null)
+                {
+                    foreach (var entry in OverrideAdditionalDescription.GetInvocationList())
+                    {
+                        UnmoddedDescription = (string)entry.DynamicInvoke(UnmoddedDescription, modular.CurrentGun.PickupObjectId);
+                    }
+                }
+            }
+            return UnmoddedDescription; 
+        }
+
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
         {
@@ -70,6 +87,8 @@ namespace ModularMod
             };
             printer.CritContexts.Add(this.CritContext);
             */
+            SpecialProcessFirstPickup?.Invoke(printer, this.Stack(printer), player);
+
             this.gunStatModifier = new ModuleGunStatModifier()
             {
                 FireRate_Process = ProcessFireRate,
@@ -77,9 +96,11 @@ namespace ModularMod
                 Accuracy_Process = ProcessAccuracy,
                 Reload_Process = ProcessReload,
                 ClipSize_Process = ProcessClipSize,
+
                 Post_Calculation_ClipSize_Process = ProcessClipSizePostCalc,
             };
             printer.ProcessGunStatModifier(this.gunStatModifier);
+            player.stats.RecalculateStats(player);
         }
 
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool IsTruePickup)
@@ -100,37 +121,74 @@ namespace ModularMod
         public int ProcessClipSizePostCalc(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            if (SpecialProcessGunSpecificClipPostCalc != null) { clip = SpecialProcessGunSpecificClipPostCalc(clip, stack, modulePrinterCore, player); }
+            if (SpecialProcessGunSpecificClipPostCalc != null) 
+            {
+                foreach (var entry in SpecialProcessGunSpecificClipPostCalc.GetInvocationList())
+                {
+                    clip = (int)entry.DynamicInvoke(clip, stack, modulePrinterCore, player);
+                }
+                //clip = SpecialProcessGunSpecificClipPostCalc(clip, stack, modulePrinterCore, player);
+            }
             return clip;
         }
         public static Func<int, int, ModulePrinterCore, PlayerController, int> SpecialProcessGunSpecificClipPostCalc;
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            if (SpecialProcessGunSpecificClip != null) { clip = SpecialProcessGunSpecificClip(clip, stack, modulePrinterCore, player); }
+            if (SpecialProcessGunSpecificClip != null) 
+            {
+                foreach (var entry in SpecialProcessGunSpecificClip.GetInvocationList())
+                {
+                    clip = (int)entry.DynamicInvoke(clip, stack, modulePrinterCore, player);
+                }
+                //clip = SpecialProcessGunSpecificClip(clip, stack, modulePrinterCore, player); 
+            }
             return clip;
         }
         public static Func<int, int,ModulePrinterCore, PlayerController, int> SpecialProcessGunSpecificClip;
 
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
+            //UnityEngine.Debug.Log($"T1: {f}");
             int stack = this.ReturnStack(modulePrinterCore);
-            if (SpecialProcessGunSpecificFireRate != null) { f = SpecialProcessGunSpecificFireRate(f, stack, modulePrinterCore, player); }
-            return f * 1;
+            if (SpecialProcessGunSpecificFireRate != null) 
+            {
+                foreach (var entry in SpecialProcessGunSpecificFireRate.GetInvocationList())
+                {
+                    f = (float)entry.DynamicInvoke(f, stack, modulePrinterCore, player);
+                    //UnityEngine.Debug.Log($"T2: {f}");
+                }
+            }
+            //UnityEngine.Debug.Log($"T3: {f}");
+            return f;
         }
         public static Func<float, int,  ModulePrinterCore, PlayerController, float> SpecialProcessGunSpecificFireRate;
 
         public float ProcessAccuracy(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            if (SpecialProcessGunSpecificAccuracy != null) { f = SpecialProcessGunSpecificAccuracy(f, stack, modulePrinterCore, player); }
+            if (SpecialProcessGunSpecificAccuracy != null) 
+            {
+                foreach (var entry in SpecialProcessGunSpecificAccuracy.GetInvocationList())
+                {
+                    f = (float)entry.DynamicInvoke(f, stack, modulePrinterCore, player);
+                }
+                //f = SpecialProcessGunSpecificAccuracy(f, stack, modulePrinterCore, player); 
+            }
             return f;
         }
         public static Func<float, int, ModulePrinterCore, PlayerController, float> SpecialProcessGunSpecificAccuracy;
         public float ProcessReload(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            if (SpecialProcessGunSpecificReload != null) { f = SpecialProcessGunSpecificReload(f, stack, modulePrinterCore, player); }
+            if (SpecialProcessGunSpecificReload != null) 
+            {
+                foreach (var entry in SpecialProcessGunSpecificReload.GetInvocationList())
+                {
+                    f = (float)entry.DynamicInvoke(f, stack, modulePrinterCore, player);
+                }
+                //f = SpecialProcessGunSpecificReload(f, stack, modulePrinterCore, player); 
+            }
             return f;
         }
         public static Func<float, int, ModulePrinterCore, PlayerController, float> SpecialProcessGunSpecificReload;
@@ -175,11 +233,16 @@ namespace ModularMod
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
             //modulePrinter.CritContexts.Remove(this.CritContext);
+            SpecialProcessUnequip?.Invoke(modulePrinter, this.Stack(modulePrinter), player);
             modulePrinter.OnPostProcessProjectile -= PPP;
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
+            player.stats.RecalculateStats(player);
         }
         public static Action<ModulePrinterCore, Projectile, int, PlayerController> SpecialProcessGunSpecific;
         public static Action<ModulePrinterCore, int, PlayerController> SpecialProcessPickup;
+        public static Action<ModulePrinterCore, int, PlayerController> SpecialProcessFirstPickup;
+
+        public static Action<ModulePrinterCore, int, PlayerController> SpecialProcessUnequip;
 
     }
 }

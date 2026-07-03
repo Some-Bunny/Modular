@@ -25,8 +25,8 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.Tier = ModuleTier.Unique;
-            h.LabelName = "Brilliant Sun " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles now inflict Sun Burn.\nKilling an enemy with Sun Burn causes it to explode.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Power")+ ").";
+            h.SetName("Brilliant Sun " + h.ReturnTierLabel());
+            h.SetDescription("Projectiles now inflict Sun Burn.\nKilling an enemy with Sun Burn causes it to explode.\n(" + StaticColorHexes.AddColorToLabelString("+Explosion Power") + ").");
             h.IsSpecialModule = true;      
             h.SetTag("modular_module");
             h.AddColorLight(new Color(1, 0.3f, 0));

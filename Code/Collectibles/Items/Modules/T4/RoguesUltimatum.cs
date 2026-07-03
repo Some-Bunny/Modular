@@ -34,8 +34,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             //h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_Omega;
-            h.LabelName = "ROGUES ULTIMATUM " + h.ReturnTierLabel();
-            h.LabelDescription = "GRANTS A DAMAGE AND FIRE RATE BOOST\nBASED OFF HOW MUCH ENERGY YOU HAVE REMAINING.\n(" + StaticColorHexes.AddColorToLabelString("+DAMAGE AND RATE OF FIRE", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.SetName("ROGUES ULTIMATUM " + h.ReturnTierLabel());
+            h.SetDescription("GRANTS A DAMAGE AND FIRE RATE BOOST\nBASED OFF HOW MUCH ENERGY YOU HAVE REMAINING.\n(" + StaticColorHexes.AddColorToLabelString("+DAMAGE AND RATE OF FIRE", StaticColorHexes.Light_Orange_Hex) + ")");
             h.powerConsumptionData = new PowerConsumptionData()
             {
                 FirstStack = 0,

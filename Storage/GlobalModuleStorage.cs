@@ -152,7 +152,9 @@ namespace ModularMod
             {
                 AssignPower(module);
             }
-            module.LabelDescription += "\n" + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? module.powerConsumptionData.OverridePowerDescriptionLabel : "Uses " + (module.powerConsumptionData.FirstStack != -420 ? module.powerConsumptionData.FirstStack : module.EnergyConsumption) + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? "" : " (" + StaticColorHexes.AddColorToLabelString((module.powerConsumptionData.AdditionalStacks != -69 ? module.powerConsumptionData.AdditionalStacks : module.EnergyConsumption / 2).ToString(), StaticColorHexes.Light_Orange_Hex) + ")" + SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.POWER))); // Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER)));
+
+
+            //module.SetDescription(module.UnmodifiedLabelDescription + "\n" + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? module.powerConsumptionData.OverridePowerDescriptionLabel : "Uses " + (module.powerConsumptionData.FirstStack != -420 ? module.powerConsumptionData.FirstStack : module.EnergyConsumption) + (module.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? "" : " (" + StaticColorHexes.AddColorToLabelString((module.powerConsumptionData.AdditionalStacks != -69 ? module.powerConsumptionData.AdditionalStacks : module.EnergyConsumption / 2).ToString(), StaticColorHexes.Light_Orange_Hex) + ")" + SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.POWER)))); // Scrapper.ReturnButtonString(Scrapper.ButtonUI.POWER))););
             allModules.Add(module);
             if (module.IsUncraftable == false)
             {
@@ -180,7 +182,7 @@ namespace ModularMod
         {
             foreach(var entry in allModules)
             {
-                if (mod.LabelName == entry.LabelName)
+                if (mod.UnmodifiedLabelName == entry.UnmodifiedLabelName)
                 { return entry; }
             }
             return null;

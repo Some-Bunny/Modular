@@ -34,8 +34,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("pandemic_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Patient Zero " + h.ReturnTierLabel();
-            h.LabelDescription = "Chance to poison enemies on hit.\n(" + StaticColorHexes.AddColorToLabelString("+Poison Chance", StaticColorHexes.Light_Orange_Hex) + ").\nHurting enemies can spread debuffs to\nnearby enemies, breaking their resistances.\nSlain enemies cause an outbreak,\ngreatly reducing resistances and causing panic.\n(" + StaticColorHexes.AddColorToLabelString("+Virality and Severity", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Patient Zero " + h.ReturnTierLabel());
+            h.SetDescription("Chance to poison enemies on hit.\n(" + StaticColorHexes.AddColorToLabelString("+Poison Chance", StaticColorHexes.Light_Orange_Hex) + ").\nHurting enemies can spread debuffs to\nnearby enemies, breaking their resistances.\nSlain enemies cause an outbreak,\ngreatly reducing resistances and causing panic.\n(" + StaticColorHexes.AddColorToLabelString("+Virality and Severity", StaticColorHexes.Light_Orange_Hex) + ").");
             h.EnergyConsumption = 2;
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);

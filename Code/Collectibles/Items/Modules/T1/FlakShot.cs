@@ -27,9 +27,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("flakshot_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.7f;
-            h.LabelName = "Flak Shot" + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces Damage by 40%. Projectiles split into 2\nweaker projectiles that inherit all of the\nparent projectiles effects.\n("+StaticColorHexes.AddColorToLabelString("+Split Projectile Damage", StaticColorHexes.Light_Orange_Hex)+")";
+            h.AdditionalWeightMultiplier = 0.8f;
+            h.SetName("Flak Shot" + h.ReturnTierLabel());
+            h.SetDescription("Reduces Damage by 40%. Projectiles split into 2\nweaker projectiles that inherit all of the\nparent projectiles effects.\n(" + StaticColorHexes.AddColorToLabelString("+Split Projectile Damage", StaticColorHexes.Light_Orange_Hex) + ")");
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 
@@ -39,7 +39,6 @@ namespace ModularMod
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
-            //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             ModulePrinterCore.ModifyForChanceBullets += h.ChanceBulletsModify;
             ID = h.PickupObjectId;
         }
@@ -47,8 +46,8 @@ namespace ModularMod
 
         public override void ChanceBulletsModify(ModulePrinterCore modulePrinterCore, Projectile p, float f, PlayerController player)
         {
-            if (p.gameObject.GetComponent<ProjectileSplitController>() != null) { return; }
             if (UnityEngine.Random.value > 0.03f) { return; }
+            if (p.gameObject.GetComponent<ProjectileSplitController>() != null) { return; }
             int stack = 1;
             p.baseData.damage *= 0.6f;
             var split = p.gameObject.AddComponent<ProjectileSplitController>();

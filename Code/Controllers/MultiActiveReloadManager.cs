@@ -217,8 +217,12 @@ namespace ModularMod
                     {
                         bool flag2 = GameUIRoot.Instance.AttemptActiveReloadOnlyMultireload(self.CurrentOwner as PlayerController);
                         MultiActiveReload reload = GameUIRoot.Instance.GetReloadBarForPlayer(self.CurrentOwner as PlayerController).GetMultiActiveReloadForController();
+                        
+                        
                         if (flag2)
                         {
+                            
+
                             controller.OnActiveReloadSuccess(reload);
                             GunFormeSynergyProcessor component = self.GetComponent<GunFormeSynergyProcessor>();
                             if (component)
@@ -338,6 +342,17 @@ namespace ModularMod
                 {
                     num *= Mathf.Pow(reload.reloadData.damageMultiply, reload.reloadData.ActiveReloadStacks ? (float)((int)info2.GetValue(base.gun) + 1) : 1);
                 }
+            }
+            if (base.gun.Volley != null)
+            {
+                for (int i = 0; i < base.gun.Volley.projectiles.Count; i++)
+                {
+                    base.gun.m_moduleData[base.gun.Volley.projectiles[i]].activeReloadDamageModifier = num;
+                }
+            }
+            else
+            {
+                base.gun.m_moduleData[base.gun.singleModule].activeReloadDamageModifier = num;
             }
             this.damageMult = num;
         }

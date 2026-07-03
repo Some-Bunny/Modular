@@ -40,6 +40,7 @@ namespace ModularMod
             FakePrefab.MakeFakePrefab(v.gameObject);
             UnityEngine.Object.DontDestroyOnLoad(v.gameObject);
             v.gameObject.SetActive(false);
+            v.RemovePickupFromLootTables();
         }
         public static int CheeseID;
     }

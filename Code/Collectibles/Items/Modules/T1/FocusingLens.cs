@@ -17,7 +17,7 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(FocusingLens))
         {
             Name = "Focusing Lens",
-            Description = "Focus",
+            Description = "Crystallized Focus",
             LongDescription = "Deal 50% (+50% per stack) more damage to nearby enemies.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("focusingkens_tier1_module"),
@@ -28,10 +28,10 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("focusingkens_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.66f;
+            h.AdditionalWeightMultiplier = 0.75f;
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Focusing Lens " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ") more damage\nto nearby enemies.";
+            h.SetName("Focusing Lens " + h.ReturnTierLabel());
+            h.SetDescription("Deal 50% (" + StaticColorHexes.AddColorToLabelString("+50%", StaticColorHexes.Light_Orange_Hex) + ") more damage\nto nearby enemies.");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

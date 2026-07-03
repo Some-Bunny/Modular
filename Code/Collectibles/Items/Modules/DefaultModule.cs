@@ -425,6 +425,9 @@ namespace ModularMod
 
         }
 
+
+
+
         public virtual bool IsAvailable()
         {
             return true;
@@ -451,6 +454,7 @@ namespace ModularMod
         {
             return Stored_Core.ReturnActiveStack(this.LabelName);
         }
+
 
 
         public ModulePrinterCore Stored_Core;
@@ -563,11 +567,11 @@ namespace ModularMod
             Color colorToSelect = Label_Background_Color_Override != Color.clear ? Label_Background_Color_Override : (interactor.IsUsingAlternateCostume == true ? Label_Background_Color_Alt : Label_Background_Color);
             if (ExtantLabelController == null && CanDisplayText == true)
             {
-                ExtantLabelController = Toolbox.GenerateText(this.transform, Offset_LabelDescription, 0.5f, GetLabelNameDescrption(), colorToSelect, true, 5, false);
+                ExtantLabelController = Toolbox.GenerateText(this.transform, Offset_LabelDescription, 0.5f, GetFullLabelDescription(), colorToSelect, true, 5, false);
             }
             if (ExtantNameLabelController == null && CanDisplayText == true)
             {
-                ExtantNameLabelController = Toolbox.GenerateText(this.transform, Offset_LabelName, 0.5f, GetLabelNameProper(), colorToSelect, true, 5, false);
+                ExtantNameLabelController = Toolbox.GenerateText(this.transform, Offset_LabelName, 0.5f, GetFullLabelName(), colorToSelect, true, 5, false);
 
             }
             if (EnteredRange != null)
@@ -601,17 +605,22 @@ namespace ModularMod
             }
         }
 
-        public string GetLabelNameProper()
+        public string GetFullLabelName()
         {
-            if (OverrideLabelName == null | OverrideLabelName == string.Empty) { return LabelName; }
-            return OverrideLabelName;
+            string Text = OverrideLabelName != string.Empty ? OverrideLabelName : LabelName;
+            return GetModifiedLabelName(Text);
         }
 
-        public string GetLabelNameDescrption()
+        public string GetFullLabelDescription(bool alsoHasPowerLabel = true)
         {
-            if (OverrideLabelDescription == null | OverrideLabelDescription == string.Empty) { return LabelDescription; }
-            return OverrideLabelDescription;
-
+            string Text = OverrideLabelDescription != string.Empty ? OverrideLabelDescription : LabelDescription;
+            string Text2 = GetModifiedLabelDescription(Text);
+            if (alsoHasPowerLabel)
+            {
+                Text2 += "\n" + (this.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? this.powerConsumptionData.OverridePowerDescriptionLabel : "Uses " + (this.powerConsumptionData.FirstStack != -420 ? this.powerConsumptionData.FirstStack : this.EnergyConsumption) + (this.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? "" : " (" + StaticColorHexes.AddColorToLabelString((this.powerConsumptionData.AdditionalStacks != -69 ? this.powerConsumptionData.AdditionalStacks : this.EnergyConsumption / 2).ToString(), StaticColorHexes.Light_Orange_Hex) + ")" + SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.POWER)));
+                //Text2 + "\n" + (this.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? this.powerConsumptionData.OverridePowerDescriptionLabel : "Uses " + (this.powerConsumptionData.FirstStack != -420 ? this.powerConsumptionData.FirstStack : this.EnergyConsumption) + (this.powerConsumptionData.OverridePowerDescriptionLabel != "FUCK" ? "" : " (" + StaticColorHexes.AddColorToLabelString((this.powerConsumptionData.AdditionalStacks != -69 ? this.powerConsumptionData.AdditionalStacks : this.EnergyConsumption / 2).ToString(), StaticColorHexes.Light_Orange_Hex) + ")" + SpecialCharactersController.ReturnSpecialCharacter(SpecialCharactersController.SpecialCharacters.POWER)));
+            }
+            return Text2;
         }
 
         public void OnExitRange(PlayerController interactor)
@@ -702,8 +711,41 @@ namespace ModularMod
             Unique = 4
         };
 
-        public string LabelName = "Default Module";
-        public string LabelDescription = "This is a test label. \\n\\n La la la look MONEY! \"[sprite \\\"ui_coin\\\"]\"";
+        [SerializeField]
+        private string LabelName = "Default Module";
+        [SerializeField]
+        private string LabelDescription = "This is a test label. \\n\\n La la la look MONEY! \"[sprite \\\"ui_coin\\\"]\"";
+
+        public void SetName(string newName)
+        {
+            LabelName = newName;
+        }
+        public void SetDescription(string newDescription)
+        {
+            LabelDescription = newDescription;
+        }
+
+        public string UnmodifiedLabelName
+        {
+            get
+            { return LabelName; }
+        }
+        public string UnmodifiedLabelDescription
+        {
+            get
+            { return LabelDescription; }
+        }
+
+        public virtual string GetModifiedLabelName(string UnmoddedName)
+        {
+            return UnmoddedName;
+        }
+        public virtual string GetModifiedLabelDescription(string UnmoddedDescription)
+        {
+            return UnmoddedDescription;
+        }
+
+
 
         public string OverrideLabelName = null;
         public string OverrideLabelDescription = null;
@@ -712,8 +754,8 @@ namespace ModularMod
         public Vector2 Offset_LabelName = new Vector2(0, 2);
         public Vector2 Offset_LabelDescription = new Vector2(0, -2);
 
-        public Color Label_Background_Color = new Color32(121, 234, 255, 100);
-        public Color Label_Background_Color_Alt = new Color32(0, 255, 54, 100);
+        public Color Label_Background_Color = new Color32(121, 234, 255, 120);
+        public Color Label_Background_Color_Alt = new Color32(0, 255, 54, 120);
         public Color Label_Background_Color_Override = Color.clear;
 
 

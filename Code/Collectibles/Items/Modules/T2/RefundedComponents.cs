@@ -30,11 +30,11 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("refundstuff_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Refunded Components" + h.ReturnTierLabel();
-            h.LabelDescription = "Missed shots are refunded back into your clip.\nGain a 33% boost to damage when you miss, up to 10 " + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + " boosts.\nLanding a hit will use all stored damage.";
+            h.SetName("Refunded Components" + h.ReturnTierLabel());
+            h.SetDescription("Missed shots are refunded back into your clip.\nGain a 33% boost to damage when you miss, up to 10 " + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + " boosts.\nLanding a hit will use all stored damage.");
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
-
+            h.AdditionalWeightMultiplier = 0.7f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);

@@ -29,13 +29,13 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("stickybombs_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Sticky Bomb " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nprojectiles now leave sticky bombs on enemies that\nexplode after 10 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.\n(" + StaticColorHexes.AddColorToLabelString("+Sticky Bomb Damage", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.SetName("Sticky Bomb " + h.ReturnTierLabel());
+            h.SetDescription("Increases Accuracy by 33% (" + StaticColorHexes.AddColorToLabelString("+33% hyperbolically", StaticColorHexes.Light_Orange_Hex) + "),\nprojectiles now leave sticky bombs on enemies that\nexplode after 10 (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ") seconds.\n(" + StaticColorHexes.AddColorToLabelString("+Sticky Bomb Damage", StaticColorHexes.Light_Orange_Hex) + ")");
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
-
+            h.AdditionalWeightMultiplier = 0.65f;
             h.AddModuleTag(BaseModuleTags.STICKY);
 
             h.AddToGlobalStorage();

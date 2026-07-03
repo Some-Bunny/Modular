@@ -15,7 +15,7 @@ namespace ModularMod
         {
             Name = "Temporary Shield",
             Description = "Block It",
-            LongDescription = "Prevents 1 (+1 per stack) instances of damage per floor. Blocking damage activates on-hit effects. Increases the probability of certain modules appearing.",
+            LongDescription = "Block 1 (+1 per stack) instances of damage per floor. Blocking damage activates on-hit effects. Increases the probability of certain modules appearing.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tempshield_tier1_module"),
             Quality = ItemQuality.SPECIAL,
@@ -27,8 +27,8 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("tempshield_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.6f;
-            h.LabelName = "Temporary Shield" + h.ReturnTierLabel();
-            h.LabelDescription = "Prevents 1 ("+ StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex)+") instances of damage per floor.\nBlocking damage activates on-hit effects.\n"+StaticColorHexes.AddColorToLabelString("Increases the probability of certain modules appearing.", StaticColorHexes.Pink_Hex);
+            h.SetName("Temporary Shield" + h.ReturnTierLabel());
+            h.SetDescription("Block 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") instances of damage per floor.\nBlocking damage activates on-hit effects.\n" + StaticColorHexes.AddColorToLabelString("Increases the probability of certain modules appearing.", StaticColorHexes.Pink_Hex));
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.RETALIATION);

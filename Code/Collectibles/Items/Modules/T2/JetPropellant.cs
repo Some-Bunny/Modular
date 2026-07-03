@@ -27,14 +27,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("jetpropellant_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Jet Propellant " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectiles start slow, but accelerate to\nhigh speeds after a second.\nProjectiles now deal 10% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) +") of their speed as damage.";
+            h.SetName("Jet Propellant " + h.ReturnTierLabel());
+            h.SetDescription("Projectiles start slow, but accelerate to\nhigh speeds after a second.\nProjectiles now deal 10% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") of their speed as damage.");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
             h.AddToGlobalStorage();
-            h.AdditionalWeightMultiplier = 0.85f;
+            h.AdditionalWeightMultiplier = 0.8f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);

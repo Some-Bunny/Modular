@@ -240,6 +240,14 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Higher damage and more\naccurate parries.";
+                }
+                return text;
+            };
         }
 
         public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
@@ -345,7 +353,7 @@ namespace ModularMod
                         var controller = playerController.CurrentGun.GetComponent<ModularGunController>();
                         if (controller != null)
                         {
-                            float speedMath = Mathf.Max(0, (isIterated == true ? 75 : 90) - (previousSpeed * 3f));
+                            float speedMath = Mathf.Max(0, (isIterated == true ? 60 : 90) - (previousSpeed * 3f));
                             p.Direction = Toolbox.GetUnitOnCircle(playerController.CurrentGun.CurrentAngle + UnityEngine.Random.Range(controller.GetAccuracy(speedMath), controller.GetAccuracy(speedMath * -1)), 1);
                             var VFX = UnityEngine.Object.Instantiate(controller.isAlt == true ? ConvexLens.greenImpact.effects[0].effects[0].effect : LineUp.PierceImpact, p.sprite.WorldCenter - new Vector2(1.5f, 0), Quaternion.identity);
                             Destroy(VFX, 2);

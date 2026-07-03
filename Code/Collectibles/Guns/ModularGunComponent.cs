@@ -106,6 +106,7 @@ namespace ModularMod
             public float Angle_From_Aim;
             public float Accuracy;
             public float Rate_Of_Fire;
+            public float Burst_Rate_Of_Fire;
             public int Clip_Size;
             public int FinalProjectiles_Count;
             public int BurstShots;
@@ -196,7 +197,8 @@ namespace ModularMod
                         Rate_Of_Fire = mod.cooldownTime,
                         Clip_Size = mod.numberOfShotsInClip,
                         FinalProjectiles_Count = mod.numberOfFinalProjectiles,
-                        BurstShots = mod.burstShotCount
+                        BurstShots = mod.burstShotCount,
+                        Burst_Rate_Of_Fire = mod.burstCooldownTime
                     });
                 }
                 foreach (var thing in mod.chargeProjectiles)
@@ -368,16 +370,24 @@ namespace ModularMod
             float r = Base_Reload_Time;
             foreach (var entry in statMods)
             {
-                if (entry.Reload_Process != null) { r = entry.Reload_Process(r, PrinterSelf, this, Player); }
+                if (entry.Reload_Process != null) 
+                {
+                    foreach (var mod in entry.Reload_Process.GetInvocationList())
+                    {
+                        r = (float)mod.DynamicInvoke(r, PrinterSelf, this, Player);
+                    }
+                }
             }
             this.gun.reloadTime = r;
             _CurrentReloadTimeMult = r / Base_Reload_Time;
+            //UnityEngine.Debug.Log($"T1: {f}");
 
             foreach (var cont in Default_Module_And_Stats)
             {
                 float BaseFireRate = cont.Value.Rate_Of_Fire;
                 float BaseAngle = cont.Value.Accuracy;
                 float AngleFromAim = cont.Value.Angle_From_Aim;
+                float BaseBurstFireRate = cont.Value.Burst_Rate_Of_Fire;
 
                 int ClipSize = cont.Value.Clip_Size;
                 int finales = cont.Value.FinalProjectiles_Count;
@@ -387,15 +397,37 @@ namespace ModularMod
 
                 foreach (var entry in statMods)
                 {
-                    if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
-                    if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
-                    if (entry.AngleFromAim_Process != null) 
+                    if (entry.FireRate_Process != null)
                     {
-                        AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player);
+                        foreach (var mod in entry.FireRate_Process.GetInvocationList())
+                        {
+                            BaseFireRate = (float)mod.DynamicInvoke(BaseFireRate, PrinterSelf, this, Player);
+                            BaseBurstFireRate = (float)mod.DynamicInvoke(BaseBurstFireRate, PrinterSelf, this, Player);
+                        }
+                    }
+                    if (entry.Accuracy_Process != null)
+                    {
+                        foreach (var mod in entry.Accuracy_Process.GetInvocationList())
+                        {
+                            BaseAngle = (float)mod.DynamicInvoke(BaseAngle, PrinterSelf, this, Player);
+                        }
+                    }
+                    if (entry.AngleFromAim_Process != null)
+                    {
+                        foreach (var mod in entry.AngleFromAim_Process.GetInvocationList())
+                        {
+                            AngleFromAim = (float)mod.DynamicInvoke(AngleFromAim, PrinterSelf, this, Player);
+                        }
                     }
                     if (AmmoMaxIsClip == false)
                     {
-                        if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                        if (entry.ClipSize_Process != null)
+                        {
+                            foreach (var mod in entry.ClipSize_Process.GetInvocationList())
+                            {
+                                ClipSize = (int)mod.DynamicInvoke(ClipSize, PrinterSelf, this, Player);
+                            }
+                        }
                     }
                 }
                 if (AmmoMaxIsClip == false)
@@ -403,21 +435,43 @@ namespace ModularMod
                     ClipSize = (Mathf.Max(ClipSize, 1));
                     foreach (var entry in statMods)
                     {
-                        if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                        if (entry.Post_Calculation_ClipSize_Process != null)
+                        {
+                            foreach (var mod in entry.Post_Calculation_ClipSize_Process.GetInvocationList())
+                            {
+                                ClipSize = (int)mod.DynamicInvoke(ClipSize, PrinterSelf, this, Player);
+                            }
+                        }
                     }
                 }
 
                 
                 foreach (var entry in statMods)
                 {
-                    if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player); }
-                    if (entry.BurstAmount_Process != null) { burstShots = entry.BurstAmount_Process(burstShots, ClipSize, PrinterSelf, this, Player); }
+                    if (entry.FinaleClipSize_Process != null)
+                    {
+                        foreach (var mod in entry.FinaleClipSize_Process.GetInvocationList())
+                        {
+                            finales = (int)mod.DynamicInvoke(finales, ClipSize, PrinterSelf, this, Player);
+                        }
+                        //finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player);
+                    }
+                    if (entry.BurstAmount_Process != null)
+                    {
+                        foreach (var mod in entry.BurstAmount_Process.GetInvocationList())
+                        {
+                            burstShots = (int)mod.DynamicInvoke(burstShots, ClipSize, PrinterSelf, this, Player);
+                        }
+                        //burstShots = entry.BurstAmount_Process(burstShots, ClipSize, PrinterSelf, this, Player);
+                    }
                 }
                 cont.Key.cooldownTime = BaseFireRate;
                 cont.Key.angleVariance = BaseAngle;
                 cont.Key.angleFromAim = AngleFromAim;
                 cont.Key.numberOfShotsInClip = ClipSize;
                 cont.Key.numberOfFinalProjectiles = finales;
+                cont.Key.burstShotCount = burstShots;
+                cont.Key.burstCooldownTime = BaseBurstFireRate;
 
                 _CurrentFireRateMult = BaseFireRate / cont.Value.Rate_Of_Fire;
                 _CurrentClipSizeMult = ClipSize / cont.Value.Clip_Size;
@@ -429,7 +483,13 @@ namespace ModularMod
                 float BaseRate = cont.Value;
                 foreach (var entry in statMods)
                 {
-                    if (entry.ChargeSpeed_Process != null) { BaseRate = entry.ChargeSpeed_Process(BaseRate, PrinterSelf, this, Player); }
+                    if (entry.ChargeSpeed_Process != null) 
+                    {
+                        foreach (var mod in entry.ChargeSpeed_Process.GetInvocationList())
+                        {
+                            BaseRate = (float)mod.DynamicInvoke(BaseRate, PrinterSelf, this, Player);
+                        }                    
+                    }
                 }
                 cont.Key.ChargeTime = BaseRate;
             }
@@ -437,6 +497,8 @@ namespace ModularMod
             foreach (var cont in Modified_Module_And_Stats)
             {
                 float BaseFireRate = cont.Value.Rate_Of_Fire;
+                float BaseBurstFireRate = cont.Value.Burst_Rate_Of_Fire;
+
                 float BaseAngle = cont.Value.Accuracy;
                 float AngleFromAim = cont.Value.Angle_From_Aim;
                 int ClipSize = cont.Value.Clip_Size;
@@ -447,12 +509,37 @@ namespace ModularMod
 
                 foreach (var entry in statMods)
                 {
-                    if (entry.FireRate_Process != null) { BaseFireRate = entry.FireRate_Process(BaseFireRate, PrinterSelf, this, Player); }
-                    if (entry.Accuracy_Process != null) { BaseAngle = entry.Accuracy_Process(BaseAngle, PrinterSelf, this, Player); }
-                    if (entry.AngleFromAim_Process != null) { AngleFromAim = entry.AngleFromAim_Process(AngleFromAim, PrinterSelf, this, Player); }
+                    if (entry.FireRate_Process != null) 
+                    {
+                        foreach (var mod in entry.FireRate_Process.GetInvocationList())
+                        {
+                            BaseFireRate = (float)mod.DynamicInvoke(BaseFireRate, PrinterSelf, this, Player);
+                            BaseBurstFireRate = (float)mod.DynamicInvoke(BaseBurstFireRate, PrinterSelf, this, Player);
+                        }
+                    }
+                    if (entry.Accuracy_Process != null) 
+                    {
+                        foreach (var mod in entry.Accuracy_Process.GetInvocationList())
+                        {
+                            BaseAngle = (float)mod.DynamicInvoke(BaseAngle, PrinterSelf, this, Player);
+                        }
+                    }
+                    if (entry.AngleFromAim_Process != null) 
+                    {
+                        foreach (var mod in entry.AngleFromAim_Process.GetInvocationList())
+                        {
+                            AngleFromAim = (float)mod.DynamicInvoke(AngleFromAim, PrinterSelf, this, Player);
+                        }
+                    }
                     if (AmmoMaxIsClip == false)
                     {
-                        if (entry.ClipSize_Process != null) { ClipSize = entry.ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                        if (entry.ClipSize_Process != null) 
+                        {
+                            foreach (var mod in entry.ClipSize_Process.GetInvocationList())
+                            {
+                                ClipSize = (int)mod.DynamicInvoke(ClipSize, PrinterSelf, this, Player);
+                            }
+                        }
                     }
                 }
                 if (AmmoMaxIsClip == false)
@@ -460,19 +547,41 @@ namespace ModularMod
                     ClipSize = (Mathf.Max(ClipSize, 1));
                     foreach (var entry in statMods)
                     {
-                        if (entry.Post_Calculation_ClipSize_Process != null) { ClipSize = entry.Post_Calculation_ClipSize_Process(ClipSize, PrinterSelf, this, Player); }
+                        if (entry.Post_Calculation_ClipSize_Process != null) 
+                        {
+                            foreach (var mod in entry.Post_Calculation_ClipSize_Process.GetInvocationList())
+                            {
+                                ClipSize = (int)mod.DynamicInvoke(ClipSize, PrinterSelf, this, Player);
+                            }
+                        }
                     }
                 }
                 foreach (var entry in statMods)
                 {
-                    if (entry.FinaleClipSize_Process != null) { finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player); }
-                    if (entry.BurstAmount_Process != null) { burstShots = entry.BurstAmount_Process(burstShots, ClipSize, PrinterSelf, this, Player); }
+                    if (entry.FinaleClipSize_Process != null) 
+                    {
+                        foreach (var mod in entry.FinaleClipSize_Process.GetInvocationList())
+                        {
+                            finales = (int)mod.DynamicInvoke(finales, ClipSize, PrinterSelf, this, Player);
+                        }
+                        //finales = entry.FinaleClipSize_Process(finales, ClipSize, PrinterSelf, this, Player);
+                    }
+                    if (entry.BurstAmount_Process != null) 
+                    {
+                        foreach (var mod in entry.BurstAmount_Process.GetInvocationList())
+                        {
+                            burstShots = (int)mod.DynamicInvoke(burstShots, ClipSize,  PrinterSelf, this, Player);
+                        }
+                        //burstShots = entry.BurstAmount_Process(burstShots, ClipSize, PrinterSelf, this, Player);
+                    }
                 }
                 cont.Key.cooldownTime = BaseFireRate;
                 cont.Key.angleVariance = BaseAngle;
                 cont.Key.angleFromAim = AngleFromAim;
                 cont.Key.numberOfShotsInClip = ClipSize;
                 cont.Key.numberOfFinalProjectiles = finales;
+                cont.Key.burstShotCount = burstShots;
+                cont.Key.burstCooldownTime = BaseBurstFireRate;
             }
 
             foreach (var cont in Modified_ChargeProj_And_Cooldown)
@@ -480,7 +589,13 @@ namespace ModularMod
                 float BaseRate = cont.Value;
                 foreach (var entry in statMods)
                 {
-                    if (entry.ChargeSpeed_Process != null) { BaseRate = entry.ChargeSpeed_Process(BaseRate, PrinterSelf, this, Player); }
+                    if (entry.ChargeSpeed_Process != null)
+                    {
+                        foreach (var mod in entry.ChargeSpeed_Process.GetInvocationList())
+                        {
+                            BaseRate = (float)mod.DynamicInvoke(BaseRate, PrinterSelf, this, Player);
+                        }
+                    }
                 }
                 cont.Key.ChargeTime = BaseRate;
             }
@@ -530,7 +645,8 @@ namespace ModularMod
                                         Rate_Of_Fire = entry.cooldownTime,
                                         Clip_Size = entry.numberOfShotsInClip,
                                         FinalProjectiles_Count = entry.numberOfFinalProjectiles,
-                                        BurstShots = entry.burstShotCount
+                                        BurstShots = entry.burstShotCount,
+                                        Burst_Rate_Of_Fire = entry.burstCooldownTime,
 
                                     });
                                     foreach (var chargeProj in entry.chargeProjectiles)
@@ -568,7 +684,8 @@ namespace ModularMod
                                         Rate_Of_Fire = entry.cooldownTime,
                                         Clip_Size = entry.numberOfShotsInClip,
                                         FinalProjectiles_Count = entry.numberOfFinalProjectiles,
-                                        BurstShots = entry.burstShotCount
+                                        BurstShots = entry.burstShotCount,
+                                        Burst_Rate_Of_Fire = entry.burstCooldownTime
 
 
                                     });
@@ -600,7 +717,9 @@ namespace ModularMod
                             Rate_Of_Fire = entry.cooldownTime,
                             Clip_Size = entry.numberOfShotsInClip,
                             FinalProjectiles_Count = entry.numberOfFinalProjectiles,
-                            BurstShots = entry.burstShotCount
+                            BurstShots = entry.burstShotCount,
+                            Burst_Rate_Of_Fire = entry.burstCooldownTime
+
                         });
                         foreach (var chargeProj in entry.chargeProjectiles)
                         {

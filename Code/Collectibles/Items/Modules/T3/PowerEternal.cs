@@ -34,13 +34,13 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("powereternal_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Power Eternal " + h.ReturnTierLabel();
-            h.LabelDescription = "Small chance to gain a Power Cell upon slaying an enemy.\n(" + StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex) + ").\n" +StaticColorHexes.AddColorToLabelString("Once enabled, cannot be disabled", StaticColorHexes.Dark_Red_Hex) + ".";
+            h.SetName("Power Eternal " + h.ReturnTierLabel());
+            h.SetDescription("Small chance to gain a Power Cell upon slaying an enemy.\n(" + StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex) + ").\n" + StaticColorHexes.AddColorToLabelString("Once enabled, cannot be disabled", StaticColorHexes.Dark_Red_Hex) + ".");
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
-            h.AdditionalWeightMultiplier = 0.7f;
+            h.AdditionalWeightMultiplier = 0.6f;
             h.EnergyConsumption = 4;
             h.IsUncraftable = true;
 

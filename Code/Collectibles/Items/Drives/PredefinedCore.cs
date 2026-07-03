@@ -30,7 +30,7 @@ namespace ModularMod
             v.gameObject.SetActive(false);
             FakePrefab.MakeFakePrefab(v.gameObject);
             v.CustomCost = 10;
-            
+            v.RemovePickupFromLootTables();
             v.SetupUnlockOnCustomFlag(SaveAPI.CustomDungeonFlags.BEAT_LICH_AS_MODULAR, true);
             predefinedCoreID = v.PickupObjectId;
             AdditionalShopItemController.ShopItemContexts.Add(new AdditionalShopItemController.AdditionalShopItemContext()

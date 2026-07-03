@@ -27,8 +27,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("avarice_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Avarice Cart " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 50 Casings, 1 Key and 2 Blanks on pickup.\nEnemies have a 6% chance of\ndropping an additional casing when killed (" + StaticColorHexes.AddColorToLabelString("+6% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Avarice Cart " + h.ReturnTierLabel());
+            h.SetDescription("Grants 50 Casings, 1 Key and 2 Blanks on pickup.\nEnemies have a 6% chance of\ndropping an additional casing when killed (" + StaticColorHexes.AddColorToLabelString("+6% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").");
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
 

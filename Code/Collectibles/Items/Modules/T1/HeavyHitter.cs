@@ -29,10 +29,10 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("heavyhitter_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.45f;
+            h.AdditionalWeightMultiplier = 0.6f;
 
-            h.LabelName = "Heavy Hitter" + h.ReturnTierLabel();
-            h.LabelDescription = $"Deal 300% ({StaticColorHexes.AddColorToLabelString("+300%")}) more knockback.\nIncreases damage by 12.5% ({StaticColorHexes.AddColorToLabelString("+12.5%")}).";
+            h.SetName("Heavy Hitter" + h.ReturnTierLabel());
+            h.SetDescription($"Deal 300% ({StaticColorHexes.AddColorToLabelString("+300%")}) more knockback.\nIncreases damage by 12.5% ({StaticColorHexes.AddColorToLabelString("+12.5%")}).");
             
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

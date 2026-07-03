@@ -309,25 +309,30 @@ namespace ModularMod
                 Debug.Log($"{playerPos} somehow null?");
 
                 E_C.Remove(effectContainer);
+                isDoingFlashyVFX = false;
                 if (E_C.Count() > 0)
                 {
                     GameManager.Instance.StartCoroutine(DoFlashyVFX());
                     yield break;
                 }
-                isDoingFlashyVFX = false;
                 yield break;
             }
 
             bool isEven = effectContainer.Amount.isEven();
 
-            float div = isEven ? (85f / effectContainer.Amount) : 0;
+            //float div = isEven ? (85f / effectContainer.Amount) : 0;
             for (int i = 0; i < effectContainer.Amount; i++)
             {
                 var VFX_Object = UnityEngine.Object.Instantiate(VFX_SpriteAppear, playerPos.sprite.WorldCenter, Quaternion.identity).GetComponent<tk2dBaseSprite>();
                 VFX_Object.SetSprite(GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.collection, GlobalModuleStorage.ReturnModule(effectContainer.defaultModule).sprite.spriteId);
                 var light = VFX_Object.GetComponent<AdditionalBraveLight>();
                 light.LightColor = Color.white;//properties.BraveLight.LightColor;
-                sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle((Toolbox.SubdivideRange(-85, 85, effectContainer.Amount, i, true) - div) + 90, 3.5f));
+                VFX_Object.HeightOffGround = 111;
+                VFX_Object.IsPerpendicular = true;
+                VFX_Object.SortingOrder = 2;
+                VFX_Object.Awake();
+                sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle((Toolbox.SubdivideRange(-75, 75, effectContainer.Amount, i, false)) + 90, 3.5f));
+                SpriteOutlineManager.AddOutlineToSprite(VFX_Object, Color.black);
             }
 
             bool b = false;
@@ -335,8 +340,19 @@ namespace ModularMod
             float e = 0;
             while (e < 2)
             {
+                if (playerPos == null)
+                {
+                    E_C.Remove(effectContainer);
+                    isDoingFlashyVFX = false;
+                    if (E_C.Count() > 0)
+                    {
+                        GameManager.Instance.StartCoroutine(DoFlashyVFX());
+                        yield break;
+                    }
+                }
 
-                if (e > 0.5f && b == false)
+
+                if (e > 0.75f && b == false)
                 {
                     b = true;
                     E_C.Remove(effectContainer);
@@ -350,21 +366,26 @@ namespace ModularMod
                 float t1 = Toolbox.SinLerpTValue(e / 1.5f);
                 foreach (var VFX_Object in sprites)
                 {
+                    if (VFX_Object.Key == null)
+                        continue;
                     VFX_Object.Key.transform.position = Vector2.Lerp(playerPos.sprite.WorldCenter - new Vector2(0.5f, 0.5f) + VFX_Object.Value, playerPos.sprite.WorldCenter - new Vector2(0.5f, 0.5f), t1);
                     VFX_Object.Key.renderer.material.SetFloat("_Fade", t);
                     var light = VFX_Object.Key.GetComponent<AdditionalBraveLight>();
-                    light.LightIntensity = Mathf.Lerp(0, 2.5f, t);
+                    light.LightIntensity = Mathf.Lerp(0, 10f, t);
                     light.LightRadius = Mathf.Lerp(0, 2, t);
                 }
-                e += BraveTime.DeltaTime;
+                e += BraveTime.DeltaTime * 1.333f;
                 yield return null;
             }
 
-            for (int i = sprites.Count() - 1; i > -1; i--)
+            var list = sprites.Keys.ToList();
+            for (int i = list.Count() - 1; i > -1; i--)
             {
-                UnityEngine.Object.Destroy(sprites.Last().Key.gameObject);
+                sprites.Remove(list[i]);
+                UnityEngine.Object.Destroy(list[i].gameObject);
                 LootEngine.DoDefaultSynergyPoof(playerPos.sprite.WorldCenter);
             }
+            sprites.Clear();
             if (E_C.Count() > 0)
             {
                 yield break;
@@ -387,19 +408,19 @@ namespace ModularMod
                 Debug.Log($"{playerPos} somehow null?");
 
                 DE_C.Remove(effectContainer);
+                isDoingFlashyVFX_Destroy = false;
                 if (DE_C.Count() > 0)
                 {
                     GameManager.Instance.StartCoroutine(DoFlashyVFX_Destroy());
                     yield break;
                 }
-                isDoingFlashyVFX_Destroy = false;
                 yield break;
             }
             bool isEven = effectContainer.Amount.isEven();
 
 
 
-            float div = isEven ? (85f / (float)effectContainer.Amount) : 0;
+            //float div = isEven ? (85f / (float)effectContainer.Amount) : 0;
 
             for (int i = 0; i < effectContainer.Amount; i++)
             {
@@ -410,8 +431,13 @@ namespace ModularMod
                 {
                     VFX_Object.SetSprite(mod.sprite.collection, mod.sprite.spriteId);
                     var light = VFX_Object.GetComponent<AdditionalBraveLight>();
-                    light.LightColor = Color.white;//properties.BraveLight.LightColor;
-                    sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle(((Toolbox.SubdivideRange(-85f, 85f, effectContainer.Amount, i, true) + 180f) - div) + 90, 3.5f));
+                    VFX_Object.HeightOffGround = 111;
+                    VFX_Object.IsPerpendicular = true;
+                    VFX_Object.SortingOrder = 2;
+                    VFX_Object.Awake();
+                    light.LightColor = Color.white;
+                    sprites.Add(VFX_Object, Toolbox.GetUnitOnCircle(((Toolbox.SubdivideRange(-75f, 75f, effectContainer.Amount, i, false) -90f)), 3.5f));
+                    SpriteOutlineManager.AddOutlineToSprite(VFX_Object, Color.black);
                 }
             }
 
@@ -420,8 +446,20 @@ namespace ModularMod
             float e = 0;
             while (e < 2)
             {
-                
-                if (e > 0.5f && b == false)
+
+                if (playerPos == null)
+                {
+                    DE_C.Remove(effectContainer);
+                    isDoingFlashyVFX_Destroy = false;
+                    if (DE_C.Count() > 0)
+                    {
+                        GameManager.Instance.StartCoroutine(DoFlashyVFX_Destroy());
+                        yield break;
+                    }
+                    yield break;
+                }
+
+                if (e > 0.75f && b == false)
                 {
                     b = true;
                     DE_C.Remove(effectContainer);
@@ -431,23 +469,27 @@ namespace ModularMod
                     }
                 }
                 
-                float t = Toolbox.SinLerpTValueFull(e / 2);
-                float t1 = Toolbox.SinLerpTValue(e / 1.5f);
+                float t = Toolbox.SinLerpTValueFull(e * 0.5f);
+                float t1 = Toolbox.SinLerpTValue(e * 0.666f);
                 foreach (var VFX_Object in sprites)
                 {
+                    if (VFX_Object.Key == null)
+                        continue;
+
                     VFX_Object.Key.transform.position = Vector2.Lerp(playerPos.sprite.WorldCenter - new Vector2(0.5f, 0.5f), playerPos.sprite.WorldCenter - new Vector2(0.5f, 0.5f) + VFX_Object.Value, t1);
                     VFX_Object.Key.renderer.material.SetFloat("_Fade", t);
                     var light = VFX_Object.Key.GetComponent<AdditionalBraveLight>();
-                    light.LightIntensity = Mathf.Lerp(0, 2.5f, t);
+                    light.LightIntensity = Mathf.Lerp(0, 10f, t);
                     light.LightRadius = Mathf.Lerp(0, 2, t);
                 }
-                e += BraveTime.DeltaTime;
+                e += BraveTime.DeltaTime * 1.333f;
                 yield return null;
             }
-
-            for (int i = sprites.Count() - 1; i > -1; i--)
+            var list = sprites.Keys.ToList();
+            for (int i = list.Count() - 1; i > -1; i--)
             {
-                UnityEngine.Object.Destroy(sprites.Last().Key.gameObject);
+                sprites.Remove(list[i]);
+                UnityEngine.Object.Destroy(list[i].gameObject);
             }
             sprites.Clear();
             if (DE_C.Count() > 0)

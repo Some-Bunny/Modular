@@ -96,6 +96,14 @@ namespace ModularMod
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
             IteratedDesign.SpecialProcessGunSpecific += c.ProcessShot;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Adds chance to stun.\nDeals 1.5x more damage to stunned enemies.";
+                }
+                return text;
+            };
         }
 
 

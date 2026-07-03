@@ -30,8 +30,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("warhorn_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "War Horn " + h.ReturnTierLabel();
-            h.LabelDescription = "Gain a dramatic entrance every combat room.\n(" + StaticColorHexes.AddColorToLabelString("+Extended Drama", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("War Horn " + h.ReturnTierLabel());
+            h.SetDescription("Gain a dramatic entrance every combat room.\n(" + StaticColorHexes.AddColorToLabelString("+Extended Drama", StaticColorHexes.Light_Orange_Hex) + ").");
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
 

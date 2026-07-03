@@ -24,6 +24,12 @@ namespace ModularMod.Code.Hooks
 
         public static GameObject GetRewardObjectBossStyleHook(System.Func<RewardManager, PlayerController, GameObject> orig, RewardManager self, PlayerController player)
         {
+            if (player.HasPassiveItem(ConfidenceCore.ConfidenceCoreID))
+            {
+                return GameManager.Instance.RewardManager.ItemsLootTable.defaultItemDrops.SelectByWeight();
+            }
+
+
             FloorRewardData currentRewardData = self.CurrentRewardData;
             bool flag;
             if (GameManager.Instance.BestGenerationDungeonPrefab.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.CASTLEGEON && GameManager.Instance.CurrentGameType == GameManager.GameType.SINGLE_PLAYER && player && player.inventory != null && player.inventory.GunCountModified <= 3)

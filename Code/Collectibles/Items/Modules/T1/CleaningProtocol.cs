@@ -27,11 +27,11 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cleaner_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Cleaning Protocol " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal 66% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.";
+            h.SetName("Cleaning Protocol " + h.ReturnTierLabel());
+            h.SetDescription("Deal 66% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ") more damage to enemies above 90% HP.\nAll enemies take an additional 20% (" + StaticColorHexes.AddColorToLabelString("+20%", StaticColorHexes.Light_Orange_Hex) + ")\nextra damage from various effects.");
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-
+            h.AdditionalWeightMultiplier = 0.85f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);

@@ -40,7 +40,7 @@ namespace ModularMod
 
         public static float SubdivideRange(float startValue, float endValue, int numDivisions, int i, bool offset = false)
         {
-            return Mathf.Lerp(startValue, endValue, ((float)i + ((!offset) ? 0f : 0.5f)) / (float)(numDivisions - 1));
+            return Mathf.Lerp(startValue, endValue, ((float)i + 1) / (float)(numDivisions + 1));
         }
 
 

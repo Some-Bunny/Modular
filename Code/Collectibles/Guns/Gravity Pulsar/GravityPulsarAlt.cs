@@ -189,7 +189,14 @@ namespace ModularMod
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
             IteratedDesign.SpecialProcessGunSpecificClip += c.ProcessClipSpecial;
-
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Attracted bullets pulse in and out\nof rifts intermittently.";
+                }
+                return text;
+            };
         }
 
         public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)

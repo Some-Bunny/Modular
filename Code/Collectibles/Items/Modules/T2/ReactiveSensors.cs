@@ -29,15 +29,15 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("reactiveshanner_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Reactive Sensors" + h.ReturnTierLabel();
-            h.LabelDescription = "If an enemy gets too close, release a massive shockwave\nthat stuns, pushes and damages enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage, Push Force and Detection Range", StaticColorHexes.Light_Orange_Hex) + ")\nCan deflect enemy projectiles.\nRecharges every 15 seconds.";
+            h.SetName("Reactive Sensors" + h.ReturnTierLabel());
+            h.SetDescription("If an enemy gets too close, release a massive shockwave\nthat stuns, pushes and damages enemies\nin a large radius.(" + StaticColorHexes.AddColorToLabelString("+Damage, Push Force and Detection Range", StaticColorHexes.Light_Orange_Hex) + ")\nCan deflect enemy projectiles.\nRecharges every 15 seconds.");
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             //EncounterDatabase.GetEntry(h.encounterTrackable.EncounterGuid).usesPurpleNotifications = true;
             h.EnergyConsumption = 1;
-            h.AdditionalWeightMultiplier = 0.85f;
+            h.AdditionalWeightMultiplier = 0.8f;
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);

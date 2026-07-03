@@ -31,8 +31,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("focusedretaliation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Focused Retaliation " + h.ReturnTierLabel();
-            h.LabelDescription = $"Enemies that damage you are Marked,\ntaking 2x ({StaticColorHexes.AddColorToLabelString("+1x")}) damage and have their damage caps ignored.\nTaking damage also grants temporary movement speed,\nreload speed and a permanent 5% ({StaticColorHexes.AddColorToLabelString("+5%")}) accuracy and clip size boost.";
+            h.SetName("Focused Retaliation " + h.ReturnTierLabel());
+            h.SetDescription($"Enemies that damage you are Marked,\ntaking 2x ({StaticColorHexes.AddColorToLabelString("+1x")}) damage and have their damage caps ignored.\nTaking damage also grants temporary movement speed,\nreload speed and a permanent 5% ({StaticColorHexes.AddColorToLabelString("+5%")}) accuracy and clip size boost.") ;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
 

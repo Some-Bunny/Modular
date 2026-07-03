@@ -27,13 +27,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("impactpower_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Impact Power " + h.ReturnTierLabel();
-            h.LabelDescription = "Adds 2 Bounces, reduce damage by 25% (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
+            h.SetName("Impact Power " + h.ReturnTierLabel());
+            h.SetDescription("Adds 2 Bounces, reduce damage by 25% (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ")\n" +
                 StaticColorHexes.AddColorToLabelString("But", StaticColorHexes.Dark_Red_Hex) + " each bounce increases damage by 1.5x " +
-                StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ".";
+                StaticColorHexes.AddColorToLabelString("+0.5x", StaticColorHexes.Light_Orange_Hex) + ".");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+            h.AdditionalWeightMultiplier = 0.95f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

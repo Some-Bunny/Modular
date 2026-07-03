@@ -229,7 +229,7 @@ namespace ModularMod
                     if (ListEntry > 0 && IsNone == false)
                     {
                         label.text = R_C(SpecialCharactersController.SpecialCharacters.UP, true);
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                         label.Invalidate();
                     }
                     else
@@ -266,7 +266,7 @@ namespace ModularMod
                     if (ReturnPagesCount() > ListEntry && IsNone == false)
                     {
                         label.text = R_C(SpecialCharactersController.SpecialCharacters.DOWN, true);
-                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                        label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                         label.Invalidate();
                     }
                     else
@@ -297,7 +297,7 @@ namespace ModularMod
                 CloseLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.CLOSE, true) : R_C(SpecialCharactersController.SpecialCharacters.CLOSE);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 CloseLabel.label.MouseEnter += (o1, o2) =>
@@ -319,7 +319,7 @@ namespace ModularMod
                 T1bLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T1, true) : R_C(SpecialCharactersController.SpecialCharacters.T1, false);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 T1bLabel.label.MouseEnter += (o1, o2) =>
@@ -339,7 +339,7 @@ namespace ModularMod
                 T2bLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T2, true) : R_C(SpecialCharactersController.SpecialCharacters.T2, false);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 T2bLabel.label.MouseEnter += (o1, o2) =>
@@ -360,7 +360,7 @@ namespace ModularMod
                 T3bLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T3, true) : R_C(SpecialCharactersController.SpecialCharacters.T3, false);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 T3bLabel.label.MouseEnter += (o1, o2) =>
@@ -382,7 +382,7 @@ namespace ModularMod
                 {
                     ListEntry = 0;
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T4, true) : R_C(SpecialCharactersController.SpecialCharacters.T4, false);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 T4bLabel.label.MouseEnter += (o1, o2) =>
@@ -405,7 +405,7 @@ namespace ModularMod
                 {
                     ListEntry = 0;
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.T_UNIQUE, true) : R_C(SpecialCharactersController.SpecialCharacters.T_UNIQUE, false);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 TUniquebLabel.label.MouseEnter += (o1, o2) =>
@@ -435,7 +435,7 @@ namespace ModularMod
                 InfoLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.INFO, true) : R_C(SpecialCharactersController.SpecialCharacters.INFO, false);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 InfoLabel.label.MouseEnter += (o1, o2) =>
@@ -457,7 +457,7 @@ namespace ModularMod
                 AnyLabel.MouseHover = (label, boolean) =>
                 {
                     label.text = boolean == true ? R_C(SpecialCharactersController.SpecialCharacters.GOOGLY, true) : R_C(SpecialCharactersController.SpecialCharacters.GOOGLY, false);
-                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     label.Invalidate();
                 };
                 AnyLabel.label.MouseEnter += (o1, o2) =>
@@ -467,7 +467,7 @@ namespace ModularMod
             }
             if (PowerLabel == null)
             {
-                PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "[ " + R_C(SpecialCharactersController.SpecialCharacters.POWER) + " : " + Core.ReturnPowerConsumption() + " / " + Core.ReturnTotalPower().ToString() + " ]" + " [" + StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) + R_C(SpecialCharactersController.SpecialCharacters.POWER) + "]", cl, true, Scale - 1);
+                PowerLabel = Toolbox.GenerateText(p.transform, new Vector2(1, 3f), 0.5f, "[ " + R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + " : " + Core.ReturnPowerConsumption() + " / " + Core.ReturnTotalPower().ToString() + " ]" + " [" + StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) + R_C(SpecialCharactersController.SpecialCharacters.POWER , player.IsUsingAlternateCostume) + "]", cl, true, Scale - 1);
                 PowerLabel.OnUpdate += (obj1) =>
                 {
                     bool h = PowerLabel.IsMouseHovering();
@@ -480,10 +480,10 @@ namespace ModularMod
                         t2 += p2;
                     }
 
-                    string t = "[ " + R_C(SpecialCharactersController.SpecialCharacters.POWER) + " : " + t2+ " / " + (h == true ? StaticColorHexes.AddColorToLabelString((Core.ReturnTotalPower() + 1).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnTotalPower().ToString()) + " ]";
+                    string t = "[ " + R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + " : " + t2+ " / " + (h == true ? StaticColorHexes.AddColorToLabelString((Core.ReturnTotalPower() + 1).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnTotalPower().ToString()) + " ]";
                     
-                    t += h == true ? " [Upgrade:" + StaticColorHexes.AddColorToLabelString(ReturnUpgradeCost().ToString(), CanAffordUpgrade() == true ? StaticColorHexes.Green_Hex : StaticColorHexes.Red_Color_Hex) + scrapLabel + "]" : " [" + StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) + R_C(SpecialCharactersController.SpecialCharacters.POWER) + "]";
-                    obj1.color = h == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                    t += h == true ? " [Upgrade:" + StaticColorHexes.AddColorToLabelString(ReturnUpgradeCost().ToString(), CanAffordUpgrade() == true ? StaticColorHexes.Green_Hex : StaticColorHexes.Red_Color_Hex) + scrapLabel + "]" : " [" + StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Light_Orange_Hex) + R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + "]";
+                    obj1.color = h == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                     obj1.text = t;
                     obj1.Invalidate();
                 };
@@ -663,20 +663,20 @@ namespace ModularMod
                         var module = page.moduleContainer.defaultModule;
                         pain.module = module;
 
-                        string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
+                        string Temp = Core.ReturnTemporaryStack(module.UnmodifiedLabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.UnmodifiedLabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
                         
 
                         string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(true)+ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
-                            "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
+                            "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
 
-                        string T = module.LabelName + PowerLabels;
-                        string TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+                        string T = module.UnmodifiedLabelName + PowerLabels;
+                        string TYellow = StaticColorHexes.AddColorToLabelString(module.UnmodifiedLabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
 
                         var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, module.LabelDescription, cl, true, Scale / 2);
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, module.GetFullLabelDescription(), cl, true, Scale / 2);
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
@@ -692,12 +692,12 @@ namespace ModularMod
                             }
                             ProcessPainers();
 
-                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                             label.Invalidate();
                         };
                         Button.OnUpdate += (l) =>
                         {
-                            Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
+                            Temp = Core.ReturnTemporaryStack(module.UnmodifiedLabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.UnmodifiedLabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
 
                             string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(true).ToString(), StaticColorHexes.Orange_Hex);
                             string a2 = StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? ReturnHexStringBasedOnPower(pain) : StaticColorHexes.Orange_Hex);
@@ -717,11 +717,11 @@ namespace ModularMod
                             }
                             
                             PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + a1 + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + "" +
-                                "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER) + b1 + ")";
+                                "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + b1 + ")";
                             
                            
-                            T = module.LabelName + PowerLabels;
-                            TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+                            T = module.UnmodifiedLabelName + PowerLabels;
+                            TYellow = StaticColorHexes.AddColorToLabelString(module.UnmodifiedLabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
                             l.text = (Button.IsMouseHovering() == true ? TYellow : T);
                             l.Invalidate();
                         };
@@ -731,14 +731,14 @@ namespace ModularMod
                         };
 
                         //REMOVE POWER
-                        var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER) + "-", cl, true, Scale);
+                        var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
                         {
-                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            bool CanBeUsed = Core.ReturnActiveStack(module.UnmodifiedLabelName) > 0;
                             pain.isHoveringPowerDown = boolean && CanBeUsed;
 
-                            label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
-                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
+                            label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240) : new Color32(210, 210, 210, 240);
+                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
                             label.Invalidate();
                         };
                         ButtonLeft.label.MouseEnter += (o1, o2) =>
@@ -747,7 +747,7 @@ namespace ModularMod
                         };
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
-                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            bool CanBeUsed = Core.ReturnActiveStack(module.UnmodifiedLabelName) > 0;
                             if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && module.CanBeDisabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
@@ -762,17 +762,17 @@ namespace ModularMod
                         garbageLabels.Add(ButtonLeft);
 
                         //ADD POWER
-                        var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER) + "+", cl, true, Scale);
+                        var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + "+", cl, true, Scale);
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
 
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.UnmodifiedLabelName) > Core.ReturnActiveStack(module.UnmodifiedLabelName);
                             pain.isHoveringPowerUp = boolean && CanBeUsed3;
 
-                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
-                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
+                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
+                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
 
                             label.Invalidate();
                         };
@@ -780,7 +780,7 @@ namespace ModularMod
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.UnmodifiedLabelName) > Core.ReturnActiveStack(module.UnmodifiedLabelName);
 
                             if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && module.CanBeEnabled(Core, Core.ModularGunController) == true)
                             {
@@ -857,18 +857,18 @@ namespace ModularMod
                         var module = page.moduleContainer.defaultModule;
                         pain.module = module;
 
-                        string Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
+                        string Temp = Core.ReturnTemporaryStack(module.UnmodifiedLabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.UnmodifiedLabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
 
                         string PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + StaticColorHexes.AddColorToLabelString((module.Stack(true) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.Green_Hex : StaticColorHexes.Orange_Hex) + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + " " +
-                            "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
-                        string T = module.LabelName + PowerLabels;
-                        string TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+                            "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + (pain.isHoveringPowerDown | pain.isHoveringPowerUp ? StaticColorHexes.AddColorToLabelString(Core.ReturnPowerConsumptionOfNextStack(module, ReturnStackAdd(pain)).ToString(), StaticColorHexes.Green_Hex) : Core.ReturnPowerConsumption(module) + ")");
+                        string T = module.UnmodifiedLabelName + PowerLabels;
+                        string TYellow = StaticColorHexes.AddColorToLabelString(module.UnmodifiedLabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
 
                         var Button = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 2, 0.75f - (0.75f * c)), 0.66f, T, cl, true, Scale);
                         Button.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
                             if (extantLabel != null) { Destroy(extantLabel.gameObject); }
-                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, module.LabelDescription, cl, true, Scale / 2);
+                            extantLabel = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0f - (0.75f * c)), 0.66f, module.GetFullLabelDescription(), cl, true, Scale / 2);
                         };
                         Button.MouseHover = (label, boolean) =>
                         {
@@ -885,12 +885,12 @@ namespace ModularMod
                             }
                             ProcessPainers();
 
-                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
+                            label.color = boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
                             label.Invalidate();
                         };
                         Button.OnUpdate += (l) =>
                         {
-                            Temp = Core.ReturnTemporaryStack(module.LabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.LabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
+                            Temp = Core.ReturnTemporaryStack(module.UnmodifiedLabelName) > 0 ? " (" + R_C(SpecialCharactersController.SpecialCharacters.CLOCK) + " " + StaticColorHexes.AddColorToLabelString(Core.ReturnTemporaryStack(module.UnmodifiedLabelName).ToString(), StaticColorHexes.Orange_Hex) + ") " : " ";
 
                             string a1 = StaticColorHexes.AddColorToLabelString(module.Stack(true).ToString(), StaticColorHexes.Orange_Hex);
                             string a2 = StaticColorHexes.AddColorToLabelString((module.Stack(false) + ReturnStackAdd(pain)).ToString(), pain.isHoveringPowerDown | pain.isHoveringPowerUp ? ReturnHexStringBasedOnPower(pain) : StaticColorHexes.Orange_Hex);
@@ -910,11 +910,11 @@ namespace ModularMod
                             }
 
                             PowerLabels = page.moduleContainer.isPurelyFake ? Temp : "(" + a1 + StaticColorHexes.AddColorToLabelString(" / " + module.TrueStack(), StaticColorHexes.Orange_Hex) + ")" + Temp + "" +
-                                "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER) + b1 + ")";
+                                "(" + R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + b1 + ")";
 
 
-                            T = module.LabelName + PowerLabels;
-                            TYellow = StaticColorHexes.AddColorToLabelString(module.LabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
+                            T = module.UnmodifiedLabelName + PowerLabels;
+                            TYellow = StaticColorHexes.AddColorToLabelString(module.UnmodifiedLabelName, StaticColorHexes.Yellow_Hex) + PowerLabels;
                             l.text = (Button.IsMouseHovering() == true ? TYellow : T);
                             l.Invalidate();
                         };
@@ -924,15 +924,15 @@ namespace ModularMod
                         };
 
                         //REMOVE POWER
-                        var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER) + "-", cl, true, Scale);
+                        var ButtonLeft = Toolbox.GenerateText(p.transform, new Vector2(MainOffset, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + "-", cl, true, Scale);
                         ButtonLeft.MouseHover = (label, boolean) =>
                         {
 
-                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            bool CanBeUsed = Core.ReturnActiveStack(module.UnmodifiedLabelName) > 0;
                             pain.isHoveringPowerDown = boolean && CanBeUsed;
 
-                            label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200) : new Color32(200, 200, 200, 200);
-                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
+                            label.color = CanBeUsed == true ? boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240) : new Color32(210, 210, 210, 240);
+                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + (CanBeUsed == true && boolean == true ? StaticColorHexes.AddColorToLabelString("-", StaticColorHexes.Yellow_Hex) : "-");
                             label.Invalidate();
                         };
                         ButtonLeft.label.MouseEnter += (o1, o2) =>
@@ -941,7 +941,7 @@ namespace ModularMod
                         };
                         ButtonLeft.label.Click += delegate (dfControl control, dfMouseEventArgs mouseEvent)
                         {
-                            bool CanBeUsed = Core.ReturnActiveStack(module.LabelName) > 0;
+                            bool CanBeUsed = Core.ReturnActiveStack(module.UnmodifiedLabelName) > 0;
                             if (CanBeUsed == true && Core.ReturnPowerConsumption() > 0 && module.CanBeDisabled(Core, Core.ModularGunController) == true)
                             {
                                 AkSoundEngine.PostEvent("Play_ITM_Macho_Brace_Fade_01", player.gameObject);
@@ -956,18 +956,18 @@ namespace ModularMod
                         garbageLabels.Add(ButtonLeft);
 
                         //ADD POWER
-                        var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER) + "+", cl, true, Scale);
+                        var ButtonRight = Toolbox.GenerateText(p.transform, new Vector2(MainOffset + 1, 0.75f - (0.75f * c)), 0.66f, R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + "+", cl, true, Scale);
                         ButtonRight.MouseHover = (label, boolean) =>
                         {
                             pain.isHoveringPowerUp = boolean;
 
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.UnmodifiedLabelName) > Core.ReturnActiveStack(module.UnmodifiedLabelName);
                             pain.isHoveringPowerUp = boolean && CanBeUsed3;
 
-                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(200, 200, 200, 200);
-                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
+                            label.color = CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && boolean == true ? new Color32(255, 255, 255, 255) : new Color32(210, 210, 210, 240);
+                            label.text = R_C(SpecialCharactersController.SpecialCharacters.POWER, player.IsUsingAlternateCostume) + (CanBeUsed == true && boolean == true && CanBeUsed3 == true && CanBeUsed2 == true ? StaticColorHexes.AddColorToLabelString("+", StaticColorHexes.Yellow_Hex) : "+");
 
                             label.Invalidate();
                         };
@@ -975,7 +975,7 @@ namespace ModularMod
                         {
                             bool CanBeUsed = Core.ReturnPowerConsumption() <= Core.ReturnTotalPower();
                             bool CanBeUsed2 = Core.ReturnPowerConsumptionOfNextStack(module) <= Core.ReturnTotalPower();
-                            bool CanBeUsed3 = Core.ReturnTrueStack(module.LabelName) > Core.ReturnActiveStack(module.LabelName);
+                            bool CanBeUsed3 = Core.ReturnTrueStack(module.UnmodifiedLabelName) > Core.ReturnActiveStack(module.UnmodifiedLabelName);
 
                             if (CanBeUsed == true && CanBeUsed2 == true && CanBeUsed3 == true && module.CanBeEnabled(Core, Core.ModularGunController) == true)
                             {

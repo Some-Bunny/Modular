@@ -29,9 +29,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tablekinetics_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Table Kinetics " + h.ReturnTierLabel();
-            h.LabelDescription = "Enemies spawn tables when killed,\nand chance to spawn a table upon reloading.\nProjectiles will now pierce tables,\nand get a 25% ("+ StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") damage and speed boost.\nPiercing a table makes all other unflipped tables\n emit a shockwave (" + StaticColorHexes.AddColorToLabelString("+Shockwave Damage", StaticColorHexes.Light_Orange_Hex) + ").";
-            h.AdditionalWeightMultiplier = 0.75f;
+            h.SetDescription("Table Kinetics " + h.ReturnTierLabel());
+            h.SetDescription("Enemies spawn tables when killed,\nand chance to spawn a table upon reloading.\nProjectiles will now pierce tables,\nand get a 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ") damage and speed boost.\nPiercing a table makes all other unflipped tables\n emit a shockwave (" + StaticColorHexes.AddColorToLabelString("+Shockwave Damage", StaticColorHexes.Light_Orange_Hex) + ").");
+            h.AdditionalWeightMultiplier = 0.6f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);

@@ -29,8 +29,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bubbleup_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Bubble Up " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Fire Rate by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically") + ").\nProjectiles now stick to terrain and enemies,\nexpanding into large bubbles and bursting,\ndoing massive knockback. ("  + StaticColorHexes.AddColorToLabelString("+Burst Force and Damage") + ").";
+            h.SetName("Bubble Up " + h.ReturnTierLabel());
+            h.SetDescription("Increases Fire Rate by 25% (" + StaticColorHexes.AddColorToLabelString("+25% hyperbolically") + ").\nProjectiles now stick to terrain and enemies,\nexpanding into large bubbles and bursting,\ndoing massive knockback. (" + StaticColorHexes.AddColorToLabelString("+Burst Force and Damage") + ").");
+            h.AdditionalWeightMultiplier = 0.7f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);

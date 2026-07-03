@@ -14,7 +14,7 @@ namespace ModularMod
         public static ItemTemplate template = new ItemTemplate(typeof(ConcussiveTips))
         {
             Name = "Concussive Tips",
-            Description = "Hit Harder, Differently",
+            Description = "Hit Bonker",
             LongDescription = "Increases knockback Force by 100% (+100% per stack), Boss damage by 25% (+25% per stack), and adds a small chance to stun enemies.",
             ManualSpriteCollection = StaticCollections.Module_T1_Collection,
             ManualSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("conc_tier1_module"),
@@ -26,14 +26,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("conc_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Concussive Tips " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Knockback Force by 100% (" + StaticColorHexes.AddColorToLabelString("+100%", StaticColorHexes.Light_Orange_Hex) + "),\nBoss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.";
+            h.SetName("Concussive Tips " + h.ReturnTierLabel());
+            h.SetDescription("Increases Knockback Force by 100% (" + StaticColorHexes.AddColorToLabelString("+100%", StaticColorHexes.Light_Orange_Hex) + "),\nBoss damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nand adds a small chance to stun enemies.");
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.85f;
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 

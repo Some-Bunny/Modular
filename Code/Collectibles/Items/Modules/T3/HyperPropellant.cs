@@ -34,12 +34,12 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("hyperpropellant_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Hyper Propellant " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly reduces fire rate, clip size and increases reload time.\nProjectiles ignite the air around them (" + StaticColorHexes.AddColorToLabelString("+Larger Ignition Area", StaticColorHexes.Light_Orange_Hex) + "),\ntravel at very high speeds, and hit like a truck.\n(" + StaticColorHexes.AddColorToLabelString("+Speed, Force And Damage", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.SetName("Hyper Propellant " + h.ReturnTierLabel());
+            h.SetDescription("Greatly reduces fire rate, clip size and increases reload time.\nProjectiles ignite the air around them (" + StaticColorHexes.AddColorToLabelString("+Larger Ignition Area", StaticColorHexes.Light_Orange_Hex) + "),\ntravel at very high speeds, and hit like a truck.\n(" + StaticColorHexes.AddColorToLabelString("+Speed, Force And Damage", StaticColorHexes.Light_Orange_Hex) + ")");
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-
+            h.AdditionalWeightMultiplier = 0.85f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);
@@ -123,6 +123,7 @@ namespace ModularMod
             var uhfa = p.gameObject.AddComponent<HyperPropellantController>();
             uhfa.Radius = 1.25f + stack;
             uhfa.DPS = 3 + stack;
+            uhfa.ProjectileSelf = p;
         }
 
         public override void OnFirstPickup(ModulePrinterCore printer, ModularGunController modularGunController, PlayerController player)
@@ -164,6 +165,7 @@ namespace ModularMod
             var uhfa = p.gameObject.AddComponent<HyperPropellantController>();
             uhfa.Radius = 1.25f + stack;
             uhfa.DPS = 3 + stack;
+            uhfa.ProjectileSelf = p;
         }
         public override void OnLastRemoved(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {
@@ -188,33 +190,41 @@ namespace ModularMod
 
     public class HyperPropellantController : MonoBehaviour
     {
-        public Projectile self;
+        public Projectile ProjectileSelf;
         public Vector2 lastStoredPosition;
         public float Radius = 2.25f;
         public float DPS = 4;
 
         public void Start()
         {
-            self = this.GetComponent<Projectile>();
-            lastStoredPosition = self.sprite.WorldCenter;
+            lastStoredPosition = currentPosition;
         }
         private float DistTick = 0;
+
+        private Vector3 currentPosition
+        {
+            get
+            {
+                return ProjectileSelf != null ? ProjectileSelf.sprite.WorldCenter.ToVector3ZUp() : this.transform.position;
+            }
+        }
 
         public void Update()
         {
             int n = 0;
-            DistTick += (int)Vector2.Distance(self.sprite.WorldCenter, lastStoredPosition) / 2;
+
+            DistTick += (int)Vector2.Distance(currentPosition, lastStoredPosition) * 0.5f;
             for (int i = 0; i < DistTick; i++)
             {
                 n++;
                 float t = (float)i / DistTick;
-                Vector3 vector3 = Vector3.Lerp(self.sprite.WorldCenter, lastStoredPosition, t);
+                Vector3 vector3 = Vector3.Lerp(ProjectileSelf.sprite.WorldCenter, lastStoredPosition, t);
                 HyperPropellantAirIgnite ignite = UnityEngine.Object.Instantiate(HyperPropellant.AirBurn, vector3, Quaternion.identity).GetComponent<HyperPropellantAirIgnite>();
                 ignite.transform.position = vector3;
                 ignite.DamagePerSecond = DPS;
                 ignite.radius = Radius;
                 ignite.StartCoroutine(ignite.ReduceToZero());
-                lastStoredPosition = self.sprite.WorldCenter;
+                lastStoredPosition = currentPosition;
             }
             DistTick -= n;
         }

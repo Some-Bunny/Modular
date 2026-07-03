@@ -30,10 +30,11 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("marksman_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "The Marksman " + h.ReturnTierLabel();
-            h.LabelDescription = "Hitting an enemy grants a 5% damage boost,\nup to 20 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") consecutive hits.\nMissing resets the damage bonus.";
+            h.SetName("The Marksman " + h.ReturnTierLabel());
+            h.SetDescription("Hitting an enemy grants a 5% damage boost,\nup to 20 (" + StaticColorHexes.AddColorToLabelString("+10", StaticColorHexes.Light_Orange_Hex) + ") consecutive hits.\nMissing resets the damage bonus.");
 
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
+            h.AdditionalWeightMultiplier = 0.75f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

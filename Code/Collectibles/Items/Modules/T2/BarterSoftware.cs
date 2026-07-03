@@ -27,9 +27,10 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("swindler_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Barter Software " + h.ReturnTierLabel();
-            h.LabelDescription = "While active, reduces all prices by 50%.\nTaking damage breaks this module\n(" + StaticColorHexes.AddColorToLabelString("+Extra hits before breaking", StaticColorHexes.Light_Orange_Hex) + ").\n" + StaticColorHexes.AddColorToLabelString("Once enabled, cannot be disabled.", StaticColorHexes.Red_Color_Hex);
+            h.SetName("Barter Software " + h.ReturnTierLabel());
+            h.SetDescription("While active, reduces all prices by 50%.\nTaking damage breaks this module\n(" + StaticColorHexes.AddColorToLabelString("+Extra hits before breaking", StaticColorHexes.Light_Orange_Hex) + ").\n" + StaticColorHexes.AddColorToLabelString("Once enabled, cannot be disabled.", StaticColorHexes.Red_Color_Hex));
             h.EnergyConsumption = 1;
+            h.AdditionalWeightMultiplier = 0.8f;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
             h.IsSpecialModule = true;

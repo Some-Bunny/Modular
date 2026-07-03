@@ -126,23 +126,30 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Adds aggressive homing.\nIncreases charge speed.";
+                }
+                return text;
+            };
         }
 
         public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return; }
-            p.baseData.damage *= 0.9f;
             p.baseData.damage += stack;
             p.baseData.speed *= 0.8f;
-            var bounce = p.gameObject.GetOrAddComponent<BounceProjModifier>();
-            bounce.bouncesTrackEnemies = true;
-            bounce.numberOfBounces += stack;
+            var bounce = p.gameObject.GetOrAddComponent<HomingModifier>();
+            bounce.AngularVelocity += 720;
+            bounce.HomingRadius += 3;
         }
 
 
         public void Start()
         {
-            var thing = this.gun.GetComponent<ModularGunController>();
+            var thing = ReturnControl();
             if (thing)
             {
                 thing.StartCoroutine(FUCK(thing)); 
@@ -239,7 +246,7 @@ namespace ModularMod
                                 component2.sprite.renderer.material.SetColor("_OverrideColor", laser);
                                 component2.sprite.renderer.material.SetColor("_EmissiveColor", laser);
 
-                                this.Chargerreticles.Add(gameObject);
+                                this.Chargerreticles.Add(component2);
                             }
                         }
                         float Accuracy = player.stats.GetStatValue(PlayerStats.StatType.Accuracy) * 15;
@@ -247,11 +254,9 @@ namespace ModularMod
                         {
                             for (int i = -2; i < 3; i++)
                             {
-                                GameObject obj = Chargerreticles[i + 2];
+                                tk2dTiledSprite obj = Chargerreticles[i + 2];
                                 if (obj != null)
                                 {
-                                    tk2dTiledSprite component2 = obj.GetComponent<tk2dTiledSprite>();
-
                                     float a = ReturnControl().GetAccuracy(45);
 
                                     float AddaAngle = (GetElapsed * (a * i));
@@ -261,9 +266,9 @@ namespace ModularMod
 
                                     obj.transform.localRotation = Quaternion.Euler(ix, wai, zee + AddaAngle + 3600);
                                     obj.transform.position = this.gun.barrelOffset.transform.position;
-                                    component2.transform.position.WithZ(component2.transform.position.z + 99999);
-                                    component2.UpdateZDepth();
-                                    component2.HeightOffGround = -2;
+                                    obj.transform.position.WithZ(obj.transform.position.z + 99999);
+                                    obj.UpdateZDepth();
+                                    obj.HeightOffGround = -2;
                                 }
                             }
                         }
@@ -299,22 +304,26 @@ namespace ModularMod
 
         }
         private bool HasReloaded;
-        private List<GameObject> Chargerreticles = new List<GameObject>();
+        private List<tk2dTiledSprite> Chargerreticles = new List<tk2dTiledSprite>();
         private bool VFXActive;
         private float elapsed;
 
 
         public ModularGunController ReturnControl()
         {
-            return this.gun.GetComponent<ModularGunController>();
+            if (storedReference == null)
+            {
+                storedReference = this.gun.GetComponent<ModularGunController>();
+            }
+            return storedReference;
         }
+        private ModularGunController storedReference;
 
         public void CleanupReticles()
         {
             for (int i = 0; i < this.Chargerreticles.Count; i++)
             {
-                SpawnManager.Despawn(this.Chargerreticles[i]);
-                Destroy(this.Chargerreticles[i]);
+                SpawnManager.Despawn(this.Chargerreticles[i].gameObject);
             }
             this.Chargerreticles.Clear();
         }

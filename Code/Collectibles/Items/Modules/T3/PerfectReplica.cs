@@ -32,8 +32,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("perfectclone_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Perfect Replica" + h.ReturnTierLabel();
-            h.LabelDescription = "Acts as 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") of every " +StaticColorHexes.AddColorToLabelString("active", StaticColorHexes.Light_Blue_Color_Hex) + " module.";
+            h.SetName("Perfect Replica" + h.ReturnTierLabel());
+            h.SetDescription("Acts as 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") of every " + StaticColorHexes.AddColorToLabelString("active", StaticColorHexes.Light_Blue_Color_Hex) + " module.");
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AddModuleTag(BaseModuleTags.GENERATION);
@@ -66,7 +66,7 @@ namespace ModularMod
             for (int i = modulePrinter.ModuleContainers.Count - 1; i > -1; i--)
             {
                 var moduleContainer = modulePrinter.ModuleContainers[i];
-                if (moduleContainer.LabelName != this.LabelName)
+                if (moduleContainer.LabelName != this.UnmodifiedLabelName)
                 {
                     for (int w = 0; w < modulePrinter.ModuleContainers[i].FakeCount.Count; w++)
                     {
@@ -103,7 +103,7 @@ namespace ModularMod
             {
                 bool has = false;
                 var moduleContainer = modulePrinter.ModuleContainers[i];
-                if (moduleContainer.LabelName != this.LabelName && moduleContainer.ActiveCount > 0)
+                if (moduleContainer.LabelName != this.UnmodifiedLabelName && moduleContainer.ActiveCount > 0)
                 {
                     for (int w = 0; w < modulePrinter.ModuleContainers[i].FakeCount.Count; w++)
                     {
@@ -131,7 +131,7 @@ namespace ModularMod
                     }
                     
                 }
-                else if (moduleContainer.LabelName != this.LabelName && moduleContainer.ActiveCount == 0)
+                else if (moduleContainer.LabelName != this.UnmodifiedLabelName && moduleContainer.ActiveCount == 0)
                 {
                     for (int w = 0; w < modulePrinter.ModuleContainers[i].FakeCount.Count; w++)
                     {

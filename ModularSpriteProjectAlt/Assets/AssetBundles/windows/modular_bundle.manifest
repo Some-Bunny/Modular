@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2854625985
+CRC: 2666787639
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 659379a64952d619528644d7a3473f68
+    Hash: 73ffcf66c75ecbc50267554372d13067
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1f96190daf68d1b18659c9d264a41037
@@ -38,6 +38,7 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/Sprites/Characters/modular_Tex_Icon_Pog.png
 - Assets/Sprites/Guns/ModularGunCollection Data/modulargun material.mat
 - Assets/Sprites/UI/Guns/Mingun/ui_button_suppressor_gun_pressed.png
 - Assets/Sprites/UI/Lynceus icons/Yellow/lync_icon_yellow_023.png

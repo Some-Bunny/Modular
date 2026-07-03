@@ -26,8 +26,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("damage_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Sharper Rounds " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Sharper Rounds " + h.ReturnTierLabel());
+            h.SetDescription("Increases Damage by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 

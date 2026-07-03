@@ -22,15 +22,14 @@ namespace ModularMod
             PostInitAction = PostInit
         };
         public static void PostInit(PickupObject v)
-        {
+        {   
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("supplydrop_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.45f;
-            h.LabelName = "Supply Drop " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 1 Key, 4 Scrap and 20 Casings on pickup.\nAir drops 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") random pickup every floor.";
+            h.SetName("Supply Drop " + h.ReturnTierLabel());
+            h.SetDescription("Grants 1 Key, 4 Scrap and 20 Casings on pickup.\nAir drops 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") random pickup every floor.");
             h.EnergyConsumption = 1f;
-            h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.GENERATION);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

@@ -29,14 +29,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("pacebreaker_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Pace Breaker " + h.ReturnTierLabel();
-            h.LabelDescription =  StaticColorHexes.AddColorToLabelString("Taking damage grants charge to your active items.\nAdds a new mode to your starter active item", StaticColorHexes.Lime_Green_Hex) +".\nUsing an active item now releases an electromagnetic pulse\nwho's strength scales off of how long the active item takes to charge.\n("+StaticColorHexes.AddColorToLabelString("+More Power", StaticColorHexes.Light_Orange_Hex)+").";
+            h.SetName("Pace Breaker " + h.ReturnTierLabel());
+            h.SetDescription(StaticColorHexes.AddColorToLabelString("Taking damage grants charge to your active items.\nAdds a new mode to your starter active item", StaticColorHexes.Lime_Green_Hex) + ".\nUsing an active item now releases an electromagnetic pulse\nwho's strength scales off of how long the active item takes to charge.\n(" + StaticColorHexes.AddColorToLabelString("+More Power", StaticColorHexes.Light_Orange_Hex) + ").");
             h.EnergyConsumption = 1;
             h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-            h.AdditionalWeightMultiplier = 0.65f;
+            h.AdditionalWeightMultiplier = 0.7f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

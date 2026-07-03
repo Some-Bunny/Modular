@@ -126,7 +126,14 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecific += c.Process;
-
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Inflict green fire. Increased base damage.";
+                }
+                return text;
+            };
         }
 
         public void Process(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)

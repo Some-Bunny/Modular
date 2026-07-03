@@ -17,7 +17,7 @@ namespace ModularMod
         {
             Name = "Glass Generator",
             Description = "See The Use",
-            LongDescription = "Grants 2 Glass Guon Stones. While active, picking up any Module gives 2 (+1 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone.",
+            LongDescription = "Grants 2 Glass Guon Stones on pickup. While active, picking up any Module gives 2 (+1 per stack) Glass Guon Stones. Very slightly increases rate of fire per Glass Guon Stone.",
             ManualSpriteCollection = StaticCollections.Module_T2_Collection,
             ManualSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module"),
             Quality = ItemQuality.SPECIAL,
@@ -28,8 +28,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("glassgen_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Glass Generator " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 2 Glass Guon Stones.\nWhile active, picking up any Module\ngives 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Glass Guon Stones.\nSlightly increases rate of fire per Glass Guon Stone.";
+            h.SetName("Glass Generator " + h.ReturnTierLabel());
+            h.SetDescription("Grants 2 Glass Guon Stones on pickup.\nWhile active, picking up any Module\ngives 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") Glass Guon Stones.\nSlightly increases rate of fire per Glass Guon Stone.");
             h.EnergyConsumption = 1;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;
@@ -37,7 +37,7 @@ namespace ModularMod
             h.AddModuleTag(BaseModuleTags.GENERATION);
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.7f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

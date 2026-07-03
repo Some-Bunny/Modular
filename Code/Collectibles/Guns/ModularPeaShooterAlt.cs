@@ -93,6 +93,14 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             ModularPeaShooterAlt.GunID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Adds a flat 1 damage per stack.\nGains electric element.";
+                }
+                return text;
+            };
         }
 
         public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)

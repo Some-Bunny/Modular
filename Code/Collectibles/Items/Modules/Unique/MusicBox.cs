@@ -25,8 +25,8 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.Tier = ModuleTier.Unique;
-            h.LabelName = "Music Box " + h.ReturnTierLabel();
-            h.LabelDescription = "On reloading your gun,\nspawns 1 music box that imitates your attacks.\nFurther stacks simply increases fire rate by 20% ("+StaticColorHexes.AddColorToLabelString("+20% hyperbolically")+").";
+            h.SetName("Music Box " + h.ReturnTierLabel());
+            h.SetDescription("On reloading your gun,\nspawns 1 music box that imitates your attacks.\nFurther stacks simply increases fire rate by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically") + ").");
             h.IsSpecialModule = true;   
             
             h.SetTag("modular_module");

@@ -26,8 +26,8 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.Tier = ModuleTier.Unique;
-            h.LabelName = "Willing Spirit " + h.ReturnTierLabel();
-            h.LabelDescription = "Entering combat spawns 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") ghosts\nthat fight for you.";
+            h.SetName("Willing Spirit " + h.ReturnTierLabel());
+            h.SetDescription("Entering combat spawns 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") ghosts\nthat fight for you.");
             h.IsSpecialModule = true;   
             
             h.SetTag("modular_module");

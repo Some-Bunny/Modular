@@ -1,5 +1,6 @@
 ﻿using Alexandria.ItemAPI;
 using JuneLib.Items;
+using SaveAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,11 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("largerclip_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Larger Clips " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Clip Capacity by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetDescription("Larger Clips " + h.ReturnTierLabel());
+            h.SetDescription("Increases Clip Capacity by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
-
+            h.AdditionalWeightMultiplier = 0.9f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
@@ -56,7 +57,7 @@ namespace ModularMod
         }
         public int ProcessClipSize(int clip, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
-            return clip + ((modularGunController.Base_Clip_Size / 3) * modulePrinterCore.ReturnStack(this.LabelName));
+            return clip + ((modularGunController.Base_Clip_Size / 3) * modulePrinterCore.ReturnStack(this.UnmodifiedLabelName));
         }
         public override void OnAnyPickup(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player, bool truePickup)
         {

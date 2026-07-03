@@ -32,12 +32,12 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("fiveshot_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Five-Shot Salute " + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces Rate Of Fire and Damage by 35%.\nShoot 5 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") times the projectiles.";
+            h.SetName("Five-Shot Salute " + h.ReturnTierLabel());
+            h.SetDescription("Reduces Rate Of Fire and Damage by 35%.\nShoot 5 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") times the projectiles.");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.9f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

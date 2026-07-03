@@ -25,8 +25,8 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.Tier = ModuleTier.Unique;
-            h.LabelName = "Carpal Tunnel " + h.ReturnTierLabel();
-            h.LabelDescription = "Pressing Reload while reloading increases the next clips\ndamage by 5% ("+StaticColorHexes.AddColorToLabelString("+5%")+") per press.";
+            h.SetName("Carpal Tunnel " + h.ReturnTierLabel());
+            h.SetDescription("Pressing Reload while reloading increases the next clips\ndamage by 5% (" + StaticColorHexes.AddColorToLabelString("+5%") + ") per press.");
             h.IsSpecialModule = true;   
             
             h.SetTag("modular_module");

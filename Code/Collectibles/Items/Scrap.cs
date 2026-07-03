@@ -31,6 +31,7 @@ namespace ModularMod
             v.gameObject.SetActive(false);
             FakePrefab.MakeFakePrefab(v.gameObject);
             UnityEngine.Object.DontDestroyOnLoad(v.gameObject);
+            v.RemovePickupFromLootTables();
 
             SpeculativeRigidbody speculativeRigidbody = v.gameObject.AddComponent<SpeculativeRigidbody>();
             PixelCollider item = new PixelCollider

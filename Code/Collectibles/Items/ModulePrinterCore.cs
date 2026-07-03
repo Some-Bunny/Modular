@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using Alexandria.CharacterAPI;
 using Alexandria.ItemAPI;
+using Alexandria.Misc;
 using Brave.BulletScript;
 using Dungeonator;
 using HutongGames.PlayMaker.Actions;
@@ -39,6 +40,8 @@ namespace ModularMod
             item.UsesCustomCost = true;
             item.CustomCost = 25;
             item.CanBeDropped = false;
+            item.RemovePickupFromLootTables();
+
             item.passiveStatModifiers = new StatModifier[] 
             {
                 new StatModifier()
@@ -428,7 +431,7 @@ namespace ModularMod
                     {
                         var defModule = H[i].defaultModule;
                         DepowerModule(defModule);
-                        if (!DepoweredModuelNames.ContainsKey(defModule.LabelName)) { DepoweredModuelNames.Add(defModule.LabelName, 1); } else { DepoweredModuelNames[defModule.LabelName]++; }
+                        if (!DepoweredModuelNames.ContainsKey(defModule.UnmodifiedLabelName)) { DepoweredModuelNames.Add(defModule.UnmodifiedLabelName, 1); } else { DepoweredModuelNames[defModule.UnmodifiedLabelName]++; }
                         LastPower_Tick = ReturnPowerConsumption();
 
                         if (LastPower_Tick == LastTotal_Tick || LastPower_Tick < LastTotal_Tick)
@@ -790,13 +793,13 @@ namespace ModularMod
                 if (ModuleContainers[i] != null)
                 {
                     var module_c = ModuleContainers[i].defaultModule;
-                    if (module_c.LabelName == module.LabelName)
+                    if (module_c.UnmodifiedLabelName == module.UnmodifiedLabelName)
                     {
                         if (module_c.powerConsumptionData != null)
                         {
                             if (module_c.powerConsumptionData.OverridePowerManagement != null)
                             {
-                                c += module_c.powerConsumptionData.OverridePowerManagement(module_c, ReturnActiveStack(module_c.LabelName));
+                                c += module_c.powerConsumptionData.OverridePowerManagement(module_c, ReturnActiveStack(module_c.UnmodifiedLabelName));
                             }
                             else if (module_c.powerConsumptionData.FirstStack != -420 || module_c.powerConsumptionData.AdditionalStacks != -69)
                             {
@@ -824,23 +827,23 @@ namespace ModularMod
                 if (ModuleContainers[i] != null)
                 {
                     var defModule = ModuleContainers[i].defaultModule;
-                    bool asfas = ModuleContainers[i].defaultModule.LabelName == module.LabelName;
+                    bool asfas = ModuleContainers[i].defaultModule.UnmodifiedLabelName == module.UnmodifiedLabelName;
                     if (asfas == true)
                     {
                         if (ModuleContainers[i].defaultModule.powerConsumptionData != null)
                         {
                             if (defModule.powerConsumptionData.OverridePowerManagement != null)
                             {
-                                c += defModule.powerConsumptionData.OverridePowerManagement(defModule, ReturnActiveStack(defModule.LabelName) == 0 ? 1 : ReturnActiveStack(defModule.LabelName) + stacksToIncrement);
+                                c += defModule.powerConsumptionData.OverridePowerManagement(defModule, ReturnActiveStack(defModule.UnmodifiedLabelName) == 0 ? 1 : ReturnActiveStack(defModule.UnmodifiedLabelName) + stacksToIncrement);
                             }
                             else
                             {
-                                c += ReturnActiveStack(defModule.LabelName) == 0 ? defModule.powerConsumptionData.FirstStack : defModule.powerConsumptionData.FirstStack + (defModule.powerConsumptionData.AdditionalStacks * ((defModule.ActiveStack() - 1) + stacksToIncrement));
+                                c += ReturnActiveStack(defModule.UnmodifiedLabelName) == 0 ? defModule.powerConsumptionData.FirstStack : defModule.powerConsumptionData.FirstStack + (defModule.powerConsumptionData.AdditionalStacks * ((defModule.ActiveStack() - 1) + stacksToIncrement));
                             }
                         }
                         else
                         {
-                            c += ReturnActiveStack(defModule.LabelName) == 0 ? defModule.EnergyConsumption : defModule.EnergyConsumption + ((defModule.EnergyConsumption * ((defModule.ActiveStack() - 1) + stacksToIncrement)));
+                            c += ReturnActiveStack(defModule.UnmodifiedLabelName) == 0 ? defModule.EnergyConsumption : defModule.EnergyConsumption + ((defModule.EnergyConsumption * ((defModule.ActiveStack() - 1) + stacksToIncrement)));
                         }
                     }
                     else if (Local == false)
@@ -858,7 +861,7 @@ namespace ModularMod
             {
                 if (ModuleContainers[i] != null)
                 {
-                    if (ModuleContainers[i].LabelName == self.LabelName)
+                    if (ModuleContainers[i].LabelName == self.UnmodifiedLabelName)
                     {
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
@@ -889,7 +892,7 @@ namespace ModularMod
             {
                 if (ModuleContainers[i] != null)
                 {
-                    if (ModuleContainers[i].LabelName == self.LabelName)
+                    if (ModuleContainers[i].LabelName == self.UnmodifiedLabelName)
                     {
                         for (int A = 0; A < Amount_To_Add; A++)
                         {
@@ -930,7 +933,7 @@ namespace ModularMod
             }
             for (int i = 0; i < ModuleContainers.Count; i++)
             {
-                if (ModuleContainers[i].LabelName == self.LabelName) 
+                if (ModuleContainers[i].LabelName == self.UnmodifiedLabelName) 
                 {
                     ModuleContainers[i].Count++;
                     return false;
@@ -938,7 +941,7 @@ namespace ModularMod
             }
             var modCont = new ModuleContainer()
             {
-                LabelName = self.LabelName,
+                LabelName = self.UnmodifiedLabelName,
                 tier = self.Tier,
                 ID = self.PickupObjectId,
                 Count = 1,
@@ -1042,7 +1045,7 @@ namespace ModularMod
             {
                 if (ModuleContainers[i] != null)
                 {
-                    if (ModuleContainers[i].LabelName == self.LabelName)
+                    if (ModuleContainers[i].LabelName == self.UnmodifiedLabelName)
                     {
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
@@ -1088,7 +1091,7 @@ namespace ModularMod
             {
                 if (ModuleContainers[i] != null)
                 {
-                    if (ModuleContainers[i].LabelName == (PickupObjectDatabase.GetById(ID)as DefaultModule).LabelName)
+                    if (ModuleContainers[i].LabelName == (PickupObjectDatabase.GetById(ID)as DefaultModule).UnmodifiedLabelName)
                     {
                         for (int A = 0; A < Amount_To_Remove; A++)
                         {
@@ -1129,7 +1132,7 @@ namespace ModularMod
             {
                 VFXStorage.DoFancyFlashOfModules(Amount_Of_Fakes, this.Owner, module);
             }
-            var modF = ModuleContainers.Where(self => self.defaultModule.LabelName == module.LabelName);
+            var modF = ModuleContainers.Where(self => self.defaultModule.UnmodifiedLabelName == module.UnmodifiedLabelName);
             if (modF.Count() > 0)
             {
                 var x = modF.First();
@@ -1156,7 +1159,7 @@ namespace ModularMod
             {
                 var modCont = new ModuleContainer()
                 {
-                    LabelName = module.LabelName,
+                    LabelName = module.UnmodifiedLabelName,
                     tier = module.Tier,
                     ID = module.PickupObjectId,
                     Count = 0,
@@ -1182,7 +1185,7 @@ namespace ModularMod
 
         public void RemoveTemporaryModule(DefaultModule module, string Context, bool playVFX = false)
         {
-            var modf = ModuleContainers.Where(self => self.defaultModule.LabelName == module.LabelName);
+            var modf = ModuleContainers.Where(self => self.defaultModule.UnmodifiedLabelName == module.UnmodifiedLabelName);
             if (modf.Count() > 0)
             {
                 var mod = modf.First();

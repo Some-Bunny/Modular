@@ -29,6 +29,8 @@ namespace ModularMod
             {
                 prefab = EnemyBuilder.BuildPrefabBundle("Slapper", guid, StaticCollections.Enemy_Collection, "slapper_idle_001", new IntVector2(0, 0), new IntVector2(8, 9), false, true);
                 var companion = prefab.AddComponent<SlapperBehavior>();
+                companion.aiActor.SetTag("PSOG:OuroborousEliteBlacklist");
+                companion.aiActor.SetTag("PSOG:OuroborousSkullsBlacklist"); 
                 companion.aiActor.knockbackDoer.weight = 1500000;
                 companion.aiActor.MovementSpeed = 0f;
                 companion.aiActor.healthHaver.PreventAllDamage = false;

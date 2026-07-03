@@ -28,12 +28,12 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("laserlance_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Laser Lance " + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces projectile speed by 50%.\nProjectiles will now fire out short-range damaging beams\nthat point in the direction the projectile is moving.\n(" + StaticColorHexes.AddColorToLabelString("+Beam Damage And Range", StaticColorHexes.Light_Orange_Hex) + ")";
+            h.SetName("Laser Lance " + h.ReturnTierLabel());
+            h.SetDescription("Reduces projectile speed by 50%.\nProjectiles will now fire out short-range damaging beams\nthat point in the direction the projectile is moving.\n(" + StaticColorHexes.AddColorToLabelString("+Beam Damage And Range", StaticColorHexes.Light_Orange_Hex) + ")");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-            h.AdditionalWeightMultiplier = 0.9f;
+            h.AdditionalWeightMultiplier = 0.75f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

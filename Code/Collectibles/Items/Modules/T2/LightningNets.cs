@@ -29,8 +29,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("voltaicrounds_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Lightning Nets " + h.ReturnTierLabel();
-            h.LabelDescription = "Your projectiles are now tethered with electricity\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Lightning Nets " + h.ReturnTierLabel());
+            h.SetDescription("Your projectiles are now tethered with electricity\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").");
+            h.AdditionalWeightMultiplier = 0.8f;
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

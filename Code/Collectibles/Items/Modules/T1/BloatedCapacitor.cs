@@ -27,10 +27,10 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("bloatedcapacitor_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.2f;
+            h.AdditionalWeightMultiplier = 0.25f;
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Overcharged Capacitor " + h.ReturnTierLabel();
-            h.LabelDescription = "Clearing enough rooms breaks this module and grants a Power Cell.\n"+StaticColorHexes.AddColorToLabelString("Reduces stats significantly, take double damage,\nand cannot be deactivated", StaticColorHexes.Red_Color_Hex) +".";
+            h.SetName("Overcharged Capacitor " + h.ReturnTierLabel());
+            h.SetDescription("Clearing enough rooms breaks this module and grants a Power Cell.\n" + StaticColorHexes.AddColorToLabelString("Reduces stats significantly, take double damage,\nand cannot be deactivated", StaticColorHexes.Red_Color_Hex) + ".");
             h.IsUncraftable = true;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;

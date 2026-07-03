@@ -46,6 +46,7 @@ namespace ModularMod
             active.SetupUnlockOnCustomFlag(CustomDungeonFlags.PAST, true);
             CraftingCoreID = pickup.PickupObjectId;
             active.passiveStatModifiers = new StatModifier[] { };
+            active.RemovePickupFromLootTables();
 
             GameObject roomIcon = new GameObject("Room Icon");
             FakePrefab.DontDestroyOnLoad(roomIcon);

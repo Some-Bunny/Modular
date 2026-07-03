@@ -25,8 +25,8 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.Tier = ModuleTier.Unique;
-            h.LabelName = "Duck Hunter " + h.ReturnTierLabel();
-            h.LabelDescription = "On reloading your gun,\nfires 1 ("+StaticColorHexes.AddColorToLabelString("+1")+") duck at your enemies.";
+            h.SetName("Duck Hunter " + h.ReturnTierLabel());
+            h.SetDescription("On reloading your gun,\nfires 1 (" + StaticColorHexes.AddColorToLabelString("+1") + ") duck at your enemies.");
             h.IsSpecialModule = true;   
             
             h.SetTag("modular_module");

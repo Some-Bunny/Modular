@@ -30,14 +30,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("cycleup_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Cycle Efficiency " + h.ReturnTierLabel();
-            h.LabelDescription = "Increases rate of fire and reload speed by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Cycle Efficiency " + h.ReturnTierLabel());
+            h.SetDescription("Increases rate of fire and reload speed by 15% (" + StaticColorHexes.AddColorToLabelString("+15% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").");
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.cyan);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.5f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
-
+            h.AdditionalWeightMultiplier = 0.95f;
             h.AddModuleTag(BaseModuleTags.BASIC);
 
 

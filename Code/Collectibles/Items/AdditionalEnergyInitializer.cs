@@ -33,6 +33,10 @@ namespace ModularMod
             {
                 {1, "Play_WPN_plasmacell_reload_01"},
             });
+            Tk2dSpriteAnimatorUtility.AddSoundsToAnimationFrame(tk2dAnim, "power_up_alt", new Dictionary<int, string>()
+            {
+                {1, "Play_WPN_plasmacell_reload_01"},
+            });
             PowerUpVFX = VFX;
 
             BasicStatPickup Heart1 = PickupObjectDatabase.GetById(421) as BasicStatPickup;
@@ -67,14 +71,14 @@ namespace ModularMod
             if (self.gameObject.GetComponent<ModulePrinterCore.AdditionalItemEnergyComponent>() != null && player.HasPassiveItem(ModulePrinterCore.ModulePrinterCoreID))
             {
                 var fx = player.PlayEffectOnActor(PowerUpVFX, new Vector3(0, 1.25f));
-                fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("power_up");
+                fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(player.IsUsingAlternateCostume ? "power_up_alt" : "power_up");
             }
             if (self is BasicStatPickup basicStat && player.HasPassiveItem(ModulePrinterCore.ModulePrinterCoreID))
             {
                 if (basicStat.IsMasteryToken == true)
                 {
                     var fx = player.PlayEffectOnActor(PowerUpVFX, new Vector3(0, 1.25f));
-                    fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("power_up");
+                    fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject(player.IsUsingAlternateCostume ? "power_up_alt" : "power_up");
                 }
             }
             var obj = self.gameObject.GetComponent<ShittyVFXAttacher>();

@@ -77,7 +77,7 @@ MonoBehaviour:
   atlasWidth: 512
   atlasHeight: 512
   forceSquareAtlas: 0
-  atlasWastage: 4.4395447
+  atlasWastage: 26.262283
   allowMultipleAtlases: 0
   removeDuplicates: 1
   textureParams:
@@ -25124,14 +25124,14 @@ MonoBehaviour:
   globalTextureRescale: 1
   attachPointTestSprites: []
   pixelPerfectPointSampled: 0
-  filterMode: 1
+  filterMode: 0
   wrapMode: 1
   userDefinedTextureSettings: 0
   mipmapEnabled: 0
   anisoLevel: 1
   physicsEngine: 0
   physicsDepth: 0.1
-  disableTrimming: 1
+  disableTrimming: 0
   disableRotation: 0
   normalGenerationMode: 0
   padAmount: 3

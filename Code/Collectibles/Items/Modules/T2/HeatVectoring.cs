@@ -27,9 +27,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("heatvectoring_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Heat Vectoring " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants 10% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") movement speed.\nDodgerolling releases 5 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") projectiles in the direction\nopposite of where you're moving.\nProjectiles gain all projectile-based effects.\nEffect recharges after 6 seconds.";
-            h.AdditionalWeightMultiplier = 0.7f;
+            h.SetName("Heat Vectoring " + h.ReturnTierLabel());
+            h.SetDescription("Grants 10% (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") movement speed.\nDodgerolling releases 5 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") projectiles in the direction\nopposite of where you're moving.\nProjectiles gain all projectile-based effects.\nEffect recharges after 6 seconds.");
+            h.AdditionalWeightMultiplier = 0.65f;
             h.EnergyConsumption = 1;
 
 

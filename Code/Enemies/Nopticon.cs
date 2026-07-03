@@ -396,6 +396,8 @@ namespace ModularMod
             {
                 prefab = EnemyBuilder.BuildPrefabBundle("Nopticon", guid + "(" + nodeCount.ToString()+")", StaticCollections.Enemy_Collection, "towernopticon_death_001", new IntVector2(0, 0), new IntVector2(8, 9), false, true);
                 var companion = prefab.AddComponent<NopticonBehavior>();
+                companion.aiActor.SetTag("PSOG:OuroborousEliteBlacklist");
+                companion.aiActor.SetTag("PSOG:OuroborousSkullsBlacklist"); 
                 companion.NodeCount = nodeCount;
 
                 companion.aiActor.knockbackDoer.weight = 50000;

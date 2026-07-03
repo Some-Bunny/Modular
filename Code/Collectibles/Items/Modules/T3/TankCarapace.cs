@@ -35,9 +35,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("tankstance_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Tank Carapace " + h.ReturnTierLabel();
+            h.SetName("Tank Carapace " + h.ReturnTierLabel());
             h.EnergyConsumption = 2;
-            h.LabelDescription = "Grants a damage and fire rate boost (" + StaticColorHexes.AddColorToLabelString("+Damage and Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")\nthe longer you have been standing still.\nWhile standing still, gain up to 4 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") defensive orbitals.\n" +StaticColorHexes.AddColorToLabelString("Lose all bonuses and orbitals when you start moving again.", StaticColorHexes.Red_Color_Hex);
+            h.SetDescription("Grants a damage and fire rate boost (" + StaticColorHexes.AddColorToLabelString("+Damage and Fire Rate", StaticColorHexes.Light_Orange_Hex) + ")\nthe longer you have been standing still.\nWhile standing still, gain up to 4 (" + StaticColorHexes.AddColorToLabelString("+4", StaticColorHexes.Light_Orange_Hex) + ") defensive orbitals.\n" + StaticColorHexes.AddColorToLabelString("Lose all bonuses and orbitals when you start moving again.", StaticColorHexes.Red_Color_Hex));
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);

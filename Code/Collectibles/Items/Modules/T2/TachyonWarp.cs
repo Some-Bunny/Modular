@@ -29,10 +29,10 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("tachyonwarp_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Tachyon Warp " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly increases accuracy, adds slight homing to your projectiles\nand increases damage (" + StaticColorHexes.AddColorToLabelString("+Stronger Homing and Damage", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles fire from walls, instead of your gun.\nFiring slightly pushes away nearby enemies. (" + StaticColorHexes.AddColorToLabelString("+Stronger Push Force", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetDescription("Tachyon Warp " + h.ReturnTierLabel());
+            h.SetDescription("Greatly increases accuracy, adds slight homing to your projectiles\nand increases damage (" + StaticColorHexes.AddColorToLabelString("+Stronger Homing and Damage", StaticColorHexes.Light_Orange_Hex) + ").\nProjectiles fire from walls, instead of your gun.\nFiring slightly pushes away nearby enemies. (" + StaticColorHexes.AddColorToLabelString("+Stronger Push Force", StaticColorHexes.Light_Orange_Hex) + ").");
             h.OverrideScrapCost = 7;
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.7f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);

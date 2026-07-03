@@ -29,8 +29,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cryogenicvents_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Cryogenic Venting " + h.ReturnTierLabel();
-            h.LabelDescription = $"Passively freeze enemies near you. ({StaticColorHexes.AddColorToLabelString("+Freeze Power and Radius", StaticColorHexes.Light_Orange_Hex)}).\nFrozen enemies shatter into freezing projectiles when killed. ({StaticColorHexes.AddColorToLabelString("+Cold Strength", StaticColorHexes.Light_Orange_Hex)})";
+            h.SetName("Cryogenic Venting " + h.ReturnTierLabel());
+            h.SetDescription($"Passively freeze enemies near you. ({StaticColorHexes.AddColorToLabelString("+Freeze Power and Radius", StaticColorHexes.Light_Orange_Hex)}).\nFrozen enemies shatter into freezing projectiles when killed. ({StaticColorHexes.AddColorToLabelString("+Cold Strength", StaticColorHexes.Light_Orange_Hex)})");
             h.EnergyConsumption = 2;
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;

@@ -95,6 +95,14 @@ namespace ModularMod
 
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
             IteratedDesign.SpecialProcessGunSpecific += c.ProcessShot;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Adds chance to stun.\nDeal 3x more damage to stunned enemies.";
+                }
+                return text;
+            };
         }
 
 
@@ -122,8 +130,8 @@ namespace ModularMod
                 {
                     float damage = mR.projectile.baseData.damage;
                     float force = mR.projectile.baseData.force;
-                    mR.projectile.baseData.damage *= 1.5f + ((float)IteratedDesign.PlayerHasIteratedDesign(Toolbox.GetModular()) * 0.5f);
-                    mR.projectile.baseData.force *= 1.5f + ((float)IteratedDesign.PlayerHasIteratedDesign(Toolbox.GetModular()) * 0.5f);
+                    mR.projectile.baseData.damage *= 2 + ((float)IteratedDesign.PlayerHasIteratedDesign(Toolbox.GetModular()));
+                    mR.projectile.baseData.force *= 2 + ((float)IteratedDesign.PlayerHasIteratedDesign(Toolbox.GetModular()));
                     mR.projectile.StartCoroutine(FrameDelay(mR.projectile, damage, force));
                 }
             }

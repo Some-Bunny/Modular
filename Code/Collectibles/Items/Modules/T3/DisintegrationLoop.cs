@@ -38,8 +38,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("disintegrationloop_t3_alt_module");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Disintegration Loop " + h.ReturnTierLabel();
-            h.LabelDescription = $"Kills grant targeted orbital strikes, up to 25 cached strikes.\nCached strikes are automatically used in combat one by one.\nStrike timings scale with player stats and ignore damage caps.\n({StaticColorHexes.AddColorToLabelString("+Increased Strike Damage And Speed")})";
+            h.SetName("Disintegration Loop " + h.ReturnTierLabel());
+            h.SetDescription($"Kills grant targeted orbital strikes, up to 25 cached strikes.\nCached strikes are automatically used in combat one by one.\nStrike timings scale with player stats and ignore damage caps.\n({StaticColorHexes.AddColorToLabelString("+Increased Strike Damage And Speed")})");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
@@ -50,11 +50,7 @@ namespace ModularMod
             h.AddColorLight(Color.yellow);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.375f);
             h.Offset_LabelName = new Vector2(0.125f, 1.9375f);
-            ID = h.PickupObjectId;
-
-
-
-          
+            ID = h.PickupObjectId;          
         }
 
 
@@ -139,10 +135,10 @@ namespace ModularMod
             currentTarget = aIActor;
             float c = this.ReturnStack(Stored_Core);
             float M = Stored_Core.ModularGunController.GetRateOfFire(2.75f - (0.25f * c)) / Stored_Core.Owner.stats.GetStatValue(PlayerStats.StatType.RateOfFire);
-            float M_1 = Stored_Core.ModularGunController.GetReload(1.75f - (0.25f * c))/ Stored_Core.Owner.stats.GetStatValue(PlayerStats.StatType.ReloadSpeed);
+            float M_1 = Stored_Core.ModularGunController.GetReload(3f - (0.25f * c))/ Stored_Core.Owner.stats.GetStatValue(PlayerStats.StatType.ReloadSpeed);
 
             float _ = BraveUtility.RandomAngle();
-            GameManager.Instance.StartCoroutine(DoLaser( _, M));
+            GameManager.Instance.StartCoroutine(DoLaser(_, M));
             GameManager.Instance.StartCoroutine(DoLaser(_ + 120, M));
             GameManager.Instance.StartCoroutine(DoLaser(_ + 240, M));
             float t = 0f;
@@ -151,6 +147,7 @@ namespace ModularMod
                 t += BraveTime.DeltaTime;
                 yield return null;
             }
+            Color col = Stored_Core.Owner.IsUsingAlternateCostume ? Color.green : Color.cyan;
             if (aIActor)
             {
                 CachedArtillery--;
@@ -159,8 +156,8 @@ namespace ModularMod
                 for (float i = 0; i < 200; i++)
                 {
                     Vector3 pos = Vector3.Lerp(Vector3.zero, new Vector3(0, 30), (float)i / (float)_);
-                    GlobalSparksDoer.DoSingleParticle(b.ToVector3ZUp() + new Vector3(0, i * 0.1f, 0), Vector3.down, 0.125f, 1, null, GlobalSparksDoer.SparksType.FLOATY_CHAFF);
-                    GlobalSparksDoer.DoSingleParticle(b.ToVector3ZUp() + new Vector3(0, i * 0.1f, 0), Vector3.down, null, 10, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
+                    GlobalSparksDoer.DoSingleParticle(b.ToVector3ZUp() + new Vector3(0, i * 0.1f, 0), Vector3.down, 0.125f, 1, col, GlobalSparksDoer.SparksType.FLOATY_CHAFF);
+                    GlobalSparksDoer.DoSingleParticle(b.ToVector3ZUp() + new Vector3(0, i * 0.1f, 0), Vector3.down, null, 10, col, GlobalSparksDoer.SparksType.EMBERS_SWIRLING);
                 }
 
                 AkSoundEngine.PostEvent("Play_BOSS_RatMech_Cannon_01", aIActor.gameObject);
@@ -170,7 +167,7 @@ namespace ModularMod
                 if (rpoh != null)
                 {
                     rpoh.ignoreDamageCaps = true;
-                    rpoh.baseData.damage = 30 + (25 * this.ReturnStack(Stored_Core));
+                    rpoh.baseData.damage = 40 + (30 * this.ReturnStack(Stored_Core));
                     rpoh.baseData.speed = 0;
                     rpoh.UpdateSpeed();
                     rpoh.Owner = this.Stored_Core.Owner;
@@ -194,7 +191,7 @@ namespace ModularMod
                     });
                     rpoh.DieInAir(true);
 
-                    var ___ = EasyLight.Create(aIActor.specRigidbody.UnitCenter, null, Color.yellow, 1, 10, false, 10, 0, 1, false, false);
+                    var ___ = EasyLight.Create(aIActor.specRigidbody.UnitCenter, null, col, 1, 10, false, 10, 0, 1, false, false);
                 }
             }
             t = 0;
@@ -241,30 +238,38 @@ namespace ModularMod
             component2.UpdateZDepth();
             Vector3 _ = Toolbox.GetUnitOnCircleVec3(Rot, 10);
             Vector2 __ = Vector3.zero;
-            component2.color = Color.red;
+            component2.color = Stored_Core.Owner.IsUsingAlternateCostume ? Color.green : Color.cyan;
+            component2.HeightOffGround = -2;
+            component2.renderer.gameObject.layer = 23;
+            component2.dimensions = new Vector2(3200, 1f);
+
             float e = 0f;
             float t = 0f;
+            var v1 = currentTarget.specRigidbody.UnitBottomCenter;
 
-            
             while (e < LaserTime)
             {
+                var vv = Vector3.Lerp(_, Vector3.zero, t * t);
                 if (currentTarget != null)
                 {
-                    __ = Vector3.MoveTowards(component2.transform.position, currentTarget.specRigidbody.UnitBottomCenter, 30);
+                    __ = Vector3.MoveTowards(v1, currentTarget.specRigidbody.UnitBottomCenter, 30);
                 }
                 else
                 {
                     currentTarget = GetSimplifiedNewTarget(Stored_Core);
+                    yield return null;
+                    continue;
                 }
 
                 t = e / LaserTime;
-                float t2 = Mathf.Clamp01(t * 2.5f);
-                if (UnityEngine.Random.value < 0.33f) { GlobalSparksDoer.DoSingleParticle(component2.transform.position, Vector3.up, null, null, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING); }
+                float t2 = Mathf.Min(1, t * 1.25f);
+                if (UnityEngine.Random.value < 8 * BraveTime.DeltaTime) { GlobalSparksDoer.DoSingleParticle(component2.transform.position, Vector3.up, null, null, null, GlobalSparksDoer.SparksType.EMBERS_SWIRLING); }
                 e += BraveTime.DeltaTime;
-                component2.transform.position = (__ + Vector2.Lerp(_, Vector3.zero, t * t)).ToVector3ZUp() + new Vector3(0, Mathf.Lerp(100, 0, t2 * t2));
-                component2.dimensions = new Vector2(3200, 1f);
-                component2.HeightOffGround = -2;
-                component2.renderer.gameObject.layer = 23;
+                component2.transform.position = __.ToVector3ZUp(0) + vv; 
+                component2.transform.position += new Vector3(0, Mathf.Lerp(50, 0, t2));
+                //Debug.Log(component2.transform.position);
+
+
                 component2.UpdateZDepth();
                 yield return null;
             }

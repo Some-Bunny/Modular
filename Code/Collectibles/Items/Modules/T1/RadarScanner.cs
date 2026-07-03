@@ -28,10 +28,10 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("radarscanner_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.85f;
+            h.AdditionalWeightMultiplier = 0.8f;
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Radar Scanner " + h.ReturnTierLabel();
-            h.LabelDescription = "Secret Rooms are revealed if you are near them.\nWhile powered, all secret rooms contain\n2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") extra pickups\nstarting from the next floor.";
+            h.SetName("Radar Scanner " + h.ReturnTierLabel());
+            h.SetDescription("Secret Rooms are revealed if you are near them.\nWhile powered, all secret rooms contain\n2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") extra pickups\nstarting from the next floor.");
             h.AppearsFromBlessedModeRoll = false;
 
             h.AddModuleTag(BaseModuleTags.GENERATION);

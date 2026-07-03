@@ -33,12 +33,13 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("voltaictethers_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Voltaic Tethers " + h.ReturnTierLabel();
-            h.LabelDescription = "Massively decreases accuracy, and doubles reload time.\nProjectiles will stick to walls and tether\nelectricity to players and other nearby tether nodes.\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Voltaic Tethers " + h.ReturnTierLabel());
+            h.SetDescription("Massively decreases accuracy, and doubles reload time.\nProjectiles will stick to walls and tether\nelectricity to players and other nearby tether nodes.\n(" + StaticColorHexes.AddColorToLabelString("+Tether Range and Damage", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.STICKY);
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
+            h.AdditionalWeightMultiplier = 0.7f;
 
             h.AddToGlobalStorage();
             h.SetTag("modular_module");

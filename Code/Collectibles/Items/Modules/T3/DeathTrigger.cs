@@ -36,13 +36,13 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("deathtrigger_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Death Trigger " + h.ReturnTierLabel();
-            h.LabelDescription = $"{StaticColorHexes.AddColorToLabelString("Enemies have a chance to activate 'On Kill Enemy' effects when hit", StaticColorHexes.Green_Hex)}.\n({StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex)}) Recharges after 5 seconds.\nSlain enemies fire 4 damaging lines of energy in a + formation.\n({StaticColorHexes.AddColorToLabelString("+Increased Damage", StaticColorHexes.Light_Orange_Hex)})";
+            h.SetName("Death Trigger " + h.ReturnTierLabel());
+            h.SetDescription($"{StaticColorHexes.AddColorToLabelString("Enemies have a chance to activate 'On Kill Enemy' effects when hit", StaticColorHexes.Green_Hex)}.\n({StaticColorHexes.AddColorToLabelString("+Increased Chance", StaticColorHexes.Light_Orange_Hex)}) Recharges after 5 seconds.\nSlain enemies fire 4 damaging lines of energy in a + formation.\n({StaticColorHexes.AddColorToLabelString("+Increased Damage", StaticColorHexes.Light_Orange_Hex)})");
 
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);
 
-            h.AdditionalWeightMultiplier = 0.75f;
+            h.AdditionalWeightMultiplier = 0.85f;
             h.EnergyConsumption = 3;
 
             h.AddToGlobalStorage();

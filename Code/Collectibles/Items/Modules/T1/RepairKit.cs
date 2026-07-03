@@ -26,9 +26,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("repairtool_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.7f;
-            h.LabelName = "Repair Kit " + h.ReturnTierLabel();
-            h.LabelDescription = "Restores 2 Armor on Pickup.\nIncreases Damage by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.AdditionalWeightMultiplier = 0.1f;
+            h.SetName("Repair Kit " + h.ReturnTierLabel());
+            h.SetDescription("Restores 2 Armor on Pickup.\nIncreases Damage by 12.5% (" + StaticColorHexes.AddColorToLabelString("+12.5%", StaticColorHexes.Light_Orange_Hex) + ").");
             h.EnergyConsumption = 0.5f;
             h.AppearsFromBlessedModeRoll = false;
 
@@ -49,6 +49,16 @@ namespace ModularMod
             ID = h.PickupObjectId;
         }
         public static int ID;
+
+        public override float ProcessedWeightMultiplier()
+        {
+            var v = Toolbox.GetModular();
+            if (v == null)
+            {
+                return 1; 
+            }            
+            return (6 - v.healthHaver.currentArmor) * 2;
+        }
 
         public override void OnAnyEverObtainedNonActivation(ModulePrinterCore modulePrinter, ModularGunController modularGunController, PlayerController player)
         {

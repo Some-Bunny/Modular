@@ -30,6 +30,8 @@ namespace ModularMod
             {
                 prefab = EnemyBuilder.BuildPrefabBundle("Laser Diode", guid, StaticCollections.Enemy_Collection, "laser_diode_idle_001", new IntVector2(0, 0), new IntVector2(8, 9), false, true);
                 var companion = prefab.AddComponent<LaserDiodeBehavior>();
+                companion.aiActor.SetTag("PSOG:OuroborousEliteBlacklist");
+                companion.aiActor.SetTag("PSOG:OuroborousSkullsBlacklist"); 
                 companion.aiActor.knockbackDoer.weight = 50;
                 companion.aiActor.MovementSpeed = 0.8f;
                 companion.aiActor.healthHaver.PreventAllDamage = false;

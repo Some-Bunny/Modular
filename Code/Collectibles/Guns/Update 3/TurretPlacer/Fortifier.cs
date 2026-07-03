@@ -192,6 +192,14 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             Fortifier.GunID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificReload += c.ProcessFireRateSpecial;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Turrets aim towards your cursor.";
+                }
+                return text;
+            };
         }
 
         public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)

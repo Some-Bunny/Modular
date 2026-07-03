@@ -53,13 +53,13 @@ namespace ModularMod
         };
         public static void PostInit(PickupObject v)
         {
-            var h = (v as DefaultModule);
+            var h = (v as   DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plaguecanister_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Plague Canister " + h.ReturnTierLabel();
-            h.AdditionalWeightMultiplier = 0.85f;
+            h.SetName("Plague Canister " + h.ReturnTierLabel());
+            h.AdditionalWeightMultiplier = 0.9f;
 
-            h.LabelDescription = "Reloading has a chance to launch 1 ("+StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) +") poison canisters\nthat breaks into a pool of poison and glass shards.\n(" + StaticColorHexes.AddColorToLabelString("+Glass Shards and Goop Radius", StaticColorHexes.Light_Orange_Hex) + ").\nChance increases the emptier your clip is, up to 100% when empty.";
+            h.SetDescription("Reloading has a chance to launch 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") poison canisters\nthat breaks into a pool of poison and glass shards.\n(" + StaticColorHexes.AddColorToLabelString("+Glass Shards and Goop Radius", StaticColorHexes.Light_Orange_Hex) + ").\nChance increases the emptier your clip is, up to 100% when empty.");
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);

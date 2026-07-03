@@ -35,7 +35,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.3.17";
+        public const string VERSION = "1.3.18";
         public const string TEXT_COLOR = "#79eaff";
 
         public static AssetBundle ModularAssetBundle;
@@ -268,7 +268,7 @@ namespace ModularMod
 
             this.StartCoroutine(Delayedstarthandler());
 
-            ConsoleMagic.LogButCool($"{NAME} v{VERSION} started successfully.", Module.ModularAssetBundle.LoadAsset<Texture2D>("modular_Tex_Icon"));
+            ConsoleMagic.LogButCool($"{NAME} v{VERSION} started successfully.", Module.ModularAssetBundle.LoadAsset<Texture2D>(UnityEngine.Random.value < 0.05f ? "modular_Tex_Icon_Pog" : "modular_Tex_Icon"));
 
             if (SoundTest == true)
             {

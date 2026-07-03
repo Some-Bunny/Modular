@@ -34,14 +34,15 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("eternalwrath_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Eternal Wrath " + h.ReturnTierLabel();
-            h.LabelDescription = "Cheat Death Once ("+StaticColorHexes.AddColorToLabelString("+1 Revive")+").\nCheating death grants "+StaticColorHexes.AddColorToLabelString("permanent", StaticColorHexes.Green_Hex) +" stat boosts.\nModule is destroyed after cheating death.";
+            h.SetName("Eternal Wrath " + h.ReturnTierLabel());
+            h.SetDescription("Cheat Death Once (" + StaticColorHexes.AddColorToLabelString("+1 Revive") + ").\nCheating death grants " + StaticColorHexes.AddColorToLabelString("permanent", StaticColorHexes.Green_Hex) + " stat boosts.\nModule is destroyed after cheating death.");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.EnergyConsumption = 2;
             h.OverrideScrapCost = 20;
 
+            h.AppearsFromBlessedModeRoll = false;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);

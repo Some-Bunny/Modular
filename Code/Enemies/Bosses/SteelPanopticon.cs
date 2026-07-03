@@ -625,7 +625,8 @@ namespace ModularMod
                 companion.SpotlightMaterial = EnemyDatabase.GetOrLoadByGuid(StaticGUIDs.Advanced_Dragun_GUID).GetComponent<DraGunController>().SpotlightMaterial;
                 companion.SpotlightSprite = EnemyDatabase.GetOrLoadByGuid(StaticGUIDs.Advanced_Dragun_GUID).GetComponent<DraGunController>().SpotlightSprite;
                 companion.aiActor.AssignedCurrencyToDrop = 0;
-
+                companion.aiActor.SetTag("PSOG:OuroborousEliteBlacklist");
+                companion.aiActor.SetTag("PSOG:OuroborousSkullsBlacklist");
 
                 companion.aiActor.knockbackDoer.weight = 1500000;
                 companion.aiActor.MovementSpeed = 0f;

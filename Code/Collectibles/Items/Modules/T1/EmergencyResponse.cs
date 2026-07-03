@@ -28,9 +28,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("emergencymod_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.75f;
-            h.LabelName = "Emergency Response" + h.ReturnTierLabel();
-            h.LabelDescription = "Taking damage grants double damage, fire rate and halved reload time\nthat degrades over 15 (" + StaticColorHexes.AddColorToLabelString("+7.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.";
+            h.AdditionalWeightMultiplier = 0.8f;
+            h.SetName("Emergency Response" + h.ReturnTierLabel());
+            h.SetDescription("Taking damage grants double damage, fire rate and halved reload time\nthat degrades over 15 (" + StaticColorHexes.AddColorToLabelString("+7.5", StaticColorHexes.Light_Orange_Hex) + ") seconds.");
             
             h.AddModuleTag(BaseModuleTags.RETALIATION);
 

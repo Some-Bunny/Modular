@@ -35,8 +35,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             //h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_Omega;
-            h.LabelName = "CLEAN SLATE " + h.ReturnTierLabel();
-            h.LabelDescription = "ONCE POWERED, FORFEITS ANY\nPOWERED MODULES IN EXCHANGE FOR ITEMS.";
+            h.SetName("CLEAN SLATE " + h.ReturnTierLabel());
+            h.SetDescription("ONCE POWERED, FORFEITS ANY\nPOWERED MODULES IN EXCHANGE FOR ITEMS.");
             h.powerConsumptionData = new PowerConsumptionData()
             {
                 FirstStack = 0,
@@ -63,7 +63,7 @@ namespace ModularMod
             for (int i = printer.ModuleContainers.Count - 1; i > -1; i--)
             {
                 var moduleContainer = printer.ModuleContainers[i];
-                var shitfuck = printer.ModuleContainers.Where(self => self.LabelName != this.LabelName && self.Count > 0);
+                var shitfuck = printer.ModuleContainers.Where(self => self.LabelName != this.UnmodifiedLabelName && self.Count > 0);
                 if (shitfuck.Count() > 0)
                 {
                     var mod = BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(shitfuck.ToList()).defaultModule;

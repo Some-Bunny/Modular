@@ -29,8 +29,10 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("burninghell_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Burning Hell " + h.ReturnTierLabel();
-            h.LabelDescription = "Halves fire rate and increases accuracy.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Burning Hell " + h.ReturnTierLabel());
+            h.SetDescription("Halves fire rate and increases accuracy.\nProjectiles will stick to terrain and enemies and\ncreate an area that hurts and burns enemies.\n(" + StaticColorHexes.AddColorToLabelString("+Burning Radius And Damage", StaticColorHexes.Light_Orange_Hex) + ").");
+            h.AdditionalWeightMultiplier = 0.7f;
+            
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);

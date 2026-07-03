@@ -132,6 +132,14 @@ namespace ModularMod
             BigNuke.GunID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificClipPostCalc += c.ProcessClipSpecial;
             IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Nukes burst into a large\namount of projectiles.";
+                }
+                return text;
+            };
 
         }
         public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)

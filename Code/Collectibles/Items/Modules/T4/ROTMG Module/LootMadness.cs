@@ -36,8 +36,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             //h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_Omega;
-            h.LabelName = "LOOT MADNESS " + h.ReturnTierLabel();
-            h.LabelDescription = "OBTAIN UNIQUE LOOT FROM A REALM CLOUDED BY MADNESS\n(" + StaticColorHexes.AddColorToLabelString("+HIGHER LOOT CHANCE", StaticColorHexes.Light_Orange_Hex) + ").\nLOOT CAN BE USED IN COMBAT.";
+            h.SetName("LOOT MADNESS " + h.ReturnTierLabel());
+            h.SetDescription("OBTAIN UNIQUE LOOT FROM A REALM CLOUDED BY MADNESS\n(" + StaticColorHexes.AddColorToLabelString("+HIGHER LOOT CHANCE", StaticColorHexes.Light_Orange_Hex) + ").\nLOOT CAN BE USED IN COMBAT.");
             h.SetTag("modular_module");
             h.AddColorLight(Color.red);
             h.powerConsumptionData = new PowerConsumptionData()

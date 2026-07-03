@@ -27,14 +27,14 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mercybullets_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Mercy Rounds " + h.ReturnTierLabel();
-            h.LabelDescription = "Deal an additional 40% (" + StaticColorHexes.AddColorToLabelString("+40%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.\nEnemies directly slain by you spread\ntheir debuffs to nearby enemies.";
+            h.SetName("Mercy Rounds " + h.ReturnTierLabel());
+            h.SetDescription("Deal an additional 40% (" + StaticColorHexes.AddColorToLabelString("+40%", StaticColorHexes.Light_Orange_Hex) + ")\nmore damage to enemies for each\nbuff or debuff they have.\nEnemies directly slain by you spread\ntheir debuffs to nearby enemies.");
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
 
             h.AddToGlobalStorage();
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.85f;
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);

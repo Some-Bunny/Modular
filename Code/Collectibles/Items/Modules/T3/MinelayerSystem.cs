@@ -33,12 +33,12 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("minelayer_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Minelayer System " + h.ReturnTierLabel();
-            h.LabelDescription = "Projectile damage reduced by 70%.\nIncreases fire rate by 33% and massively reduces spread.\nProjectiles now leave proximity mines on impact that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 second ("+StaticColorHexes.AddColorToLabelString("-25% hyperbolically") + ") to detonate.\n("+StaticColorHexes.AddColorToLabelString("+Explosion Damage")+")";
+            h.SetName("Minelayer System " + h.ReturnTierLabel());
+            h.SetDescription("Projectile damage reduced by 70%.\nIncreases fire rate by 33% and massively reduces spread.\nProjectiles now leave proximity mines on impact that\ntake 3 (" + StaticColorHexes.AddColorToLabelString("-33% hyperbollicaly", StaticColorHexes.Light_Orange_Hex) + ") seconds to prime\n and 1 second (" + StaticColorHexes.AddColorToLabelString("-25% hyperbolically") + ") to detonate.\n(" + StaticColorHexes.AddColorToLabelString("+Explosion Damage") + ")");
 
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
-
+            h.AdditionalWeightMultiplier = 0.8f;
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
             h.AddColorLight(Color.yellow);

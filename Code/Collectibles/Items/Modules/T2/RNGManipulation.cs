@@ -27,8 +27,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("rngmanipulation_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "RNG Manipulation " + h.ReturnTierLabel();
-            h.LabelDescription = "Grants vastly improved and more common room drops.\n(" + StaticColorHexes.AddColorToLabelString("+Loot chance and better loot drop odds", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("RNG Manipulation " + h.ReturnTierLabel());
+            h.SetDescription("Grants vastly improved and more common room drops.\n(" + StaticColorHexes.AddColorToLabelString("+Loot chance and better loot drop odds", StaticColorHexes.Light_Orange_Hex) + ").");
             h.EnergyConsumption = 1;
             h.AppearsInRainbowMode = false;
 
@@ -36,7 +36,7 @@ namespace ModularMod
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 
             h.AddToGlobalStorage();
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.67f; //hehe
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
@@ -99,7 +99,7 @@ namespace ModularMod
                 var c = entry.PlayerHasCore();
                 if (c != null)
                 {
-                    if (c.ReturnStack(this.LabelName) > 0)
+                    if (c.ReturnStack(this.UnmodifiedLabelName) > 0)
                     {
                         validRoomReward.additionalRewardChance -= (float)((0.04f * Stack()));
                         validRoomReward.overrideItemPool.AddRange(ReturnThing());

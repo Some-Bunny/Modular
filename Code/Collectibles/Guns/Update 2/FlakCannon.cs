@@ -148,7 +148,14 @@ namespace ModularMod
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             FlakCannon.GunID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecificClipPostCalc += c.ProcessClipSpecial;
-
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Massively increased shrapnel count.";
+                }
+                return text;
+            };
         }
         public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {

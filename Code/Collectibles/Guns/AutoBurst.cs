@@ -98,22 +98,35 @@ namespace ModularMod
             gun.barrelOffset = Toolbox.GenerateTransformPoint(gun.gameObject, new Vector2(0.3125f, 0.25f), "barrel_point").transform;
 
             ID = ETGMod.Databases.Items.Add(gun, false, "ANY");
+            IteratedDesign.SpecialProcessGunSpecificFireRate += c.ProcessFireRateSpecial;
+            IteratedDesign.SpecialProcessGunSpecificAccuracy += c.ProcessAccuracySpecial;
             IteratedDesign.SpecialProcessGunSpecificClip += c.ProcessClipSpecial;
-            IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Massively increases fire rate\nand spread. Doubles clip size.";
+                }
+                return text;
+            };
         }
 
-        public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
+
+
+        public float ProcessFireRateSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
-            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
-            p.baseData.force *= 1 + stack;
-            var pierce = p.gameObject.GetOrAddComponent<PierceProjModifier>();
-            pierce.penetration += 2;
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f * 0.1f;
         }
-
+        public float ProcessAccuracySpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
+        {
+            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
+            return f * 3;
+        }
         public int ProcessClipSpecial(int f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
-            return f + ((f / 2) * stack);
+            return f * 2;
         }
         public static int ID;
         public void Start()

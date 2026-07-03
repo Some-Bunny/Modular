@@ -25,8 +25,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("gravitywell_t3_module_alt");
             h.Tier = ModuleTier.Tier_3;
-            h.LabelName = "Gravity Well " + h.ReturnTierLabel();
-            h.LabelDescription = "Greatly reduces Fire Rate.\nProjectiles gain piercing and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity And Damage", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Gravity Well " + h.ReturnTierLabel());
+            h.SetDescription("Greatly reduces Fire Rate.\nProjectiles gain piercing and greatly reduced speed.\nEnemies are pulled towards your projectiles\nand are hurt in their proximity.(" + StaticColorHexes.AddColorToLabelString("+Stronger Gravity And Damage", StaticColorHexes.Light_Orange_Hex) + ").");
 
 
             h.AddModuleTag(BaseModuleTags.DAMAGE_OVER_TIME);
@@ -68,7 +68,7 @@ namespace ModularMod
             yes.dashColor = new Color(1f, 0.1f, 0.5f, 1f);
 
             HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
-            HomingMod.AngularVelocity += 10;
+            HomingMod.AngularVelocity += 20;
             HomingMod.HomingRadius += 20;
 
             GameObject vfx = SpawnManager.SpawnVFX((PickupObjectDatabase.GetById(536) as RelodestoneItem).ContinuousVFX, true);
@@ -102,14 +102,17 @@ namespace ModularMod
             bounceProjModifier.penetration += 10;
             p.gameObject.GetOrAddComponent<MaintainDamageOnPierce>();
             p.AdditionalScaleMultiplier *= 1.5f;
+            float stack = this.ReturnStack(modulePrinterCore);
 
             p.baseData.speed *= 0.25f;
             p.UpdateSpeed();
             var well = p.gameObject.AddComponent<EnemyGravityWell>();
             well.self = p;
-            well.gravitationalForceActors = 100 * this.ReturnStack(modulePrinterCore);
-            well.damageRadius = 2 + this.ReturnStack(modulePrinterCore);
-            well.Stack = this.ReturnStack(modulePrinterCore);
+            well.gravitationalForceActors = 100 * stack;
+            well.damageRadius = 2 + stack;
+            well.Stack = (int)stack;
+            
+            
             ImprovedAfterImage yes = p.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
             yes.shadowLifetime = 0.75f;
@@ -117,7 +120,7 @@ namespace ModularMod
             yes.dashColor = new Color(1f, 0.1f, 0.5f, 1f);
 
             HomingModifier HomingMod = p.gameObject.GetOrAddComponent<HomingModifier>();
-            HomingMod.AngularVelocity += 10;
+            HomingMod.AngularVelocity += 20;
             HomingMod.HomingRadius += 20;
 
             if (ConfigManager.DoVisualEffect == true)

@@ -6,6 +6,8 @@ using System;
 using ModularMod;
 using System.Linq;
 using System.Collections.Generic;
+using static ModularMod.FlakCannon;
+using static JSONHelper;
 
 namespace ModularMod
 {
@@ -31,24 +33,39 @@ namespace ModularMod
             gun.PreventStartingOwnerFromDropping = true;
 
             GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(57) as Gun, true, false);
+            //GunExt.AddProjectileModuleFrom(gun, PickupObjectDatabase.GetById(57) as Gun, true, false);
+
 
             var comp = gun.gameObject.AddComponent<ModularGunController>();
             comp.isAlt = false;
             comp.AdditionalPowerSupply = 0;
-
+            /*
             gun.DefaultModule.ammoCost = 1;
             gun.DefaultModule.shootStyle = ProjectileModule.ShootStyle.Charged;
             gun.DefaultModule.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
-
-            gun.gunSwitchGroup = (PickupObjectDatabase.GetById(41) as Gun).gunSwitchGroup;
-
-
-            gun.reloadTime = 2.1f;
             gun.DefaultModule.cooldownTime = .2f;
             gun.DefaultModule.numberOfShotsInClip = 8;
-            gun.SetBaseMaxAmmo(250);
             gun.DefaultModule.angleVariance = 3f;
+            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("CHARGER_AA", StaticCollections.Clip_Ammo_Atlas, "apoll_1", "apoll_2");
+            */
+            foreach (var module in gun.Volley.projectiles)
+            {
+                module.ammoCost = 1;
+                module.shootStyle = ProjectileModule.ShootStyle.Charged;
+                module.sequenceStyle = ProjectileModule.ProjectileSequenceStyle.Random;
+                module.cooldownTime = .2f;
+                module.numberOfShotsInClip = 8;
+                module.angleVariance = 3f;
+                module.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
+                module.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("CHARGER_AA", StaticCollections.Clip_Ammo_Atlas, "apoll_1", "apoll_2");
+            }
 
+
+
+            gun.SetBaseMaxAmmo(250);
+            gun.gunSwitchGroup = (PickupObjectDatabase.GetById(41) as Gun).gunSwitchGroup;
+            gun.reloadTime = 2.1f;
             gun.InfiniteAmmo = true;
             gun.quality = PickupObject.ItemQuality.SPECIAL;
 
@@ -182,9 +199,119 @@ namespace ModularMod
 
             ImprovedAfterImage yes = LargeBullet.gameObject.AddComponent<ImprovedAfterImage>();
             yes.spawnShadows = true;
-            yes.shadowLifetime = 0.4f;
-            yes.shadowTimeDelay = 0.04f;
+            yes.shadowLifetime = 0.333f;
+            yes.shadowTimeDelay = 0.02f;
             yes.dashColor = new Color(0f, 1f, 1f, 1f);
+
+
+            Projectile MegaBullet = UnityEngine.Object.Instantiate<Projectile>((PickupObjectDatabase.GetById(56) as Gun).DefaultModule.projectiles[0]);
+            MegaBullet.gameObject.SetActive(false);
+            FakePrefab.MarkAsFakePrefab(MegaBullet.gameObject);
+            UnityEngine.Object.DontDestroyOnLoad(MegaBullet);
+
+            MegaBullet.AnimateProjectileBundle("giantenergy", StaticCollections.Projectile_Collection, StaticCollections.Projectile_Animation, "giantenergy",
+            new List<IntVector2>() { new IntVector2(51, 19), new IntVector2(51, 19), new IntVector2(51, 19), new IntVector2(51, 19), new IntVector2(51, 19), new IntVector2(51, 19), },
+            ProjectileToolbox.ConstructListOfSameValues(true, 6), ProjectileToolbox.ConstructListOfSameValues(tk2dBaseSprite.Anchor.MiddleCenter, 6), ProjectileToolbox.ConstructListOfSameValues(true, 6), ProjectileToolbox.ConstructListOfSameValues(false, 6),
+            ProjectileToolbox.ConstructListOfSameValues<Vector3?>(null, 6), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 6), ProjectileToolbox.ConstructListOfSameValues<IntVector2?>(null, 6), ProjectileToolbox.ConstructListOfSameValues<Projectile>(null, 6));
+
+            MegaBullet.objectImpactEventName = (PickupObjectDatabase.GetById(180) as Gun).DefaultModule.projectiles[0].objectImpactEventName;
+            MegaBullet.enemyImpactEventName = (PickupObjectDatabase.GetById(180) as Gun).DefaultModule.projectiles[0].enemyImpactEventName;
+            MegaBullet.hitEffects.tileMapHorizontal = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(180) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            MegaBullet.hitEffects.tileMapVertical = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(180) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            MegaBullet.hitEffects.enemy = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(180) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            MegaBullet.hitEffects.deathAny = Toolbox.MakeObjectIntoVFX((PickupObjectDatabase.GetById(180) as Gun).DefaultModule.projectiles[0].hitEffects.tileMapHorizontal.effects.First().effects.First().effect);
+            Material matTuah = new Material(EnemyDatabase.GetOrLoadByName("GunNut").sprite.renderer.material);
+            matTuah.mainTexture = projectile.sprite.renderer.material.mainTexture;
+            matTuah.SetColor("_EmissiveColor", new Color32(255, 255, 255, 255));
+            matTuah.SetFloat("_EmissiveColorPower", 100);
+            matTuah.SetFloat("_EmissivePower", 100);
+            MegaBullet.sprite.renderer.material = matTuah;
+            MegaBullet.baseData.speed = 65;
+            MegaBullet.baseData.damage = 45f;
+            MegaBullet.shouldRotate = true;
+            MegaBullet.pierceMinorBreakables = true;
+
+            bounceProjModifier = MegaBullet.gameObject.GetOrAddComponent<PierceProjModifier>();
+            bounceProjModifier.penetration = 3;
+            bounceProjModifier.penetratesBreakables = true;
+
+            var tro_1 = MegaBullet.gameObject.AddChild("trail object");
+            tro_1.transform.position = MegaBullet.sprite.WorldTopLeft + new Vector2(0.625f, -0.375f);// + new Vector2(.25f, 0.3125f);
+            tro_1.transform.localPosition = MegaBullet.sprite.WorldTopLeft + new Vector2(0.625f, -0.375f);
+            TrailRenderer tr_1 = tro_1.AddComponent<TrailRenderer>();
+            tr_1.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            tr_1.receiveShadows = false;
+            var mat_Trail = new Material(Shader.Find("Sprites/Default"));
+            tr_1.material = mat_Trail;
+            tr_1.minVertexDistance = 0.01f;
+            tr_1.numCapVertices = 640;
+
+            //======
+            UnityEngine.Color color = new UnityEngine.Color(0, 2, 2, 2);
+            mat_1.SetColor("_Color", color);
+            tr_1.startColor = color;
+            tr_1.endColor = new Color(0f, 1, 1, 0.5f);
+            //======
+            tr_1.time = 0.3125f;
+            //======
+            tr_1.startWidth = 0.5f;
+            tr_1.endWidth = 0f;
+            tr_1.autodestruct = false;
+
+            var rend = MegaBullet.gameObject.AddComponent<ProjectileTrailRendererController>();
+            rend.trailRenderer = tr_1;
+            rend.desiredLength = 6;
+
+            var shrapnelbolb = MegaBullet.gameObject.AddComponent<SpawnProjModifier>();
+            shrapnelbolb.fireRandomlyInAngle = true;
+            shrapnelbolb.collisionSpawnStyle = SpawnProjModifier.CollisionSpawnStyle.RADIAL;
+            shrapnelbolb.PostprocessSpawnedProjectiles = true;
+            shrapnelbolb.numberToSpawnOnCollison = 8;
+            shrapnelbolb.spawnProjectilesOnCollision = true;
+            shrapnelbolb.spawnCollisionProjectilesOnBounce = true;
+            shrapnelbolb.spawnOnObjectCollisions = true;
+            shrapnelbolb.UsesMultipleCollisionSpawnProjectiles = true;
+
+
+            shrapnelbolb.collisionSpawnProjectiles = new Projectile[]
+            {
+                projectile,
+                projectileMed
+            };
+
+            explosiveModifier = MegaBullet.gameObject.GetOrAddComponent<ExplosiveModifier>();
+            explosiveModifier.explosionData = new ExplosionData()
+            {
+                breakSecretWalls = false,
+                comprehensiveDelay = 0,
+                damage = 20,
+                damageRadius = 3f,
+                damageToPlayer = 0,
+                debrisForce = 100,
+                doDamage = true,
+                doDestroyProjectiles = false,
+                doExplosionRing = false,
+                doForce = true,
+                doScreenShake = false,
+                doStickyFriction = false,
+                effect = (PickupObjectDatabase.GetById(545) as Gun).DefaultModule.projectiles[0].hitEffects.enemy.effects[0].effects[0].effect,
+                explosionDelay = 0,
+                force = 30,
+                forcePreventSecretWallDamage = false,
+                forceUseThisRadius = true,
+                freezeEffect = null,
+                freezeRadius = 0,
+                IsChandelierExplosion = false,
+                isFreezeExplosion = false,
+                playDefaultSFX = true,
+                preventPlayerForce = false,
+                pushRadius = 3,
+                secretWallsRadius = 1,
+            };
+            explosiveModifier.doExplosion = true;
+            explosiveModifier.IgnoreQueues = true;
+
+
 
             ProjectileModule.ChargeProjectile item2 = new ProjectileModule.ChargeProjectile
             {
@@ -196,30 +323,27 @@ namespace ModularMod
             ProjectileModule.ChargeProjectile emdium = new ProjectileModule.ChargeProjectile
             {
                 Projectile = projectileMed,
-                ChargeTime = 1f,
+                ChargeTime = 0.8f,
                 AmmoCost = 2,
 
             };
             ProjectileModule.ChargeProjectile item3 = new ProjectileModule.ChargeProjectile
             {
                 Projectile = LargeBullet,
-                ChargeTime = 2f,
-                AmmoCost = 2,
-                
+                ChargeTime = 1.6f,
+                AmmoCost = 2,            
             };
 
-
-            gun.DefaultModule.chargeProjectiles = new List<ProjectileModule.ChargeProjectile>
+            Mega = MegaBullet;
+            gun.Volley.projectiles[0].chargeProjectiles = new List<ProjectileModule.ChargeProjectile>
             {
-
                 item2,
                 emdium,
                 item3,
             };
 
 
-            gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
-            gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("CHARGER_AA", StaticCollections.Clip_Ammo_Atlas, "apoll_1", "apoll_2");
+
 
             gun.gunClass = GunClass.NONE;
 
@@ -234,16 +358,37 @@ namespace ModularMod
 
             ETGMod.Databases.Items.Add(gun, false, "ANY");
             GunID = gun.PickupObjectId;
-            IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
-        }
+            //IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
 
-        public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
-        {
-            if (modulePrinterCore.ModularGunController.gun.PickupObjectId != GunID) { return; }
-            p.baseData.damage *= 1 + (0.15f * stack);
-            p.AdditionalScaleMultiplier *= 1 + (0.25f * stack);
-            p.baseData.force *= 3;
+            IteratedDesign.SpecialProcessFirstPickup += (modCore, i, Play) =>
+            {
+                (modCore as ModulePrinterCore).ModularGunController.gun.Volley.projectiles[0].chargeProjectiles.Add(new ProjectileModule.ChargeProjectile()
+                {
+                    Projectile = Mega,
+                    ChargeTime = 2.4f,
+                    AmmoCost = 2,
+                    OverrideMuzzleFlashVfxPool = (PickupObjectDatabase.GetById(387) as Gun).muzzleFlashEffects,
+                    AdditionalWwiseEvent = "Play_SentryRailgun",
+                    UsedProperties = ProjectileModule.ChargeProjectileProperties.muzzleFlash | ProjectileModule.ChargeProjectileProperties.additionalWwiseEvent
+                    
+                });
+            };
+            IteratedDesign.SpecialProcessUnequip += (modCore, i, Play) =>
+            {
+                (modCore as ModulePrinterCore).ModularGunController.gun.Volley.projectiles[0].chargeProjectiles.RemoveAt(3);
+            };
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == GunID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Adds an extra powerful 4th charge tier.";
+                }
+                return text;
+            };
+
         }
+        private static Projectile Mega;
+
 
         public static int GunID;
     }

@@ -29,8 +29,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("mirrored_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Mirrored Software " + h.ReturnTierLabel();
-            h.LabelDescription = "Acts as 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") copies of\na random "+ StaticColorHexes.AddColorToLabelString("active", StaticColorHexes.Light_Green_Hex) + " module.\nSwitches on every floor.";
+            h.SetName("Mirrored Software " + h.ReturnTierLabel());
+            h.SetDescription("Acts as 2 (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") copies of\na random " + StaticColorHexes.AddColorToLabelString("active", StaticColorHexes.Light_Green_Hex) + " module.\nSwitches on every floor.");
+            h.AdditionalWeightMultiplier = 0.7f;
 
             h.AddModuleTag(BaseModuleTags.UNIQUE);
             h.AddModuleTag(BaseModuleTags.GENERATION);
@@ -163,11 +164,11 @@ namespace ModularMod
             while (found == false && rolls > 0)
             {
 
-                var list = printer.ModuleContainers.Where(self => self.ActiveCount > 0 && self.LabelName != this.LabelName); //BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(printer.ModuleContainers)
+                var list = printer.ModuleContainers.Where(self => self.ActiveCount > 0 && self.LabelName != this.UnmodifiedLabelName); //BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(printer.ModuleContainers)
                 if (list.Count() >0)
                 {
                     var c = BraveUtility.RandomElement<ModulePrinterCore.ModuleContainer>(list.ToList());
-                    if (c.LabelName != this.LabelName)
+                    if (c.LabelName != this.UnmodifiedLabelName)
                     {
                         found = !found;
 

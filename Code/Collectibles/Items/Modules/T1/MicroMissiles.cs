@@ -29,8 +29,8 @@ namespace ModularMod
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("micromissiles_tier1_alt_module.png");
             h.Tier = ModuleTier.Tier_1;
             h.AdditionalWeightMultiplier = 0.7f;
-            h.LabelName = "Micro Missiles " + h.ReturnTierLabel();
-            h.LabelDescription = $"Increases clip size by 25% ({StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex)}).\nOn reload, fire a missile ({StaticColorHexes.AddColorToLabelString("+1 missile", StaticColorHexes.Light_Orange_Hex)}) for every 15 enemies killed\non the current floor.";
+            h.SetName("Micro Missiles " + h.ReturnTierLabel());
+            h.SetDescription($"Increases clip size by 25% ({StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex)}).\nOn reload, fire a missile ({StaticColorHexes.AddColorToLabelString("+1 missile", StaticColorHexes.Light_Orange_Hex)}) for every 15 enemies killed\non the current floor.");
             h.AddModuleTag(BaseModuleTags.CONDITIONAL);
             h.AddToGlobalStorage();
             h.SetTag("modular_module");
@@ -83,7 +83,7 @@ namespace ModularMod
         public int ProcessClipSize(int f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
             int stack = this.ReturnStack(modulePrinterCore);
-            return f + ((modularGunController.Base_Clip_Size / 4) * modulePrinterCore.ReturnStack(this.LabelName));
+            return f + ((modularGunController.Base_Clip_Size / 4) * modulePrinterCore.ReturnStack(this.UnmodifiedLabelName));
         }
 
         public void OGR(ModulePrinterCore modulePrinterCore, PlayerController player, Gun g)

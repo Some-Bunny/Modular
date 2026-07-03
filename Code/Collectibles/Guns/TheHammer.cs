@@ -7,6 +7,7 @@ using ModularMod;
 using System.Linq;
 using System.Collections.Generic;
 using Alexandria.Misc;
+using HarmonyLib;
 
 namespace ModularMod
 {
@@ -15,6 +16,17 @@ namespace ModularMod
 
     public class TheHammer : MultiActiveReloadController
     {
+
+        [HarmonyPatch(typeof(Gun), nameof(Gun.OnActiveReloadSuccess))]
+        public class Gun_OnActiveReloadSuccess
+        {
+            [HarmonyPostfix]
+            private static void Awake(Gun __instance)
+            {
+                __instance.BroadcastMessage("MDL_SuccessActiveReload");
+            }
+        }
+
         public static void Init()
         {
             Gun gun = ETGMod.Databases.Items.NewGun("The Hammer", "thehammer");
@@ -147,11 +159,15 @@ namespace ModularMod
             c.activeReloadEnabled = true;
             c.canAttemptActiveReload = true;
             /*
-            behavior.activeReloadEnabled = true;
-            behavior.canAttemptActiveReload = true;
-            behavior.reloads = new List<MultiActiveReloadData>
+            c.activeReloadEnabled = true;
+            c.canAttemptActiveReload = true;
+
+
+            c.activeReloadEnabled = true;
+            c.canAttemptActiveReload = true;
+            c.reloads = new List<MultiActiveReloadData>
             {
-                new MultiActiveReloadData(0, 50, 60, 48, 0, true, false, new ActiveReloadData
+                new MultiActiveReloadData(0, 0, 60, 48, 0, true, false, new ActiveReloadData
                 {
                     damageMultiply = 1f,
 
@@ -177,7 +193,6 @@ namespace ModularMod
 
             var k = tk2dAnim.gameObject.AddComponent<SpriteAnimatorKiller>();
             k.animator = tk2dAnim;
-            k.fadeTime = 0.6f;
 
             tk2d.usesOverrideMaterial = true;
             tk2d.renderer.material.shader = ShaderCache.Acquire("Brave/LitTk2dCustomFalloffTiltedCutoutEmissive");
@@ -236,7 +251,14 @@ namespace ModularMod
 
             IteratedDesign.SpecialProcessGunSpecific += c.Process;
             IteratedDesign.SpecialProcessGunSpecificReload += c.ProcessReloadSpecial;
-
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Successful active reloads fires a bonus projectile.\nFailed active reloads fires a burst of projectiles,\nscaling with consecutive successful active reloads.";
+                }
+                return text;
+            };
         }
         public float ProcessReloadSpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
@@ -261,12 +283,38 @@ namespace ModularMod
         {
             base.OnReloadEndedSafe(player, gun);
         }
+        public int Successes;
 
-        public override void OnActiveReloadSuccess(MultiActiveReload reload)
+        public void MDL_SuccessActiveReload()
         {
-            var fx = base.gun.CurrentOwner.PlayEffectOnActor(StrikeVFX, new Vector3(0, 1.25f));
-            fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("hammerstrike");
-            base.OnActiveReloadSuccess(reload);
+            Successes++;
+            //Debug.Log("A1");
+
+           // var fx = base.gun.CurrentOwner.PlayEffectOnActor(StrikeVFX, new Vector3(0, 1.25f));
+            //Debug.Log("A2");
+            //fx.GetComponent<tk2dSpriteAnimator>().PlayAndDestroyObject("hammerstrike");
+            //Debug.Log("A3");
+            //base.OnActiveReloadSuccess(reload);
+            //Debug.Log("A4");
+            if (GlobalModuleStorage.PlayerHasActiveModule((gun.CurrentOwner as PlayerController), IteratedDesign.ID))
+            {
+                //Debug.Log("A5");
+                float f = ReturnControl().GetAccuracy(4);
+                var p = (PickupObjectDatabase.GetById((gun.CurrentOwner as PlayerController).IsUsingAlternateCostume ? PresicionRifleAlt.ID : PresicionRifle.ID) as Gun).DefaultModule.projectiles[0];
+                var PP = SpawnManager.SpawnProjectile(p.gameObject, gun.barrelOffset.position, Quaternion.Euler(0, 0, gun.CurrentAngle + (UnityEngine.Random.Range(-f, f)))).GetComponent<Projectile>();
+                if (PP)
+                {
+                    PP.baseData.damage = 18;
+                    PP.Owner = gun.CurrentOwner;
+                    PP.Shooter = gun.CurrentOwner.specRigidbody;
+                    PP.baseData.speed = 70;
+                    PP.UpdateSpeed();
+                    var _ = PP.gameObject.AddComponent<PierceProjModifier>();
+                    _.penetratesBreakables = true;
+                    _.penetration = 2;
+                    (gun.CurrentOwner as PlayerController).DoPostProcessProjectile(PP);
+                }
+            }
         }
 
         public override void OnActiveReloadFailure(MultiActiveReload reload)
@@ -277,19 +325,50 @@ namespace ModularMod
             {
                 if (GlobalModuleStorage.PlayerHasActiveModule((gun.CurrentOwner as PlayerController), IteratedDesign.ID))
                 {
-                    var newData = StaticExplosionDatas.CopyFields(HammerData);
+                    var newData = StaticExplosionDatas.CopyFields(TheHammer.HammerData);
                     newData.damage = 70;
-                    newData.damageRadius = 4;
+                    newData.damageRadius = 5;
+                    newData.ignoreList = new List<SpeculativeRigidbody>() { gun.CurrentOwner.specRigidbody };
                     Exploder.Explode(gun.sprite.WorldCenter, newData, gun.sprite.WorldCenter);
+
+                    float f = ReturnControl().GetAccuracy(20);
+                    var p = (PickupObjectDatabase.GetById((gun.CurrentOwner as PlayerController).IsUsingAlternateCostume ? DefaultArmCannonAlt.ID : DefaultArmCannon.ID) as Gun).DefaultModule.projectiles[0];
+                    for (int i = 0; i < 3 + Successes; i++)
+                    {
+                        var PP = SpawnManager.SpawnProjectile(p.gameObject, gun.barrelOffset.position, Quaternion.Euler(0, 0, gun.CurrentAngle + (UnityEngine.Random.Range(-f, f)))).GetComponent<Projectile>();
+                        if (PP)
+                        {
+                            PP.baseData.damage = 8;
+                            PP.Owner = gun.CurrentOwner;
+                            PP.Shooter = gun.CurrentOwner.specRigidbody;
+                            PP.baseData.speed = UnityEngine.Random.Range(25, 55);
+                            PP.UpdateSpeed();
+                            var _ = PP.gameObject.AddComponent<PierceProjModifier>();
+                            _.penetratesBreakables = true;
+                            _.penetration = 3;
+                            (gun.CurrentOwner as PlayerController).DoPostProcessProjectile(PP);
+                        }
+                    }
 
                 }
             }
             else
             {
-                Exploder.Explode(gun.sprite.WorldCenter, HammerData, gun.sprite.WorldCenter);
+                var newData = StaticExplosionDatas.CopyFields(TheHammer.HammerData);
+                newData.ignoreList = new List<SpeculativeRigidbody>() { gun.CurrentOwner.specRigidbody };
+                Exploder.Explode(gun.sprite.WorldCenter, newData, gun.sprite.WorldCenter);
             }
+            Successes = 0;
         }
-
+        public ModularGunController ReturnControl()
+        {
+            if (storedReference == null)
+            {
+                storedReference = this.gun.GetComponent<ModularGunController>();
+            }
+            return storedReference;
+        }
+        private ModularGunController storedReference;
 
         public static int ID;
     }

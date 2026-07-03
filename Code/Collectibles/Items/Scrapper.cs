@@ -49,6 +49,7 @@ namespace ModularMod
             var tk2d = VFX.AddComponent<tk2dSprite>();
             tk2d.Collection = StaticCollections.VFX_Collection;
             tk2d.SetSprite(StaticCollections.VFX_Collection.GetSpriteIdByName("scrapper_scrap_007"));
+            pickup.RemovePickupFromLootTables();
 
             var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
             tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("ScrapperAnimation").GetComponent<tk2dSpriteAnimation>();

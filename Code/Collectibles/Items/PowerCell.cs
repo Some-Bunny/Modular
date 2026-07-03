@@ -31,6 +31,7 @@ namespace ModularMod
         public static void PostInit(PickupObject v)
         {
             (v as PassiveItem).passiveStatModifiers = new StatModifier[] { };
+            v.RemovePickupFromLootTables();
 
             v.CanBeDropped = false;
             v.gameObject.AddComponent<ModulePrinterCore.AdditionalItemEnergyComponent>().AdditionalEnergy = 1;

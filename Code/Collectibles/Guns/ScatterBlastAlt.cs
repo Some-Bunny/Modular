@@ -48,9 +48,7 @@ namespace ModularMod
             gun.quality = PickupObject.ItemQuality.EXCLUDED;
 
             int q = 0;
-            gun.Volley.UsesShotgunStyleVelocityRandomizer = true;
-            gun.Volley.DecreaseFinalSpeedPercentMin = 0.7f;
-            gun.Volley.IncreaseFinalSpeedPercentMax = 1.2f;
+
 
             foreach (ProjectileModule projectileModule in gun.Volley.projectiles)
             {
@@ -106,8 +104,8 @@ namespace ModularMod
             }
 
             gun.Volley.UsesShotgunStyleVelocityRandomizer = true;
-            //gun.Volley.DecreaseFinalSpeedPercentMin = 0.66f;
-            //un.Volley.IncreaseFinalSpeedPercentMax = 1.5f;
+            gun.Volley.DecreaseFinalSpeedPercentMin = -33;
+            gun.Volley.IncreaseFinalSpeedPercentMax = 33f;
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = "ArmCannonAlt";
 
@@ -129,20 +127,40 @@ namespace ModularMod
             ID = gun.PickupObjectId;
             IteratedDesign.SpecialProcessGunSpecific += c.ProcessFireRateSpecial;
             IteratedDesign.SpecialProcessGunSpecificAccuracy += c.ProcessAccuracySpecial;
+            IteratedDesign.SpecialProcessFirstPickup += (modCore, i, Play) =>
+            {
+                Play.stats.AdditionalVolleyModifiers += Stats_AdditionalVolleyModifiers;
 
+            };
+            IteratedDesign.SpecialProcessUnequip += (modCore, i, Play) =>
+            {
+                Play.stats.AdditionalVolleyModifiers -= Stats_AdditionalVolleyModifiers;
+            };
+            IteratedDesign.OverrideAdditionalDescription += (text, gunID) =>
+            {
+                if (gunID == ID)
+                {
+                    return text + $"\n{StaticColorHexes.AddColorToLabelString("Bonus Effect:", StaticColorHexes.Green_Hex)} Doubles projectile count.\nIncreases spread and reduces damage.";
+                }
+                return text;
+            };
         }
-
+        private static void Stats_AdditionalVolleyModifiers(ProjectileVolleyData obj)
+        {
+            Toolbox.ModifyVolley(obj, Toolbox.GetModular(), 0, 1, 1);
+        }
         public void ProcessFireRateSpecial(ModulePrinterCore modulePrinterCore, Projectile p, int stack, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return; }
             p.baseData.force *= 1 + stack;
-            p.baseData.range *= 1 + stack;
+            p.baseData.range *= 1 + ((float)stack * 0.2f);
+            p.baseData.damage *= 0.7f;
         }
 
         public float ProcessAccuracySpecial(float f, int stack, ModulePrinterCore modulePrinterCore, PlayerController player)
         {
             if (modulePrinterCore.ModularGunController.gun.PickupObjectId != ID) { return f; }
-            return f / (1 + (stack / 4));
+            return f * (1 + (0.25f * (float)stack));
         }
         public static int ID;
     }

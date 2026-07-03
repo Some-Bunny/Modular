@@ -29,9 +29,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("counerproduction_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Counter Productivity " + h.ReturnTierLabel();
-            h.AdditionalWeightMultiplier = 0.75f;
-            h.LabelDescription = "Divides Clip Size and Reload Time by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nSlightly increases fire rate  (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.SetName("Counter Productivity " + h.ReturnTierLabel());
+            h.AdditionalWeightMultiplier = 0.8f;
+            h.SetDescription("Divides Clip Size and Reload Time by 2 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ").\nSlightly increases fire rate  (" + StaticColorHexes.AddColorToLabelString("+More Fire Rate", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

@@ -34,8 +34,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             //h.AltSpriteID = StaticCollections.Module_T3_Collection.GetSpriteIdByName("swarmer_t3_module_alt");
             h.Tier = ModuleTier.Tier_Omega;
-            h.LabelName = "CARPAL NIGHTMARE " + h.ReturnTierLabel();
-            h.LabelDescription = "PRESSING THE FIRE BUTTON TEMPORARILY BOOSTS FIRE RATE.\nPRESSING RELOAD WHILE RELOADING BOOSTS THE NEXT CLIP.\n("+StaticColorHexes.AddColorToLabelString("MORE STATS")+").";
+            h.SetName("CARPAL NIGHTMARE " + h.ReturnTierLabel());
+            h.SetDescription("PRESSING THE FIRE BUTTON TEMPORARILY BOOSTS FIRE RATE.\nPRESSING RELOAD WHILE RELOADING BOOSTS THE NEXT CLIP.\n(" + StaticColorHexes.AddColorToLabelString("MORE STATS") + ").");
             h.powerConsumptionData = new PowerConsumptionData()
             {
                 FirstStack = 0,

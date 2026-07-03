@@ -28,9 +28,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("battersrevenge_tier1_module_alt.png");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.75f;
-            h.LabelName = "Batters Revenge " + h.ReturnTierLabel();
-            h.LabelDescription = "Reduces reload time by 20% ("+ StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nWhen reloading, toss out 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") baseballs that can be shot\nto pitch them. Damage scales with the projectile that hit it.\n(" + StaticColorHexes.AddColorToLabelString("+Higher Damage Scaling", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.AdditionalWeightMultiplier = 0.7f;
+            h.SetName("Batters Revenge " + h.ReturnTierLabel());
+            h.SetDescription("Reduces reload time by 20% (" + StaticColorHexes.AddColorToLabelString("+20% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").\nWhen reloading, toss out 1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") baseballs that can be shot\nto pitch them. Damage scales with the projectile that hit it.\n(" + StaticColorHexes.AddColorToLabelString("+Higher Damage Scaling", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 

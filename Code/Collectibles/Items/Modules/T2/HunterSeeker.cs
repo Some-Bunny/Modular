@@ -30,8 +30,8 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("hunterseeker_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Hunter Seeker " + h.ReturnTierLabel();
-            h.LabelDescription = $"Reduces projectile speed by 33%.\nProjectiles gain increased homing over time. ({StaticColorHexes.AddColorToLabelString("+Increased Homing Power Growth")})";
+            h.SetName("Hunter Seeker " + h.ReturnTierLabel());
+            h.SetDescription($"Reduces projectile speed by 33%.\nProjectiles gain increased homing over time. ({StaticColorHexes.AddColorToLabelString("+Increased Homing Power Growth")})");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
 

@@ -26,10 +26,10 @@ namespace ModularMod
         {
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("plusone_tier1_module_alt");
-            h.AdditionalWeightMultiplier = 0.66f;
+            h.AdditionalWeightMultiplier = 0.7f;
             h.Tier = ModuleTier.Tier_1;
-            h.LabelName = "Plus One " + h.ReturnTierLabel();
-            h.LabelDescription = "Improves projectiles by\nexactly +1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage.";
+            h.SetName("Plus One " + h.ReturnTierLabel());
+            h.SetDescription("Improves projectiles by\nexactly +1 (" + StaticColorHexes.AddColorToLabelString("+1", StaticColorHexes.Light_Orange_Hex) + ") damage.");
 
 
             h.AddModuleTag(BaseModuleTags.BASIC);
@@ -69,7 +69,7 @@ namespace ModularMod
             yield return null;
             int stack = overrideStack ?? this.ReturnStack(modulePrinterCore);
             p.baseData.damage += stack;
-            p.baseData.force += 1;
+            p.baseData.force += stack;
             yield break;
         }
 

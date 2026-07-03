@@ -26,9 +26,9 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("heavyrounds_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.AdditionalWeightMultiplier = 0.7f;
-            h.LabelName = "Heavyweight Rounds" + h.ReturnTierLabel();
-            h.LabelDescription = "Increases Damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + "),\nand bullet size by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nbut reduces player bullet speed by 50% (" + StaticColorHexes.AddColorToLabelString("+50% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").";
+            h.AdditionalWeightMultiplier = 0.75f;
+            h.SetName("Heavyweight Rounds" + h.ReturnTierLabel());
+            h.SetDescription("Increases Damage by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + "),\nand bullet size by 25% (" + StaticColorHexes.AddColorToLabelString("+25%", StaticColorHexes.Light_Orange_Hex) + ")\nbut reduces player bullet speed by 50% (" + StaticColorHexes.AddColorToLabelString("+50% hyperbolically", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);
             h.AddModuleTag(BaseModuleTags.TRADE_OFF);

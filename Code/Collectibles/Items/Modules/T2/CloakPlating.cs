@@ -29,15 +29,15 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("cloakup_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.LabelName = "Cloak Plating " + h.ReturnTierLabel();
-            h.LabelDescription = "Entering combat cloaks the player for 6 ("+ StaticColorHexes.AddColorToLabelString("+3", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking (by attacking or rolling) grants a\n" +
-                "4x (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that quickly degrades.\nGrants a 30% movement speed buff while cloaked.";
+            h.SetName("Cloak Plating " + h.ReturnTierLabel());
+            h.SetDescription("Entering combat cloaks the player for 6 (" + StaticColorHexes.AddColorToLabelString("+3", StaticColorHexes.Light_Orange_Hex) + ") seconds.\nForcefully uncloaking (by attacking or rolling) grants a\n" +
+                "4x (" + StaticColorHexes.AddColorToLabelString("+2", StaticColorHexes.Light_Orange_Hex) + ") damage multiplier that quickly degrades.\nGrants a 30% movement speed buff while cloaked.");
             h.SetTag("modular_module");
             h.AddColorLight(Color.green);
             h.Offset_LabelDescription = new Vector2(0.125f, -0.25f);
             h.Offset_LabelName = new Vector2(0.125f, 1.75f);
             h.EnergyConsumption = 1;
-            h.AdditionalWeightMultiplier = 0.8f;
+            h.AdditionalWeightMultiplier = 0.85f;
             h.AddModuleTag(BaseModuleTags.DEFENSIVE);
             h.AddModuleTag(BaseModuleTags.UNIQUE);
 

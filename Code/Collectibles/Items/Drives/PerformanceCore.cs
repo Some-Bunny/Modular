@@ -78,6 +78,7 @@ namespace ModularMod
             v.AddPassiveStatModifier(PlayerStats.StatType.ProjectileSpeed, 1.1f, StatModifier.ModifyMethod.MULTIPLICATIVE);
             v.AddPassiveStatModifier(PlayerStats.StatType.AdditionalClipCapacityMultiplier, 0.5f, StatModifier.ModifyMethod.MULTIPLICATIVE);
             v.AddPassiveStatModifier(PlayerStats.StatType.Damage, 1.2f, StatModifier.ModifyMethod.MULTIPLICATIVE);
+
             AllocationCoreID = v.PickupObjectId;
         }
         public override void Pickup(PlayerController player)
