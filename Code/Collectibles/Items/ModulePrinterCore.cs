@@ -9,9 +9,12 @@ using Alexandria.ItemAPI;
 using Alexandria.Misc;
 using Brave.BulletScript;
 using Dungeonator;
+using HarmonyLib;
 using HutongGames.PlayMaker.Actions;
 using JuneLib.Items;
 using ModularMod.Code.Components.Projectile_Components;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
 using MonoMod.RuntimeDetour;
 using Planetside;
 using SaveAPI;
@@ -23,6 +26,34 @@ namespace ModularMod
 {
     public class ModulePrinterCore : PassiveItem
     {
+        [HarmonyPatch]
+        private static class ChestBehaviorBaseItemDrop
+        {
+            [HarmonyPatch(typeof(SpawnGunslingGun), nameof(SpawnGunslingGun.OnEnter))]
+            [HarmonyILManipulator]
+            private static void Bomk(ILContext il)
+            {
+                ILCursor cursor = new ILCursor(il);
+
+                if (!cursor.TryGotoNext(MoveType.Before,
+                    instr => instr.MatchStfld<PickupObject>("CanBeDropped"),
+                    instr => instr.MatchLdloc(5),
+                    instr => instr.MatchLdcI4(0)))
+                    return;
+
+
+                cursor.Emit(OpCodes.Ldarg, 0);
+                cursor.Emit(OpCodes.Ldloc, 5);
+                cursor.Emit(OpCodes.Call, typeof(ChestBehaviorBaseItemDrop).GetMethod("SetCurrentGunslingKingGun", BindingFlags.Static | BindingFlags.NonPublic));
+                //cursor.Emit(OpCodes.Ldarg_1);
+            }
+            private static void SetCurrentGunslingKingGun(SpawnGunslingGun chestBehavior, Gun gunslingKingGun)
+            {
+                currentGunslingKingGun = gunslingKingGun;
+            }
+        }
+
+
         public static void Init()
         {
             string name = "Modular Printer Core";
@@ -79,7 +110,7 @@ namespace ModularMod
 
             ItemSynergyController.ModularSynergy.synergizing_Items.Add(new ItemSynergyController.ModularSynergy("Triple Crit", "turkey") { });
 
-            new Hook(typeof(SpawnGunslingGun).GetMethod("OnEnter", BindingFlags.Instance | BindingFlags.Public), typeof(ModulePrinterCore).GetMethod("GunslingKingGunCheck"));
+            //new Hook(typeof(SpawnGunslingGun).GetMethod("OnEnter", BindingFlags.Instance | BindingFlags.Public), typeof(ModulePrinterCore).GetMethod("GunslingKingGunCheck"));
             item.associatedItemChanceMods = new LootModData[]
             {
                 new LootModData()
@@ -90,6 +121,23 @@ namespace ModularMod
             };
         }
 
+        /*
+        [HarmonyPatch(typeof(PickupObject), nameof(PickupObject.ShouldBeTakenByRat))]
+        public class Patch_PickupObject_ShouldBeTakenByRatSpawnProjModifier
+        {
+            [HarmonyPrefix]
+            private static bool Awake(PickupObject __instance, ref bool __result)
+            {
+                if (GameManager.Instance.Dungeon && GameManager.Instance.Dungeon.DungeonFloorName == "The Deep.")
+                {
+                    __result = false;
+                    return false;
+                }
+                return true;
+            }
+        }
+        */
+        /*
         //Hook to make Gunsling King work as intended with Modular
         public static void GunslingKingGunCheck(Action<SpawnGunslingGun> orig, SpawnGunslingGun self)
         {
@@ -118,6 +166,8 @@ namespace ModularMod
             }
             self.Finish();
         }
+        */
+
         public static Gun currentGunslingKingGun;
         public override void Pickup(PlayerController player)
         {
@@ -315,6 +365,8 @@ namespace ModularMod
                 }
                 return;
             }
+            this.StartCoroutine(FrameDelay(newGun));
+            /*
             if (currentGunslingKingGun != null)
             {
                 this.StartCoroutine(FrameDelay(newGun));
@@ -323,19 +375,25 @@ namespace ModularMod
             {
                 base.Owner.ForceDropGun(newGun);
             }
+            */
         }
         private IEnumerator FrameDelay(Gun g)
         {
             yield return null;
-            if (g == currentGunslingKingGun)
+
+            if (currentGunslingKingGun != null)
             {
-                var t = Toolbox.GenerateText(base.Owner.transform, new Vector2(1.5f, 0.5f), 0.5f, "Gun Override Detected :\nWeapon Will Not Be Dropped.", ColorToUse(Owner));
-                t.Invoke("Inv", 3.5f);
+                if (g == currentGunslingKingGun)
+                {
+                    var t = Toolbox.GenerateText(base.Owner.transform, new Vector2(1.5f, 0.5f), 0.5f, "Gun Override Detected :\nWeapon Will Not Be Dropped.", ColorToUse(Owner));
+                    t.Invoke("Inv", 3.5f);
+                    yield break;
+                }
             }
-            else
-            {
-                base.Owner.ForceDropGun(g);
-            }
+
+
+            base.Owner.ForceDropGun(g);
+
             yield break;
         }
 
@@ -1157,13 +1215,15 @@ namespace ModularMod
             }
             else
             {
+
+                var p = Instantiate<DefaultModule>(module);
                 var modCont = new ModuleContainer()
                 {
                     LabelName = module.UnmodifiedLabelName,
                     tier = module.Tier,
                     ID = module.PickupObjectId,
                     Count = 0,
-                    defaultModule = module,
+                    defaultModule = p,
                     TemporaryCount = new List<Tuple<string, int>>() { new Tuple<string, int>(Context, Amount_Of_Fakes) { } },
                     WasEverFake = true
                 };
@@ -1178,7 +1238,7 @@ namespace ModularMod
                     }
                     modCont.defaultModule.OnAnyPickup(this, this.ModularGunController, base.Owner, false);
                 }
-
+                p.DoTemporaryPickup(Owner);
                 return modCont;
             }
         }

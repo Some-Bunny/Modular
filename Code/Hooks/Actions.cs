@@ -1,4 +1,8 @@
 ﻿using Dungeonator;
+using HarmonyLib;
+using HutongGames.PlayMaker.Actions;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
 using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
@@ -14,119 +18,123 @@ namespace ModularMod.Code.Hooks
     {
         public static void Init()
         {
-            new Hook(typeof(RoomHandler).GetMethod("TriggerReinforcementLayer", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("TriggerReinforcementLayerHook"));
-            new Hook(typeof(PlayerItem).GetMethod("Drop", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("DropHook"));
-            new Hook(typeof(FloorRewardManifest).GetMethod("GetNextBossReward", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("BossDropHook"));
-            new Hook(typeof(RewardManager).GetMethod("GetRewardObjectBossStyle", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("GetRewardObjectBossStyleHook"));
-            new Hook(typeof(RewardManager).GetMethod("IsBossRewardForcedGun", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("ModifyBossForceGunHook"));
+            //new Hook(typeof(RoomHandler).GetMethod("TriggerReinforcementLayer", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("TriggerReinforcementLayerHook"));
+            //new Hook(typeof(PlayerItem).GetMethod("Drop", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("DropHook"));
+            //new Hook(typeof(FloorRewardManifest).GetMethod("GetNextBossReward", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("BossDropHook"));
+            //new Hook(typeof(RewardManager).GetMethod("GetRewardObjectBossStyle", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("GetRewardObjectBossStyleHook"));
+            //new Hook(typeof(RewardManager).GetMethod("IsBossRewardForcedGun", BindingFlags.Instance | BindingFlags.Public), typeof(Actions).GetMethod("ModifyBossForceGunHook"));
 
         }
 
-        public static GameObject GetRewardObjectBossStyleHook(System.Func<RewardManager, PlayerController, GameObject> orig, RewardManager self, PlayerController player)
+        [HarmonyPatch(typeof(RewardManager), nameof(RewardManager.GetRewardObjectBossStyle))]
+        public class Patch_RewardManager_GetRewardObjectBossStyle
         {
-            if (player.HasPassiveItem(ConfidenceCore.ConfidenceCoreID))
+            [HarmonyPrefix]
+            private static bool Awake(RewardManager __instance, PlayerController player, ref GameObject __result)
             {
-                return GameManager.Instance.RewardManager.ItemsLootTable.defaultItemDrops.SelectByWeight();
-            }
-
-
-            FloorRewardData currentRewardData = self.CurrentRewardData;
-            bool flag;
-            if (GameManager.Instance.BestGenerationDungeonPrefab.tileIndices.tilesetId == GlobalDungeonData.ValidTilesets.CASTLEGEON && GameManager.Instance.CurrentGameType == GameManager.GameType.SINGLE_PLAYER && player && player.inventory != null && player.inventory.GunCountModified <= 3)
-            {
-                flag = (UnityEngine.Random.value > 0.2f);
-            }
-            else if (GameManager.Instance.CurrentGameType == GameManager.GameType.SINGLE_PLAYER && player && player.inventory != null && player.inventory.GunCountModified <= 2)
-            {
-                flag = (UnityEngine.Random.value > 0.3f);
-            }
-            else
-            {
-                flag = (UnityEngine.Random.value > self.ItemVsGunChanceBossReward);
-            }
-            if (self.IsBossRewardForcedGun())
-            {
-                flag = true;
-            }
-            if ((GameManager.Instance.CurrentGameMode == GameManager.GameMode.BOSSRUSH || GameManager.Instance.CurrentGameMode == GameManager.GameMode.SUPERBOSSRUSH) && !GameManager.Instance.Dungeon.HasGivenBossrushGun)
-            {
-                GameManager.Instance.Dungeon.HasGivenBossrushGun = true;
-                flag = true;
-            }
-            if (ModifyForceGun != null)
-            {
-                flag = ModifyForceGun(flag);
-            }
-            if (flag)
-            {
-                PickupObject.ItemQuality randomBossTargetQuality = currentRewardData.GetRandomBossTargetQuality(null);
-                return self.GetItemForPlayer(player, self.GunsLootTable, randomBossTargetQuality, null, false, null, false, null, false, RewardManager.RewardSource.BOSS_PEDESTAL);
-            }
-            return self.GetRewardItemDaveStyle(player, true);
-        }
-
-        public static bool ModifyBossForceGunHook(System.Func<RewardManager, bool> orig, RewardManager self)
-        {
-            if (GameManager.Instance.CurrentGameMode != GameManager.GameMode.BOSSRUSH)
-            {
-                bool flag = true;
-                for (int i = 0; i < GameManager.Instance.AllPlayers.Length; i++)
+                if (player.HasPassiveItem(ConfidenceCore.ConfidenceCoreID))
                 {
-                    if (GameManager.Instance.AllPlayers[i] && (GameManager.Instance.AllPlayers[i].HasReceivedNewGunThisFloor || GameManager.Instance.AllPlayers[i].CharacterUsesRandomGuns))
+                    __result = GameManager.Instance.RewardManager.ItemsLootTable.defaultItemDrops.SelectByWeight();
+                    return false;
+                }
+                return true;
+            }
+        }
+        [HarmonyPatch(typeof(RewardManager), nameof(RewardManager.IsBossRewardForcedGun))]
+        public class Patch_RewardManager_IsBossRewardForcedGun
+        {
+            [HarmonyPostfix]
+            private static void Awake(RewardManager __instance,  ref bool __result)
+            {
+                if (ModifyForceGun != null)
+                {
+                    foreach (var entry in ModifyForceGun.GetInvocationList())
                     {
-                        flag = false;
+                        __result = (bool)entry.DynamicInvoke(__result);
                     }
                 }
-                if (flag)
+            }
+        }
+
+
+
+        [HarmonyPatch(typeof(FloorRewardManifest), nameof(FloorRewardManifest.GetNextBossReward))]
+        public class Patch_FloorRewardManifest_GetNextBossReward
+        {
+            [HarmonyPostfix]
+            private static void Awake(FloorRewardManifest __instance, bool forceGun, ref PickupObject __result)
+            {
+                if (ModifyBossDrop != null)
                 {
-                    Debug.LogWarning("Potentially Force Drop GUN");
-                    if (ModifyForceGun != null)
+                    foreach (var entry in ModifyBossDrop.GetInvocationList())
                     {
-                        return ModifyForceGun(flag);
+                        __result = (PickupObject)entry.DynamicInvoke(__result);
                     }
-                    return true;
                 }
             }
-            return false;
         }
-
-        public static PickupObject BossDropHook(System.Func<FloorRewardManifest, bool, PickupObject> orig, FloorRewardManifest self, bool forceGun)
+        [HarmonyPatch]
+        private static class PlayerItem_Drop
         {
-            if (forceGun)
+            [HarmonyPatch(typeof(PlayerItem), nameof(PlayerItem.Drop))]
+            [HarmonyILManipulator]
+            private static void Bomk(ILContext il)
             {
-                self.m_bossGunIndex++;
+                ILCursor cursor = new ILCursor(il);
 
-                return ModifyBossDrop != null ? ModifyBossDrop(self.PregeneratedBossRewardsGunsOnly[self.m_bossGunIndex - 1]) : self.PregeneratedBossRewardsGunsOnly[self.m_bossGunIndex - 1];
+                if (!cursor.TryGotoNext(MoveType.Before,
+                    instr => instr.MatchLdarg(1),
+                    instr => instr.MatchLdfld<PlayerController>("stats"),
+                    instr => instr.MatchLdarg(1)))
+                    return;
+
+
+                cursor.Emit(OpCodes.Ldarg, 0);
+                cursor.Emit(OpCodes.Ldloc, 3);
+                cursor.Emit(OpCodes.Call, typeof(PlayerItem_Drop).GetMethod("ActiveItemDropped", BindingFlags.Static | BindingFlags.NonPublic));
             }
-            self.m_bossIndex++;
-
-            return ModifyBossDrop != null ? ModifyBossDrop(self.PregeneratedBossRewardsGunsOnly[self.m_bossGunIndex - 1]) : self.PregeneratedBossRewards[self.m_bossIndex - 1];
+            private static void ActiveItemDropped(PlayerItem chestBehavior, PlayerController player)
+            {
+                //Debug.Log("DSKJNSDAFJKNLDFAS");
+                if (OnActiveItemDropped != null) { OnActiveItemDropped(chestBehavior, player); }
+            }
         }
 
-        public static DebrisObject DropHook(System.Func<PlayerItem, PlayerController, float, DebrisObject> orig, PlayerItem self, PlayerController player, float overrideForce = 4f)
+        /*
+        [HarmonyPatch(typeof(PlayerItem), nameof(PlayerItem.Drop))]
+        public class Patch_PlayerItem_Drop
         {
-            var debris = orig(self, player, overrideForce);
-            if (OnActiveItemDropped != null) { OnActiveItemDropped(debris.GetComponent<PlayerItem>(), player); }
-            return debris;
+            [HarmonyPostfix]
+            private static void Awake(PlayerItem __instance,  ref DebrisObject __result)
+            {
+
+                if (OnActiveItemDropped != null) { OnActiveItemDropped(__result.GetComponent<PlayerItem>(), player); }
+            }
         }
+        */
+
+
+        /*
         public static bool PreUse(System.Func<PlayerItem, PlayerController, Single, bool> orig, PlayerItem self, PlayerController user, out Single flot)
         {
             flot = -1;
             return orig(self, user, -1);
         }
+        */
 
-        public static bool TriggerReinforcementLayerHook(Func<RoomHandler, int, bool, bool, int, int, bool, bool> orig, RoomHandler self, int index, bool removeLayer = true, bool disableDrops = false, int specifyObjectIndex = -1, int specifyObjectCount = -1, bool instant = false)
+        [HarmonyPatch(typeof(RoomHandler), nameof(RoomHandler.TriggerReinforcementLayer))]
+        public class Patch_RoomHandler_TriggerReinforcementLayer
         {
-            try
+            [HarmonyPostfix]
+            private static void Awake(RoomHandler __instance)
             {
-                if (OnReinforcementWave != null && self != null) { OnReinforcementWave(self); }
+                if (OnReinforcementWave != null && __instance != null) 
+                {
+                    OnReinforcementWave(__instance);
+                }
             }
-            catch (Exception e)
-            {
-                Debug.Log(e);
-            }
-            return orig(self, index, removeLayer, disableDrops, specifyObjectIndex, specifyObjectCount, instant);
         }
+
         public static System.Func<PickupObject,PickupObject> ModifyBossDrop;
         public static System.Func<bool, bool> ModifyForceGun;
 

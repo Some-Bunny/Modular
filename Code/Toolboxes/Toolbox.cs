@@ -37,6 +37,10 @@ namespace ModularMod
             }
             return  GameManager.Instance.PrimaryPlayer;
         }
+        public static bool IsModular(this PlayerController player)
+        {
+            return player.PlayerHasCore() != null;
+        }
 
         public static float SubdivideRange(float startValue, float endValue, int numDivisions, int i, bool offset = false)
         {

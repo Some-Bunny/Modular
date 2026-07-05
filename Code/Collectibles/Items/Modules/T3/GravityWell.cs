@@ -86,6 +86,8 @@ namespace ModularMod
             };
             printer.ProcessGunStatModifier(this.gunStatModifier);
             printer.OnPostProcessProjectile += PPP;
+            modularGunController.gun.gunSwitchGroup = (PickupObjectDatabase.GetById(365) as Gun).gunSwitchGroup;
+
         }
         public float ProcessFireRate(float f, ModulePrinterCore modulePrinterCore, ModularGunController modularGunController, PlayerController player)
         {
@@ -137,6 +139,7 @@ namespace ModularMod
             modulePrinter.RemoveGunStatModifier(this.gunStatModifier);
             player.stats.RecalculateStats(player);
             modulePrinter.OnPostProcessProjectile -= PPP;
+            modularGunController.ResetSwitchGroup();
         }
     }
 

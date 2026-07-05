@@ -29,7 +29,7 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T2_Collection.GetSpriteIdByName("scavenger_t2_module_alt");
             h.Tier = ModuleTier.Tier_2;
-            h.SetDescription("The Scavenger " + h.ReturnTierLabel());
+            h.SetName("The Scavenger " + h.ReturnTierLabel());
             h.SetDescription("Allows you to scrap Guns.\nGrants +5% damage (" + StaticColorHexes.AddColorToLabelString("+5%", StaticColorHexes.Light_Orange_Hex) + ") and +2.5% movement speed per Scrap.");
             h.AppearsInRainbowMode = false;
             h.AppearsFromBlessedModeRoll = false;

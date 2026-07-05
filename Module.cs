@@ -35,7 +35,7 @@ namespace ModularMod
     {
         public const string GUID = "somebunny.etg.modularcharacter";
         public const string NAME = "Modular Custom Character";
-        public const string VERSION = "1.3.18";
+        public const string VERSION = "1.3.19";
         public const string TEXT_COLOR = "#79eaff";
 
         public static AssetBundle ModularAssetBundle;
@@ -124,7 +124,7 @@ namespace ModularMod
             //Hooks
             DungeonHooks.Init();
             Hooks.Init();
-            Actions.Init();
+            //Actions.Init();
             EnemyDeathUnlockController.Start();
             MultiActiveReloadManager.SetupHooks();
             CustomClipAmmoTypeToolbox.Init();
@@ -185,7 +185,7 @@ namespace ModularMod
             StarterGunSelectUIController.Init();
             ScrapUIController.Init();
             AdditionalEnergyInitializer.Init();
-            UIHooks.Init();
+            //UIHooks.Init();
             //==================//
 
             //==== Set up loot tables ====//
