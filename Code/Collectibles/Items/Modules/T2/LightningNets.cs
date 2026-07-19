@@ -1,5 +1,6 @@
 ﻿using Alexandria.ItemAPI;
 using Alexandria.Misc;
+using Dungeonator;
 using JuneLib.Items;
 using System;
 using System.Collections;
@@ -84,14 +85,23 @@ namespace ModularMod
             p.UpdateSpeed();
         }
 
-        public static List<ElectricChainProjectile> allactiveTetherProjectiles = new List<ElectricChainProjectile>();
+        public static Dictionary<RoomHandler, List<ElectricChainProjectile>> allactiveTetherProjectiles = new Dictionary<RoomHandler, List<ElectricChainProjectile>>();
     }
     public class ElectricChainProjectile : BraveBehaviour
     {
         public void Start()
         {
-            LightningNets.allactiveTetherProjectiles.Add(this);
+            startingRoom = this.transform.position.GetAbsoluteRoom();
+            //this.transform.position.GetAbsoluteRoom();
+
+            if (!LightningNets.allactiveTetherProjectiles.ContainsKey(startingRoom))
+            {
+                LightningNets.allactiveTetherProjectiles.Add(startingRoom, new List<ElectricChainProjectile>());
+            }
+            LightningNets.allactiveTetherProjectiles[startingRoom].Add(this);
         }
+
+        private RoomHandler startingRoom;
 
         private Dictionary<tk2dBaseSprite, tk2dTiledSprite> ExtantTethers = new Dictionary<tk2dBaseSprite, tk2dTiledSprite>();
         private float Tick = 0.333f;
@@ -101,10 +111,13 @@ namespace ModularMod
 
         public void Update()
         {
-            //Elapsed += BraveTime.DeltaTime;
+            if (startingRoom == null)
+            {
+                return;
+            }
             if (this.projectile != null)
             {
-                List<ElectricChainProjectile> activeProjectiles = LightningNets.allactiveTetherProjectiles;
+                List<ElectricChainProjectile> activeProjectiles = LightningNets.allactiveTetherProjectiles[startingRoom];
                 if (activeProjectiles != null && activeProjectiles.Count > 0)
                 {
                     foreach (ElectricChainProjectile ai in activeProjectiles)
@@ -210,9 +223,15 @@ namespace ModularMod
                 }
             }
             ExtantTethers.Clear();
-            if (LightningNets.allactiveTetherProjectiles.Contains(this))
+            if (startingRoom != null)
             {
-                LightningNets.allactiveTetherProjectiles.Remove(this);
+                if (LightningNets.allactiveTetherProjectiles[startingRoom] != null)
+                {
+                    if (LightningNets.allactiveTetherProjectiles[startingRoom].Contains(this))
+                    {
+                        LightningNets.allactiveTetherProjectiles[startingRoom].Remove(this);
+                    }
+                }
             }
         }
 
@@ -230,10 +249,8 @@ namespace ModularMod
 
             if (Damages)
             {
-                //Elapsed = 0;
                 this.ApplyLinearDamage(unitCenter, unitCenter2);
                 this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter, 1.5f, Hit);
-                //this.transform.PositionVector2().GetAbsoluteRoom().ApplyActionToNearbyEnemies(unitCenter2, 1.5f, Hit);
             }
         }
         public void Hit(AIActor aIActor, float f)
@@ -290,7 +307,6 @@ namespace ModularMod
         public float Range = 3.5f;
         public float Damage;
         public PlayerController player;
-        //public GameObject projectile;
     }
 }
 

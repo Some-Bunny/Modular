@@ -27,7 +27,7 @@ namespace ModularMod
             var h = (v as DefaultModule);
             h.AltSpriteID = StaticCollections.Module_T1_Collection.GetSpriteIdByName("largerclip_tier1_module_alt");
             h.Tier = ModuleTier.Tier_1;
-            h.SetDescription("Larger Clips " + h.ReturnTierLabel());
+            h.SetName("Larger Clips " + h.ReturnTierLabel());
             h.SetDescription("Increases Clip Capacity by 33% (" + StaticColorHexes.AddColorToLabelString("+33%", StaticColorHexes.Light_Orange_Hex) + ").");
 
             h.AddModuleTag(BaseModuleTags.BASIC);

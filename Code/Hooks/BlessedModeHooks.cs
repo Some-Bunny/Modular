@@ -1,4 +1,5 @@
 ﻿using Dungeonator;
+using HarmonyLib;
 using ModularMod.Code.Hooks;
 using MonoMod.RuntimeDetour;
 using System;
@@ -16,9 +17,77 @@ namespace ModularMod
     {
         public static void Init()
         {
-            new Hook(typeof(PlayerController).GetMethod("ChangeToRandomGun", BindingFlags.Instance | BindingFlags.Public), typeof(BlessedMode_Modifier).GetMethod("ChangeToRandomGunHook"));
+            //new Hook(typeof(PlayerController).GetMethod("ChangeToRandomGun", BindingFlags.Instance | BindingFlags.Public), typeof(BlessedMode_Modifier).GetMethod("ChangeToRandomGunHook"));
             new Hook(typeof(PlayerController).GetMethod("Update", BindingFlags.Instance | BindingFlags.Public), typeof(BlessedMode_Modifier).GetMethod("UpdateHook"));
 
+        }
+
+        [HarmonyPatch(typeof(PlayerController), nameof(PlayerController.ChangeToRandomGun))]
+        public class PlayerController_ChangeToRandomGun
+        {
+            [HarmonyPrefix]
+            private static bool ChangeToRandomGun(PlayerController __instance)
+            {
+                if (__instance.PlayerHasCore() != null)
+                {
+                    __instance.m_gunGameElapsed = 0f;
+                    __instance.m_gunGameDamageThreshold = 1250f + UnityEngine.Random.Range(0, 1250);
+                    if (__instance.inventory.GunLocked.Value)
+                    {
+                        return false;
+                    }
+                    if (GameManager.Instance.CurrentLevelOverrideState == GameManager.LevelOverrideState.END_TIMES || GameManager.Instance.CurrentLevelOverrideState == GameManager.LevelOverrideState.CHARACTER_PAST || GameManager.Instance.CurrentLevelOverrideState == GameManager.LevelOverrideState.TUTORIAL)
+                    {
+                        return false;
+                    }
+                    __instance.PlayEffectOnActor(ResourceCache.Acquire("Global VFX/VFX_MagicFavor_Change") as GameObject, new Vector3(0f, -1f, 0f), true, false, false);
+                    var core = __instance.PlayerHasCore();
+                    core.RemoveTemporaryModules("BLESSED_MODE", true);
+                    int amount = UnityEngine.Random.value < 0.3f ? 2 : 1;
+                    amount += FloorMultiplier(GameManager.Instance.Dungeon);
+                    for (int i = 1; i < amount + 1; i++)
+                    {
+                        int tier = UnityEngine.Random.Range(1, 11);
+                        PickupObject.ItemQuality itemQuality = PickupObject.ItemQuality.B;
+                        switch (tier)
+                        {
+                            case 1:
+                                itemQuality = PickupObject.ItemQuality.D;
+                                break;
+                            case 2:
+                                itemQuality = PickupObject.ItemQuality.D;
+                                break;
+                            case 3:
+                                itemQuality = PickupObject.ItemQuality.D;
+                                break;
+                            case 4:
+                                itemQuality = PickupObject.ItemQuality.C;
+                                break;
+                            case 5:
+                                itemQuality = PickupObject.ItemQuality.C;
+                                break;
+                            case 6:
+                                itemQuality = PickupObject.ItemQuality.B;
+                                break;
+                            case 7:
+                                itemQuality = PickupObject.ItemQuality.B;
+                                break;
+                            case 8:
+                                itemQuality = PickupObject.ItemQuality.A;
+                                break;
+                            case 9:
+                                itemQuality = PickupObject.ItemQuality.A;
+                                break;
+                            case 10:
+                                itemQuality = PickupObject.ItemQuality.S;
+                                break;
+                        }
+                        core.GiveTemporaryModule(ReturnSelectedModule(itemQuality), "BLESSED_MODE", UnityEngine.Random.Range(1, amount + 1), true);
+                    }
+                    return false;
+                }
+                return true;
+            }
         }
 
 
@@ -114,6 +183,12 @@ namespace ModularMod
         }
 
         [Obsolete]
+
+
+
+
+
+
         public static void UpdateHook(Action<PlayerController> orig, PlayerController self)
         {
             if (self.CharacterUsesRandomGuns == true && self.PlayerHasCore() != null)
@@ -180,6 +255,16 @@ namespace ModularMod
                 {
                     return;
                 }
+
+                /*
+                if (self.CharacterUsesRandomGuns && self.inventory != null)
+                {
+                    while (self.inventory.AllGuns.Count > 1)
+                    {
+                        self.inventory.DestroyGun(self.inventory.AllGuns[0]);
+                    }
+                }
+                */
 
                 self.HandlePostDodgeRollTimer();
                 self.m_activeActions = BraveInput.GetInstanceForPlayer(self.PlayerIDX).ActiveActions;

@@ -64,7 +64,7 @@ namespace ModularMod
             projectile.shouldRotate = false;
             gun.gunClass = GunClass.NONE;
 
-            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 3, 3);
+            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 8, 8);
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 

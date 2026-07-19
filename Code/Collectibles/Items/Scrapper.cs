@@ -53,7 +53,7 @@ namespace ModularMod
 
             var tk2dAnim = VFX.AddComponent<tk2dSpriteAnimator>();
             tk2dAnim.Library = Module.ModularAssetBundle.LoadAsset<GameObject>("ScrapperAnimation").GetComponent<tk2dSpriteAnimation>();
-
+            pickup.PreventStartingOwnerFromDropping = true;
 
             Tk2dSpriteAnimatorUtility.AddEventTriggersToAnimation(tk2dAnim, "start", new Dictionary<int, string>()
             {
@@ -96,8 +96,14 @@ namespace ModularMod
         {
             if (active.PickupObjectId == Scrapper.ID)
             {
-                active.Pickup(player);          
-                (active as Scrapper).SetMode("COMPUTER");        
+                (active as Scrapper).SetMode("COMPUTER");
+                while (!player.HasActiveItem(Scrapper.ID))
+                {
+                    Debug.Log("AIURHBREJHKBREQBHKJR");
+                    if (active == null)
+                        break;
+                    active.Pickup(player);
+                }
             }
         }
         public override void Pickup(PlayerController player)

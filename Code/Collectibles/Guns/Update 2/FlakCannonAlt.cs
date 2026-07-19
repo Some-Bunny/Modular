@@ -132,7 +132,7 @@ namespace ModularMod
 
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = "FlakCannon_MDLR";
-            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 3, 3);
+            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 8, 8);
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 
             gun.carryPixelOffset = new IntVector2(4, 2);

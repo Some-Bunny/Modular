@@ -28,14 +28,14 @@ namespace ModularMod
         public static void Init()
         {
             //new Hook(typeof(Gun).GetMethod("Pickup", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("PickupHook"));
-            new Hook(typeof(Gun).GetMethod("Update", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("UpdateHook"));
+            //new Hook(typeof(Gun).GetMethod("Update", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("UpdateHook"));
 
             //new Hook(typeof(Gun).GetMethod("OnEnteredRange", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("OnEnteredRangeHook"));
 
             new Hook(typeof(PlayerController).GetMethod("SetStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("SetStencilValHook"));
             new Hook(typeof(PlayerController).GetMethod("UpdateStencilVal", BindingFlags.Instance | BindingFlags.NonPublic), typeof(Hooks).GetMethod("UpdateStencilValHook"));
-            new Hook(typeof(PlayerStats).GetMethod("RebuildGunVolleys", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("RebuildGunVolleysHook"));
-            new Hook(typeof(AIActor).GetMethod("TeleportSomewhere", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("TeleportationImmunity"));
+            //new Hook(typeof(PlayerStats).GetMethod("RebuildGunVolleys", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("RebuildGunVolleysHook"));
+            //new Hook(typeof(AIActor).GetMethod("TeleportSomewhere", BindingFlags.Instance | BindingFlags.Public), typeof(Hooks).GetMethod("TeleportationImmunity"));
 
 
             JuneLib.ItemsCore.AddChangeSpawnItem(ReturnObj);
@@ -68,8 +68,6 @@ namespace ModularMod
             }
         }
 
-
-
         [HarmonyPatch(typeof(Projectile), nameof(Projectile.BeamCollision))]
         public class Projectile_BeamCollision
         {
@@ -89,76 +87,6 @@ namespace ModularMod
                 return true;
             }
         }
-
-
-
-        public static void UpdateHook(Action<Gun> orig, Gun self)
-        {
-            orig(self);
-            if (self.CurrentOwner != null)
-            {
-                for (int i = self.transform.childCount - 1; i > -1; i--)
-                {
-                    if (self.transform.GetChild(i).name.Contains("VFX_MODULABLE"))
-                    {
-                        UnityEngine.Object.Destroy(self.transform.GetChild(i).gameObject);
-                    }
-                }
-                var c = self.gameObject.GetComponent<ChooseModuleController>();
-                if (c != null)
-                {
-                    c.DestroyAllOthers(false, true);
-                }
-            }
-        }
-        public static void TeleportationImmunity(Action<AIActor, IntVector2?, bool> orig, AIActor self, IntVector2? overrideClearance = null, bool keepClose = false)
-        {
-            if (self.GetComponent<TeleportationImmunity>() != null) { return; }
-            orig(self, overrideClearance, keepClose);
-        }
-
-
-
-
-        public static void RebuildGunVolleysHook(Action<PlayerStats, PlayerController> orig, PlayerStats self, PlayerController p)
-        {
-            orig(self, p);
-            GameManager.Instance.StartCoroutine(FrameDelay());
-        }
-        public static IEnumerator FrameDelay()
-        {
-            yield return null;
-            if (OnRecalculateStats != null) { OnRecalculateStats(); }
-            yield break;
-        }
-        public static Action OnRecalculateStats;
-
-        public static GameObject ReturnObj(PickupObject pickup)
-        {
-            foreach (var player in GameManager.Instance.AllPlayers)
-            {
-                if (player.PlayerHasCore() != null) 
-                {
-                    var HPComp = pickup.GetComponent<HealthPickup>();
-                    if (HPComp != null)
-                    {
-                        bool flga = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST);
-                        if (HPComp.healAmount == 0.5f)
-                        {
-                            pickup = UnityEngine.Random.value < 0.02f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
-
-                        }
-                        if (HPComp.healAmount == 1f)
-                        {
-                            pickup = UnityEngine.Random.value < 0.035f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
-                        }
-                    }
-                }
-            }
-            return pickup.gameObject;
-        }
-
-
 
         [HarmonyPatch(typeof(Gun), nameof(Gun.Pickup))]
         public class Gun_Pickup
@@ -191,36 +119,96 @@ namespace ModularMod
             }
         }
 
-        /*
-        public static void PickupHook(Action<Gun, PlayerController> orig, Gun self, PlayerController player)
+        [HarmonyPatch(typeof(Gun), nameof(Gun.Update))]
+        public class Gun_Update
         {
-            if (player.PlayerHasCore() != null)
+            [HarmonyPrefix]
+            private static void Update(Gun __instance)
             {
-                var yes = self.gameObject.GetComponent<ChooseModuleController>();
-                if (yes == null)
+                if (__instance.CurrentOwner != null)
                 {
-                    yes = self.gameObject.AddComponent<ChooseModuleController>();
-                    yes.isAlt = player.IsUsingAlternateCostume;
-
-                }
-                else
-                {
-                    yes.Nudge(player);
-                }
-            }
-            else
-            {
-                orig(self, player);
-                for (int i = self.transform.childCount - 1; i > -1; i--)
-                {
-                    if (self.transform.GetChild(i).name.Contains("VFX_MODULABLE"))
+                    for (int i = __instance.transform.childCount - 1; i > -1; i--)
                     {
-                        UnityEngine.Object.Destroy(self.transform.GetChild(i).gameObject);
+                        if (__instance.transform.GetChild(i).name.Contains("VFX_MODULABLE"))
+                        {
+                            UnityEngine.Object.Destroy(__instance.transform.GetChild(i).gameObject);
+                        }
+                    }
+                    var c = __instance.gameObject.GetComponent<ChooseModuleController>();
+                    if (c != null)
+                    {
+                        c.DestroyAllOthers(false, true);
                     }
                 }
             }
         }
-        */
+
+        [HarmonyPatch(typeof(AIActor), nameof(AIActor.TeleportSomewhere))]
+        public class AIActor_TeleportSomewhere
+        {
+            [HarmonyPrefix]
+            private static bool Update(AIActor __instance)
+            {
+                if (__instance.GetComponent<TeleportationImmunity>() != null) { return false; }
+                return true;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        [HarmonyPatch(typeof(PlayerStats), nameof(PlayerStats.RebuildGunVolleys))]
+        public class PlayerStats_RebuildGunVolleys
+        {
+            [HarmonyPrefix]
+            private static void RebuildGunVolleys(PlayerStats __instance, PlayerController owner)
+            {
+                GameManager.Instance.StartCoroutine(FrameDelay());
+            }
+            public static IEnumerator FrameDelay()
+            {
+                yield return null;
+                if (OnRecalculateStats != null) { OnRecalculateStats(); }
+                yield break;
+            }
+        }
+
+        public static Action OnRecalculateStats;
+
+        public static GameObject ReturnObj(PickupObject pickup)
+        {
+            foreach (var player in GameManager.Instance.AllPlayers)
+            {
+                if (player.PlayerHasCore() != null) 
+                {
+                    var HPComp = pickup.GetComponent<HealthPickup>();
+                    if (HPComp != null)
+                    {
+                        bool flga = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST);
+                        if (HPComp.healAmount == 0.5f)
+                        {
+                            pickup = UnityEngine.Random.value < 0.02f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
+
+                        }
+                        if (HPComp.healAmount == 1f)
+                        {
+                            pickup = UnityEngine.Random.value < 0.035f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID) : PickupObjectDatabase.GetById(Scrap.Scrap_ID);
+                        }
+                    }
+                }
+            }
+            return pickup.gameObject;
+        }
+
+
+
+        
+
 
 
 
@@ -280,7 +268,7 @@ namespace ModularMod
                         bool flga = AdvancedGameStatsManager.Instance.GetFlag(CustomDungeonFlags.PAST);
                         if (HPComp != null)
                         {
-                            Debug.Log(1);
+                            //Debug.Log(1);
 
                             if (HPComp.healAmount == 0.5f)
                             {
@@ -297,7 +285,7 @@ namespace ModularMod
                         }
                         if (AmmoComp != null)
                         {
-                            Debug.Log(2);
+                            //Debug.Log(2);
                             if (AmmoComp.mode == AmmoPickup.AmmoPickupMode.SPREAD_AMMO)
                             {
                                 var g = UnityEngine.Random.value < 0.025f && flga == true ? PickupObjectDatabase.GetById(CraftingCore.CraftingCoreID).gameObject : PickupObjectDatabase.GetById(Scrap.Scrap_ID).gameObject;

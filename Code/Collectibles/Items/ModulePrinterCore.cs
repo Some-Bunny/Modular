@@ -72,7 +72,7 @@ namespace ModularMod
             item.CustomCost = 25;
             item.CanBeDropped = false;
             item.RemovePickupFromLootTables();
-
+            item.PreventStartingOwnerFromDropping = true;
             item.passiveStatModifiers = new StatModifier[] 
             {
                 new StatModifier()

@@ -16,7 +16,7 @@ namespace ModularMod
         {
             Name = "Power Cell",
             Description = "Power Up!",
-            LongDescription = "Increases the amount of Stored Energy by 1.\n\nA handy power cell to keep the Modular going, along with all of their installed tech.",
+            LongDescription = "Increases the amount of Energy by 1.\n\nA handy power cell to keep the Modular going, along with all of their installed tech.",
             ManualSpriteCollection = StaticCollections.Item_Collection,
             ManualSpriteID = StaticCollections.Item_Collection.GetSpriteIdByName("powerCell"),
             Quality = ItemQuality.EXCLUDED,

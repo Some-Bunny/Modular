@@ -73,6 +73,36 @@ namespace ModularMod.Code.Hooks
                 }
             }
         }
+
+        [HarmonyPatch(typeof(PlayerController), nameof(PlayerController.DropActiveItem))]
+        public class PlayerController_DropActiveItem
+        {
+            [HarmonyPrefix]
+            private static bool Awake(PlayerController __instance, PlayerItem item,  ref DebrisObject __result)
+            {
+                if (item.PickupObjectId == Scrapper.ID)
+                {
+                    foreach (var item1 in __instance.activeItems)
+                    {
+                        if (item1.PickupObjectId == Scrapper.ID)
+                            continue;
+
+                        var poop = __instance.DropActiveItem(item1);
+                        if (poop != null)
+                        {
+                            __result = poop;
+                            break;
+                        }
+                    }
+                    return false;
+                }
+                return true;
+            }
+        }
+
+
+        /*
+
         [HarmonyPatch]
         private static class PlayerItem_Drop
         {
@@ -82,7 +112,7 @@ namespace ModularMod.Code.Hooks
             {
                 ILCursor cursor = new ILCursor(il);
 
-                if (!cursor.TryGotoNext(MoveType.Before,
+                if (!cursor.TryGotoNext(MoveType.After,
                     instr => instr.MatchLdarg(1),
                     instr => instr.MatchLdfld<PlayerController>("stats"),
                     instr => instr.MatchLdarg(1)))
@@ -95,10 +125,11 @@ namespace ModularMod.Code.Hooks
             }
             private static void ActiveItemDropped(PlayerItem chestBehavior, PlayerController player)
             {
-                //Debug.Log("DSKJNSDAFJKNLDFAS");
+                Debug.Log("DSKJNSDAFJKNLDFAS");
                 if (OnActiveItemDropped != null) { OnActiveItemDropped(chestBehavior, player); }
             }
         }
+        */
 
         /*
         [HarmonyPatch(typeof(PlayerItem), nameof(PlayerItem.Drop))]

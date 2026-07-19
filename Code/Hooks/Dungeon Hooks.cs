@@ -4,6 +4,7 @@ using UnityEngine;
 using Dungeonator;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
+using HarmonyLib;
 
 namespace ModularMod
 {
@@ -12,10 +13,12 @@ namespace ModularMod
         public static void Init()
         {
             //================================
+            /*
             new Hook(
             typeof(RoomHandler).GetMethod("AddProceduralTeleporterToRoom", BindingFlags.Instance | BindingFlags.Public),
             typeof(DungeonHooks).GetMethod("AddProceduralTeleporterToRoomHook", BindingFlags.Static | BindingFlags.Public)
             );
+            */
             //================================
 
             //================================
@@ -26,12 +29,21 @@ namespace ModularMod
             new Hook(typeof(RoomHandler).GetMethod("CheckCellArea", BindingFlags.Instance | BindingFlags.NonPublic), typeof(DungeonHooks).GetMethod("CheckCellAreaHook"));
             //================================
         }
-        public static void AddProceduralTeleporterToRoomHook(Action<RoomHandler> orig, RoomHandler roomHandler)
+
+
+        [HarmonyPatch(typeof(RoomHandler), nameof(RoomHandler.AddProceduralTeleporterToRoom))]
+        public class RoomHandler_AddProceduralTeleporterToRoom
         {
-            //yes, this is a really cheap and shit way of preventing teleporters on **specificaly** my floor but it should work
-            if (GameManager.Instance.Dungeon.BossMasteryTokenItemId == ModulePrinterCore.ModulePrinterCoreID) { return; }
-            orig(roomHandler);
+            [HarmonyPrefix]
+            private static bool Update(RoomHandler __instance)
+            {
+                if (GameManager.Instance.Dungeon.BossMasteryTokenItemId == ModulePrinterCore.ModulePrinterCoreID) { return false; }
+                return true;
+            }
         }
+
+
+
         public static bool CheckCellAreaHook(Func<RoomHandler, IntVector2, IntVector2, bool> orig, RoomHandler self, IntVector2 basePosition, IntVector2 objDimensions)
         {
             DungeonData data = GameManager.Instance.Dungeon.data;

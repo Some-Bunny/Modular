@@ -15,11 +15,6 @@ namespace ModularMod
 {
     public class UIHooks
     {
-        public static void Init()
-        {
-           //new Hook(typeof(GameManager).GetMethod("Pause", BindingFlags.Instance | BindingFlags.Public), typeof(UIHooks).GetMethod("PauseHook", BindingFlags.Static | BindingFlags.Public));                   
-        }
-
         [HarmonyPatch(typeof(GameManager), nameof(GameManager.Pause))]
         public class Patch_GameManager_Pause
         {
@@ -37,22 +32,6 @@ namespace ModularMod
                 if (OnPaused != null) { OnPaused(); }
             }
         }
-
-        /*
-        public static void PauseHook(Action<GameManager> orig, GameManager self)
-        {
-            if (StarterGunSelectUIController.Inst != null)
-            {
-                StarterGunSelectUIController.Inst.ToggleUI(false, null, true);
-            }
-            CursorPatch.DisplayCursorOnController = false;
-            var scrapLabel = ScrapUIController.FindScrapUI(GameUIRoot.Instance);
-            scrapLabel.isVisible = ScrapUIController.ScrapCounterVisible().First;
-            scrapLabel.enabled = ScrapUIController.ScrapCounterVisible().First;
-            if (OnPaused != null) { OnPaused(); }
-            orig(self);
-        }
-        */
         public static Action OnPaused;
     }
 }

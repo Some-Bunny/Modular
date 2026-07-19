@@ -175,7 +175,7 @@ namespace ModularMod
             gun.DefaultModule.ammoType = GameUIAmmoType.AmmoType.CUSTOM;
             gun.DefaultModule.customAmmoType = CustomClipAmmoTypeToolbox.AddCustomAmmoType("TurretBallAlt", StaticCollections.Clip_Ammo_Atlas, "turretalt_1", "turretalt_2");
 
-            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 3, 3);
+            gun.AddGlowShaderToGun(new Color32(0, 255, 54, 255), 8, 8);
 
             gun.gunHandedness = GunHandedness.HiddenOneHanded;
 
